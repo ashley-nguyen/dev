@@ -6,7 +6,7 @@ import org.junit.runner.RunWith;
 
 @RunWith(Cucumber.class)
 @CucumberOptions(plugin = {"pretty"},
-        features = "C:\\SeleniumScripts\\NavianceQAAutomation\\Naviance_cucumber_automation\\src\\test\\resources")
+        features = ".\\SeleniumScripts\\NavianceCucumberAutomation\\src\\test\\resources")
 
 public class RunCukesTest
 {

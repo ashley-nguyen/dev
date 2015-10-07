@@ -26,10 +26,11 @@ public class Login {
 
     }
 
-    public static void DoFCLogin(String fcAccount, String strUserName, String strPassword)
-    {
-        System.out.println("URL######"+Hooks.strBaseURL);
-        Hooks.driver.get(Hooks.strBaseURL+"/"+fcAccount);
+    public static void DoFCLogin(String fcAccount, String strUserName, String strPassword) throws InterruptedException {
+        System.out.println("URL######"+Hooks.strBaseURL+"/family-connection/"+fcAccount);
+        Hooks.driver.get(Hooks.strBaseURL+"/family-connection/"+fcAccount);
+
+        Thread.sleep(5000);
 
         WebElement txtaccount = Hooks.driver.findElement(By.name("login"));
         txtaccount.sendKeys(strUserName);

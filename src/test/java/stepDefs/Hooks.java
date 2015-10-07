@@ -26,7 +26,7 @@ public class Hooks{
     public void openBrowser() throws MalformedURLException {
 
         String env = System.getProperty("ENV");
-        System.out.println("##### ENV: "+ env);
+
         if (env==null)
             env = "staging";
         switch (env)
@@ -46,22 +46,10 @@ public class Hooks{
         }
 
 
-        /*if (env==null)
-        { strBaseURL = "https://succeed-internal.naviance.com";}
-        else if (env.equals("staging"))
-        {strBaseURL = "https://succeed-internal.naviance.com";}
-        else if (env.equals("prod"))
-        {strBaseURL = "https://succeed.naviance.com";}
-        else if (env.equals("succeed04"))
-        {strBaseURL = "https://succeed-04.dev.naviance.com";}*/
-
-
-
         String browser = System.getProperty("BROWSER");
 
         if(browser==null)
         {
-            browser = System.getenv("BROWSER");
             if(browser==null)
             {
                 browser= "firefox";
