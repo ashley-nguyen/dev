@@ -27,7 +27,8 @@ public class Hooks{
 
         String env = System.getProperty("ENV");
         System.out.println("##### ENV: "+ env);
-
+        if (env==null)
+            env = "staging";
         switch (env)
         {
             case "staging":
@@ -41,6 +42,7 @@ public class Hooks{
                 break;
             default:
                 strBaseURL = "https://succeed-internal.naviance.com";
+                break;
         }
 
 
