@@ -10,7 +10,7 @@ import static org.junit.Assert.*;
  */
 public class Login {
 
-    public static void DoLogin(String strAccount, String strUserName, String strPasswrod)
+    public static void DoLogin(String strAccount, String strUserName, String strPassword)
     {
         WebElement txtaccount = Hooks.driver.findElement(By.name("hsid"));
         txtaccount.sendKeys(strAccount);
@@ -19,11 +19,26 @@ public class Login {
         txtusername.sendKeys(strUserName);
 
         WebElement txtpassword = Hooks.driver.findElement(By.name("password"));
-        txtpassword.sendKeys(strPasswrod);
+        txtpassword.sendKeys(strPassword);
 
         WebElement btnSignin = Hooks.driver.findElement(By.name("Submit"));
         btnSignin.click();
 
+    }
+
+    public static void DoFCLogin(String fcAccount, String strUserName, String strPassword)
+    {
+        System.out.println("URL######"+Hooks.strBaseURL);
+        Hooks.driver.get(Hooks.strBaseURL+"/"+fcAccount);
+
+        WebElement txtaccount = Hooks.driver.findElement(By.name("login"));
+        txtaccount.sendKeys(strUserName);
+
+        WebElement txtpassword = Hooks.driver.findElement(By.name("password"));
+        txtpassword.sendKeys(strPassword);
+
+        WebElement btnSignin = Hooks.driver.findElement(By.id("login"));
+        btnSignin.click();
     }
 
     public static void verifyValidLogin()

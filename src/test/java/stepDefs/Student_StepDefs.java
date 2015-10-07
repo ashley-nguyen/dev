@@ -18,7 +18,7 @@ import static org.junit.Assert.assertEquals;
 public class Student_StepDefs {
     public static WebDriver driver;
 
-    private static String strBaseURL = "https://succeed-internal.naviance.com";
+   // private static String strBaseURL = "https://succeed-internal.naviance.com";
 
 
     @Then("^their student record will be displayed$")

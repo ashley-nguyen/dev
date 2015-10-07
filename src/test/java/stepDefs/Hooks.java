@@ -17,7 +17,7 @@ package stepDefs;
         import org.openqa.selenium.safari.SafariDriver;
 public class Hooks{
     public static WebDriver driver;
-    private static String strBaseURL;
+    public static String strBaseURL;
     @Before
     /**
      * Delete all cookies at the start of each scenario to avoid
@@ -26,14 +26,33 @@ public class Hooks{
     public void openBrowser() throws MalformedURLException {
 
         String env = System.getProperty("ENV");
+        System.out.println("##### ENV: "+ env);
 
-        if (env==null)
+        switch (env)
+        {
+            case "staging":
+                strBaseURL = "https://succeed-internal.naviance.com";
+                break;
+            case "prod":
+                strBaseURL = "https://succeed.naviance.com";
+                break;
+            case "succeed04":
+                strBaseURL = "https://succeed-04.dev.naviance.com";
+                break;
+            default:
+                strBaseURL = "https://succeed-internal.naviance.com";
+        }
+
+
+        /*if (env==null)
         { strBaseURL = "https://succeed-internal.naviance.com";}
         else if (env.equals("staging"))
         {strBaseURL = "https://succeed-internal.naviance.com";}
         else if (env.equals("prod"))
         {strBaseURL = "https://succeed.naviance.com";}
-        //TO DO: NEED TO COMPLETE FOR THE OTHER ENVIORNMENTS
+        else if (env.equals("succeed04"))
+        {strBaseURL = "https://succeed-04.dev.naviance.com";}*/
+
 
 
         String browser = System.getProperty("BROWSER");

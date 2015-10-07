@@ -4,9 +4,10 @@ Feature: Use Surveys created in Naviance
   as a Naviance user
   I want to create and make surveys available to students
 
+  @test2
   Scenario: Survey in primary district
     Given I have a survey created in a primary district
-    When I log into family connection as a student
+    When I log into family connection "highSchool01" as "pbest" and "test1234"
     Then I will be able to take the surveys
 
   Scenario: Survey in secondary district
