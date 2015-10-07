@@ -25,7 +25,7 @@ public class Hooks{
      */
     public void openBrowser() throws MalformedURLException {
 
-        String env = System.getProperty("ENV");
+        String env = System.getenv("ENV");
         System.out.println("##### ENV: "+ env);
         if (env==null)
             env = "staging";
@@ -57,7 +57,7 @@ public class Hooks{
 
 
 
-        String browser = System.getProperty("BROWSER");
+        String browser = System.getenv("BROWSER");
 
         if(browser==null)
         {
