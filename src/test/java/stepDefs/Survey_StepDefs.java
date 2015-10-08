@@ -4,6 +4,8 @@ import cucumber.api.PendingException;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 import stepDefs.Login;
 
 /**
@@ -23,9 +25,13 @@ public class Survey_StepDefs {
         Login.DoFCLogin("highSchool01", "pbest", "test1234");
     }
 
-    @Then("^I will be able to take the surveys$")
-    public void I_will_be_able_to_take_the_surveys() throws Throwable {
+    @Then("^I will be able to take the survey \"(.*)\"$")
+    public void I_will_be_able_to_take_the_survey(String strSurvey) throws Throwable {
         // ASSERT STUDENT CAN VIEW THE SURVEYS
+        WebElement lnkAboutMe = Hooks.driver.findElement(By.linkText("about me"));
+        lnkAboutMe.click();
+
+        Survey.verifySurvey(strSurvey);
     }
 
     @Given("^I have a survey created in a secondary district$")

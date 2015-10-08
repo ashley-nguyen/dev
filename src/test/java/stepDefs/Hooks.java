@@ -28,7 +28,7 @@ public class Hooks{
         String env = System.getProperty("ENV");
 
         if (env==null)
-            env = "staging";
+            env = "succeed04";
         switch (env)
         {
             case "staging":
