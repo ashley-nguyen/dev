@@ -71,4 +71,11 @@ public class Student_StepDefs {
     }
 
 
+    @Then("^their ACT legacy test scores will be displayed (.*) (.*) (.*) (.*) (.*) (.*) (.*) (.*) (.*)$")
+    public void their_ACT_legacy_test_scores_will_be_displayed_english_math_reading_science_writing_sub_comb_eng_wri_composite_date_grade(String strEnglish, String strMath, String strReading, String strScience, String strWritSub, String strCombEngWri, String strComposite, String strDate, String strGrade) throws Throwable {
+
+
+        Student.verifyLegacyACTScores(strEnglish, strMath, strReading, strScience, strWritSub, strCombEngWri, strComposite, strDate, strGrade);
+
+    }
 }

@@ -37,11 +37,11 @@ public class Survey {
         }
         catch (NoSuchElementException e)
         {
-            throw new AssertionFailedError(strSurvey+" survey link not found");
+            throw new AssertionFailedError("!!!!!"+strSurvey+" survey link not found!!!!!");
         }
         catch (WebDriverException e)
         {
-            throw new AssertionFailedError(strSurvey+" survey link not found");
+            throw new AssertionFailedError("!!!!!"+strSurvey+" survey link not found!!!!!");
         }
 
 
