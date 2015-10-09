@@ -1,12 +1,12 @@
-package stepDefs;
+package stepDefs.Survey;
 
-import cucumber.api.PendingException;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import stepDefs.Login;
+import stepDefs.Hooks;
+import stepDefs.Login.Login;
 
 /**
  * Created by csackrider on 10/7/2015.

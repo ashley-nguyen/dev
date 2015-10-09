@@ -1,29 +1,31 @@
-package stepDefs;
+package stepDefs.Login;
 
+import Objects.ObjectRepo.OR;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import stepDefs.Hooks;
 
 import static org.junit.Assert.*;
 
 /**
  * Created by csackrider on 9/22/2015.
  */
-public class Login {
+public class Login implements OR {
 
     public static void DoLogin(String strAccount, String strUserName, String strPassword)
     {
-        WebElement txtaccount = Hooks.driver.findElement(By.name("hsid"));
+        WebElement txtaccount = Hooks.driver.findElement(By.cssSelector(LoginPage_Account));
         txtaccount.sendKeys(strAccount);
 
-        WebElement txtusername = Hooks.driver.findElement(By.name("username"));
+        WebElement txtusername = Hooks.driver.findElement(By.cssSelector(LoginPage_UserName));
         txtusername.sendKeys(strUserName);
 
-        WebElement txtpassword = Hooks.driver.findElement(By.name("password"));
+        WebElement txtpassword = Hooks.driver.findElement(By.cssSelector(LoginPage_Password));
         txtpassword.sendKeys(strPassword);
 
-        WebElement btnSignin = Hooks.driver.findElement(By.name("Submit"));
+        WebElement btnSignin = Hooks.driver.findElement(By.cssSelector(LoginPage_LoginButton));
         btnSignin.click();
 
     }

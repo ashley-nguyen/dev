@@ -1,7 +1,7 @@
-Feature: Student Scores
-  in order to track test scores
+Feature: Student AP Scores
+  in order to track student AP test scores
   as a Naviance user
-  I want to be able to manage student scores
+  I want to be able to manage student AP scores
 
   @test @destructive
   Scenario Outline: Update Student AP scores

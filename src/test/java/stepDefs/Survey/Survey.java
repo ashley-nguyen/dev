@@ -1,4 +1,4 @@
-package stepDefs;
+package stepDefs.Survey;
 
 import junit.framework.AssertionFailedError;
 import org.openqa.selenium.By;
@@ -6,6 +6,7 @@ import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindAll;
 import org.openqa.selenium.support.FindBy;
+import stepDefs.Hooks;
 
 import java.util.List;
 import java.util.NoSuchElementException;
