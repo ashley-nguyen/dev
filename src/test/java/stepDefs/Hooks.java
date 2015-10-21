@@ -1,10 +1,8 @@
 package stepDefs;
 
         import java.net.MalformedURLException;
-        import org.openqa.selenium.OutputType;
-        import org.openqa.selenium.TakesScreenshot;
-        import org.openqa.selenium.WebDriver;
-        import org.openqa.selenium.WebDriverException;
+
+        import org.openqa.selenium.*;
         import org.openqa.selenium.chrome.ChromeDriver;
         import cucumber.api.Scenario;
         import cucumber.api.java.After;
@@ -13,11 +11,16 @@ package stepDefs;
         import org.openqa.selenium.ie.InternetExplorerDriver;
         //import org.openqa.selenium.phantomjs.PhantomJSDriver;
         //import org.openqa.selenium.phantomjs.PhantomJSDriverService;
+        import org.openqa.selenium.remote.CapabilityType;
         import org.openqa.selenium.remote.DesiredCapabilities;
         import org.openqa.selenium.safari.SafariDriver;
 public class Hooks{
     public static WebDriver driver;
     public static String strBaseURL;
+
+    DesiredCapabilities dc = new DesiredCapabilities();
+
+
     @Before
     /**
      * Delete all cookies at the start of each scenario to avoid
@@ -25,10 +28,12 @@ public class Hooks{
      */
     public void openBrowser() throws MalformedURLException {
 
+        dc.setCapability(CapabilityType.UNEXPECTED_ALERT_BEHAVIOUR, UnexpectedAlertBehaviour.IGNORE);
+
         String env = System.getProperty("ENV");
 
         if (env==null)
-            env = "staging";
+            env = "succeed04";
         switch (env)
         {
             case "staging":
@@ -56,24 +61,25 @@ public class Hooks{
             }
         }
         if (browser.equals("chrome")) {
-            driver = new ChromeDriver();
+            driver = new ChromeDriver(dc);
 
         } else if (browser.equals("firefox")) {
-            driver = new FirefoxDriver();
+            driver = new FirefoxDriver(dc);
 
         } else if (browser.equals("ie")) {
-            driver = new InternetExplorerDriver();
+            driver = new InternetExplorerDriver(dc);
 
         } else if (browser.equals("safari")) {
-            driver = new SafariDriver();
+            driver = new SafariDriver(dc);
 
         } else {
-            driver = new ChromeDriver();
+            driver = new ChromeDriver(dc);
 
         }
         System.out.println("Opening Browser...."+browser);
         driver.manage().deleteAllCookies();
        driver.get(strBaseURL);
+        driver.manage().window().maximize();
     }
     @After
     /**

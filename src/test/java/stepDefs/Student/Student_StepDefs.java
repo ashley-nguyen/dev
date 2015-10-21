@@ -1,5 +1,6 @@
 package stepDefs.Student;
 
+import cucumber.api.PendingException;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
@@ -32,7 +33,7 @@ public class Student_StepDefs {
 
         //NOTE: THIS WILL BE REFINED LATER.  JUST NEED TO GET IT GOING FOR NOW.
     }
-
+    // used in scenario outline
     @When("^I search for (\\w+, \\w+) using the global search field$")
     public void I_search_for_student_using_the_global_search_field(String student) throws Throwable {
 
@@ -52,5 +53,10 @@ public class Student_StepDefs {
         Login.DoLogin(account, user, pass);
     }
 
+    //USAGE: When I search for "Aisner, Cathy" using the global search field
+    @When("^I search for \"([^\"]*)\" using the global search field$")
+    public void I_search_for_using_the_global_search_field(String strStudent) throws Throwable {
 
+        Student.searchStudent(strStudent);
+    }
 }

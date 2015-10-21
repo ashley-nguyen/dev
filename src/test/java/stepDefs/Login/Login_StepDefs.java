@@ -1,8 +1,13 @@
 package stepDefs.Login;
 
+import com.sun.jna.platform.win32.Netapi32Util;
+import cucumber.api.DataTable;
+import cucumber.api.PendingException;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
+
+import java.util.List;
 
 /**
  * Created by csackrider on 10/9/2015.
@@ -52,4 +57,11 @@ public class Login_StepDefs {
         Login.DoLogin("etcs", "sallysupport", "sallysupport01!");
     }
 
+
+    @Given("^when I log in with the following user details:$")
+    public void when_I_log_in_with_the_following_user_details(List<String> usercreds) throws Throwable {
+
+        Login.DoLogin(usercreds.get(0), usercreds.get(1), usercreds.get(2));
+
+    }
 }

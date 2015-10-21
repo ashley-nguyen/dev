@@ -1,5 +1,6 @@
 package stepDefs.Student_Test_Scores;
 
+import cucumber.api.PendingException;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Then;
 import stepDefs.Student_Test_Scores.Scores;
@@ -30,5 +31,39 @@ public class Scores_StepDefs {
 
         Scores.verifyLegacyACTScores(strEnglish, strMath, strReading, strScience, strWritSub, strCombEngWri, strComposite, strDate, strGrade);
 
+    }
+
+    @And("^I enter ASPIRE test score (.*) for (.*) for grade (.*)$")
+    public void I_enter_ASPIRE_test_score_score_for_subject_for_grade_grade(String score, String subject, String grade) throws Throwable {
+
+        Scores.etnerASPIRETestScores(subject, grade, score);
+    }
+
+    @Then("^I will see a warning (.*)$")
+    public void I_will_see_a_warning_message(String strmessage) throws Throwable {
+
+        Scores.verifyASPIRETestScoreWarning(strmessage);
+
+    }
+
+    @And("^I enter PSAT scores (.*) (.*) (.*) (.*) (.*) (.*) (.*) (.*) (.*)$")
+    public void I_enter_PSAT_scores_evidenceReading_reading_writing_mathematics_score_math_test_totalscore_month_year_grade(String strEvReading, String strReading, String strWriting, String strMathematicsScore, String strMathTest, String strTotalScore, String strMonth, String strYear, String strGrade ) throws Throwable {
+
+        Scores.enterPSATTestScores(strEvReading, strReading, strWriting, strMathematicsScore, strMathTest, strTotalScore, strMonth, strYear, strGrade);
+
+    }
+
+    @Then("^I should see PSAT (.*)$")
+    public void I_should_see_PSAT_warning(String strWarning) throws Throwable {
+
+        Scores.verifyPSATWarning(strWarning);
+
+    }
+
+    @And("^I enter PSAT legacy scores (.*) (.*) (.*) (.*) (.*) (.*) (.*)$")
+    public void I_enter_PSAT_legacy_scores_criticalreading_math_writing_totalscore_month_year_grade(String strCritialReading, String strMath, String strWriting, String strTotal, String strMonth, String strYear, String strGrade) throws Throwable {
+
+
+        Scores.enterPSATLegacyTestScores(strCritialReading, strMath, strWriting, strTotal, strMonth, strYear, strGrade);
     }
 }
