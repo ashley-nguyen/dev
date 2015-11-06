@@ -6,7 +6,7 @@ import cucumber.api.java.en.When;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import stepDefs.Hooks;
-import stepDefs.Login.Login;
+import actions.Login.LoginAction;
 
 /**
  * Created by csackrider on 10/7/2015.
@@ -22,7 +22,7 @@ public class Survey_StepDefs {
     @When("^I log into family connection as a student$")
     public void I_log_into_family_connection_as_a_student() throws Throwable {
         // USE STUDENT PATRICK BEST
-        Login.DoFCLogin("highSchool01", "pbest", "test1234");
+        LoginAction.DoFCLogin("highSchool01", "pbest", "test1234");
     }
 
     @Then("^I will be able to take the survey \"(.*)\"$")
@@ -67,6 +67,6 @@ public class Survey_StepDefs {
     @When("^I log into family connection \"(.*)\" as \"(.*)\" and \"(.*)\"$")
     public void I_log_into_family_connection_as_and(String strAccount, String strUsername, String strPassword) throws Throwable {
 
-        Login.DoFCLogin("highSchool01", "pbest", "test1234");
+        LoginAction.DoFCLogin("highSchool01", "pbest", "test1234");
     }
 }

@@ -1,5 +1,7 @@
 package stepDefs.Student_Test_Scores;
 
+import actions.Student.Search.ScoresTab.ScoresAction;
+import actions.Student.Search.ScoresTab.ScoresVerify;
 import cucumber.api.PendingException;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Then;
@@ -12,15 +14,15 @@ public class Scores_StepDefs {
 
     @And("^I enter AP test scores (.*) (.*) (.*) (.*)$")
     public void I_enter_AP_test_scores_testtype_score_year_grade(String testtype, String score, String year, String grade) throws Throwable {
-        Scores.etnerAPTestScores(testtype, score, year, grade);
+        ScoresAction.etnerAPTestScores(testtype, score, year, grade);
 
     }
 
     @Then("^their AP test scores will be displayed (.*) (.*) (.*) (.*)$")
     public void their_AP_test_scores_will_be_displayed_testtype_score_year_grade(String testtype, String score, String year, String grade) throws Throwable {
 
-        Scores.verifyAPTestScores(testtype, score, year, grade);
-        Scores.removeAPTestScores(testtype);
+        ScoresVerify.verifyAPTestScores(testtype, score, year, grade);
+        ScoresAction.removeAPTestScores(testtype);
 
     }
 

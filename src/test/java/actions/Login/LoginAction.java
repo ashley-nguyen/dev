@@ -1,10 +1,12 @@
-package stepDefs.Login;
+package actions.Login;
 
-import Objects.ObjectRepo.OR;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import pageObjects.Login.loginPage;
 import stepDefs.Hooks;
 
 import static org.junit.Assert.*;
@@ -12,21 +14,27 @@ import static org.junit.Assert.*;
 /**
  * Created by csackrider on 9/22/2015.
  */
-public class Login implements OR {
+public class LoginAction {
+    public static WebDriver driver;
 
     public static void DoLogin(String strAccount, String strUserName, String strPassword)
-    {
-        WebElement txtaccount = Hooks.driver.findElement(By.cssSelector(LoginPage_Account));
-        txtaccount.sendKeys(strAccount);
+    {   driver = Hooks.driver;
+        PageFactory.initElements(driver, loginPage.class);
 
-        WebElement txtusername = Hooks.driver.findElement(By.cssSelector(LoginPage_UserName));
-        txtusername.sendKeys(strUserName);
+        //WebElement txtaccount = Hooks.driver.findElement(By.cssSelector(LoginPage_Account));
+        loginPage.Account.sendKeys(strAccount);
 
-        WebElement txtpassword = Hooks.driver.findElement(By.cssSelector(LoginPage_Password));
-        txtpassword.sendKeys(strPassword);
+        //WebElement txtusername = Hooks.driver.findElement(By.cssSelector(LoginPage_UserName));
+        //txtusername.sendKeys(strUserName);
+        loginPage.UserName.sendKeys(strUserName);
 
-        WebElement btnSignin = Hooks.driver.findElement(By.cssSelector(LoginPage_LoginButton));
-        btnSignin.click();
+        //WebElement txtpassword = Hooks.driver.findElement(By.cssSelector(LoginPage_Password));
+        //txtpassword.sendKeys(strPassword);
+        loginPage.password.sendKeys(strPassword);
+
+        //WebElement btnSignin = Hooks.driver.findElement(By.cssSelector(LoginPage_LoginButton));
+        //btnSignin.click();
+        loginPage.signin_button.click();
 
     }
 
@@ -48,16 +56,6 @@ public class Login implements OR {
         new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.linkText("log out")));
     }
 
-    public static void verifyValidLogin()
-    {
-        String bodyText = Hooks.driver.findElement(By.tagName("body")).getText();
-        assertTrue("Text not found!", bodyText.contains("Signed in as "));
-    }
 
-    public static void verifyInvalidLogin()
-    {
-        String bodyText = Hooks.driver.findElement(By.tagName("body")).getText();
-        assertTrue("Text not found!", bodyText.contains("Your account name, user name or password is incorrect. Passwords are case sensitive."));
-    }
 
 }

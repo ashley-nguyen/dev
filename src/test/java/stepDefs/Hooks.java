@@ -33,7 +33,7 @@ public class Hooks{
         String env = System.getProperty("ENV");
 
         if (env==null)
-            env = "succeed04";
+            env = "prod";
         switch (env)
         {
             case "staging":
