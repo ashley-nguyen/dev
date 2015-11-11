@@ -1,12 +1,13 @@
 package stepDefs.Survey;
 
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+
+import actions.Login.LoginAction;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
 import stepDefs.Hooks;
-import actions.Login.LoginAction;
 
 /**
  * Created by csackrider on 10/7/2015.

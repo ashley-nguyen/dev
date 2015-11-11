@@ -1,14 +1,13 @@
 package stepDefs.Student;
 
+import org.openqa.selenium.WebDriver;
+
+import actions.Login.LoginAction;
+import actions.Student.Search.Search.Student_SearchAction;
+import actions.Student.Search.Search.Student_SearchVerify;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
-import actions.Student.Search.Search.Student_SearchAction;
-import actions.Student.Search.Search.Student_SearchVerify;
-import org.openqa.selenium.*;
-import actions.Login.LoginAction;
-
-import static org.junit.Assert.assertEquals;
 
 /**
  * Created by csackrider on 9/23/2015.
@@ -16,7 +15,7 @@ import static org.junit.Assert.assertEquals;
 public class Student_StepDefs {
     public static WebDriver driver;
 
-   // private static String strBaseURL = "https://succeed-internal.naviance.com";
+    // private static String strBaseURL = "https://succeed-internal.naviance.com";
 
 
     @Then("^their student record will be displayed$")
@@ -34,6 +33,7 @@ public class Student_StepDefs {
 
         //NOTE: THIS WILL BE REFINED LATER.  JUST NEED TO GET IT GOING FOR NOW.
     }
+
     // used in scenario outline
     @When("^I search for (\\w+, \\w+) using the global search field$")
     public void I_search_for_student_using_the_global_search_field(String student) throws Throwable {
@@ -47,8 +47,6 @@ public class Student_StepDefs {
         Student_SearchVerify.verifyStudentData(data);
 
     }
-
-
 
 
     //USAGE: When I search for "Aisner, Cathy" using the global search field

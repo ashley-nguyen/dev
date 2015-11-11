@@ -9,4 +9,4 @@ Feature: SmokeTest Naviance
     When I complete the fields on the login page for a district user
     Then I will be signed into naviance
     When I edit my profile
-    |  | Joe | tester  | smoketest | Administrator |   |   | jtester | chad.sackrider@hobsons.com  | chad.sackrider@hobsons.com  |
+      |  | Joe | tester | smoketest | Administrator |  |  | jtester | chad.sackrider@hobsons.com | chad.sackrider@hobsons.com |

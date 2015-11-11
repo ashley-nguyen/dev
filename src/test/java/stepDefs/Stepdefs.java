@@ -2,8 +2,6 @@ package stepDefs;
 
 import cucumber.api.java.en.Given;
 
-import static org.junit.Assert.assertEquals;
-
 public class Stepdefs {
     //public static WebDriver driver;
 

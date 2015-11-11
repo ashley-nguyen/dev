@@ -6,10 +6,9 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+
 import pageObjects.Login.loginPage;
 import stepDefs.Hooks;
-
-import static org.junit.Assert.*;
 
 /**
  * Created by csackrider on 9/22/2015.
@@ -17,8 +16,8 @@ import static org.junit.Assert.*;
 public class LoginAction {
     public static WebDriver driver;
 
-    public static void DoLogin(String strAccount, String strUserName, String strPassword)
-    {   driver = Hooks.driver;
+    public static void DoLogin(String strAccount, String strUserName, String strPassword) {
+        driver = Hooks.driver;
         PageFactory.initElements(driver, loginPage.class);
 
         //WebElement txtaccount = Hooks.driver.findElement(By.cssSelector(LoginPage_Account));
@@ -39,8 +38,8 @@ public class LoginAction {
     }
 
     public static void DoFCLogin(String fcAccount, String strUserName, String strPassword) throws InterruptedException {
-        System.out.println("URL######"+Hooks.strBaseURL+"/family-connection/"+fcAccount);
-        Hooks.driver.get(Hooks.strBaseURL+"/family-connection/"+fcAccount);
+        System.out.println("URL######" + Hooks.strBaseURL + "/family-connection/" + fcAccount);
+        Hooks.driver.get(Hooks.strBaseURL + "/family-connection/" + fcAccount);
 
         new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.partialLinkText("forgot your password")));
 
@@ -55,7 +54,6 @@ public class LoginAction {
 
         new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.linkText("log out")));
     }
-
 
 
 }

@@ -1,13 +1,22 @@
 package actions.Student.Search.ScoresTab;
 
 import junit.framework.AssertionFailedError;
-import org.openqa.selenium.*;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.UnhandledAlertException;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebDriverException;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.PageFactory;
-import pageObjects.Header.SchoolPageHeader;
-import pageObjects.Student.ScoresTab.StudentScoresTabPage;
-import stepDefs.Hooks;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.NoSuchElementException;
+
+import pageObjects.Student.ScoresTab.StudentScoresTabPage;
+import stepDefs.Hooks;
 
 /**
  * Created by csackrider on 11/6/2015.
@@ -17,39 +26,35 @@ public class ScoresAction {
     public static WebDriver driver;
 
 
-    public static void etnerAPTestScores(String testtype, String score, String year, String grade)throws Throwable
-    {
-    driver = Hooks.driver;
-    PageFactory.initElements(driver, StudentScoresTabPage.class);
+    public static void enterAPTestScores(String testtype, String score, String year, String grade) throws Throwable {
+        driver = Hooks.driver;
+        PageFactory.initElements(driver, StudentScoresTabPage.class);
 
-    try {
+        try {
 
-        StudentScoresTabPage.lnkaddeditscores.click();
+            StudentScoresTabPage.lnkaddeditscores.click();
 
-        StudentScoresTabPage.ddlTestType.sendKeys(testtype);
+            StudentScoresTabPage.ddlTestType.sendKeys(testtype);
 
-        StudentScoresTabPage.txtscore.sendKeys(score);
+            StudentScoresTabPage.txtscore.sendKeys(score);
 
-        StudentScoresTabPage.ddlyear.sendKeys(year);
+            StudentScoresTabPage.ddlyear.sendKeys(year);
 
-        StudentScoresTabPage.ddlgrade.sendKeys(grade);
+            StudentScoresTabPage.ddlgrade.sendKeys(grade);
 
-        StudentScoresTabPage.btnUpdateScores.click();
-        //btnUpdateScores.submit();
-    }
-    catch (NoSuchElementException e)
-    {   e.getMessage();
-        throw new AssertionFailedError("element not found error");
-    }
-    catch (WebDriverException e)
-    {e.getMessage();
-        throw new AssertionFailedError("element not found error");
-    }
+            StudentScoresTabPage.btnUpdateScores.click();
+            //btnUpdateScores.submit();
+        } catch (NoSuchElementException e) {
+            e.getMessage();
+            throw new AssertionFailedError("element not found error");
+        } catch (WebDriverException e) {
+            e.getMessage();
+            throw new AssertionFailedError("element not found error");
+        }
 
-}//end ap test score enter
+    }//end ap test score enter
 
-    public static void removeAPTestScores(String testtype)
-    {
+    public static void removeAPTestScores(String testtype) {
         driver = Hooks.driver;
         PageFactory.initElements(driver, StudentScoresTabPage.class);
 
@@ -62,7 +67,7 @@ public class ScoresAction {
     }
 
 
-    public static void etnerASPIRETestScores(String subject, String grade, String score)throws Throwable {
+    public static void enterASPIRETestScores(String subject, String grade, String score) throws Throwable {
         driver = Hooks.driver;
         PageFactory.initElements(driver, StudentScoresTabPage.class);
 
@@ -79,15 +84,14 @@ public class ScoresAction {
             StudentScoresTabPage.cboGrade.sendKeys(grade);
             StudentScoresTabPage.cboGrade.sendKeys(Keys.TAB);
 
-        }
-        catch (NoSuchElementException e)
-        {   e.getMessage();
+        } catch (NoSuchElementException e) {
+            e.getMessage();
             throw new AssertionFailedError("element not found error");
         }
 
     }//end enter ASPIRE scores
 
-    public static void enterPSATTestScores(String strEvReading, String strReading, String strWriting, String strMathematicsScore, String strMathTest, String strTotalScore, String strMonth, String strYear, String strGrade)throws Throwable {
+    public static void enterPSATTestScores(String strEvReading, String strReading, String strWriting, String strMathematicsScore, String strMathTest, String strTotalScore, String strMonth, String strYear, String strGrade) throws Throwable {
         driver = Hooks.driver;
         PageFactory.initElements(driver, StudentScoresTabPage.class);
 
@@ -128,26 +132,24 @@ public class ScoresAction {
 
             StudentScoresTabPage.selGrade.sendKeys(strGrade);
 
+            WebElement btnUpdate = Hooks.driver.findElement((By.name("updateScores")));
+            Actions actions = new Actions(driver);
+            // this does the same as several different approaches are supposed to do...but this approach works
+            actions.clickAndHold(btnUpdate).release().perform();
 
-            //WebElement btnUpdate = Hooks.driver.findElement((By.name("updateScores")));
-            //btnUpdate.sendKeys(Keys.ENTER);
-
-            //new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.linkText("test scores")));
+            new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.linkText("test scores")));
 
 
-        }
-        catch (NoSuchElementException e)
-        {   e.getMessage();
+        } catch (NoSuchElementException e) {
+            e.getMessage();
             throw new AssertionFailedError("element not found error");
-        }
-        catch (UnhandledAlertException e)
-        {
+        } catch (UnhandledAlertException e) {
             //do nothing here
         }
     }// end enter PSAT scores
 
 
-    public static void enterPSATLegacyTestScores(String strCritialReading, String strMath, String strWriting, String strTotalScore, String strMonth, String strYear, String strGrade)throws Throwable {
+    public static void enterPSATLegacyTestScores(String strCritialReading, String strMath, String strWriting, String strTotalScore, String strMonth, String strYear, String strGrade) throws Throwable {
         driver = Hooks.driver;
         PageFactory.initElements(driver, StudentScoresTabPage.class);
 
@@ -180,13 +182,10 @@ public class ScoresAction {
 
             StudentScoresTabPage.selPSATLegacyGrade.sendKeys(strGrade);
 
-        }
-        catch (NoSuchElementException e)
-        {   e.getMessage();
+        } catch (NoSuchElementException e) {
+            e.getMessage();
             throw new AssertionFailedError("element not found error");
-        }
-        catch (UnhandledAlertException e)
-        {
+        } catch (UnhandledAlertException e) {
             //do nothing here
         }
     }//end psat legacy enter scores

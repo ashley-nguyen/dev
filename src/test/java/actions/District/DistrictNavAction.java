@@ -1,17 +1,15 @@
 package actions.District;
 
-import cucumber.api.DataTable;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.PageFactory;
-import pageObjects.District.DistrictAdminPage;
-import pageObjects.Header.DistrictPageHeader;
-import pageObjects.Login.loginPage;
-import stepDefs.Hooks;
 
 import java.util.List;
+
+import cucumber.api.DataTable;
+import pageObjects.District.DistrictAdminPage;
+import pageObjects.Header.DistrictPageHeader;
+import stepDefs.Hooks;
 
 /**
  * Created by csackrider on 11/6/2015.
@@ -33,8 +31,7 @@ public class DistrictNavAction {
         PageFactory.initElements(driver, DistrictAdminPage.class);
 
         strFunction = strFunction.toLowerCase();
-        switch (strFunction)
-        {
+        switch (strFunction) {
             case "my account":
                 DistrictAdminPage.lnkMyAccount.click();
                 break;
@@ -46,20 +43,18 @@ public class DistrictNavAction {
         }
 
 
-
     }
 
-    public static void  editProfile(DataTable MyAccount)
-    {
+    public static void editProfile(DataTable MyAccount) {
         driver = Hooks.driver;
         PageFactory.initElements(driver, DistrictAdminPage.class);
 
         DistrictAdminPage.lnkEditMyProfile.click();
 
-        List<List<String>> data =MyAccount.raw();
+        List<List<String>> data = MyAccount.raw();
 
-        System.out.println("prefix "+data.get(0).get(0));
-        System.out.println("first name: "+data.get(0).get(1));
+        System.out.println("prefix " + data.get(0).get(0));
+        System.out.println("first name: " + data.get(0).get(1));
 
 
     }

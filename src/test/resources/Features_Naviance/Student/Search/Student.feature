@@ -9,5 +9,5 @@ Feature: Student
     Then their student <data> will be displayed
 
     Examples:
-      | user |  account | password  | student | data  |
-      | cathycounselor  | etcs  | testtest  | Banks, Dante  | 952-1532 Sodales Road |
+      | user           | account | password | student      | data                  |
+      | cathycounselor | etcs    | testtest | Banks, Dante | 952-1532 Sodales Road |

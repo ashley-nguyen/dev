@@ -1,6 +1,7 @@
 package actions.Student.Search.Search;
 
 import junit.framework.AssertionFailedError;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebDriverException;
@@ -8,12 +9,11 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import pageObjects.Header.SchoolPageHeader;
-import stepDefs.Hooks;
 
 import java.util.NoSuchElementException;
 
-import static org.junit.Assert.assertTrue;
+import pageObjects.Header.SchoolPageHeader;
+import stepDefs.Hooks;
 
 /**
  * Created by csackrider on 11/6/2015.
@@ -21,8 +21,7 @@ import static org.junit.Assert.assertTrue;
 public class Student_SearchAction {
     public static WebDriver driver;
 
-    public static void searchStudent(String strStudent)throws Throwable
-    {
+    public static void searchStudent(String strStudent) throws Throwable {
         driver = Hooks.driver;
         PageFactory.initElements(driver, SchoolPageHeader.class);
 
@@ -37,18 +36,13 @@ public class Student_SearchAction {
             new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@id='ui-active-menuitem']/span[1]/strong")));
             WebElement studentname = Hooks.driver.findElement(By.xpath("//*[@id='ui-active-menuitem']/span[1]/strong"));
             studentname.click();
-        }
-        catch (NoSuchElementException e)
-        {
-            throw new AssertionFailedError("!!!!! student " +strStudent +" not found !!!!!");
-        }
-        catch (WebDriverException e)
-        {
-            throw new AssertionFailedError("!!!!! student " +strStudent +" not found !!!!!");
+        } catch (NoSuchElementException e) {
+            throw new AssertionFailedError("!!!!! student " + strStudent + " not found !!!!!");
+        } catch (WebDriverException e) {
+            throw new AssertionFailedError("!!!!! student " + strStudent + " not found !!!!!");
         }
 
     }
-
 
 
 }

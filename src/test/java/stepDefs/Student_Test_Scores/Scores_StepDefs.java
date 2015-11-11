@@ -12,7 +12,7 @@ public class Scores_StepDefs {
 
     @And("^I enter AP test scores (.*) (.*) (.*) (.*)$")
     public void I_enter_AP_test_scores_testtype_score_year_grade(String testtype, String score, String year, String grade) throws Throwable {
-        ScoresAction.etnerAPTestScores(testtype, score, year, grade);
+        ScoresAction.enterAPTestScores(testtype, score, year, grade);
 
     }
 
@@ -36,7 +36,7 @@ public class Scores_StepDefs {
     @And("^I enter ASPIRE test score (.*) for (.*) for grade (.*)$")
     public void I_enter_ASPIRE_test_score_score_for_subject_for_grade_grade(String score, String subject, String grade) throws Throwable {
 
-        ScoresAction.etnerASPIRETestScores(subject, grade, score);
+        ScoresAction.enterASPIRETestScores(subject, grade, score);
     }
 
     @Then("^I will see a warning (.*)$")
@@ -47,7 +47,7 @@ public class Scores_StepDefs {
     }
 
     @And("^I enter PSAT scores (.*) (.*) (.*) (.*) (.*) (.*) (.*) (.*) (.*)$")
-    public void I_enter_PSAT_scores_evidenceReading_reading_writing_mathematics_score_math_test_totalscore_month_year_grade(String strEvReading, String strReading, String strWriting, String strMathematicsScore, String strMathTest, String strTotalScore, String strMonth, String strYear, String strGrade ) throws Throwable {
+    public void I_enter_PSAT_scores_evidenceReading_reading_writing_mathematics_score_math_test_totalscore_month_year_grade(String strEvReading, String strReading, String strWriting, String strMathematicsScore, String strMathTest, String strTotalScore, String strMonth, String strYear, String strGrade) throws Throwable {
 
         ScoresAction.enterPSATTestScores(strEvReading, strReading, strWriting, strMathematicsScore, strMathTest, strTotalScore, strMonth, strYear, strGrade);
 

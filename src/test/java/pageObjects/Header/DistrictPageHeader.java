@@ -4,6 +4,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
+
 import pageObjects.BaseClass;
 
 /**
@@ -11,16 +12,15 @@ import pageObjects.BaseClass;
  */
 public class DistrictPageHeader extends BaseClass {
 
-    public DistrictPageHeader(WebDriver driver){
+    //### OBJECTS ADMIN UTILS ###
+    @FindBy(how = How.CSS, using = "i.icon-cog")
+    public static WebElement districtcog;
+    @FindBy(how = How.LINK_TEXT, using = "Setup")
+    public static WebElement lnkSetup;
+
+    public DistrictPageHeader(WebDriver driver) {
         super(driver);
     }
-
-    //### OBJECTS ADMIN UTILS ###
-    @FindBy(how= How.CSS, using="i.icon-cog")
-    public static WebElement districtcog;
-
-    @FindBy(how= How.LINK_TEXT, using="Setup")
-    public static WebElement lnkSetup;
 
 
     //### add in mnuItems

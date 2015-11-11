@@ -1,6 +1,7 @@
 package actions.Student.Search.Search;
 
 import org.openqa.selenium.By;
+
 import stepDefs.Hooks;
 
 import static org.junit.Assert.assertTrue;
@@ -11,8 +12,7 @@ import static org.junit.Assert.assertTrue;
 public class Student_SearchVerify {
 
 
-    public static void verifyStudentData(String strData)throws Throwable
-    {
+    public static void verifyStudentData(String strData) throws Throwable {
         String bodyText = Hooks.driver.findElement(By.tagName("body")).getText();
         assertTrue("Text not found!", bodyText.contains(strData));
 

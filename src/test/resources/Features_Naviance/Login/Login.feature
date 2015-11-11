@@ -9,7 +9,7 @@ Feature: Sign into Naviance
     When I complete the fields on the login page for a district user
     Then I will be signed into naviance
 
- Scenario: Log into Naviance School
+  Scenario: Log into Naviance School
     Given I am a counselor
     When I complete the fields on the login page for a school user
     Then I will be signed into naviance
