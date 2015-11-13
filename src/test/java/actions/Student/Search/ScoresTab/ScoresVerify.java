@@ -1,16 +1,14 @@
 package actions.Student.Search.ScoresTab;
 
 import junit.framework.AssertionFailedError;
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import stepDefs.Hooks;
 
 import java.util.NoSuchElementException;
-
-import stepDefs.Hooks;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -71,13 +69,13 @@ public class ScoresVerify {
 
 
     public static void verifyASPIRETestScoreWarning(String strMessage) throws Throwable {
-        try {
-            WebElement warn = Hooks.driver.findElement(By.id("aspire_warning_1"));
-            assertTrue(warn.getText().contains(strMessage));
-        } catch (NoSuchElementException e) {
+        //try {
+        WebElement warn = Hooks.driver.findElement(By.id("aspire_warning_1"));
+        assertTrue("Expected: " + strMessage + " but the following was displayed insted: " + warn.getText(), warn.getText().contains(strMessage));
+        /*} catch (NoSuchElementException e) {
             e.getMessage();
             throw new AssertionFailedError("element not found error");
-        }
+        }*/
 
     }
 

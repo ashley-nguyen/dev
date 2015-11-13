@@ -1,22 +1,19 @@
-package stepDefs.Survey;
+package actions.FamilyConnection;
 
 import junit.framework.AssertionFailedError;
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
+import stepDefs.Hooks;
 
 import java.util.NoSuchElementException;
-
-import stepDefs.Hooks;
 
 import static org.junit.Assert.assertTrue;
 
 /**
- * Created by csackrider on 10/7/2015.
+ * Created by csackrider on 11/13/2015.
  */
-public class Survey {
-
+public class FCAcloutMeVerify {
 
     public static void verifySurvey(String strSurvey) throws InterruptedException {
 
@@ -36,7 +33,5 @@ public class Survey {
         } catch (WebDriverException e) {
             throw new AssertionFailedError("!!!!!" + strSurvey + " survey link not found!!!!!");
         }
-
-
-    }//end verifysurvey
+    }
 }

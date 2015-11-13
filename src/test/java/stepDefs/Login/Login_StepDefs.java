@@ -1,12 +1,12 @@
 package stepDefs.Login;
 
-import java.util.List;
-
 import actions.Login.LoginAction;
 import actions.Login.LoginVerify;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
+
+import java.util.List;
 
 /**
  * Created by csackrider on 10/9/2015.
@@ -67,5 +67,11 @@ public class Login_StepDefs {
     @Given("^I am logged into naviance (.*) as (.*) with (.*)$")
     public void I_am_logged_into_naviance_account_as_user_with_password(String account, String user, String pass) throws Throwable {
         LoginAction.DoLogin(account, user, pass);
+    }
+
+    @When("^I log into family connection \"(.*)\" as \"(.*)\" and \"(.*)\"$")
+    public void I_log_into_family_connection_as_and(String strAccount, String strUsername, String strPassword) throws Throwable {
+
+        LoginAction.DoFCLogin(strAccount, strUsername, strPassword);
     }
 }

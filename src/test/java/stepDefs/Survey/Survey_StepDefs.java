@@ -1,12 +1,10 @@
 package stepDefs.Survey;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
-
-import actions.Login.LoginAction;
+import actions.FamilyConnection.FCAcloutMeVerify;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
-import cucumber.api.java.en.When;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 import stepDefs.Hooks;
 
 /**
@@ -20,11 +18,6 @@ public class Survey_StepDefs {
 
     }
 
-    @When("^I log into family connection as a student$")
-    public void I_log_into_family_connection_as_a_student() throws Throwable {
-        // USE STUDENT PATRICK BEST
-        LoginAction.DoFCLogin("highSchool01", "pbest", "test1234");
-    }
 
     @Then("^I will be able to take the survey \"(.*)\"$")
     public void I_will_be_able_to_take_the_survey(String strSurvey) throws Throwable {
@@ -32,7 +25,7 @@ public class Survey_StepDefs {
         WebElement lnkAboutMe = Hooks.driver.findElement(By.linkText("about me"));
         lnkAboutMe.click();
 
-        Survey.verifySurvey(strSurvey);
+        FCAcloutMeVerify.verifySurvey(strSurvey);
     }
 
     @Given("^I have a survey created in a secondary district$")
@@ -65,9 +58,5 @@ public class Survey_StepDefs {
         //throw new PendingException();
     }
 
-    @When("^I log into family connection \"(.*)\" as \"(.*)\" and \"(.*)\"$")
-    public void I_log_into_family_connection_as_and(String strAccount, String strUsername, String strPassword) throws Throwable {
 
-        LoginAction.DoFCLogin("highSchool01", "pbest", "test1234");
-    }
 }

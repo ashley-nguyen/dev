@@ -4,7 +4,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
-
 import pageObjects.BaseClass;
 
 /**
@@ -26,8 +25,8 @@ public class StudentScoresTabPage extends BaseClass {
     public static WebElement ddlgrade;
     @FindBy(how = How.XPATH, using = "//input[@name='updateScores']")
     public static WebElement btnUpdateScores;
-    @FindBy(how = How.PARTIAL_LINK_TEXT, using = "delete_ap[0]")
-    public static WebElement chkDelete;
+    @FindBy(how = How.NAME, using = "delete_ap[0]")
+    public static WebElement chkAPDelete;
     @FindBy(how = How.NAME, using = "aspire[1][grade]")
     public static WebElement cboGrade;
 

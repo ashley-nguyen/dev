@@ -1,7 +1,6 @@
 package actions.Student.Search.Search;
 
 import org.openqa.selenium.By;
-
 import stepDefs.Hooks;
 
 import static org.junit.Assert.assertTrue;

@@ -1,15 +1,17 @@
 package actions.District;
 
+import cucumber.api.DataTable;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.PageFactory;
-
-import java.util.List;
-
-import cucumber.api.DataTable;
 import pageObjects.District.DistrictAdminPage;
+import pageObjects.District.DistrictMyProfilePage;
 import pageObjects.Header.DistrictPageHeader;
 import stepDefs.Hooks;
+
+import java.util.List;
 
 /**
  * Created by csackrider on 11/6/2015.
@@ -29,11 +31,14 @@ public class DistrictNavAction {
     public static void goToAdminFunction(String strFunction) throws InterruptedException {
         driver = Hooks.driver;
         PageFactory.initElements(driver, DistrictAdminPage.class);
+        PageFactory.initElements(driver, DistrictPageHeader.class);
 
         strFunction = strFunction.toLowerCase();
         switch (strFunction) {
             case "my account":
-                DistrictAdminPage.lnkMyAccount.click();
+                Actions action = new Actions(driver);
+                action.moveToElement(DistrictPageHeader.districtcog).build().perform();
+                DistrictPageHeader.lnkMyAccount.click();
                 break;
             case "user administration":
                 //click that link etc...
@@ -45,14 +50,19 @@ public class DistrictNavAction {
 
     }
 
-    public static void editProfile(DataTable MyAccount) {
+    public static void editProfile(DataTable MyAccount) throws InterruptedException {
         driver = Hooks.driver;
-        PageFactory.initElements(driver, DistrictAdminPage.class);
+        PageFactory.initElements(driver, DistrictMyProfilePage.class);
+        Thread.sleep(2000);
+        WebElement test = Hooks.driver.findElement(By.xpath("//a[contains(text(),'edit my profile')]"));
+        test.click();
 
-        DistrictAdminPage.lnkEditMyProfile.click();
+
+        //DistrictMyProfilePage.lnkEditMyProfile.click();
+
 
         List<List<String>> data = MyAccount.raw();
-
+        //to be completed later
         System.out.println("prefix " + data.get(0).get(0));
         System.out.println("first name: " + data.get(0).get(1));
 

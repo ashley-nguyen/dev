@@ -1,10 +1,9 @@
 package stepDefs.SmokeTests;
 
-import org.openqa.selenium.WebDriver;
-
 import actions.District.DistrictNavAction;
 import cucumber.api.DataTable;
 import cucumber.api.java.en.When;
+import org.openqa.selenium.WebDriver;
 
 /**
  * Created by csackrider on 11/6/2015.
@@ -23,8 +22,6 @@ public class SmokeTests_StepDefs {
     @When("^I edit my profile$")
     public void I_edit_my_profile(DataTable MyAccount) throws Throwable {
 
-        //go to district administration
-        DistrictNavAction.goToDistrictAdministration();
         //go to my account
         DistrictNavAction.goToAdminFunction("My Account");
         //click edit profile

@@ -1,22 +1,15 @@
 package actions.Student.Search.ScoresTab;
 
 import junit.framework.AssertionFailedError;
-
-import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.UnhandledAlertException;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebDriverException;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
-import java.util.NoSuchElementException;
-
 import pageObjects.Student.ScoresTab.StudentScoresTabPage;
 import stepDefs.Hooks;
+
+import java.util.NoSuchElementException;
 
 /**
  * Created by csackrider on 11/6/2015.
@@ -42,7 +35,12 @@ public class ScoresAction {
 
             StudentScoresTabPage.ddlgrade.sendKeys(grade);
 
-            StudentScoresTabPage.btnUpdateScores.click();
+            //StudentScoresTabPage.btnUpdateScores.click();
+
+            Actions actions = new Actions(driver);
+            // this does the same as several different approaches are supposed to do...but this approach works
+            actions.clickAndHold(StudentScoresTabPage.btnUpdateScores).release().perform();
+
             //btnUpdateScores.submit();
         } catch (NoSuchElementException e) {
             e.getMessage();
@@ -56,13 +54,21 @@ public class ScoresAction {
 
     public static void removeAPTestScores(String testtype) {
         driver = Hooks.driver;
-        PageFactory.initElements(driver, StudentScoresTabPage.class);
+
 
         StudentScoresTabPage.lnkaddeditscores.click();
+        //init after getting to the page.
+        PageFactory.initElements(driver, StudentScoresTabPage.class);
 
-        StudentScoresTabPage.chkDelete.click();
+        StudentScoresTabPage.chkAPDelete.click();
 
-        StudentScoresTabPage.btnUpdateScores.click();
+        //StudentScoresTabPage.btnUpdateScores.click();
+
+        //WebElement btnUpdate = Hooks.driver.findElement((By.name("updateScores")));
+        Actions actions = new Actions(driver);
+        // this does the same as several different approaches are supposed to do...but this approach works
+        actions.clickAndHold(StudentScoresTabPage.btnUpdateScores).release().perform();
+
 
     }
 

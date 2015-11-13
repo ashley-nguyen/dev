@@ -14,10 +14,10 @@ Feature: Student ACT ASPIRE scores
     Then I will see a warning <message>
 
     Examples:
-      | student        | subject | score | grade | message                                                                                  |
-      | Apple, Chamisa | english | 457   | 9     | Some elements are out of the ranges for the selected grade level. Please check: English. |
-      | Apple, Chamisa | english | 399   | 9     | Some elements are out of the ranges for the selected grade level. Please check: English. |
-      | Apple, Chamisa | math    | 461   | 9     | Some elements are out of the ranges for the selected grade level. Please check: Math.    |
-      | Apple, Chamisa | math    | 399   | 9     | Some elements are out of the ranges for the selected grade level. Please check: Math.    |
-      | Apple, Chamisa | science | 450   | 9     | Some elements are out of the ranges for the selected grade level. Please check: Science. |
-      | Apple, Chamisa | science | 399   | 9     | Some elements are out of the ranges for the selected grade level. Please check: Science. |
+      | student        | subject | score | grade | message                                                                                             |
+      | Apple, Chamisa | english | 457   | 9     | Some elements are out of the ranges for the selected grade level. Please check: English, Composite. |
+      | Apple, Chamisa | english | 399   | 9     | Some elements are out of the ranges for the selected grade level. Please check: English, Composite. |
+      | Apple, Chamisa | math    | 461   | 9     | Some elements are out of the ranges for the selected grade level. Please check: Math, Composite.    |
+      | Apple, Chamisa | math    | 399   | 9     | Some elements are out of the ranges for the selected grade level. Please check: Math, Composite.    |
+      | Apple, Chamisa | science | 450   | 9     | Some elements are out of the ranges for the selected grade level. Please check: Science, Composite. |
+      | Apple, Chamisa | science | 399   | 9     | Some elements are out of the ranges for the selected grade level. Please check: Science, Composite. |

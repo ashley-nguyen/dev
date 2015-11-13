@@ -1,10 +1,6 @@
 package pageObjects.District;
 
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.How;
-
 import pageObjects.BaseClass;
 
 /**
@@ -12,11 +8,8 @@ import pageObjects.BaseClass;
  */
 public class DistrictAdminPage extends BaseClass {
 
-    @FindBy(how = How.PARTIAL_LINK_TEXT, using = "My")
-    //had trouble with "My Account" for link text.  weird.
-    public static WebElement lnkMyAccount;
-    @FindBy(how = How.PARTIAL_LINK_TEXT, using = "profile")
-    public static WebElement lnkEditMyProfile;
+    //@FindBy(how = How.XPATH, using = "//a[contains(text(),'My Account')]")
+    //public static WebElement lnkMyAccount;
 
 
     public DistrictAdminPage(WebDriver driver) {
