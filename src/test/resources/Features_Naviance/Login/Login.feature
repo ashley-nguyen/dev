@@ -1,4 +1,4 @@
-@smoketest @nondestructive
+@smoketest @nondestructive @login
 Feature: Sign into Naviance
   in order to use Naviance
   as a Naviance user

@@ -6,6 +6,7 @@ import cucumber.api.java.Before;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.htmlunit.HtmlUnitDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
@@ -72,8 +73,12 @@ public class Hooks {
         } else if (browser.equals("safari")) {
             driver = new SafariDriver(dc);
 
-        } else {
-            driver = new ChromeDriver(dc);
+        }
+        else if (browser.equals("headless")) {
+            driver = new HtmlUnitDriver();
+        }
+        else {
+            driver = new HtmlUnitDriver();
 
         }
         System.out.println("Opening Browser...." + browser);

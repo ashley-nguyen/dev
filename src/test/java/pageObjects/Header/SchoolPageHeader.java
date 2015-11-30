@@ -17,6 +17,10 @@ public class SchoolPageHeader extends BaseClass {
     @FindBy(how = How.ID, using = "student-search-prototype")
     public static WebElement searchbox;
 
+    //### COLLEGE LINK ###
+    @FindBy(how = How.LINK_TEXT, using = "Colleges")
+    public static WebElement lnkColleges;
+
     public SchoolPageHeader(WebDriver driver) {
         super(driver);
     }
