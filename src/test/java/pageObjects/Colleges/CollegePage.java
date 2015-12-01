@@ -17,6 +17,10 @@ public class CollegePage extends BaseClass {
     @FindBy(how = How.NAME, using = "nameSearch")
     public static WebElement btnSearch;
 
+    @FindBy(how = How.XPATH, using = "//img[alt='admissions']")
+    public static WebElement tabAdmissions;
+
+
 
     public CollegePage(WebDriver driver) {
         super(driver);

@@ -40,6 +40,14 @@ public class CollegeAction {
         WebElement lnkCollege = driver.findElement(By.linkText(strCollege));
         lnkCollege.click();
 
+    }
+
+    public static void clickCollegeProfileTab(String strTab) throws InterruptedException {
+
+        PageFactory.initElements(driver, CollegePage.class);
+
+        CollegePage.tabAdmissions.click();
+        Thread.sleep(10000);
 
     }
 

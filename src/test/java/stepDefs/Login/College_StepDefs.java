@@ -6,6 +6,7 @@ import actions.Login.LoginAction;
 import cucumber.api.PendingException;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
+import cucumber.api.java.en.When;
 
 /**
  * Created by csackrider on 11/25/2015.
@@ -25,5 +26,13 @@ public class College_StepDefs {
 
         CollegeVerify.verifyCollegeSearchResult(strCollege);
 
+    }
+
+
+
+    @When("^I click \"([^\"]*)\" tab on college profile$")
+    public void I_click_tab_on_college_profile(String strTab) throws Throwable {
+
+        CollegeAction.clickCollegeProfileTab(strTab);
     }
 }

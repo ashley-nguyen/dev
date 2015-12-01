@@ -12,7 +12,7 @@ Feature: Colleges - College Profile
   Scenario: View College Profile
     Given I view "Georgetown University" profile
     And I should see "Georgetown University"
-#    When I follow "Admissions"
+    When I click "Admissions" tab on college profile
 #    Then I should see "Charles Deacon"
 #    When I follow "Academics"
 #    Then I should see "Biophysics"
