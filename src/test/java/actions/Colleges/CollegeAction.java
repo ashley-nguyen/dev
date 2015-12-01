@@ -39,7 +39,7 @@ public class CollegeAction {
         new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.linkText(strCollege)));
         WebElement lnkCollege = driver.findElement(By.linkText(strCollege));
         lnkCollege.click();
-        //test comment here
+
 
     }
 

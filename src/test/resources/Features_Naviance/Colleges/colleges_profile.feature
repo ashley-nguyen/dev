@@ -13,7 +13,7 @@ Feature: Colleges - College Profile
     Given I view "Georgetown University" profile
     And I should see "Georgetown University"
     When I click "Admissions" tab on college profile
-#    Then I should see "Charles Deacon"
+    Then I should see "Charles Deacon"
 #    When I follow "Academics"
 #    Then I should see "Biophysics"
 #    When I follow "Cost & aid"
