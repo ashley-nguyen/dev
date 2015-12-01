@@ -20,6 +20,6 @@ public class CollegeVerify {
         driver = Hooks.driver;
 
         assertTrue("college not found",driver.getPageSource().contains(strCollege));
-
+//some change in code
     }
 }
