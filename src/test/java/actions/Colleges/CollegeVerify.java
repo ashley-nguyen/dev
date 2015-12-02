@@ -16,10 +16,12 @@ public class CollegeVerify {
     public static WebDriver driver;
 
 
-    public static void verifyCollegeSearchResult(String strCollege) throws InterruptedException {
+    public static void verifyCollegeSearchResult(String strText) throws InterruptedException {
         driver = Hooks.driver;
+        //System.out.println(driver.getPageSource());
+        new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.id("contents")));
+        assertTrue("text not found: "+ strText,driver.getPageSource().contains(strText));
 
-        assertTrue("college not found",driver.getPageSource().contains(strCollege));
-//some change in code
+
     }
 }

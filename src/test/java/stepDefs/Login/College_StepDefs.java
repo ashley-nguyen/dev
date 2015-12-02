@@ -22,9 +22,9 @@ public class College_StepDefs {
     }
 
     @And("^I should see \"([^\"]*)\"$")
-    public void I_should_see(String strCollege) throws Throwable {
+    public void I_should_see(String strText) throws Throwable {
 
-        CollegeVerify.verifyCollegeSearchResult(strCollege);
+        CollegeVerify.verifyCollegeSearchResult(strText);
 
     }
 

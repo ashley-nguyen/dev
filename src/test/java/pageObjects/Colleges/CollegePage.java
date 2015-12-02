@@ -17,10 +17,17 @@ public class CollegePage extends BaseClass {
     @FindBy(how = How.NAME, using = "nameSearch")
     public static WebElement btnSearch;
 
-    @FindBy(how = How.XPATH, using = "//img[alt='admissions']")
+    @FindBy(how = How.XPATH, using = "//a[contains(text(),'Admissions')]")
     public static WebElement tabAdmissions;
 
+    @FindBy(how = How.XPATH, using = "//a[contains(text(),'Academics')]")
+    public static WebElement tabAcademics;
 
+    @FindBy(how = How.XPATH, using = "//a[contains(text(),'Cost & aid')]")
+    public static WebElement tabCostAndAid;
+
+    @FindBy(how = How.XPATH, using = "//a[contains(text(),'Extracurriculars')]")
+    public static WebElement tabExtracurriculars;
 
     public CollegePage(WebDriver driver) {
         super(driver);
