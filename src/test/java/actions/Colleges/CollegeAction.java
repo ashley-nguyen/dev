@@ -39,6 +39,7 @@ public class CollegeAction {
         new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.linkText(strCollege)));
         WebElement lnkCollege = driver.findElement(By.linkText(strCollege));
         lnkCollege.click();
+        Thread.sleep(5000);
 
 
     }
@@ -47,8 +48,24 @@ public class CollegeAction {
 
         PageFactory.initElements(driver, CollegePage.class);
 
-        CollegePage.tabAdmissions.click();
-        Thread.sleep(10000);
+        switch (strTab.toLowerCase()) {
+            case "admissions":
+                CollegePage.tabAdmissions.click();
+                break;
+            case "academics":
+                CollegePage.tabAcademics.click();
+                break;
+            case "cost & aid":
+                CollegePage.tabCostAndAid.click();
+                break;
+            case "extracurriculars":
+                CollegePage.tabExtracurriculars.click();
+                break;
+
+        }
+
+
+
 
     }
 
