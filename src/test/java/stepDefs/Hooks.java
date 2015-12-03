@@ -73,11 +73,9 @@ public class Hooks {
         } else if (browser.equals("safari")) {
             driver = new SafariDriver(dc);
 
-        }
-        else if (browser.equals("headless")) {
+        } else if (browser.equals("headless")) {
             driver = new HtmlUnitDriver();
-        }
-        else {
+        } else {
             driver = new HtmlUnitDriver();
 
         }
