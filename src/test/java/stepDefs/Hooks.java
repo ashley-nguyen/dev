@@ -35,7 +35,7 @@ public class Hooks {
     public void openBrowser() throws MalformedURLException {
 
         dc.setCapability(CapabilityType.UNEXPECTED_ALERT_BEHAVIOUR, UnexpectedAlertBehaviour.IGNORE);
-
+        dc.setJavascriptEnabled(true);
         String env = System.getProperty("ENV");
 
         if (env == null)
@@ -74,9 +74,9 @@ public class Hooks {
             driver = new SafariDriver(dc);
 
         } else if (browser.equals("headless")) {
-            driver = new HtmlUnitDriver();
+            driver = new HtmlUnitDriver(dc);
         } else {
-            driver = new HtmlUnitDriver();
+            driver = new HtmlUnitDriver(dc);
 
         }
         System.out.println("Opening Browser...." + browser);
@@ -94,8 +94,8 @@ public class Hooks {
             try {
                 scenario.write("Current Page URL is " + driver.getCurrentUrl());
 //            byte[] screenshot = getScreenshotAs(OutputType.BYTES);
-                byte[] screenshot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
-                scenario.embed(screenshot, "image/png");
+                //byte[] screenshot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
+                //scenario.embed(screenshot, "image/png");
             } catch (WebDriverException somePlatformsDontSupportScreenshots) {
                 System.err.println(somePlatformsDontSupportScreenshots.getMessage());
             }

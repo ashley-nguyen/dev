@@ -13,7 +13,7 @@ public class Student_SearchVerify {
 
     public static void verifyStudentData(String strData) throws Throwable {
         String bodyText = Hooks.driver.findElement(By.tagName("body")).getText();
-        assertTrue("Text not found!", bodyText.contains(strData));
+        assertTrue("Text not found!  "+strData, bodyText.contains(strData));
 
     }
 }

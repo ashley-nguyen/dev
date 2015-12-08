@@ -21,6 +21,12 @@ public class SchoolPageHeader extends BaseClass {
     @FindBy(how = How.LINK_TEXT, using = "Colleges")
     public static WebElement lnkColleges;
 
+
+
+    @FindBy(how = How.LINK_TEXT, using = "Students")
+    public static WebElement lnkHeaderStudents;
+
+
     public SchoolPageHeader(WebDriver driver) {
         super(driver);
     }

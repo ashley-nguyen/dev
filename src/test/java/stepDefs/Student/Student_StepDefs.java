@@ -1,8 +1,12 @@
 package stepDefs.Student;
 
 import actions.Login.LoginAction;
+import actions.Student.Search.GeneralTab.Student_General_Action;
+import actions.Student.Search.GeneralTab.Student_General_Verify;
 import actions.Student.Search.Search.Student_SearchAction;
 import actions.Student.Search.Search.Student_SearchVerify;
+import cucumber.api.PendingException;
+import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
@@ -53,5 +57,27 @@ public class Student_StepDefs {
     public void I_search_for_using_the_global_search_field(String strStudent) throws Throwable {
 
         Student_SearchAction.searchStudent(strStudent);
+    }
+
+
+    @When("^I search for \"([^\"]*)\" using \"([^\"]*)\" the student roster search$")
+    public void I_search_for_using_the_student_roster_search(String strStudent, String strSearchBy) throws Throwable {
+
+        Student_SearchAction.studentRosterSearch(strStudent, strSearchBy);
+
+
+    }
+
+    @And("^I link the parent \"([^\"]*)\" to the current student$")
+    public void I_link_the_parent_to_the_current_student(String strParent) throws Throwable {
+
+        Student_General_Action.linkParent(strParent);
+
+    }
+
+    @Then("^I should see \"([^\"]*)\" on the Student Summary Form$")
+    public void I_should_see_on_the_Student_Summary_Form(String strData) throws Throwable {
+
+        Student_General_Verify.verifyParent(strData);
     }
 }

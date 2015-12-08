@@ -24,11 +24,11 @@ Feature: Colleges - College Profile
 # THIS IS A CLEANER FORMAT FOR THE FEATURE ABOVE
   @Colleges @safe
   Scenario Outline: View College Profile
-    Given I view "Georgetown University" profile
+    When I view "Georgetown University" profile
     Then I should see the following college profile information '<Admissions>' '<Academics>' '<Costandaid>' '<Extracurriculars>'
 
     Examples:
-      | Admissions     | Academics  | Costandaid          | Extracurriculars |
+      | Admissions      | Academics  | Costandaid          | Extracurriculars |
       | Charles  Deacon | Biophysics | Patricia A. Mc Wade | 5053             |
 
 

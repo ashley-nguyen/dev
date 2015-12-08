@@ -9,6 +9,7 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import pageObjects.Header.SchoolPageHeader;
+import pageObjects.Student.StudentRosterPage;
 import stepDefs.Hooks;
 
 import java.util.NoSuchElementException;
@@ -39,6 +40,36 @@ public class Student_SearchAction {
         } catch (WebDriverException e) {
             throw new AssertionFailedError("!!!!! student " + strStudent + " not found !!!!!");
         }
+
+    }
+
+    public static void studentRosterSearch(String strStudent, String strSearchBy) throws InterruptedException {
+        driver = Hooks.driver;
+        PageFactory.initElements(driver, SchoolPageHeader.class);
+
+        SchoolPageHeader.lnkHeaderStudents.click();
+        new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.name("newclass")));
+
+        PageFactory.initElements(driver, StudentRosterPage.class);
+
+        switch (strSearchBy.toLowerCase()) {
+            case "id":
+                StudentRosterPage.txtStudentID.sendKeys(strStudent);
+                StudentRosterPage.btnStudentIDSearch.click();
+                break;
+            case "name":
+
+                break;
+
+            case "email":
+
+                break;
+        }
+
+        //ADD MORE WHEN NEEDED
+
+        //wait for the student page to load.
+        new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.id("primary")));
 
     }
 
