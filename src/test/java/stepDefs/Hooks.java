@@ -74,9 +74,9 @@ public class Hooks {
             driver = new SafariDriver(dc);
 
         } else if (browser.equals("headless")) {
-            driver = new HtmlUnitDriver(dc);
+            driver = new HtmlUnitDriver();
         } else {
-            driver = new HtmlUnitDriver(dc);
+            driver = new HtmlUnitDriver();
 
         }
         System.out.println("Opening Browser...." + browser);
