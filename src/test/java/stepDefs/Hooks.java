@@ -35,7 +35,7 @@ public class Hooks {
     public void openBrowser() throws MalformedURLException {
 
         dc.setCapability(CapabilityType.UNEXPECTED_ALERT_BEHAVIOUR, UnexpectedAlertBehaviour.IGNORE);
-        dc.setJavascriptEnabled(true);
+        //dc.setJavascriptEnabled(true);
         String env = System.getProperty("ENV");
 
         if (env == null)
