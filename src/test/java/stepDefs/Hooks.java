@@ -35,7 +35,7 @@ public class Hooks {
     public void openBrowser() throws MalformedURLException {
 
         dc.setCapability(CapabilityType.UNEXPECTED_ALERT_BEHAVIOUR, UnexpectedAlertBehaviour.IGNORE);
-        dc.setJavascriptEnabled(true);
+        //dc.setJavascriptEnabled(true);
         String env = System.getProperty("ENV");
 
         if (env == null)
@@ -74,9 +74,9 @@ public class Hooks {
             driver = new SafariDriver(dc);
 
         } else if (browser.equals("headless")) {
-            driver = new HtmlUnitDriver(dc);
+            driver = new HtmlUnitDriver();
         } else {
-            driver = new HtmlUnitDriver(dc);
+            driver = new HtmlUnitDriver();
 
         }
         System.out.println("Opening Browser...." + browser);
