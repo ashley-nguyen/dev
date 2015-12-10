@@ -1,5 +1,6 @@
 package actions.Colleges;
 
+import gherkin.deps.com.google.gson.stream.JsonReader;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -45,6 +46,7 @@ public class CollegeAction {
     public static void clickCollegeProfileTab(String strTab) throws InterruptedException {
 
         PageFactory.initElements(driver, CollegePage.class);
+
 
         switch (strTab.toLowerCase()) {
             case "admissions":

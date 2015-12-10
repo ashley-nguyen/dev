@@ -21,7 +21,5 @@ public class CollegeVerify {
         //System.out.println(driver.getPageSource());
         new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.id("contents")));
         assertTrue("text not found: " + strText, driver.getPageSource().contains(strText));
-
-
     }
 }
