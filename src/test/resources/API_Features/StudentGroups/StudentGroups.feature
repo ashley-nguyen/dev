@@ -1,13 +1,31 @@
 Feature: Creating a group
 
-    Scenario add a valid student group
+    Scenario creating a new group
       Given I am an authorized user
-      When I add student group with the following details:
+      When I add group with the following required details:
       | mygroupname | 1 |
       Then the group will be created
 
-    Scenario add an invalid student group
-    Given I am an authorized user
-    When I add student group with the following details:
-    | mygroupname |  |
-    Then the group will not be created
+    Scenario creating a new group
+      Given I am an authorized user
+      When I add group with group name and no tenant id:
+      | mygroupname |  |
+      Then the group will not be created
+
+    Scenario: creating a new group
+      Given I am an authorized user
+      When I add a group with tenant id and no group name:
+      ||1|
+      Then the group will not be created
+
+    Scenario: creating a new group
+      Given I am an authorized user
+      When I add a group with no group name and no tenant id:
+      |||
+      Then the group will not be created
+
+    Scenario: creating a new group
+      Given I am an authorized user
+      When I add a group with group name exceeding the max length and tenant id:
+        |shfsahfhsdhuds| 2 |
+      Then the group will not be created
