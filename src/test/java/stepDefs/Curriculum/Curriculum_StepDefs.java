@@ -10,8 +10,9 @@ import cucumber.api.java.en.When;
 public class Curriculum_StepDefs {
     @When("^I SSO into Curriculum as a counselor$")
     public void I_SSO_into_Curriculum_as_a_counselor() throws Throwable {
-
-
     }
 
+    @Then("^I will see the Scope and Sequence page$")
+    public void iWillSeeTheScopeAndSequencePage() throws Throwable {
+    }
 }

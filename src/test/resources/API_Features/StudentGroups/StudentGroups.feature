@@ -1,4 +1,4 @@
-
+Feature: Creating a group
 
     Scenario add a valid student group
       Given I am an authorized user
