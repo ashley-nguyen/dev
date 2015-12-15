@@ -46,7 +46,7 @@
             <artifactId>helium-java</artifactId>
             <version>1.8.9</version>
             <scope>system</scope>
-            <systemPath>${env.HELIUM_HOME}/heliumlib/helium-java-1.8.9.jar</systemPath>
+            <systemPath> ${basedir}/lib/helium-java-1.8.9/heliumlib/helium-java-1.8.9.jar</systemPath>
         </dependency>
 
         <dependency>
