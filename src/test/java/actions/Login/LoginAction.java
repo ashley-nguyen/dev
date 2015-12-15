@@ -18,6 +18,8 @@ public class LoginAction {
     public static void DoLogin(String strAccount, String strUserName, String strPassword) {
         driver = Hooks.driver;
         PageFactory.initElements(driver, loginPage.class);
+        System.out.println(driver.getPageSource());
+        System.out.println("url:"+driver.getCurrentUrl());
 
         //WebElement txtaccount = Hooks.driver.findElement(By.cssSelector(LoginPage_Account));
         loginPage.Account.sendKeys(strAccount);

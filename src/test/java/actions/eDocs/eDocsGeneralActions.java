@@ -19,12 +19,11 @@ public class eDocsGeneralActions {
     public static WebDriver driver;
 
 
-    public static void NavtoEdocsStudentTab()throws Throwable {
+    public static void NavtoEdocsStudentTab() throws Throwable {
         driver = Hooks.driver;
         PageFactory.initElements(driver, eDocsTabPage.class);
         eDocsTabPage.tabeDocs.click();
-//        new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.name("parentName")));
-        Thread.sleep(5000);
+        new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(".checklist-block")));
 
     }
 }
