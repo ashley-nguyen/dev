@@ -10,6 +10,7 @@ Feature: View student details
   Scenario Outline: Authenticated counselor having the ability to view student details
     When I am accessing the "<studentID>" edocs tab
     Then I will see "<text>"
+    #comment
 #
     Examples:
       | studentID    | text                   |
