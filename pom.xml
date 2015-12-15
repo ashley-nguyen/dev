@@ -16,11 +16,6 @@
             <version>2.46.0</version>
         </dependency>
 
-        <dependency>
-              <groupId>com.codeborne</groupId>
-              <artifactId>phantomjsdriver</artifactId>
-              <version>1.2.1</version>
-        </dependency>
 
         <dependency>
             <groupId>info.cukes</groupId>
@@ -42,6 +37,25 @@
             <version>4.11</version>
             <scope>test</scope>
         </dependency>
+
+        <dependency>
+            <!-- The Helium libraries are taken from a local Helium installation -->
+            <!-- being referenced by the environment variable "HELIUM_HOME" -->
+            <!-- http://heliumhq.com/docs/maven_support -->
+            <groupId>com.heliumhq</groupId>
+            <artifactId>helium-java</artifactId>
+            <version>1.8.9</version>
+            <scope>system</scope>
+            <systemPath>${env.HELIUM_HOME}/heliumlib/helium-java-1.8.9.jar</systemPath>
+        </dependency>
+
+        <dependency>
+            <groupId>com.codeborne</groupId>
+            <artifactId>phantomjsdriver</artifactId>
+            <version>1.2.1</version>
+        </dependency>
+
+
     </dependencies>
     <build>
         <plugins>
