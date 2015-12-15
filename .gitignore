@@ -48,6 +48,7 @@ Thumbs.db
 /results
 Naviance_cucumber_automation/.idea/
 /.idea
+*.iml
 
 # Exclusions to above #
 #######################
