@@ -1,5 +1,6 @@
 package stepDefs.API.StudentGroups;
 
+import API.StudentGroups.StudentGroups;
 import cucumber.api.PendingException;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
@@ -9,8 +10,9 @@ import cucumber.api.java.en.When;
  * Created by priya.chandra on 12/10/15.
  */
 public class StudentGroup_StepDefs {
-    @Given("^I am an authorized user$")
+    /* @Given("^I am an authorized user$")
     public void iAmAnAuthorizedUser() throws Throwable {
+        StudentGroups.DoGet();
     }
 
     @When("^I add group with the following required details:$")
@@ -39,5 +41,23 @@ public class StudentGroup_StepDefs {
 
     @When("^I add a group with group name exceeding the max length and tenant id:$")
     public void iAddAGroupWithGroupNameExceedingTheMaxLengthAndTenantId() throws Throwable {
+    } */
+
+    @When("^I call Group Rest API$")
+    public void iCallGroupRestAPI() throws Throwable {
+        StudentGroups.DoGet();
+    }
+
+
+    @When("^I access \"([^\"]*)\"$")
+    public void iAccess(String arg0) throws Throwable {
+        // Write code here that turns the phrase above into concrete actions
+        throw new PendingException();
+    }
+
+    @Then("^I see a valid collection of groups$")
+    public void iSeeAValidCollectionOfGroups() throws Throwable {
+        // Write code here that turns the phrase above into concrete actions
+        throw new PendingException();
     }
 }
