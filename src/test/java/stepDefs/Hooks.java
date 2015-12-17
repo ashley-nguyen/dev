@@ -50,6 +50,9 @@ public class Hooks {
             case "succeed04":
                 strBaseURL = "https://succeed-04.dev.naviance.com";
                 break;
+            case "succeed-03":
+                strBaseURL = "https://succeed-03.dev.naviance.com";
+                break;
             case "groups":
                 strBaseURL = "https://localhost:8727/groups";
             default:
