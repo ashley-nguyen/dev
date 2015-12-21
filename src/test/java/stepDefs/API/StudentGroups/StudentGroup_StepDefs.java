@@ -49,15 +49,4 @@ public class StudentGroup_StepDefs {
     }
 
 
-    @When("^I access \"([^\"]*)\"$")
-    public void iAccess(String arg0) throws Throwable {
-        // Write code here that turns the phrase above into concrete actions
-        throw new PendingException();
-    }
-
-    @Then("^I see a valid collection of groups$")
-    public void iSeeAValidCollectionOfGroups() throws Throwable {
-        // Write code here that turns the phrase above into concrete actions
-        throw new PendingException();
-    }
 }
