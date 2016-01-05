@@ -12,8 +12,9 @@ import pageObjects.BaseClass;
 public class DistrictPageHeader extends BaseClass {
 
     //### OBJECTS ADMIN UTILS ###
-    @FindBy(how = How.CSS, using = "i.icon-cog")
+    @FindBy(how = How.CSS, using = ".icon-cog")
     public static WebElement districtcog;
+
 
     @FindBy(how = How.LINK_TEXT, using = "Setup")
     public static WebElement lnkSetup;
