@@ -3,7 +3,7 @@ Feature: Verify Powerschool sso config loads
   in order to configure powerschool sso settings
   as a Naviance user
   I want to navigate to the PowerSchool SSO setup
-
+@td2
   Background:
     Given when I log in with the following user details:
       | rtd1 | stan.smith | stan01! |
