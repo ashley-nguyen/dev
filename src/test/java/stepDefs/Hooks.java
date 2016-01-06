@@ -71,8 +71,9 @@ public class Hooks {
             driver = API.getDriver();
 
         } else if (browser.equals("firefox")) {
-            API.startFirefox(strBaseURL);
-            driver = API.getDriver();
+     //       API.startFirefox(strBaseURL);
+       //     driver = API.getDriver();
+            driver = new FirefoxDriver(dc);
 
         } else if (browser.equals("ie")) {
             API.startIE(strBaseURL);
