@@ -27,7 +27,10 @@ public class Curriculum_Verify {public static WebDriver driver;
 
         new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.linkText("Scope And Sequence")));
         assertTrue("text not found: " + strText, driver.getPageSource().contains(strText));
-
-
     }
-}
+    public static void verifyclassespage(String strText) throws InterruptedException {
+        driver = Hooks.driver;
+        System.out.println(driver.getPageSource());
+        new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.linkText("+ Add Class")));
+        assertTrue("text not found: " + strText, driver.getPageSource().contains(strText));
+}}

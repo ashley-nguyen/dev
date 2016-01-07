@@ -18,6 +18,23 @@ public class Curriculum_StepDefs {
     @Then("^I will see the Scope and Sequence page$")
     public void iWillSeeTheScopeAndSequencePage() throws Throwable {
         Curriculum_Verify.verifycurriculumhomepage("SCOPE AND SEQUENCE");
+    }
 
+    @Then("I click the Students dropdown$")
+    public void iclickthestudentsdropdown() throws Throwable {
+        Curriculum_Action.studentsdropdown();
+
+    }
+
+    @When("In the Students dropdown I click Classes$")
+    public void inthestudentsdropdowniclickclasses() throws Throwable {
+        Curriculum_Action.navtoclasses();
+
+    }
+
+
+    @Then("^I will see the Classes page$")
+    public void iwillseetheclassespage() throws Throwable {
+        Curriculum_Verify.verifyclassespage("+ Add Class");
     }
 }
