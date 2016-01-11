@@ -22,4 +22,11 @@ public class CollegeVerify {
         new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.id("contents")));
         assertTrue("text not found: " + strText, driver.getPageSource().contains(strText));
     }
+
+
+    public static void verifyAdvancedSearchCategory(String strText) throws InterruptedException {
+        //verify the category passed in is displayed for the advanced search
+        driver = Hooks.driver;
+        assertTrue("text not found: " + strText, driver.getPageSource().contains(strText));
+    }
 }
