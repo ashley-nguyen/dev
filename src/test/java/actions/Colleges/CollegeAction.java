@@ -1,13 +1,14 @@
 package actions.Colleges;
 
-import gherkin.deps.com.google.gson.stream.JsonReader;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import pageObjects.Colleges.CollegePage;
+import pageObjects.Colleges.CollegeSearchPage;
 import pageObjects.Header.SchoolPageHeader;
 import stepDefs.Hooks;
 
@@ -63,9 +64,38 @@ public class CollegeAction {
                 break;
 
         }
+    }
+
+    public static void goToAdvancedCollegeSearch() {
+        driver = Hooks.driver;
+        PageFactory.initElements(driver, SchoolPageHeader.class);
+
+        //click Colleges link
+
+        Actions action = new Actions(driver);
+        action.moveToElement(SchoolPageHeader.lnkColleges).build().perform();
+        SchoolPageHeader.lnkCollegeSearch.click();
+
+        new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.linkText("A")));
+
+        //click advanced search link
+        PageFactory.initElements(driver, CollegeSearchPage.class);
+        CollegeSearchPage.btnAdvancedSearchGo.click();
+
+        new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.linkText("School type")));
+    }
+
+    public static void DoAdvancedCollegeSearch(String strCategory, String strValue, String strData, String strResult) throws InterruptedException {
+        driver = Hooks.driver;
+
+        //select which criteria to search on
+        //strValue will be the link text for the link of search category
+        WebElement lnkCategory = Hooks.driver.findElement(By.linkText(strCategory));
+        lnkCategory.click();
 
 
     }
+
 
 
 }

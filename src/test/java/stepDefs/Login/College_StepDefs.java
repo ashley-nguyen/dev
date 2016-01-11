@@ -7,6 +7,10 @@ import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 
+import static actions.Colleges.CollegeAction.DoAdvancedCollegeSearch;
+import static actions.Colleges.CollegeAction.goToAdvancedCollegeSearch;
+import static actions.Colleges.CollegeVerify.verifyAdvancedSearchCategory;
+
 /**
  * Created by csackrider on 11/25/2015.
  */
@@ -53,4 +57,25 @@ public class College_StepDefs {
 
     }
 
+    @When("^I go to the advanced college search screen$")
+    public void I_go_to_the_advanced_college_search_screen() throws Throwable {
+
+        goToAdvancedCollegeSearch();
+
+    }
+
+
+    @Then("^I will be able to search using the following criteria '(.*)' '(.*)' '(.*)' '(.*)'$")
+    public void I_will_be_able_to_search_using_the_following_criteria_SearchCategory_SearchValue_SearchData_SearchResult_(String strCategory, String strValue, String strData, String strResult) throws Throwable {
+
+        DoAdvancedCollegeSearch(strCategory, strValue, strData, strResult);
+
+    }
+
+    @Then("^I will see \"([^\"]*)\" search category$")
+    public void I_will_see_search_category(String strCategory) throws Throwable {
+
+        verifyAdvancedSearchCategory(strCategory);
+
+    }
 }
