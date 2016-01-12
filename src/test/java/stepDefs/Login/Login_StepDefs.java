@@ -64,15 +64,8 @@ public class Login_StepDefs {
 
     }
 	
-	 /**Frank Refactor **/
-    @When("^I am logged into a school \"(.*)\" as \"(.*)\" with \"(.*)\"$")
-    public void i_am_logged_into_a_school_as_user_password(String school, String user, String password) throws Throwable {
-
-        LoginAction.DoLogin(school, user, password);
-    }
-	
     //Usage: I am logged into naviance "Account" as "Username" with "Password"
-    @Given("^I am logged into naviance (.*) as (.*) with (.*)$")
+    @Given("^I am logged into naviance \"(.*)\" as \"(.*)\" with \"(.*)\"$")
     public void I_am_logged_into_naviance_account_as_user_with_password(String account, String user, String pass) throws Throwable {
         LoginAction.DoLogin(account, user, pass);
     }

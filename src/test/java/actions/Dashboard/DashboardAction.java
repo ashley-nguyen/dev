@@ -14,9 +14,6 @@ public class DashboardAction {
     public static void NavigateToDashboard() {
         driver = Hooks.driver;
         PageFactory.initElements(driver, DashboardPage.class);
-        System.out.println(driver.getPageSource());
-        System.out.println("url:"+driver.getCurrentUrl());
-
         DashboardPage.School.click();
         DashboardPage.Planner.click();
     }
