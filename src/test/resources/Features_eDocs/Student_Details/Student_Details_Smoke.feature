@@ -4,7 +4,7 @@ Feature: View student details
   I want to view details for the student
 
   Background:
-    Given I am logged into naviance mtuprodjb as jabarnard with naviance
+    Given I am logged into naviance "mtuprodjb" as "jabarnard" with "naviance"
 
   @edocssmoketest @safe
   Scenario Outline: Authenticated counselor having the ability to view student details

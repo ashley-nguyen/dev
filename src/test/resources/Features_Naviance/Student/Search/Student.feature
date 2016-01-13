@@ -5,7 +5,7 @@ Feature: Student
   I want to be able to search and manage student data
 
   Scenario Outline: Global search for students
-    Given I am logged into naviance <account> as <user> with <password>
+    Given I am logged into naviance "<account>" as "<user>" with "<password>"
     When I search for <student> using the global search field
     Then their student <data> will be displayed
 
