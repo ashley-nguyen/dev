@@ -13,6 +13,11 @@ public class AlumniTracker_StepDefs {
         AlumniTracker_Action.NavigateToAlumniTracker();
     }
 
+    @Then("^I verify fatal error in the page$")
+    public void i_verify_fatal_error_in_the_page() throws Throwable {
+        AlumniTracker_Verify.verifyFatalErrorAlumniTracker();
+    }
+
     @When("^I go to Prepare an alumni profile file$")
     public void i_go_to_prepare_an_alumni_profile_file() throws Throwable {
         AlumniTracker_Action.ClickOnPrepareAnAlumniProfilesFile();

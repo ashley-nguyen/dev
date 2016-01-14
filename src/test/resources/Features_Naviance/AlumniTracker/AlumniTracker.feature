@@ -9,6 +9,7 @@ Feature: AlumniTracker tests
     Given I am logged into naviance "<account>" as "<user>" with "<password>"
     Given I am in Naviance district setup
     And I go to the Alumni Tracker
+    And I verify fatal error in the page
     And I go to Prepare an alumni profile file
     And I click on Send File
     Then I see a fatal error in the page
