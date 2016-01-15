@@ -19,6 +19,9 @@ public class DistrictPageHeader extends BaseClass {
     @FindBy(how = How.LINK_TEXT, using = "Setup")
     public static WebElement lnkSetup;
 
+    @FindBy(how = How.LINK_TEXT, using = "Logout")
+    public static WebElement lnkLogout;
+
     @FindBy(how = How.LINK_TEXT, using = "My Account")
     public static WebElement lnkMyAccount;
 

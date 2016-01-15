@@ -5,7 +5,7 @@ Feature: Dashboard tests
   I want to verify that would not show double menu and "An error occurred!"
 
 Scenario Outline: Verify Dashboard
-  Given I am logged into naviance "<account>" as "<user>" with "<password>"
+  Given I am logged into Naviance "<account>" as "<user>" with "<password>"
   And I go to the Planner dashboard
   Then I will see data in recent updates
 Examples:

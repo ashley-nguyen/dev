@@ -65,7 +65,7 @@ public class Login_StepDefs {
     }
 	
     //Usage: I am logged into naviance "Account" as "Username" with "Password"
-    @Given("^I am logged into naviance \"(.*)\" as \"(.*)\" with \"(.*)\"$")
+    @Given("^I am logged into Naviance \"(.*)\" as \"(.*)\" with \"(.*)\"$")
     public void I_am_logged_into_naviance_account_as_user_with_password(String account, String user, String pass) throws Throwable {
         LoginAction.DoLogin(account, user, pass);
     }

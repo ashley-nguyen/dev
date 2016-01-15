@@ -6,7 +6,7 @@ Feature: AlumniTracker tests
 
 
   Scenario Outline: Verify AlumniTracker page
-    Given I am logged into naviance "<account>" as "<user>" with "<password>"
+    Given I am logged into Naviance "<account>" as "<user>" with "<password>"
     Given I am in Naviance district setup
     And I go to the Alumni Tracker
     And I verify fatal error in the page
