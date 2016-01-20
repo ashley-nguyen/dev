@@ -1,0 +1,46 @@
+package pageObjects.Salesforce;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.How;
+import pageObjects.BaseClass;
+
+/**
+ * Created by franksejas on 1/19/2016.
+ */
+public class SalesforcePage extends BaseClass {
+    @FindBy(how = How.LINK_TEXT, using = "School Account")
+    public static WebElement SchoolAccount;
+
+    @FindBy(how = How.LINK_TEXT, using = "Enter school site")
+    public static WebElement School;
+
+    @FindBy(how = How.LINK_TEXT, using = "Manage Subscriptions")
+    public static WebElement ManageSubscriptions;
+
+    @FindBy(how = How.ID, using = "submitRequest")
+    public static WebElement Next;
+
+    @FindBy(how = How.ID, using = "processRenewal")
+    public static WebElement Submit;
+
+    @FindBy(how = How.ID, using = "checkbox_13")
+    public static WebElement Product;
+
+    @FindBy(how = How.ID, using = "payment_form")
+    public static WebElement FormPayment;
+
+    @FindBy(how = How.ID, using = "expiration_13")
+    public static WebElement EndDate;
+
+    @FindBy(how = How.ID, using = "start_date_13")
+    public static WebElement startDate;
+
+    @FindBy(how = How.ID, using = "po_number")
+    public static WebElement PONumber;
+
+    public SalesforcePage(WebDriver driver) {
+        super(driver);
+    }
+}
