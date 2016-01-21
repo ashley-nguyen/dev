@@ -6,20 +6,10 @@ Feature: SMTP tests
 
 Scenario Outline: Verify Dashboard
   Given I am logged into Naviance "<account>" as "<user>" with "<password>"
-  Given I am in Naviance district setup
-  When I go to the Add New User
-  And I fill the First Name as "Test"
-  And I fill the Last Name as "Last Test"
-  And I fill the User Name as "User Name"
-  And I fill the Email as "fsejasm@gmail.com"
-  And I fill the Confirm Email as "fsejasm@gmail.com"
-  And I select the Role as "District Analyst"
-  And I click on Add User button
-  Then I verify new user "Test" was added without errors
-  Then I verify new user "Last Test" was added without errors
-  Then I verify new user "User Name" was added without errors
+  When I add new user with First Name as "<firstname>" Last Name as "<lastname>" User Name as "<username>" Email as "<email>" Confirm Email as "<email>" Role as "<role>"
+  Then I verify new user with First Name as "<firstname>" Last Name as "<lastname>" and User Name as "<username>" was added without errors
 
 Examples:
-  | account     | user       | password  |
-  | rtd1        | stan.smith | stan01!   |
+  | account     | user       | password  | firstname | lastname      | username       | email             |  role             |
+  | rtd1        | stan.smith | stan01!   | TestName  | Last Name Test| User Name test | fsejasm@gmail.com |  District Analyst |
 

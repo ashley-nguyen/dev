@@ -7,7 +7,7 @@ Feature: Assessments
   Scenario Outline: Verify Assessments is displayed correctly
     Given I am logged into Naviance "<account>" as "<user>" with "<password>"
     When I search for <student> using the global search field
-    And I click on Assessments tab
+    When I click on Assessments tab
     Then I should not see errors in Assessments
 
   Examples:

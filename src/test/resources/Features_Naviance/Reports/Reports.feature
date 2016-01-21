@@ -10,6 +10,4 @@ Feature: Reports tests
 
   Scenario: Verify Reports page
     When I go to the Reports
-    And I click on Customize link
-    And I click on View Report button
     Then I verify report page

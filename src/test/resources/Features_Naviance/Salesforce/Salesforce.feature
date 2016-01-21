@@ -6,16 +6,8 @@ Feature: Dashboard tests
 
 Scenario Outline: Verify Salesforce
   Given I am logged into Naviance "<account>" as "<user>" with "<password>"
-  And I am navigate to School account
-  And I am navigate to Manage Subscriptions
-  And I select a product
-  And I select Start Date
-  And I select End Date
-  And I click on Next button
-  And I select a form of payment
-  And I write PO Number
-  And I click on Submit button
-  Then I verify that API Calls do not produce an error
+  When I submit a new product subscription
+  Then the subscription is submitted successfully
 
 Examples:
   | account     | user       | password  |
