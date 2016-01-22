@@ -70,6 +70,11 @@ public class Login_StepDefs {
         LoginAction.DoLogin(account, user, pass);
     }
 
+    @Given("^I am on the following url \"(.*)\"$")
+    public void I_am_on_the_following_url(String url) throws Throwable {
+        LoginAction.GoToUrl(url);
+    }
+
     @When("^I log into family connection \"(.*)\" as \"(.*)\" and \"(.*)\"$")
     public void I_log_into_family_connection_as_and(String strAccount, String strUsername, String strPassword) throws Throwable {
 

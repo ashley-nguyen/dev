@@ -56,5 +56,8 @@ public class LoginAction {
         new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.linkText("log out")));
     }
 
+    public static void GoToUrl(String url) throws InterruptedException {
+        Hooks.driver.get(url);
+    }
 
 }
