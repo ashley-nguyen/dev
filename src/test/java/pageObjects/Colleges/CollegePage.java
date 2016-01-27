@@ -29,6 +29,18 @@ public class CollegePage extends BaseClass {
     @FindBy(how = How.XPATH, using = "//a[contains(text(),'Extracurriculars')]")
     public static WebElement tabExtracurriculars;
 
+    @FindBy(how = How.XPATH, using = "(//a[contains(text(),'Colleges')])[2]")
+    public static WebElement tabColleges;
+
+    @FindBy(how = How.LINK_TEXT, using = "prospective colleges")
+    public static WebElement lnkProspectiveColleges;
+
+    @FindBy(how = How.XPATH, using = "//*[@id=\"contents\"]/table/tbody/tr[1]/td/table/tbody/tr/td[1]/a")
+    public static WebElement lnkAddProspectiveColleges;
+
+    @FindBy(how = How.LINK_TEXT, using = "Enter school site")
+    public static WebElement lnkEnterSchoolSite;
+
     public CollegePage(WebDriver driver) {
         super(driver);
     }

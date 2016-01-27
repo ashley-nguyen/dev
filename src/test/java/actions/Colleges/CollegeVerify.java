@@ -29,4 +29,9 @@ public class CollegeVerify {
         driver = Hooks.driver;
         assertTrue("text not found: " + strText, driver.getPageSource().contains(strText));
     }
+
+    public static void verifyNoErrorsInProspectiveCollege() throws InterruptedException {
+        String dataVerification = Hooks.driver.findElement(By.className("dark_textheader")).getText();
+        assertTrue("Error Verification!", dataVerification.contains("ADD PROSPECTIVE COLLEGES"));
+    }
 }

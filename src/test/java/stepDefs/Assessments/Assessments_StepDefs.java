@@ -12,8 +12,7 @@ public class Assessments_StepDefs {
 
     @When("^I click on Assessments tab$")
     public void i_click_on_assessments_tab() throws Throwable {
-
-
+        Assessments_Action.ClickOnAssessments();
     }
 
     @Then("^I should not see errors in Assessments$")

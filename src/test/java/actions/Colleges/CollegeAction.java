@@ -96,6 +96,22 @@ public class CollegeAction {
 
     }
 
+    public static void ClickOnCollegesTab() {
+        driver = Hooks.driver;
+        PageFactory.initElements(driver, CollegePage.class);
+        CollegePage.tabColleges.click();
+    }
 
+    public static void ClickOnSchoolSiteLink() {
+        driver = Hooks.driver;
+        PageFactory.initElements(driver, CollegePage.class);
+        CollegePage.lnkEnterSchoolSite.click();
+    }
 
+    public static void ClickOnAddProspectiveColleges() {
+        driver = Hooks.driver;
+        PageFactory.initElements(driver, CollegePage.class);
+        CollegePage.lnkProspectiveColleges.click();
+        CollegePage.lnkAddProspectiveColleges.click();
+    }
 }
