@@ -41,6 +41,9 @@ public class CollegePage extends BaseClass {
     @FindBy(how = How.LINK_TEXT, using = "Enter school site")
     public static WebElement lnkEnterSchoolSite;
 
+    @FindBy(how = How.LINK_TEXT, using = "active applications")
+    public static WebElement lnkActiveApplications;
+
     public CollegePage(WebDriver driver) {
         super(driver);
     }

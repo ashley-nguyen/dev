@@ -21,8 +21,19 @@ public class Colleges_StepDefs {
         CollegeAction.ClickOnSchoolSiteLink();
     }
 
+    @When("^I enter to Active Applications$")
+    public void i_enter_to_active_applications() throws Throwable {
+        CollegeAction.ClickOnCollegesTab();
+        CollegeAction.ClickOnActiveApplicationsLink();
+    }
+
     @Then("^I should not see errors in prospective college$")
-    public void i_should_not_see_errors_in_assessments() throws Throwable {
+     public void i_should_not_see_errors_in_assessments() throws Throwable {
         CollegeVerify.verifyNoErrorsInProspectiveCollege();
+    }
+
+    @Then("^I should not see errors in active applications$")
+    public void i_should_not_see_errors_in_active_applications() throws Throwable {
+        CollegeVerify.verifyNoErrorsInActiveApplications();
     }
 }

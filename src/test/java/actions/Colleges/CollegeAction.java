@@ -108,6 +108,12 @@ public class CollegeAction {
         CollegePage.lnkEnterSchoolSite.click();
     }
 
+    public static void ClickOnActiveApplicationsLink() {
+        driver = Hooks.driver;
+        PageFactory.initElements(driver, CollegePage.class);
+        CollegePage.lnkActiveApplications.click();
+    }
+
     public static void ClickOnAddProspectiveColleges() {
         driver = Hooks.driver;
         PageFactory.initElements(driver, CollegePage.class);
