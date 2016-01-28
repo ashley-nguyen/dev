@@ -36,4 +36,5 @@ public class Colleges_StepDefs {
     public void i_should_not_see_errors_in_active_applications() throws Throwable {
         CollegeVerify.verifyNoErrorsInActiveApplications();
     }
+
 }

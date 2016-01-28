@@ -120,4 +120,6 @@ public class CollegeAction {
         CollegePage.lnkProspectiveColleges.click();
         CollegePage.lnkAddProspectiveColleges.click();
     }
+
+
 }

@@ -25,3 +25,4 @@ Feature: Colleges Errors test
   Examples:
     | user           | account | password | student      |
     | stan.smith     | rtd1    | stan01!  | Abrams, Amy  |
+
