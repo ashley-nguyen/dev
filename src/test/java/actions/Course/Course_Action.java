@@ -30,4 +30,12 @@ public class Course_Action {
         CoursePage.HighSchoolSubjetcsTab.click();
         CoursePage.EconomicsLnk.click();
     }
+
+    public static void ClickOnRecommendations() {
+        driver = Hooks.driver;
+        PageFactory.initElements(driver, CoursePage.class);
+        CoursePage.lnkEnterSchoolSite.click();
+        CoursePage.Courses.click();
+        CoursePage.lnkRecommendations.click();
+    }
 }

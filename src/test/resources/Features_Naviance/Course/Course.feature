@@ -32,3 +32,12 @@ Feature: Course tests
     | qadistrict  | jtester    | jtester01!    |
 #    | etdh        | jcounselor | jcounselor01! |
 
+  Scenario Outline: Verify Recomendations
+    Given I am logged into Naviance "<account>" as "<user>" with "<password>"
+    When I navigate to Recommendations
+    Then I verify the Recommendation not show errors
+
+  Examples:
+    | account     | user       | password      |
+    |  rtd1    | stan.smith    | stan01!       |
+

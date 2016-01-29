@@ -7,9 +7,9 @@ import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 
-import static actions.Colleges.CollegeAction.DoAdvancedCollegeSearch;
-import static actions.Colleges.CollegeAction.goToAdvancedCollegeSearch;
+import static actions.Colleges.CollegeAction.*;
 import static actions.Colleges.CollegeVerify.verifyAdvancedSearchCategory;
+import static actions.Colleges.CollegeVerify.verifyFindCollege;
 
 /**
  * Created by csackrider on 11/25/2015.
@@ -64,6 +64,13 @@ public class College_StepDefs {
 
     }
 
+    @When("^I go to find college \"([^\"]*)\"$")
+    public void I_go_to_find_college_search_screen(String strCollegeName) throws Throwable {
+
+        goToFindColleges(strCollegeName);
+
+    }
+
 
     @Then("^I will be able to search using the following criteria '(.*)' '(.*)' '(.*)' '(.*)'$")
     public void I_will_be_able_to_search_using_the_following_criteria_SearchCategory_SearchValue_SearchData_SearchResult_(String strCategory, String strValue, String strData, String strResult) throws Throwable {
@@ -76,6 +83,13 @@ public class College_StepDefs {
     public void I_will_see_search_category(String strCategory) throws Throwable {
 
         verifyAdvancedSearchCategory(strCategory);
+
+    }
+
+    @Then("^I should not see errors in find College \"([^\"]*)\"$")
+    public void I_should_not_see_errors_in_find_college(String strCategory) throws Throwable {
+
+      verifyFindCollege(strCategory);
 
     }
 }

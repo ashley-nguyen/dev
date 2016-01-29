@@ -85,6 +85,24 @@ public class CollegeAction {
         new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.linkText("School type")));
     }
 
+    public static void goToFindColleges(String strCollegeName) {
+        driver = Hooks.driver;
+        PageFactory.initElements(driver, SchoolPageHeader.class);
+
+        //click Colleges link
+
+        Actions action = new Actions(driver);
+        action.moveToElement(SchoolPageHeader.lnkColleges).build().perform();
+        SchoolPageHeader.lnkFindColleges.click();
+
+        new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.linkText("A")));
+
+        SchoolPageHeader.lnkA.click();
+        WebElement lnkCollegeName = Hooks.driver.findElement(By.linkText(strCollegeName));
+        lnkCollegeName.click();
+
+    }
+
     public static void DoAdvancedCollegeSearch(String strCategory, String strValue, String strData, String strResult) throws InterruptedException {
         driver = Hooks.driver;
 

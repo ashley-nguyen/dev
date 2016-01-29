@@ -26,3 +26,14 @@ Feature: Colleges Errors test
     | user           | account | password | student      |
     | stan.smith     | rtd1    | stan01!  | Abrams, Amy  |
 
+
+  Scenario Outline: Find College test
+    Given I am logged into Naviance "<account>" as "<user>" with "<password>"
+    When I go to find college "<college>"
+    Then I should not see errors in find College "<college>"
+
+  Examples:
+  | user           | account | password | college            |
+  | stan.smith     | rtd1    | stan01!  | Adelphi University |
+
+

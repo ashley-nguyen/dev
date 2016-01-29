@@ -24,8 +24,14 @@ public class SchoolPageHeader extends BaseClass {
     @FindBy(how = How.LINK_TEXT, using = "College Search")
     public static WebElement lnkCollegeSearch;
 
+    @FindBy(how = How.LINK_TEXT, using = "Find Colleges")
+    public static WebElement lnkFindColleges;
+
     @FindBy(how = How.LINK_TEXT, using = "Students")
     public static WebElement lnkHeaderStudents;
+
+    @FindBy(how = How.LINK_TEXT, using = "A")
+    public static WebElement lnkA;
 
     @FindBy(how = How.LINK_TEXT, using = "Naviance Curriculum")
     public static WebElement lnkNavianceCurriculum;

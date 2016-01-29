@@ -29,4 +29,14 @@ public class Course_StepDefs {
     public void i_verify_the_economics_contents() throws Throwable {
         Course_Verify.verifyEconomicsContents();
     }
+
+    @When("^I navigate to Recommendations$")
+    public void i_navigate_to_recommendations() throws Throwable {
+        Course_Action.ClickOnRecommendations();
+    }
+
+    @Then("^I verify the Recommendation not show errors$")
+    public void i_verify_the_recommendations_not_show_errors() throws Throwable {
+        Course_Verify.verifyRecommendationsNotShowErrors();
+    }
 }
