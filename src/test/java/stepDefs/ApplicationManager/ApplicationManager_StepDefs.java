@@ -17,9 +17,9 @@ public class ApplicationManager_StepDefs {
     }
 
     @Then("^I will see data in Application Manager selecting \"(.*)\"")
-    public void i_will_see_data_in_recent_updates() throws Throwable {
+    public void i_will_see_data_in_recent_updates(String item) throws Throwable {
         ApplicationManager_Verify.verifyApplicationManager();
-            ApplicationManager_Verify.SelectFormOfPayment("class of 2016 \"(grade 12)\"");
+            ApplicationManager_Verify.SelectFormOfPayment(item);
 
     }
 }

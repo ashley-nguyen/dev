@@ -1,4 +1,4 @@
-package pageObjects.ApplicationManager;
+package pageObjects.TranscriptManager;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -9,17 +9,19 @@ import pageObjects.BaseClass;
 /**
  * Created by franksejas on 2/01/2016.
  */
-public class ApplicationManagerPage extends BaseClass {
+public class TranscriptManagerPage extends BaseClass {
     @FindBy(how = How.LINK_TEXT, using = "Enter school site")
     public static WebElement School;
-    @FindBy(how = How.LINK_TEXT, using = "Application Manager")
-    public static WebElement lnkApplicationManager;
+    @FindBy(how = How.LINK_TEXT, using = "Transcript Request Manager")
+    public static WebElement lnkTranscriptManager;
     @FindBy(how = How.NAME, using = "class")
     public static WebElement selClass;
-    @FindBy(how = How.NAME, using = "consent")
+    @FindBy(how = How.NAME, using = "processapps")
     public static WebElement formNameTable;
+    @FindBy(how = How.CLASS_NAME, using = "grids")
+    public static WebElement formNameStudent;
 
-    public ApplicationManagerPage(WebDriver driver) {
+    public TranscriptManagerPage(WebDriver driver) {
         super(driver);
     }
 }
