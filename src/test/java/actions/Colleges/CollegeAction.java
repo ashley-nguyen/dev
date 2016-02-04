@@ -139,5 +139,10 @@ public class CollegeAction {
         CollegePage.lnkAddProspectiveColleges.click();
     }
 
+    public static void ClickOnViewPastVisitsLink() {
+        driver = Hooks.driver;
+        PageFactory.initElements(driver, CollegePage.class);
+        CollegePage.lnkEnterSchoolSite.click();
+    }
 
 }

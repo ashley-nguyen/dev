@@ -37,4 +37,9 @@ public class Colleges_StepDefs {
         CollegeVerify.verifyNoErrorsInActiveApplications();
     }
 
+    @When("^I click on view past visits$")
+    public void i_click_on_view_past_visits() throws Throwable {
+        CollegeAction.ClickOnViewPastVisitsLink();
+    }
+
 }
