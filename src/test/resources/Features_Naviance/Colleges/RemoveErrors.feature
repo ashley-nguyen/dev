@@ -19,7 +19,6 @@ Feature: Colleges Errors test
     Given I am logged into Naviance "<account>" as "<user>" with "<password>"
     And I enter to School Site
     When I search for <student> using the global search field
-#    When I enter to Active Applications
     Given I am on the following url "<url>"
     Then I should not see errors in college pick
 

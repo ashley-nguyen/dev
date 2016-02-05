@@ -15,6 +15,10 @@ public class ConnectionsVerify {
         assertTrue("Error Verification!", dataVerification.contains("E-mail Message History"));
     }
 
+    public static void verifyNoErrorsInEmail() throws InterruptedException {
+        assertTrue("Error Verification!", !Hooks.driver.getPageSource().contains("view_bounce.php"));
+    }
+
     public static void verifyNoErrorsInFamilyConnection() throws InterruptedException {
         String dataVerification = Hooks.driver.findElement(By.className("table-heading")).getText();
         assertTrue("Error Verification!", dataVerification.contains("Family Connection"));
