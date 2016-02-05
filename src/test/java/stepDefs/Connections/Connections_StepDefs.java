@@ -29,6 +29,11 @@ public class Connections_StepDefs {
         ConnectionsVerify.verifyNoErrorsInEmail();
     }
 
+    @Then("^I should not see errors in Connections$")
+    public void i_should_not_see_errors_in_connections() throws Throwable {
+        ConnectionsVerify.verifyNoErrorsInConnections();
+    }
+
     @Then("^I should not see errors in Family Connection$")
     public void i_should_not_see_errors_in_family_connection() throws Throwable {
         ConnectionsVerify.verifyNoErrorsInFamilyConnection();

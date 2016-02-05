@@ -12,15 +12,17 @@ Feature: Connections Errors test
     Then I should not see errors in Email
 
   Examples:
-    | user           | account | password | url                                                                                    |
+    | user           | account | password | url                                                                            |
     | stan.smith     | rtd1    | stan01!  |  https://succeed.naviance.com/connections/communications/email/view_bounce.php |
 
   Scenario Outline: Verify Family Connections displayed correctly
     Given I am logged into Naviance "<account>" as "<user>" with "<password>"
     When I enter to Family Connection
     Then I should not see errors in Family Connection
+    When I am on the following url "<url>"
+    Then I should not see errors in Connections
 
   Examples:
-    | user           | account | password |
-    | stan.smith     | rtd1    | stan01!  |
+    | user           | account | password | url                                                         |
+    | stan.smith     | rtd1    | stan01!  |  https://succeed.naviance.com/connections/fc/fc.php?sec=xyz |
 
