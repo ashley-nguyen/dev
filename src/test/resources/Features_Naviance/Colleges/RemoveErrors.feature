@@ -19,12 +19,13 @@ Feature: Colleges Errors test
     Given I am logged into Naviance "<account>" as "<user>" with "<password>"
     And I enter to School Site
     When I search for <student> using the global search field
-    When I enter to Active Applications
-    Then I should not see errors in active applications
+#    When I enter to Active Applications
+    Given I am on the following url "<url>"
+    Then I should not see errors in college pick
 
   Examples:
-    | user           | account | password | student      |
-    | stan.smith     | rtd1    | stan01!  | Abrams, Amy  |
+    | user           | account | password | student      | url                                                               |
+    | stan.smith     | rtd1    | stan01!  | Abrams, Amy  | https://succeed.naviance.com/collegesmain/collegepick.php |
 
 
   Scenario Outline: Find College test

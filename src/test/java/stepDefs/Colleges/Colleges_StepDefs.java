@@ -32,9 +32,9 @@ public class Colleges_StepDefs {
         CollegeVerify.verifyNoErrorsInProspectiveCollege();
     }
 
-    @Then("^I should not see errors in active applications$")
+    @Then("^I should not see errors in college pick$")
     public void i_should_not_see_errors_in_active_applications() throws Throwable {
-        CollegeVerify.verifyNoErrorsInActiveApplications();
+        CollegeVerify.verifyNoErrorsInCollegePick();
     }
 
     @When("^I click on view past visits$")

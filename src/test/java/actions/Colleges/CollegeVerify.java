@@ -40,8 +40,7 @@ public class CollegeVerify {
         assertTrue("Error Verification!", dataVerification.contains("ADD PROSPECTIVE COLLEGES"));
     }
 
-    public static void verifyNoErrorsInActiveApplications() throws InterruptedException {
-        String dataVerification = Hooks.driver.findElement(By.className("dark_textheader")).getText();
-        assertTrue("Error Verification!", dataVerification.contains("ACTIVE APPLICATIONS"));
+    public static void verifyNoErrorsInCollegePick() throws InterruptedException {
+        assertTrue("Error Verification!", Hooks.driver.getPageSource().contains(""));
     }
 }
