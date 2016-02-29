@@ -141,8 +141,31 @@ public class CollegeAction {
 
     public static void ClickOnViewPastVisitsLink() {
         driver = Hooks.driver;
+
+        //PageFactory.initElements(driver, CollegePage.class);
+        //CollegePage.lnkEnterSchoolSite.click();
+
+        PageFactory.initElements(driver, SchoolPageHeader.class);
+
+        Actions action = new Actions(driver);
+        action.moveToElement(SchoolPageHeader.lnkColleges).build().perform();
+        SchoolPageHeader.lnkCollegeVisits.click();
+        //add in a little wait here.
+        new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.linkText("view past visits")));
+
         PageFactory.initElements(driver, CollegePage.class);
-        CollegePage.lnkEnterSchoolSite.click();
+        CollegePage.lnkviewPastVisits.click();
+
+
+    }
+
+    public static void SelectClassYear(String strClassYear) throws InterruptedException {
+        PageFactory.initElements(driver, CollegePage.class);
+
+        CollegePage.selClassYear.sendKeys(strClassYear);
+
+
+        Thread.sleep(8000);
     }
 
 }

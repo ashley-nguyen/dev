@@ -42,4 +42,10 @@ public class Colleges_StepDefs {
         CollegeAction.ClickOnViewPastVisitsLink();
     }
 
+    @Then("^I can toggle class year (.*)$")
+    public void I_can_toggle_class_year(String strClassYear) throws Throwable {
+
+        CollegeAction.SelectClassYear(strClassYear);
+
+    }
 }

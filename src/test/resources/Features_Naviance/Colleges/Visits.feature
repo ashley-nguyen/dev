@@ -8,9 +8,9 @@ Feature: Type-casted year input to in  test
     Given I am logged into Naviance "<account>" as "<user>" with "<password>"
     And I enter to School Site
     When I click on view past visits
-    Then I can toggle class year
+    Then I can toggle class year <ClassYear>
 
   Examples:
-    | user           | account | password |
-    | stan.smith     | rtd1    | stan01!  |
+    | user           | account | password | ClassYear |
+    | stan.smith     | rtd1    | stan01!  | (2013-2014) |
 
