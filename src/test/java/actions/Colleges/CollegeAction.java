@@ -12,6 +12,8 @@ import pageObjects.Colleges.CollegeSearchPage;
 import pageObjects.Header.SchoolPageHeader;
 import stepDefs.Hooks;
 
+import java.util.List;
+
 /**
  * Created by csackrider on 11/25/2015.
  */
@@ -156,16 +158,25 @@ public class CollegeAction {
         PageFactory.initElements(driver, CollegePage.class);
         CollegePage.lnkviewPastVisits.click();
 
+        new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.name("class")));
+
 
     }
 
     public static void SelectClassYear(String strClassYear) throws InterruptedException {
+        driver = Hooks.driver;
         PageFactory.initElements(driver, CollegePage.class);
 
-        CollegePage.selClassYear.sendKeys(strClassYear);
+        CollegePage.selClassYear.click();
 
+        List<WebElement> options = CollegePage.selClassYear.findElements(By.tagName("option"));
+        for (WebElement option : options) {
+            if (option.getText().contains(strClassYear))
+                option.click();
+            break;
+        }
 
-        Thread.sleep(8000);
+       // Thread.sleep(8000);
     }
 
 }

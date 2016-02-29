@@ -10,7 +10,7 @@ Feature: Type-casted year input to in  test
     When I click on view past visits
     Then I can toggle class year <ClassYear>
 
-  Examples:
-    | user           | account | password | ClassYear |
-    | stan.smith     | rtd1    | stan01!  | (2013-2014) |
+    Examples:
+      | user       | account | password | ClassYear |
+      | stan.smith | rtd1    | stan01!  | 2009      |
 
