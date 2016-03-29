@@ -25,6 +25,11 @@ public class AlumniTracker_StepDefs {
     @When("^I go to Prepare an alumni profile file$")
     public void i_go_to_prepare_an_alumni_profile_file() throws Throwable {
         AlumniTracker_Action.ClickOnPrepareAnAlumniProfilesFile();
+        Thread.sleep(500);
+        AlumniTracker_Action.ClickOnPrepareAlumniFiles();
+        Thread.sleep(500);
+        AlumniTracker_Action.ClickOnCheckBoxClassYear();
+        Thread.sleep(500);
         AlumniTracker_Action.ClickOnSendFile();
     }
 

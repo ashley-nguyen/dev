@@ -37,6 +37,12 @@ public class AlumniTracker_Action {
         AlumniTrackerPage.lnkSendFile.click();
     }
 
+    public static void ClickOnCheckBoxClassYear() {
+        driver = Hooks.driver;
+        PageFactory.initElements(driver, AlumniTrackerPage.class);
+        AlumniTrackerPage.chkboxSelected.click();
+    }
+
     public static void GoToAlumniTrackerOptions() throws InterruptedException {
         driver = Hooks.driver;
         PageFactory.initElements(driver, DistrictSetupPage.class);

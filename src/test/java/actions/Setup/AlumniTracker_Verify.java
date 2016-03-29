@@ -11,7 +11,7 @@ import static org.junit.Assert.assertTrue;
 public class AlumniTracker_Verify {
 
     public static void verifyFatalErrorAlumniTracker() throws InterruptedException {
-        String dataverification = Hooks.driver.findElement(By.id("wizard-activity")).getText(); //TODO: Detect the Id of the page
+        String dataverification = Hooks.driver.findElement(By.className("top-nav")).getText();
         assertTrue("Fatal Error Verification!", !dataverification.contains("Fatal Error"));
     }
 }

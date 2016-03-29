@@ -16,11 +16,14 @@ public class AlumniTrackerPage extends BaseClass {
     @FindBy(how = How.LINK_TEXT, using = "Prepare an alumni profiles file")
     public static WebElement lnkPepareanalumniprofilesfile;
 
-    @FindBy(how = How.LINK_TEXT, using = "Prepare Alumni Files")
+    @FindBy(how = How.CLASS_NAME, using = "page_change_text")
     public static WebElement lnkPeparealumnifiles;
 
-    @FindBy(how = How.LINK_TEXT, using = "Send File")
+    @FindBy(how = How.ID,  using = "generate_file_button")
     public static WebElement lnkSendFile;
+
+    @FindBy(how = How.NAME, using = "classYear[]")
+    public static WebElement chkboxSelected;
 
     public AlumniTrackerPage(WebDriver driver) {
         super(driver);
