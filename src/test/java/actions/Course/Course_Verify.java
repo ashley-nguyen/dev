@@ -51,7 +51,7 @@ public class Course_Verify {
     }
 
     public static void verifyRecommendationsNotShowErrors() throws InterruptedException {
-        String recommendationsContents = Hooks.driver.findElement(By.id("course-management-container")).getText();
+        String recommendationsContents = Hooks.driver.findElement(By.id("content-wrapper")).getText();
         assertTrue("Verify Recommendations Contents", recommendationsContents.contains("Recommend Students For A Course"));
         assertTrue("Verify Recommendations Contents", recommendationsContents.contains("View Current Recommended Courses"));
         assertTrue("Verify Recommendations Contents", recommendationsContents.contains("Select a course"));

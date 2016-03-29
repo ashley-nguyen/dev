@@ -18,6 +18,7 @@ public class DefaultDB_StepDefs {
 
     @When("^I go to the Courses$")
     public void i_go_to_courses() throws Throwable {
+        Thread.sleep(3000);
         DefaultDB_Action.NavigateToCourses();
     }
 

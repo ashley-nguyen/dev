@@ -30,7 +30,6 @@ Feature: Course tests
   Examples:
     | account     | user       | password      |
     | qadistrict  | jtester    | jtester01!    |
-#    | etdh        | jcounselor | jcounselor01! |
 
   Scenario Outline: Verify Recomendations
     Given I am logged into Naviance "<account>" as "<user>" with "<password>"
