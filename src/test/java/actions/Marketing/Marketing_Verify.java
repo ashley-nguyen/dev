@@ -12,7 +12,7 @@ public class Marketing_Verify {
 
     public static void verifyImageInLogin() throws InterruptedException {
         Hooks.driver.switchTo().frame(Hooks.driver.findElement(By.className("marketing-content")));
-        Boolean imageVerification = Hooks.driver.findElement(By.xpath("//img[contains(@src,'img/squest.jpg')]")).isDisplayed();
+        Boolean imageVerification = Hooks.driver.findElement(By.xpath("//img[contains(@src,'img/nsi2016_2.jpg')]")).isDisplayed();
         assertTrue("Verify image exists!", imageVerification);
     }
 
