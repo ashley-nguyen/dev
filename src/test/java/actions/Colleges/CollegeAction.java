@@ -100,8 +100,8 @@ public class CollegeAction {
         new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.linkText("A")));
 
         SchoolPageHeader.lnkA.click();
-        WebElement lnkCollegeName = Hooks.driver.findElement(By.linkText(strCollegeName));
-        lnkCollegeName.click();
+//        WebElement lnkCollegeName = Hooks.driver.findElement(By.linkText(strCollegeName));
+//        lnkCollegeName.click();
 
     }
 
