@@ -19,22 +19,22 @@ public class SalesforcePage extends BaseClass {
     @FindBy(how = How.LINK_TEXT, using = "Manage Subscriptions")
     public static WebElement ManageSubscriptions;
 
-    @FindBy(how = How.ID, using = "submitRequest")
+    @FindBy(how = How.ID, using = "button")
     public static WebElement Next;
 
     @FindBy(how = How.ID, using = "processRenewal")
     public static WebElement Submit;
 
-    @FindBy(how = How.ID, using = "checkbox_13")
+    @FindBy(how = How.ID, using = "checkbox_14")
     public static WebElement Product;
 
     @FindBy(how = How.ID, using = "payment_form")
     public static WebElement FormPayment;
 
-    @FindBy(how = How.ID, using = "expiration_13")
+    @FindBy(how = How.ID, using = "expiration_14")
     public static WebElement EndDate;
 
-    @FindBy(how = How.ID, using = "start_date_13")
+    @FindBy(how = How.ID, using = "start_date_14")
     public static WebElement startDate;
 
     @FindBy(how = How.ID, using = "po_number")

@@ -20,11 +20,6 @@ public class Salesforce_StepDefs {
         Salesforce_Action.NavigateToSchoolAccount();
         Salesforce_Action.NavigateToManageSubscriptions();
         Salesforce_Action.CheckOffProduct();
-        Salesforce_Action.SelectStartDate();
-        Salesforce_Action.SelectEndDate();
         Salesforce_Action.ClickOnNextButton();
-        Salesforce_Action.SelectFormOfPayment();
-        Salesforce_Action.WritePONumber();
-        Salesforce_Action.ClickOnSubmitButton();
     }
 }
