@@ -70,7 +70,7 @@ public class ScoresVerify {
 
     public static void verifyASPIRETestScoreWarning(String strMessage) throws Throwable {
         //try {
-        WebElement warn = Hooks.driver.findElement(By.id("aspire_warning_1"));
+        WebElement warn = Hooks.driver.findElement(By.id("aspire_warning_message_1"));
         assertTrue("Expected: " + strMessage + " but the following was displayed insted: " + warn.getText(), warn.getText().contains(strMessage));
         /*} catch (NoSuchElementException e) {
             e.getMessage();

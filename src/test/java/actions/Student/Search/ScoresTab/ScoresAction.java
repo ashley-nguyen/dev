@@ -80,15 +80,14 @@ public class ScoresAction {
         try {
 
             StudentScoresTabPage.lnkaddeditscores.click();
+            StudentScoresTabPage.cboGrade.sendKeys(grade);
+            StudentScoresTabPage.cboGrade.sendKeys(Keys.TAB);
 
             //WebElement defined here instead of page object due to the subject param.
             WebElement txtsubject = Hooks.driver.findElement(By.id("aspire[1][" + subject + "]"));
             txtsubject.sendKeys(score);
             txtsubject.sendKeys(Keys.TAB);
 
-
-            StudentScoresTabPage.cboGrade.sendKeys(grade);
-            StudentScoresTabPage.cboGrade.sendKeys(Keys.TAB);
 
         } catch (NoSuchElementException e) {
             e.getMessage();
