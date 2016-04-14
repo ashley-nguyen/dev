@@ -4,10 +4,7 @@ import cucumber.api.Scenario;
 import cucumber.api.java.After;
 import cucumber.api.java.Before;
 import org.openqa.selenium.*;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.htmlunit.HtmlUnitDriver;
-import org.openqa.selenium.ie.InternetExplorerDriver;
+
 import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.safari.SafariDriver;
@@ -64,16 +61,16 @@ public class Hooks {
         String browser = System.getProperty("BROWSER");
 
         if (browser == null) {
-            browser = "firefox";
+            browser = "chrome";
         }
         if (browser.equals("chrome")) {
             API.startChrome(strBaseURL);
             driver = API.getDriver();
 
         } else if (browser.equals("firefox")) {
-     //       API.startFirefox(strBaseURL);
-       //     driver = API.getDriver();
-            driver = new FirefoxDriver(dc);
+            API.startFirefox(strBaseURL);
+            driver = API.getDriver();
+
 
         } else if (browser.equals("ie")) {
             API.startIE(strBaseURL);
@@ -83,12 +80,7 @@ public class Hooks {
         } else if (browser.equals("safari")) {
             driver = new SafariDriver(dc);
 
-        } else if (browser.equals("headless")) {
-            driver = new HtmlUnitDriver();
-        } else {
-            driver = new HtmlUnitDriver();
-
-        }
+         }
         System.out.println("Opening Browser...." + browser);
         driver.manage().deleteAllCookies();
         driver.get(strBaseURL);

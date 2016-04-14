@@ -13,7 +13,7 @@
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-java</artifactId>
-            <version>2.48.2</version>
+            <version>2.53.0</version>
         </dependency>
 
 
@@ -44,22 +44,12 @@
             <!-- http://heliumhq.com/docs/maven_support -->
             <groupId>com.heliumhq</groupId>
             <artifactId>helium-java</artifactId>
-            <version>1.8.9</version>
+            <version>1.8.10</version>
             <scope>system</scope>
-            <systemPath> ${basedir}/lib/helium-java-1.8.9/heliumlib/helium-java-1.8.9.jar</systemPath>
+            <systemPath> ${basedir}/lib/helium-java-1.8.10/heliumlib/helium-java-1.8.10.jar</systemPath>
         </dependency>
 
-        <dependency>
-            <groupId>com.codeborne</groupId>
-            <artifactId>phantomjsdriver</artifactId>
-            <version>1.2.1</version>
-        </dependency>
-        <dependency>
-            <groupId>org.seleniumhq.selenium</groupId>
-            <artifactId>selenium-htmlunit-driver</artifactId>
-            <version>2.46.0</version>
-            <scope>test</scope>
-        </dependency>
+
         <dependency>
             <groupId>net.serenity-bdd</groupId>
             <artifactId>core</artifactId>
