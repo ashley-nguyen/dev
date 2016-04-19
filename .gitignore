@@ -54,3 +54,5 @@ Naviance_cucumber_automation/.idea/
 #######################
 !chromedriver.exe
 !IEDriverServer.exe
+!silent-chromedriver.exe
+!pom.xml
