@@ -29,7 +29,7 @@ Feature: Colleges - College Profile
 
     Examples:
       | Admissions      | Academics  | Costandaid          | Extracurriculars |
-      | Charles  Deacon | Biophysics | Patricia A. Mc Wade | 5053             |
+      | Charles  Deacon | Biophysics | Patricia A. Mc Wade | 5054             |
 
 
 

@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xmlns="http://maven.apache.org/POM/4.0.0"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
@@ -37,18 +38,6 @@
             <version>4.11</version>
             <scope>test</scope>
         </dependency>
-
-        <dependency>
-            <!-- The Helium libraries are taken from a local Helium installation -->
-            <!-- being referenced by the environment variable "HELIUM_HOME" -->
-            <!-- http://heliumhq.com/docs/maven_support -->
-            <groupId>com.heliumhq</groupId>
-            <artifactId>helium-java</artifactId>
-            <version>1.8.10</version>
-            <scope>system</scope>
-            <systemPath> ${basedir}/lib/helium-java-1.8.10/heliumlib/helium-java-1.8.10.jar</systemPath>
-        </dependency>
-
 
         <dependency>
             <groupId>net.serenity-bdd</groupId>

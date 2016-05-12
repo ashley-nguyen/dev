@@ -5,10 +5,13 @@ import cucumber.api.java.After;
 import cucumber.api.java.Before;
 import org.openqa.selenium.*;
 
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.safari.SafariDriver;
-import com.heliumhq.API;
+//import com.heliumhq.API;
 import java.net.MalformedURLException;
 
 //import org.openqa.selenium.phantomjs.PhantomJSDriver;
@@ -64,17 +67,15 @@ public class Hooks {
             browser = "chrome";
         }
         if (browser.equals("chrome")) {
-            API.startChrome(strBaseURL);
-            driver = API.getDriver();
+            driver = new ChromeDriver(dc);
 
         } else if (browser.equals("firefox")) {
-            API.startFirefox(strBaseURL);
-            driver = API.getDriver();
+            driver = new FirefoxDriver(dc);
 
 
         } else if (browser.equals("ie")) {
-            API.startIE(strBaseURL);
-            driver = API.getDriver();
+
+            driver = new InternetExplorerDriver(dc);
 
 
         } else if (browser.equals("safari")) {

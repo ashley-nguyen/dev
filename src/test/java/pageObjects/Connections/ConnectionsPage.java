@@ -13,7 +13,7 @@ public class ConnectionsPage extends BaseClass {
     @FindBy(how = How.LINK_TEXT, using = "Connections")
     public static WebElement lnkConnections;
 
-    @FindBy(how = How.LINK_TEXT, using = "E-Mail")
+    @FindBy(how = How.LINK_TEXT, using = "E-mail")
     public static WebElement lnkEmail;
 
     @FindBy(how = How.LINK_TEXT, using = "Check status and view history of emails sent")

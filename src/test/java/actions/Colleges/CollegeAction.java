@@ -87,14 +87,15 @@ public class CollegeAction {
         new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.linkText("School type")));
     }
 
-    public static void goToFindColleges(String strCollegeName) {
+    public static void goToFindColleges(String strCollegeName) throws InterruptedException {
         driver = Hooks.driver;
         PageFactory.initElements(driver, SchoolPageHeader.class);
 
         //click Colleges link
-
         Actions action = new Actions(driver);
+        new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.linkText("Colleges")));
         action.moveToElement(SchoolPageHeader.lnkColleges).build().perform();
+        Thread.sleep(3000);
         SchoolPageHeader.lnkFindColleges.click();
 
         new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.linkText("A")));
@@ -116,14 +117,16 @@ public class CollegeAction {
 
     }
 
-    public static void ClickOnCollegesTab() {
+    public static void ClickOnCollegesTab() throws InterruptedException {
         driver = Hooks.driver;
+        Thread.sleep(8000);
         PageFactory.initElements(driver, CollegePage.class);
         CollegePage.tabColleges.click();
     }
 
-    public static void ClickOnSchoolSiteLink() {
+    public static void ClickOnSchoolSiteLink() throws InterruptedException {
         driver = Hooks.driver;
+        Thread.sleep(8000);
         PageFactory.initElements(driver, CollegePage.class);
         CollegePage.lnkEnterSchoolSite.click();
     }
@@ -134,10 +137,12 @@ public class CollegeAction {
         CollegePage.lnkActiveApplications.click();
     }
 
-    public static void ClickOnAddProspectiveColleges() {
+    public static void ClickOnAddProspectiveColleges() throws InterruptedException {
         driver = Hooks.driver;
+        Thread.sleep(8000);
         PageFactory.initElements(driver, CollegePage.class);
         CollegePage.lnkProspectiveColleges.click();
+        Thread.sleep(8000);
         CollegePage.lnkAddProspectiveColleges.click();
     }
 

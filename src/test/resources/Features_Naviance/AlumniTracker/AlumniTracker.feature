@@ -13,4 +13,4 @@ Feature: AlumniTracker tests
     Then the Alumni Tracker page is showed successfully
   Examples:
     | account     | user       | password  |
-    | rtsa       | stan.smith | stan01!   |
+    | rtd1        | stan.smith | stan01!   |

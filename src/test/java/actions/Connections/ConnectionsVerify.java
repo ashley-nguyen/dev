@@ -1,6 +1,8 @@
 package actions.Connections;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import stepDefs.Hooks;
 
 import static org.junit.Assert.assertTrue;
@@ -24,6 +26,7 @@ public class ConnectionsVerify {
     }
 
     public static void verifyNoErrorsInFamilyConnection() throws InterruptedException {
+        new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.className("table-heading")));
         String dataVerification = Hooks.driver.findElement(By.className("table-heading")).getText();
         assertTrue("Error Verification!", dataVerification.contains("Family Connection"));
     }
