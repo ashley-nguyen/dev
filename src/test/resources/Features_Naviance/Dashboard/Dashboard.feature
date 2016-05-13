@@ -7,7 +7,7 @@ Feature: Dashboard tests
 Scenario Outline: Verify Dashboard
   Given I am logged into Naviance "<account>" as "<user>" with "<password>"
   When I go to the Planner dashboard
-  Then I will see data in recent updates
+  Then I wi ll see data in recent updates
 Examples:
   | account     | user       | password  |
   | rtd1        | stan.smith | stan01!   |

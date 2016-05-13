@@ -27,6 +27,7 @@ public class CollegeAction {
         PageFactory.initElements(driver, SchoolPageHeader.class);
 
         //click Colleges link
+        new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.linkText("Colleges")));
         SchoolPageHeader.lnkColleges.click();
 
         new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.linkText("build from lists")));

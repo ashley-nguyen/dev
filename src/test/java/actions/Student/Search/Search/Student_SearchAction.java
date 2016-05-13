@@ -46,7 +46,7 @@ public class Student_SearchAction {
     public static void studentRosterSearch(String strStudent, String strSearchBy) throws InterruptedException {
         driver = Hooks.driver;
         PageFactory.initElements(driver, SchoolPageHeader.class);
-
+        new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.linkText("Students")));
         SchoolPageHeader.lnkHeaderStudents.click();
         new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.name("newclass")));
 

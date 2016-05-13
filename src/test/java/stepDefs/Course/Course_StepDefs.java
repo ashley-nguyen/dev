@@ -27,6 +27,7 @@ public class Course_StepDefs {
 
     @Then("^I verify the Economics contents$")
     public void i_verify_the_economics_contents() throws Throwable {
+        Thread.sleep(3000);
         Course_Verify.verifyEconomicsContents();
     }
 
@@ -37,6 +38,7 @@ public class Course_StepDefs {
 
     @Then("^I verify the Recommendation not show errors$")
     public void i_verify_the_recommendations_not_show_errors() throws Throwable {
+        Thread.sleep(3000);
         Course_Verify.verifyRecommendationsNotShowErrors();
     }
 }

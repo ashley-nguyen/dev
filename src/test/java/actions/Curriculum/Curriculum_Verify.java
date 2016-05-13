@@ -1,15 +1,13 @@
 package actions.Curriculum;
 
-import java.util.List;
-import java.util.concurrent.TimeUnit;
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.pagefactory.ByChained;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import stepDefs.Hooks;
+
+import java.util.List;
 
 import static org.junit.Assert.assertTrue;
 
@@ -151,7 +149,7 @@ public class Curriculum_Verify {
                 break;
             }
         }
-
+        Thread.sleep(5000);
         assertTrue("header text exists", h4Exists);
 
 

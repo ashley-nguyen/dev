@@ -1,6 +1,8 @@
 package actions.Dashboard;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import stepDefs.Hooks;
 
 import static org.junit.Assert.assertTrue;
@@ -11,6 +13,7 @@ import static org.junit.Assert.assertTrue;
 public class DashboardVerify {
 
     public static void verifyDashboard() throws InterruptedException {
+        new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.id("course-management-container")));
         String recentupdates = Hooks.driver.findElement(By.id("course-management-container")).getText();
         String dataverification = Hooks.driver.findElement(By.id("dashboard-activity")).getText();
         assertTrue("Error Verification!", !recentupdates.contains("An error occurred!"));

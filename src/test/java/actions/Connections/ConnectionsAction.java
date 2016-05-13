@@ -17,24 +17,24 @@ public class ConnectionsAction {
     public static void ClickOnCheckStatusEmailLink() throws InterruptedException {
         driver = Hooks.driver;
         PageFactory.initElements(driver, ConnectionsPage.class);
-        new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.linkText(ConnectionsPage.lnkEnterSchoolSite.getText())));
+        new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.linkText("Enter school site")));
         ConnectionsPage.lnkEnterSchoolSite.click();
-        new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.linkText(ConnectionsPage.lnkConnections.getText())));
+        new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.linkText("Connections")));
         ConnectionsPage.lnkConnections.click();
         Thread.sleep(3000);
         ConnectionsPage.lnkEmail.click();
-        new WebDriverWait(Hooks.driver, 25).until(ExpectedConditions.presenceOfElementLocated(By.linkText(ConnectionsPage.lnkCheckStatusEmailSent.getText())));
+        new WebDriverWait(Hooks.driver, 25).until(ExpectedConditions.presenceOfElementLocated(By.linkText("Check status and view history of emails sent")));
         ConnectionsPage.lnkCheckStatusEmailSent.click();
     }
 
     public static void ClickOnFamilyConnectionLink() throws InterruptedException {
         driver = Hooks.driver;
         PageFactory.initElements(driver, ConnectionsPage.class);
-        new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.linkText(ConnectionsPage.lnkEnterSchoolSite.getText())));
+        new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.linkText("Enter school site")));
         ConnectionsPage.lnkEnterSchoolSite.click();
-        new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.linkText(ConnectionsPage.lnkConnections.getText())));
+        new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.linkText("Connections")));
         ConnectionsPage.lnkConnections.click();
-        new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.linkText(ConnectionsPage.lnkFamilyConnection.getText())));
+        new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.linkText("Family Connection")));
         ConnectionsPage.lnkFamilyConnection.click();
     }
 }

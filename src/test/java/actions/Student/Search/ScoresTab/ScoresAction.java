@@ -78,7 +78,7 @@ public class ScoresAction {
         PageFactory.initElements(driver, StudentScoresTabPage.class);
 
         try {
-
+            new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.linkText("add/edit")));
             StudentScoresTabPage.lnkaddeditscores.click();
             StudentScoresTabPage.cboGrade.sendKeys(grade);
             StudentScoresTabPage.cboGrade.sendKeys(Keys.TAB);
@@ -101,6 +101,7 @@ public class ScoresAction {
         PageFactory.initElements(driver, StudentScoresTabPage.class);
 
         try {
+            new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.linkText("add/edit")));
             WebElement lnkaddeditscores = Hooks.driver.findElement(By.partialLinkText("add/edit"));
             lnkaddeditscores.click();
 
@@ -160,7 +161,7 @@ public class ScoresAction {
 
         try {
 
-
+            new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.linkText("add/edit")));
             StudentScoresTabPage.lnkaddeditscores.click();
 
             StudentScoresTabPage.txtCritalReading.sendKeys(strCritialReading);

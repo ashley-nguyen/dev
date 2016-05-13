@@ -28,7 +28,7 @@ public class CoursePage extends BaseClass {
     public static WebElement EconomicsLnk;
     @FindBy(how = How.LINK_TEXT, using = "Enter school site")
     public static WebElement lnkEnterSchoolSite;
-    @FindBy(how = How.LINK_TEXT, using = "Recommendations")
+    @FindBy(how = How.LINK_TEXT, using = "recommendations")
     public static WebElement lnkRecommendations;
 
     public CoursePage(WebDriver driver) {

@@ -26,6 +26,7 @@ public class Marketing_Action {
 
         Actions action = new Actions(driver);
         action.moveToElement(DistrictPageHeader.districtcog).build().perform();
+        new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.linkText("Logout")));
         DistrictPageHeader.lnkLogout.click();
         //wait for something on the setup page to load before trying to click on something else.
         new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.partialLinkText("Sign In")));
@@ -34,6 +35,7 @@ public class Marketing_Action {
     public static void NavigateToSchool() {
         driver = Hooks.driver;
         PageFactory.initElements(driver, DashboardPage.class);
+        new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.partialLinkText("Enter school site")));
         DashboardPage.School.click();
     }
 }

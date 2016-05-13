@@ -17,6 +17,7 @@ public class Reports_Action {
     public static void NavigateToReports() {
         driver = Hooks.driver;
         PageFactory.initElements(driver, ReportsPage.class);
+        new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.linkText("Reports")));
         ReportsPage.Reports.click();
     }
 
