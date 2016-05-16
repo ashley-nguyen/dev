@@ -1,7 +1,7 @@
 package stepDefs.IAM;
 
 import actions.IAM.IAM_Action;
-import actions.Login.LoginVerify;
+import actions.Login.Login;
 import cucumber.api.java.en.When;
 
 /**
@@ -18,6 +18,6 @@ public class IAM_StepDefs {
     @When("^I will logged into the district and able to perform normal administrative functions$")
     public void i_will_be_logged_into_the_district_and_able_to_perform_normal_administrative_functions() throws Throwable {
 
-        LoginVerify.verifyValidLogin();
+        Login.verifyValidLogin();
     }
 }

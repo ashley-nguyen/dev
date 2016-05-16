@@ -1,11 +1,10 @@
 package stepDefs.Student;
 
-import actions.Login.LoginAction;
+import actions.Login.Login;
 import actions.Student.Search.GeneralTab.Student_General_Action;
 import actions.Student.Search.GeneralTab.Student_General_Verify;
 import actions.Student.Search.Search.Student_SearchAction;
 import actions.Student.Search.Search.Student_SearchVerify;
-import cucumber.api.PendingException;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
@@ -32,7 +31,7 @@ public class Student_StepDefs {
     @Given("^I am logged into naviance ()as (\\w+)$")
     public void I_am_logged_into_naviance_as_user(String user) throws Throwable {
         //Hooks.driver.get(strBaseURL);
-        LoginAction.DoLogin("etcs", user, "testtest");
+        Login.DoLogin("etcs", user, "testtest");
 
         //NOTE: THIS WILL BE REFINED LATER.  JUST NEED TO GET IT GOING FOR NOW.
     }

@@ -20,7 +20,12 @@ public class loginPage extends BaseClass {
     public static WebElement password;
     @FindBy(how = How.NAME, using = "Submit")
     public static WebElement signin_button;
-
+    @FindBy(how = How.XPATH, using = "//input[@value='Log In']")
+    public static WebElement fc_signin_button;
+    @FindBy(how = How.CSS, using = "td.footnote")
+    public static WebElement valid_foot_note_text;
+    @FindBy(how = How.CSS, using = ".bs-alert.top-alert.alert-error")
+    public static WebElement invalid_foot_note_text;
     public loginPage(WebDriver driver) {
         super(driver);
     }
