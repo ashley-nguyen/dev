@@ -1,5 +1,7 @@
 package actions.eDocs;
 
+import static org.junit.Assert.assertTrue;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
@@ -15,7 +17,7 @@ import java.util.Set;
 /**
  * Created by jbarnard on 12/9/2015.
  */
-public class eDocsGeneralActions {
+public class eDocsGeneral {
     public static WebDriver driver;
 
 
@@ -24,6 +26,12 @@ public class eDocsGeneralActions {
         PageFactory.initElements(driver, eDocsTabPage.class);
         eDocsTabPage.tabeDocs.click();
         new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(".checklist-block")));
+
+    }
+
+    public static void verifytext (String strData) throws Throwable {
+        String bodyText = Hooks.driver.findElement(By.tagName("body")).getText();
+        assertTrue("Text not found! "+strData, bodyText.contains(strData));
 
     }
 }
