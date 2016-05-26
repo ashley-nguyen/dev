@@ -13,7 +13,7 @@ import static org.junit.Assert.assertTrue;
 /**
  * Created by csackrider on 11/13/2015.
  */
-public class FCAcloutMeVerify {
+public class FCAboutMe {
 
     public static void verifySurvey(String strSurvey) throws InterruptedException {
 
@@ -34,4 +34,5 @@ public class FCAcloutMeVerify {
             throw new AssertionFailedError("!!!!!" + strSurvey + " survey link not found!!!!!");
         }
     }
+
 }

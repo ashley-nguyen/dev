@@ -1,6 +1,6 @@
 package stepDefs.Survey;
 
-import actions.FamilyConnection.FCAcloutMeVerify;
+import actions.FamilyConnection.FCAboutMe;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import org.openqa.selenium.By;
@@ -25,7 +25,7 @@ public class Survey_StepDefs {
         WebElement lnkAboutMe = Hooks.driver.findElement(By.linkText("about me"));
         lnkAboutMe.click();
 
-        FCAcloutMeVerify.verifySurvey(strSurvey);
+        FCAboutMe.verifySurvey(strSurvey);
     }
 
     @Given("^I have a survey created in a secondary district$")
