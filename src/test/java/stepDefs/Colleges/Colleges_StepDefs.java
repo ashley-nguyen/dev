@@ -1,7 +1,7 @@
 package stepDefs.Colleges;
 
-import actions.Colleges.CollegeAction;
-import actions.Colleges.CollegeVerify;
+import actions.Colleges.College;
+
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 
@@ -12,40 +12,40 @@ public class Colleges_StepDefs {
 
     @When("^I add prospective colleges$")
     public void i_add_prospective_colleges() throws Throwable {
-        CollegeAction.ClickOnCollegesTab();
-        CollegeAction.ClickOnAddProspectiveColleges();
+        College.ClickOnCollegesTab();
+        College.ClickOnAddProspectiveColleges();
     }
 
     @When("^I enter to School Site$")
     public void i_enter_to_school_site() throws Throwable {
-        CollegeAction.ClickOnSchoolSiteLink();
+        College.ClickOnSchoolSiteLink();
     }
 
     @When("^I enter to Active Applications$")
     public void i_enter_to_active_applications() throws Throwable {
-        CollegeAction.ClickOnCollegesTab();
-        CollegeAction.ClickOnActiveApplicationsLink();
+        College.ClickOnCollegesTab();
+        College.ClickOnActiveApplicationsLink();
     }
 
     @Then("^I should not see errors in prospective college$")
      public void i_should_not_see_errors_in_assessments() throws Throwable {
-        CollegeVerify.verifyNoErrorsInProspectiveCollege();
+        College.verifyNoErrorsInProspectiveCollege();
     }
 
     @Then("^I should not see errors in college pick$")
     public void i_should_not_see_errors_in_active_applications() throws Throwable {
-        CollegeVerify.verifyNoErrorsInCollegePick();
+        College.verifyNoErrorsInCollegePick();
     }
 
     @When("^I click on view past visits$")
     public void i_click_on_view_past_visits() throws Throwable {
-        CollegeAction.ClickOnViewPastVisitsLink();
+        College.ClickOnViewPastVisitsLink();
     }
 
     @Then("^I can toggle class year (.*)$")
     public void I_can_toggle_class_year(String strClassYear) throws Throwable {
 
-        CollegeAction.SelectClassYear(strClassYear);
+        College.SelectClassYear(strClassYear);
 
     }
 }
