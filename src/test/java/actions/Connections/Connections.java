@@ -1,5 +1,7 @@
 package actions.Connections;
 
+import static org.junit.Assert.assertTrue;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
@@ -11,7 +13,7 @@ import stepDefs.Hooks;
 /**
  * Created by franksejas on 1/28/2016.
  */
-public class ConnectionsAction {
+public class Connections {
     public static WebDriver driver;
 
     public static void ClickOnCheckStatusEmailLink() throws InterruptedException {
@@ -36,5 +38,24 @@ public class ConnectionsAction {
         ConnectionsPage.lnkConnections.click();
         new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.linkText("Family Connection")));
         ConnectionsPage.lnkFamilyConnection.click();
+    }
+
+    public static void verifyNoErrorsInCheckStatusEmail() throws InterruptedException {
+        String dataVerification = Hooks.driver.findElement(By.className("ContextHeader")).getText();
+        assertTrue("Error Verification!", dataVerification.contains("E-mail Message History"));
+    }
+
+    public static void verifyNoErrorsInEmail() throws InterruptedException {
+        assertTrue("Error Verification!", !Hooks.driver.getPageSource().contains("view_bounce.php"));
+    }
+
+    public static void verifyNoErrorsInConnections() throws InterruptedException {
+        assertTrue("Error Verification!", !Hooks.driver.getPageSource().contains("Fatal error"));
+    }
+
+    public static void verifyNoErrorsInFamilyConnection() throws InterruptedException {
+        new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.className("table-heading")));
+        String dataVerification = Hooks.driver.findElement(By.className("table-heading")).getText();
+        assertTrue("Error Verification!", dataVerification.contains("Family Connection"));
     }
 }
