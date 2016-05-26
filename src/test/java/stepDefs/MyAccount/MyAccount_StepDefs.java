@@ -1,6 +1,6 @@
 package stepDefs.MyAccount;
 
-import actions.District.DistrictNavAction;
+import actions.District.DistrictNav;
 import actions.MyAccount.MyAccount_Verify;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
@@ -13,7 +13,7 @@ public class MyAccount_StepDefs {
     @When("^I go to My Account$")
     public void i_go_to_myaccount() throws Throwable {
         //go to my account
-        DistrictNavAction.goToAdminFunction("My Account");
+        DistrictNav.goToAdminFunction("My Account");
     }
 
     @Then("^I will see data in My Account")

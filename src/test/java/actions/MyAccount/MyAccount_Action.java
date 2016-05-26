@@ -1,6 +1,6 @@
 package actions.MyAccount;
 
-import actions.District.DistrictNavAction;
+import actions.District.DistrictNav;
 import org.openqa.selenium.WebDriver;
 
 /**
@@ -10,6 +10,6 @@ public class MyAccount_Action {
     public static WebDriver driver;
 
     public static void NavigateToMyAccount() throws InterruptedException {
-        DistrictNavAction.goToAdminFunction("My Account");
+        DistrictNav.goToAdminFunction("My Account");
     }
 }

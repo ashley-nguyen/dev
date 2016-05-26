@@ -1,6 +1,6 @@
 package stepDefs.SmokeTests;
 
-import actions.District.DistrictNavAction;
+import actions.District.DistrictNav;
 import cucumber.api.DataTable;
 import cucumber.api.java.en.When;
 import org.openqa.selenium.WebDriver;
@@ -15,7 +15,7 @@ public class SmokeTests_StepDefs {
     @When("^I go to Naviance District Administration$")
     public void I_go_to_Naviance_District_Administration() throws Throwable {
 
-        DistrictNavAction.goToDistrictAdministration();
+        DistrictNav.goToDistrictAdministration();
 
     }
 
@@ -23,9 +23,9 @@ public class SmokeTests_StepDefs {
     public void I_edit_my_profile(DataTable MyAccount) throws Throwable {
 
         //go to my account
-        DistrictNavAction.goToAdminFunction("My Account");
+        DistrictNav.goToAdminFunction("My Account");
         //click edit profile
-        DistrictNavAction.editProfile(MyAccount);
+        DistrictNav.editProfile(MyAccount);
 
     }
 }

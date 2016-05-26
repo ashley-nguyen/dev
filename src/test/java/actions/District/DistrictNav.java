@@ -16,7 +16,7 @@ import java.util.List;
 /**
  * Created by csackrider on 11/6/2015.
  */
-public class DistrictNavAction {
+public class DistrictNav {
     public static WebDriver driver;
 
     public static void goToDistrictAdministration() throws InterruptedException {
