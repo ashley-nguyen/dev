@@ -6,18 +6,32 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import pageObjects.Marketing.marketingPage;
 import pageObjects.Dashboard.DashboardPage;
 import pageObjects.Header.DistrictPageHeader;
 import stepDefs.Hooks;
+import static org.junit.Assert.assertTrue;
 
 /**
  * Created by franksejas on 1/15/2016.
  */
-public class Marketing_Action {
+public class Marketing {
+
     public static WebDriver driver;
 
     public static void NavigateToUrl() {
         driver = Hooks.driver;
+    }
+
+    public static void verifyImageInLogin() throws InterruptedException {
+        Hooks.driver.switchTo().frame(marketingPage.Content);
+        Boolean imageVerification = marketingPage.Image.isDisplayed();
+        assertTrue("Verify image exists!", imageVerification);
+    }
+
+    public static void verifyBanner() throws InterruptedException {
+        Boolean bannerVerification = marketingPage.ImageContents.isDisplayed();
+        assertTrue("Verify banner exists!", bannerVerification);
     }
 
     public static void Logout() {

@@ -1,10 +1,8 @@
 package actions.Student.Search.GeneralTab;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -14,10 +12,12 @@ import stepDefs.Hooks;
 
 import java.util.Set;
 
+import static org.junit.Assert.assertTrue;
+
 /**
  * Created by csackrider on 12/7/2015.
  */
-public class Student_General_Action {
+public class Student_General {
 
     public static WebDriver driver;
 
@@ -70,7 +70,11 @@ public class Student_General_Action {
 
     public static void unlinkParent(String strParent){
 
+    }
 
+    public static void verifyParent(String strData) throws Throwable {
+        String bodyText = Hooks.driver.findElement(By.tagName("body")).getText();
+        assertTrue("Text not found!", bodyText.contains(strData));
 
     }
 

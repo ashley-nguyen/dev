@@ -4,9 +4,9 @@ import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 
-import static actions.Setup.SSO_Action.GoToSetup;
-import static actions.Setup.SSO_Action.GoToSingleSignInOptions;
-import static actions.Setup.SSO_Verify.VerifyPowerSchoolSSO;
+import static actions.Setup.SSO.GoToSetup;
+import static actions.Setup.SSO.GoToSingleSignInOptions;
+import static actions.Setup.SSO.VerifyPowerSchoolSSO;
 
 /**
  * Created by csackrider on 1/5/2016.

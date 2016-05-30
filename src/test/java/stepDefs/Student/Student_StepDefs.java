@@ -1,10 +1,8 @@
 package stepDefs.Student;
 
 import actions.Login.Login;
-import actions.Student.Search.GeneralTab.Student_General_Action;
-import actions.Student.Search.GeneralTab.Student_General_Verify;
-import actions.Student.Search.Search.Student_SearchAction;
-import actions.Student.Search.Search.Student_SearchVerify;
+import actions.Student.Search.GeneralTab.Student_General;
+import actions.Student.Search.Search.Student_Search;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
@@ -23,8 +21,8 @@ public class Student_StepDefs {
     @Then("^their student record will be displayed$")
     public void their_student_record_will_be_displayed() throws Throwable {
 
-        Student_SearchVerify.verifyStudentData("952-1532 Sodales Road");
-        Student_SearchVerify.verifyStudentData("hs1-38966076");
+        Student_Search.verifyStudentData("952-1532 Sodales Road");
+        Student_Search.verifyStudentData("hs1-38966076");
 
     }
 
@@ -40,13 +38,13 @@ public class Student_StepDefs {
     @When("^I search for (\\w+, \\w+) using the global search field$")
     public void I_search_for_student_using_the_global_search_field(String student) throws Throwable {
 
-        Student_SearchAction.searchStudent(student);
+        Student_Search.searchStudent(student);
     }
 
     @Then("^their student (.*) will be displayed$")
     public void their_student_data_will_be_displayed(String data) throws Throwable {
 
-        Student_SearchVerify.verifyStudentData(data);
+        Student_Search.verifyStudentData(data);
 
     }
 
@@ -55,14 +53,14 @@ public class Student_StepDefs {
     @When("^I search for \"([^\"]*)\" using the global search field$")
     public void I_search_for_using_the_global_search_field(String strStudent) throws Throwable {
 
-        Student_SearchAction.searchStudent(strStudent);
+        Student_Search.searchStudent(strStudent);
     }
 
 
     @When("^I search for \"([^\"]*)\" using \"([^\"]*)\" the student roster search$")
     public void I_search_for_using_the_student_roster_search(String strStudent, String strSearchBy) throws Throwable {
 
-        Student_SearchAction.studentRosterSearch(strStudent, strSearchBy);
+        Student_Search.studentRosterSearch(strStudent, strSearchBy);
 
 
     }
@@ -70,13 +68,13 @@ public class Student_StepDefs {
     @And("^I link the parent \"([^\"]*)\" to the current student$")
     public void I_link_the_parent_to_the_current_student(String strParent) throws Throwable {
 
-        Student_General_Action.linkParent(strParent);
+        Student_General.linkParent(strParent);
 
     }
 
     @Then("^I should see \"([^\"]*)\" on the Student Summary Form$")
     public void I_should_see_on_the_Student_Summary_Form(String strData) throws Throwable {
 
-        Student_General_Verify.verifyParent(strData);
+        Student_General.verifyParent(strData);
     }
 }

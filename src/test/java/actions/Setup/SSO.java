@@ -10,10 +10,12 @@ import pageObjects.District.DistrictSetupPage;
 import pageObjects.Header.DistrictPageHeader;
 import stepDefs.Hooks;
 
+import static org.junit.Assert.assertTrue;
+
 /**
  * Created by csackrider on 1/5/2016.
  */
-public class SSO_Action {
+public class SSO {
 
     public static WebDriver driver;
 
@@ -37,10 +39,11 @@ public class SSO_Action {
         PageFactory.initElements(driver, DistrictSetupPage.class);
 
         DistrictSetupPage.lnkSingleSignInOptions.click();
-
-
-
     }
 
+    public static void VerifyPowerSchoolSSO() throws InterruptedException {
+        driver = Hooks.driver;
+        assertTrue("text not found: PowerSchool SSO - for parents", driver.getPageSource().contains("PowerSchool SSO - for parents"));
+    }
 
 }

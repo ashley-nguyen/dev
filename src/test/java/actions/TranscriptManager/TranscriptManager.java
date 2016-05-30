@@ -12,11 +12,20 @@ import stepDefs.Hooks;
 /**
  * Created by franksejas on 2/01/2016.
  */
-public class TranscriptManager_Verify {
+public class TranscriptManager {
     public static WebDriver driver;
 
+    public static void NavigateToTranscriptManager() {
+        driver = Hooks.driver;
+        PageFactory.initElements(driver, TranscriptManagerPage.class);
+        new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.linkText("Enter school site")));
+        TranscriptManagerPage.School.click();
+        new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.linkText("Transcript Request Manager")));
+        TranscriptManagerPage.lnkTranscriptManager.click();
+    }
+
     public static void verifyTranscriptManager() throws InterruptedException {
-        Hooks.driver.findElement(By.cssSelector("img[src=\"../../images/transcripts/transcripts_requests_tab_on.gif\"]")).click();
+        TranscriptManagerPage.imgTranscriptManager.click();
     }
 
     public static void SelectRequestForm(String item) {
@@ -29,7 +38,7 @@ public class TranscriptManager_Verify {
     }
 
     public static void verifyStudentTranscriptManager() throws InterruptedException {
-        Hooks.driver.findElement(By.cssSelector("img[src=\"../../images/transcripts/transcripts_students_tab_on.gif\"]")).click();
+        TranscriptManagerPage.imgTranscriptManagerStudents.click();
     }
 
     public static void SelectStudentRequestForm(String item) {

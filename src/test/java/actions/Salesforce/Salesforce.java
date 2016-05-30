@@ -1,16 +1,19 @@
 package actions.Salesforce;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
 import pageObjects.Salesforce.SalesforcePage;
 import stepDefs.Hooks;
 
+import static org.junit.Assert.assertTrue;
+
 /**
  * Created by franksejas on 1/19/2016.
  */
 
-public class Salesforce_Action {
+public class Salesforce {
     public static WebDriver driver;
 
     public static void NavigateToSchoolAccount() {
@@ -69,5 +72,11 @@ public class Salesforce_Action {
         driver = Hooks.driver;
         PageFactory.initElements(driver, SalesforcePage.class);
         SalesforcePage.PONumber.sendKeys("1234567");
+    }
+
+    public static void verifyAPICall() throws InterruptedException {
+//        new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.xpath("/html/body/div[1]/table/tbody/tr[1]/td[2]/table[1]/tbody/tr[2]/td[2]/div/h3"))); //TODO: Needs refactor about Xpath paths
+        String dataverification = Hooks.driver.findElement(By.xpath("/html/body/div[1]/table/tbody/tr[1]/td[2]/table[1]/tbody/tr[2]/td[2]/div/h3")).getText();
+        assertTrue("Verify Data!", dataverification.contains("Confirmation"));
     }
 }

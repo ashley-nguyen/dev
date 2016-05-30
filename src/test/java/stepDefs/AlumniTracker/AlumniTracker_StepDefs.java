@@ -4,7 +4,7 @@ import actions.Setup.AlumniTracker;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 
-import static actions.Setup.SSO_Action.GoToSetup;
+import static actions.Setup.SSO.GoToSetup;
 
 /**
  * Created by franksejas on 1/12/2016.

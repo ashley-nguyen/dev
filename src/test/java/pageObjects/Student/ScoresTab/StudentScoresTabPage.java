@@ -29,6 +29,10 @@ public class StudentScoresTabPage extends BaseClass {
     public static WebElement chkAPDelete;
     @FindBy(how = How.NAME, using = "aspire[1][grade]")
     public static WebElement cboGrade;
+    @FindBy(how = How.ID, using = "aspire[1][english]")
+    public static WebElement txtSubject;
+    @FindBy(how = How.NAME, using = "updateScores")
+    public static WebElement btnUpdate;
 
     //#### aspire ####
     //#### PSAT ####

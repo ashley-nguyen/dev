@@ -1,7 +1,7 @@
 package stepDefs.MyAccount;
 
 import actions.District.DistrictNav;
-import actions.MyAccount.MyAccount_Verify;
+import actions.MyAccount.MyAccount;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 
@@ -18,6 +18,6 @@ public class MyAccount_StepDefs {
 
     @Then("^I will see data in My Account")
     public void i_will_see_data_in_my_account() throws Throwable {
-        MyAccount_Verify.verifyMyAccount();
+        MyAccount.verifyMyAccount();
     }
 }

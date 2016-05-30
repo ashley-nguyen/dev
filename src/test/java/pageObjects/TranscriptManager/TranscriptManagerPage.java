@@ -20,6 +20,10 @@ public class TranscriptManagerPage extends BaseClass {
     public static WebElement formNameTable;
     @FindBy(how = How.CLASS_NAME, using = "grids")
     public static WebElement formNameStudent;
+    @FindBy(how = How.CSS, using = "img[src=\"../../images/transcripts/transcripts_requests_tab_on.gif\"]")
+    public static WebElement imgTranscriptManager;
+    @FindBy(how = How.CSS, using = "img[src=\"../../images/transcripts/transcripts_students_tab_on.gif\"]")
+    public static WebElement imgTranscriptManagerStudents;
 
     public TranscriptManagerPage(WebDriver driver) {
         super(driver);
