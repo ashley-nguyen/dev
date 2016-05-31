@@ -6,10 +6,10 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import pageObjects.Marketing.marketingPage;
 import pageObjects.Dashboard.DashboardPage;
 import pageObjects.Header.DistrictPageHeader;
 import stepDefs.Hooks;
+
 import static org.junit.Assert.assertTrue;
 
 /**
@@ -24,13 +24,17 @@ public class Marketing {
     }
 
     public static void verifyImageInLogin() throws InterruptedException {
-        Hooks.driver.switchTo().frame(marketingPage.Content);
-        Boolean imageVerification = marketingPage.Image.isDisplayed();
+        //Changing the frame to test
+        driver  = Hooks.driver.switchTo().frame(0);
+        //Driver for iframe section can't be mapped for now
+        Boolean imageVerification = driver.findElement(By.xpath("//img[contains(@src,'img/nsi2016_2.jpg')]")).isDisplayed();
         assertTrue("Verify image exists!", imageVerification);
     }
 
     public static void verifyBanner() throws InterruptedException {
-        Boolean bannerVerification = marketingPage.ImageContents.isDisplayed();
+       driver = Hooks.driver;
+       new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//img[contains(@src,'/images/navmarketplace_badge.png')]")));
+       Boolean bannerVerification =  Hooks.driver.findElement(By.xpath("//img[contains(@src,'/images/navmarketplace_badge.png')]")).isDisplayed();
         assertTrue("Verify banner exists!", bannerVerification);
     }
 

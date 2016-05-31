@@ -1,8 +1,5 @@
 package actions.Curriculum;
 
-import static org.junit.Assert.assertTrue;
-
-import java.util.List;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -12,6 +9,10 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import pageObjects.Curriculum.CurriculumPage;
 import pageObjects.Header.SchoolPageHeader;
 import stepDefs.Hooks;
+
+import java.util.List;
+
+import static org.junit.Assert.assertTrue;
 
 /**
  * Created by ttremblay on 12/10/15.
@@ -213,7 +214,7 @@ public class Curriculum {
 
         boolean h4Exists = false;
 
-        Thread.sleep(2000);
+        Thread.sleep(4000);
 
         List<WebElement> h4Elements = driver.findElements(By.tagName("h4"));
 
