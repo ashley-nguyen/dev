@@ -1,15 +1,14 @@
 package actions.Dashboard;
 
-import static org.junit.Assert.assertTrue;
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
 import pageObjects.Dashboard.DashboardPage;
 import stepDefs.Hooks;
+
+import static org.junit.Assert.assertTrue;
 
 /**
  * Created by franksejas on 12/22/2015.
@@ -20,6 +19,7 @@ public class Dashboard {
     public static void NavigateToDashboard() {
         driver = Hooks.driver;
         PageFactory.initElements(driver, DashboardPage.class);
+        new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.linkText("Enter school site")));
         DashboardPage.School.click();
         DashboardPage.Planner.click();
     }
