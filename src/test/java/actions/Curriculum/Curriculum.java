@@ -11,6 +11,7 @@ import pageObjects.Header.SchoolPageHeader;
 import stepDefs.Hooks;
 
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import static org.junit.Assert.assertTrue;
 
@@ -135,16 +136,19 @@ public class Curriculum {
     public static void ClickCareerPlanning() throws InterruptedException {
         driver = Hooks.driver;
         PageFactory.initElements(driver, CurriculumPage.class);
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         CurriculumPage.lnkCareerPlanning.click();
     }
     public static void ClickFinancialPlanning() throws InterruptedException {
         driver = Hooks.driver;
         PageFactory.initElements(driver, CurriculumPage.class);
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         CurriculumPage.lnkFinancialPLanning.click();
     }
 
     public static void verifycurriculumhomepage(String strText) throws InterruptedException {
         driver = Hooks.driver;
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         System.out.println(driver.getPageSource());
 
 
@@ -160,6 +164,7 @@ public class Curriculum {
     public static void verifyclassespage(String strText) throws InterruptedException {
         driver = Hooks.driver;
         System.out.println(driver.getPageSource());
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.linkText("+ Add Class")));
         assertTrue("text not found: " + strText, driver.getPageSource().contains(strText));
     }
@@ -167,6 +172,7 @@ public class Curriculum {
     public static void verifyactivitypage(String strText) throws InterruptedException {
         driver = Hooks.driver;
         System.out.println(driver.getPageSource());
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.linkText("View Plans")));
         assertTrue("text not found: " + strText, driver.getPageSource().contains(strText));
     }
@@ -174,6 +180,7 @@ public class Curriculum {
     public static void verifyprogresspage(String strText) throws InterruptedException {
         driver = Hooks.driver;
         System.out.println(driver.getPageSource());
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.className("spacious")));
         assertTrue("text not found: " + strText, driver.getPageSource().contains(strText));
 
@@ -182,6 +189,7 @@ public class Curriculum {
     public static void VerifyOurThemesPage(String strText) throws InterruptedException {
         driver = Hooks.driver;
         System.out.println(driver.getPageSource());
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.linkText("Explore Self Discovery")));
         assertTrue("text not found: " + strText, driver.getPageSource().contains(strText));
     }
@@ -189,6 +197,7 @@ public class Curriculum {
     public static void VerifyGrade6(String strText) throws InterruptedException {
         driver = Hooks.driver;
         System.out.println(driver.getPageSource());
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 
         boolean h4Exists = false;
 
@@ -211,6 +220,7 @@ public class Curriculum {
     public static void VerifyGrade7(String strText) throws InterruptedException {
         driver = Hooks.driver;
         System.out.println(driver.getPageSource());
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 
         boolean h4Exists = false;
 
@@ -235,6 +245,7 @@ public class Curriculum {
     public static void VerifyGrade8(String strText) throws InterruptedException {
         driver = Hooks.driver;
         System.out.println(driver.getPageSource());
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 
         boolean h4Exists = false;
 
@@ -258,6 +269,7 @@ public class Curriculum {
 
     public static void VerifyGrade9(String strText) throws InterruptedException {
         driver = Hooks.driver;
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         System.out.println(driver.getPageSource());
 
         boolean h4Exists = false;
@@ -283,6 +295,7 @@ public class Curriculum {
 
     public static void VerifyGrade10(String strText) throws InterruptedException {
         driver = Hooks.driver;
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         System.out.println(driver.getPageSource());
 
         boolean h4Exists = false;
@@ -308,6 +321,7 @@ public class Curriculum {
 
     public static void VerifyGrade11(String strText) throws InterruptedException {
         driver = Hooks.driver;
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         System.out.println(driver.getPageSource());
 
         boolean h4Exists = false;
@@ -333,6 +347,7 @@ public class Curriculum {
 
     public static void VerifyGrade12(String strText) throws InterruptedException {
         driver = Hooks.driver;
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         System.out.println(driver.getPageSource());
 
         boolean h4Exists = false;
@@ -358,6 +373,7 @@ public class Curriculum {
 
     public static void VerifySelfDiscovery(String strText) throws InterruptedException {
         driver = Hooks.driver;
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         System.out.println(driver.getPageSource());
 
         boolean h4Exists = false;
@@ -381,6 +397,7 @@ public class Curriculum {
 
     public static void VerifySuccessSkills(String strText) throws InterruptedException {
         driver = Hooks.driver;
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         System.out.println(driver.getPageSource());
 
         boolean h4Exists = false;
@@ -404,6 +421,7 @@ public class Curriculum {
 
     public static void VerifySupportNetworks(String strText) throws InterruptedException {
         driver = Hooks.driver;
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         System.out.println(driver.getPageSource());
 
         boolean h4Exists = false;
@@ -429,6 +447,7 @@ public class Curriculum {
 
     public static void VerifyCollegePlanning(String strText) throws InterruptedException {
         driver = Hooks.driver;
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         System.out.println(driver.getPageSource());
 
         boolean h4Exists = false;
@@ -454,6 +473,7 @@ public class Curriculum {
 
     public static void VerifyCareerPlanning(String strText) throws InterruptedException {
         driver = Hooks.driver;
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         System.out.println(driver.getPageSource());
 
         boolean h4Exists = false;
@@ -478,6 +498,7 @@ public class Curriculum {
 
     public static void VerifyFinancialPlanning(String strText) throws InterruptedException {
         driver = Hooks.driver;
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         System.out.println(driver.getPageSource());
 
         boolean h4Exists = false;

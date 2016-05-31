@@ -12,6 +12,7 @@ import pageObjects.Student.StudentRosterPage;
 import stepDefs.Hooks;
 
 import java.util.NoSuchElementException;
+import java.util.concurrent.TimeUnit;
 
 import static org.junit.Assert.assertTrue;
 
@@ -24,7 +25,7 @@ public class Student_Search {
     public static void searchStudent(String strStudent) throws Throwable {
         driver = Hooks.driver;
         PageFactory.initElements(driver, SchoolPageHeader.class);
-
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         try {
             //CLICK THE SEARCH ICON
             SchoolPageHeader.lnkStudentSearch.click();
@@ -45,6 +46,7 @@ public class Student_Search {
     public static void studentRosterSearch(String strStudent, String strSearchBy) throws InterruptedException {
         driver = Hooks.driver;
         PageFactory.initElements(driver, SchoolPageHeader.class);
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.linkText("Students")));
         SchoolPageHeader.lnkHeaderStudents.click();
         new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.name("newclass")));

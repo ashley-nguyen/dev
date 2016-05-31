@@ -11,6 +11,7 @@ import pageObjects.Student.Parent.ParentAddPage;
 import stepDefs.Hooks;
 
 import java.util.Set;
+import java.util.concurrent.TimeUnit;
 
 import static org.junit.Assert.assertTrue;
 
@@ -25,6 +26,7 @@ public class Student_General {
     public static void linkParent(String strParent) throws Throwable {
         driver = Hooks.driver;
         PageFactory.initElements(driver, StudentGeneralTabPage.class);
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         //click the add parent button
         StudentGeneralTabPage.btnAddParent.click();
 

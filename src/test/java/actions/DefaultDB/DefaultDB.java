@@ -8,6 +8,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import pageObjects.DefaultDB.DefaultDBPage;
 import stepDefs.Hooks;
 
+import java.util.concurrent.TimeUnit;
+
 import static org.junit.Assert.assertTrue;
 
 /**
@@ -19,6 +21,7 @@ public class DefaultDB {
     public static void  NavigateToCourses() {
         driver = Hooks.driver;
         PageFactory.initElements(driver, DefaultDBPage.class);
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.linkText("Courses")));
         DefaultDBPage.Courses.click();
     }

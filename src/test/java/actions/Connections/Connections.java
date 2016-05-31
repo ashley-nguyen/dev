@@ -8,6 +8,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import pageObjects.Connections.ConnectionsPage;
 import stepDefs.Hooks;
 
+import java.util.concurrent.TimeUnit;
+
 import static org.junit.Assert.assertTrue;
 
 /**
@@ -19,6 +21,7 @@ public class Connections {
     public static void ClickOnCheckStatusEmailLink() throws InterruptedException {
         driver = Hooks.driver;
         PageFactory.initElements(driver, ConnectionsPage.class);
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.linkText("Enter school site")));
         ConnectionsPage.lnkEnterSchoolSite.click();
         new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.linkText("Connections")));
@@ -32,6 +35,7 @@ public class Connections {
     public static void ClickOnFamilyConnectionLink() throws InterruptedException {
         driver = Hooks.driver;
         PageFactory.initElements(driver, ConnectionsPage.class);
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.linkText("Enter school site")));
         ConnectionsPage.lnkEnterSchoolSite.click();
         new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.linkText("Connections")));

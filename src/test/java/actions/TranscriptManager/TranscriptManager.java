@@ -9,6 +9,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import pageObjects.TranscriptManager.TranscriptManagerPage;
 import stepDefs.Hooks;
 
+import java.util.concurrent.TimeUnit;
+
 /**
  * Created by franksejas on 2/01/2016.
  */
@@ -18,6 +20,7 @@ public class TranscriptManager {
     public static void NavigateToTranscriptManager() {
         driver = Hooks.driver;
         PageFactory.initElements(driver, TranscriptManagerPage.class);
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.linkText("Enter school site")));
         TranscriptManagerPage.School.click();
         new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.linkText("Transcript Request Manager")));
@@ -31,6 +34,7 @@ public class TranscriptManager {
     public static void SelectRequestForm(String item) {
         driver = Hooks.driver;
         PageFactory.initElements(driver, TranscriptManagerPage.class);
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.name("consent")));
         Select select = new Select(TranscriptManagerPage.selClass);
         select.selectByVisibleText(item);
@@ -44,6 +48,7 @@ public class TranscriptManager {
     public static void SelectStudentRequestForm(String item) {
         driver = Hooks.driver;
         PageFactory.initElements(driver, TranscriptManagerPage.class);
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.className("grids")));
         Select select = new Select(TranscriptManagerPage.selClass);
         select.selectByVisibleText(item);

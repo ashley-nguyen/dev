@@ -1,7 +1,5 @@
 package actions.Colleges;
 
-import static org.junit.Assert.assertTrue;
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -15,6 +13,9 @@ import pageObjects.Header.SchoolPageHeader;
 import stepDefs.Hooks;
 
 import java.util.List;
+import java.util.concurrent.TimeUnit;
+
+import static org.junit.Assert.assertTrue;
 
 /**
  * Created by csackrider on 11/25/2015.
@@ -26,6 +27,7 @@ public class College {
 
     public static void goToCollegeProfile(String strCollege) throws InterruptedException {
         driver = Hooks.driver;
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         PageFactory.initElements(driver, SchoolPageHeader.class);
 
         //click Colleges link
@@ -73,6 +75,7 @@ public class College {
 
     public static void goToAdvancedCollegeSearch() {
         driver = Hooks.driver;
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         PageFactory.initElements(driver, SchoolPageHeader.class);
 
         //click Colleges link
@@ -92,6 +95,7 @@ public class College {
 
     public static void goToFindColleges(String strCollegeName) throws InterruptedException {
         driver = Hooks.driver;
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         PageFactory.initElements(driver, SchoolPageHeader.class);
 
         //click Colleges link
@@ -111,7 +115,7 @@ public class College {
 
     public static void DoAdvancedCollegeSearch(String strCategory, String strValue, String strData, String strResult) throws InterruptedException {
         driver = Hooks.driver;
-
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         //select which criteria to search on
         //strValue will be the link text for the link of search category
         WebElement lnkCategory = Hooks.driver.findElement(By.linkText(strCategory));
@@ -122,6 +126,7 @@ public class College {
 
     public static void ClickOnCollegesTab() throws InterruptedException {
         driver = Hooks.driver;
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         Thread.sleep(8000);
         PageFactory.initElements(driver, CollegePage.class);
         CollegePage.tabColleges.click();
@@ -129,6 +134,7 @@ public class College {
 
     public static void ClickOnSchoolSiteLink() throws InterruptedException {
         driver = Hooks.driver;
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         Thread.sleep(8000);
         PageFactory.initElements(driver, CollegePage.class);
         CollegePage.lnkEnterSchoolSite.click();
@@ -136,12 +142,15 @@ public class College {
 
     public static void ClickOnActiveApplicationsLink() {
         driver = Hooks.driver;
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         PageFactory.initElements(driver, CollegePage.class);
         CollegePage.lnkActiveApplications.click();
     }
 
     public static void ClickOnAddProspectiveColleges() throws InterruptedException {
         driver = Hooks.driver;
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         Thread.sleep(8000);
         PageFactory.initElements(driver, CollegePage.class);
         CollegePage.lnkProspectiveColleges.click();
@@ -151,7 +160,7 @@ public class College {
 
     public static void ClickOnViewPastVisitsLink() {
         driver = Hooks.driver;
-
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         //PageFactory.initElements(driver, CollegePage.class);
         //CollegePage.lnkEnterSchoolSite.click();
 
@@ -173,6 +182,7 @@ public class College {
 
     public static void SelectClassYear(String strClassYear) throws InterruptedException {
         driver = Hooks.driver;
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         PageFactory.initElements(driver, CollegePage.class);
 
         CollegePage.selClassYear.click();
@@ -189,6 +199,7 @@ public class College {
 
     public static void verifyCollegeSearchResult(String strText) throws InterruptedException {
         driver = Hooks.driver;
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         //System.out.println(driver.getPageSource());
         new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.id("contents")));
         assertTrue("text not found: " + strText, driver.getPageSource().contains(strText));
@@ -198,11 +209,13 @@ public class College {
     public static void verifyAdvancedSearchCategory(String strText) throws InterruptedException {
         //verify the category passed in is displayed for the advanced search
         driver = Hooks.driver;
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         assertTrue("text not found: " + strText, driver.getPageSource().contains(strText));
     }
 
     public static void verifyFindCollege(String strText) throws InterruptedException {
         driver = Hooks.driver;
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         assertTrue("text not found: " + strText, driver.getPageSource().contains(strText));
     }
 

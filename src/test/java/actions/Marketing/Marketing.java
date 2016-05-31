@@ -10,6 +10,8 @@ import pageObjects.Dashboard.DashboardPage;
 import pageObjects.Header.DistrictPageHeader;
 import stepDefs.Hooks;
 
+import java.util.concurrent.TimeUnit;
+
 import static org.junit.Assert.assertTrue;
 
 /**
@@ -21,6 +23,7 @@ public class Marketing {
 
     public static void NavigateToUrl() {
         driver = Hooks.driver;
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
     }
 
     public static void verifyImageInLogin() throws InterruptedException {
@@ -33,6 +36,7 @@ public class Marketing {
 
     public static void verifyBanner() throws InterruptedException {
        driver = Hooks.driver;
+       driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
        new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//img[contains(@src,'/images/navmarketplace_badge.png')]")));
        Boolean bannerVerification =  Hooks.driver.findElement(By.xpath("//img[contains(@src,'/images/navmarketplace_badge.png')]")).isDisplayed();
         assertTrue("Verify banner exists!", bannerVerification);
@@ -41,6 +45,7 @@ public class Marketing {
     public static void Logout() {
         driver = Hooks.driver;
         PageFactory.initElements(driver, DistrictPageHeader.class);
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 
         Actions action = new Actions(driver);
         action.moveToElement(DistrictPageHeader.districtcog).build().perform();
@@ -53,6 +58,7 @@ public class Marketing {
     public static void NavigateToSchool() {
         driver = Hooks.driver;
         PageFactory.initElements(driver, DashboardPage.class);
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.partialLinkText("Enter school site")));
         DashboardPage.School.click();
     }

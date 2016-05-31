@@ -8,6 +8,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import pageObjects.Login.loginPage;
 import stepDefs.Hooks;
 
+import java.util.concurrent.TimeUnit;
+
 import static org.junit.Assert.assertTrue;
 
 /**
@@ -19,6 +21,7 @@ public class Login {
     public static void DoLogin(String strAccount, String strUserName, String strPassword) {
         driver = Hooks.driver;
         PageFactory.initElements(driver, loginPage.class);
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 
         loginPage.Account.sendKeys(strAccount);
 
@@ -32,6 +35,7 @@ public class Login {
     public static void DoFCLogin(String fcAccount, String strUserName, String strPassword) throws InterruptedException {
         driver = Hooks.driver;
         PageFactory.initElements(driver, loginPage.class);
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         driver.get(Hooks.strBaseURL + "/family-connection/" + fcAccount);
 
         new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.partialLinkText("forgot your password")));

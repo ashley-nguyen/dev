@@ -1,12 +1,12 @@
 package actions.IAM;
 
-import static org.junit.Assert.assertTrue;
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
 import pageObjects.IAM.IAMPage;
 import stepDefs.Hooks;
+
+import java.util.concurrent.TimeUnit;
 
 import static org.junit.Assert.assertTrue;
 
@@ -19,6 +19,7 @@ public class IAM {
     public static void VerifyNotBeLogged() {
         driver = Hooks.driver;
         PageFactory.initElements(driver, IAMPage.class);
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         IAMPage.Login.isDisplayed();
     }
 
