@@ -22,6 +22,8 @@ public class loginPage extends BaseClass {
     public static WebElement signin_button;
     @FindBy(how = How.XPATH, using = "//input[@value='Log In']")
     public static WebElement fc_signin_button;
+    @FindBy(how = How.XPATH, using = "//dd[@class = 'login']")
+    public static WebElement fc_logged_as_label;
     @FindBy(how = How.CSS, using = "td.footnote")
     public static WebElement valid_foot_note_text;
     @FindBy(how = How.CSS, using = ".bs-alert.top-alert.alert-error")

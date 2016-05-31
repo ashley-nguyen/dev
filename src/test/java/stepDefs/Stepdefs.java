@@ -19,5 +19,9 @@ public class Stepdefs {
         //Hooks.driver.get(Hooks.strBaseURL);
     }
 
-
+    @Given("^I am a student$")
+    public void i_am_a_student() throws Throwable {
+        //for now just get the base url to go to the login page.
+        //Hooks.driver.get(Hooks.strBaseURL);
+    }
 }
