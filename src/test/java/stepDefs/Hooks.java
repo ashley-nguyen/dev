@@ -55,6 +55,10 @@ public class Hooks {
                 break;
             case "groups":
                 strBaseURL = "https://localhost:8727/groups";
+                break;
+            case "int":
+                strBaseURL = "https://connection-int.dev.naviance.com";
+                break;
             default:
                 strBaseURL = "https://succeed-internal.naviance.com";
                 break;

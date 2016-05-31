@@ -30,7 +30,9 @@ public class Login {
     }
 
     public static void DoFCLogin(String fcAccount, String strUserName, String strPassword) throws InterruptedException {
-        Hooks.driver.get(Hooks.strBaseURL + "/family-connection/" + fcAccount);
+        driver = Hooks.driver;
+        PageFactory.initElements(driver, loginPage.class);
+        driver.get(Hooks.strBaseURL + "/family-connection/" + fcAccount);
 
         new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.partialLinkText("forgot your password")));
 
@@ -41,6 +43,12 @@ public class Login {
         loginPage.fc_signin_button.click();
 
         new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.linkText("log out")));
+    }
+
+    public static void verifyValidLoginFamilyConnection() throws InterruptedException {
+        new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//dd[@class = 'login']")));
+        String footnote = loginPage.fc_logged_as_label.getText();
+        assertTrue("Text not found!", footnote.contains("Logged in as"));
     }
 
     public static void GoToUrl(String url) throws InterruptedException {
