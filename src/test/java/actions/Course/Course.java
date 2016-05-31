@@ -1,7 +1,5 @@
 package actions.Course;
 
-import static org.junit.Assert.assertTrue;
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
@@ -9,6 +7,8 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import pageObjects.Course.CoursePage;
 import stepDefs.Hooks;
+
+import static org.junit.Assert.assertTrue;
 
 /**
  * Created by franksejas on 1/25/2016.
@@ -52,6 +52,7 @@ public class Course {
     }
 
     public static void verifyAdvancedComputerScienceContents() throws InterruptedException {
+        new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.className("desc")));
         String courseName = Hooks.driver.findElement(By.className("desc")).getText();
         String courseID = Hooks.driver.findElement(By.xpath("//*[@id=\"main-content-container\"]/ul/li[2]/p")).getText();
         String subjectArea = Hooks.driver.findElement(By.xpath("//*[@id=\"main-content-container\"]/ul/li[3]/p")).getText();
