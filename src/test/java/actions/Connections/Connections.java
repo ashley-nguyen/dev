@@ -1,7 +1,5 @@
 package actions.Connections;
 
-import static org.junit.Assert.assertTrue;
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
@@ -9,6 +7,8 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import pageObjects.Connections.ConnectionsPage;
 import stepDefs.Hooks;
+
+import static org.junit.Assert.assertTrue;
 
 /**
  * Created by franksejas on 1/28/2016.
@@ -41,6 +41,7 @@ public class Connections {
     }
 
     public static void verifyNoErrorsInCheckStatusEmail() throws InterruptedException {
+        new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.className("ContextHeader")));
         String dataVerification = Hooks.driver.findElement(By.className("ContextHeader")).getText();
         assertTrue("Error Verification!", dataVerification.contains("E-mail Message History"));
     }
