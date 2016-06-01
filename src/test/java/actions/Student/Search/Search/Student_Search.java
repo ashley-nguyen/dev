@@ -75,6 +75,7 @@ public class Student_Search {
     }
 
     public static void verifyStudentData(String strData) throws Throwable {
+        new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.tagName("body")));
         String bodyText = SchoolPageHeader.objBodyText.getText();
         assertTrue("Text not found!  "+strData, bodyText.contains(strData));
     }

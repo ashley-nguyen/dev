@@ -70,14 +70,15 @@ public class Student_General {
     }
 
 
-    public static void unlinkParent(String strParent){
-
-    }
-
-    public static void verifyParent(String strData) throws Throwable {
+      public static void verifyParent(String strData) throws Throwable {
         String bodyText = Hooks.driver.findElement(By.tagName("body")).getText();
         assertTrue("Text not found!", bodyText.contains(strData));
 
+    }
+
+    public static void unlinkParent() throws Throwable {
+        ParentAddPage.lnkParent.click();
+        ParentAddPage.btnDeleteParent.click();
     }
 
 }

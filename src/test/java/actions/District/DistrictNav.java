@@ -37,6 +37,9 @@ public class DistrictNav {
         strFunction = strFunction.toLowerCase();
         switch (strFunction) {
             case "my account":
+                driver = Hooks.driver;
+                PageFactory.initElements(driver, DistrictPageHeader.class);
+                driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
                 Actions action = new Actions(driver);
                 action.moveToElement(DistrictPageHeader.districtcog).build().perform();
                 DistrictPageHeader.lnkMyAccount.click();

@@ -6,7 +6,7 @@ Feature: Counselors viewing a student should be able to change the username for 
   permitted to change that parent's username to one that is totally unique in the system, and it should change the
   username ONLY for my school, not for all schools associated with this parent.
     Given I complete the fields on the login page for a school user
-    And I search for "aisner" using "name" the student roster search
+    And I search for "aisner" using the global search field
     And I manually reset the username for "yojo@yahoo.com" to "czechItOut"
 #    Then I should see "The Family Connection Username and Password for this parent have been updated."
 #    And I should see "czechItOut"

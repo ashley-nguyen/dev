@@ -5,9 +5,9 @@ import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import stepDefs.Hooks;
-
-import java.util.concurrent.TimeUnit;
 
 /**
  * Created by csackrider on 10/7/2015.
@@ -27,7 +27,8 @@ public class Survey_StepDefs {
     public void I_will_be_able_to_take_the_survey(String strSurvey) throws Throwable {
         // ASSERT STUDENT CAN VIEW THE SURVEYS
         driver = Hooks.driver;
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+       // driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        new WebDriverWait(Hooks.driver, 30).until(ExpectedConditions.presenceOfElementLocated(By.linkText("about me")));
         Hooks.driver.findElement(By.linkText("about me")).click();
        // lnkAboutMe.click();
 
