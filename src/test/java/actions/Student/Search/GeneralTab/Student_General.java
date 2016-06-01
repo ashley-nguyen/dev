@@ -79,6 +79,7 @@ public class Student_General {
     public static void unlinkParent() throws Throwable {
         ParentAddPage.lnkParent.click();
         ParentAddPage.btnDeleteParent.click();
+        Thread.sleep(3000);
     }
 
 }
