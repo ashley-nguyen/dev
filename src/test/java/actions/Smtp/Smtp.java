@@ -3,6 +3,8 @@ package actions.Smtp;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import pageObjects.Smtp.SmtpPage;
 import stepDefs.Hooks;
 
@@ -18,6 +20,7 @@ public class Smtp {
     public static WebDriver driver;
 
     public static void verifyEmail(String newUser) throws InterruptedException {
+        new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.xpath("/html/body/div/table/tbody/tr[1]/td[2]/table/tbody/tr[4]/td[2]/table")));
         String pageVerification = Hooks.driver.findElement(By.xpath("/html/body/div/table/tbody/tr[1]/td[2]/table/tbody/tr[4]/td[2]/table")).getText();
         assertTrue("Error Verification!", !pageVerification.contains("Fatal error"));
         assertTrue("Verify Data!", pageVerification.contains(newUser));

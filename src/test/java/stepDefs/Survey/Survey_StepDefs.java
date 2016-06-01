@@ -4,13 +4,17 @@ import actions.FamilyConnection.FCAboutMe;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.WebDriver;
 import stepDefs.Hooks;
+
+import java.util.concurrent.TimeUnit;
 
 /**
  * Created by csackrider on 10/7/2015.
  */
 public class Survey_StepDefs {
+
+    public static WebDriver driver;
 
     @Given("^I have a survey created in a primary district$")
     public void I_have_a_survey_created_in_a_primary_district() throws Throwable {
@@ -22,8 +26,10 @@ public class Survey_StepDefs {
     @Then("^I will be able to take the survey \"(.*)\"$")
     public void I_will_be_able_to_take_the_survey(String strSurvey) throws Throwable {
         // ASSERT STUDENT CAN VIEW THE SURVEYS
-        WebElement lnkAboutMe = Hooks.driver.findElement(By.linkText("about me"));
-        lnkAboutMe.click();
+        driver = Hooks.driver;
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        Hooks.driver.findElement(By.linkText("about me")).click();
+       // lnkAboutMe.click();
 
         FCAboutMe.verifySurvey(strSurvey);
     }
