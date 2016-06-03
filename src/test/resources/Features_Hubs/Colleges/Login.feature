@@ -8,3 +8,8 @@ Feature: Login to Family Connection
     Examples:
       | account    | user       | password  |
       | rtsa       | amandahubs | hubs2016  |
+
+  Scenario: Login to Family Connection with incorrect credentials
+    Given I am a student
+    When I log into family connection "rtsa" as "incorrectUser" and "incorrectPassword"
+    Then I see a credentials error message

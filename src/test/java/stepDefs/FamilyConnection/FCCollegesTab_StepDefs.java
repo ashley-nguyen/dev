@@ -36,4 +36,15 @@ public class FCCollegesTab_StepDefs {
         }
         assertTrue("The match list is not present", verification);
     }
+
+    @When("^I search for the college \"([^\"]*)\"$")
+    public void I_search_for_the_college(String college) throws Throwable {
+        FCCollegesTab.EnterCollegeToSearch(college);
+        FCCollegesTab.ClickGoButton();
+    }
+
+    @When("^I click the college \"([^\"]*)\" in the college lookup list$")
+    public void I_click_the_college_in_the_college_lookup_list(String collegeString) throws Throwable {
+        FCCollegesTab.ClickCollegeInCollegeLookup(collegeString);
+    }
 }

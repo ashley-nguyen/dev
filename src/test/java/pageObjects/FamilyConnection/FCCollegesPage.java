@@ -14,6 +14,10 @@ public class FCCollegesPage extends BaseClass {
     public static WebElement lnkCollegeMatch;
     @FindBy(how = How.XPATH, using = "//table[@class = 'standard']/caption[contains(text(), 'Colleges Looking For Students Like You')]")
     public static WebElement titleCollegeMatchList;
+    @FindBy(how = How.NAME, using = "collegename")
+    public static WebElement textAreaSearchCollege;
+    @FindBy(how = How.XPATH, using = "//form[@id='search']/fieldset/input[@value='Go']")
+    public static WebElement buttonGo;
 
     public FCCollegesPage(WebDriver driver) {
         super(driver);

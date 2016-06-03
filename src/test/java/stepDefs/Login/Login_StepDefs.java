@@ -93,4 +93,11 @@ public class Login_StepDefs {
         Login.DoFCLogin(usercreds.get(0), usercreds.get(1), usercreds.get(2));
 
     }
+
+    @Then("^I see a credentials error message$")
+    public void I_see_a_credentials_error_message() throws Throwable {
+
+        Login.verifyValidLoginFamilyConnection();
+
+    }
 }
