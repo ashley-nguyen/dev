@@ -10,7 +10,7 @@ import pageObjects.BaseClass;
  * Created by jorgemaguina on 5/25/2016.
  */
 public class FCDashboardPage extends BaseClass {
-    @FindBy(how = How.XPATH, using = "//ul[@id = 'nav']/li/a[contains(text(), 'colleges')]")
+    @FindBy(how = How.XPATH, using = "//ul[@id = 'nav']/li/a[@href='/family-connection/colleges/']")
     public static WebElement tabColleges;
 
     public FCDashboardPage(WebDriver driver) {

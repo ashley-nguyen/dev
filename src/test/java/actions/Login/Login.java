@@ -66,4 +66,10 @@ public class Login {
         String footnote = loginPage.invalid_foot_note_text.getText();
         assertTrue("Text not found!", footnote.contains("Your account name, user name or password is incorrect. Passwords are case sensitive."));
     }
+
+    public static void verifyInvalidLoginFamilyConnection() throws InterruptedException {
+        new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.name("username")));
+        Boolean messagepresent = loginPage.fc_bad_credentials_message.isDisplayed();
+        assertTrue("Message not found!", messagepresent);
+    }
 }
