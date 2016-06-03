@@ -11,13 +11,12 @@ import pageObjects.BaseClass;
  */
 public class marketingPage extends BaseClass {
 
-
     @FindBy(how = How.CLASS_NAME, using = "marketing-content")
     public static WebElement Content;
     @FindBy(how = How.XPATH, using = "//img[contains(@src,'img/nsi2016_2.jpg')]")
     public static WebElement Image;
     @FindBy(how = How.XPATH, using = "//img[contains(@src,'/images/navmarketplace_badge.png')]")
-    public static WebElement ImageContents  ;
+    public static WebElement ImageContents;
 
     public marketingPage(WebDriver driver) {
         super(driver);

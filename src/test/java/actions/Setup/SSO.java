@@ -10,6 +10,8 @@ import pageObjects.District.DistrictSetupPage;
 import pageObjects.Header.DistrictPageHeader;
 import stepDefs.Hooks;
 
+import java.util.concurrent.TimeUnit;
+
 import static org.junit.Assert.assertTrue;
 
 /**
@@ -23,6 +25,7 @@ public class SSO {
         driver = Hooks.driver;
         Thread.sleep(3000);
         PageFactory.initElements(driver, DistrictPageHeader.class);
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 
         Actions action = new Actions(driver);
         Thread.sleep(3000);
@@ -37,12 +40,13 @@ public class SSO {
     public static void GoToSingleSignInOptions() throws InterruptedException {
         driver = Hooks.driver;
         PageFactory.initElements(driver, DistrictSetupPage.class);
-
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         DistrictSetupPage.lnkSingleSignInOptions.click();
     }
 
     public static void VerifyPowerSchoolSSO() throws InterruptedException {
         driver = Hooks.driver;
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         assertTrue("text not found: PowerSchool SSO - for parents", driver.getPageSource().contains("PowerSchool SSO - for parents"));
     }
 

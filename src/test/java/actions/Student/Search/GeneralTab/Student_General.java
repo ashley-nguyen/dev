@@ -11,6 +11,7 @@ import pageObjects.Student.Parent.ParentAddPage;
 import stepDefs.Hooks;
 
 import java.util.Set;
+import java.util.concurrent.TimeUnit;
 
 import static org.junit.Assert.assertTrue;
 
@@ -25,6 +26,7 @@ public class Student_General {
     public static void linkParent(String strParent) throws Throwable {
         driver = Hooks.driver;
         PageFactory.initElements(driver, StudentGeneralTabPage.class);
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         //click the add parent button
         StudentGeneralTabPage.btnAddParent.click();
 
@@ -68,14 +70,16 @@ public class Student_General {
     }
 
 
-    public static void unlinkParent(String strParent){
-
-    }
-
-    public static void verifyParent(String strData) throws Throwable {
+      public static void verifyParent(String strData) throws Throwable {
         String bodyText = Hooks.driver.findElement(By.tagName("body")).getText();
         assertTrue("Text not found!", bodyText.contains(strData));
 
+    }
+
+    public static void unlinkParent() throws Throwable {
+        ParentAddPage.lnkParent.click();
+        ParentAddPage.btnDeleteParent.click();
+        Thread.sleep(3000);
     }
 
 }

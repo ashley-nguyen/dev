@@ -8,6 +8,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import pageObjects.Dashboard.DashboardPage;
 import stepDefs.Hooks;
 
+import java.util.concurrent.TimeUnit;
+
 import static org.junit.Assert.assertTrue;
 
 /**
@@ -19,6 +21,7 @@ public class Dashboard {
     public static void NavigateToDashboard() {
         driver = Hooks.driver;
         PageFactory.initElements(driver, DashboardPage.class);
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.linkText("Enter school site")));
         DashboardPage.School.click();
         DashboardPage.Planner.click();

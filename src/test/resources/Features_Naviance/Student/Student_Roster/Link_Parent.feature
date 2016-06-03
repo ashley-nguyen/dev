@@ -13,6 +13,7 @@ Feature: School employee can link a student to existing parents from the same di
     And I link the parent "Carol Brady" to the current student
     Then I should see "Carol Brady" on the Student Summary Form
     Then I should see "4222 Clinton Way" on the Student Summary Form
+    Then I unlink parent
 
 #  @database:unlink-cindy
 #  Scenario: 2. Parent has student at another school in the district (can link)

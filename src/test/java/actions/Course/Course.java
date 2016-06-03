@@ -8,6 +8,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import pageObjects.Course.CoursePage;
 import stepDefs.Hooks;
 
+import java.util.concurrent.TimeUnit;
+
 import static org.junit.Assert.assertTrue;
 
 /**
@@ -19,6 +21,7 @@ public class Course {
     public static void ClickOnAdvancedComputerScienceCourse() {
         driver = Hooks.driver;
         PageFactory.initElements(driver, CoursePage.class);
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.linkText("Courses")));
         CoursePage.Courses.click();
         new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.linkText("High School Course Catalog")));
@@ -30,6 +33,7 @@ public class Course {
     public static void ClickOnEconomics() {
         driver = Hooks.driver;
         PageFactory.initElements(driver, CoursePage.class);
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.linkText("Courses")));
         CoursePage.Courses.click();
         new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.linkText("High School Course Catalog")));
@@ -43,6 +47,7 @@ public class Course {
     public static void ClickOnRecommendations() {
         driver = Hooks.driver;
         PageFactory.initElements(driver, CoursePage.class);
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.linkText("Enter school site")));
         CoursePage.lnkEnterSchoolSite.click();
         new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.linkText("Courses")));

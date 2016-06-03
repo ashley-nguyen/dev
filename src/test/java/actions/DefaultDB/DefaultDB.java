@@ -1,7 +1,5 @@
 package actions.DefaultDB;
 
-import static org.junit.Assert.assertTrue;
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
@@ -9,6 +7,10 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import pageObjects.DefaultDB.DefaultDBPage;
 import stepDefs.Hooks;
+
+import java.util.concurrent.TimeUnit;
+
+import static org.junit.Assert.assertTrue;
 
 /**
  * Created by franksejas on 1/20/2016.
@@ -19,11 +21,13 @@ public class DefaultDB {
     public static void  NavigateToCourses() {
         driver = Hooks.driver;
         PageFactory.initElements(driver, DefaultDBPage.class);
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.linkText("Courses")));
         DefaultDBPage.Courses.click();
     }
 
     public static void verifyHomePage() throws InterruptedException {
+        new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.linkText("home")));
         String verifyHomeLink = Hooks.driver.findElement(By.linkText("home")).getText();
         String verifyReportLink = Hooks.driver.findElement(By.linkText("Reports")).getText();
         String verifyPlannerLink = Hooks.driver.findElement(By.linkText("Planner")).getText();

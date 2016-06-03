@@ -12,6 +12,7 @@ import pageObjects.Header.DistrictPageHeader;
 import stepDefs.Hooks;
 
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Created by csackrider on 11/6/2015.
@@ -22,7 +23,7 @@ public class DistrictNav {
     public static void goToDistrictAdministration() throws InterruptedException {
         driver = Hooks.driver;
         PageFactory.initElements(driver, DistrictPageHeader.class);
-
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         Actions action = new Actions(driver);
         action.moveToElement(DistrictPageHeader.districtcog).build().perform();
         DistrictPageHeader.lnkSetup.click();
@@ -31,11 +32,14 @@ public class DistrictNav {
     public static void goToAdminFunction(String strFunction) throws InterruptedException {
         driver = Hooks.driver;
         PageFactory.initElements(driver, DistrictAdminPage.class);
-        PageFactory.initElements(driver, DistrictPageHeader.class);
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 
         strFunction = strFunction.toLowerCase();
         switch (strFunction) {
             case "my account":
+                driver = Hooks.driver;
+                PageFactory.initElements(driver, DistrictPageHeader.class);
+                driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
                 Actions action = new Actions(driver);
                 action.moveToElement(DistrictPageHeader.districtcog).build().perform();
                 DistrictPageHeader.lnkMyAccount.click();
@@ -53,6 +57,7 @@ public class DistrictNav {
     public static void editProfile(DataTable MyAccount) throws InterruptedException {
         driver = Hooks.driver;
         PageFactory.initElements(driver, DistrictMyProfilePage.class);
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         Thread.sleep(2000);
         WebElement test = Hooks.driver.findElement(By.xpath("//a[contains(text(),'edit my profile')]"));
         test.click();

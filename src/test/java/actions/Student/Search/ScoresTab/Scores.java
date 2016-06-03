@@ -10,6 +10,7 @@ import pageObjects.Student.ScoresTab.StudentScoresTabPage;
 import stepDefs.Hooks;
 
 import java.util.NoSuchElementException;
+import java.util.concurrent.TimeUnit;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -25,6 +26,7 @@ public class Scores {
     public static void enterAPTestScores(String testtype, String score, String year, String grade) throws Throwable {
         driver = Hooks.driver;
         PageFactory.initElements(driver, StudentScoresTabPage.class);
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 
         try {
 
@@ -49,7 +51,7 @@ public class Scores {
 
     public static void removeAPTestScores(String testtype) {
         driver = Hooks.driver;
-
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         StudentScoresTabPage.lnkaddeditscores.click();
         //init after getting to the page.
         PageFactory.initElements(driver, StudentScoresTabPage.class);
@@ -63,7 +65,7 @@ public class Scores {
     public static void enterASPIRETestScores(String subject, String grade, String score) throws Throwable {
         driver = Hooks.driver;
         PageFactory.initElements(driver, StudentScoresTabPage.class);
-
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         try {
             new WebDriverWait(Hooks.driver, 15).until(ExpectedConditions.presenceOfElementLocated(By.linkText("add/edit scores")));
             StudentScoresTabPage.lnkaddeditscores.click();
@@ -88,7 +90,7 @@ public class Scores {
     public static void enterPSATTestScores(String strEvReading, String strReading, String strWriting, String strMathematicsScore, String strMathTest, String strTotalScore, String strMonth, String strYear, String strGrade) throws Throwable {
         driver = Hooks.driver;
         PageFactory.initElements(driver, StudentScoresTabPage.class);
-
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         try {
             new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.linkText("add/edit scores")));
             WebElement lnkaddeditscores = Hooks.driver.findElement(By.partialLinkText("add/edit scores"));
@@ -127,7 +129,7 @@ public class Scores {
     public static void enterPSATLegacyTestScores(String strCritialReading, String strMath, String strWriting, String strTotalScore, String strMonth, String strYear, String strGrade) throws Throwable {
         driver = Hooks.driver;
         PageFactory.initElements(driver, StudentScoresTabPage.class);
-
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         try {
 
             new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.linkText("add/edit scores")));
