@@ -1,6 +1,7 @@
 package stepDefs.FamilyConnection;
 
 import actions.FamilyConnection.FCHubs;
+import cucumber.api.PendingException;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Then;
 import org.openqa.selenium.WebDriver;
@@ -19,5 +20,10 @@ public class FCHubs_StepDefs {
     @And("^I click the Feedback Button$")
     public void I_click_the_feedback_button() throws Throwable {
         FCHubs.ClickFeedbackButton();
+    }
+
+    @Then("^I should see FirstTutorial dialog$")
+    public void I_should_see_firstTutorialDialog() throws Throwable {
+        FCHubs.VerifyFirstTutorialDialog();
     }
 }

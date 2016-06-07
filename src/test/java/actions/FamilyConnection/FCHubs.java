@@ -6,6 +6,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import pageObjects.FamilyConnection.FCCollegeViewPage;
 import pageObjects.FamilyConnection.FCHubsPage;
 import stepDefs.Hooks;
 
@@ -30,5 +31,11 @@ public class FCHubs {
         PageFactory.initElements(driver, FCHubsPage.class);
         FCHubsPage.buttonFeedback.click();
         FCHubsPage.buttonFeedback.sendKeys(Keys.RETURN);
+    }
+
+    public static void VerifyFirstTutorialDialog() {
+        driver = Hooks.driver;
+        assertTrue("The First Tutorial Dialog is not displayed", driver.findElement(By.xpath
+                ("//span[contains(text(), 'Favorite this college')]")).isDisplayed());
     }
 }
