@@ -12,8 +12,16 @@ import pageObjects.BaseClass;
 public class FCHubsPage extends BaseClass {
     @FindBy(how = How.XPATH, using = "//div[@class='hub-beta-bar']/a")
     public static WebElement buttonFeedback;
+    @FindBy(how = How.XPATH, using = "//div[contains(text(), 'Click this heart to add a school to your')]" +
+            "/div[contains(text(), 'Next')]")
+    public static WebElement linkNextFirstDialog;
 
     public FCHubsPage(WebDriver driver) {
         super(driver);
     }
+
+
 }
+
+
+
