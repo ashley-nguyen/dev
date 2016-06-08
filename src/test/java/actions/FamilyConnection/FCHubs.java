@@ -31,4 +31,24 @@ public class FCHubs {
         FCHubsPage.buttonFeedback.click();
         FCHubsPage.buttonFeedback.sendKeys(Keys.RETURN);
     }
+
+    public static void VerifyFirstTutorialDialog() {
+        driver = Hooks.driver;
+        new WebDriverWait(Hooks.driver, 20).until(ExpectedConditions.elementToBeClickable(By.xpath
+                ("//span[contains(text(), 'Favorite this college')]")));
+        assertTrue("The First Tutorial Dialog is not displayed", driver.findElement(By.xpath
+                ("//span[contains(text(), 'Favorite this college')]")).isDisplayed());
+    }
+
+    public static void ClickNextOnFirstDialog() {
+        driver = Hooks.driver;
+        PageFactory.initElements(driver, FCHubsPage.class);
+        FCHubsPage.linkNextFirstDialog.click();
+    }
+
+    public static void VerifySecondTutorialDialog() {
+        driver = Hooks.driver;
+        assertTrue("The Second Tutorial Dialog is displayed ", driver.findElement(By.xpath
+                ("//span[contains(text(), 'Plan your applications')]")).isDisplayed());
+    }
 }
