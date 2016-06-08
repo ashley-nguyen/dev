@@ -67,7 +67,6 @@ public class Student_StepDefs {
 
     @And("^I link the parent \"([^\"]*)\" to the current student$")
     public void I_link_the_parent_to_the_current_student(String strParent) throws Throwable {
-//        Thread.sleep(800000);
         Student_General.linkParent(strParent);
 
     }
