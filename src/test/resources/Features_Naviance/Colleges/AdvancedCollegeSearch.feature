@@ -1,4 +1,4 @@
-Partia@smoketest
+@smoketest
 Feature: Colleges - Advanced search
   As a Succeed user
   I want to do an advanced search for a college based on specific criteria
