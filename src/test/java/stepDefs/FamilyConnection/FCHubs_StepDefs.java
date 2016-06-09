@@ -1,6 +1,7 @@
 package stepDefs.FamilyConnection;
 
 import actions.FamilyConnection.FCHubs;
+import cucumber.api.PendingException;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Then;
 import org.openqa.selenium.WebDriver;
@@ -36,5 +37,17 @@ public class FCHubs_StepDefs {
     @Then("^I should see SecondTutorial dialog$")
     public void I_should_see_second_tutorial_dialog() throws Throwable {
         FCHubs.VerifySecondTutorialDialog();
+    }
+
+    @And("^I click on Next on SecondTutorial dialog$")
+    public void I_click_Next_on_second_tutorial_dialog() throws Throwable {
+        FCHubs.ClickNextOnSecondDialog();
+
+    }
+
+    @Then("^I should see ThirdTutorial dialog$")
+    public void I_should_see_third_tutorial_dialog() throws Throwable {
+        FCHubs.VerifyThirdTutorialDialog();
+
     }
 }

@@ -16,6 +16,9 @@ public class FCHubsPage extends BaseClass {
             "/div[contains(text(), 'Next')]")
     public static WebElement linkNextFirstDialog;
 
+    @FindBy(how = How.XPATH, using = "//div[contains(text(), 'How I compare')]/div[contains(text(), 'Next')]")
+    public static WebElement linkNextSecondDialog;
+
     public FCHubsPage(WebDriver driver) {
         super(driver);
     }
