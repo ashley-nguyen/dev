@@ -51,4 +51,15 @@ public class FCHubs {
         assertTrue("The Second Tutorial Dialog is displayed ", driver.findElement(By.xpath
                 ("//span[contains(text(), 'Plan your applications')]")).isDisplayed());
     }
+    public static void ClickNextOnSecondDialog() {
+        driver = Hooks.driver;
+        PageFactory.initElements(driver, FCHubsPage.class);
+        FCHubsPage.linkNextSecondDialog.click();
+
+    }
+
+    public static void VerifyThirdTutorialDialog() {
+        driver = Hooks.driver;
+        assertTrue("The Third Tutorial Dialog is displayed ", driver.findElement(By.xpath("//span[contains (text( ),'Tell us what you think!')]")).isDisplayed());
+    }
 }
