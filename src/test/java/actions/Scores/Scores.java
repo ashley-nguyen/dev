@@ -144,4 +144,38 @@ public class Scores {
             assertTrue("Error Add Scores Verification!", verifyMessageForTestScore.contains(message));
             }
     }
+
+    public static void clickOnAddEditScores() throws InterruptedException {
+
+        driver = Hooks.driver;
+        PageFactory.initElements(driver, Scores.class);
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        ScoresPage.lnkAddEditScores.click();
+    }
+
+    public static void clickOnTestScores() throws InterruptedException {
+
+        driver = Hooks.driver;
+        PageFactory.initElements(driver, Scores.class);
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        ScoresPage.lnkTestScores.click();
+    }
+
+    public static void clickOnUpdateButton() throws InterruptedException {
+
+        driver = Hooks.driver;
+        PageFactory.initElements(driver, Scores.class);
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        ScoresPage.lnkUpdateTestScores.click();
+    }
+
+    public static void verifyTestScorePageBack() throws InterruptedException {
+
+        driver = Hooks.driver;
+        PageFactory.initElements(driver, Scores.class);
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.elementToBeClickable(ScoresPage.lnkAddEditScores));
+        String verifyMessageForTestScore = ScoresPage.lnkAddEditScores.getText();
+        assertTrue("Error Add/Edit Test Scores does not back!", verifyMessageForTestScore.contains("add/edit scores"));
+    }
 }

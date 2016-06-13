@@ -61,6 +61,15 @@ public class ScoresPage extends BaseClass {
     @FindBy(how = How.CSS, using = "span[class='collapsible__title ng-binding']")
     public static WebElement txtAddedScoreMessage;
 
+    @FindBy(how = How.LINK_TEXT, using = "add/edit scores")
+    public static WebElement lnkAddEditScores;
+
+    @FindBy(how = How.LINK_TEXT, using = "test scores")
+    public static WebElement lnkTestScores;
+
+    @FindBy(how = How.NAME, using = "updateScores")
+    public static WebElement lnkUpdateTestScores;
+
     public ScoresPage(WebDriver driver) {
         super(driver);
     }

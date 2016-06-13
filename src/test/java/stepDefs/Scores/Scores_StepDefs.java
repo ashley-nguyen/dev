@@ -104,4 +104,24 @@ public class Scores_StepDefs {
         Scores.verifyMessages(message);
     }
 
+    @Then("^I click on add edit scores link$")
+    public void i_click_on_add_edit_scores() throws Throwable {
+        Scores.clickOnAddEditScores();
+    }
+
+    @Then("^I click on test scores link$")
+    public void i_click_on_test_scores() throws Throwable {
+        Scores.clickOnTestScores();
+    }
+
+    @Then("^I click on update button$")
+    public void i_click_on_update_button() throws Throwable {
+        Scores.clickOnUpdateButton();
+    }
+
+    @Then("^I verify that system back to the score tab$")
+    public void i_verify_that_system_back_to_the_score() throws Throwable {
+        Scores.verifyTestScorePageBack();
+    }
+
 }
