@@ -1,6 +1,7 @@
 package actions.Scores;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -79,7 +80,6 @@ public class Scores {
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         Select select = new Select(ScoresPage.selClassGrade);
         select.selectByVisibleText(grade.toString());
-       // Thread.sleep(800000);
     }
 
     public static void fillEBRWScore(Integer ebrw) throws InterruptedException {
@@ -164,18 +164,30 @@ public class Scores {
     public static void clickOnUpdateButton() throws InterruptedException {
 
         driver = Hooks.driver;
-        PageFactory.initElements(driver, Scores.class);
+        PageFactory.initElements(driver, ScoresPage.class);
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        JavascriptExecutor js = (JavascriptExecutor)driver;
+        js.executeScript("window.scrollTo(0,Math.max(document.documentElement.scrollHeight,document.body.scrollHeight,document.documentElement.clientHeight));");
+        driver = Hooks.driver;
         ScoresPage.lnkUpdateTestScores.click();
     }
 
     public static void verifyTestScorePageBack() throws InterruptedException {
 
         driver = Hooks.driver;
-        PageFactory.initElements(driver, Scores.class);
+        PageFactory.initElements(driver, ScoresPage.class);
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.elementToBeClickable(ScoresPage.lnkAddEditScores));
         String verifyMessageForTestScore = ScoresPage.lnkAddEditScores.getText();
         assertTrue("Error Add/Edit Test Scores does not back!", verifyMessageForTestScore.contains("add/edit scores"));
+    }
+
+    public static void verifyTestScorePageDoesNotBack() throws InterruptedException {
+
+        driver = Hooks.driver;
+        PageFactory.initElements(driver, ScoresPage.class);
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        String verifyMessageForTestScore = ScoresPage.driver.getTitle().toString();
+        assertTrue("Error Add/Edit Test Scores does not back!", verifyMessageForTestScore.contains("Edit Test Scores"));
     }
 }

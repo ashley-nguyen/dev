@@ -124,4 +124,9 @@ public class Scores_StepDefs {
         Scores.verifyTestScorePageBack();
     }
 
+    @Then("^I verify that system does not back to the score tab$")
+    public void i_verify_that_system_does_not_back_to_the_score() throws Throwable {
+        Scores.verifyTestScorePageDoesNotBack();
+    }
+
 }
