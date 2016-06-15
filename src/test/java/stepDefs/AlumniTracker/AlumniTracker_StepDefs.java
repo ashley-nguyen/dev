@@ -42,4 +42,9 @@ public class AlumniTracker_StepDefs {
     public void i_see_a_fatal_error_in_the_page() throws Throwable {
         AlumniTracker.verifyFatalErrorAlumniTracker();
     }
+
+    @Then("^I click on selected \"(.*)\" link$")
+    public void i_see_a_fatal_error_in_the_page(String school) throws Throwable {
+        AlumniTracker.clickOnSchoolSelected(school);
+    }
 }
