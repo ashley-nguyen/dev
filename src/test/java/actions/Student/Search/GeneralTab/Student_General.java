@@ -77,8 +77,12 @@ public class Student_General {
     }
 
     public static void unlinkParent() throws Throwable {
-        ParentAddPage.lnkParent.click();
-        ParentAddPage.btnDeleteParent.click();
+        driver = Hooks.driver;
+        PageFactory.initElements(driver, ParentAddPage.class);
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.elementToBeClickable(ParentAddPage.lnkParent)).click();
+        new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.elementToBeClickable(ParentAddPage.btnDeleteParent)).click();
+        Thread.sleep(500);
     }
 
 }
