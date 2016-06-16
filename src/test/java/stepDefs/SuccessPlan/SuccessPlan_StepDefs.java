@@ -21,6 +21,18 @@ public class SuccessPlan_StepDefs {
         SuccessPlan.ClickOnAddCustomTask();
     }
 
+    @Then("^I click on assign school tasks link$")
+    public void i_click_on_assign_school_tasks() throws Throwable {
+
+        SuccessPlan.ClickOnAssignSchoolTasks();
+    }
+
+    @Then("^I select \"(.*)\" from available assignation school task$")
+    public void i_select_available_assignation_task(String task) throws Throwable {
+
+        SuccessPlan.SelectAvailableTask(task);
+    }
+
     @Then("^I write in new task textbox the \"(.*)\" name$")
     public void i_write_in_new_task(String newTask) throws Throwable {
 

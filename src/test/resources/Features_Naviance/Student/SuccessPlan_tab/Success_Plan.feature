@@ -20,5 +20,19 @@ Feature: Student Success Plan
     Then I verify that task "<taskname>" was created
 
   Examples:
-    | student       | taskname    | duedate   | writing | mathematics_score | math_test | totalscore | month | year | grade | warning                                                                                                             |
-    | a101, a101    | New Task 1  | 2016-06-30| 35      | 160               | 35        | 160        | Jan   | 2014 | 11    | none                                                                                                                |
+    | student       | taskname    | duedate   |
+    | a101, a101    | New Task 1  | 2016-06-30|
+
+  @viewtaskdetails
+  Scenario Outline: Assign school tasks
+    When I search for <student> using the global search field
+    And  I click on Success Plan tab
+    And  I click on assign school tasks link
+    And  I select "<item>" from available assignation school task
+    Then I verify that task "<item>" was created
+
+  Examples:
+    | student       | item                           |
+    | a101, a101    | Add career clusters to my list |
+    | a101, a101    | Add careers to my list         |
+    | a101, a101    | Attach file                    |

@@ -17,6 +17,9 @@ public class SuccessPlanTabPage extends BaseClass {
     @FindBy(how = How.LINK_TEXT, using = "add custom task")
     public static WebElement lnkAddCustomTask;
 
+    @FindBy(how = How.LINK_TEXT, using = "assign school tasks")
+    public static WebElement lnkAssignSchoolTasks;
+
     @FindBy(how = How.NAME, using = "new_task_name")
     public static WebElement txtNewTask;
 
@@ -32,8 +35,17 @@ public class SuccessPlanTabPage extends BaseClass {
     @FindBy(how = How.CSS, using = "table[class='tablesorter current_tasks']")
     public static WebElement tableTaskList;
 
-    @FindBy(how = How.ID, using = "custom-task")
-    public static WebElement tableCustomTask;
+    @FindBy(how = How.ID, using = "activities_left")
+    public static WebElement divTask;
+    
+    @FindBy(how = How.CSS, using = "select[class='csleft']")
+    public static WebElement txtTask;
+
+    @FindBy(how = How.XPATH, using = "//*[@id=\"tasklist\"]/form/fieldset/fieldset/input[1]")
+    public static WebElement btnAdd;
+
+    @FindBy(how = How.XPATH, using = "//*[@id=\"tasklist\"]/form/input[2]")
+    public static WebElement btnAssignSave;
 
     public SuccessPlanTabPage(WebDriver driver) {
         super(driver);
