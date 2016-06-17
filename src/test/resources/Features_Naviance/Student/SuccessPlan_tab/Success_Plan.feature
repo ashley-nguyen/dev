@@ -36,3 +36,17 @@ Feature: Student Success Plan
     | a101, a101    | Add career clusters to my list |
     | a101, a101    | Add careers to my list         |
     | a101, a101    | Attach file                    |
+
+  @viewtaskdetails
+  Scenario Outline: Assign school tasks
+    When I search for <student> using the global search field
+    And  I click on Success Plan tab
+    And  I click on assign district tasks link
+    And  I select "<item>" from available assignation district task
+    Then I verify that task "<item>" was created
+
+  Examples:
+    | student       | item                           |
+    | a101, a101    | Add career clusters to my list |
+    | a101, a101    | Add careers to my list         |
+    | a101, a101    | Attend college visits          |

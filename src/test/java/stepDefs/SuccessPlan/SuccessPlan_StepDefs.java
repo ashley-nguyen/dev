@@ -27,10 +27,22 @@ public class SuccessPlan_StepDefs {
         SuccessPlan.ClickOnAssignSchoolTasks();
     }
 
+    @Then("^I click on assign district tasks link$")
+    public void i_click_on_assign_district_tasks() throws Throwable {
+
+        SuccessPlan.ClickOnAssignDistrictTasks();
+    }
+
     @Then("^I select \"(.*)\" from available assignation school task$")
     public void i_select_available_assignation_task(String task) throws Throwable {
 
         SuccessPlan.SelectAvailableTask(task);
+    }
+
+    @Then("^I select \"(.*)\" from available assignation district task$")
+    public void i_select_available_assignation_district_task(String task) throws Throwable {
+
+        SuccessPlan.SelectAvailableDistrictTask(task);
     }
 
     @Then("^I write in new task textbox the \"(.*)\" name$")

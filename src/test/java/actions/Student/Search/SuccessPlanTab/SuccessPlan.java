@@ -41,6 +41,13 @@ public class SuccessPlan {
         new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.elementToBeClickable(SuccessPlanTabPage.lnkAssignSchoolTasks)).click();
     }
 
+    public static void ClickOnAssignDistrictTasks() throws InterruptedException {
+        driver = Hooks.driver;
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        PageFactory.initElements(driver, SuccessPlanTabPage.class);
+        new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.elementToBeClickable(SuccessPlanTabPage.lnkAssignDistrictTasks)).click();
+    }
+
     public static void ClickOnSaveButton() throws InterruptedException {
         driver = Hooks.driver;
         PageFactory.initElements(driver, SuccessPlanTabPage.class);
@@ -83,10 +90,22 @@ public class SuccessPlan {
         PageFactory.initElements(driver, SuccessPlanTabPage.class);
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         WebDriverWait wait = new WebDriverWait(driver, 300);
-        WebElement selectElement = wait.until(ExpectedConditions.visibilityOf (SuccessPlanTabPage.divTask));
+        WebElement selectElement = wait.until(ExpectedConditions.visibilityOf(SuccessPlanTabPage.divTask));
         Select select = new Select(selectElement);
         select.selectByVisibleText(item);
         SuccessPlanTabPage.btnAdd.click();
         SuccessPlanTabPage.btnAssignSave.click();
+    }
+
+    public static void SelectAvailableDistrictTask(String item) throws InterruptedException {
+        driver = Hooks.driver;
+        PageFactory.initElements(driver, SuccessPlanTabPage.class);
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        WebDriverWait wait = new WebDriverWait(driver, 300);
+        WebElement selectElement = wait.until(ExpectedConditions.visibilityOf(SuccessPlanTabPage.divDistrictTask));
+        Select select = new Select(selectElement);
+        select.selectByVisibleText(item);
+        SuccessPlanTabPage.btnDistrictAdd.click();
+        SuccessPlanTabPage.btnDistrictAssignSave.click();
     }
 }

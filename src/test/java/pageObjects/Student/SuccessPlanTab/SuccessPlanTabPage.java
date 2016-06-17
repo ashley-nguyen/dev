@@ -20,6 +20,9 @@ public class SuccessPlanTabPage extends BaseClass {
     @FindBy(how = How.LINK_TEXT, using = "assign school tasks")
     public static WebElement lnkAssignSchoolTasks;
 
+    @FindBy(how = How.LINK_TEXT, using = "assign district tasks")
+    public static WebElement lnkAssignDistrictTasks;
+
     @FindBy(how = How.NAME, using = "new_task_name")
     public static WebElement txtNewTask;
 
@@ -37,15 +40,24 @@ public class SuccessPlanTabPage extends BaseClass {
 
     @FindBy(how = How.ID, using = "activities_left")
     public static WebElement divTask;
-    
+
+    @FindBy(how = How.ID, using = "dactivities_left")
+    public static WebElement divDistrictTask;
+
     @FindBy(how = How.CSS, using = "select[class='csleft']")
     public static WebElement txtTask;
 
     @FindBy(how = How.XPATH, using = "//*[@id=\"tasklist\"]/form/fieldset/fieldset/input[1]")
     public static WebElement btnAdd;
 
+    @FindBy(how = How.XPATH, using = "//*[@id=\"dtasklist\"]/form/fieldset/fieldset/input[1]")
+    public static WebElement btnDistrictAdd;
+
     @FindBy(how = How.XPATH, using = "//*[@id=\"tasklist\"]/form/input[2]")
     public static WebElement btnAssignSave;
+
+    @FindBy(how = How.XPATH, using = "//*[@id=\"dtasklist\"]/form/input[2]")
+    public static WebElement btnDistrictAssignSave;
 
     public SuccessPlanTabPage(WebDriver driver) {
         super(driver);
