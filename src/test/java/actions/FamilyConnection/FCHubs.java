@@ -9,6 +9,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import pageObjects.FamilyConnection.FCHubsPage;
 import stepDefs.Hooks;
 
+import java.util.ArrayList;
+
 import static org.junit.Assert.assertTrue;
 
 /**
@@ -60,6 +62,35 @@ public class FCHubs {
 
     public static void VerifyThirdTutorialDialog() {
         driver = Hooks.driver;
-        assertTrue("The Third Tutorial Dialog is displayed ", driver.findElement(By.xpath("//span[contains (text( ),'Tell us what you think!')]")).isDisplayed());
+        assertTrue("The Third Tutorial Dialog is displayed ", driver.findElement(By.xpath("//span[contains (text( )," +
+                "'Tell us what you think!')]")).isDisplayed());
+    }
+
+    public static void VerifyIdentifierModule() {
+        driver = Hooks.driver;
+        assertTrue("The Identifier Module is not present", driver.findElement
+                (By.xpath("//div[@class='fc-grid__row fc-grid__row--xs-center fc-grid__row--lg-start fc-grid__" +
+                        "row--xs-middle']")).isDisplayed());
+    }
+
+    public static void VerifyLogoInIdentifierModule() {
+        driver = Hooks.driver;
+        assertTrue("The logo in the Identifier Module is not present", driver.findElement
+                (By.xpath("//div[@class='fc-grid__row fc-grid__row--xs-center fc-grid__row--lg-start fc-grid__row--xs-" +
+                        "middle']/div/img[@class='masthead__logo-image']")).isDisplayed());
+    }
+
+    public static void ClickURLInIdentifierModule() {
+        driver = Hooks.driver;
+        PageFactory.initElements(driver, FCHubsPage.class);
+        FCHubsPage.linkURLIdentifierModule.click();
+        ArrayList<String> tabs = new ArrayList<String> (driver.getWindowHandles());
+        driver.switchTo().window(tabs.get(tabs.size() - 1));
+    }
+
+    public static void VerifyURLContainsText(String url) {
+        driver = Hooks.driver;
+        String currentURL = driver.getCurrentUrl();
+        assertTrue("The current URL does not contain " + currentURL, currentURL.contains(url));
     }
 }

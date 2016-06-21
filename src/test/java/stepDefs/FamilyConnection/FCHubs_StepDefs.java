@@ -1,9 +1,9 @@
 package stepDefs.FamilyConnection;
 
 import actions.FamilyConnection.FCHubs;
-import cucumber.api.PendingException;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Then;
+import cucumber.api.java.en.When;
 import org.openqa.selenium.WebDriver;
 
 /**
@@ -49,5 +49,25 @@ public class FCHubs_StepDefs {
     public void I_should_see_third_tutorial_dialog() throws Throwable {
         FCHubs.VerifyThirdTutorialDialog();
 
+    }
+
+    @Then("^I should see the Identifier module$")
+    public void I_should_see_the_identifier_module() throws Throwable {
+        FCHubs.VerifyIdentifierModule();
+    }
+
+    @Then("^I should see the logo in the Identifier module$")
+    public void I_should_see_the_logo_in_the_identifier_module() throws Throwable {
+        FCHubs.VerifyLogoInIdentifierModule();
+    }
+
+    @When("^I click the URL at the side of the logo$")
+    public void I_click_the_URL_at_the_side_of_the_logo() throws Throwable {
+        FCHubs.ClickURLInIdentifierModule();
+    }
+
+    @Then("^I should see the URL for \"([^\"]*)\" open in a new page$")
+    public void I_should_see_the_URL_for_open_in_a_new_page(String site) throws Throwable {
+        FCHubs.VerifyURLContainsText(site);
     }
 }
