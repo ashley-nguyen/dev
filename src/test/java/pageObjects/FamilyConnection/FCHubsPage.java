@@ -15,15 +15,21 @@ public class FCHubsPage extends BaseClass {
     @FindBy(how = How.XPATH, using = "//div[contains(text(), 'Click this heart to add a school to your')]" +
             "/div[contains(text(), 'Next')]")
     public static WebElement linkNextFirstDialog;
-
     @FindBy(how = How.XPATH, using = "//div[contains(text(), 'How I compare')]/div[contains(text(), 'Next')]")
     public static WebElement linkNextSecondDialog;
+    @FindBy(how = How.XPATH, using = "//div[@class='fc-grid__row fc-grid__row--xs-center fc-grid__row--lg-start " +
+            "fc-grid__row--xs-middle']/div/div/a")
+    public static WebElement linkURLIdentifierModule;
+    @FindBy(how = How.XPATH, using = "//a[contains(text(), 'Request Info')]")
+    public static WebElement buttonRequestInfo;
+    @FindBy(how = How.XPATH, using = "//a[contains(text(), 'Apply Online')]")
+    public static WebElement buttonApplyOnline;
+    @FindBy(how = How.XPATH, using = "//div[contains(text(), 'Learn More')]")
+    public static WebElement buttonLearnMore;
 
     public FCHubsPage(WebDriver driver) {
         super(driver);
     }
-
-
 }
 
 
