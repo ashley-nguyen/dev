@@ -91,11 +91,6 @@ public class FCHubs {
 
     public static void VerifyURLContainsText(String url) {
         driver = Hooks.driver;
-        try {
-            Thread.sleep(2000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
         String currentURL = driver.getCurrentUrl();
         assertTrue("The current URL does not match " + url, currentURL.equals(url));
     }
