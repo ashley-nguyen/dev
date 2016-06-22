@@ -1,6 +1,7 @@
 package stepDefs.FamilyConnection;
 
 import actions.FamilyConnection.FCHubs;
+import cucumber.api.PendingException;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
@@ -69,5 +70,21 @@ public class FCHubs_StepDefs {
     @Then("^I should see the URL for \"([^\"]*)\" open in a new page$")
     public void I_should_see_the_URL_for_open_in_a_new_page(String site) throws Throwable {
         FCHubs.VerifyURLContainsText(site);
+    }
+
+    @When("^I click the Request Info button$")
+    public void I_click_the_request_info_button() throws Throwable {
+        FCHubs.ClickRequestInfoButton();
+    }
+
+    @When("^I click the Apply Online button$")
+    public void I_click_the_apply_online_button() throws Throwable {
+        FCHubs.ClickApplyOnlineButton();
+    }
+
+    @When("^I click the 'Learn More' link \"([^\"]*)\"$")
+    public void I_click_the_learn_more_link(String link) throws Throwable {
+        FCHubs.ClickLearnMoreButton();
+        FCHubs.ClickLearnMoreLink(link);
     }
 }
