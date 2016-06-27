@@ -1,9 +1,6 @@
 package actions.FamilyConnection;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -13,6 +10,7 @@ import stepDefs.Hooks;
 import java.util.ArrayList;
 
 import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.assertFalse;
 
 /**
  * Created by jorgemaguina on 5/25/2016.
@@ -121,10 +119,76 @@ public class FCHubs {
 
     public static void ClickLearnMoreLink(String link) {
         driver = Hooks.driver;
-        PageFactory.initElements(driver, FCHubsPage.class);
         WebElement learnMoreLink = driver.findElement(By.xpath("//a[contains(text(), '" + link + "')]"));
         learnMoreLink.click();
         ArrayList<String> tabs = new ArrayList<String> (driver.getWindowHandles());
         driver.switchTo().window(tabs.get(tabs.size() - 1));
+    }
+
+    public static void ClickRightArrow(int numberOfTimes) {
+        driver = Hooks.driver;
+        PageFactory.initElements(driver, FCHubsPage.class);
+        for (int i = 0; i < numberOfTimes; i++) {
+            FCHubsPage.buttonRightArrow.click();
+        }
+    }
+
+    public static void VerifyVisibilityOfLastWebTourElement() {
+        driver = Hooks.driver;
+        assertTrue("Last element of Web Tour is not visible", driver.findElement(By.xpath
+                ("//span[@id='webtourElement26']")).isDisplayed());
+    }
+
+    public static void VerifyVisibilityOfPlayButton() {
+        driver = Hooks.driver;
+        assertTrue("Play button in Youtube video is not visible", driver.findElement(By.xpath
+                ("//span[@id='webtourElement26']/div/*[name()='svg']")).isDisplayed());
+    }
+
+    public static void ClickWebTourElementAtPosition(int elementPosition) {
+        driver = Hooks.driver;
+        WebElement webTourElement = driver.findElement(By.xpath("//span[@id='webtourElement" + elementPosition + "']"));
+        webTourElement.click();
+    }
+
+    public static void VerifyPresenceOfImageInModal() {
+        driver = Hooks.driver;
+        assertTrue("Image was not open in a modal dialog", driver.findElement(By.xpath
+                ("//div[@id='webtourViewer']/div")).isDisplayed());
+    }
+
+    public static void VerifyContentBelowImageInModal() {
+        driver = Hooks.driver;
+        assertTrue("The content below the image is not present in the modal dialog", driver.findElement(By.xpath
+                ("//div[@id='webtourCaption']/p")).isDisplayed());
+    }
+
+    public static void ClickLinkInContentInModal(String linkText) {
+        driver = Hooks.driver;
+        WebElement linkInContent = driver.findElement(By.xpath
+                ("//div[@id='webtourCaption']/p/a[contains(text(), '" + linkText + "')]"));
+        linkInContent.click();
+        ArrayList<String> tabs = new ArrayList<String> (driver.getWindowHandles());
+        driver.switchTo().window(tabs.get(tabs.size() - 1));
+    }
+
+    public static void ClickXInModalDialog() {
+        driver = Hooks.driver;
+        PageFactory.initElements(driver, FCHubsPage.class);
+        FCHubsPage.buttonX.click();
+    }
+
+    public static void VerifyModalDialogIsNotDisplayed() {
+        driver = Hooks.driver;
+        try{
+            if(driver.findElement(By.xpath
+                    ("//div[@id='webtourViewer']/div")).isDisplayed()) {
+                assertTrue(false);
+            }
+        } catch(NoSuchElementException e) {
+            assertTrue(true);
+        } catch(Exception f) {
+            f.printStackTrace();
+        }
     }
 }

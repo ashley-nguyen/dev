@@ -26,6 +26,10 @@ public class FCHubsPage extends BaseClass {
     public static WebElement buttonApplyOnline;
     @FindBy(how = How.XPATH, using = "//div[contains(text(), 'Learn More')]")
     public static WebElement buttonLearnMore;
+    @FindBy(how = How.XPATH, using = "//div[@class='scroll right']")
+    public static WebElement buttonRightArrow;
+    @FindBy(how = How.XPATH, using = "//div[@class='webtourLightboxClose']")
+    public static WebElement buttonX;
 
     public FCHubsPage(WebDriver driver) {
         super(driver);

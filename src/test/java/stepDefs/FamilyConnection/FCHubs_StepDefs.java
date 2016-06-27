@@ -87,4 +87,49 @@ public class FCHubs_StepDefs {
         FCHubs.ClickLearnMoreButton();
         FCHubs.ClickLearnMoreLink(link);
     }
+
+    @When("^I click the right navigation arrow \"([^\"]*)\" times$")
+    public void I_click_the_navigation_arrow_times(int numberOfTimes) throws Throwable {
+        FCHubs.ClickRightArrow(numberOfTimes);
+    }
+
+    @Then("^I should see the last Web Tour element$")
+    public void I_should_see_the_last_web_tour_element() throws Throwable {
+        FCHubs.VerifyVisibilityOfLastWebTourElement();
+    }
+
+    @Then("^I should see a Play button in the YouTube video thumbnail$")
+    public void I_should_see_a_play_button_in_the_youtube_video_thumbnail() throws Throwable {
+        FCHubs.VerifyVisibilityOfPlayButton();
+    }
+
+    @When("^I click the Web Tour element at position \"([^\"]*)\"$")
+    public void iClickTheWebTourElementAtPosition(int elementPosition) throws Throwable {
+        FCHubs.ClickWebTourElementAtPosition(elementPosition);
+    }
+
+    @Then("^I should see an image in a modal dialog$")
+    public void I_should_see_an_image_in_a_modal_dialog() throws Throwable {
+        FCHubs.VerifyPresenceOfImageInModal();
+    }
+
+    @Then("^I should see content below the image$")
+    public void I_should_see_content_below_the_image() throws Throwable {
+        FCHubs.VerifyContentBelowImageInModal();
+    }
+
+    @And("^I click a link with the text \"([^\"]*)\" in the content of the modal dialog$")
+    public void iClickALinkWithTheTextInTheContentOfTheModalDialog(String linkText) throws Throwable {
+        FCHubs.ClickLinkInContentInModal(linkText);
+    }
+
+    @And("^I click the 'x' in the modal dialog$")
+    public void I_click_the_x_in_the_modal_dialog() throws Throwable {
+        FCHubs.ClickXInModalDialog();
+    }
+
+    @Then("^The modal dialog should be closed$")
+    public void The_modal_dialog_should_be_closed() throws Throwable {
+        FCHubs.VerifyModalDialogIsNotDisplayed();
+    }
 }

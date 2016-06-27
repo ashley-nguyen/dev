@@ -16,7 +16,7 @@ Feature:  As a student exploring a college I want to see the school's paid butto
   Scenario: User is taken to correct website after clicking 'Apply Online'
     When I click the Apply Online button
     Then I should see the URL for "http://www.auburn.edu/admissions/" open in a new page
-  
+
   Scenario: User is taken to correct website after clicking a link from the list in 'Learn More'
     When I click the 'Learn More' link "Schedule a Visit"
     Then I should see the URL for "http://www.auburn.edu/admissions/visit/" open in a new page
