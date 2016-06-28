@@ -74,5 +74,10 @@ public class AlumniTracker {
         {
             AlumniTrackerPage.lnkSelectedSchoolA.click();
         }
+
+        if(School.contains("School E"))
+        {
+            AlumniTrackerPage.lnkSelectedSchoolE.click();
+        }
     }
 }

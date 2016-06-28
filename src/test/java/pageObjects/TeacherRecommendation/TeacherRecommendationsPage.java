@@ -16,6 +16,15 @@ public class TeacherRecommendationsPage extends BaseClass {
     @FindBy(how = How.CSS, using = "img[src=\'../../images/transcripts/transcripts_requests_tab_on.gif\']")
     public static WebElement tabRequests;
 
+    @FindBy(how = How.CSS, using = "img[src=\'../../images/transcripts/transcripts_settings_tab.gif\']")
+    public static WebElement tabSettings;
+
+    @FindBy(how = How.XPATH, using = "//input[@name='require_approval']")
+    public static WebElement rbRecommendationDoNotRequireApproval;
+
+    @FindBy(how = How.CSS, using = "../../images/processapps/apps_summary_tab.gif\']")
+    public static WebElement tabSummary;
+
     @FindBy(how = How.XPATH, using = "//*[@id=\"class\"]")
     public static WebElement selClass;
 
@@ -27,6 +36,9 @@ public class TeacherRecommendationsPage extends BaseClass {
 
     @FindBy(how = How.XPATH, using = "//*[@id=\"goList\"]")
     public static WebElement btnGo;
+
+    @FindBy(how = How.XPATH, using = "/html/body/div/table/tbody/tr[1]/td[2]/table/tbody/tr[2]/td[2]/table/tbody/tr[3]/td[2]/table/tbody/tr[8]/td/input")
+    public static WebElement btn_save_setting;
 
     public TeacherRecommendationsPage(WebDriver driver) {
         super(driver);

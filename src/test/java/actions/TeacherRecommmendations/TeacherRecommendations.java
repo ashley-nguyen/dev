@@ -31,6 +31,27 @@ public class TeacherRecommendations {
         new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.elementToBeClickable(TeacherRecommendationsPage.tabRequests)).click();
     }
 
+    public static void ClickOnSettingsTab() throws InterruptedException {
+        driver = Hooks.driver;
+        PageFactory.initElements(driver, TeacherRecommendationsPage.class);
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.elementToBeClickable(TeacherRecommendationsPage.tabSettings)).click();
+    }
+
+    public static void ClickOnSummaryTab() throws InterruptedException {
+        driver = Hooks.driver;
+        PageFactory.initElements(driver, TeacherRecommendationsPage.class);
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.elementToBeClickable(TeacherRecommendationsPage.tabSettings)).click();
+    }
+
+    public static void ClickOnRecommendationRequestsDoNotRequireApprovalRadioButton() throws InterruptedException {
+        driver = Hooks.driver;
+        PageFactory.initElements(driver, TeacherRecommendationsPage.class);
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.elementToBeClickable(TeacherRecommendationsPage.rbRecommendationDoNotRequireApproval)).click();
+    }
+
     public static void SelectGradeClass(String grade) {
         driver = Hooks.driver;
         PageFactory.initElements(driver, TeacherRecommendationsPage.class);
@@ -56,6 +77,12 @@ public class TeacherRecommendations {
         Select select = new Select(TeacherRecommendationsPage.selList);
         select.selectByVisibleText(item);
         TeacherRecommendationsPage.formNameTable.isDisplayed();
-        Thread.sleep(90000);
+    }
+
+    public static void ClickOnSaveSettingButton() throws InterruptedException {
+        driver = Hooks.driver;
+        PageFactory.initElements(driver, TeacherRecommendationsPage.class);
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.elementToBeClickable(TeacherRecommendationsPage.btn_save_setting)).click();
     }
 }
