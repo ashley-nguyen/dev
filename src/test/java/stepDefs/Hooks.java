@@ -6,6 +6,7 @@ import cucumber.api.java.Before;
 import org.openqa.selenium.*;
 
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.remote.CapabilityType;
@@ -13,6 +14,7 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.safari.SafariDriver;
 //import com.heliumhq.API;
 import java.net.MalformedURLException;
+import java.io.File;
 
 //import org.openqa.selenium.phantomjs.PhantomJSDriver;
 //import org.openqa.selenium.phantomjs.PhantomJSDriverService;
@@ -23,6 +25,9 @@ import java.net.MalformedURLException;
 public class Hooks {
     public static WebDriver driver;
     public static String strBaseURL;
+
+    private static String CHROME_MAC_DRIVER = "/drivers/chrome/chromedriver";
+    private static String CHROME_WINDOWS_DRIVER = "/drivers/chrome/chromedriver.exe";
 
     DesiredCapabilities dc = new DesiredCapabilities();
 
@@ -71,7 +76,27 @@ public class Hooks {
             browser = "chrome";
         }
         if (browser.equals("chrome")) {
-            driver = new ChromeDriver(dc);
+
+            if (System.getProperty("os.name").contains("Mac")) {
+                File cDriver = new File(Hooks.class.getResource(CHROME_MAC_DRIVER).getFile());
+
+                // Is it executable
+                if (!cDriver.canExecute()) {
+                    cDriver.setExecutable(true);
+                }
+                System.setProperty("webdriver.chrome.driver", Hooks.class.getResource(CHROME_MAC_DRIVER).getFile());
+
+            } else {
+                System.setProperty("webdriver.chrome.driver", Hooks.class.getResource(CHROME_WINDOWS_DRIVER).getFile());
+
+            }
+
+            ChromeOptions options = new ChromeOptions();
+            options.addArguments("--start-maximized");
+            options.addArguments("--ignore-certificate-errors");
+            driver = new ChromeDriver(options);
+
+           // driver = new ChromeDriver(dc);
 
         } else if (browser.equals("firefox")) {
             driver = new FirefoxDriver(dc);

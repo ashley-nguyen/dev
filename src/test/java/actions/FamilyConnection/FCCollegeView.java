@@ -34,7 +34,7 @@ public class FCCollegeView {
         PageFactory.initElements(driver, FCCollegeViewPage.class);
         FCCollegeViewPage.buttonHubsBeta.click();
         ArrayList<String> tabs = new ArrayList<String> (driver.getWindowHandles());
-        driver.switchTo().window(tabs.get(1));
+        driver.switchTo().window(tabs.get(tabs.size() - 1));
     }
 
     public static void VerifyHubsPageRibbon() {

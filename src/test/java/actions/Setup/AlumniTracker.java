@@ -65,4 +65,14 @@ public class AlumniTracker {
         String dataverification = Hooks.driver.findElement(By.className("top-nav")).getText();
         assertTrue("Fatal Error Verification!", !dataverification.contains("Fatal Error"));
     }
+
+    public static void clickOnSchoolSelected(String School) throws InterruptedException {
+        driver = Hooks.driver;
+        PageFactory.initElements(driver, AlumniTrackerPage.class);
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        if(School.contains("School A"))
+        {
+            AlumniTrackerPage.lnkSelectedSchoolA.click();
+        }
+    }
 }

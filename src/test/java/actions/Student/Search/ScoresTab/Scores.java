@@ -147,11 +147,11 @@ public class Scores {
             StudentScoresTabPage.selPSATLegacyyear.sendKeys(strYear);
             StudentScoresTabPage.selPSATLegacyGrade.sendKeys(strGrade);
         } catch (NoSuchElementException e) {
-            e.getMessage();
-            throw new AssertionFailedError("element not found error");
-        } catch (UnhandledAlertException e) {
-            //do nothing here
-        }
+        e.getMessage();
+        throw new AssertionFailedError("element not found error");
+    } catch (UnhandledAlertException e) {
+        //do nothing here
+    }
     }//end psat legacy enter scores
 
     public static void verifyAPTestScores(String testtype, String score, String year, String grade) throws Throwable {

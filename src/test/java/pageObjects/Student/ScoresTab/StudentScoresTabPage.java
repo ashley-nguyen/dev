@@ -71,6 +71,8 @@ public class StudentScoresTabPage extends BaseClass {
     public static WebElement selPSATLegacyyear;
     @FindBy(how = How.NAME, using = "psat_grade[1]")
     public static WebElement selPSATLegacyGrade;
+    @FindBy(how = How.NAME, using = "updateScores")
+    public static WebElement lnkUpdateTestScores;
 
     public StudentScoresTabPage(WebDriver driver) {
         super(driver);
