@@ -22,23 +22,32 @@ public class TeacherRecommendationsPage extends BaseClass {
     @FindBy(how = How.XPATH, using = "//input[@name='require_approval']")
     public static WebElement rbRecommendationDoNotRequireApproval;
 
-    @FindBy(how = How.CSS, using = "../../images/processapps/apps_summary_tab.gif\']")
+    @FindBy(how = How.CSS, using = "img[src=\'../../images/processapps/apps_summary_tab.gif\']")
     public static WebElement tabSummary;
 
     @FindBy(how = How.XPATH, using = "//*[@id=\"class\"]")
     public static WebElement selClass;
 
-    @FindBy(how = How.XPATH, using = "//*[@id=\"current_table\"]/table/tbody/tr[3]/td[2]/select")
+    @FindBy(how = How.XPATH, using = "//select[@name='quicklist']")
     public static WebElement selList;
 
     @FindBy(how = How.NAME, using = "quicklist")
     public static WebElement formNameTable;
 
+    @FindBy(how = How.XPATH, using = "//select[@name='start_year']")
+    public static WebElement selStartYear;
+
+    @FindBy(how = How.XPATH, using = "//select[@name='end_year']")
+    public static WebElement selEndYear;
+
     @FindBy(how = How.XPATH, using = "//*[@id=\"goList\"]")
     public static WebElement btnGo;
 
-    @FindBy(how = How.XPATH, using = "/html/body/div/table/tbody/tr[1]/td[2]/table/tbody/tr[2]/td[2]/table/tbody/tr[3]/td[2]/table/tbody/tr[8]/td/input")
+    @FindBy(how = How.XPATH, using = "//input[@name='updateSettings']")
     public static WebElement btn_save_setting;
+
+    @FindBy(how = How.XPATH, using = "//input[@name='changeRange']")
+    public static WebElement btn_go_summary;
 
     public TeacherRecommendationsPage(WebDriver driver) {
         super(driver);

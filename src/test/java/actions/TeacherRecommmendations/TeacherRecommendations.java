@@ -42,7 +42,7 @@ public class TeacherRecommendations {
         driver = Hooks.driver;
         PageFactory.initElements(driver, TeacherRecommendationsPage.class);
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-        new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.elementToBeClickable(TeacherRecommendationsPage.tabSettings)).click();
+        new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.elementToBeClickable(TeacherRecommendationsPage.tabSummary)).click();
     }
 
     public static void ClickOnRecommendationRequestsDoNotRequireApprovalRadioButton() throws InterruptedException {
@@ -60,6 +60,22 @@ public class TeacherRecommendations {
         Select select = new Select(TeacherRecommendationsPage.selClass);
         select.selectByVisibleText(grade);
         TeacherRecommendationsPage.formNameTable.isDisplayed();
+    }
+
+    public static void SelectGradeClassRange(String grade) {
+        driver = Hooks.driver;
+        PageFactory.initElements(driver, TeacherRecommendationsPage.class);
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        Select select = new Select(TeacherRecommendationsPage.selStartYear);
+        select.selectByVisibleText(grade);
+    }
+
+    public static void SelectGradeToClassRange(String grade) {
+        driver = Hooks.driver;
+        PageFactory.initElements(driver, TeacherRecommendationsPage.class);
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        Select select = new Select(TeacherRecommendationsPage.selEndYear);
+        select.selectByVisibleText(grade);
     }
 
     public static void ClickShowMeGoButton() {
@@ -84,5 +100,12 @@ public class TeacherRecommendations {
         PageFactory.initElements(driver, TeacherRecommendationsPage.class);
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.elementToBeClickable(TeacherRecommendationsPage.btn_save_setting)).click();
+    }
+
+    public static void ClickOnGoSummaryButton() throws InterruptedException {
+        driver = Hooks.driver;
+        PageFactory.initElements(driver, TeacherRecommendationsPage.class);
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.elementToBeClickable(TeacherRecommendationsPage.btn_go_summary)).click();
     }
 }

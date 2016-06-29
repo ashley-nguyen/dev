@@ -29,7 +29,7 @@ public class TeacherRecommendations_StepDefs {
 
     @Given("^I click on Summary tab$")
     public void I_click_on_summary_tab() throws Throwable {
-        TeacherRecommendations.ClickOnSettingsTab();
+        TeacherRecommendations.ClickOnSummaryTab();
     }
 
     @Given("^I click on Recommendation requests do not require approval$")
@@ -41,6 +41,16 @@ public class TeacherRecommendations_StepDefs {
     @Given("^I select \"(.*)\" request from Grade Class$")
     public void I_select_requests_from_grade_class(String grade) throws Throwable {
         TeacherRecommendations.SelectGradeClass(grade);
+    }
+
+    @Given("^I select \"(.*)\" request from Grade Class range$")
+      public void I_select_requests_from_grade_class_range(String grade) throws Throwable {
+        TeacherRecommendations.SelectGradeClassRange(grade);
+    }
+
+    @Given("^I select \"(.*)\" request to Grade Class range$")
+    public void I_select_requests_to_grade_class_range(String grade) throws Throwable {
+        TeacherRecommendations.SelectGradeToClassRange(grade);
     }
 
     @Given("^I click on show me Go button$")
@@ -57,6 +67,12 @@ public class TeacherRecommendations_StepDefs {
     public void i_click_on_save_setting_button() throws Throwable {
 
         TeacherRecommendations.ClickOnSaveSettingButton();
+    }
+
+    @Then("^I click on Go summary button$")
+    public void i_click_on_go_summary_button() throws Throwable {
+
+        TeacherRecommendations.ClickOnGoSummaryButton();
     }
 
 }
