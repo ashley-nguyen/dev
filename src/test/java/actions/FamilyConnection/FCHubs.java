@@ -191,4 +191,65 @@ public class FCHubs {
             f.printStackTrace();
         }
     }
+
+    public static void VerifyNavigationTabs() {
+        driver = Hooks.driver;
+        assertTrue("The Navigation Tabs are not displayed", driver.findElement(By.xpath
+                ("//ul[@id='hubNavBar']")).isDisplayed());
+    }
+
+    public static void VerifySchoolNameAppMailingAdd(String schoolName) {
+        driver = Hooks.driver;
+        assertTrue("The School Name is not correct", driver.findElement(By.xpath
+                ("//div[@class='contactsMail ng-binding']" +
+                        "[contains(text(), '" + schoolName + "')]")).isDisplayed());
+    }
+
+    public static void VerifyAttnApplicationsAppMailingAdd() {
+        driver = Hooks.driver;
+        WebElement appMailingAddText = driver.findElement(By.xpath("//div[@class='contactsMail ng-binding']"));
+        assertTrue("'Attn: Applications' is not displayed", appMailingAddText.getText().contains("Attn: Applications"));
+    }
+
+    public static void VerifyAddressAppMailingAdd(String address) {
+        driver = Hooks.driver;
+        WebElement appMailingAddText = driver.findElement(By.xpath("//div[@class='contactsMail ng-binding']"));
+        assertTrue("Address data is not correct", appMailingAddText.getText().contains(address));
+    }
+
+    public static void VerifyCityAppMailingAdd(String city) {
+        driver = Hooks.driver;
+        WebElement appMailingAddText = driver.findElement(By.xpath("//div[@class='contactsMail ng-binding']"));
+        assertTrue("Address data is not correct", appMailingAddText.getText().contains(city));
+    }
+
+    public static void VerifyZipAddressAppMailingAdd(String zipAddress) {
+        driver = Hooks.driver;
+        WebElement appMailingAddText = driver.findElement(By.xpath("//div[@class='contactsMail ng-binding']"));
+        assertTrue("Address data is not correct", appMailingAddText.getText().contains(zipAddress));
+    }
+
+    public static void VerifyPhoneAdmissions(String phone) {
+        driver = Hooks.driver;
+        WebElement admissionsText = driver.findElement(By.xpath("//div[@class='contactsAdmissions ng-binding']"));
+        assertTrue("Phone data is not correct", admissionsText.getText().contains(phone));
+    }
+
+    public static void VerifyFaxAdmissions(String fax) {
+        driver = Hooks.driver;
+        WebElement admissionsText = driver.findElement(By.xpath("//div[@class='contactsAdmissions ng-binding']"));
+        assertTrue("Phone data is not correct", admissionsText.getText().contains(fax));
+    }
+
+    public static void VerifyFinantialAidNumberAdmissions(String phoneNumber) {
+        driver = Hooks.driver;
+        WebElement admissionsText = driver.findElement(By.xpath("//div[@class='contactsAdmissions ng-binding']"));
+        assertTrue("Phone data is not correct", admissionsText.getText().contains(phoneNumber));
+    }
+
+    public static void VerifyEmailAdmissions(String email) {
+        driver = Hooks.driver;
+        WebElement admissionsText = driver.findElement(By.xpath("//div[@class='contactsAdmissions ng-binding']"));
+        assertTrue("Phone data is not correct", admissionsText.getText().contains(email));
+    }
 }

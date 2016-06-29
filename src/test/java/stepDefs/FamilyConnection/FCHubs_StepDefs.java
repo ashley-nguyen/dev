@@ -132,4 +132,54 @@ public class FCHubs_StepDefs {
     public void The_modal_dialog_should_be_closed() throws Throwable {
         FCHubs.VerifyModalDialogIsNotDisplayed();
     }
+
+    @Then("^I should see the Navigation Tabs$")
+    public void I_should_see_the_navigation_tabs() throws Throwable {
+        FCHubs.VerifyNavigationTabs();
+    }
+
+    @Then("^The School Name should be \"([^\"]*)\" in Application Mailing Address$")
+    public void The_school_name_should_be_in_application_mailing_address(String schoolName) throws Throwable {
+        FCHubs.VerifySchoolNameAppMailingAdd(schoolName);
+    }
+
+    @Then("^'Attn: Applications' should be displayed in Application Mailing Address$")
+    public void Attn_applications_should_be_displayed_in_application_mailing_address() throws Throwable {
+        FCHubs.VerifyAttnApplicationsAppMailingAdd();
+    }
+
+    @Then("^Address should be \"([^\"]*)\" in Application Mailing Address$")
+    public void Address_should_be_in_application_mailing_address(String address) throws Throwable {
+        FCHubs.VerifyAddressAppMailingAdd(address);
+    }
+
+    @Then("^City should be \"([^\"]*)\" in Application Mailing Address$")
+    public void City_should_be_in_application_mailing_address(String city) throws Throwable {
+        FCHubs.VerifyCityAppMailingAdd(city);
+    }
+
+    @Then("^Zip address should be \"([^\"]*)\" in Application Mailing Address$")
+    public void Zip_address_should_be_in_application_mailing_address(String zipAddress) throws Throwable {
+        FCHubs.VerifyZipAddressAppMailingAdd(zipAddress);
+    }
+
+    @Then("^Phone should be \"([^\"]*)\" in Admissions$")
+    public void Phone_should_be_in_admissions(String phone) throws Throwable {
+        FCHubs.VerifyPhoneAdmissions(phone);
+    }
+
+    @Then("^Fax should be \"([^\"]*)\" in Admissions$")
+    public void Fax_should_be_in_admissions(String fax) throws Throwable {
+        FCHubs.VerifyFaxAdmissions(fax);
+    }
+
+    @Then("^Financial Aid number should be \"([^\"]*)\" in Admissions$")
+    public void Financial_aid_number_should_be_in_admissions(String phoneNumber) throws Throwable {
+        FCHubs.VerifyFinantialAidNumberAdmissions(phoneNumber);
+    }
+
+    @Then("^Email address should be \"([^\"]*)\" in Admissions$")
+    public void Email_address_should_be_in_admissions(String email) throws Throwable {
+        FCHubs.VerifyEmailAdmissions(email);
+    }
 }
