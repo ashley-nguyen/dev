@@ -252,4 +252,96 @@ public class FCHubs {
         WebElement admissionsText = driver.findElement(By.xpath("//div[@class='contactsAdmissions ng-binding']"));
         assertTrue("Phone data is not correct", admissionsText.getText().contains(email));
     }
+
+    public static void VerifyWebsiteQuickFacts(String webSite) {
+        driver = Hooks.driver;
+        WebElement admissionsText = driver.findElement(By.xpath("//div[@class='fc-grid ng-pristine ng-untouched " +
+                "ng-valid ng-not-empty']/div/div/div/div/div/div[@class='fc-grid__col fc-grid__col--xs-6 summary__" +
+                "data']/a[@ng-if='vm.profile.displayUrl']\n"));
+        assertTrue("Website data is not correct", admissionsText.getText().equals(webSite));
+    }
+
+    public static void VerifySchoolTypeQuickFacts(String schoolType) {
+        driver = Hooks.driver;
+        WebElement admissionsText = driver.findElement(By.xpath("//div[@class='fc-grid ng-pristine ng-untouched " +
+                "ng-valid ng-not-empty']/div/div/div/div/div/div[contains(text(), 'School')]/following::div[1]"));
+        assertTrue("School Type data is not correct", admissionsText.getText().equals(schoolType));
+    }
+
+    public static void VerifyUndergraduateEnrollmentQuickFacts(String undergraduateEnrollment) {
+        driver = Hooks.driver;
+        WebElement admissionsText = driver.findElement(By.xpath("//div[@class='fc-grid ng-pristine ng-untouched " +
+                "ng-valid ng-not-empty']/div/div/div/div/div/div[contains(text(), " +
+                "'Undergraduate')]/following::div[1]"));
+        assertTrue("Undergraduate Enrollment data is not correct",
+                admissionsText.getText().equals(undergraduateEnrollment));
+    }
+
+    public static void VerifyStudentToFacultyRatioQuickFacts(String studentFacultyRatio) {
+        driver = Hooks.driver;
+        WebElement admissionsText = driver.findElement(By.xpath("//div[@class='fc-grid ng-pristine ng-untouched " +
+                "ng-valid ng-not-empty']/div/div/div/div/div/div[contains(text(), 'Student')]/following::div[1]"));
+        assertTrue("Student-to-Faculty ratio data is not correct",
+                admissionsText.getText().equals(studentFacultyRatio));
+    }
+
+    public static void VerifyReligiousAffiliationQuickFacts(String religion) {
+        driver = Hooks.driver;
+        WebElement admissionsText = driver.findElement(By.xpath("//div[@class='fc-grid ng-pristine ng-untouched " +
+                "ng-valid ng-not-empty']/div/div/div/div/div/div[contains(text(), 'Religious')]/following::div[1]"));
+        assertTrue("Student-to-Faculty ratio data is not correct",
+                admissionsText.getText().equals(religion));
+    }
+
+    public static void VerifyCampusSurroundings(String surroundings) {
+        driver = Hooks.driver;
+        WebElement admissionsText = driver.findElement(By.xpath("//div[@class='fc-grid ng-pristine ng-untouched " +
+                "ng-valid ng-not-empty']/div/div/div/div/div/div[contains(text(), 'Campus')]/following::div[1]"));
+        assertTrue("Campus Surroundings data is not correct",
+                admissionsText.getText().equals(surroundings));
+    }
+
+    public static void VerifyDegreesOfferedQuickFacts(String degree) {
+        driver = Hooks.driver;
+        assertTrue("The degree is not present", driver.findElement(By.xpath("//div[@class='fc-grid__col " +
+                "fc-grid__col--xs-6 summary__data']/ul/li[contains(text(), '" + degree + "')]")).isDisplayed());
+    }
+
+    public static void VerifyScoreValuesScoreComp(String scoreType, String value) {
+        driver = Hooks.driver;
+        assertTrue("The Student's " +  scoreType + " is not correct", driver.findElement(By.xpath("//center" +
+                "[contains(text(), '" + scoreType + "')]/../div/div[contains(text(), 'You')]" +
+                "/span[contains(text(), '" + value + "')]")).isDisplayed());
+    }
+
+    public static void VerifyAvgValuesScoreComp(String avgScoreType, String avgValue) {
+        driver = Hooks.driver;
+        assertTrue("The average " + avgScoreType  + " is not correct", driver.findElement(By.xpath("//center" +
+                "[contains(text(), '" + avgScoreType +"')]/../div/div[contains(text(), 'Admitted Average')]/span" +
+                "[contains(text(), '" + avgValue + "')]")).isDisplayed());
+    }
+
+    public static void VerifyScoreTextScoreComp(String scoreType, String scoreText) {
+        driver = Hooks.driver;
+        assertTrue("The score text is not correct", driver.findElement(By.xpath("//center[contains(text()" +
+                ", '" + scoreType + "')]/../div/div[contains(text(), '" + scoreText + "')]")).isDisplayed());
+    }
+
+    public static void VerifyOverallAverageTextScoreComp(String overallAvgText) {
+        driver = Hooks.driver;
+        boolean isPresent = false;
+        WebElement upperText = driver.findElement(By.xpath("//div[@ng-if='vm.diff.overall < vm.good']"));
+        WebElement bottomText = driver.findElement(By.xpath("//div[@ng-if='vm.improves.length > 0' and " +
+                "@class='fc-grid__row fc-grid__row--xs-center ng-scope']/div/span/font"));
+        if(upperText.getText().equals(overallAvgText) || bottomText.getText().equals(overallAvgText)) {
+            isPresent = true;
+        }
+        assertTrue("The Overall Average text is not present", isPresent);
+    }
+
+    public static void VerifyQuestionMarkScoreComp(String scoreType) {
+        driver = Hooks.driver;
+        assertTrue("The score text is not correct", driver.findElement(By.xpath("//center[contains(text(), " +
+                "'" + scoreType + "')]/../div/div/div/div[contains(text(), '?')]")).isDisplayed());
+    }
 }

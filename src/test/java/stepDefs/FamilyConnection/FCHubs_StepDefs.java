@@ -7,6 +7,8 @@ import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import org.openqa.selenium.WebDriver;
 
+import java.util.List;
+
 /**
  * Created by jorgemaguina on 5/31/2016.
  *  click on Next on FirstTutorial dialog - Created by Mandeep 06/08/2016
@@ -181,5 +183,65 @@ public class FCHubs_StepDefs {
     @Then("^Email address should be \"([^\"]*)\" in Admissions$")
     public void Email_address_should_be_in_admissions(String email) throws Throwable {
         FCHubs.VerifyEmailAdmissions(email);
+    }
+
+    @Then("^Website should be \"([^\"]*)\" in Quick Facts$")
+    public void Website_should_be_in_quick_facts(String webSite) throws Throwable {
+        FCHubs.VerifyWebsiteQuickFacts(webSite);
+    }
+
+    @Then("^School Type is \"([^\"]*)\" in Quick Facts$")
+    public void School_Type_is_in_Quick_Facts(String schoolType) throws Throwable {
+        FCHubs.VerifySchoolTypeQuickFacts(schoolType);
+    }
+
+    @Then("^Undergraduate Enrollment is \"([^\"]*)\" in Quick Facts$")
+    public void Undergraduate_Enrollment_is_in_Quick_Facts(String undergraduateEnrollment) throws Throwable {
+        FCHubs.VerifyUndergraduateEnrollmentQuickFacts(undergraduateEnrollment);
+    }
+
+    @Then("^Student-to-faculty ratio is \"([^\"]*)\" in Quick Facts$")
+    public void StudentToFaculty_ratio_is_in_Quick_Facts(String studentFacultyRatio) throws Throwable {
+        FCHubs.VerifyStudentToFacultyRatioQuickFacts(studentFacultyRatio);
+    }
+
+    @Then("^Religious Affiliation is \"([^\"]*)\" in Quick Facts$")
+    public void Religious_Affiliation_is_in_Quick_Facts(String religion) throws Throwable {
+        FCHubs.VerifyReligiousAffiliationQuickFacts(religion);
+    }
+
+    @Then("^Campus Surroundings is \"([^\"]*)\" in Quick Facts$")
+    public void Campus_Surroundings_is_in_Quick_Facts(String surroundings) throws Throwable {
+        FCHubs.VerifyCampusSurroundings(surroundings);
+    }
+
+    @Then("^Degrees Offered contains \"([^\"]*)\"$")
+    public void Degrees_Offered_contains(String degree) throws Throwable {
+        FCHubs.VerifyDegreesOfferedQuickFacts(degree);
+    }
+
+    @Then("^Student's \"([^\"]*)\" should be \"([^\"]*)\" in the Score Comparison module$")
+    public void Students_should_be_in_the_Score_Comparison_Module(String scoreType, String value) throws Throwable {
+        FCHubs.VerifyScoreValuesScoreComp(scoreType, value);
+    }
+
+    @Then("^Average \"([^\"]*)\" should be \"([^\"]*)\" with correct values in the Score Comparison module$")
+    public void Average_should_be_with_correct_values_in_the_Score_Comparison_Module(String avgScoreType, String avgValue) throws Throwable {
+        FCHubs.VerifyAvgValuesScoreComp(avgScoreType, avgValue);
+    }
+
+    @Then("^The score text for \"([^\"]*)\" should be \"([^\"]*)\"$")
+    public void The_score_text_for_should_be(String scoreType, String scoreText) throws Throwable {
+        FCHubs.VerifyScoreTextScoreComp(scoreType, scoreText);
+    }
+
+    @Then("^The Overall Average text should be \"([^\"]*)\" in the Score Comparison module$")
+    public void The_Overall_Average_text_should_be_in_the_Score_Comparison_module(String overallAvgText) throws Throwable {
+        FCHubs.VerifyOverallAverageTextScoreComp(overallAvgText);
+    }
+
+    @Then("^A question mark for \"([^\"]*)\" is displayed in the dials that don't have Student's data$")
+    public void A_question_mark_for_is_displayed_in_the_dials_that_dont_have_Students_data(String scoreType) throws Throwable {
+        FCHubs.VerifyQuestionMarkScoreComp(scoreType);
     }
 }
