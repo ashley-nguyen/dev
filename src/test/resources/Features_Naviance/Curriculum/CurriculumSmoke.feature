@@ -6,7 +6,7 @@ Feature: SmokeTest Curriculum
   Background:
     Given I am logged into Naviance "ntpfinale" as "tyler.tremblay" with "password"
 
-  Scenario:
+  Scenario: Verify Curriculum page
     Given I am a counselor
     Then I will be signed into naviance
 
