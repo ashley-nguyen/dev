@@ -1,4 +1,4 @@
-@activematch @nondestructive
+@activematch @nondestructive @NAVCORE_177
 Feature: Active Match (NAVCORE-177)
   As an Administrator I need_to be able to acknowledge that I have proper consent when I enable ActiveMatch by grade
   level so that I can control who has access to the feature
