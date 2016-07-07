@@ -6,7 +6,7 @@ Feature: Colleges - College Profile
 
   Background:
     Given when I log in with the following user details:
-      | etcs | sallysupport | sallysupport01! |
+      | rtsa | stan.smith | stan01! |
 # THIS IS A FEATURE BROUGHT OVER FROM THE BEHAT TESTS
 #  @Colleges @safe
 #  Scenario: View College Profile
@@ -24,12 +24,12 @@ Feature: Colleges - College Profile
 # THIS IS A CLEANER FORMAT FOR THE FEATURE ABOVE
   @Colleges @safe
   Scenario Outline: View College Profile
-    When I view "Georgetown University" profile
+    When I view "Adelphi University" profile
     Then I should see the following college profile information '<Admissions>' '<Academics>' '<Costandaid>' '<Extracurriculars>'
 
     Examples:
-      | Admissions      | Academics  | Costandaid          | Extracurriculars |
-      | Charles  Deacon | Biophysics | Patricia A. Mc Wade | 5054             |
+      | Admissions       | Academics  | Costandaid          | Extracurriculars |
+      | Kristen  Capezza | Accounting | Sheryl  Mihopulos   | 1321             |
 
 
 
