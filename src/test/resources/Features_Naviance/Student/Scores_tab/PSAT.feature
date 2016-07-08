@@ -71,8 +71,3 @@ Feature: Student PSAT scores
     | a101, a101     | 81              |      |         |            |       |      |       | Please make sure you enter a score between 20 and 80 |
     | a101, a101     |                 | 19   |         |            |       |      |       | Please make sure you enter a score between 20 and 80 |
     | a101, a101     |                 |      | 99      |            |       |      |       | Please make sure you enter a score between 20 and 80 |
-
-
-
-
-
