@@ -226,7 +226,8 @@ public class FCHubs_StepDefs {
     }
 
     @Then("^Average \"([^\"]*)\" should be \"([^\"]*)\" with correct values in the Score Comparison module$")
-    public void Average_should_be_with_correct_values_in_the_Score_Comparison_Module(String avgScoreType, String avgValue) throws Throwable {
+    public void Average_should_be_with_correct_values_in_the_Score_Comparison_Module(String avgScoreType,
+                                                                                     String avgValue) throws Throwable {
         FCHubs.VerifyAvgValuesScoreComp(avgScoreType, avgValue);
     }
 
@@ -236,12 +237,75 @@ public class FCHubs_StepDefs {
     }
 
     @Then("^The Overall Average text should be \"([^\"]*)\" in the Score Comparison module$")
-    public void The_Overall_Average_text_should_be_in_the_Score_Comparison_module(String overallAvgText) throws Throwable {
+    public void The_Overall_Average_text_should_be_in_the_Score_Comparison_module(String overallAvgText)
+            throws Throwable {
         FCHubs.VerifyOverallAverageTextScoreComp(overallAvgText);
     }
 
     @Then("^A question mark for \"([^\"]*)\" is displayed in the dials that don't have Student's data$")
-    public void A_question_mark_for_is_displayed_in_the_dials_that_dont_have_Students_data(String scoreType) throws Throwable {
+    public void A_question_mark_for_is_displayed_in_the_dials_that_dont_have_Students_data(String scoreType)
+            throws Throwable {
         FCHubs.VerifyQuestionMarkScoreComp(scoreType);
+    }
+
+    @Then("^Average Total Cost should be \"([^\"]*)\" when the income is \"([^\"]*)\"$")
+    public void Average_Total_Cost_should_be_when_the_income_is(String avgTotalCost, String income) throws Throwable {
+        FCHubs.VerifyAvgTotalCostInfoTopBar(income, avgTotalCost);
+    }
+
+    @Then("^Graduation Rate should be \"([^\"]*)\" with correct data in the Information Top bar$")
+    public void Graduation_Rate_should_be_with_correct_data_in_the_Information_Top_bar(String graduationRate) throws Throwable {
+        FCHubs.VerifyGraduationRateInfoTopBar(graduationRate);
+    }
+
+    @Then("^Acceptance Rate should be \"([^\"]*)\" with correct data in the Information Top bar$")
+    public void Acceptance_Rate_should_be_with_correct_data_in_the_Information_Top_bar(String acceptanceRate) throws Throwable {
+        FCHubs.VerifyAcceptanceRateInfoTopBar(acceptanceRate);
+    }
+
+    @Then("^The Priority date should be \"([^\"]*)\" \"([^\"]*)\" in the Information Top bar$")
+    public void The_Priority_date_should_be_in_the_Information_Top_bar(String month, String day) throws Throwable {
+        FCHubs.VerifyPriorityDateInfoTopBar(month, day);
+    }
+
+    @Then("^The student's email \"([^\"]*)\" should be present in the Email Field$")
+    public void The_students_email_should_be_present_in_the_Email_Field(String email) throws Throwable {
+        FCHubs.VerifyEmailInFieldContactForm(email);
+    }
+
+    @Then("^The student's phone number \"([^\"]*)\" should be displayed in the Phone Field$")
+    public void The_students_phone_number_should_be_displayed_in_the_Phone_Field(String phoneNumber) throws Throwable {
+        FCHubs.VerifyPhoneInFieldContactForm(phoneNumber);
+    }
+
+    @When("^I enter \"([^\"]*)\" in the Subject Field$")
+    public void I_enter_in_the_Subject_Field(String subject) throws Throwable {
+        FCHubs.enterSubjectContactForm(subject);
+    }
+
+    @And("^I enter \"([^\"]*)\" in the Message Field$")
+    public void I_enter_in_the_Message_Field(String message) throws Throwable {
+        FCHubs.enterMessageContactForm(message);
+    }
+
+    @And("^I click on 'Send Message'$")
+    public void I_click_on_Send_Message() throws Throwable {
+        FCHubs.ClickSendMessageContactForm();
+    }
+
+    @Then("^I should see the message \"([^\"]*)\"$")
+    public void I_should_see_the_message(String confirmationMessage) throws Throwable {
+        FCHubs.VerifyConfirmationMessageContactForm(confirmationMessage);
+    }
+
+    @Then("^I should see an error message \"([^\"]*)\"$")
+    public void I_should_see_an_error_message(String errorMessage) throws Throwable {
+        FCHubs.VerifyConfirmationMessageContactForm(errorMessage);
+    }
+
+    @When("^I clear the email field and the phone field in Contact Form$")
+    public void I_clear_the_email_field_and_the_phone_field_in_Contact_Form() throws Throwable {
+        FCHubs.ClearFieldContactForm("email");
+        FCHubs.ClearFieldContactForm("phone");
     }
 }

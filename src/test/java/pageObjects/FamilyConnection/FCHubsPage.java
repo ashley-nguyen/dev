@@ -30,6 +30,16 @@ public class FCHubsPage extends BaseClass {
     public static WebElement buttonRightArrow;
     @FindBy(how = How.XPATH, using = "//div[@class='webtourLightboxClose']")
     public static WebElement buttonX;
+    @FindBy(how = How.XPATH, using = "//input[@id='subject']")
+    public static WebElement textBoxSubjectField;
+    @FindBy(how = How.XPATH, using = "//textarea[@name='message']")
+    public static WebElement textBoxMessageField;
+    @FindBy(how = How.XPATH, using = "//input[@id='sendEmail']")
+    public static WebElement buttonSendMail;
+    @FindBy(how = How.XPATH, using = "//input[@id='email']")
+    public static WebElement textBoxEmail;
+    @FindBy(how = How.XPATH, using = "//input[@id='phone']")
+    public static WebElement textBoxPhone;
 
     public FCHubsPage(WebDriver driver) {
         super(driver);

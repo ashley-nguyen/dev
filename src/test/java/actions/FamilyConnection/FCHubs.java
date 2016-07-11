@@ -3,11 +3,13 @@ package actions.FamilyConnection;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import pageObjects.FamilyConnection.FCHubsPage;
 import stepDefs.Hooks;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.assertFalse;
@@ -343,5 +345,112 @@ public class FCHubs {
         driver = Hooks.driver;
         assertTrue("The score text is not correct", driver.findElement(By.xpath("//center[contains(text(), " +
                 "'" + scoreType + "')]/../div/div/div/div[contains(text(), '?')]")).isDisplayed());
+    }
+
+    public static void VerifyAvgTotalCostInfoTopBar(String income, String avgTotalCost) {
+        driver = Hooks.driver;
+        Select incomeDropDown = new Select(driver.findElement(By.xpath("//select")));
+        incomeDropDown.selectByVisibleText(income);
+        assertTrue("The Average Total Cost is not correct", driver.findElement(By.xpath("//div[@class=" +
+                "'hub-data-pod--money hub-data-pod--overview ng-binding'][contains(text(), " +
+                "'" + avgTotalCost + "')]")).isDisplayed());
+    }
+
+    public static void VerifyGraduationRateInfoTopBar(String graduationRate) {
+        driver = Hooks.driver;
+        assertTrue("The Graduation Rate is not correct", driver.findElement(By.xpath("//div[contains(text(), " +
+                "'Graduation Rate')]/../div[@class='hub-data-pod--percent hub-data-pod--overview ng-binding']" +
+                "[contains(text(), '" + graduationRate + "')]")).isDisplayed());
+    }
+
+    public static void VerifyAcceptanceRateInfoTopBar(String acceptanceRate) {
+        driver = Hooks.driver;
+        assertTrue("The Acceptance Rate is not correct", driver.findElement(By.xpath("//div[contains(text(), " +
+                "'Acceptance Rate')]/../div[@class='hub-data-pod--percent hub-data-pod--overview ng-binding']" +
+                "[contains(text(), '" + acceptanceRate + "')]")).isDisplayed());
+    }
+
+    public static void VerifyPriorityDateInfoTopBar(String month, String priorityDate) {
+        driver = Hooks.driver;
+        boolean monthAssertion = driver.findElement(By.xpath("//div[contains(text(), 'Regular Decision Deadline')]" +
+                "/../div/div[contains(text(), '" + month + "')]")).isDisplayed();
+        boolean dayAssertion = driver.findElement(By.xpath("//div[contains(text(), 'Regular Decision Deadline')]" +
+                "/../div/div[contains(text(), '" + priorityDate + "')]")).isDisplayed();
+        assertTrue("The Priority date is not correct", (monthAssertion && dayAssertion));
+    }
+
+    public static void VerifyEmailInFieldContactForm(String email) {
+        driver = Hooks.driver;
+        WebElement iframe = driver.findElement(By.xpath("//iframe"));
+        driver.switchTo().frame(iframe);
+        WebElement emailField = driver.findElement(By.xpath("//input[@id='email']"));
+        assertTrue("The email in the Email Field is not correct", emailField.getAttribute("value").equals(email));
+    }
+
+    public static void VerifyPhoneInFieldContactForm(String phoneNumber) {
+        driver = Hooks.driver;
+        WebElement iframe = driver.findElement(By.xpath("//iframe"));
+        driver.switchTo().frame(iframe);
+        WebElement phoneField = driver.findElement(By.xpath("//input[@id='phone']"));
+        assertTrue("The phone number in the Phone Field is not correct",
+                phoneField.getAttribute("value").equals(phoneNumber));
+    }
+
+    public static void VerifyUserCanEnterMessageContactForm(String testMessage) {
+        driver = Hooks.driver;
+        WebElement iframe = driver.findElement(By.xpath("//iframe"));
+        driver.switchTo().frame(iframe);
+        PageFactory.initElements(driver, FCHubsPage.class);
+        FCHubsPage.textBoxMessageField.sendKeys(testMessage);
+        assertTrue("The user cannot enter content in the Message Field",
+                FCHubsPage.textBoxMessageField.getText().equals(testMessage));
+    }
+
+    public static void enterSubjectContactForm(String subject) {
+        driver = Hooks.driver;
+        WebElement iframe = driver.findElement(By.xpath("//iframe"));
+        driver.switchTo().frame(iframe);
+        PageFactory.initElements(driver, FCHubsPage.class);
+        FCHubsPage.textBoxSubjectField.sendKeys(subject);
+        driver.switchTo().defaultContent();
+    }
+
+    public static void enterMessageContactForm(String message) {
+        driver = Hooks.driver;
+        WebElement iframe = driver.findElement(By.xpath("//iframe"));
+        driver.switchTo().frame(iframe);
+        PageFactory.initElements(driver, FCHubsPage.class);
+        FCHubsPage.textBoxMessageField.sendKeys(message);
+        driver.switchTo().defaultContent();
+    }
+
+    public static void ClickSendMessageContactForm() {
+        driver = Hooks.driver;
+        WebElement iframe = driver.findElement(By.xpath("//iframe"));
+        driver.switchTo().frame(iframe);
+        PageFactory.initElements(driver, FCHubsPage.class);
+        FCHubsPage.buttonSendMail.click();
+        driver.switchTo().defaultContent();
+    }
+
+    public static void VerifyConfirmationMessageContactForm(String confirmationMessage) {
+        driver = Hooks.driver;
+        WebElement iframe = driver.findElement(By.xpath("//iframe"));
+        driver.switchTo().frame(iframe);
+        assertTrue("The confirmation message is not correct", driver.findElement(By.xpath("//div[@class=" +
+                "'hubsV3EmailInfo hubsV3EmailError'][contains(text(), '" + confirmationMessage + "')]")).isDisplayed());
+    }
+
+    public static void ClearFieldContactForm(String fieldType) {
+        driver = Hooks.driver;
+        WebElement iframe = driver.findElement(By.xpath("//iframe"));
+        driver.switchTo().frame(iframe);
+        PageFactory.initElements(driver, FCHubsPage.class);
+        if(fieldType.equals("email")) {
+            FCHubsPage.textBoxEmail.clear();
+        } else if(fieldType.equals("phone")) {
+            FCHubsPage.textBoxPhone.clear();
+        }
+        driver.switchTo().defaultContent();
     }
 }
