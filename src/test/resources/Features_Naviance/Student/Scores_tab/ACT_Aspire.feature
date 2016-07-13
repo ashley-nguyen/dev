@@ -6,7 +6,7 @@ Feature: Student ACT ASPIRE scores
 
   Background:
     Given when I log in with the following user details:
-      | etcs | sallysupport | sallysupport01! |
+      | rtsa | stan.smith | stan01! |
 
   Scenario Outline: Verify Student ACT ASPIRE score ranges per grade
     When I search for <student> using the global search field
@@ -15,9 +15,9 @@ Feature: Student ACT ASPIRE scores
 
     Examples:
       | student        | subject | score | grade | message                                                                                             |
-      | Apple, Chamisa | english | 457   | 9     | Some elements are out of the ranges for the selected grade level. Please check: English. |
-      | Apple, Chamisa | english | 399   | 9     | Some elements are out of the ranges for the selected grade level. Please check: English. |
-      | Apple, Chamisa | math    | 461   | 9     | Some elements are out of the ranges for the selected grade level. Please check: Math.    |
-      | Apple, Chamisa | math    | 399   | 9     | Some elements are out of the ranges for the selected grade level. Please check: Math.    |
-      | Apple, Chamisa | science | 450   | 9     | Some elements are out of the ranges for the selected grade level. Please check: Science. |
-      | Apple, Chamisa | science | 399   | 9     | Some elements are out of the ranges for the selected grade level. Please check: Science. |
+      | A101, A101 | english | 457   | 9     | Some elements are out of the ranges for the selected grade level. Please check: English. |
+      | A101, A101 | english | 399   | 9     | Some elements are out of the ranges for the selected grade level. Please check: English. |
+      | A101, A101 | math    | 461   | 9     | Some elements are out of the ranges for the selected grade level. Please check: Math.    |
+      | A101, A101 | math    | 399   | 9     | Some elements are out of the ranges for the selected grade level. Please check: Math.    |
+      | A101, A101 | science | 450   | 9     | Some elements are out of the ranges for the selected grade level. Please check: Science. |
+      | A101, A101 | science | 399   | 9     | Some elements are out of the ranges for the selected grade level. Please check: Science. |
