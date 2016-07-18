@@ -40,6 +40,8 @@ public class FCHubsPage extends BaseClass {
     public static WebElement textBoxEmail;
     @FindBy(how = How.XPATH, using = "//input[@id='phone']")
     public static WebElement textBoxPhone;
+    @FindBy(how = How.XPATH, using = "//ul[@id='hubNavBar']/li/a[contains(text(), 'Studies')]")
+    public static WebElement tabStudies;
 
     public FCHubsPage(WebDriver driver) {
         super(driver);

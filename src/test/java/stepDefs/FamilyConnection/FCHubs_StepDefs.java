@@ -308,4 +308,9 @@ public class FCHubs_StepDefs {
         FCHubs.ClearFieldContactForm("email");
         FCHubs.ClearFieldContactForm("phone");
     }
+
+    @And("^I click the Studies tab$")
+    public void I_click_the_Studies_tab() throws Throwable {
+        FCHubs.ClickStudiesTab();
+    }
 }

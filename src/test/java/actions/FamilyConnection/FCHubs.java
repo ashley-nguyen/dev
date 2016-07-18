@@ -453,4 +453,10 @@ public class FCHubs {
         }
         driver.switchTo().defaultContent();
     }
+
+    public static void ClickStudiesTab() {
+        driver = Hooks.driver;
+        PageFactory.initElements(driver, FCHubsPage.class);
+        FCHubsPage.tabStudies.click();
+    }
 }
