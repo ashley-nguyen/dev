@@ -16,7 +16,7 @@ Feature: Teacher Recommendation
 
   Examples:
     | account     | user       | password  | school   | request                  | item                        |
-    | rtd1        | stan.smith | stan01!   | School A | class of 2016 (grade 12) | All recommendation requests |
+    | rtd1        | stan.smith | stan01!   | School A | class of 2016            | All recommendation requests |
 
   @settings
   Scenario Outline: Settings Teacher Recommendations
@@ -43,4 +43,4 @@ Feature: Teacher Recommendation
 
   Examples:
     | account     | user       | password  | school   | GradeFrom                  | GradeTo                  |
-    | rtd1        | stan.smith | stan01!   | School A | class of 2016 (grade 12)   | class of 2016 (grade 12) |
+    | rtd1        | stan.smith | stan01!   | School A | class of 2016              | class of 2016            |

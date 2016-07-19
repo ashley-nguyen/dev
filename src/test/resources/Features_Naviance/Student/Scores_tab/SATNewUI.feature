@@ -6,7 +6,7 @@ Feature: Student SAT scores
 
   Background:
     Given when I log in with the following user details:
-      | etcs | sallysupport | sallysupport01! |
+      | rtsa | stan.smith | stan01! |
 
   Scenario Outline: Enter SAT scores
     When I search for <student> using the global search field
@@ -29,6 +29,6 @@ Feature: Student SAT scores
 
     Examples:
       | student       | ebrw | reading | mathematics_score |writing  | math_test | totalscore | year  | link            | test | date    | day | grade | warning                                                        |
-      | Aisner, Cathy | 222  | 38      | 222               |  35     | 22        | 444        |  2016 |  key test scores| SAT  | January | 30  | 12th  | Date out of range, valid range is between March 2016 and today |
-      | Aisner, Cathy | 222  | 38      | 222               |  35     | 22        | 444        |  2016 |  key test scores| SAT  | March   | 30  | 12th  |  |
-      | Aisner, Cathy | 444  | 38      | 222               |  30     | 23        | 444        |  2016 |  key test scores| SAT  | March   | 30  | 12th  |  |
+      | A101, A101 | 222  | 38      | 222               |  35     | 22        | 444        |  2016 |  key test scores| SAT  | January | 30  | 12th  | Date out of range, valid range is between March 2016 and today |
+      | A101, A101 | 222  | 38      | 222               |  35     | 22        | 444        |  2016 |  key test scores| SAT  | March   | 30  | 12th  |  |
+      | A101, A101 | 444  | 38      | 222               |  30     | 23        | 444        |  2016 |  key test scores| SAT  | March   | 30  | 12th  |  |
