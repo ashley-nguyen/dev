@@ -8,6 +8,7 @@ import pageObjects.FamilyConnection.FCCollegesPage;
 import stepDefs.Hooks;
 
 import java.util.concurrent.TimeUnit;
+import static junit.framework.TestCase.assertTrue;
 
 /**
  * Created by jorgemaguina on 5/25/2016.
@@ -40,5 +41,12 @@ public class FCCollegesTab {
         WebElement collegeLink = driver.findElement(By.xpath("//table[@class='standard striped']/tbody/tr/td/a" +
                 "[contains(text(), '" + college + "')]"));
         collegeLink.click();
+    }
+
+    public static void VerifyMessageCollegeLookup(String message) {
+        driver = Hooks.driver;
+        PageFactory.initElements(driver, FCCollegesPage.class);
+        assertTrue("The message is not displayed in the College Lookup page",
+                FCCollegesPage.labelStudiesOffering.getText().equals(message));
     }
 }

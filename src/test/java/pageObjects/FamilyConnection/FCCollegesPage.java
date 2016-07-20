@@ -18,6 +18,8 @@ public class FCCollegesPage extends BaseClass {
     public static WebElement textAreaSearchCollege;
     @FindBy(how = How.XPATH, using = "//form[@id='search']/fieldset/input[@value='Go']")
     public static WebElement buttonGo;
+    @FindBy(how = How.XPATH, using = "//div[@id='main-content']/h3")
+    public static WebElement labelStudiesOffering;
 
     public FCCollegesPage(WebDriver driver) {
         super(driver);

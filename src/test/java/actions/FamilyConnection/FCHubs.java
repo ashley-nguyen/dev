@@ -257,56 +257,54 @@ public class FCHubs {
 
     public static void VerifyWebsiteQuickFacts(String webSite) {
         driver = Hooks.driver;
-        WebElement admissionsText = driver.findElement(By.xpath("//div[@class='fc-grid ng-pristine ng-untouched " +
-                "ng-valid ng-not-empty']/div/div/div/div/div/div[@class='fc-grid__col fc-grid__col--xs-6 summary__" +
-                "data']/a[@ng-if='vm.profile.displayUrl']\n"));
+        WebElement admissionsText = driver.findElement(By.xpath("//div/div/h3[contains(text(), 'Quick Facts')]" +
+                "/../../../div/div/a[contains(text(), '" + webSite + "')]"));
         assertTrue("Website data is not correct", admissionsText.getText().equals(webSite));
     }
 
     public static void VerifySchoolTypeQuickFacts(String schoolType) {
         driver = Hooks.driver;
-        WebElement admissionsText = driver.findElement(By.xpath("//div[@class='fc-grid ng-pristine ng-untouched " +
-                "ng-valid ng-not-empty']/div/div/div/div/div/div[contains(text(), 'School')]/following::div[1]"));
+        WebElement admissionsText = driver.findElement(By.xpath("//div/div/h3[contains(text(), 'Quick Facts')]" +
+                "/../../../div/div[contains(text(), '" + schoolType + "')]"));
         assertTrue("School Type data is not correct", admissionsText.getText().equals(schoolType));
     }
 
     public static void VerifyUndergraduateEnrollmentQuickFacts(String undergraduateEnrollment) {
         driver = Hooks.driver;
-        WebElement admissionsText = driver.findElement(By.xpath("//div[@class='fc-grid ng-pristine ng-untouched " +
-                "ng-valid ng-not-empty']/div/div/div/div/div/div[contains(text(), " +
-                "'Undergraduate')]/following::div[1]"));
+        WebElement admissionsText = driver.findElement(By.xpath("//div/div/h3[contains(text(), 'Quick Facts')]" +
+                "/../../../div/div[contains(text(), '" + undergraduateEnrollment + "')]"));
         assertTrue("Undergraduate Enrollment data is not correct",
                 admissionsText.getText().equals(undergraduateEnrollment));
     }
 
     public static void VerifyStudentToFacultyRatioQuickFacts(String studentFacultyRatio) {
         driver = Hooks.driver;
-        WebElement admissionsText = driver.findElement(By.xpath("//div[@class='fc-grid ng-pristine ng-untouched " +
-                "ng-valid ng-not-empty']/div/div/div/div/div/div[contains(text(), 'Student')]/following::div[1]"));
+        WebElement admissionsText = driver.findElement(By.xpath("//div/div/h3[contains(text(), 'Quick Facts')]" +
+                "/../../../div/div[contains(text(), '" + studentFacultyRatio + "')]"));
         assertTrue("Student-to-Faculty ratio data is not correct",
                 admissionsText.getText().equals(studentFacultyRatio));
     }
 
     public static void VerifyReligiousAffiliationQuickFacts(String religion) {
         driver = Hooks.driver;
-        WebElement admissionsText = driver.findElement(By.xpath("//div[@class='fc-grid ng-pristine ng-untouched " +
-                "ng-valid ng-not-empty']/div/div/div/div/div/div[contains(text(), 'Religious')]/following::div[1]"));
+        WebElement admissionsText = driver.findElement(By.xpath("//div/div/h3[contains(text(), 'Quick Facts')]" +
+                "/../../../div/div[contains(text(), '" + religion + "')]"));
         assertTrue("Student-to-Faculty ratio data is not correct",
                 admissionsText.getText().equals(religion));
     }
 
     public static void VerifyCampusSurroundings(String surroundings) {
         driver = Hooks.driver;
-        WebElement admissionsText = driver.findElement(By.xpath("//div[@class='fc-grid ng-pristine ng-untouched " +
-                "ng-valid ng-not-empty']/div/div/div/div/div/div[contains(text(), 'Campus')]/following::div[1]"));
+        WebElement admissionsText = driver.findElement(By.xpath("//div/div/h3[contains(text(), 'Quick Facts')]" +
+                "/../../../div/div[contains(text(), '" + surroundings + "')]"));
         assertTrue("Campus Surroundings data is not correct",
                 admissionsText.getText().equals(surroundings));
     }
 
     public static void VerifyDegreesOfferedQuickFacts(String degree) {
         driver = Hooks.driver;
-        assertTrue("The degree is not present", driver.findElement(By.xpath("//div[@class='fc-grid__col " +
-                "fc-grid__col--xs-6 summary__data']/ul/li[contains(text(), '" + degree + "')]")).isDisplayed());
+        assertTrue("The degree is not present", driver.findElement(By.xpath("//div/div/h3[contains(text(), " +
+                "'Quick Facts')]/../../../div/div/ul/li[contains(text(), '" + degree + "')]")).isDisplayed());
     }
 
     public static void VerifyScoreValuesScoreComp(String scoreType, String value) {
