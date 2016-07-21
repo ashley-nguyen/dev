@@ -56,4 +56,9 @@ public class FCCollegesTab_StepDefs {
         FCCollegesTab.ClickGoButton();
         FCCollegesTab.ClickCollegeInCollegeLookup(college);
     }
+
+    @Then("^I should see the message \"([^\"]*)\" in the College Lookup page$")
+    public void iShouldSeeTheMessageInTheCollegeLookupPage(String message) throws Throwable {
+        FCCollegesTab.VerifyMessageCollegeLookup(message);
+    }
 }

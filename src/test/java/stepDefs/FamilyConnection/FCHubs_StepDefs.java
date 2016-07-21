@@ -308,7 +308,6 @@ public class FCHubs_StepDefs {
         FCHubs.ClearFieldContactForm("email");
         FCHubs.ClearFieldContactForm("phone");
     }
-
     @And("^I click on X in FirstTutorial dialog$")
     public void I_Click_On_X_In_FirstTutorialDialog() throws Throwable {
         FCHubs.ClickXInFirstTutorialDialog();
@@ -318,6 +317,5 @@ public class FCHubs_StepDefs {
     @Then("^FirstTutorial dialog is closed$")
     public void First_tutorial_Dialog_Is_Closed() throws Throwable {
         FCHubs.VerifyFirstTutorialDialogClosed();
-
     }
 }
