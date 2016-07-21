@@ -11,8 +11,7 @@ import pageObjects.BaseClass;
  */
 public class eDocsTabPage extends BaseClass  {
 
-
-        @FindBy(how = How.XPATH, using = "//*[@id='primary']/li[6]/a")
+        @FindBy(how = How.XPATH, using = "(//a[contains(text(),'eDocs')])")
         public static WebElement tabeDocs;
 
 
