@@ -453,4 +453,27 @@ public class FCHubs {
         }
         driver.switchTo().defaultContent();
     }
+
+    public static void ClickXInFirstTutorialDialog() {
+        driver = Hooks.driver;
+        PageFactory.initElements(driver, FCHubsPage.class);
+        FCHubsPage.buttonXOnFirstTutorial.click();
+
+    }
+
+    public static void VerifyFirstTutorialDialogClosed() {
+        driver = Hooks.driver;
+        PageFactory.initElements(driver, FCHubsPage.class);
+        try{
+            if(driver.findElement(By.xpath
+                    ("//span[contains(text(),'Favorite this college')]")).isDisplayed()) {
+                assertTrue(false);
+            }
+        } catch(NoSuchElementException e) {
+            assertTrue(true);
+        } catch(Exception f) {
+            f.printStackTrace();
+        }
+
+    }
 }

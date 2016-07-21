@@ -12,8 +12,7 @@ import pageObjects.BaseClass;
 public class FCHubsPage extends BaseClass {
     @FindBy(how = How.XPATH, using = "//div[@class='hub-beta-bar']/a")
     public static WebElement buttonFeedback;
-    @FindBy(how = How.XPATH, using = "//div[contains(text(), 'Click this heart to add a school to your')]" +
-            "/div[contains(text(), 'Next')]")
+    @FindBy(how = How.XPATH, using = "//span[@class='fc-tooltip__title'][contains(text(),'Favorite this college')]/../div/div[contains(text(),'Next')]")
     public static WebElement linkNextFirstDialog;
     @FindBy(how = How.XPATH, using = "//div[contains(text(), 'How I compare')]/div[contains(text(), 'Next')]")
     public static WebElement linkNextSecondDialog;
@@ -40,10 +39,12 @@ public class FCHubsPage extends BaseClass {
     public static WebElement textBoxEmail;
     @FindBy(how = How.XPATH, using = "//input[@id='phone']")
     public static WebElement textBoxPhone;
-
+    @FindBy(how = How.XPATH, using = "//span[contains(text(),'Favorite this college')]/../span[@role='button']")
+    public static WebElement buttonXOnFirstTutorial;
     public FCHubsPage(WebDriver driver) {
         super(driver);
     }
+
 }
 
 
