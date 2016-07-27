@@ -25,6 +25,9 @@ public class SetupPage extends BaseClass {
     @FindBy(how = How.XPATH, using = "//input[@name='uploadFile']")
     public static WebElement btnContinue;
 
+    @FindBy(how = How.XPATH, using = "//button[@class='btn btn-primary ng-scope']")
+    public static WebElement btnUploadFile;
+
     @FindBy(how = How.XPATH, using = "//input[@value='Continue']")
     public static WebElement btnContinueDataImport;
 
