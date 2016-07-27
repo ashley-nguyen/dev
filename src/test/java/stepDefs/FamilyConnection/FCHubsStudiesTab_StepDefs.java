@@ -62,4 +62,9 @@ public class FCHubsStudiesTab_StepDefs {
     public void I_click_in_the_Majors_Offered_list(String program) throws Throwable {
         FCHubsStudiesTab.ClickProgramInMajorsOfferedList(program);
     }
+
+    @Then("^The Study Option \"([^\"]*)\" should be \"([^\"]*)\"$")
+    public void The_Study_Option_should_be(String studyOption, String studyOptionAvailability) throws Throwable {
+        FCHubsStudiesTab.VerifyStudyOptions(studyOption, studyOptionAvailability);
+    }
 }

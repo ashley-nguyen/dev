@@ -103,4 +103,18 @@ public class FCHubsStudiesTab {
         ArrayList<String> tabs = new ArrayList<String> (driver.getWindowHandles());
         driver.switchTo().window(tabs.get(tabs.size() - 1));
     }
+
+    public static void VerifyStudyOptions(String studyOption, String studyOptionAvailability) {
+        driver = Hooks.driver;
+        WebElement currentStudyOption = driver.findElement(By.xpath("//div/h2[contains(text(), 'Study Options')]" +
+                "/../../div/div/div[text() = '" + studyOption + "']/span"));
+        if(studyOptionAvailability.equals("available")) {
+            assertTrue("The study Options are not correct",
+                    currentStudyOption.getAttribute("class").equals("study-option__program--yes"));
+        } else if(studyOptionAvailability.equals("not available")) {
+            assertTrue("The study Options are not correct",
+                    currentStudyOption.getAttribute("class").equals("study-option__program--no"));
+        }
+
+    }
 }
