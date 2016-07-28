@@ -480,4 +480,10 @@ public class FCHubs {
         PageFactory.initElements(driver, FCHubsPage.class);
         FCHubsPage.tabStudies.click();
     }
+
+    public static void ClickAdmissionsTab() {
+        driver = Hooks.driver;
+        PageFactory.initElements(driver, FCHubsPage.class);
+        FCHubsPage.tabAdmissions.click();
+    }
 }

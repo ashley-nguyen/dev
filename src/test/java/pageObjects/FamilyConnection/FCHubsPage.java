@@ -43,6 +43,8 @@ public class FCHubsPage extends BaseClass {
     public static WebElement buttonXOnFirstTutorial;
     @FindBy(how = How.XPATH, using = "//ul[@id='hubNavBar']/li/a[contains(text(), 'Studies')]")
     public static WebElement tabStudies;
+    @FindBy(how = How.XPATH, using = "//ul[@id='hubNavBar']/li/a[contains(text(), 'Admissions')]")
+    public static WebElement tabAdmissions;
 
     public FCHubsPage(WebDriver driver) {
         super(driver);

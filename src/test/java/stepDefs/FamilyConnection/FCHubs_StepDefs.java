@@ -323,4 +323,9 @@ public class FCHubs_StepDefs {
     public void iClickTheStudiesTab() throws Throwable {
         FCHubs.ClickStudiesTab();
     }
+
+    @And("^I click the Admissions tab$")
+    public void I_click_the_Admissions_Tab() throws Throwable {
+        FCHubs.ClickAdmissionsTab();
+    }
 }
