@@ -3,11 +3,13 @@ package actions.FamilyConnection;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import pageObjects.FamilyConnection.FCHubsPage;
 import stepDefs.Hooks;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.assertFalse;
@@ -251,5 +253,231 @@ public class FCHubs {
         driver = Hooks.driver;
         WebElement admissionsText = driver.findElement(By.xpath("//div[@class='contactsAdmissions ng-binding']"));
         assertTrue("Phone data is not correct", admissionsText.getText().contains(email));
+    }
+
+    public static void VerifyWebsiteQuickFacts(String webSite) {
+        driver = Hooks.driver;
+        WebElement admissionsText = driver.findElement(By.xpath("//div/div/h3[contains(text(), 'Quick Facts')]" +
+                "/../../../div/div/a[contains(text(), '" + webSite + "')]"));
+        assertTrue("Website data is not correct", admissionsText.getText().equals(webSite));
+    }
+
+    public static void VerifySchoolTypeQuickFacts(String schoolType) {
+        driver = Hooks.driver;
+        WebElement admissionsText = driver.findElement(By.xpath("//div/div/h3[contains(text(), 'Quick Facts')]" +
+                "/../../../div/div[contains(text(), '" + schoolType + "')]"));
+        assertTrue("School Type data is not correct", admissionsText.getText().equals(schoolType));
+    }
+
+    public static void VerifyUndergraduateEnrollmentQuickFacts(String undergraduateEnrollment) {
+        driver = Hooks.driver;
+        WebElement admissionsText = driver.findElement(By.xpath("//div/div/h3[contains(text(), 'Quick Facts')]" +
+                "/../../../div/div[contains(text(), '" + undergraduateEnrollment + "')]"));
+        assertTrue("Undergraduate Enrollment data is not correct",
+                admissionsText.getText().equals(undergraduateEnrollment));
+    }
+
+    public static void VerifyStudentToFacultyRatioQuickFacts(String studentFacultyRatio) {
+        driver = Hooks.driver;
+        WebElement admissionsText = driver.findElement(By.xpath("//div/div/h3[contains(text(), 'Quick Facts')]" +
+                "/../../../div/div[contains(text(), '" + studentFacultyRatio + "')]"));
+        assertTrue("Student-to-Faculty ratio data is not correct",
+                admissionsText.getText().equals(studentFacultyRatio));
+    }
+
+    public static void VerifyReligiousAffiliationQuickFacts(String religion) {
+        driver = Hooks.driver;
+        WebElement admissionsText = driver.findElement(By.xpath("//div/div/h3[contains(text(), 'Quick Facts')]" +
+                "/../../../div/div[contains(text(), '" + religion + "')]"));
+        assertTrue("Student-to-Faculty ratio data is not correct",
+                admissionsText.getText().equals(religion));
+    }
+
+    public static void VerifyCampusSurroundings(String surroundings) {
+        driver = Hooks.driver;
+        WebElement admissionsText = driver.findElement(By.xpath("//div/div/h3[contains(text(), 'Quick Facts')]" +
+                "/../../../div/div[contains(text(), '" + surroundings + "')]"));
+        assertTrue("Campus Surroundings data is not correct",
+                admissionsText.getText().equals(surroundings));
+    }
+
+    public static void VerifyDegreesOfferedQuickFacts(String degree) {
+        driver = Hooks.driver;
+        assertTrue("The degree is not present", driver.findElement(By.xpath("//div/div/h3[contains(text(), " +
+                "'Quick Facts')]/../../../div/div/ul/li[contains(text(), '" + degree + "')]")).isDisplayed());
+    }
+
+    public static void VerifyScoreValuesScoreComp(String scoreType, String value) {
+        driver = Hooks.driver;
+        assertTrue("The Student's " +  scoreType + " is not correct", driver.findElement(By.xpath("//center" +
+                "[contains(text(), '" + scoreType + "')]/../div/div[contains(text(), 'You')]" +
+                "/span[contains(text(), '" + value + "')]")).isDisplayed());
+    }
+
+    public static void VerifyAvgValuesScoreComp(String avgScoreType, String avgValue) {
+        driver = Hooks.driver;
+        assertTrue("The average " + avgScoreType  + " is not correct", driver.findElement(By.xpath("//center" +
+                "[contains(text(), '" + avgScoreType +"')]/../div/div[contains(text(), 'Admitted Average')]/span" +
+                "[contains(text(), '" + avgValue + "')]")).isDisplayed());
+    }
+
+    public static void VerifyScoreTextScoreComp(String scoreType, String scoreText) {
+        driver = Hooks.driver;
+        assertTrue("The score text is not correct", driver.findElement(By.xpath("//center[contains(text()" +
+                ", '" + scoreType + "')]/../div/div[contains(text(), '" + scoreText + "')]")).isDisplayed());
+    }
+
+    public static void VerifyOverallAverageTextScoreComp(String overallAvgText) {
+        driver = Hooks.driver;
+        boolean isPresent = false;
+        WebElement upperText = driver.findElement(By.xpath("//div[@ng-if='vm.diff.overall < vm.good']"));
+        WebElement bottomText = driver.findElement(By.xpath("//div[@ng-if='vm.improves.length > 0' and " +
+                "@class='fc-grid__row fc-grid__row--xs-center ng-scope']/div/span/font"));
+        if(upperText.getText().equals(overallAvgText) || bottomText.getText().equals(overallAvgText)) {
+            isPresent = true;
+        }
+        assertTrue("The Overall Average text is not present", isPresent);
+    }
+
+    public static void VerifyQuestionMarkScoreComp(String scoreType) {
+        driver = Hooks.driver;
+        assertTrue("The score text is not correct", driver.findElement(By.xpath("//center[contains(text(), " +
+                "'" + scoreType + "')]/../div/div/div/div[contains(text(), '?')]")).isDisplayed());
+    }
+
+    public static void VerifyAvgTotalCostInfoTopBar(String income, String avgTotalCost) {
+        driver = Hooks.driver;
+        Select incomeDropDown = new Select(driver.findElement(By.xpath("//select")));
+        incomeDropDown.selectByVisibleText(income);
+        assertTrue("The Average Total Cost is not correct", driver.findElement(By.xpath("//div[@class=" +
+                "'hub-data-pod--money hub-data-pod--overview ng-binding'][contains(text(), " +
+                "'" + avgTotalCost + "')]")).isDisplayed());
+    }
+
+    public static void VerifyGraduationRateInfoTopBar(String graduationRate) {
+        driver = Hooks.driver;
+        assertTrue("The Graduation Rate is not correct", driver.findElement(By.xpath("//div[contains(text(), " +
+                "'Graduation Rate')]/../div[@class='hub-data-pod--percent hub-data-pod--overview ng-binding']" +
+                "[contains(text(), '" + graduationRate + "')]")).isDisplayed());
+    }
+
+    public static void VerifyAcceptanceRateInfoTopBar(String acceptanceRate) {
+        driver = Hooks.driver;
+        assertTrue("The Acceptance Rate is not correct", driver.findElement(By.xpath("//div[contains(text(), " +
+                "'Acceptance Rate')]/../div[@class='hub-data-pod--percent hub-data-pod--overview ng-binding']" +
+                "[contains(text(), '" + acceptanceRate + "')]")).isDisplayed());
+    }
+
+    public static void VerifyPriorityDateInfoTopBar(String month, String priorityDate) {
+        driver = Hooks.driver;
+        boolean monthAssertion = driver.findElement(By.xpath("//div[contains(text(), 'Regular Decision Deadline')]" +
+                "/../div/div[contains(text(), '" + month + "')]")).isDisplayed();
+        boolean dayAssertion = driver.findElement(By.xpath("//div[contains(text(), 'Regular Decision Deadline')]" +
+                "/../div/div[contains(text(), '" + priorityDate + "')]")).isDisplayed();
+        assertTrue("The Priority date is not correct", (monthAssertion && dayAssertion));
+    }
+
+    public static void VerifyEmailInFieldContactForm(String email) {
+        driver = Hooks.driver;
+        WebElement iframe = driver.findElement(By.xpath("//iframe"));
+        driver.switchTo().frame(iframe);
+        WebElement emailField = driver.findElement(By.xpath("//input[@id='email']"));
+        assertTrue("The email in the Email Field is not correct", emailField.getAttribute("value").equals(email));
+    }
+
+    public static void VerifyPhoneInFieldContactForm(String phoneNumber) {
+        driver = Hooks.driver;
+        WebElement iframe = driver.findElement(By.xpath("//iframe"));
+        driver.switchTo().frame(iframe);
+        WebElement phoneField = driver.findElement(By.xpath("//input[@id='phone']"));
+        assertTrue("The phone number in the Phone Field is not correct",
+                phoneField.getAttribute("value").equals(phoneNumber));
+    }
+
+    public static void VerifyUserCanEnterMessageContactForm(String testMessage) {
+        driver = Hooks.driver;
+        WebElement iframe = driver.findElement(By.xpath("//iframe"));
+        driver.switchTo().frame(iframe);
+        PageFactory.initElements(driver, FCHubsPage.class);
+        FCHubsPage.textBoxMessageField.sendKeys(testMessage);
+        assertTrue("The user cannot enter content in the Message Field",
+                FCHubsPage.textBoxMessageField.getText().equals(testMessage));
+    }
+
+    public static void enterSubjectContactForm(String subject) {
+        driver = Hooks.driver;
+        WebElement iframe = driver.findElement(By.xpath("//iframe"));
+        driver.switchTo().frame(iframe);
+        PageFactory.initElements(driver, FCHubsPage.class);
+        FCHubsPage.textBoxSubjectField.sendKeys(subject);
+        driver.switchTo().defaultContent();
+    }
+
+    public static void enterMessageContactForm(String message) {
+        driver = Hooks.driver;
+        WebElement iframe = driver.findElement(By.xpath("//iframe"));
+        driver.switchTo().frame(iframe);
+        PageFactory.initElements(driver, FCHubsPage.class);
+        FCHubsPage.textBoxMessageField.sendKeys(message);
+        driver.switchTo().defaultContent();
+    }
+
+    public static void ClickSendMessageContactForm() {
+        driver = Hooks.driver;
+        WebElement iframe = driver.findElement(By.xpath("//iframe"));
+        driver.switchTo().frame(iframe);
+        PageFactory.initElements(driver, FCHubsPage.class);
+        FCHubsPage.buttonSendMail.click();
+        driver.switchTo().defaultContent();
+    }
+
+    public static void VerifyConfirmationMessageContactForm(String confirmationMessage) {
+        driver = Hooks.driver;
+        WebElement iframe = driver.findElement(By.xpath("//iframe"));
+        driver.switchTo().frame(iframe);
+        assertTrue("The confirmation message is not correct", driver.findElement(By.xpath("//div[@class=" +
+                "'hubsV3EmailInfo hubsV3EmailError'][contains(text(), '" + confirmationMessage + "')]")).isDisplayed());
+    }
+
+    public static void ClearFieldContactForm(String fieldType) {
+        driver = Hooks.driver;
+        WebElement iframe = driver.findElement(By.xpath("//iframe"));
+        driver.switchTo().frame(iframe);
+        PageFactory.initElements(driver, FCHubsPage.class);
+        if(fieldType.equals("email")) {
+            FCHubsPage.textBoxEmail.clear();
+        } else if(fieldType.equals("phone")) {
+            FCHubsPage.textBoxPhone.clear();
+        }
+        driver.switchTo().defaultContent();
+    }
+
+    public static void ClickXInFirstTutorialDialog() {
+        driver = Hooks.driver;
+        PageFactory.initElements(driver, FCHubsPage.class);
+        FCHubsPage.buttonXOnFirstTutorial.click();
+
+    }
+
+    public static void VerifyFirstTutorialDialogClosed() {
+        driver = Hooks.driver;
+        PageFactory.initElements(driver, FCHubsPage.class);
+        try{
+            if(driver.findElement(By.xpath
+                    ("//span[contains(text(),'Favorite this college')]")).isDisplayed()) {
+                assertTrue(false);
+            }
+        } catch(NoSuchElementException e) {
+            assertTrue(true);
+        } catch(Exception f) {
+            f.printStackTrace();
+        }
+
+    }
+
+    public static void ClickStudiesTab() {
+        driver = Hooks.driver;
+        PageFactory.initElements(driver, FCHubsPage.class);
+        FCHubsPage.tabStudies.click();
     }
 }

@@ -7,6 +7,8 @@ import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import org.openqa.selenium.WebDriver;
 
+import java.util.List;
+
 /**
  * Created by jorgemaguina on 5/31/2016.
  *  click on Next on FirstTutorial dialog - Created by Mandeep 06/08/2016
@@ -181,5 +183,144 @@ public class FCHubs_StepDefs {
     @Then("^Email address should be \"([^\"]*)\" in Admissions$")
     public void Email_address_should_be_in_admissions(String email) throws Throwable {
         FCHubs.VerifyEmailAdmissions(email);
+    }
+
+    @Then("^Website should be \"([^\"]*)\" in Quick Facts$")
+    public void Website_should_be_in_quick_facts(String webSite) throws Throwable {
+        FCHubs.VerifyWebsiteQuickFacts(webSite);
+    }
+
+    @Then("^School Type is \"([^\"]*)\" in Quick Facts$")
+    public void School_Type_is_in_Quick_Facts(String schoolType) throws Throwable {
+        FCHubs.VerifySchoolTypeQuickFacts(schoolType);
+    }
+
+    @Then("^Undergraduate Enrollment is \"([^\"]*)\" in Quick Facts$")
+    public void Undergraduate_Enrollment_is_in_Quick_Facts(String undergraduateEnrollment) throws Throwable {
+        FCHubs.VerifyUndergraduateEnrollmentQuickFacts(undergraduateEnrollment);
+    }
+
+    @Then("^Student-to-faculty ratio is \"([^\"]*)\" in Quick Facts$")
+    public void StudentToFaculty_ratio_is_in_Quick_Facts(String studentFacultyRatio) throws Throwable {
+        FCHubs.VerifyStudentToFacultyRatioQuickFacts(studentFacultyRatio);
+    }
+
+    @Then("^Religious Affiliation is \"([^\"]*)\" in Quick Facts$")
+    public void Religious_Affiliation_is_in_Quick_Facts(String religion) throws Throwable {
+        FCHubs.VerifyReligiousAffiliationQuickFacts(religion);
+    }
+
+    @Then("^Campus Surroundings is \"([^\"]*)\" in Quick Facts$")
+    public void Campus_Surroundings_is_in_Quick_Facts(String surroundings) throws Throwable {
+        FCHubs.VerifyCampusSurroundings(surroundings);
+    }
+
+    @Then("^Degrees Offered contains \"([^\"]*)\"$")
+    public void Degrees_Offered_contains(String degree) throws Throwable {
+        FCHubs.VerifyDegreesOfferedQuickFacts(degree);
+    }
+
+    @Then("^Student's \"([^\"]*)\" should be \"([^\"]*)\" in the Score Comparison module$")
+    public void Students_should_be_in_the_Score_Comparison_Module(String scoreType, String value) throws Throwable {
+        FCHubs.VerifyScoreValuesScoreComp(scoreType, value);
+    }
+
+    @Then("^Average \"([^\"]*)\" should be \"([^\"]*)\" with correct values in the Score Comparison module$")
+    public void Average_should_be_with_correct_values_in_the_Score_Comparison_Module(String avgScoreType,
+                                                                                     String avgValue) throws Throwable {
+        FCHubs.VerifyAvgValuesScoreComp(avgScoreType, avgValue);
+    }
+
+    @Then("^The score text for \"([^\"]*)\" should be \"([^\"]*)\"$")
+    public void The_score_text_for_should_be(String scoreType, String scoreText) throws Throwable {
+        FCHubs.VerifyScoreTextScoreComp(scoreType, scoreText);
+    }
+
+    @Then("^The Overall Average text should be \"([^\"]*)\" in the Score Comparison module$")
+    public void The_Overall_Average_text_should_be_in_the_Score_Comparison_module(String overallAvgText)
+            throws Throwable {
+        FCHubs.VerifyOverallAverageTextScoreComp(overallAvgText);
+    }
+
+    @Then("^A question mark for \"([^\"]*)\" is displayed in the dials that don't have Student's data$")
+    public void A_question_mark_for_is_displayed_in_the_dials_that_dont_have_Students_data(String scoreType)
+            throws Throwable {
+        FCHubs.VerifyQuestionMarkScoreComp(scoreType);
+    }
+
+    @Then("^Average Total Cost should be \"([^\"]*)\" when the income is \"([^\"]*)\"$")
+    public void Average_Total_Cost_should_be_when_the_income_is(String avgTotalCost, String income) throws Throwable {
+        FCHubs.VerifyAvgTotalCostInfoTopBar(income, avgTotalCost);
+    }
+
+    @Then("^Graduation Rate should be \"([^\"]*)\" with correct data in the Information Top bar$")
+    public void Graduation_Rate_should_be_with_correct_data_in_the_Information_Top_bar(String graduationRate) throws Throwable {
+        FCHubs.VerifyGraduationRateInfoTopBar(graduationRate);
+    }
+
+    @Then("^Acceptance Rate should be \"([^\"]*)\" with correct data in the Information Top bar$")
+    public void Acceptance_Rate_should_be_with_correct_data_in_the_Information_Top_bar(String acceptanceRate) throws Throwable {
+        FCHubs.VerifyAcceptanceRateInfoTopBar(acceptanceRate);
+    }
+
+    @Then("^The Priority date should be \"([^\"]*)\" \"([^\"]*)\" in the Information Top bar$")
+    public void The_Priority_date_should_be_in_the_Information_Top_bar(String month, String day) throws Throwable {
+        FCHubs.VerifyPriorityDateInfoTopBar(month, day);
+    }
+
+    @Then("^The student's email \"([^\"]*)\" should be present in the Email Field$")
+    public void The_students_email_should_be_present_in_the_Email_Field(String email) throws Throwable {
+        FCHubs.VerifyEmailInFieldContactForm(email);
+    }
+
+    @Then("^The student's phone number \"([^\"]*)\" should be displayed in the Phone Field$")
+    public void The_students_phone_number_should_be_displayed_in_the_Phone_Field(String phoneNumber) throws Throwable {
+        FCHubs.VerifyPhoneInFieldContactForm(phoneNumber);
+    }
+
+    @When("^I enter \"([^\"]*)\" in the Subject Field$")
+    public void I_enter_in_the_Subject_Field(String subject) throws Throwable {
+        FCHubs.enterSubjectContactForm(subject);
+    }
+
+    @And("^I enter \"([^\"]*)\" in the Message Field$")
+    public void I_enter_in_the_Message_Field(String message) throws Throwable {
+        FCHubs.enterMessageContactForm(message);
+    }
+
+    @And("^I click on 'Send Message'$")
+    public void I_click_on_Send_Message() throws Throwable {
+        FCHubs.ClickSendMessageContactForm();
+    }
+
+    @Then("^I should see the message \"([^\"]*)\"$")
+    public void I_should_see_the_message(String confirmationMessage) throws Throwable {
+        FCHubs.VerifyConfirmationMessageContactForm(confirmationMessage);
+    }
+
+    @Then("^I should see an error message \"([^\"]*)\"$")
+    public void I_should_see_an_error_message(String errorMessage) throws Throwable {
+        FCHubs.VerifyConfirmationMessageContactForm(errorMessage);
+    }
+
+    @When("^I clear the email field and the phone field in Contact Form$")
+    public void I_clear_the_email_field_and_the_phone_field_in_Contact_Form() throws Throwable {
+        FCHubs.ClearFieldContactForm("email");
+        FCHubs.ClearFieldContactForm("phone");
+    }
+    @And("^I click on X in FirstTutorial dialog$")
+    public void I_Click_On_X_In_FirstTutorialDialog() throws Throwable {
+        FCHubs.ClickXInFirstTutorialDialog();
+
+    }
+
+    @Then("^FirstTutorial dialog is closed$")
+    public void First_tutorial_Dialog_Is_Closed() throws Throwable {
+        FCHubs.VerifyFirstTutorialDialogClosed();
+    }
+
+    @When("^I click the Studies tab$")
+    public void iClickTheStudiesTab() throws Throwable {
+        FCHubs.ClickStudiesTab();
     }
 }

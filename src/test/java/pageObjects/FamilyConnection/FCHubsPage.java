@@ -12,8 +12,7 @@ import pageObjects.BaseClass;
 public class FCHubsPage extends BaseClass {
     @FindBy(how = How.XPATH, using = "//div[@class='hub-beta-bar']/a")
     public static WebElement buttonFeedback;
-    @FindBy(how = How.XPATH, using = "//div[contains(text(), 'Click this heart to add a school to your')]" +
-            "/div[contains(text(), 'Next')]")
+    @FindBy(how = How.XPATH, using = "//span[@class='fc-tooltip__title'][contains(text(),'Favorite this college')]/../div/div[contains(text(),'Next')]")
     public static WebElement linkNextFirstDialog;
     @FindBy(how = How.XPATH, using = "//div[contains(text(), 'How I compare')]/div[contains(text(), 'Next')]")
     public static WebElement linkNextSecondDialog;
@@ -30,10 +29,25 @@ public class FCHubsPage extends BaseClass {
     public static WebElement buttonRightArrow;
     @FindBy(how = How.XPATH, using = "//div[@class='webtourLightboxClose']")
     public static WebElement buttonX;
+    @FindBy(how = How.XPATH, using = "//input[@id='subject']")
+    public static WebElement textBoxSubjectField;
+    @FindBy(how = How.XPATH, using = "//textarea[@name='message']")
+    public static WebElement textBoxMessageField;
+    @FindBy(how = How.XPATH, using = "//input[@id='sendEmail']")
+    public static WebElement buttonSendMail;
+    @FindBy(how = How.XPATH, using = "//input[@id='email']")
+    public static WebElement textBoxEmail;
+    @FindBy(how = How.XPATH, using = "//input[@id='phone']")
+    public static WebElement textBoxPhone;
+    @FindBy(how = How.XPATH, using = "//span[contains(text(),'Favorite this college')]/../span[@role='button']")
+    public static WebElement buttonXOnFirstTutorial;
+    @FindBy(how = How.XPATH, using = "//ul[@id='hubNavBar']/li/a[contains(text(), 'Studies')]")
+    public static WebElement tabStudies;
 
     public FCHubsPage(WebDriver driver) {
         super(driver);
     }
+
 }
 
 
