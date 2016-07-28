@@ -37,11 +37,10 @@ Feature:  As a student viewing new Hubs' Overview tab, I want to see contact inf
 
   Scenario: The "Required" requirements for "Transfer" are displayed with correct data
     When I click "Transfer" in Application Requirements
-    Then I should see the "Required" requirements in Application Requirements:
-    | ACT |
-    | SAT |
+    Then I should see the "Recommended" requirements in Application Requirements:
+    | Campus Visit |
 
   Scenario: The "Recommended" requirements for "Transfer" are displayed with correct data
     When I click "Transfer" in Application Requirements
     Then I should see the "Optional" requirements in Application Requirements:
-    |
+    | Interview |
