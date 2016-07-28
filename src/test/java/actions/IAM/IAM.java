@@ -16,11 +16,11 @@ import static org.junit.Assert.assertTrue;
 public class IAM {
     public static WebDriver driver;
 
-    public static void VerifyNotBeLogged() {
+    public static void VerifyNotBeLogged() throws InterruptedException {
         driver = Hooks.driver;
         PageFactory.initElements(driver, IAMPage.class);
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-        IAMPage.Login.isDisplayed();
+        assertTrue("Verify Not logged!", IAMPage.Login.isDisplayed());
     }
 
     public static void verifyDashboard() throws InterruptedException {
