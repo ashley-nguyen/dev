@@ -73,12 +73,13 @@ public class College {
         }
     }
 
-    public static void goToAdvancedCollegeSearch() {
+    public static void goToAdvancedCollegeSearch() throws InterruptedException {
         driver = Hooks.driver;
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         PageFactory.initElements(driver, SchoolPageHeader.class);
 
         //click Colleges link
+
 
         Actions action = new Actions(driver);
         action.moveToElement(SchoolPageHeader.lnkColleges).build().perform();
