@@ -70,7 +70,7 @@ public class Login_StepDefs {
     }
 
     //Usage: I am logged into naviance  "Username" with "Password"
-    @Given("^I am logged into Naviance \"(.*)\" with \"(.*)\"$")
+    @Given("^I am logged into Naviance with \"(.*)\" with \"(.*)\"$")
     public void I_am_logged_into_naviance_user_with_password(String user, String pass) throws Throwable {
         Login.IAMLogin(user, pass);
     }

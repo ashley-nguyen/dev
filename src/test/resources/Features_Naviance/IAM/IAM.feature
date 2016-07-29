@@ -7,7 +7,7 @@ Feature: IAM tests
 
   Scenario Outline: Verify Logged in
     Given I am on the following url "<url>"
-    When I am logged into Naviance "<user>" with "<password>"
+    When I am logged into Naviance with "<user>" with "<password>"
     Then I will logged into the district and able to perform normal administrative functions
   Examples:
     | user       | password  | url                                                           |
@@ -15,7 +15,7 @@ Feature: IAM tests
 
   Scenario Outline: Verify not logged
     Given I am on the following url "<url>"
-    When I am logged into Naviance "<user>" with "<password>"
+    When I am logged into Naviance with "<user>" with "<password>"
     Then I will not be logged into the district and not able to perform normal administrative functions
   Examples:
     | user       | password  | url                                                           |
