@@ -1,4 +1,4 @@
-@smoketest @nondestructive @hubs @admissionstopbar
+@smoketest @nondestructive @hubs @applicationrequirements
 Feature:  As a student viewing new Hubs' Overview tab, I want to see contact information so that I can understand how
   to communicate with the school
 
@@ -44,3 +44,10 @@ Feature:  As a student viewing new Hubs' Overview tab, I want to see contact inf
     When I click "Transfer" in Application Requirements
     Then I should see the "Optional" requirements in Application Requirements:
     | Interview |
+
+  Scenario: The "Required" requirements for "International" are displayed with correct data
+    When I click "International" in Application Requirements
+    Then I should see the "Required" requirements in Application Requirements:
+    | Ability to Finance |
+    | SAT                |
+    | TOEFL              |
