@@ -21,7 +21,7 @@ Feature: Student Success Plan
 
   Examples:
     | student       | taskname    | duedate   |
-    | a101, a101    | New Task 1  | 2016-06-30|
+    | a101, a101    | New Task 1  | 2017-06-30|
 
   @viewtaskdetails
   Scenario Outline: Assign school tasks

@@ -20,4 +20,58 @@ public class Reports_StepDefs {
     public void i_see_a_fatal_error_in_the_page() throws Throwable {
         Reports.verifyReports();
     }
+
+    @Then("^I verify usage report page$")
+    public void i_verify_usage_report() throws Throwable {
+        Reports.NavigateToReports();
+        Reports.verifyUsageReports();
+    }
+
+    @Then("^I verify planning report page$")
+    public void i_verify_planning_report() throws Throwable {
+        Reports.NavigateToReports();
+        Reports.verifyPlanningReports();
+    }
+
+    @Then("^I verify outcome report page$")
+    public void i_verify_outcome_report() throws Throwable {
+        Reports.NavigateToReports();
+        Reports.verifyOutcomeReports();
+    }
+
+    @Then("^I verify scholarship report page$")
+    public void i_verify_scholarship_report() throws Throwable {
+        Reports.NavigateToReports();
+        Reports.verifyScholarshipReports();
+    }
+
+    @Then("^I verify college report page$")
+    public void i_verify_college_report() throws Throwable {
+        Reports.NavigateToReports();
+        Reports.verifyCollegeReports();
+    }
+
+    @Then("^I verify score report page$")
+    public void i_verify_score_report() throws Throwable {
+        Reports.NavigateToReports();
+        Reports.verifyScoreReports();
+    }
+
+    @Then("^I verify course report page$")
+    public void i_verify_course_report() throws Throwable {
+        Reports.NavigateToReports();
+        Reports.verifyCourseReports();
+    }
+
+    @Then("^I verify CTE report page$")
+    public void i_verify_CTE_report() throws Throwable {
+        Reports.NavigateToReports();
+        Reports.verifyCTEReports();
+    }
+
+    @Then("^I verify planner report page$")
+    public void i_verify_planner_report() throws Throwable {
+        Reports.NavigateToReports();
+        Reports.verifyPlannerReports();
+    }
 }

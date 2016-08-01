@@ -1,4 +1,4 @@
-@assessments @td2
+@assessments @td2 @regression
 Feature: Assessments
   in order to ensure show Assessments
   as a Naviance user
@@ -12,4 +12,4 @@ Feature: Assessments
 
   Examples:
     | user           | account | password | student      |
-    | cathycounselor | etcs    | testtest | Banks, Dante |
+    | stan.smith     | rtsa    | stan01!  | A105, A105   |

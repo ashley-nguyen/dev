@@ -88,11 +88,12 @@ public class Connections {
 
         driver = Hooks.driver;
         PageFactory.initElements(driver, Connections.class);
-        driver.findElements(By.xpath("html/body/div[1]/table/tbody/tr[1]/td[2]/table/tbody/tr[2]/td[2]/table/tbody/tr[3]/td/table/tbody/tr/td/table/tbody/tr[5]/td/table[3]/tbody/tr[9]/td[7]/input")).get(0).click();
-        driver.findElements(By.xpath("html/body/div[1]/table/tbody/tr[1]/td[2]/table/tbody/tr[2]/td[2]/table/tbody/tr[3]/td/table/tbody/tr/td/table/tbody/tr[5]/td/table[3]/tbody/tr[9]/td[7]/input")).get(0).click();
+        driver.findElements(By.xpath("//*[@id=\"activematch_events_on-9\"]")).get(0).click();
+        driver.findElements(By.xpath("//*[@id=\"activematch_events_on-9\"]")).get(0).click();
         driver = Hooks.driver;
         PageFactory.initElements(driver, Connections.class);
-        Boolean verifyAgreeButton = driver.findElement(By.className("btn-container")).isDisplayed();
+        //new WebDriverWait(Hooks.driver, 30).until(ExpectedConditions.presenceOfElementLocated(By.className("btn-container")));
+        Boolean verifyAgreeButton = driver.findElement(By.xpath("//*[@id=\"active-match-events-modal\"]/div[3]/div")).isDisplayed();
         System.out.println("VaLOR" + verifyAgreeButton);
         assertTrue("Error Verification Buttons not found!", verifyAgreeButton);
     }

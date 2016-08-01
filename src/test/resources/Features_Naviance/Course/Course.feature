@@ -10,8 +10,8 @@ Feature: Course tests
     Then I verify the Course Catalog page
 
   Examples:
-    | account     | user       | password   |
-    | qadistrict  | jtester    | jtester01! |
+    | account     | user          | password   |
+    | rtd1        | stan.smith    | stan01!    |
 
   Scenario Outline: Verify High School Courses
     Given I am logged into Naviance "<account>" as "<user>" with "<password>"
@@ -19,8 +19,8 @@ Feature: Course tests
     Then I verify the Advanced Computer Science contents
 
   Examples:
-    | account     | user       | password   |
-    | qadistrict  | jtester    | jtester01! |
+    | account     | user          | password   |
+    | rtd1        | stan.smith    | stan01!    |
 
   Scenario Outline: Verify High School Subjects
     Given I am logged into Naviance "<account>" as "<user>" with "<password>"
@@ -28,8 +28,8 @@ Feature: Course tests
     Then I verify the Economics contents
 
   Examples:
-    | account     | user       | password      |
-    | qadistrict  | jtester    | jtester01!    |
+    | account     | user          | password   |
+    | rtd1        | stan.smith    | stan01!    |
 
   Scenario Outline: Verify Recomendations
     Given I am logged into Naviance "<account>" as "<user>" with "<password>"

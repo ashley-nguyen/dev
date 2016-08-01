@@ -6,14 +6,14 @@ Feature: Colleges - Advanced search
 
   Background:
     Given when I log in with the following user details:
-      | etcs | sallysupport | sallysupport01! |
+      | rtsa | stan.smith | stan01! |
 
   @td2 @safe
-  Scenario: View Advanced College Search
+  Scenario Outline: View Advanced College Search
     When I go to the advanced college search screen
     Then I will see "School type" search category
-#    Then I will be able to search using the following criteria '<SearchCategory>' '<SearchValue>' '<SearchData>' '<SearchResult>'
+    Then I will be able to search using the following criteria '<SearchCategory>' '<SearchValue>' '<SearchData>' '<SearchResult>'
 
-#    Examples:
-#      | SearchCategory | SearchValue            | SearchData | SearchResult       |
-#      | School type    | Two year vs. Four Year | Two Year   | AA McAllister Inst |
+    Examples:
+      | SearchCategory | SearchValue            | SearchData | SearchResult       |
+      | School type    | Two year vs. Four Year | Two Year   | AA McAllister Inst |

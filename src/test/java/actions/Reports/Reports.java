@@ -48,4 +48,76 @@ public class Reports {
         assertTrue("Error Verification!", !errorVerification.contains("Fatal Error"));
         assertTrue("Verify Data!", dataverification.contains("Customize"));
     }
+
+    public static void verifyUsageReports() throws InterruptedException {
+
+        driver = Hooks.driver;
+        PageFactory.initElements(driver, ReportsPage.class);
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        assertTrue("Verify Report exists!", new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.elementToBeClickable(ReportsPage.ViewUsageReport)).isDisplayed());
+    }
+
+    public static void verifyPlanningReports() throws InterruptedException {
+
+        driver = Hooks.driver;
+        PageFactory.initElements(driver, ReportsPage.class);
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        assertTrue("Verify Report exists!", new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.elementToBeClickable(ReportsPage.ViewPlanningReport)).isDisplayed());
+    }
+
+    public static void verifyOutcomeReports() throws InterruptedException {
+
+        driver = Hooks.driver;
+        PageFactory.initElements(driver, ReportsPage.class);
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        assertTrue("Verify Report exists!", new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.elementToBeClickable(ReportsPage.ViewOutcomeReport)).isDisplayed());
+    }
+
+    public static void verifyScholarshipReports() throws InterruptedException {
+
+        driver = Hooks.driver;
+        PageFactory.initElements(driver, ReportsPage.class);
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        assertTrue("Verify Report exists!", new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.elementToBeClickable(ReportsPage.ViewScholarshipReport)).isDisplayed());
+    }
+
+    public static void verifyCollegeReports() throws InterruptedException {
+
+        driver = Hooks.driver;
+        PageFactory.initElements(driver, ReportsPage.class);
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        assertTrue("Verify Report exists!", new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.elementToBeClickable(ReportsPage.ViewCollegeReport)).isDisplayed());
+    }
+
+    public static void verifyScoreReports() throws InterruptedException {
+
+        driver = Hooks.driver;
+        PageFactory.initElements(driver, ReportsPage.class);
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        assertTrue("Verify Report exists!", new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.elementToBeClickable(ReportsPage.ViewScoreReport)).isDisplayed());
+    }
+
+    public static void verifyCourseReports() throws InterruptedException {
+
+        driver = Hooks.driver;
+        PageFactory.initElements(driver, ReportsPage.class);
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        assertTrue("Verify Report exists!", new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.elementToBeClickable(ReportsPage.ViewCourseReport)).isDisplayed());
+    }
+
+    public static void verifyCTEReports() throws InterruptedException {
+
+        driver = Hooks.driver;
+        PageFactory.initElements(driver, ReportsPage.class);
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        assertTrue("Verify Report exists!", new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.elementToBeClickable(ReportsPage.ViewCTEReport)).isDisplayed());
+    }
+
+    public static void verifyPlannerReports() throws InterruptedException {
+
+        driver = Hooks.driver;
+        PageFactory.initElements(driver, ReportsPage.class);
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        assertTrue("Verify Report exists!", new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.elementToBeClickable(ReportsPage.ViewPlannerReport)).isDisplayed());
+    }
 }

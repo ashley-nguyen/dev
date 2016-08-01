@@ -46,7 +46,7 @@ public class AlumniTracker {
         AlumniTrackerPage.lnkSendFile.click();
     }
 
-    public static void ClickOnCheckBoxClassYear() {
+    public static void ClickOnCheckBoxClassYear() throws InterruptedException {
         driver = Hooks.driver;
         PageFactory.initElements(driver, AlumniTrackerPage.class);
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
@@ -73,6 +73,11 @@ public class AlumniTracker {
         if(School.contains("School A"))
         {
             AlumniTrackerPage.lnkSelectedSchoolA.click();
+        }
+
+        if(School.contains("School E"))
+        {
+            AlumniTrackerPage.lnkSelectedSchoolE.click();
         }
     }
 }

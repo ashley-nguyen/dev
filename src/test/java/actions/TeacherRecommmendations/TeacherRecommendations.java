@@ -31,6 +31,27 @@ public class TeacherRecommendations {
         new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.elementToBeClickable(TeacherRecommendationsPage.tabRequests)).click();
     }
 
+    public static void ClickOnSettingsTab() throws InterruptedException {
+        driver = Hooks.driver;
+        PageFactory.initElements(driver, TeacherRecommendationsPage.class);
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.elementToBeClickable(TeacherRecommendationsPage.tabSettings)).click();
+    }
+
+    public static void ClickOnSummaryTab() throws InterruptedException {
+        driver = Hooks.driver;
+        PageFactory.initElements(driver, TeacherRecommendationsPage.class);
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.elementToBeClickable(TeacherRecommendationsPage.tabSummary)).click();
+    }
+
+    public static void ClickOnRecommendationRequestsDoNotRequireApprovalRadioButton() throws InterruptedException {
+        driver = Hooks.driver;
+        PageFactory.initElements(driver, TeacherRecommendationsPage.class);
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.elementToBeClickable(TeacherRecommendationsPage.rbRecommendationDoNotRequireApproval)).click();
+    }
+
     public static void SelectGradeClass(String grade) {
         driver = Hooks.driver;
         PageFactory.initElements(driver, TeacherRecommendationsPage.class);
@@ -39,6 +60,22 @@ public class TeacherRecommendations {
         Select select = new Select(TeacherRecommendationsPage.selClass);
         select.selectByVisibleText(grade);
         TeacherRecommendationsPage.formNameTable.isDisplayed();
+    }
+
+    public static void SelectGradeClassRange(String grade) {
+        driver = Hooks.driver;
+        PageFactory.initElements(driver, TeacherRecommendationsPage.class);
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        Select select = new Select(TeacherRecommendationsPage.selStartYear);
+        select.selectByVisibleText(grade);
+    }
+
+    public static void SelectGradeToClassRange(String grade) {
+        driver = Hooks.driver;
+        PageFactory.initElements(driver, TeacherRecommendationsPage.class);
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        Select select = new Select(TeacherRecommendationsPage.selEndYear);
+        select.selectByVisibleText(grade);
     }
 
     public static void ClickShowMeGoButton() {
@@ -56,6 +93,19 @@ public class TeacherRecommendations {
         Select select = new Select(TeacherRecommendationsPage.selList);
         select.selectByVisibleText(item);
         TeacherRecommendationsPage.formNameTable.isDisplayed();
-        Thread.sleep(90000);
+    }
+
+    public static void ClickOnSaveSettingButton() throws InterruptedException {
+        driver = Hooks.driver;
+        PageFactory.initElements(driver, TeacherRecommendationsPage.class);
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.elementToBeClickable(TeacherRecommendationsPage.btn_save_setting)).click();
+    }
+
+    public static void ClickOnGoSummaryButton() throws InterruptedException {
+        driver = Hooks.driver;
+        PageFactory.initElements(driver, TeacherRecommendationsPage.class);
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.elementToBeClickable(TeacherRecommendationsPage.btn_go_summary)).click();
     }
 }

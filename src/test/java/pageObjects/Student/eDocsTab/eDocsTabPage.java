@@ -11,10 +11,26 @@ import pageObjects.BaseClass;
  */
 public class eDocsTabPage extends BaseClass  {
 
-
-        @FindBy(how = How.XPATH, using = "//*[@id='primary']/li[6]/a")
+        @FindBy(how = How.XPATH, using = "(//a[contains(text(),'eDocs')])")
         public static WebElement tabeDocs;
 
+        @FindBy(how = How.PARTIAL_LINK_TEXT, using = "Prepare")
+        public static WebElement lnkPrepare;
+
+        @FindBy(how = How.XPATH, using = "//button[@class='btn btn-small ng-scope']")
+        public static WebElement btnAdd;
+
+        @FindBy(how = How.XPATH, using = "//button[@class='btn btn-upload-toggle span12']")
+        public static WebElement btnUploadAFile;
+
+        @FindBy(how = How.XPATH, using = "//select[@name='application_id_select']")
+        public static WebElement selApplication;
+
+        @FindBy(how = How.XPATH, using = "//select[@id='document_type']")
+        public static WebElement selType;
+
+        @FindBy(how = How.XPATH, using = "//*[@id=\"transcript_upload_div\"]/div[3]/div/div/div[2]/input")
+        public static WebElement btnBrowse;
 
         public eDocsTabPage(WebDriver driver) {
         super(driver);
