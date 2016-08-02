@@ -82,4 +82,23 @@ public class FCHubsAdmissionsTab {
         }
         assertTrue("The " + reqType + " requirements are not correct", result);
     }
+
+    public static void ClickApplicationInformationTab(String tab) {
+        driver = Hooks.driver;
+        WebElement appInfoTab = driver.findElement(By.xpath("//h2[contains(text(), 'Application Information')]" +
+                "/../div/div/span[contains(text(), '" + tab + "')]"));
+        appInfoTab.click();
+    }
+
+    public static void VerifyDeadline(String deadlineName, String date) {
+        driver = Hooks.driver;
+        boolean result = false;
+        if(driver.findElement(By.xpath("//h2[contains(text(), 'Application Information')]" +
+                "/../div/div/div/div/div/span[text() = '" + deadlineName + "']/../div/div[text() = '" + date.split(" ")[0] + "']")).isDisplayed()
+                && driver.findElement(By.xpath("//h2[contains(text(), 'Application Information')]" +
+                "/../div/div/div/div/div/span[text() = '" + deadlineName + "']/../div/div[text() = '" + date.split(" ")[1] + "']")).isDisplayed()) {
+            result = true;
+        }
+        assertTrue("The deadline is not correct", result);
+    }
 }

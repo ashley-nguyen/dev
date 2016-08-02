@@ -44,4 +44,14 @@ public class FCHubsAdmissionsTab_StepDefs {
     public void I_should_see_the_requirements_in_Application_Requirements(String reqType, List<String> applicationRequirements) throws Throwable {
         FCHubsAdmissionsTab.VerifyApplicationRequirements(reqType, applicationRequirements);
     }
+
+    @When("^I click \"([^\"]*)\" in Application Information$")
+    public void I_click_in_Application_Information(String tab) throws Throwable {
+        FCHubsAdmissionsTab.ClickApplicationInformationTab(tab);
+    }
+
+    @Then("^The deadline with name \"([^\"]*)\" and date \"([^\"]*)\" should be displayed in Application Information$")
+    public void the_deadline_with_name_and_date_should_be_displayed_in_Application_Information(String deadlineName, String date) throws Throwable {
+        FCHubsAdmissionsTab.VerifyDeadline(deadlineName, date);
+    }
 }
