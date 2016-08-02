@@ -69,6 +69,12 @@ public class Login_StepDefs {
         Login.DoLogin(account, user, pass);
     }
 
+    //Usage: I am logged into naviance  "Username" with "Password"
+    @Given("^I am logged into Naviance with \"(.*)\" with \"(.*)\"$")
+    public void I_am_logged_into_naviance_user_with_password(String user, String pass) throws Throwable {
+        Login.IAMLogin(user, pass);
+    }
+
     @Given("^I am on the following url \"(.*)\"$")
     public void I_am_on_the_following_url(String url) throws Throwable {
         Login.GoToUrl(url);

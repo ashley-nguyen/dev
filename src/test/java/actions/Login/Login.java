@@ -32,6 +32,18 @@ public class Login {
         loginPage.signin_button.click();
     }
 
+    public static void IAMLogin(String strUserName, String strPassword) {
+        driver = Hooks.driver;
+        PageFactory.initElements(driver, loginPage.class);
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+
+        loginPage.UserName.sendKeys(strUserName);
+
+        loginPage.password.sendKeys(strPassword);
+
+        loginPage.signin_button.click();
+    }
+
     public static void DoFCLogin(String fcAccount, String strUserName, String strPassword) throws InterruptedException {
         driver = Hooks.driver;
         PageFactory.initElements(driver, loginPage.class);
