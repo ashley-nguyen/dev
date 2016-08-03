@@ -56,6 +56,16 @@ public class ManageRolesAndRights {
         }
     }
 
+    public static void CheckPrepareMyTeacherRecForms() throws InterruptedException {
+        driver = Hooks.driver;
+        PageFactory.initElements(driver, ManageRolesAndRightsPage.class);
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        if (!ManageRolesAndRightsPage.chkPrepareMyTeacherRecForm.isEnabled())
+        {
+            new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.elementToBeClickable(ManageRolesAndRightsPage.chkPrepareMyTeacherRecForm)).click();
+        }
+    }
+
     public static void ClickOnSubmitButton() throws InterruptedException {
         driver = Hooks.driver;
         PageFactory.initElements(driver, ManageRolesAndRightsPage.class);
@@ -67,6 +77,8 @@ public class ManageRolesAndRights {
         driver = Hooks.driver;
         PageFactory.initElements(driver, ManageRolesAndRightsPage.class);
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.elementToBeClickable(driver.findElement(By.xpath("//td[@class=" +
+                "'bodytext'][contains(text(), '" + confirmationMessage + "')]"))));
         assertTrue("The confirmation message is correct", driver.findElement(By.xpath("//td[@class=" +
                 "'bodytext'][contains(text(), '" + confirmationMessage + "')]")).isDisplayed());
     }

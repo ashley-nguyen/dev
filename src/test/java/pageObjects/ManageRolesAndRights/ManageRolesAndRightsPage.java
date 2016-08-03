@@ -25,6 +25,9 @@ public class ManageRolesAndRightsPage extends BaseClass {
     @FindBy(how = How.NAME, using = "role_rights[302]")
     public static WebElement chkViewAllTeacherRecForm;
 
+    @FindBy(how = How.NAME, using = "role_rights[542]")
+    public static WebElement chkPrepareMyTeacherRecForm;
+
     @FindBy(how = How.ID, using = "button")
     public static WebElement btnSubmit;
 

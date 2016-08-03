@@ -11,6 +11,7 @@ Feature: Manage Roles and Rights
     When I click on manage link
     When I click on Modify Permissions link
     When I check View all Teacher rec. forms
+    When I check Prepare my teacher rec. forms
     When I click on Submit button
     Then I verify that Confirmation "<message>" message is displayed
 

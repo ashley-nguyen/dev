@@ -36,6 +36,13 @@ public class ManageRolesAndRights_StepDefs {
         ManageRolesAndRights.CheckViewAllTeacherRecForms();
     }
 
+
+    @When("^I check Prepare my teacher rec. forms$")
+    public void I_check_prepare_my_teacher_rec_forms() throws Throwable {
+        ManageRolesAndRights.CheckPrepareMyTeacherRecForms();
+    }
+
+
     @When("^I click on Submit button$")
     public void I_click_on_submit_button() throws Throwable {
         ManageRolesAndRights.ClickOnSubmitButton();
