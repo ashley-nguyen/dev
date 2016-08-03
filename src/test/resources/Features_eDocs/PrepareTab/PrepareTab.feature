@@ -4,6 +4,20 @@ Feature: View student details
   I want to see any LOR requests for a specific student on the eDocs tab of the student folder so that I am aware if
   there are LOR requests from a student before I upload any documents.
 
+    @edocs @safe @succeed @navcore653
+  Scenario Outline: Verify if it possible a list of uploaded LORs for each college and if the student requested a LOR for the College and Teacher.
+    Given I am logged into Naviance "<account>" as "<user>" with "<password>"
+    When I am accessing the "<studentID>" edocs tab
+    When I click on Prepare link
+    Then I will verify "<text>" for LORs
+
+  Examples:
+    |user           | account | password    | studentID  | text                         |
+    |stan.smith     | rtsa    | stan01!     | a101       | Letter of Recommendation     |
+    |stan.smith     | rtsa    | stan01!     | a101       | Common App Teacher Evaluation|
+    |stan.smith     | rtsa    | stan01!     | a101       | Written Evaluation           |
+    |stan.smith     | rtsa    | stan01!     | a101       | Initial Transcript (active)  |
+
   @edocs @safe @succeed
   Scenario Outline: Verify if it possible a list of uploaded LORs for each college and if the student requested a LOR for the College and Teacher.
     Given I am logged into Naviance "<account>" as "<user>" with "<password>"
