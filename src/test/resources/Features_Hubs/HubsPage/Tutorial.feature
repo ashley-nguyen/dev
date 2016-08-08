@@ -38,7 +38,7 @@ Feature: Validate as a student visiting a new hubs page for the first time,
     Examples:
       | college |
       | Adelphi |
-    
+
 
   Scenario: Tutorial 1 dialog box is displayed in Hubs after user log back in with same session
     When I click on the Colleges tab
@@ -53,14 +53,25 @@ Feature: Validate as a student visiting a new hubs page for the first time,
     And I click the college "Adrian" in the college lookup list
     And I click the Beta Button
     Then I should see FirstTutorial dialog
-    @test
-    Scenario: Tutorial 1 dialog box is closed when click on X on Tutorial Dialog
+
+
+  Scenario: Tutorial 1 dialog box is closed when click on X on Tutorial Dialog
     When I click on the Colleges tab
     And I search for the college "George"
     And I click the college "George" in the college lookup list
     And I click the Beta Button
     And I click on X in FirstTutorial dialog
     Then FirstTutorial dialog is closed
+
+  Scenario: Tutorial 2 dialog box is closed when click on X on Tutorial Dialog
+    When I click on the Colleges tab
+    And I search for the college "George"
+    And I click the college "George" in the college lookup list
+    And I click the Beta Button
+    And I click on Next on FirstTutorial dialog
+    And I click on X in SecondTutorial dialog
+    Then SecondTutorial dialog is closed
+
 
 
 

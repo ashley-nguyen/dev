@@ -41,6 +41,8 @@ public class FCHubsPage extends BaseClass {
     public static WebElement textBoxPhone;
     @FindBy(how = How.XPATH, using = "//span[contains(text(),'Favorite this college')]/../span[@role='button']")
     public static WebElement buttonXOnFirstTutorial;
+    @FindBy(how = How.XPATH, using ="//span[contains(text(),'Tell us what you think!')]/../span[@role='button']")
+    public static WebElement buttonXOnSecondTutorial;
     @FindBy(how = How.XPATH, using = "//ul[@id='hubNavBar']/li/a[contains(text(), 'Studies')]")
     public static WebElement tabStudies;
     @FindBy(how = How.XPATH, using = "//ul[@id='hubNavBar']/li/a[contains(text(), 'Admissions')]")
