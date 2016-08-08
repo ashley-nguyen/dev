@@ -13,7 +13,7 @@ Feature: Colleges Errors test
 
   Examples:
     | user           | account | password | student      |
-    | stan.smith     | rtd1    | stan01!  | Abrams, Amy  |
+    | stan.smith     | rtd1    | stan01!  | a101, a101   |
 
   Scenario Outline: Verify Active Applications is displayed correctly
     Given I am logged into Naviance "<account>" as "<user>" with "<password>"
@@ -23,8 +23,8 @@ Feature: Colleges Errors test
     Then I should not see errors in college pick
 
   Examples:
-    | user           | account | password | student      | url                                                               |
-    | stan.smith     | rtd1    | stan01!  | Abrams, Amy  | https://succeed.naviance.com/collegesmain/collegepick.php |
+    | user           | account | password | student      | url                                                       |
+    | stan.smith     | rtd1    | stan01!  | a101, a101   | https://succeed.naviance.com/collegesmain/collegepick.php |
 
 
   Scenario Outline: Find College test
