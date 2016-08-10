@@ -98,5 +98,24 @@ public class Connections {
         assertTrue("Error Verification Buttons not found!", verifyAgreeButton);
     }
 
+    public static void clickOnLettersOfRecommendation() throws InterruptedException {
+        driver = Hooks.driver;
+        PageFactory.initElements(driver, ConnectionsPage.class);
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.linkText("letters of recommendation")));
+        ConnectionsPage.lnkLettersOfRecommendation.click();
+    }
+
+    public static void defaultMessage() throws InterruptedException {
+        driver = Hooks.driver;
+        PageFactory.initElements(driver, ConnectionsPage.class);
+        //driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        //new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.className("no-recommendations-header")));
+        WebDriverWait wait = new WebDriverWait(driver, 5);
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("no-recommendations-header")));
+        String dataVerification = ConnectionsPage.textDefaultMessage.getText();
+        assertTrue("Error Verification!", dataVerification.contains("Your recommendation requests will show up here."));
+
+    }
 
 }

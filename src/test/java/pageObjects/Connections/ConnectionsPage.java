@@ -34,6 +34,13 @@ public class ConnectionsPage extends BaseClass {
     @FindBy(how = How.LINK_TEXT, using = "Select and Update Optional Features")
     public static WebElement linkFCconfiguration;
 
+    @FindBy(how = How.LINK_TEXT, using = "letters of recommendation")
+    public static WebElement lnkLettersOfRecommendation;
+
+    @FindBy(how = How.CLASS_NAME, using = "no-recommendations-header")
+    public static WebElement textDefaultMessage;
+
+
     //@FindBy(how = How.XPATH, using = "html/body/div[1]/table/tbody/tr[1]/td[2]/table/tbody/tr[2]/td[2]/table/tbody/tr[3]/td/table/tbody/tr/td/table/tbody/tr[5]/td/table[3]/tbody/tr[9]/td[7]/input")
     //public static WebElement chkboxGrade = By.xpath("html/body/div[1]/table/tbody/tr[1]/td[2]/table/tbody/tr[2]/td[2]/table/tbody/tr[3]/td/table/tbody/tr/td/table/tbody/tr[5]/td/table[3]/tbody/tr[9]/td[7]/input");
 
