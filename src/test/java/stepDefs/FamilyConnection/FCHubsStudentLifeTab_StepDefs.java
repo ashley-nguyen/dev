@@ -59,4 +59,11 @@ public class FCHubsStudentLifeTab_StepDefs {
     public void The_percentage_for_is_in_Age(String ageGroup, String value) throws Throwable {
         FCHubsStudentLifeTab.VerifyAgePercentage(ageGroup, value);
     }
+
+    @Then("^The \"([^\"]*)\" should be \"([^\"]*)\" in Housing Information$")
+    public void The_Should_Be_In_Housing_Information(String hiLabel, String hiValue) throws Throwable {
+        FCHubsStudentLifeTab.VerifyHousingInformation(hiLabel,hiValue);
+
+
+    }
 }

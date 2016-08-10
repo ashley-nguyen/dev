@@ -3,6 +3,7 @@ package actions.FamilyConnection;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.lift.HamcrestWebDriverTestCase;
 import org.openqa.selenium.support.PageFactory;
 import pageObjects.FamilyConnection.FCHubsAdmissionsTabPage;
 import pageObjects.FamilyConnection.FCHubsStudentLifeTabPage;
@@ -79,5 +80,12 @@ public class FCHubsStudentLifeTab {
         WebElement agePercent = driver.findElement(By.xpath("//div[contains(text(), 'Age')]" +
                 "/../../div/div/div/div[contains(text(), '" + ageGroup + "')]/following-sibling::div"));
         assertTrue("The percent for " + ageGroup + " is not correct", agePercent.getText().equals(value));
+    }
+
+    public static void VerifyHousingInformation(String hiLabel, String hiValue) {
+        driver = Hooks.driver;
+        WebElement housingValue = driver.findElement(By.xpath("//*[@id='housing-information']/div/div/dl/dt[contains" +
+                "(text(),'" + hiLabel + "')]/../dd"));
+        assertTrue("The Housing Information Value for" + hiLabel + "is not correct", housingValue.getText().equals(hiValue));
     }
 }
