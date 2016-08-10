@@ -475,11 +475,32 @@ public class FCHubs {
 
     }
 
+    public static void ClickXInSecondTutorialDialog() {
+        driver = Hooks.driver;
+        PageFactory.initElements(driver, FCHubsPage.class);
+        FCHubsPage.buttonXOnSecondTutorial.click();
+    }
+
+    public static void VerifySecondTutorialDialogClosed(){
+        driver = Hooks.driver;
+        PageFactory.initElements(driver, FCHubsPage.class);
+        try {
+            if (driver.findElement(By.xpath ("//span[contains(text(),'Tell us what you think!')]")).isDisplayed())
+            {
+                assertTrue((false));
+            }
+        } catch(NoSuchElementException e)
+        {assertTrue(true);
+        } catch(Exception f)
+        {
+            f.printStackTrace();
+        }
+    }
     public static void ClickStudiesTab() {
         driver = Hooks.driver;
         PageFactory.initElements(driver, FCHubsPage.class);
         FCHubsPage.tabStudies.click();
-    }
+        }
 
     public static void ClickAdmissionsTab() {
         driver = Hooks.driver;
