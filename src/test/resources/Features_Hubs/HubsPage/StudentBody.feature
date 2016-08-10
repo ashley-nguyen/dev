@@ -38,7 +38,7 @@ Feature:  As a student viewing new Hubs' Student Life tab, I want to see a schoo
 
   Scenario: The Total Students number in Age is displayed withb correct data
     Then The Total Students number should be "25912" in Age
-  
+
   Scenario Outline: The percentages of Age are displayed with correct data
     Then The percentage for "<ageGroup>" is "<value>" in Age
     Examples:

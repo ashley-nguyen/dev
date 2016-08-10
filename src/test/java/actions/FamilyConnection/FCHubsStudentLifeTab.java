@@ -80,4 +80,55 @@ public class FCHubsStudentLifeTab {
                 "/../../div/div/div/div[contains(text(), '" + ageGroup + "')]/following-sibling::div"));
         assertTrue("The percent for " + ageGroup + " is not correct", agePercent.getText().equals(value));
     }
+
+    public static void ClickSectionInStudentOrgServ(String sectionName) {
+        driver = Hooks.driver;
+        WebElement orgTab = driver.findElement(By.xpath("//h2[contains(text(), 'Student Organizations and Services')]" +
+                "/../div/div/span[text() = '" + sectionName + "']"));
+        orgTab.click();
+    }
+
+    public static void VerifyStudentOrganizations(List<String> studentOrgs) {
+        driver = Hooks.driver;
+        boolean result = false;
+        for(int i = 0; i < studentOrgs.size(); i++) {
+            if(driver.findElement(By.xpath("//h2[contains(text(), 'Student Organizations and Services')]" +
+                    "/../div/div/div/div[text() = '" + studentOrgs.get(i) + "']")).isDisplayed()) {
+                result = true;
+            } else {
+                result = false;
+                break;
+            }
+        }
+        assertTrue("The Student Organizations are incorrect", result);
+    }
+
+    public static void ClickSectionInAthletics(String sectionName) {
+        driver = Hooks.driver;
+        WebElement athleticsTab = driver.findElement(By.xpath("//h2[contains(text(), " +
+                "'Student Organizations and Services')]/../div/div/div/span[text() = '" + sectionName + "']"));
+        athleticsTab.click();
+    }
+
+    public static void VerifySportsInAthletics(String gender, List<String> sports) {
+        driver = Hooks.driver;
+        boolean result = false;
+        for(int i = 0; i < sports.size(); i++) {
+            String[] sportElement = sports.get(i).split(",");
+            for(int j = 0; j < sportElement.length; j++) {
+                if(sportElement[j].equals("empty")) {
+                    result = driver.findElement(By.xpath("//h2[text() = 'Student Organizations and Services']" +
+                            "/../div/div/div/div/div/div/h3[contains(text(), '" + gender + "')]" +
+                            "/../../div/div[contains(text(), '" + sportElement[0] + "')]" +
+                            "/../div[not(normalize-space())]")).isDisplayed();
+                } else if(driver.findElement(By.xpath("//h2[text() = 'Student Organizations and Services']" +
+                        "/../div/div/div/div/div/div/h3[contains(text(), '" + gender + "')]" +
+                        "/../../div/div[contains(text(), '" + sportElement[0] + "')]" +
+                        "/../div[contains(text(), '" + sportElement[j] + "')]")).isDisplayed()) {
+                    result = true;
+                }
+            }
+        }
+        assertTrue("The sport element is not correct", result);
+    }
 }

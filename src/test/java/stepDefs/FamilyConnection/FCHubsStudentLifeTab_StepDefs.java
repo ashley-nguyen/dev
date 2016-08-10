@@ -3,6 +3,7 @@ package stepDefs.FamilyConnection;
 import actions.FamilyConnection.FCHubsAdmissionsTab;
 import actions.FamilyConnection.FCHubsStudentLifeTab;
 import cucumber.api.PendingException;
+import cucumber.api.java.en.And;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import org.openqa.selenium.WebDriver;
@@ -58,5 +59,25 @@ public class FCHubsStudentLifeTab_StepDefs {
     @Then("^The percentage for \"([^\"]*)\" is \"([^\"]*)\" in Age$")
     public void The_percentage_for_is_in_Age(String ageGroup, String value) throws Throwable {
         FCHubsStudentLifeTab.VerifyAgePercentage(ageGroup, value);
+    }
+
+    @When("^I click \"([^\"]*)\" in Student Organizations and Services$")
+    public void I_click_in_Student_Organizations_and_Services(String sectionName) throws Throwable {
+        FCHubsStudentLifeTab.ClickSectionInStudentOrgServ(sectionName);
+    }
+
+    @Then("^The following Available Organizations are displayed:$")
+    public void The_following_Available_Organizations_are_displayed(List<String> studentOrgs) throws Throwable {
+        FCHubsStudentLifeTab.VerifyStudentOrganizations(studentOrgs);
+    }
+
+    @And("^I click \"([^\"]*)\" in Athletics$")
+    public void I_click_in_Athletics(String sectionName) throws Throwable {
+        FCHubsStudentLifeTab.ClickSectionInAthletics(sectionName);
+    }
+
+    @Then("^The following \"([^\"]*)\" sports should be displayed:$")
+    public void theFollowingSportsShouldBeDisplayed(String gender, List<String> sports) throws Throwable {
+        FCHubsStudentLifeTab.VerifySportsInAthletics(gender, sports);
     }
 }
