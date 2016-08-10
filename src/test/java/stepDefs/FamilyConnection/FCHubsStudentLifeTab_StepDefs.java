@@ -80,4 +80,9 @@ public class FCHubsStudentLifeTab_StepDefs {
     public void theFollowingSportsShouldBeDisplayed(String gender, List<String> sports) throws Throwable {
         FCHubsStudentLifeTab.VerifySportsInAthletics(gender, sports);
     }
+
+    @Then("^The \"([^\"]*)\" should be \"([^\"]*)\" in Housing Information$")
+    public void The_Should_Be_In_Housing_Information(String hiLabel, String hiValue) throws Throwable {
+        FCHubsStudentLifeTab.VerifyHousingInformation(hiLabel,hiValue);
+    }
 }
