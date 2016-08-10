@@ -9,6 +9,8 @@ import org.openqa.selenium.WebDriver;
 
 import java.util.List;
 
+import static actions.FamilyConnection.FCHubs.*;
+
 /**
  * Created by jorgemaguina on 5/31/2016.
  *  click on Next on FirstTutorial dialog - Created by Mandeep 06/08/2016
@@ -308,6 +310,7 @@ public class FCHubs_StepDefs {
         FCHubs.ClearFieldContactForm("email");
         FCHubs.ClearFieldContactForm("phone");
     }
+
     @And("^I click on X in FirstTutorial dialog$")
     public void I_Click_On_X_In_FirstTutorialDialog() throws Throwable {
         FCHubs.ClickXInFirstTutorialDialog();
@@ -319,18 +322,27 @@ public class FCHubs_StepDefs {
         FCHubs.VerifyFirstTutorialDialogClosed();
     }
 
+    @And("^I click on X in SecondTutorial dialog$")
+    public void I_Click_On_X_In_SecondTutorialDialog() throws Throwable {
+        FCHubs.ClickXInSecondTutorialDialog();
+
+    }
+
+    @Then("^SecondTutorial dialog is closed$")
+    public void Second_Tutorial_Dialog_Is_Closed() throws Throwable {
+        FCHubs.VerifySecondTutorialDialogClosed();
+    }
     @When("^I click the Studies tab$")
     public void iClickTheStudiesTab() throws Throwable {
         FCHubs.ClickStudiesTab();
     }
-
     @And("^I click the Admissions tab$")
     public void I_click_the_Admissions_Tab() throws Throwable {
         FCHubs.ClickAdmissionsTab();
     }
-
     @And("^I click the Student Life tab$")
     public void I_click_the_Student_Life_tab() throws Throwable {
         FCHubs.ClickStudentLifeTab();
     }
 }
+

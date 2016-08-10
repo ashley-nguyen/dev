@@ -1,0 +1,88 @@
+@smoketest @nondestructive @hubs @studentorganizations
+Feature:  As a student viewing new Hubs' Student Life tab, I want to see a school population module to give
+  me an idea what sort of community the school is
+
+  Background:
+    Given I log in to Family Connection with the following user details:
+      | rtsa       | amandahubs | hubs2016  |
+    And I click on the Colleges tab
+    And I go to the Page View for "Adelphi"
+    And I click the Beta Button
+    And I click the Student Life tab
+
+  Scenario: The Available Organizations are displayed with correct data
+    When I click "Organizations" in Student Organizations and Services
+    Then The following Available Organizations are displayed:
+    | Academic Clubs          |
+    | Academic Frat./Sor.     |
+    | Business                |
+    | Choir                   |
+    | Commuter                |
+    | Concert Band            |
+    | Environmental           |
+    | Gay and Lesbian         |
+    | Honors/Academic         |
+    | International           |
+    | Literary Magazine       |
+    | Minority Cultural       |
+    | Minority Student        |
+    | Newspaper               |
+    | Orchestra               |
+    | Physically Challenged   |
+    | Political Activism      |
+    | Pre-Dental              |
+    | Pre-Law                 |
+    | Pre-Medical             |
+    | Pre-Veterinary          |
+    | Radio Station           |
+    | Religious               |
+    | Sports/Intramurals      |
+    | Student Government      |
+    | Substance Abuse Support |
+    | Television Station      |
+    | Theatre/Drama           |
+    | Yearbook                |
+
+  Scenario: The Available Organizations for men are displayed with correct data
+    When I click "Athletics" in Student Organizations and Services
+    And I click "Varsity" in Athletics
+    Then The following "Men" sports should be displayed:
+    #Use 'empty' when that field is empty
+    | Soccer,II,empty,NCAA          |
+    | Basketball,II,empty,NCAA      |
+    | Tennis,II,empty,NCAA          |
+    | Golf,II,empty,NCAA            |
+    | Indoor Track,II,empty,NCAA    |
+    | Diving,II,empty,NCAA          |
+    | Track And Field,II,empty,NCAA |
+    | Cross Country,II,empty,NCAA   |
+    | Lacrosse,II,empty,NCAA        |
+    | Baseball,II,empty,NCAA        |
+    | Swimming,II,empty,NCAA        |
+
+  Scenario: The Available Organizations for women are displayed with correct data
+    When I click "Athletics" in Student Organizations and Services
+    And I click "Varsity" in Athletics
+    Then The following "Women" sports should be displayed:
+    #Use 'empty' when that field is empty
+    | Softball,II,empty,NCAA        |
+    | Soccer,II,empty,NCAA          |
+    | Basketball,II,empty,NCAA      |
+    | Field Hockey,II,empty,NCAA    |
+    | Volleyball,II,empty,NCAA      |
+    | Bowling,II,empty,NCAA         |
+    | Tennis,II,empty,NCAA          |
+    | Golf,II,empty,NCAA            |
+    | Indoor Track,II,empty,NCAA    |
+    | Diving,II,empty,NCAA          |
+    | Track And Field,II,empty,NCAA |
+    | Cross Country,II,empty,NCAA   |
+    | Lacrosse,II,empty,NCAA        |
+    | Swimming,II,empty,NCAA        |
+
+
+
+
+
+
+
