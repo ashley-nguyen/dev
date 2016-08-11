@@ -104,5 +104,6 @@
     <orderEntry type="library" scope="TEST" name="Maven: javax.el:javax.el-api:2.2.4" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: org.glassfish.web:javax.el:2.2.4" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: com.jayway.awaitility:awaitility:1.6.3" level="project" />
+	<orderEntry type="library" name="java-json" level="project" />
   </component>
 </module>
