@@ -27,3 +27,31 @@ Feature: As a student exploring a college, I want to see a top bar with high-lev
 
   Scenario: Priority  is displayed with correct data in the Information Top bar
     Then The Priority date should be "January" "15" in the Information Top bar
+
+  Scenario: The user is redirected to Costs Module after clicking "More about Cost & Aid"
+    When I click the link "More about Cost & Aid" in the Overview Info Top Bar
+    Then I should be redirected to the section "So what's it going to cost?" in Costs
+
+  Scenario: The URL contains "Costs#cost-module"
+    When I click the link "More about Cost & Aid" in the Overview Info Top Bar
+    Then The URL should contain "Costs#cost-module"
+
+  Scenario: The user is redirected to Studies tab after clicking "More about Learning Environment"
+    When I click the link "More about Learning Environment" in the Overview Info Top Bar
+    Then I should be redirected to the tab "Studies"
+
+  Scenario: The URL contains "Studies"
+    When I click the link "More about Learning Environment" in the Overview Info Top Bar
+    Then The URL should contain "Studies"
+
+  Scenario: The user is redirected to Admissions tab after clicking "How does this relate to me?"
+    When I click the link "How does this relate to me?" in the Overview Info Top Bar
+    Then I should be redirected to the tab "Admissions"
+
+  Scenario: The URL contains "Admissions"
+    When I click the link "How does this relate to me?" in the Overview Info Top Bar
+    Then The URL should contain "Admissions"
+
+  Scenario: The user is redirected to Application Information section after clicking "See all deadlines"
+    When I click the link "See all deadlines" in the Overview Info Top Bar
+    Then I should be redirected to the section "Application Information" in Admissions
