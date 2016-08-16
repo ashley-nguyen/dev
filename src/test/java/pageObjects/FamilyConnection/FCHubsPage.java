@@ -43,11 +43,14 @@ public class FCHubsPage extends BaseClass {
     public static WebElement buttonXOnFirstTutorial;
     @FindBy(how = How.XPATH, using ="//span[contains(text(),'Tell us what you think!')]/../span[@role='button']")
     public static WebElement buttonXOnSecondTutorial;
-    @FindBy(how = How.XPATH, using = "//ul[@id='hubNavBar']/li/a[contains(text(), 'Studies')]")
+    @FindBy(how = How.XPATH, using = "//div[@class = 'fc-grid__col fc-grid__col--core-width']/div/div/span" +
+            "[contains(text(), 'Studies')]")
     public static WebElement tabStudies;
-    @FindBy(how = How.XPATH, using = "//ul[@id='hubNavBar']/li/a[contains(text(), 'Admissions')]")
+    @FindBy(how = How.XPATH, using = "//div[@class = 'fc-grid__col fc-grid__col--core-width']/div/div/span" +
+            "[contains(text(), 'Admissions')]")
     public static WebElement tabAdmissions;
-    @FindBy(how = How.XPATH, using = "//ul[@id='hubNavBar']/li/a[contains(text(), 'Student Life')]")
+    @FindBy(how = How.XPATH, using = "//div[@class = 'fc-grid__col fc-grid__col--core-width']/div/div/span" +
+            "[contains(text(), 'Student Life')]")
     public static WebElement tabStudentLife;
 
     public FCHubsPage(WebDriver driver) {
