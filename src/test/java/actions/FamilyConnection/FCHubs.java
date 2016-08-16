@@ -5,6 +5,8 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import pageObjects.FamilyConnection.FCHubsAdmissionsTabPage;
+import pageObjects.FamilyConnection.FCHubsCostsTabPage;
 import pageObjects.FamilyConnection.FCHubsPage;
 import stepDefs.Hooks;
 
@@ -92,7 +94,7 @@ public class FCHubs {
     public static void VerifyURLContainsText(String url) {
         driver = Hooks.driver;
         String currentURL = driver.getCurrentUrl();
-        assertTrue("The current URL does not match " + url, currentURL.equals(url));
+        assertTrue("The current URL does not match " + url, currentURL.contains(url));
     }
 
     public static void ClickRequestInfoButton() {
@@ -512,5 +514,32 @@ public class FCHubs {
         driver = Hooks.driver;
         PageFactory.initElements(driver, FCHubsPage.class);
         FCHubsPage.tabStudentLife.click();
+    }
+
+    public static void VerifyActiveTab(String tabName) {
+        driver = Hooks.driver;
+        WebElement tabElement = driver.findElement(By.xpath("//div[@class = 'fc-grid__row fc-grid__row--xs-center']" +
+                "/div/div/div/span[contains(text(), '" + tabName + "')]"));
+        assertTrue("The tab " + tabName + " is not active", tabElement.getAttribute("class").contains("active"));
+    }
+
+    public static void ClickLinkInOverviewInfoTopBar(String linkText) {
+        driver = Hooks.driver;
+        driver.findElement(By.xpath("//admissions/div/div/div/div/div/div/a" +
+                "[contains(text(), '" + linkText + "')]")).click();
+    }
+
+    public static void VerifySectionLabelInCosts(String sectionLabel) {
+        driver = Hooks.driver;
+        PageFactory.initElements(driver, FCHubsCostsTabPage.class);
+        assertTrue("The section " + sectionLabel + " is not displayed",
+                FCHubsCostsTabPage.costModuleLabel.getText().equals(sectionLabel));
+    }
+
+    public static void VerifySectionLabelInAdmissions(String sectionLabel) {
+        driver = Hooks.driver;
+        PageFactory.initElements(driver, FCHubsAdmissionsTabPage.class);
+        assertTrue("The section " + sectionLabel + " is not displayed",
+                FCHubsAdmissionsTabPage.labelApplicationInformation.getText().equals(sectionLabel));
     }
 }

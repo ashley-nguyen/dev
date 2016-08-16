@@ -18,6 +18,8 @@ public class FCHubsAdmissionsTabPage extends BaseClass {
     public static WebElement labelAcceptanceRate;
     @FindBy(how = How.XPATH, using = "//h2[contains(text(), 'Application Fees')]/../div")
     public static WebElement labelApplicationFees;
+    @FindBy(how = How.XPATH, using = "//h2[@id = 'application-info-deadlines']")
+    public static WebElement labelApplicationInformation;
 
     public FCHubsAdmissionsTabPage(WebDriver driver) {
         super(driver);

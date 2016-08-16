@@ -344,5 +344,30 @@ public class FCHubs_StepDefs {
     public void I_click_the_Student_Life_tab() throws Throwable {
         FCHubs.ClickStudentLifeTab();
     }
+
+    @Then("^The URL should contain \"([^\"]*)\"$")
+    public void The_URL_should_contain(String urlText) throws Throwable {
+        FCHubs.VerifyURLContainsText(urlText);
+    }
+
+    @Then("^I should be redirected to the tab \"([^\"]*)\"$")
+    public void I_should_be_redirected_to_the_tab(String tabName) throws Throwable {
+        FCHubs.VerifyActiveTab(tabName);
+    }
+
+    @When("^I click the link \"([^\"]*)\" in the Overview Info Top Bar$")
+    public void I_click_the_link_in_the_Overview_Info_Top_Bar(String link) throws Throwable {
+        FCHubs.ClickLinkInOverviewInfoTopBar(link);
+    }
+
+    @Then("^I should be redirected to the section \"([^\"]*)\" in Costs$")
+    public void I_should_be_redirected_to_the_section_in_Costs(String sectionLabel) throws Throwable {
+        FCHubs.VerifySectionLabelInCosts(sectionLabel);
+    }
+
+    @Then("^I should be redirected to the section \"([^\"]*)\" in Admissions$")
+    public void I_should_be_redirected_to_the_section_in_Admissions(String sectionLabel) throws Throwable {
+        FCHubs.VerifySectionLabelInAdmissions(sectionLabel);
+    }
 }
 
