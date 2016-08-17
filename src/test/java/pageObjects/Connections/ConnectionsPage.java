@@ -55,9 +55,6 @@ public class ConnectionsPage extends BaseClass {
     @FindBy(how = How.XPATH, using = "//span[@class='ng-binding']")
     public static WebElement lnkSuccessMessage;
 
-    //@FindBy(how = How.XPATH, using = "html/body/div[1]/table/tbody/tr[1]/td[2]/table/tbody/tr[2]/td[2]/table/tbody/tr[3]/td/table/tbody/tr/td/table/tbody/tr[5]/td/table[3]/tbody/tr[9]/td[7]/input")
-    //public static WebElement chkboxGrade = By.xpath("html/body/div[1]/table/tbody/tr[1]/td[2]/table/tbody/tr[2]/td[2]/table/tbody/tr[3]/td/table/tbody/tr/td/table/tbody/tr[5]/td/table[3]/tbody/tr[9]/td[7]/input");
-
     public ConnectionsPage(WebDriver driver) {
         super(driver);
     }

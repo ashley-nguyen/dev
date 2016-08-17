@@ -139,7 +139,7 @@ public class Connections {
         driver = Hooks.driver;
         PageFactory.initElements(driver, ConnectionsPage.class);
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-        new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.xpath("/html/body/div/div/div/div/recommendations-container/div/ng-view/add-request/form/section/div[2]/div[2]/table/tbody/tr[1]/td[1]/input")));
+        new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@name=\"addReq\"]/section/div[2]/div[2]/table/tbody/tr[1]/td[1]/input")));
         ConnectionsPage.divSelectCollege.click();
     }
 
