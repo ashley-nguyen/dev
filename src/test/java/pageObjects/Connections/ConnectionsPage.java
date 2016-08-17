@@ -40,6 +40,20 @@ public class ConnectionsPage extends BaseClass {
     @FindBy(how = How.CLASS_NAME, using = "no-recommendations-header")
     public static WebElement textDefaultMessage;
 
+    @FindBy(how = How.LINK_TEXT, using = "Add Request")
+    public static WebElement addRequestButton;
+
+    @FindBy(how = How.XPATH, using = "/html/body/div/div/div/div/recommendations-container/div/ng-view/add-request/form/section/div[1]/div[2]/select")
+    public static WebElement divSelectTeacher;
+
+    @FindBy(how = How.XPATH, using = "/html/body/div/div/div/div/recommendations-container/div/ng-view/add-request/form/section/div[2]/div[2]/table/tbody/tr[1]/td[1]/input")
+    public static WebElement divSelectCollege;
+
+    @FindBy(how = How.XPATH, using = "//button[@class='fc-button fc-button--primary']")
+    public static WebElement divSaveButton;
+
+    @FindBy(how = How.XPATH, using = "//span[@class='ng-binding']")
+    public static WebElement lnkSuccessMessage;
 
     //@FindBy(how = How.XPATH, using = "html/body/div[1]/table/tbody/tr[1]/td[2]/table/tbody/tr[2]/td[2]/table/tbody/tr[3]/td/table/tbody/tr/td/table/tbody/tr[5]/td/table[3]/tbody/tr[9]/td[7]/input")
     //public static WebElement chkboxGrade = By.xpath("html/body/div[1]/table/tbody/tr[1]/td[2]/table/tbody/tr[2]/td[2]/table/tbody/tr[3]/td/table/tbody/tr/td/table/tbody/tr[5]/td/table[3]/tbody/tr[9]/td[7]/input");

@@ -69,5 +69,29 @@ public class Connections_StepDefs {
         Connections.defaultMessage();
     }
 
+    @When("^I click on Add Request$")
+    public void i_Click_On_Add_Request() throws Throwable {
+        Connections.clickAddRequest();
+    }
+
+    @And("^I select a teacher  \"([^\"]*)\"$")
+    public void iSelectATeacher(String item) throws Throwable {
+        Connections.selectTeacher(item);
+    }
+
+    @And("^I select a college$")
+    public void i_Select_A_College() throws Throwable {
+        Connections.selectCollege();
+    }
+
+    @And("^I click save$")
+    public void i_Click_Save() throws Throwable {
+        Connections.clickSave();
+    }
+
+    @Then("^I see my request in the list page with success message \"([^\"]*)\"$")
+    public void iSeeMyRequestInTheListPageWithSuccessMessage(String strText) throws Throwable {
+        Connections.successMessage(strText);
+    }
 
 }

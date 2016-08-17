@@ -6,6 +6,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import pageObjects.Connections.ConnectionsPage;
 import stepDefs.Hooks;
@@ -109,8 +110,6 @@ public class Connections {
     public static void defaultMessage() throws InterruptedException {
         driver = Hooks.driver;
         PageFactory.initElements(driver, ConnectionsPage.class);
-        //driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-        //new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.className("no-recommendations-header")));
         WebDriverWait wait = new WebDriverWait(driver, 5);
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("no-recommendations-header")));
         String dataVerification = ConnectionsPage.textDefaultMessage.getText();
@@ -118,4 +117,47 @@ public class Connections {
 
     }
 
+    public static void clickAddRequest() throws InterruptedException {
+        driver = Hooks.driver;
+        PageFactory.initElements(driver, ConnectionsPage.class);
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.linkText("Add Request")));
+        ConnectionsPage.addRequestButton.click();
+    }
+
+    public static void selectTeacher(String item) throws InterruptedException {
+        driver = Hooks.driver;
+        PageFactory.initElements(driver, ConnectionsPage.class);
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        WebDriverWait wait = new WebDriverWait(driver, 3);
+        WebElement selectElement = wait.until(ExpectedConditions.visibilityOf(ConnectionsPage.divSelectTeacher));
+        Select select = new Select(selectElement);
+        select.selectByVisibleText(item);
+    }
+
+    public static void selectCollege() throws InterruptedException {
+        driver = Hooks.driver;
+        PageFactory.initElements(driver, ConnectionsPage.class);
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.xpath("/html/body/div/div/div/div/recommendations-container/div/ng-view/add-request/form/section/div[2]/div[2]/table/tbody/tr[1]/td[1]/input")));
+        ConnectionsPage.divSelectCollege.click();
+    }
+
+    public static void clickSave() throws InterruptedException {
+        driver = Hooks.driver;
+        PageFactory.initElements(driver, ConnectionsPage.class);
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//button[@class='fc-button fc-button--primary']")));
+        ConnectionsPage.divSaveButton.click();
+
+    }
+
+    public static void successMessage(String strText) throws InterruptedException {
+        driver = Hooks.driver;
+        PageFactory.initElements(driver, ConnectionsPage.class);
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        assertTrue("The confirmation message is correct", driver.findElement(By.xpath("//span[@class='ng-binding'][contains(text(), '" + strText + "')]")).isDisplayed());
+    }
+
 }
+

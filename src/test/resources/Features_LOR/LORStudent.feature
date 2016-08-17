@@ -11,5 +11,10 @@ Feature: Family Connection - LOR
   Scenario: Verify default message when there are no LOR's
     Then I see the default message
 
-
+  Scenario: Verify Add Request functionality 
+    When I click on Add Request 
+    And I select a teacher  "Jane Teacher"
+    And I select a college 
+    And I click save 
+    Then I see my request in the list page with success message "Way to go! Jane Teacher will be notified of this recommendation request for 1 colleges."
 
