@@ -2,7 +2,10 @@ package stepDefs.Connections;
 
 import actions.Connections.Connections;
 
+import cucumber.api.PendingException;
+import cucumber.api.java.en.And;
 import cucumber.api.java.en.Then;
+import cucumber.api.java.en.When;
 
 /**
  * Created by franksejas on 1/28/2016.
@@ -56,5 +59,39 @@ public class Connections_StepDefs {
     }
 
 
+    @And("^I click on letters of recommendation$")
+    public void I_Click_On_Letters_Of_Recommendation() throws Throwable {
+        Connections.clickOnLettersOfRecommendation();
+    }
+
+    @Then("^I see the default message$")
+    public void i_See_The_Default_Message() throws Throwable {
+        Connections.defaultMessage();
+    }
+
+    @When("^I click on Add Request$")
+    public void i_Click_On_Add_Request() throws Throwable {
+        Connections.clickAddRequest();
+    }
+
+    @And("^I select a teacher  \"([^\"]*)\"$")
+    public void iSelectATeacher(String item) throws Throwable {
+        Connections.selectTeacher(item);
+    }
+
+    @And("^I select a college$")
+    public void i_Select_A_College() throws Throwable {
+        Connections.selectCollege();
+    }
+
+    @And("^I click save$")
+    public void i_Click_Save() throws Throwable {
+        Connections.clickSave();
+    }
+
+    @Then("^I see my request in the list page with success message \"([^\"]*)\"$")
+    public void iSeeMyRequestInTheListPageWithSuccessMessage(String strText) throws Throwable {
+        Connections.successMessage(strText);
+    }
 
 }
