@@ -48,7 +48,7 @@ public class FCHubsStudentLifeTab {
     public static void VerifyEthnicGroupPercentage(String ethnicGroup, String value) {
         driver = Hooks.driver;
         WebElement percent = driver.findElement(By.xpath("//div[contains(text(), 'Ethnicity Data')]" +
-                "/../../div/div/div/div[contains(text(), '" + ethnicGroup + "')]/following-sibling::div"));
+                "/../../div/div/div/div[contains(text(),'" + ethnicGroup + "')]/following-sibling::div"));
         assertTrue("The percent for " + ethnicGroup + " is not correct", percent.getText().equals(value));
     }
 
