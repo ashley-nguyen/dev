@@ -13,9 +13,17 @@ import pageObjects.Setup.SetupPage;
 import pageObjects.Student.eDocsTab.eDocsTabPage;
 import stepDefs.Hooks;
 
+import javax.activation.DataHandler;
+import javax.mail.*;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
+import javax.mail.search.SubjectTerm;
 import java.awt.*;
 import java.io.File;
+import java.io.IOException;
+import java.util.Date;
 import java.util.NoSuchElementException;
+import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
 import static org.junit.Assert.assertTrue;
@@ -174,4 +182,295 @@ public class eDocsGeneral {
             SetupPage.btnUploadFile.click();
         }
     }
+
+    public static void VerifyEmailDelivered(String subject) throws MessagingException, InterruptedException {
+
+        Properties props = System.getProperties();
+        props.setProperty("mail.store.protocol", "imaps");
+        try {
+            Session session = Session.getInstance(props,new Authenticator() {
+                @Override
+                protected PasswordAuthentication getPasswordAuthentication() {
+                    return new PasswordAuthentication("naviance.test123@gmail.com", "naviance123");
+                }
+            });
+
+            javax.mail.Store store = session.getStore("imaps");
+            store.connect("imap.gmail.com", "naviance.test123@gmail.com", "naviance123");
+            javax.mail.Folder[] folders = store.getDefaultFolder().list("*");
+
+            Folder folder = store.getFolder("INBOX");
+            folder.open(Folder.READ_WRITE);
+
+            //Count messages
+            int messagesNumber = folder.getMessageCount();
+            System.out.println("Messages Found" + messagesNumber);
+
+            Message[] messages = null;
+            boolean isMailFound = false;
+            Message mailFrom= null;
+
+            //Search for mail
+            for (int i = 0; i <= messagesNumber; i++) {
+                Message message = messages[i];
+                messages = folder.search(new SubjectTerm(subject), folder.getMessages());
+                //Wait for 10 seconds
+                if (messages.length == 0) {
+                    Thread.sleep(10000);
+                }
+
+                Address[] stringReplyTo = message.getReplyTo();
+                System.out.println("Reply to verification Found: " + stringReplyTo.toString());
+                if (subject != null) {
+                    System.out.println("Subject Found: " + subject);
+                }
+            }
+
+            //Search for unread mail from God
+            //This is to avoid using the mail for which
+            //Registration is already done
+            for (Message mail : messages) {
+
+
+                if (!mail.isSet(Flags.Flag.RECENT)) {
+                    mailFrom = mail;
+                    System.out.println("Message Count is: "
+                            + mailFrom.getMessageNumber());
+                    isMailFound = true;
+                }
+            }
+
+            System.out.println("Email Found?" + isMailFound);
+        } finally {
+            System.out.println("Email was Found");
+        }
+    }
+
+    public static void ReplyEmailDirectly(String email, String password) throws MessagingException, InterruptedException {
+
+        //Connection
+        Properties props = System.getProperties();
+        props.setProperty("mail.store.protocol", "imaps");
+        try {
+            Session session = Session.getInstance(props,new Authenticator() {
+                @Override
+                protected PasswordAuthentication getPasswordAuthentication() {
+                    return new PasswordAuthentication("naviance.test123@gmail.com", "naviance123");
+                }
+            });
+
+            javax.mail.Store store = session.getStore("imaps");
+            store.connect("imap.gmail.com", email, password);
+
+            Folder folder = store.getFolder("INBOX");
+            folder.open(Folder.READ_WRITE);
+
+            Message[] messages = null;
+
+            messages = folder.getMessages();
+            if (messages.length != 0) {
+
+                for (int i = 0, n = messages.length; i < n; i++) {
+                    Message message = messages[i];
+
+                    // Get all the information from the message
+                    String from = InternetAddress.toString(message.getFrom());
+                    if (from != null) {
+                        System.out.println("From: " + from);
+                    }
+                    String replyTo = InternetAddress.toString(message
+                            .getReplyTo());
+                    if (replyTo != null) {
+                        System.out.println("Reply-to: " + replyTo);
+                    }
+                    String to = InternetAddress.toString(message
+                            .getRecipients(Message.RecipientType.TO));
+                    if (to != null) {
+                        System.out.println("To: " + to);
+                    }
+
+                    String subject = message.getSubject();
+                    if (subject != null) {
+                        System.out.println("Subject: " + subject);
+                    }
+                    Date sent = message.getSentDate();
+                    if (sent != null) {
+                        System.out.println("Sent: " + sent);
+                    }
+
+                    Object content = message.getContent();
+                    if (content != null) {
+                        System.out.println("Body: " + messages[i].getContent());
+                    }
+
+
+                    System.out.println("starting to Reply Email......");
+                    Message replyMessage = new MimeMessage(session);
+                    replyMessage = (MimeMessage) message.reply(false);
+                    replyMessage.setFrom(new InternetAddress(to));
+                    replyMessage.setText("Verify Reply");
+                    replyMessage.setReplyTo(message.getReplyTo());
+
+                    // Send the message by authenticating the SMTP server
+                    // Create a Transport instance and call the sendMessage
+                    Transport t = session.getTransport("smtps");
+                    try {
+                        //connect to the smpt server using transport instance
+                        //change the user and password accordingly
+                        t.connect("smtp.gmail.com",email, password);
+                        t.sendMessage(replyMessage,
+                                replyMessage.getAllRecipients());
+                    }catch (MessagingException e){
+                        System.out.println("message replied failed ....");
+                    }
+                    finally {
+                        System.out.println("message replied successfully ....");
+                        t.close();
+                    }
+
+
+                    // close the store and folder objects
+                    folder.close(false);
+                    store.close();
+
+                }//end of for loop
+
+            } else {
+                System.out.println("There is no messages...");
+            }
+
+        } catch (MessagingException e) {
+            System.out.println("Connections were done correctly, but knew library issue it's here!" + e);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void VerifyReplyDirectlyToStudent() {
+
+        Properties props = System.getProperties();
+        props.setProperty("mail.store.protocol", "imaps");
+        try {
+            Session session = Session.getInstance(props,new Authenticator() {
+                @Override
+                protected PasswordAuthentication getPasswordAuthentication() {
+                    return new PasswordAuthentication("naviance.test123@gmail.com", "naviance123");
+                }
+            });
+
+            javax.mail.Store store = session.getStore("imaps");
+            store.connect("imap.gmail.com", "naviance.test123@gmail.com", "naviance123");
+            javax.mail.Folder[] folders = store.getDefaultFolder().list("*");
+
+            Folder folder = store.getFolder("INBOX");
+            folder.open(Folder.READ_WRITE);
+
+            Message[] messages = null;
+
+            messages = folder.getMessages();
+            if (messages.length != 0) {
+
+                for (int i = 0, n = messages.length; i < n; i++) {
+                    Message message = messages[i];
+                    System.out.println("Messages : " + message.toString());
+
+                    //Verify Content
+
+                    Multipart multipart = (Multipart) messages[i].getContent();
+                    System.out.println("Multipart : " + multipart);
+
+                    for (int j = 0; j < multipart.getCount(); j++) {
+
+                        BodyPart bodyPart = multipart.getBodyPart(j);
+
+                        String disposition = bodyPart.getDisposition();
+
+                        System.out.println("Body: "+bodyPart.getContent());
+                        String content= bodyPart.getContent().toString();
+                        System.out.println("Contentttttttt : " + content);
+
+                        if (disposition != null && (disposition.equalsIgnoreCase("ATTACHMENT"))) { // BodyPart.ATTACHMENT doesn't work for gmail
+                            System.out.println("Mail have some attachment");
+
+                            DataHandler handler = bodyPart.getDataHandler();
+                            System.out.println("file name : " + handler.getName());
+                        }
+                        else {
+                            System.out.println("Body: "+bodyPart.getContent());
+                            content= bodyPart.getContent().toString();
+                            System.out.println("Contentttttttt : " + content);
+                            if (content.contains("Verify Reply"))
+                            {
+                                assertTrue("Text found! "+ content, content.contains("Verify Reply"));
+                                break;
+                            }
+
+                        }
+                    }
+
+                    // Get all the information from the message
+                    String from = InternetAddress.toString(message.getFrom());
+                    if (from != null) {
+                        System.out.println("From: " + from);
+                    }
+                    String replyTo = InternetAddress.toString(message
+                            .getReplyTo());
+                    if (replyTo != null) {
+                        System.out.println("Reply-to: " + replyTo);
+                    }
+                    String to = InternetAddress.toString(message
+                            .getRecipients(Message.RecipientType.TO));
+                    if (to != null) {
+                        System.out.println("To: " + to);
+                    }
+
+                    String subject = message.getSubject();
+                    if (subject != null) {
+                        System.out.println("Subject: " + subject);
+                    }
+                    Date sent = message.getSentDate();
+                    if (sent != null) {
+                        System.out.println("Sent: " + sent);
+                    }
+
+                    System.out.println("starting to Reply Email......");
+                    Message replyMessage = new MimeMessage(session);
+                    replyMessage = (MimeMessage) message.reply(false);
+                    replyMessage.setFrom(new InternetAddress(to));
+                    replyMessage.setText("Verify Reply");
+                    replyMessage.setReplyTo(message.getReplyTo());
+
+                    // Send the message by authenticating the SMTP server
+                    // Create a Transport instance and call the sendMessage
+                    Transport t = session.getTransport("smtps");
+                    try {
+                        //connect to the smpt server using transport instance
+                        //change the user and password accordingly
+                        t.connect("smtp.gmail.com","naviance.test123@gmail.com", "naviance123");
+                        System.out.println("Replayin =3 ....");
+                        t.sendMessage(replyMessage,
+                                replyMessage.getAllRecipients());
+                    } finally {
+                        t.close();
+                    }
+
+                    System.out.println("message replied successfully ....");
+
+                    // close the store and folder objects
+                    folder.close(false);
+                    store.close();
+
+                }//end of for loop
+
+            } else {
+                System.out.println("There is no msg....");
+            }
+
+        } catch (MessagingException e) {
+            System.out.println("No connections were done correctly!");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
 }

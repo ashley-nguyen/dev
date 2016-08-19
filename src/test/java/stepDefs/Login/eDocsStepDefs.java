@@ -75,4 +75,14 @@ public class eDocsStepDefs {
     public void I_will_verify_incorrect_format_message(String strtext) throws Throwable {
         eDocsGeneral.verifyIncorrectFormatMessage(strtext);
     }
+
+    @Given("^I will verify the mail was delivered with \"([^\"]*)\" subject$")
+    public void i_will_verify_the_mail_was_delivered(String subject) throws Throwable {
+        eDocsGeneral.VerifyEmailDelivered(subject);
+    }
+
+    @Given("^I can reply email directly with \"([^\"]*)\" and \"([^\"]*)\" password$")
+    public void i_reply_email_directly(String email, String password) throws Throwable {
+        eDocsGeneral.ReplyEmailDirectly(email, password);
+    }
 }

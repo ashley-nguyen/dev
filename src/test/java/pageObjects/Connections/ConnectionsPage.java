@@ -49,6 +49,9 @@ public class ConnectionsPage extends BaseClass {
     @FindBy(how = How.XPATH, using = "/html/body/div/div/div/div/recommendations-container/div/ng-view/add-request/form/section/div[2]/div[2]/table/tbody/tr[1]/td[1]/input")
     public static WebElement divSelectCollege;
 
+    @FindBy(how = How.XPATH, using = "/html/body/div/div/div/div/recommendations-container/div/ng-view/recommendations-list/table/tbody/tr[1]/td[5]/div[12]/svg")
+    public static WebElement erase;
+
     @FindBy(how = How.XPATH, using = "//button[@class='fc-button fc-button--primary']")
     public static WebElement divSaveButton;
 
