@@ -28,6 +28,7 @@ public class Hooks {
 
     private static String CHROME_MAC_DRIVER = "/drivers/chrome/chromedriver";
     private static String CHROME_WINDOWS_DRIVER = "/drivers/chrome/chromedriver.exe";
+    private static String CHROME_LINUX_DRIVER = "/drivers/chrome/chromedriverlinux";
 
     DesiredCapabilities dc = new DesiredCapabilities();
 
@@ -86,7 +87,10 @@ public class Hooks {
                 }
                 System.setProperty("webdriver.chrome.driver", Hooks.class.getResource(CHROME_MAC_DRIVER).getFile());
 
-            } else {
+            } else if (System.getProperty("os.name").contains("Linux")) {
+                System.setProperty("webdriver.chrome.driver", Hooks.class.getResource(CHROME_LINUX_DRIVER).getFile());
+            }
+            else {
                 System.setProperty("webdriver.chrome.driver", Hooks.class.getResource(CHROME_WINDOWS_DRIVER).getFile());
 
             }
