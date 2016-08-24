@@ -94,4 +94,18 @@ public class Connections_StepDefs {
         Connections.successMessage(strText);
     }
 
+    @When("^I click on cancel button$")
+    public void iClickOnCancelButton() throws Throwable {
+        Connections.clickCancel();
+    }
+
+    @And("^I click on Confirm button$")
+    public void iClickOnConfirmButton() throws Throwable {
+        Connections.clickConfirmCancel();
+    }
+
+    @Then("^The request is cancelled and I verify confirmation message \"(.*)\" and cancel tooltip \"(.*)\" text$")
+    public void theRequestIsCancelledAndIVerifyConfirmationMessageAndCancelTooltipText(String info1, String info2) throws Throwable {
+        Connections.cancelSuccessMessage(info1, info2);
+    }
 }

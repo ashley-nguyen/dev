@@ -55,6 +55,16 @@ public class ConnectionsPage extends BaseClass {
     @FindBy(how = How.XPATH, using = "//span[@class='ng-binding']")
     public static WebElement lnkSuccessMessage;
 
+    @FindBy(how = How.XPATH, using = "//*[@class=\"fc-table\"]/tbody/tr[1]/td[5]/div")
+    public static WebElement divCancelButton;
+
+    @FindBy(how = How.CLASS_NAME, using = "recommendations-list__cancel-prompt-confirm")
+    public static WebElement divConfirmCancelButton;
+
+    @FindBy(how = How.CLASS_NAME, using = "recommendations-list__cancel--disabled")
+    public static WebElement divDisabledCancelIcon;
+
+
     public ConnectionsPage(WebDriver driver) {
         super(driver);
     }
