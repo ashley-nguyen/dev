@@ -1,18 +1,26 @@
 package API.StudentGroups;
 
+import com.sun.jersey.api.client.Client;
+import com.sun.jersey.api.client.ClientResponse;
+import com.sun.jersey.api.client.WebResource;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.openqa.selenium.WebDriver;
 import stepDefs.Hooks;
 
+import javax.security.sasl.AuthenticationException;
+import javax.ws.rs.core.UriBuilder;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.net.URLEncoder;
 import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
+
 import static org.junit.Assert.assertTrue;
 
 /**
  * Created by csackrider on 12/10/2015.
+ * Updated by franksejas on 08/23/2016.
  */
 public class APIExample_Action {
 
@@ -67,6 +75,47 @@ public class APIExample_Action {
             {
                 System.out.println("Address is not as Expected");
             }
+        }
+
+    }
+
+    public static void GetLorRequests(String token, String url, String param)throws Throwable {
+        driver = Hooks.driver;
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        String authToken = token;
+
+        try {
+
+            Client client = Client.create();
+            WebResource webResource = client
+                        .resource(UriBuilder.fromUri(url)
+                        .queryParam("query", URLEncoder.encode(param))
+                        .build());
+            ClientResponse response = webResource
+                .header("Content-Type", "application/json;charset=UTF-8")
+                .header("Authorization", "Bearer " + authToken)
+                .type("application/json")
+                .accept("application/json")
+                .get(ClientResponse.class);
+
+
+            int statusCode = response.getStatus();
+            if (statusCode == 401) {
+               throw new AuthenticationException("Invalid Username or Password");
+            }
+            if (statusCode != 200)
+                throw new RuntimeException("Failed : HTTP error code : " + response.getStatus());
+
+            String responseEntity = response.getEntity(String.class);
+
+            //Parsing the JSON
+
+            System.out.println(responseEntity.toString());
+
+
+            assertTrue("text found: ", responseEntity.contains("CANCELLED"));
+        } catch (Exception e) {
+            e.printStackTrace();
         }
 
     }
