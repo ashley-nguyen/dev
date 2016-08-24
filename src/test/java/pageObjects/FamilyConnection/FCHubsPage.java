@@ -19,11 +19,11 @@ public class FCHubsPage extends BaseClass {
     @FindBy(how = How.XPATH, using = "//div[@class='fc-grid__row fc-grid__row--xs-center fc-grid__row--lg-start " +
             "fc-grid__row--xs-middle']/div/div/a")
     public static WebElement linkURLIdentifierModule;
-    @FindBy(how = How.XPATH, using = "//a[contains(text(), 'Request Info')]")
+    @FindBy(how = How.XPATH, using = "//a[contains(text(),'Request info')]")
     public static WebElement buttonRequestInfo;
-    @FindBy(how = How.XPATH, using = "//a[contains(text(), 'Apply Online')]")
+    @FindBy(how = How.XPATH, using = "//a[contains(text(),'Apply online')]")
     public static WebElement buttonApplyOnline;
-    @FindBy(how = How.XPATH, using = "//div[contains(text(), 'Learn More')]")
+    @FindBy(how = How.XPATH, using = "//div[contains (text( ),'Learn More')]")
     public static WebElement buttonLearnMore;
     @FindBy(how = How.XPATH, using = "//div[@class='scroll right']")
     public static WebElement buttonRightArrow;
