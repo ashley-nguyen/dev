@@ -6,6 +6,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import pageObjects.FamilyConnection.FCHubsPage;
+import pageObjects.FamilyConnection.FCHubsStudentLifeTabPage;
 import pageObjects.FamilyConnection.FCHubsStudiesTabPage;
 import stepDefs.Hooks;
 
@@ -116,5 +117,15 @@ public class FCHubsStudiesTab {
                     currentStudyOption.getAttribute("class").equals("study-option__program--no"));
         }
 
+    }
+
+    public static void ClickLinkInStudentLifeTopBar(String linkText) {
+        driver = Hooks.driver;
+        PageFactory.initElements(driver, FCHubsStudentLifeTabPage.class);
+        new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.linkText(linkText)));
+        WebElement link = driver.findElement(By.linkText(linkText));
+        link.click();
+        ArrayList<String> tabs = new ArrayList<String> (driver.getWindowHandles());
+        driver.switchTo().window(tabs.get(tabs.size() - 1));
     }
 }

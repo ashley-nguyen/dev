@@ -1,5 +1,6 @@
 package stepDefs.FamilyConnection;
 
+import actions.FamilyConnection.FCGoogleMaps;
 import actions.FamilyConnection.FCHubs;
 import cucumber.api.PendingException;
 import cucumber.api.java.en.And;
@@ -368,6 +369,11 @@ public class FCHubs_StepDefs {
     @Then("^I should be redirected to the section \"([^\"]*)\" in Admissions$")
     public void I_should_be_redirected_to_the_section_in_Admissions(String sectionLabel) throws Throwable {
         FCHubs.VerifySectionLabelInAdmissions(sectionLabel);
+    }
+
+    @Then("^Google Maps should be opened in a new window$")
+    public void Google_Maps_should_be_opened_in_a_new_window() throws Throwable {
+        FCGoogleMaps.VerifyGoogleMapsURL();
     }
 }
 

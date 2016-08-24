@@ -13,11 +13,11 @@ Feature: As a student exploring a college, I want to see a top bar with high-lev
     Then Average Total Cost should be "<avgTotalCost>" when the income is "<income>"
     Examples:
     | income      | avgTotalCost |
-    | $0 - $30K   | 13191        |
-    | $30 - $48K  | 16272        |
-    | $48 - $75K  | 18240        |
-    | $75 - $110K | 19276        |
-    | > $110K     | 20142        |
+    | $0 - $30K   | 13,191        |
+    | $30 - $48K  | 16,272        |
+    | $48 - $75K  | 18,240        |
+    | $75 - $110K | 19,276        |
+    | > $110K     | 20,142        |
 
   Scenario: Graduation Rate is displayed with correct data in the Information Top bar
     Then Graduation Rate should be "66" with correct data in the Information Top bar

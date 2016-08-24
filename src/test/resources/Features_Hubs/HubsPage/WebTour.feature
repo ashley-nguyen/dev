@@ -5,7 +5,7 @@ Feature:  As a student exploring a college I want to see paid webtour to underst
     Given I log in to Family Connection with the following user details:
       | rtsa       | amandahubs | hubs2016  |
     And I click on the Colleges tab
-    And I go to the Page View for "Auburn"
+    And I go to the Page View for "George Mason"
     And I click the Beta Button
 
   Scenario: User is able to scroll content using arrows
@@ -14,9 +14,9 @@ Feature:  As a student exploring a college I want to see paid webtour to underst
 
   Scenario: Play button is present on thumbnail
     Then I should see a Play button in the YouTube video thumbnail
-
+@test
   Scenario: Kaltura image opens in modal after being clicked
-    When I click the Web Tour element at position "2"
+    When I click the Web Tour element at position "5"
     Then I should see an image in a modal dialog
 
   Scenario: Kaltura image opens in modal and content displays below

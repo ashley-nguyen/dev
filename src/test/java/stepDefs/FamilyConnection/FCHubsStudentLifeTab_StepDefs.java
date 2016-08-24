@@ -7,6 +7,7 @@ import cucumber.api.java.en.And;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import org.openqa.selenium.WebDriver;
+import pageObjects.FamilyConnection.FCHubsStudentLifeTabPage;
 
 import java.util.List;
 
@@ -84,5 +85,10 @@ public class FCHubsStudentLifeTab_StepDefs {
     @Then("^The \"([^\"]*)\" should be \"([^\"]*)\" in Housing Information$")
     public void The_Should_Be_In_Housing_Information(String hiLabel, String hiValue) throws Throwable {
         FCHubsStudentLifeTab.VerifyHousingInformation(hiLabel,hiValue);
+    }
+
+    @Then("^I should be redirected to Housing Information in Student Life$")
+    public void I_should_be_redirected_to_Housing_Information_in_Student_Life() throws Throwable {
+        FCHubsStudentLifeTab.VerifyHousingInformationLabel();
     }
 }

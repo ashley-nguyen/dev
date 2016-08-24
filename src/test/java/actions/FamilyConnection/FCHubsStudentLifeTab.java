@@ -26,15 +26,15 @@ public class FCHubsStudentLifeTab {
 
     public static void VerifySchoolSizeDetail(String sectionName, String number) {
         driver = Hooks.driver;
-        WebElement section = driver.findElement(By.xpath("//div[contains(text(), 'SCHOOL SIZE')]" +
-                "/../div[contains(text(), '" + sectionName + "')]"));
+        WebElement section = driver.findElement(By.xpath("//span[contains(text(), 'SCHOOL SIZE')]" +
+                "/../../div[contains(text(), '" + sectionName + "')]"));
         assertTrue("The " + sectionName + " number is incorrect", section.getText().contains(number));
     }
 
     public static void VerifyStudentLifeTopBarValues(String sectionName, String value) {
         driver = Hooks.driver;
-        WebElement section = driver.findElement(By.xpath("//div[contains(text(), '" + sectionName + "')]" +
-                "/../div[contains(text(), '" + value + "')]"));
+        WebElement section = driver.findElement(By.xpath("//span[contains(text(), '" + sectionName + "')]" +
+                "/../../div[contains(text(), '" + value + "')]"));
         assertTrue("The " + sectionName + " value is incorrect", section.getText().equals(value));
     }
 
@@ -135,5 +135,12 @@ public class FCHubsStudentLifeTab {
         WebElement housingValue = driver.findElement(By.xpath("//*[@id='housing-information']/div/div/dl/dt[contains" +
                 "(text(),'" + hiLabel + "')]/../dd"));
         assertTrue("The Housing Information Value for" + hiLabel + "is not correct", housingValue.getText().equals(hiValue));
+    }
+
+    public static void VerifyHousingInformationLabel() {
+        driver = Hooks.driver;
+        PageFactory.initElements(driver, FCHubsStudentLifeTabPage.class);
+        assertTrue("The Housing Information section is displayed",
+                FCHubsStudentLifeTabPage.labelHousingInformation.isDisplayed());
     }
 }

@@ -518,8 +518,8 @@ public class FCHubs {
 
     public static void VerifyActiveTab(String tabName) {
         driver = Hooks.driver;
-        WebElement tabElement = driver.findElement(By.xpath("//div[@class = 'fc-grid__row fc-grid__row--xs-center']" +
-                "/div/div/div/span[contains(text(), '" + tabName + "')]"));
+        WebElement tabElement = driver.findElement(By.xpath("//div[@class = 'fc-tabs__labels']" +
+                "/span[contains(text(), '" + tabName + "')]"));
         assertTrue("The tab " + tabName + " is not active", tabElement.getAttribute("class").contains("active"));
     }
 

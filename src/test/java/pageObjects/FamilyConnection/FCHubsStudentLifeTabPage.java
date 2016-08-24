@@ -10,8 +10,7 @@ import pageObjects.BaseClass;
  * Created by jorgemaguina on 8/01/2016.
  */
 public class FCHubsStudentLifeTabPage extends BaseClass {
-    @FindBy(how = How.XPATH, using = "//div[contains(text(), 'SCHOOL SIZE')]/../div[contains(@class, " +
-            "'hub-data-pod--overview')]")
+    @FindBy(how = How.XPATH, using = "//span[contains(text(), 'SCHOOL SIZE')]/../../div[2]")
     public static WebElement labelSchoolSizeOverview;
     @FindBy(how = How.XPATH, using = "//nvd3[@id = 'ethnicData']/*[name()='svg']/*[name()='g']/*[name()='g']" +
             "/*[name()='g']/*[name()='g']/*[name()='g']/*[name()='g']" +
@@ -25,6 +24,8 @@ public class FCHubsStudentLifeTabPage extends BaseClass {
             "/*[name()='g']/*[name()='g']/*[name()='g']/*[name()='g']/*[name()='text' and " +
             "@class='student-life-donut-middle']")
     public static WebElement labelTotalStudentsAgeData;
+    @FindBy(how = How.XPATH, using = "//div[@id = 'housing-information']/div/div/h2")
+    public static WebElement labelHousingInformation;
 
     public FCHubsStudentLifeTabPage(WebDriver driver) {
         super(driver);

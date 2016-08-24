@@ -14,7 +14,7 @@ Feature:  As a student viewing new Hubs' Overview tab, I want to see contact inf
 
   Scenario: The School Type is displayed in Quick Facts with correct data
     Then School Type is "Public / 4 Year" in Quick Facts
-
+@test
   Scenario: Undergraduate Enrollment is displayed in Quick Facts with correct data
     Then Undergraduate Enrollment is "20,629" in Quick Facts
 
