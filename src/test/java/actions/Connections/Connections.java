@@ -159,5 +159,37 @@ public class Connections {
         assertTrue("The confirmation message is correct", driver.findElement(By.xpath("//span[@class='ng-binding'][contains(text(), '" + strText + "')]")).isDisplayed());
     }
 
+    public static void clickCancel() throws InterruptedException {
+        driver = Hooks.driver;
+        PageFactory.initElements(driver, ConnectionsPage.class);
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        Actions builder = new Actions(driver);
+        builder.click(ConnectionsPage.divCancelButton).build().perform();
+    }
+
+    public static void clickConfirmCancel() throws InterruptedException {
+        driver = Hooks.driver;
+        PageFactory.initElements(driver, ConnectionsPage.class);
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.className("recommendations-list__cancel-prompt-confirm")));
+        ConnectionsPage.divConfirmCancelButton.click();
+    }
+
+    public static void cancelSuccessMessage(String info1, String info2) throws InterruptedException {
+        driver = Hooks.driver;
+        PageFactory.initElements(driver, ConnectionsPage.class);
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.className("fc-alert--success")));
+        String dataVerification = Hooks.driver.findElement(By.className("recommendations-list__status")).getText();
+        assertTrue("LOR request cancelled", dataVerification.contains("Cancelled"));
+        //Need to refactor this xpath
+        String cancelMessage = Hooks.driver.findElement(By.xpath("/html/body/div/div/div/div/recommendations-container/div/ng-view/recommendations-list/table/tbody/tr[2]/td/div/span[3]")).getText();
+        assertTrue("LOR cancellation message", cancelMessage.contains(info1));
+        ConnectionsPage.divDisabledCancelIcon.click();
+        String cancelTooltip = Hooks.driver.findElement(By.className("fc-tooltip__content")).getText();
+        System.out.print("cancelTooltip" + cancelTooltip);
+        assertTrue("LOR cancellation tooltip", cancelTooltip.contains(info2));
+    }
+
 }
 
