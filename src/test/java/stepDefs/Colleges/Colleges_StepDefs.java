@@ -16,6 +16,11 @@ public class Colleges_StepDefs {
         College.ClickOnAddProspectiveColleges();
     }
 
+    @When("^I click on Colleges tab$")
+    public void i_click_on_colleges_tab() throws Throwable {
+        College.ClickOnCollegesTab();
+    }
+
     @When("^I enter to School Site$")
     public void i_enter_to_school_site() throws Throwable {
         College.ClickOnSchoolSiteLink();

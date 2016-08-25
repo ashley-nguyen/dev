@@ -50,6 +50,15 @@ public class CollegePage extends BaseClass {
     @FindBy(how = How.NAME, using = "class")
     public static WebElement selClassYear;
 
+    @FindBy(how = How.XPATH, using = "//*[@id=\"add-request-teacher-id\"]")
+    public static WebElement selIdRequest;
+
+    @FindBy(how = How.XPATH, using = "//*[@id=\"add-request-application-id\"]")
+    public static WebElement selIdApplication;
+
+    @FindBy(how = How.XPATH, using = "//*[@id=\"add-request-button\"]")
+    public static WebElement btnAddRequestButton;
+
 
     public CollegePage(WebDriver driver) {
         super(driver);

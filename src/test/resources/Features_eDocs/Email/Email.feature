@@ -1,4 +1,4 @@
-@NAVCORE671 @NAVCORE674
+@NAVCORE671 @NAVCORE674 @NAVCORE647
 Feature: Email Verification
   As a teacher,
   I want to receive an email notifying me of a letter of recommendation request from a student so that
@@ -32,3 +32,27 @@ Feature: Email Verification
     When I click on cancel button
     And I click on Confirm button
     Then I can reply email directly with "naviance.test123@gmail.com" and "naviance123" password
+
+
+  Scenario Outline: Given I am a staff member (WITH edit list of teachers permission), when accessing a student's college tab, in the Teacher Recommendation section, then I select a teacher and college to add a request.  The teacher DOES have an LOR request with a status of: Requested, In Progress, or Submitted for the selected college.
+    Given I am logged into Naviance "rtsa" as "stan.smith" with "stan01!"
+    When I search for <student> using the global search field
+    And I add a request with <teacher> and <application>
+   Then I will verify the mail was delivered with "Teacher recommendation can't add request" subject
+
+
+  Examples:
+    | student       | teacher      | application         |
+    | Sejas, Frank  | Frank Sejas  | Adelphi University  |
+
+  Scenario Outline: Given I am a staff member (WITH edit list of teachers permission), when accessing a student's college tab, in the Teacher Recommendation section, then I select a teacher and college to add a request.  The MAX NUMBER OF REQUESTS has been fulfilled for the college.  A LOR is counted when there is a request that exists for the student & college combo in one of the following statuses: Requested, In Progress, or Submitted.
+    Given I am logged into Naviance "rtsa" as "stan.smith" with "stan01!"
+    When I search for <student> using the global search field
+    And I add a request with <teacher> and <application>
+    Then I verify the number of LORs <message> message
+    Then I will verify the mail was delivered with "Teacher recommendation can't add request" subject
+
+
+  Examples:
+    | student       | teacher      | application         | message |
+    | Sejas, Frank  | Frank Sejas  | Adelphi University  |A letter of recommendation request already exists for the teacher and application selected.|

@@ -6,6 +6,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import pageObjects.Colleges.CollegePage;
 import pageObjects.Colleges.CollegeSearchPage;
@@ -133,6 +134,39 @@ public class College {
         CollegePage.tabColleges.click();
     }
 
+
+
+    public static void SelectTeacher(String item) {
+        driver = Hooks.driver;
+        PageFactory.initElements(driver, CollegePage.class);
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        WebDriverWait wait = new WebDriverWait(driver, 3);
+        new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.id("add-request-teacher-id")));
+        WebElement selectElement = wait.until(ExpectedConditions.visibilityOf(CollegePage.selIdRequest));
+        Select select = new Select(selectElement);
+        select.selectByVisibleText(item);
+    }
+
+    public static void SelectApplication(String item) {
+        driver = Hooks.driver;
+        PageFactory.initElements(driver, CollegePage.class);
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        WebDriverWait wait = new WebDriverWait(driver, 3);
+        new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.id("add-request-application-id")));
+        WebElement selectElement = wait.until(ExpectedConditions.visibilityOf(CollegePage.selIdApplication));
+        Select select = new Select(selectElement);
+        select.selectByVisibleText(item);
+    }
+
+    public static void ClickOnAddRequestButton() throws InterruptedException {
+        driver = Hooks.driver;
+        PageFactory.initElements(driver, CollegePage.class);
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        Actions builder = new Actions(driver);
+        builder.click(CollegePage.btnAddRequestButton).build().perform();
+    }
+
+
     public static void ClickOnSchoolSiteLink() throws InterruptedException {
         driver = Hooks.driver;
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
@@ -227,6 +261,12 @@ public class College {
 
     public static void verifyNoErrorsInCollegePick() throws InterruptedException {
         assertTrue("Error Verification!", Hooks.driver.getPageSource().contains(""));
+    }
+
+    public static void verifyLORsMessage(String strText) throws InterruptedException {
+        driver = Hooks.driver;
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        assertTrue("text not found: " + strText, driver.getPageSource().contains(strText));
     }
 
 }

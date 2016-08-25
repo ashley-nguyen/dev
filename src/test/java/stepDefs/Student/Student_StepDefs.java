@@ -1,5 +1,6 @@
 package stepDefs.Student;
 
+import actions.Colleges.College;
 import actions.Login.Login;
 import actions.Student.Search.GeneralTab.Student_General;
 import actions.Student.Search.Search.Student_Search;
@@ -47,6 +48,23 @@ public class Student_StepDefs {
         Student_Search.verifyStudentData(data);
 
     }
+
+    @When("^I add a request with (.*) and (.*)$")
+    public void I_add_a_request_with_teacher_and_application(String teacher, String application) throws Throwable {
+
+        College.ClickOnCollegesTab();
+        College.SelectTeacher(teacher);
+        College.SelectApplication(application);
+        College.ClickOnAddRequestButton();
+    }
+
+    @When("^I verify the number of LORs (.*) message$")
+    public void I_verify_the_number_of_LORs(String message) throws Throwable {
+
+        College.verifyLORsMessage(message);
+    }
+
+
 
 
     //USAGE: When I search for "Aisner, Cathy" using the global search field
