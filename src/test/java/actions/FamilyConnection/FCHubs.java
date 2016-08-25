@@ -199,7 +199,7 @@ public class FCHubs {
     public static void VerifyNavigationTabs() {
         driver = Hooks.driver;
         assertTrue("The Navigation Tabs are not displayed", driver.findElement(By.xpath
-                ("//ul[@id='hubNavBar']")).isDisplayed());
+                ("//div[@class='tabs hubs-top-tabs-bar']")).isDisplayed());
     }
 
     public static void VerifySchoolNameAppMailingAdd(String schoolName) {

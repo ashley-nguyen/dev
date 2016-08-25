@@ -35,8 +35,9 @@ public class FCHubsStudiesTab {
 
     public static void VerifyGraduationRateStudiesTopBar(String graduationRate) {
         driver = Hooks.driver;
-        assertTrue("The Student Faculty Ratio is not correct", driver.findElement(By.xpath("//div[contains(text(), " +
-                "'Graduation Rate')]/../div[contains(text(), '" + graduationRate + "')]")).isDisplayed());
+        assertTrue("The Student Faculty Ratio is not correct",driver.findElement(By.xpath("//div[@class = 'fc-grid__col" +
+                " fc-grid__col--core-width fc-grid--hugged overview-bar']/div/div/div[contains(text(), 'Graduation Rate" +
+                "')]/../div[contains(text(), '"+ graduationRate + "')]")).isDisplayed());
     }
 
     public static void VerifyDegreesOfferedStudiesTopBar(List<String> degreesOffered) {
