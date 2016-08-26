@@ -56,3 +56,13 @@ Feature: Email Verification
   Examples:
     | student       | teacher      | application         | message |
     | Sejas, Frank  | Frank Sejas  | Adelphi University  |A letter of recommendation request already exists for the teacher and application selected.|
+
+  Scenario Outline: Given I am a staff member (WITH edit list of teachers permission), when accessing a student's college tab, in the Teacher Recommendation section, then I select a teacher and college to add a request.  The MAX NUMBER OF REQUESTS has been fulfilled for the college.  A LOR is counted when there is a request that exists for the student & college combo in one of the following statuses: Requested, In Progress, or Submitted.
+    Given I am logged into Naviance "rtsa" as "stan.smith" with "stan01!"
+    When I search for <student> using the global search field
+    And I add a request with <teacher> and <application>
+    Then I verify the number of LORs <message> message
+
+  Examples:
+    | student       | teacher             | application         | message |
+    | a101, a101    | Jandell Counselor   | Adelphi University  |Success! A new letter of recommendation request has been created.|
