@@ -1,7 +1,10 @@
 package actions.FamilyConnection;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import pageObjects.FamilyConnection.FCDashboardPage;
 import stepDefs.Hooks;
 
@@ -17,6 +20,8 @@ public class FCDashboard {
         driver = Hooks.driver;
         PageFactory.initElements(driver, FCDashboardPage.class);
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        new WebDriverWait(Hooks.driver, 20).until(ExpectedConditions.elementToBeClickable(
+                By.xpath("//ul[@id = 'nav']/li/a[@href='/family-connection/colleges/']")));
         FCDashboardPage.tabColleges.click();
     }
 }

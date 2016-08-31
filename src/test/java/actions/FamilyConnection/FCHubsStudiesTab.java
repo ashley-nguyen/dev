@@ -6,6 +6,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import pageObjects.FamilyConnection.FCHubsPage;
+import pageObjects.FamilyConnection.FCHubsStudentLifeTabPage;
 import pageObjects.FamilyConnection.FCHubsStudiesTabPage;
 import stepDefs.Hooks;
 
@@ -34,8 +35,9 @@ public class FCHubsStudiesTab {
 
     public static void VerifyGraduationRateStudiesTopBar(String graduationRate) {
         driver = Hooks.driver;
-        assertTrue("The Student Faculty Ratio is not correct", driver.findElement(By.xpath("//div[contains(text(), " +
-                "'Graduation Rate')]/../div[contains(text(), '" + graduationRate + "')]")).isDisplayed());
+        assertTrue("The Student Faculty Ratio is not correct",driver.findElement(By.xpath("//div[@class = 'fc-grid__col" +
+                " fc-grid__col--core-width fc-grid--hugged overview-bar']/div/div/div[contains(text(), 'Graduation Rate" +
+                "')]/../div[contains(text(), '"+ graduationRate + "')]")).isDisplayed());
     }
 
     public static void VerifyDegreesOfferedStudiesTopBar(List<String> degreesOffered) {
@@ -116,5 +118,15 @@ public class FCHubsStudiesTab {
                     currentStudyOption.getAttribute("class").equals("study-option__program--no"));
         }
 
+    }
+
+    public static void ClickLinkInStudentLifeTopBar(String linkText) {
+        driver = Hooks.driver;
+        PageFactory.initElements(driver, FCHubsStudentLifeTabPage.class);
+        new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.linkText(linkText)));
+        WebElement link = driver.findElement(By.linkText(linkText));
+        link.click();
+        ArrayList<String> tabs = new ArrayList<String> (driver.getWindowHandles());
+        driver.switchTo().window(tabs.get(tabs.size() - 1));
     }
 }

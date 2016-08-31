@@ -14,13 +14,13 @@ Feature:  As a student viewing new hubs page, I want to always see the college's
 
   Scenario: Logo is present in Identifier module
     Then I should see the logo in the Identifier module
-
+@test
   Scenario Outline: I see the college's url open in a new page
     When I click the URL at the side of the logo
     Then I should see the URL for "<site>" open in a new page
     Examples:
-    | site           |
-    | www.auburn.edu |
+    | site                   |
+    | http://www.auburn.edu/ |
 
 
 

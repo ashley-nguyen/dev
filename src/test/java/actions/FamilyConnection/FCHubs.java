@@ -100,6 +100,8 @@ public class FCHubs {
     public static void ClickRequestInfoButton() {
         driver = Hooks.driver;
         PageFactory.initElements(driver, FCHubsPage.class);
+        new WebDriverWait(Hooks.driver, 20).until(ExpectedConditions.elementToBeClickable(By.xpath
+                ("//a[contains(text(),'Request info')]")));
         FCHubsPage.buttonRequestInfo.click();
         ArrayList<String> tabs = new ArrayList<String> (driver.getWindowHandles());
         driver.switchTo().window(tabs.get(tabs.size() - 1));
@@ -108,6 +110,8 @@ public class FCHubs {
     public static void ClickApplyOnlineButton() {
         driver = Hooks.driver;
         PageFactory.initElements(driver, FCHubsPage.class);
+        new WebDriverWait(Hooks.driver, 20).until(ExpectedConditions.elementToBeClickable(By.xpath
+                ("//a[contains(text(),'Apply online')]")));
         FCHubsPage.buttonApplyOnline.click();
         ArrayList<String> tabs = new ArrayList<String> (driver.getWindowHandles());
         driver.switchTo().window(tabs.get(tabs.size() - 1));
@@ -199,7 +203,7 @@ public class FCHubs {
     public static void VerifyNavigationTabs() {
         driver = Hooks.driver;
         assertTrue("The Navigation Tabs are not displayed", driver.findElement(By.xpath
-                ("//ul[@id='hubNavBar']")).isDisplayed());
+                ("//div[@class='tabs hubs-top-tabs-bar']")).isDisplayed());
     }
 
     public static void VerifySchoolNameAppMailingAdd(String schoolName) {
@@ -518,8 +522,8 @@ public class FCHubs {
 
     public static void VerifyActiveTab(String tabName) {
         driver = Hooks.driver;
-        WebElement tabElement = driver.findElement(By.xpath("//div[@class = 'fc-grid__row fc-grid__row--xs-center']" +
-                "/div/div/div/span[contains(text(), '" + tabName + "')]"));
+        WebElement tabElement = driver.findElement(By.xpath("//div[@class = 'fc-tabs__labels']" +
+                "/span[contains(text(), '" + tabName + "')]"));
         assertTrue("The tab " + tabName + " is not active", tabElement.getAttribute("class").contains("active"));
     }
 

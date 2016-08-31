@@ -19,11 +19,11 @@ public class FCHubsPage extends BaseClass {
     @FindBy(how = How.XPATH, using = "//div[@class='fc-grid__row fc-grid__row--xs-center fc-grid__row--lg-start " +
             "fc-grid__row--xs-middle']/div/div/a")
     public static WebElement linkURLIdentifierModule;
-    @FindBy(how = How.XPATH, using = "//a[contains(text(), 'Request Info')]")
+    @FindBy(how = How.XPATH, using = "//a[contains(text(),'Request info')]")
     public static WebElement buttonRequestInfo;
-    @FindBy(how = How.XPATH, using = "//a[contains(text(), 'Apply Online')]")
+    @FindBy(how = How.XPATH, using = "//a[contains(text(),'Apply online')]")
     public static WebElement buttonApplyOnline;
-    @FindBy(how = How.XPATH, using = "//div[contains(text(), 'Learn More')]")
+    @FindBy(how = How.XPATH, using = "//div[contains (text( ),'Learn More')]")
     public static WebElement buttonLearnMore;
     @FindBy(how = How.XPATH, using = "//div[@class='scroll right']")
     public static WebElement buttonRightArrow;
@@ -43,11 +43,11 @@ public class FCHubsPage extends BaseClass {
     public static WebElement buttonXOnFirstTutorial;
     @FindBy(how = How.XPATH, using ="//span[contains(text(),'Tell us what you think!')]/../span[@role='button']")
     public static WebElement buttonXOnSecondTutorial;
-    @FindBy(how = How.XPATH, using = "//ul[@id='hubNavBar']/li/a[contains(text(), 'Studies')]")
+    @FindBy(how = How.XPATH, using = "//div[@class = 'tabs hubs-top-tabs-bar']/span[text() = 'Studies']")
     public static WebElement tabStudies;
-    @FindBy(how = How.XPATH, using = "//ul[@id='hubNavBar']/li/a[contains(text(), 'Admissions')]")
+    @FindBy(how = How.XPATH, using = "//div[@class = 'tabs hubs-top-tabs-bar']/span[text() = 'Admissions']")
     public static WebElement tabAdmissions;
-    @FindBy(how = How.XPATH, using = "//ul[@id='hubNavBar']/li/a[contains(text(), 'Student Life')]")
+    @FindBy(how = How.XPATH, using = "//div[@class = 'tabs hubs-top-tabs-bar']/span[text() = 'Student Life']")
     public static WebElement tabStudentLife;
 
     public FCHubsPage(WebDriver driver) {

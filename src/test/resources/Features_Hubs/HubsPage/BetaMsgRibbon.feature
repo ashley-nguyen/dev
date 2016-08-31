@@ -1,5 +1,5 @@
-@smoketest @nondestructive @hubs @survey
-Feature: Hubs Beta Feeedback Ribbon (HUBS-11)
+@smoketest @nondestructive @hubs @betamsgribbon
+Feature: Hubs Beta Feeedback Ribbon
   Verify that as a student viewing a college's new hub page, I see a clear reminder that I'm trying a beta version
 
   Background:
