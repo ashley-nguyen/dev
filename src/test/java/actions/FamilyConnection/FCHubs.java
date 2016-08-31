@@ -100,6 +100,8 @@ public class FCHubs {
     public static void ClickRequestInfoButton() {
         driver = Hooks.driver;
         PageFactory.initElements(driver, FCHubsPage.class);
+        new WebDriverWait(Hooks.driver, 20).until(ExpectedConditions.elementToBeClickable(By.xpath
+                ("//a[contains(text(),'Request info')]")));
         FCHubsPage.buttonRequestInfo.click();
         ArrayList<String> tabs = new ArrayList<String> (driver.getWindowHandles());
         driver.switchTo().window(tabs.get(tabs.size() - 1));
@@ -108,6 +110,8 @@ public class FCHubs {
     public static void ClickApplyOnlineButton() {
         driver = Hooks.driver;
         PageFactory.initElements(driver, FCHubsPage.class);
+        new WebDriverWait(Hooks.driver, 20).until(ExpectedConditions.elementToBeClickable(By.xpath
+                ("//a[contains(text(),'Apply online')]")));
         FCHubsPage.buttonApplyOnline.click();
         ArrayList<String> tabs = new ArrayList<String> (driver.getWindowHandles());
         driver.switchTo().window(tabs.get(tabs.size() - 1));

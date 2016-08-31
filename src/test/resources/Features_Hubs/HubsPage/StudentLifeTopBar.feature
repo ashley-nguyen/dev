@@ -30,7 +30,7 @@ Feature:  As a student viewing new Hubs' Student Life tab, I want to see a top b
 
   Scenario: The Percent Of Students Living On Campus is displayed with correct data
     Then The "PERCENT OF STUDENTS LIVING ON CAMPUS" should be "21" in Student Life Top Bar
-  @test
+
   Scenario: Google Maps is opened in a new window when the user clicks the 'Get Directions' link in Student Life Top bar
     When I click the "Get Directions" link in Student Life top bar
     Then Google Maps should be opened in a new window

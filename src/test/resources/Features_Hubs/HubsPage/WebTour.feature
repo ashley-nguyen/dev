@@ -14,7 +14,7 @@ Feature:  As a student exploring a college I want to see paid webtour to underst
 
   Scenario: Play button is present on thumbnail
     Then I should see a Play button in the YouTube video thumbnail
-@test
+
   Scenario: Kaltura image opens in modal after being clicked
     When I click the Web Tour element at position "5"
     Then I should see an image in a modal dialog

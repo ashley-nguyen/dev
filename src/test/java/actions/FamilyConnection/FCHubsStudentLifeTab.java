@@ -1,8 +1,6 @@
 package actions.FamilyConnection;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.PageFactory;
 import pageObjects.FamilyConnection.FCHubsStudentLifeTabPage;
 import stepDefs.Hooks;
@@ -84,6 +82,9 @@ public class FCHubsStudentLifeTab {
         WebElement orgTab = driver.findElement(By.xpath("//h2[contains(text(), 'Student Organizations and Services')]" +
                 "/../div/div/span[text() = '" + sectionName + "']"));
         orgTab.click();
+        for(int i = 0; i < 4; i++) {
+            orgTab.sendKeys(Keys.ARROW_UP);
+        }
     }
 
     public static void VerifyStudentOrganizations(List<String> studentOrgs) {
@@ -103,8 +104,8 @@ public class FCHubsStudentLifeTab {
 
     public static void ClickSectionInAthletics(String sectionName) {
         driver = Hooks.driver;
-        WebElement athleticsTab = driver.findElement(By.xpath("//h2[contains(text(), " +
-                "'Student Organizations and Services')]/../div/div/div/span[text() = '" + sectionName + "']"));
+        WebElement athleticsTab = driver.findElement(By.xpath("//div[@class = 'student-life__athletics__nav-buttons']" +
+                "/span[text() = '" + sectionName + "']"));
         athleticsTab.click();
     }
 
@@ -115,14 +116,26 @@ public class FCHubsStudentLifeTab {
             String[] sportElement = sports.get(i).split(",");
             for(int j = 0; j < sportElement.length; j++) {
                 if(sportElement[j].equals("empty")) {
-                    result = driver.findElement(By.xpath("//h2[text() = 'Student Organizations and Services']" +
-                            "/../div/div/div/div/div/div/h3[contains(text(), '" + gender + "')]" +
-                            "/../../div/div[contains(text(), '" + sportElement[0] + "')]" +
-                            "/../div[not(normalize-space())]")).isDisplayed();
-                } else if(driver.findElement(By.xpath("//h2[text() = 'Student Organizations and Services']" +
-                        "/../div/div/div/div/div/div/h3[contains(text(), '" + gender + "')]" +
-                        "/../../div/div[contains(text(), '" + sportElement[0] + "')]" +
-                        "/../div[contains(text(), '" + sportElement[j] + "')]")).isDisplayed()) {
+                    WebElement emptyElement;
+                    try{
+                        emptyElement = driver.findElement(By.xpath("//tbody[@class = 'ng-scope']/tr/td" +
+                                "[contains(text(), '" + sportElement[0] + "')]/../td/span[not(@ng-class)]" +
+                                "[not(normalize-space())]"));
+                    } catch (NoSuchElementException e) {
+                        emptyElement = driver.findElement(By.xpath("//tbody[@class = 'ng-scope']/tr/td" +
+                                "[contains(text(), '" + sportElement[0] + "')]/../td/span[not(@ng-class)]"));
+                    }
+                    if(emptyElement.isDisplayed()) {
+                        result = true;
+                    }
+
+
+                } else if(j == 0) {
+                    result = driver.findElement(By.xpath("//tbody[@class = 'ng-scope']/tr/td" +
+                            "[contains(text(), '" + sportElement[j] + "')]")).isDisplayed();
+                } else if(driver.findElement(By.xpath("//tbody[@class = 'ng-scope']/tr/td" +
+                        "[contains(text(), '" + sportElement[0] + "')]/../td/span" +
+                        "[contains(text(), '" + sportElement[j] + "')]")).isDisplayed()){
                     result = true;
                 }
             }
