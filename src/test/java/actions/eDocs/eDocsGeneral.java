@@ -60,6 +60,14 @@ public class eDocsGeneral {
         eDocsTabPage.btnAdd.click();
     }
 
+    public static void ClickOnAddCounselorButton() throws Throwable {
+        driver = Hooks.driver;
+        Thread.sleep(8008);
+        PageFactory.initElements(driver, eDocsTabPage.class);
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        eDocsTabPage.btnCounselorAdd.click();
+    }
+
     public static void ClickOnUploadAFileButton() throws Throwable {
         driver = Hooks.driver;
         PageFactory.initElements(driver, eDocsTabPage.class);

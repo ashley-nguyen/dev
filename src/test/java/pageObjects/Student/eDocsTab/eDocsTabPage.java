@@ -20,6 +20,9 @@ public class eDocsTabPage extends BaseClass  {
         @FindBy(how = How.XPATH, using = "//button[@class='btn btn-small ng-scope']")
         public static WebElement btnAdd;
 
+        @FindBy(how = How.XPATH, using = "//*[@id=\"contents\"]/div[2]/div[2]/div/div[2]/h3/button")
+        public static WebElement btnCounselorAdd;
+
         @FindBy(how = How.XPATH, using = "//button[@class='btn btn-upload-toggle span12']")
         public static WebElement btnUploadAFile;
 

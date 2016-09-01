@@ -60,7 +60,6 @@ public class Student_StepDefs {
 
     @When("^I verify the number of LORs (.*) message$")
     public void I_verify_the_number_of_LORs(String message) throws Throwable {
-
         College.verifyLORsMessage(message);
     }
 

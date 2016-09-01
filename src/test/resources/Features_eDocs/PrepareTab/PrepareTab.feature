@@ -147,3 +147,19 @@ Feature: View student details
   Examples:
     | studentID  | text                     |filename        |
     | a101       | Letter of Recommendation |ReadMe.txt      |
+
+  @edocs @safe @succeed @EDOCS234
+  Scenario Outline: Verify Under Application, I want to upload a NACAC fee waiver on behalf of a student to non-common-app colleges via eDocs
+    When I am accessing the "<studentID>" edocs tab
+    When I click on Prepare link
+    When I click on Add Counselor button
+    When I click on Upload a File button
+    When I select "All Applications" from Application
+    When I select "<type>" from Type
+    When I click on Browse button
+    When I write the "<filename>" file path
+    Then I will verify "<type>" for LORs
+
+  Examples:
+    | studentID  | type                     |filename        |
+    | a101       | NACAC Fee Waiver         |ReadMe.txt      |
