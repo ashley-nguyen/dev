@@ -21,6 +21,7 @@ import javax.mail.search.SubjectTerm;
 import java.awt.*;
 import java.io.File;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.NoSuchElementException;
 import java.util.Properties;
@@ -123,6 +124,28 @@ public class eDocsGeneral {
             new WebDriverWait(Hooks.driver, 30).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@id=\"contents\"]/div[2]/div[2]/div/div[1]/table")));
             String verifyReplaceText = Hooks.driver.findElement(By.xpath("//*[@id=\"contents\"]/div[2]/div[2]/div/div[1]/table")).getText();
             assertTrue("Text not found! "+strData, !verifyReplaceText.contains(strData));
+        }
+    }
+
+    public static void verifyLorsFieldsText (String type, String author, String size, String action) throws Throwable {
+
+        Date date = new Date( );
+        SimpleDateFormat ft =
+                new SimpleDateFormat ("MM/dd/yyyy");
+
+        new WebDriverWait(Hooks.driver, 30).until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("div[class='form-checklist condensed ng-scope']")));
+        Thread.sleep(8008);
+        new WebDriverWait(Hooks.driver, 30).until(ExpectedConditions.visibilityOf(Hooks.driver.findElement(By.className("ng-scope"))));
+        String bodyText = Hooks.driver.findElement(By.tagName("body")).getText();
+        assertTrue("Text Type not found! "+ type, bodyText.contains(type));
+        assertTrue("Text Author not found! "+ author, bodyText.contains(author));
+        assertTrue("Text Date not found! "+ ft.format(date), bodyText.contains(ft.format(date)));
+        assertTrue("Text Size not found! "+ size, bodyText.contains(size));
+        assertTrue("Text Action not found! "+ action, bodyText.contains(action));
+        if(type.contains("Replace") || type.contains("Delete") ){
+            new WebDriverWait(Hooks.driver, 30).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@id=\"contents\"]/div[2]/div[2]/div/div[1]/table")));
+            String verifyReplaceText = Hooks.driver.findElement(By.xpath("//*[@id=\"contents\"]/div[2]/div[2]/div/div[1]/table")).getText();
+            assertTrue("Text not found! "+ type, !verifyReplaceText.contains(type));
         }
     }
 

@@ -66,6 +66,11 @@ public class eDocsStepDefs {
         eDocsGeneral.verifyLorsText(strtext);
     }
 
+    @Then("^I will verify \"([^\"]*)\", \"([^\"]*)\", \"([^\"]*)\", \"([^\"]*)\"$")
+    public void I_will_verify_fields_for_lors(String type, String author, String size, String action) throws Throwable {
+        eDocsGeneral.verifyLorsFieldsText(type, author, size, action);
+    }
+
     @Then("^I will verify \"([^\"]*)\" in buttons for LORs$")
     public void I_will_verify_text_for_buttons(String strtext) throws Throwable {
         eDocsGeneral.verifyButtons(strtext);

@@ -158,8 +158,7 @@ Feature: View student details
     When I select "<type>" from Type
     When I click on Browse button
     When I write the "<filename>" file path
-    Then I will verify "<type>" for LORs
-
+    Then I will verify "<type>", "<author>", "<size>", "<action>"
   Examples:
-    | studentID  | type                     |filename        |
-    | a101       | NACAC Fee Waiver         |ReadMe.txt      |
+    | studentID  | type                     |filename        | author    | size  | action |
+    | a101       | Other School Report         |ReadMe.txt      |Stan Smith | 14.87 | Replace   |
