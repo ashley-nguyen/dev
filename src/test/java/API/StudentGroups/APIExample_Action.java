@@ -29,9 +29,9 @@ public class APIExample_Action {
     public static void DoGet()throws Throwable {
         driver = Hooks.driver;
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-        driver.get("http://imdbapi.poromenos.org/js/?name=firefly");
-        String strText = "{\"Firefly\": {\"episodes\": [{\"season\": 1, \"name\": \"Ariel\", \"number\": 8}, {\"season\": 1, \"name\": \"Bushwhacked\", \"number\": 2}, {\"season\": 1, \"name\": \"Heart of Gold\", \"number\": 12}, {\"season\": 1, \"name\": \"Jaynestown\", \"number\": 4}, {\"season\": 1, \"name\": \"Objects in Space\", \"number\": 10}, {\"season\": 1, \"name\": \"Our Mrs. Reynolds\", \"number\": 3}, {\"season\": 1, \"name\": \"Out of Gas\", \"number\": 5}, {\"season\": 1, \"name\": \"Safe\", \"number\": 7}, {\"season\": 1, \"name\": \"Serenity\", \"number\": 11}, {\"season\": 1, \"name\": \"Serenity Pilot\", \"number\": 11}, {\"season\": 1, \"name\": \"Shindig\", \"number\": 6}, {\"season\": 1, \"name\": \"The Message\", \"number\": 14}, {\"season\": 1, \"name\": \"The Train Job\", \"number\": 1}, {\"season\": 1, \"name\": \"Trash\", \"number\": 13}, {\"season\": 1, \"name\": \"War Stories\", \"number\": 9}], \"year\": 2002}}";
-        assertTrue("text not found: ", driver.getPageSource().contains(strText));
+//        driver.get("http://imdbapi.poromenos.org/js/?name=firefly");
+//        String strText = "{\"Firefly\": {\"episodes\": [{\"season\": 1, \"name\": \"Ariel\", \"number\": 8}, {\"season\": 1, \"name\": \"Bushwhacked\", \"number\": 2}, {\"season\": 1, \"name\": \"Heart of Gold\", \"number\": 12}, {\"season\": 1, \"name\": \"Jaynestown\", \"number\": 4}, {\"season\": 1, \"name\": \"Objects in Space\", \"number\": 10}, {\"season\": 1, \"name\": \"Our Mrs. Reynolds\", \"number\": 3}, {\"season\": 1, \"name\": \"Out of Gas\", \"number\": 5}, {\"season\": 1, \"name\": \"Safe\", \"number\": 7}, {\"season\": 1, \"name\": \"Serenity\", \"number\": 11}, {\"season\": 1, \"name\": \"Serenity Pilot\", \"number\": 11}, {\"season\": 1, \"name\": \"Shindig\", \"number\": 6}, {\"season\": 1, \"name\": \"The Message\", \"number\": 14}, {\"season\": 1, \"name\": \"The Train Job\", \"number\": 1}, {\"season\": 1, \"name\": \"Trash\", \"number\": 13}, {\"season\": 1, \"name\": \"War Stories\", \"number\": 9}], \"year\": 2002}}";
+//        assertTrue("text not found: ", driver.getPageSource().contains(strText));
 
         URL url = new URL(
                 "http://maps.googleapis.com/maps/api/geocode/json?address=chicago&sensor=false&#8221");
@@ -108,12 +108,14 @@ public class APIExample_Action {
 
             String responseEntity = response.getEntity(String.class);
 
-            //Parsing the JSON
-
-            System.out.println(responseEntity.toString());
-
-
             assertTrue("text found: ", responseEntity.contains("CANCELLED"));
+
+            //Sample Response Parsing
+            JSONObject json = new JSONObject(responseEntity);
+            assertTrue("text found: ",  json.getJSONObject("_embedded").
+                                        getJSONArray("lorRequestEventRepresentationList").
+                                        getString(0).contains("REQUESTEDD"));
+
         } catch (Exception e) {
             e.printStackTrace();
         }
