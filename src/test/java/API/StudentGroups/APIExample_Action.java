@@ -114,7 +114,7 @@ public class APIExample_Action {
             JSONObject json = new JSONObject(responseEntity);
             assertTrue("text found: ",  json.getJSONObject("_embedded").
                                         getJSONArray("lorRequestEventRepresentationList").
-                                        getString(0).contains("REQUESTEDD"));
+                                        getString(0).contains("REQUESTED"));
 
         } catch (Exception e) {
             e.printStackTrace();

@@ -6,4 +6,4 @@ Feature: Test for restful service
 
   Examples:
   | token                                 | url                                                                     | params                                                     |
-  | d3f6c924-1123-44b4-a24e-a41ce7f96bce  | https://qa-apis.naviance.com/student-core/students/lor-requests/events  | {'created':{'$gte':{'$date':'2016-08-11T17:51:34.987Z'}}}  |
+  | 55cb72e9-aef0-49eb-aba0-f36b2dd9ff8d  | https://qa-apis.naviance.com/student-core/students/lor-requests/events  | {'created':{'$gte':{'$date':'2016-08-11T17:51:34.987Z'}}}  |

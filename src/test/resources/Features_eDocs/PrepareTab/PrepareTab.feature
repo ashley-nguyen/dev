@@ -161,4 +161,21 @@ Feature: View student details
     Then I will verify "<type>", "<author>", "<size>", "<action>"
   Examples:
     | studentID  | type                     |filename        | author    | size  | action |
-    | a101       | Other School Report         |ReadMe.txt      |Stan Smith | 14.87 | Replace   |
+    | a101       | Other School Report      |ReadMe.txt      |Stan Smith | 14.87 | Replace   |
+##    | a101       | NACAC Fee waiver         |ReadMe.txt      |Stan Smith | 14.87 | Replace   |
+
+  @edocs @safe @succeed @EDOCS234
+  Scenario Outline: Verify under Application, I want to upload a NACAC fee waiver on behalf of a student to non-common-app colleges via eDocs using Replace.
+    When I am accessing the "<studentID>" edocs tab
+    When I click on Prepare link
+    When I click on Replace button
+    When I click on Upload a File button
+    When I select "All Applications" from Application
+    When I select "<type>" from Type
+    When I click on Browse button
+    When I write the "<filename>" file path
+    Then I will verify "<type>", "<author>", "<size>", "<action>"
+  Examples:
+    | studentID  | type                     |filename        | author    | size  | action |
+    | a101       | Other School Report      |ReadMe.txt      |Stan Smith | 14.87 | Replace   |
+##    | a101       | NACAC Fee waiver         |ReadMe.txt      |Stan Smith | 14.87 | Replace   |

@@ -23,7 +23,7 @@ public class eDocsTabPage extends BaseClass  {
         @FindBy(how = How.XPATH, using = "//*[@id=\"contents\"]/div[2]/div[2]/div/div[2]/h3/button")
         public static WebElement btnCounselorAdd;
 
-        @FindBy(how = How.XPATH, using = "//button[@class='btn btn-upload-toggle span12']")
+        @FindBy(how = How.XPATH, using = "//button[contains(@class,'btn btn-upload-toggle span12 btn-primary') or contains(@class,'btn btn-upload-toggle span12')]")
         public static WebElement btnUploadAFile;
 
         @FindBy(how = How.XPATH, using = "//select[@name='application_id_select']")
@@ -34,6 +34,9 @@ public class eDocsTabPage extends BaseClass  {
 
         @FindBy(how = How.XPATH, using = "//*[@id=\"transcript_upload_div\"]/div[3]/div/div/div[2]/input")
         public static WebElement btnBrowse;
+
+        @FindBy(how = How.XPATH, using = "//*[@id=\"contents\"]/div[2]/div[2]/div/div[2]/table/tbody/tr[1]/td[5]/div/button[1]")
+        public static WebElement btnReplace;
 
         public eDocsTabPage(WebDriver driver) {
         super(driver);

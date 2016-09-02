@@ -31,6 +31,11 @@ public class eDocsStepDefs {
         eDocsGeneral.ClickOnAddCounselorButton();
     }
 
+    @Then("I click on Replace button")
+    public void I_click_on_replace_button() throws Throwable {
+        eDocsGeneral.ClickOnReplaceButton();
+    }
+
     @Then("I click on Upload a File button")
     public void I_click_on_Upload_a_file_button() throws Throwable {
         eDocsGeneral.ClickOnUploadAFileButton();

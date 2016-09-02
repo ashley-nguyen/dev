@@ -69,10 +69,18 @@ public class eDocsGeneral {
         eDocsTabPage.btnCounselorAdd.click();
     }
 
+    public static void ClickOnReplaceButton() throws Throwable {
+        driver = Hooks.driver;
+        Thread.sleep(8008);
+        PageFactory.initElements(driver, eDocsTabPage.class);
+        eDocsTabPage.btnReplace.click();
+    }
+
     public static void ClickOnUploadAFileButton() throws Throwable {
         driver = Hooks.driver;
         PageFactory.initElements(driver, eDocsTabPage.class);
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        //Thread.sleep(9999999);
         eDocsTabPage.btnUploadAFile.click();
     }
 
