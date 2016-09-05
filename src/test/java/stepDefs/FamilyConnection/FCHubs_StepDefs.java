@@ -375,5 +375,16 @@ public class FCHubs_StepDefs {
     public void Google_Maps_should_be_opened_in_a_new_window() throws Throwable {
         FCGoogleMaps.VerifyGoogleMapsURL();
     }
+
+    @Then("^The text \"([^\"]*)\" should be displayed under the following sections in Overview Info Top bar:$")
+    public void The_text_should_be_displayed_under_the_following_sections_in_Overview_Info_Top_Bar(String text, List<String> sections)
+            throws Throwable {
+        FCHubs.VerifyDateLabelsInOverviewTopBar(text, sections);
+    }
+
+    @And("^I click the Costs tab$")
+    public void iClickTheCostsTab() throws Throwable {
+        FCHubs.ClickCostsTab();
+    }
 }
 

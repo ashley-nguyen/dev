@@ -55,3 +55,9 @@ Feature: As a student exploring a college, I want to see a top bar with high-lev
   Scenario: The user is redirected to Application Information section after clicking "See all deadlines"
     When I click the link "See all deadlines" in the Overview Info Top Bar
     Then I should be redirected to the section "Application Information" in Admissions
+
+  Scenario: Average Total Cost, Graduation Rate and Acceptance Rate should display the date of the data
+    Then The text "from 2016" should be displayed under the following sections in Overview Info Top bar:
+    | Average Total Cost |
+    | Graduation Rate    |
+    | Acceptance Rate    |
