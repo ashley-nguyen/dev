@@ -1,10 +1,7 @@
 package actions.eDocs;
 
 import junit.framework.AssertionFailedError;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebDriverException;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
@@ -53,6 +50,22 @@ public class eDocsGeneral {
         eDocsTabPage.lnkPrepare.click();
     }
 
+    public static void ClickOnSendLink() throws Throwable {
+        driver = Hooks.driver;
+        PageFactory.initElements(driver, eDocsTabPage.class);
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        eDocsTabPage.lnkSend.click();
+    }
+
+    public static void ClickOnExpandAllButton() throws Throwable {
+        driver = Hooks.driver;
+        Thread.sleep(8008);
+        PageFactory.initElements(driver, eDocsTabPage.class);
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        eDocsTabPage.btnExpandAll.click();
+
+    }
+
     public static void ClickOnAddButton() throws Throwable {
         driver = Hooks.driver;
         Thread.sleep(8008);
@@ -76,11 +89,25 @@ public class eDocsGeneral {
         eDocsTabPage.btnReplace.click();
     }
 
+    public static void ClickOnDeleteButton() throws Throwable {
+        driver = Hooks.driver;
+        Thread.sleep(8008);
+        PageFactory.initElements(driver, eDocsTabPage.class);
+        JavascriptExecutor js = (JavascriptExecutor)driver;
+        js.executeScript("window.scrollTo(0,Math.max(document.documentElement.scrollHeight,document.body.scrollHeight,document.documentElement.clientHeight));");
+        eDocsTabPage.btnDelete.click();
+    }
+
+    public static void ClickOnDeleteDocumentButton() throws Throwable {
+        driver = Hooks.driver;
+        PageFactory.initElements(driver, eDocsTabPage.class);
+        eDocsTabPage.btnDeleteDocument.click();
+    }
+
     public static void ClickOnUploadAFileButton() throws Throwable {
         driver = Hooks.driver;
         PageFactory.initElements(driver, eDocsTabPage.class);
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-        //Thread.sleep(9999999);
         eDocsTabPage.btnUploadAFile.click();
     }
 
@@ -129,6 +156,15 @@ public class eDocsGeneral {
         String bodyText = Hooks.driver.findElement(By.tagName("body")).getText();
         assertTrue("Text not found! "+strData, bodyText.contains(strData));
         if(strData.contains("Replace") || strData.contains("Delete") ){
+
+            new WebDriverWait(Hooks.driver, 30).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@id=\"contents\"]/div[2]/div[2]/div/div[2]")));
+            String verifyReplaceText = Hooks.driver.findElement(By.xpath("//*[@id=\"contents\"]/div[2]/div[2]/div/div[2]")).getText();
+            assertTrue("Text not found! "+strData, !verifyReplaceText.contains(strData));
+        }
+
+        if(strData.contains("Initial Transcript (active")){
+            JavascriptExecutor js = (JavascriptExecutor)driver;
+            js.executeScript("window.scrollTo(0,Math.max(document.documentElement.scrollHeight,document.body.scrollHeight,document.documentElement.clientHeight));");
             new WebDriverWait(Hooks.driver, 30).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@id=\"contents\"]/div[2]/div[2]/div/div[1]/table")));
             String verifyReplaceText = Hooks.driver.findElement(By.xpath("//*[@id=\"contents\"]/div[2]/div[2]/div/div[1]/table")).getText();
             assertTrue("Text not found! "+strData, !verifyReplaceText.contains(strData));
@@ -154,6 +190,22 @@ public class eDocsGeneral {
             new WebDriverWait(Hooks.driver, 30).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@id=\"contents\"]/div[2]/div[2]/div/div[1]/table")));
             String verifyReplaceText = Hooks.driver.findElement(By.xpath("//*[@id=\"contents\"]/div[2]/div[2]/div/div[1]/table")).getText();
             assertTrue("Text not found! "+ type, !verifyReplaceText.contains(type));
+        }
+    }
+
+    public static void verifyAvailableDocument (String type) throws Throwable {
+        new WebDriverWait(Hooks.driver, 30).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[contains(text()," + "\"" + type + "\")]")));
+        assertTrue("The NACAC Fee Waiver listed as an available document" + type, driver.findElement(By.xpath("//*[contains(text()," + "\"" + type + "\")]")).isDisplayed());
+    }
+
+    public static void verifyInformation (String info, String action) throws Throwable {
+        new WebDriverWait(Hooks.driver, 30).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[contains(text()," + "\"" + info + "\")]")));
+        assertTrue("The uploaded on (date) by (author) were displayed" + info, driver.findElement(By.xpath("//*[contains(text(), 'uploaded on')]")).isDisplayed());
+        assertTrue("The uploaded on (date) by (author) were displayed" + info, driver.findElement(By.xpath("//*[contains(text()," + "\"" + info  + "\")]")).isDisplayed());
+        if(action.contains("View")){
+            new WebDriverWait(Hooks.driver, 30).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//button[@class='btn btn-mini']")));
+
+            assertTrue("Text not found! "+ action,  Hooks.driver.findElement(By.xpath("//button[@class='btn btn-mini']")).isDisplayed());
         }
     }
 
@@ -350,7 +402,7 @@ public class eDocsGeneral {
                     replyMessage.setText("Verify Reply");
                     replyMessage.setReplyTo(message.getReplyTo());
 
-                    // Send the message by authenticating the SMTP server
+                    // SendTab the message by authenticating the SMTP server
                     // Create a Transport instance and call the sendMessage
                     Transport t = session.getTransport("smtps");
                     try {
@@ -479,7 +531,7 @@ public class eDocsGeneral {
                     replyMessage.setText("Verify Reply");
                     replyMessage.setReplyTo(message.getReplyTo());
 
-                    // Send the message by authenticating the SMTP server
+                    // SendTab the message by authenticating the SMTP server
                     // Create a Transport instance and call the sendMessage
                     Transport t = session.getTransport("smtps");
                     try {

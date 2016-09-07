@@ -21,6 +21,16 @@ public class eDocsStepDefs {
         eDocsGeneral.ClickOnPrepareLink();
     }
 
+    @Then("I click on Send link")
+    public void I_click_on_send_link() throws Throwable {
+        eDocsGeneral.ClickOnSendLink();
+    }
+
+    @Then("I click on Expand All button")
+    public void I_click_on_expand_all_button() throws Throwable {
+        eDocsGeneral.ClickOnExpandAllButton();
+    }
+
     @Then("I click on Add button")
     public void I_click_on_add_button() throws Throwable {
         eDocsGeneral.ClickOnAddButton();
@@ -34,6 +44,16 @@ public class eDocsStepDefs {
     @Then("I click on Replace button")
     public void I_click_on_replace_button() throws Throwable {
         eDocsGeneral.ClickOnReplaceButton();
+    }
+
+    @Then("I click on Delete button")
+    public void I_click_on_delete_button() throws Throwable {
+        eDocsGeneral.ClickOnDeleteButton();
+    }
+
+    @Then("I click on Delete Document button")
+    public void I_click_on_delete_document_button() throws Throwable {
+        eDocsGeneral.ClickOnDeleteDocumentButton();
     }
 
     @Then("I click on Upload a File button")
@@ -74,6 +94,16 @@ public class eDocsStepDefs {
     @Then("^I will verify \"([^\"]*)\", \"([^\"]*)\", \"([^\"]*)\", \"([^\"]*)\"$")
     public void I_will_verify_fields_for_lors(String type, String author, String size, String action) throws Throwable {
         eDocsGeneral.verifyLorsFieldsText(type, author, size, action);
+    }
+
+    @Then("^I will verify \"([^\"]*)\" available document$")
+    public void I_will_verify_available_document(String type) throws Throwable {
+        eDocsGeneral.verifyAvailableDocument(type);
+    }
+
+    @Then("^I will verify \"([^\"]*)\" information and \"([^\"]*)\" action$")
+    public void I_will_verify_information_and_action(String info, String action) throws Throwable {
+        eDocsGeneral.verifyInformation(info, action);
     }
 
     @Then("^I will verify \"([^\"]*)\" in buttons for LORs$")
