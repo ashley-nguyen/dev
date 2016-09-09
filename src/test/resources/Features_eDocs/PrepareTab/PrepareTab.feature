@@ -162,7 +162,7 @@ Feature: View student details
   Examples:
     | studentID  | type                     |filename        | author    | size  | action |
     | a101       | Other School Report      |ReadMe.txt      |Stan Smith | 14.87 | Replace   |
-##    | a101       | NACAC Fee waiver         |ReadMe.txt      |Stan Smith | 14.87 | Replace   |
+    | a101       | NACAC Fee Waiver         |ReadMe.txt      |Stan Smith | 14.87 | Replace   |
 
   @edocs @safe @succeed @EDOCS234
   Scenario Outline: Verify under Application, I want to upload a NACAC fee waiver on behalf of a student to non-common-app colleges via eDocs using Replace Action.
@@ -178,7 +178,7 @@ Feature: View student details
   Examples:
     | studentID  | type                     |filename        | author    | size  | action |
     | a101       | Other School Report      |ReadMe.txt      |Stan Smith | 14.87 | Replace   |
-##    | a101       | NACAC Fee waiver         |ReadMe.txt      |Stan Smith | 14.87 | Replace   |
+    | a101       | NACAC Fee Waiver         |ReadMe.txt      |Stan Smith | 14.87 | Replace   |
 
   @edocs @safe @succeed @EDOCS234
   Scenario Outline: Verify under Application, I want to upload a NACAC fee waiver on behalf of a student to non-common-app colleges via eDocs using Delete action.
@@ -189,5 +189,6 @@ Feature: View student details
     Then I will verify "<type>", "<author>", "<size>", "<action>"
   Examples:
     | studentID  | type                     | author    | size  | action |
-    | a101       | Other School Report      |Stan Smith | 14.87 | Replace   |
-##    | a101       | NACAC Fee waiver         |ReadMe.txt      |Stan Smith | 14.87 | Replace   |
+    | a101       | Other School Report      |Stan Smith | 14.87 | Delete   |
+    | a101       | NACAC Fee W   aiver      |Stan Smith | 14.87 | Delete   |
+##    | a101       | NACAC Fee waiver         |ReadMe.txt      |Stan Smith | 14.87 | Delete   |

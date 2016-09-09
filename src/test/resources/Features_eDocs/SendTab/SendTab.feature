@@ -22,8 +22,8 @@ Feature: Student Send details
     Then I will verify "<type>" available document
   Examples:
     | studentID  | type                     | author    | size  | action |
-    | a101       | School Report      |Stan Smith | 14.87 | Replace   |
-##    | a101       | NACAC Fee waiver         |ReadMe.txt      |Stan Smith | 14.87 | Replace   |
+    | a101       | School Report            |Stan Smith | 14.87 | Replace   |
+    | a101       | NACAC Fee Waiver         |Stan Smith | 14.87 | Replace   |
 
   @edocs @safe @succeed @EDOCS234
   Scenario Outline: Verify the information will be displayed under each column for the uploaded NACAC Fee Waiver
@@ -34,4 +34,23 @@ Feature: Student Send details
   Examples:
     | studentID  | information    | action |
     | a101       | Stan Smith     |  View  |
-##    | a101       | NACAC Fee waiver         |ReadMe.txt      |Stan Smith | 14.87 | Replace   |
+    | a101       | NACAC Fee Waiver | Replace   |
+
+  @edocs @safe @succeed @EDOCS234
+  Scenario Outline: Verify under Application, I want to upload a NACAC fee waiver on behalf of a student to non-common-app colleges via eDocs using Replace Action.
+    When I am accessing the "<studentID>" edocs tab
+    When I click on Prepare link
+    When I click on Replace button
+    When I click on Upload a File button
+    When I select "All Applications" from Application
+    When I select "<type>" from Type
+    When I click on Browse button
+    When I write the "<filename>" file path
+#    Then I will verify "<type>", "<author>", "<size>", "<action>"
+    When I click on Send link
+    When I click on Expand All button
+    Then I will verify "<information>" information and "<action>" action
+  Examples:
+    | studentID  | type                     |filename        | information    | size  | action |
+    | a101       | Other School Report      |ReadMe.txt      |Stan Smith | 14.87 | Replace   |
+    | a101       | NACAC Fee Waiver         |ReadMe.txt      |Stan Smith | 14.87 | Replace   |
