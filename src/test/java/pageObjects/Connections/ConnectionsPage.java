@@ -43,11 +43,14 @@ public class ConnectionsPage extends BaseClass {
     @FindBy(how = How.LINK_TEXT, using = "Add Request")
     public static WebElement addRequestButton;
 
-    @FindBy(how = How.XPATH, using = "/html/body/div/div/div/div/recommendations-container/div/ng-view/add-request/form/section/div[1]/div[2]/select")
+    @FindBy(how = How.XPATH, using = "//select[@class='fc-select fc-select--full-bleed ng-pristine ng-untouched ng-valid ng-empty']")
     public static WebElement divSelectTeacher;
 
-    @FindBy(how = How.XPATH, using = "/html/body/div/div/div/div/recommendations-container/div/ng-view/add-request/form/section/div[2]/div[2]/table/tbody/tr[1]/td[1]/input")
+    @FindBy(how = How.XPATH, using = "//input[@class='fc-checkbox']")
     public static WebElement divSelectCollege;
+
+    @FindBy(how = How.XPATH, using = "//input[@class='fc-radio ng-valid ng-not-empty ng-dirty ng-touched ng-valid-parse']")
+    public static WebElement divSelectOptionCollege;
 
     @FindBy(how = How.XPATH, using = "/html/body/div/div/div/div/recommendations-container/div/ng-view/recommendations-list/table/tbody/tr[1]/td[5]/div[12]/svg")
     public static WebElement erase;

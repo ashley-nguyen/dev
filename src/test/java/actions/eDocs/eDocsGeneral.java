@@ -293,37 +293,25 @@ public class eDocsGeneral {
             Folder folder = store.getFolder("INBOX");
             folder.open(Folder.READ_WRITE);
 
-            //Count messages
-            int messagesNumber = folder.getMessageCount();
-            System.out.println("Messages Found" + messagesNumber);
+            System.out.println("Total Message:" + folder.getMessageCount());
+            System.out.println("Unread Message:" + folder.getUnreadMessageCount());
 
             Message[] messages = null;
             boolean isMailFound = false;
             Message mailFrom= null;
 
             //Search for mail
-            for (int i = 0; i <= messagesNumber; i++) {
-                Message message = messages[i];
+            for (int i = 0; i <= 5; i++) {
                 messages = folder.search(new SubjectTerm(subject), folder.getMessages());
                 //Wait for 10 seconds
                 if (messages.length == 0) {
                     Thread.sleep(10000);
                 }
-
-                Address[] stringReplyTo = message.getReplyTo();
-                System.out.println("Reply to verification Found: " + stringReplyTo.toString());
-                if (subject != null) {
-                    System.out.println("Subject Found: " + subject);
-                }
             }
 
-            //Search for unread mail from God
-            //This is to avoid using the mail for which
-            //Registration is already done
+            //Search for unread mail from Request action
             for (Message mail : messages) {
-
-
-                if (!mail.isSet(Flags.Flag.RECENT)) {
+                if (!mail.isSet(Flags.Flag.SEEN)) {
                     mailFrom = mail;
                     System.out.println("Message Count is: "
                             + mailFrom.getMessageNumber());
@@ -332,8 +320,14 @@ public class eDocsGeneral {
             }
 
             System.out.println("Email Found?" + isMailFound);
-        } finally {
-            System.out.println("Email was Found");
+            assertTrue("Email was not found! ", isMailFound);
+
+
+
+        } catch (MessagingException e) {
+            System.out.println("No connections were done correctly!");
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         }
     }
 

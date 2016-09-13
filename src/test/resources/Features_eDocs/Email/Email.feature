@@ -9,7 +9,8 @@ Feature: Email Verification
     When I click on the Colleges tab
     When I click on letters of recommendation
     When I click on Add Request
-    And I select a teacher  "Sandro Sejas"
+    And I select a teacher  "Frank Sejas"
+#    And I select option for college
     When I select a college
     And I click save
     Then I will verify the mail was delivered with "New teacher recommendation request" subject
@@ -65,4 +66,4 @@ Feature: Email Verification
 
   Examples:
     | student       | teacher             | application         | message |
-    | a101, a101    | Jandell Counselor   | Adelphi University  |Success! A new letter of recommendation request has been created.|
+    | a101, a101    | Jandell Teacher   | Adelphi University  |Success! A new letter of recommendation request has been created.|

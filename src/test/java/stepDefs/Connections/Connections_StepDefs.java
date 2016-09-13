@@ -43,7 +43,6 @@ public class Connections_StepDefs {
     @Then("^I click on Select and Update Optional Features link$")
     public void i_click_on_select_and_update_optional_features_link() throws Throwable {
         Connections.clickOnConfigurationLink();
-//        Thread.sleep(800000);
     }
 
     @Then("^I verify the Active Match information \"(.*)\"$")
@@ -80,6 +79,11 @@ public class Connections_StepDefs {
     @And("^I select a college$")
     public void i_Select_A_College() throws Throwable {
         Connections.selectCollege();
+    }
+
+    @And("^I select option for college$")
+    public void i_select_option_for_college() throws Throwable {
+        Connections.selectOptionForCollege();
     }
 
     @And("^I click save$")

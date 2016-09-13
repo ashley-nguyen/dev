@@ -129,7 +129,7 @@ public class Connections {
         driver = Hooks.driver;
         PageFactory.initElements(driver, ConnectionsPage.class);
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-        WebDriverWait wait = new WebDriverWait(driver, 3);
+        WebDriverWait wait = new WebDriverWait(driver, 9);
         WebElement selectElement = wait.until(ExpectedConditions.visibilityOf(ConnectionsPage.divSelectTeacher));
         Select select = new Select(selectElement);
         select.selectByVisibleText(item);
@@ -139,8 +139,16 @@ public class Connections {
         driver = Hooks.driver;
         PageFactory.initElements(driver, ConnectionsPage.class);
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-        new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@name=\"addReq\"]/section/div[2]/div[2]/table/tbody/tr[1]/td[1]/input")));
+        new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//input[@class='fc-checkbox']")));
         ConnectionsPage.divSelectCollege.click();
+    }
+
+    public static void selectOptionForCollege() throws InterruptedException {
+        driver = Hooks.driver;
+        PageFactory.initElements(driver, ConnectionsPage.class);
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//input[@class='fc-radio ng-valid ng-not-empty ng-dirty ng-touched ng-valid-parse']")));
+        ConnectionsPage.divSelectOptionCollege.click();
     }
 
     public static void clickSave() throws InterruptedException {
