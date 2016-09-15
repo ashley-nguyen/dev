@@ -546,4 +546,25 @@ public class FCHubs {
         assertTrue("The section " + sectionLabel + " is not displayed",
                 FCHubsAdmissionsTabPage.labelApplicationInformation.getText().equals(sectionLabel));
     }
+
+    public static void VerifyDateLabelsInOverviewTopBar(String text, List<String> sections) {
+        driver = Hooks.driver;
+        boolean result = false;
+        for(int i = 0; i < sections.size(); i++) {
+            if(driver.findElement(
+                    By.xpath("//div[text() = '" + sections.get(i) + "']/../div[text() = '" + text + "']")).isDisplayed()) {
+                result = true;
+            } else {
+                result = false;
+                break;
+            }
+        }
+        assertTrue("The date label is not present or it displays incorrect data", result);
+    }
+
+    public static void ClickCostsTab() {
+        driver = Hooks.driver;
+        PageFactory.initElements(driver, FCHubsPage.class);
+        FCHubsPage.tabCosts.click();
+    }
 }
