@@ -91,4 +91,6 @@ public class FCHubsStudentLifeTab_StepDefs {
     public void I_should_be_redirected_to_Housing_Information_in_Student_Life() throws Throwable {
         FCHubsStudentLifeTab.VerifyHousingInformationLabel();
     }
+
+
 }
