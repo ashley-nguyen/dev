@@ -57,4 +57,21 @@ public class FCHubsCostsTab {
         }
         assertTrue("The date label is not present or it displays incorrect data", result);
     }
+
+    public static void VerifyAvgNetCostList(List<String> incomesAvgNetCost) {
+        driver = Hooks.driver;
+        boolean result = false;
+        for(int i = 0; i < incomesAvgNetCost.size(); i++) {
+            String[] listElement = incomesAvgNetCost.get(i).split(";");
+            if(driver.findElement(By.xpath("//div[@class = 'fc-grid__col fc-grid__col--xs-12 fc-grid__col--md-5']" +
+                    "/div/div[contains(text(), '" + listElement[0] + "')]" +
+                    "/following::div[1]")).getText().equals(listElement[1])) {
+                result = true;
+            } else {
+                result = false;
+                break;
+            }
+        }
+        assertTrue("The Average Net Cost for the income level is incorrect", result);
+    }
 }

@@ -36,5 +36,10 @@ public class FCHubsCostsTab_StepDefs {
     public void The_text_should_be_displayed_under_the_following_sections_in_Costs_Top_Bar(String dateLabel, List<String> sections) throws Throwable {
         FCHubsCostsTab.VerifyDateLabelsInCostsTopBar(dateLabel, sections);
     }
+
+    @Then("^The following Average Net Cost values should be correct for each income level:$")
+    public void The_following_Average_Net_Cost_values_should_be_correct_for_each_income_level(List<String> incomesAvgNetCost) throws Throwable {
+        FCHubsCostsTab.VerifyAvgNetCostList(incomesAvgNetCost);
+    }
 }
 

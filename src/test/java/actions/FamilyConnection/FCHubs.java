@@ -567,4 +567,10 @@ public class FCHubs {
         PageFactory.initElements(driver, FCHubsPage.class);
         FCHubsPage.tabCosts.click();
     }
+
+    public static void ClickProfilesTab() {
+        driver = Hooks.driver;
+        PageFactory.initElements(driver, FCHubsPage.class);
+        FCHubsPage.tabProfiles.click();
+    }
 }

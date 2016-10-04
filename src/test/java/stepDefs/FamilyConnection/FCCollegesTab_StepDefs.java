@@ -50,13 +50,6 @@ public class FCCollegesTab_StepDefs {
         FCCollegesTab.ClickCollegeInCollegeLookup(collegeString);
     }
 
-    @And("^I go to the Page View for \"([^\"]*)\"$")
-    public void I_go_to_the_page_view_for(String college) throws Throwable {
-        FCCollegesTab.EnterCollegeToSearch(college);
-        FCCollegesTab.ClickGoButton();
-        FCCollegesTab.ClickCollegeInCollegeLookup(college);
-    }
-
     @Then("^I should see the message \"([^\"]*)\" in the College Lookup page$")
     public void iShouldSeeTheMessageInTheCollegeLookupPage(String message) throws Throwable {
         FCCollegesTab.VerifyMessageCollegeLookup(message);

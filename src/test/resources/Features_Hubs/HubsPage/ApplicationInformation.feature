@@ -5,10 +5,8 @@ Feature:  As a student viewing new Hubs' Overview tab, I want to see contact inf
   Background:
     Given I log in to Family Connection with the following user details:
       | rtsa       | amandahubs | hubs2016  |
-    And I click on the Colleges tab
-    And I go to the Page View for "Adelphi"
-    And I click the Beta Button
-    And I click the Admissions tab
+    When I open the HUBS page for "Adelphi"
+    And I open the Admissions tab
 
   Scenario Outline: The "Required" requirements for "Freshman" are displayed with correct data
     When I click "Deadlines" in Application Information
@@ -17,4 +15,3 @@ Feature:  As a student viewing new Hubs' Overview tab, I want to see contact inf
     | name                           | date   |
     | Early Action Deadline          | Dec 1  |
     | Rolling Deadline               | Mar 1  |
-    | Regular Decision Deadline      | Jan 15 |
