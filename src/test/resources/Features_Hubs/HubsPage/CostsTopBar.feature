@@ -5,20 +5,19 @@ Feature: As a student viewing new Hubs' Costs tab, I want to see a top bar with 
   Background:
     Given I log in to Family Connection with the following user details:
       | rtsa  | benhubs | hubs2016  |
-    And I click on the Colleges tab
-    And I go to the Page View for "Auburn"
-    And I click the Beta Button
-    And I click the Costs tab
+    When I open the HUBS page for "Auburn"
+    Then I open the Costs tab
 
+  @test
   Scenario Outline: Average Total Cost is displayed with correct data for each income selected in the Costs Top bar
     Then Average Total Cost should be "<avgTotalCost>" when the income is "<income>" in Costs Top Bar
     Examples:
     | income      | avgTotalCost  |
-    | $30 - $48K  | 16,053        |
-    | $48 - $75K  | 18,404        |
-    | $75 - $110K | 20,500        |
-    | > $110K     | 21,680        |
-    | $0 - $30K   | 13,814        |
+    | $30 - $48K  | 16,272       |
+    | $48 - $75K  | 18,240        |
+    | $75 - $110K | 19,276        |
+    | > $110K     | 20,142        |
+    | $0 - $30K   | 13,191       |
 
   Scenario Outline: % Receiving Grant Aid is displayed with correct data for each Type of Aid selected in the Costs top bar
     Then % Aid should be "<aid>" when the Type of Aid is "<typeOfAid>"

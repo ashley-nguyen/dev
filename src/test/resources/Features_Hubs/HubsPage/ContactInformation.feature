@@ -5,10 +5,9 @@ Feature:  As a student viewing new Hubs' Overview tab, I want to see contact inf
   Background:
     Given I log in to Family Connection with the following user details:
       | rtsa       | amandahubs | hubs2016  |
-    And I click on the Colleges tab
-    And I go to the Page View for "Auburn"
-    And I click the Beta Button
+    When I open the HUBS page for "Auburn"
 
+  
   Scenario: School name is present in Application Mailing Address with correct data
     Then The School Name should be "Auburn University" in Application Mailing Address
 
