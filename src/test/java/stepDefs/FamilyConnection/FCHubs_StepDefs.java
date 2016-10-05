@@ -1,7 +1,6 @@
 package stepDefs.FamilyConnection;
 
-import actions.FamilyConnection.FCGoogleMaps;
-import actions.FamilyConnection.FCHubs;
+import actions.FamilyConnection.*;
 import cucumber.api.PendingException;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Then;
@@ -337,8 +336,8 @@ public class FCHubs_StepDefs {
     public void iClickTheStudiesTab() throws Throwable {
         FCHubs.ClickStudiesTab();
     }
-    @And("^I click the Admissions tab$")
-    public void I_click_the_Admissions_Tab() throws Throwable {
+    @And("^I open the Admissions tab$")
+    public void I_open_the_Admissions_Tab() throws Throwable {
         FCHubs.ClickAdmissionsTab();
     }
     @And("^I click the Student Life tab$")
@@ -382,9 +381,23 @@ public class FCHubs_StepDefs {
         FCHubs.VerifyDateLabelsInOverviewTopBar(text, sections);
     }
 
-    @And("^I click the Costs tab$")
-    public void iClickTheCostsTab() throws Throwable {
+    @And("^I open the Costs tab$")
+    public void I_open_the_Costs_tab() throws Throwable {
         FCHubs.ClickCostsTab();
+    }
+
+    @And("^I click the Profiles tab$")
+    public void I_click_the_Profiles_tab() throws Throwable {
+        FCHubs.ClickProfilesTab();
+    }
+
+    @When("^I open the HUBS page for \"([^\"]*)\"$")
+    public void I_open_the_HUBS_page_for(String college) throws Throwable {
+        FCDashboard.ClickCollegesTab();
+        FCCollegesTab.EnterCollegeToSearch(college);
+        FCCollegesTab.ClickGoButton();
+        FCCollegesTab.ClickCollegeInCollegeLookup(college);
+        FCCollegeView.clickBetaButton();
     }
 }
 

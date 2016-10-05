@@ -15,8 +15,8 @@ import java.util.List;
 public class FCHubsAdmissionsTab_StepDefs {
     public static WebDriver driver;
 
-    @Then("^The Regular Decision Deadline should be \"([^\"]*)\" in Admissions Top bar$")
-    public void The_Regular_Decision_Deadline_should_be_in_Admissions_Top_Bar(String decisionDeadline) throws Throwable {
+    @Then("^The Early Decision Deadline should be \"([^\"]*)\" in Admissions Top bar$")
+    public void The_Early_Decision_Deadline_should_be_in_Admissions_Top_Bar(String decisionDeadline) throws Throwable {
         FCHubsAdmissionsTab.VerifyRegularDeadlineDecision(decisionDeadline);
     }
 

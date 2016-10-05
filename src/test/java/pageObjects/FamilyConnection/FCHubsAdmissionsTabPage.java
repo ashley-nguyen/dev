@@ -10,9 +10,9 @@ import pageObjects.BaseClass;
  * Created by jorgemaguina on 7/27/2016.
  */
 public class FCHubsAdmissionsTabPage extends BaseClass {
-    @FindBy(how = How.XPATH, using = "//h2[contains(text(), 'Regular Decision Deadline')]/../div/div[1]")
+    @FindBy(how = How.XPATH, using = "//h2[contains(text(), 'Early Action Deadline')]/../div/div[1]")
     public static WebElement labelMonthRegDecisionDeadline;
-    @FindBy(how = How.XPATH, using = "//h2[contains(text(), 'Regular Decision Deadline')]/../div/div[2]")
+    @FindBy(how = How.XPATH, using = "//h2[contains(text(), 'Early Action Deadline')]/../div/div[2]")
     public static WebElement labelDayRegDecisionDeadline;
     @FindBy(how = How.XPATH, using = "//h2[contains(text(), 'Acceptance Rate')]/../div/div/div/div/div/div")
     public static WebElement labelAcceptanceRate;

@@ -29,9 +29,4 @@ public class FCCollegeView_StepDefs {
     public void I_should_not_see_the_hubs_page_ribbon() throws Throwable {
         FCCollegeView.VerifyHubsPageRibbon();
     }
-
-    @And("^I click the Beta Button$")
-    public void I_click_the_beta_button() throws Throwable {
-        FCCollegeView.clickBetaButton();
-    }
 }
