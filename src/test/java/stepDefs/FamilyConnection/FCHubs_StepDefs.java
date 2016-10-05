@@ -33,8 +33,8 @@ public class FCHubs_StepDefs {
         FCHubs.VerifyFirstTutorialDialog();
     }
 
-    @And("^I click on Next on FirstTutorial dialog$")
-    public void I_click_next_on_first_tutorial_dialog() throws Throwable {
+    @And("^I navigate to Second Tutorial$")
+    public void I_navigate_to_second_tutorial() throws Throwable {
         FCHubs.ClickNextOnFirstDialog();
 
     }
