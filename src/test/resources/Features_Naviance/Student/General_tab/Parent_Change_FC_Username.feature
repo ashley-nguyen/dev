@@ -6,7 +6,7 @@ Feature: Counselors viewing a student should be able to change the username for 
   permitted to change that parent's username to one that is totally unique in the system, and it should change the
   username ONLY for my school, not for all schools associated with this parent.
     Given I am logged into Naviance "<account>" as "<user>" with "<password>"
-    And I search for "A101, A101" using the global search field
+    Then I search for "A101, A101" using the global search field
 #    And I manually reset the username for "yojo@yahoo.com" to "czechItOut"
 #    Then I should see "The Family Connection Username and Password for this parent have been updated."
 #    And I should see "czechItOut"

@@ -1,6 +1,7 @@
 package stepDefs.SuccessPlan;
 
 import actions.Student.Search.SuccessPlanTab.SuccessPlan;
+import cucumber.api.java.en.And;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 
@@ -14,6 +15,31 @@ public class SuccessPlan_StepDefs {
 
         SuccessPlan.ClickOnSuccessPlanTab();
     }
+
+    @And("^I add custom task with (.*) (.*)$")
+    public void I_add_custom_task_with(String newTask, String dueDate, String taskName) throws Throwable {
+        SuccessPlan.ClickOnSuccessPlanTab();
+        SuccessPlan.ClickOnAddCustomTask();
+        SuccessPlan.WriteInNewTask(newTask);
+        SuccessPlan.WriteInDueDate(dueDate);
+        SuccessPlan.ClickOnSendReminder();
+        SuccessPlan.ClickOnSaveButton();
+    }
+
+    @And("^I assign school task with (.*)$")
+    public void I_assign_school_task(String item) throws Throwable {
+        SuccessPlan.ClickOnSuccessPlanTab();
+        SuccessPlan.ClickOnAssignSchoolTasks();
+        SuccessPlan.SelectAvailableTask(item);
+    }
+
+    @And("^I add custom task from district with (.*)$")
+    public void I_add_custom_task_from_district(String item) throws Throwable {
+        SuccessPlan.ClickOnSuccessPlanTab();
+        SuccessPlan.ClickOnAssignDistrictTasks();
+        SuccessPlan.SelectAvailableDistrictTask(item);
+    }
+
 
     @Then("^I click on add custom task link$")
       public void i_click_on_add_custom_task() throws Throwable {

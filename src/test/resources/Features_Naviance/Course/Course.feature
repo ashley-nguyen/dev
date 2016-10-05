@@ -4,39 +4,25 @@ Feature: Course tests
   as a Naviance user
   I want to verify that Course Catalog it's being displayed
 
-  Scenario Outline: Verify Course Catalog
-    Given I am logged into Naviance "<account>" as "<user>" with "<password>"
+  Background:
+    Given I am logged into Naviance "rtd1" as "stan.smith" with "stan01!"
+
+  Scenario: Verify Course Catalog
     When I go to the Courses
     Then I verify the Course Catalog page
 
-  Examples:
-    | account     | user          | password   |
-    | rtd1        | stan.smith    | stan01!    |
-
-  Scenario Outline: Verify High School Courses
-    Given I am logged into Naviance "<account>" as "<user>" with "<password>"
+  Scenario: Verify High School Courses
     When I click on Advanced Computer Science
     Then I verify the Advanced Computer Science contents
 
-  Examples:
-    | account     | user          | password   |
-    | rtd1        | stan.smith    | stan01!    |
 
-  Scenario Outline: Verify High School Subjects
-    Given I am logged into Naviance "<account>" as "<user>" with "<password>"
+  Scenario: Verify High School Subjects
     When I click on Economics
     Then I verify the Economics contents
 
-  Examples:
-    | account     | user          | password   |
-    | rtd1        | stan.smith    | stan01!    |
 
-  Scenario Outline: Verify Recomendations
-    Given I am logged into Naviance "<account>" as "<user>" with "<password>"
+  Scenario: Verify Recomendations
     When I navigate to Recommendations
     Then I verify the Recommendation not show errors
 
-  Examples:
-    | account     | user       | password      |
-    |  rtd1    | stan.smith    | stan01!       |
 

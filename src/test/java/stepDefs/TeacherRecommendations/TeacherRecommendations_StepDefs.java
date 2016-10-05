@@ -1,8 +1,10 @@
 package stepDefs.TeacherRecommendations;
 
+import actions.Setup.AlumniTracker;
 import actions.TeacherRecommmendations.TeacherRecommendations;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
+import cucumber.api.java.en.When;
 import org.openqa.selenium.WebDriver;
 
 /**
@@ -69,10 +71,59 @@ public class TeacherRecommendations_StepDefs {
         TeacherRecommendations.ClickOnSaveSettingButton();
     }
 
+    @Then("^I can set Teacher Recommendation$")
+    public void I_can_set_Teacher_Recommendation() throws Throwable {
+
+        TeacherRecommendations.ClickOnSaveSettingButton();
+    }
+
+
+
     @Then("^I click on Go summary button$")
     public void i_click_on_go_summary_button() throws Throwable {
 
         TeacherRecommendations.ClickOnGoSummaryButton();
     }
+
+    @Then("^I can go to Summary Teacher Recommendation$")
+    public void I_can_go_to_Summary_Teacher_Recommendation() throws Throwable {
+
+        TeacherRecommendations.ClickOnGoSummaryButton();
+    }
+
+
+    @When("^I go to request Teacher recommendation with \"(.*)\" \"(.*)\" \"(.*)\"$")
+    public void I_go_to_request_Teacher_recommendation(String request, String item, String school) throws Throwable {
+        AlumniTracker.clickOnSchoolSelected(school);
+        TeacherRecommendations.ClickOnTeacherRecommendationsLink();
+        TeacherRecommendations.ClickOnRequestsTab();
+        TeacherRecommendations.SelectGradeClass(request);
+        TeacherRecommendations.SelectShowMeOptions(item);
+    }
+
+    @Then("^I can create request for Teacher Recommendation$")
+    public void I_can_create_request_for_Teacher_Recommendation() throws Throwable {
+
+        TeacherRecommendations.VerifySuccessRequestCreationAction();
+    }
+
+    @When("^I go to set Teacher Recommendation with \"(.*)\"$")
+    public void I_go_to_set_Teacher_Recommmendation(String school) throws Throwable {
+        AlumniTracker.clickOnSchoolSelected(school);
+        TeacherRecommendations.ClickOnTeacherRecommendationsLink();
+        TeacherRecommendations.ClickOnSettingsTab();
+        TeacherRecommendations.ClickOnRecommendationRequestsDoNotRequireApprovalRadioButton();
+
+    }
+
+    @When("^I go to summary of Teacher Recommendation with \"(.*)\" \"(.*)\" \"(.*)\"$")
+    public void I_go_to_summary_of_Teacher_Recommendation(String school, String gradefrom, String gradeto) throws Throwable {
+        AlumniTracker.clickOnSchoolSelected(school);
+        TeacherRecommendations.ClickOnTeacherRecommendationsLink();
+        TeacherRecommendations.ClickOnSummaryTab();
+        TeacherRecommendations.SelectGradeClassRange(gradefrom);
+        TeacherRecommendations.SelectGradeToClassRange(gradeto);
+    }
+
 
 }

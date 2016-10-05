@@ -11,42 +11,33 @@ Feature: Student Success Plan
   @addcustomtask
   Scenario Outline: Add custom task
     When I search for <student> using the global search field
-    And I click on Success Plan tab
-    Then I click on add custom task link
-    And I write in new task textbox the "<taskname>" name
-    And I write in due date the "<duedate>" due date
-    And I click on send reminder check box
-    And I click on Save button
+    And I add custom task with "<taskname>" "<duedate>"
     Then I verify that task "<taskname>" was created
 
   Examples:
     | student       | taskname    | duedate   |
-    | a101, a101    | New Task 1  | 2017-06-30|
+    | a103, a103    | New Task 1  | 2017-06-30|
 
   @viewtaskdetails
   Scenario Outline: Assign school tasks
     When I search for <student> using the global search field
-    And  I click on Success Plan tab
-    And  I click on assign school tasks link
-    And  I select "<item>" from available assignation school task
+    And I assign school task with "<item>"
     Then I verify that task "<item>" was created
 
   Examples:
     | student       | item                           |
-    | a101, a101    | Add career clusters to my list |
-    | a101, a101    | Add careers to my list         |
-    | a101, a101    | Attach file                    |
+    | a103, a103    | Add career clusters to my list |
+    | a103, a103    | Add careers to my list         |
+    | a103, a103    | Attach file                    |
 
   @viewtaskdetails
-  Scenario Outline: Assign school tasks
+  Scenario Outline: Assign school tasks from district
     When I search for <student> using the global search field
-    And  I click on Success Plan tab
-    And  I click on assign district tasks link
-    And  I select "<item>" from available assignation district task
+    And I add custom task from district with "<item>"
     Then I verify that task "<item>" was created
 
   Examples:
     | student       | item                           |
-    | a101, a101    | Add career clusters to my list |
-    | a101, a101    | Add careers to my list         |
-    | a101, a101    | Attend college visits          |
+    | a103, a103    | Add career clusters to my list |
+    | a103, a103    | Add careers to my list         |
+    | a103, a103    | Attend college visits          |

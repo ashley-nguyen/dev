@@ -108,4 +108,11 @@ public class TeacherRecommendations {
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.elementToBeClickable(TeacherRecommendationsPage.btn_go_summary)).click();
     }
+
+    public static void VerifySuccessRequestCreationAction() throws InterruptedException {
+        driver = Hooks.driver;
+        PageFactory.initElements(driver, TeacherRecommendationsPage.class);
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.elementToBeClickable(TeacherRecommendationsPage.btn_go_summary)).click();
+    }
 }

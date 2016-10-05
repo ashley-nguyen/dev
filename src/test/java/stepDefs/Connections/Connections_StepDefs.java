@@ -35,9 +35,11 @@ public class Connections_StepDefs {
         Connections.verifyNoErrorsInConnections();
     }
 
-    @Then("^I should not see errors in Family Connection$")
-    public void i_should_not_see_errors_in_family_connection() throws Throwable {
+    @Then("^I should not see errors in Family Connection in \"(.*)\" grade level$")
+    public void i_should_not_see_errors_in_family_connection(int grade) throws Throwable {
         Connections.verifyNoErrorsInFamilyConnection();
+        Connections.clickOnConfigurationLink();
+        Connections.verifyEnableGrade(grade);
     }
 
     @Then("^I click on Select and Update Optional Features link$")
@@ -47,6 +49,7 @@ public class Connections_StepDefs {
 
     @Then("^I verify the Active Match information \"(.*)\"$")
     public void i_verify_the_text(String info) throws Throwable {
+        Connections.clickOnConfigurationLink();
         Connections.verifyText(info);
     }
 

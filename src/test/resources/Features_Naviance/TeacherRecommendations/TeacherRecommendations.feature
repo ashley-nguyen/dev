@@ -4,43 +4,32 @@ Feature: Teacher Recommendation
   as a Naviance user
   I want to be able to request, setting up and summary
 
+  Background:
+    Given when I log in with the following user details:
+      | rtd1 | stan.smith | stan01! |
+
   @request
   Scenario Outline: Requests Teacher Recommendations
-    Given I am logged into Naviance "<account>" as "<user>" with "<password>"
-    When  I click on selected "<school>" link
-    When I click on Teacher Recommendations link
-    Then I click on Requests tab
-    Then I select "<request>" request from Grade Class
-    Then I select "<item>" show me options
-    Then I click on show me Go button
-
+    When I go to request Teacher recommendation with "<request>" "<item>" "<school>"
+    Then I can create request for Teacher Recommendation
   Examples:
-    | account     | user       | password  | school   | request                  | item                        |
-    | rtd1        | stan.smith | stan01!   | School A | class of 2016            | All recommendation requests |
+    | school   | request                  | item                        |
+    | School A | class of 2016            | All recommendation requests |
 
   @settings
   Scenario Outline: Settings Teacher Recommendations
-    Given I am logged into Naviance "<account>" as "<user>" with "<password>"
-    When  I click on selected "<school>" link
-    When I click on Teacher Recommendations link
-    Then I click on Settings tab
-    Then I click on Recommendation requests do not require approval
-    Then I click on Save setting button
+    When I go to set Teacher Recommendation with "<school>"
+    Then I can set Teacher Recommendation
 
   Examples:
-    | account     | user       | password  | school   |
-    | rtd1        | stan.smith | stan01!   | School A |
+    | school   |
+    | School A |
 
   @summary
   Scenario Outline: Summary Teacher Recommendations
-    Given I am logged into Naviance "<account>" as "<user>" with "<password>"
-    When  I click on selected "<school>" link
-    When I click on Teacher Recommendations link
-    Then I click on Summary tab
-    Then I select "<GradeFrom>" request from Grade Class range
-    Then I select "<GradeTo>" request to Grade Class range
-    Then I click on Go summary button
+    When I go to summary of Teacher Recommendation with "<school>" "<GradeFrom>" "<GradeTo>"
+    Then I can go to Summary Teacher Recommendation
 
   Examples:
-    | account     | user       | password  | school   | GradeFrom                  | GradeTo                  |
-    | rtd1        | stan.smith | stan01!   | School A | class of 2016              | class of 2016            |
+    | school   | GradeFrom                  | GradeTo                  |
+    | School A | class of 2016              | class of 2016            |

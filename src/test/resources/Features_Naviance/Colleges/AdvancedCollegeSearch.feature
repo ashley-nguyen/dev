@@ -11,7 +11,6 @@ Feature: Colleges - Advanced search
   @td2 @safe
   Scenario Outline: View Advanced College Search
     When I go to the advanced college search screen
-    Then I will see "School type" search category
     Then I will be able to search using the following criteria '<SearchCategory>' '<SearchValue>' '<SearchData>' '<SearchResult>'
 
     Examples:

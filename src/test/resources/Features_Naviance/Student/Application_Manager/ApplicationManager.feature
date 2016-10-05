@@ -7,7 +7,7 @@ Feature: Application Manager tests
 Scenario Outline: Verify Application Manager actions
   Given I am logged into Naviance "<account>" as "<user>" with "<password>"
   When I go to Application Manager
-  Then I will see data in Application Manager selecting <item>
+  Then I will see data in Application Manager selecting "<item>"
 Examples:
   | account     | user       | password  | item                       |
   | rtd1        | stan.smith | stan01!   | class of 2016 (grade 12)   |

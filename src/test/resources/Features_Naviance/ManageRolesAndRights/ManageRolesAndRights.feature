@@ -7,12 +7,7 @@ Feature: Manage Roles and Rights
   @permissions
   Scenario Outline: Enable Permission to View Teacher Documents
     Given I am logged into Naviance "<account>" as "<user>" with "<password>"
-    When I go to Manage Roles and Rights
-    When I click on manage link
-    When I click on Modify Permissions link
-    When I check View all Teacher rec. forms
-    When I check Prepare my teacher rec. forms
-    When I click on Submit button
+    When I move to Teacher Documents
     Then I verify that Confirmation "<message>" message is displayed
 
   Examples:
