@@ -332,7 +332,7 @@ public class FCHubs_StepDefs {
     public void Second_Tutorial_Dialog_Is_Closed() throws Throwable {
         FCHubs.VerifySecondTutorialDialogClosed();
     }
-    @When("^I click the Studies tab$")
+    @When("^I open the Studies tab$")
     public void iClickTheStudiesTab() throws Throwable {
         FCHubs.ClickStudiesTab();
     }
