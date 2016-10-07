@@ -17,6 +17,7 @@ public class Assessments_StepDefs {
 
     @Then("^I should not see errors in Assessments$")
     public void i_should_not_see_errors_in_assessments() throws Throwable {
+        Assessments.ClickOnAssessments();
         Assessments.verifyAssessment();
     }
 }

@@ -4,25 +4,26 @@ Feature: Connections Errors test
   as a Naviance user
   I want to be able to Check status and view history of emails sent
 
+  Background:
+    Given I am logged into Naviance "rtd1" as "stan.smith" with "stan01!"
+
   Scenario Outline: Verify Connections E-Mail displayed correctly
-    Given I am logged into Naviance "<account>" as "<user>" with "<password>"
     When I enter to Check status and view history of emails sent
     Then I should not see errors in Check Status Email
     When I am on the following url "<url>"
     Then I should not see errors in Email
 
   Examples:
-    | user           | account | password | url                                                                            |
-    | stan.smith     | rtd1    | stan01!  |  https://succeed.naviance.com/connections/communications/email/view_bounce.php |
+    | url                                                                            |
+    |  https://succeed.naviance.com/connections/communications/email/view_bounce.php |
 
   Scenario Outline: Verify Family Connections displayed correctly
-    Given I am logged into Naviance "<account>" as "<user>" with "<password>"
     When I enter to Family Connection
-    Then I should not see errors in Family Connection
+    Then I should not see errors in Family Connection in "<level>" grade level
     When I am on the following url "<url>"
     Then I should not see errors in Connections
 
   Examples:
-    | user           | account | password | url                                                         |
-    | stan.smith     | rtd1    | stan01!  |  https://succeed.naviance.com/connections/fc/fc.php?sec=xyz |
+   | url                                                         | level |
+   |  https://succeed.naviance.com/connections/fc/fc.php?sec=xyz | 9     |
 

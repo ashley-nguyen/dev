@@ -19,7 +19,7 @@ public class TeacherRecommendationsPage extends BaseClass {
     @FindBy(how = How.CSS, using = "img[src=\'../../images/transcripts/transcripts_settings_tab.gif\']")
     public static WebElement tabSettings;
 
-    @FindBy(how = How.XPATH, using = "//input[@name='require_approval']")
+    @FindBy(how = How.XPATH, using = "//input[@name='can_request_recommendations']")
     public static WebElement rbRecommendationDoNotRequireApproval;
 
     @FindBy(how = How.CSS, using = "img[src=\'../../images/processapps/apps_summary_tab.gif\']")
@@ -28,11 +28,14 @@ public class TeacherRecommendationsPage extends BaseClass {
     @FindBy(how = How.XPATH, using = "//*[@id=\"class\"]")
     public static WebElement selClass;
 
-    @FindBy(how = How.XPATH, using = "//select[@name='quicklist']")
+    @FindBy(how = How.XPATH, using = "//select[@name='status']")
     public static WebElement selList;
 
-    @FindBy(how = How.NAME, using = "quicklist")
+    @FindBy(how = How.NAME, using = "processing")
     public static WebElement formNameTable;
+
+    @FindBy(how = How.ID, using = "selected_list")
+    public static WebElement tableId;
 
     @FindBy(how = How.XPATH, using = "//select[@name='start_year']")
     public static WebElement selStartYear;

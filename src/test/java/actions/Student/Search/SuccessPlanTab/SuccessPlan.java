@@ -1,5 +1,6 @@
 package actions.Student.Search.SuccessPlanTab;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
@@ -90,6 +91,7 @@ public class SuccessPlan {
         PageFactory.initElements(driver, SuccessPlanTabPage.class);
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         WebDriverWait wait = new WebDriverWait(driver, 300);
+        new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.name("activities_left")));
         WebElement selectElement = wait.until(ExpectedConditions.visibilityOf(SuccessPlanTabPage.divTask));
         Select select = new Select(selectElement);
         select.selectByVisibleText(item);

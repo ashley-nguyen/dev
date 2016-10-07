@@ -14,6 +14,8 @@ public class DataImport_StepDefs {
     public void i_go_to_data_import() throws Throwable {
         GoToSetup();
         DataImport.NavigateToDataImport();
+        DataImport.ClickOnNewStudentRecords();
+        DataImport.ClickOnChooseFileButton();
     }
 
     @When("^I click on Add new student records$")

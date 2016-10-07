@@ -1,6 +1,5 @@
 package stepDefs.AlumniTracker;
 import actions.Setup.AlumniTracker;
-
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 
@@ -22,14 +21,15 @@ public class AlumniTracker_StepDefs {
         AlumniTracker.verifyFatalErrorAlumniTracker();
     }
 
-    @When("^I go to Prepare an alumni profile file$")
-    public void i_go_to_prepare_an_alumni_profile_file() throws Throwable {
+    @When("^I go to Prepare an alumni profile file for \"(.*)\"$")
+    public void i_go_to_prepare_an_alumni_profile_file(String school) throws Throwable {
+        AlumniTracker.clickOnSchoolSelected(school);
+        GoToSetup();
+        AlumniTracker.NavigateToAlumniTracker();
+        AlumniTracker.verifyFatalErrorAlumniTracker();
         AlumniTracker.ClickOnPrepareAnAlumniProfilesFile();
-        Thread.sleep(500);
         AlumniTracker.ClickOnPrepareAlumniFiles();
-        Thread.sleep(500);
         AlumniTracker.ClickOnCheckBoxClassYear();
-        Thread.sleep(500);
         AlumniTracker.ClickOnSendFile();
     }
 
@@ -47,4 +47,8 @@ public class AlumniTracker_StepDefs {
     public void i_see_a_fatal_error_in_the_page(String school) throws Throwable {
         AlumniTracker.clickOnSchoolSelected(school);
     }
+
+
+
+
 }

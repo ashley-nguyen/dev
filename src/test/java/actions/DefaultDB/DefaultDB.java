@@ -27,8 +27,6 @@ public class DefaultDB {
     }
 
     public static void verifyHomePage() throws InterruptedException {
-        new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.linkText("home")));
-        String verifyHomeLink = Hooks.driver.findElement(By.linkText("home")).getText();
         String verifyReportLink = Hooks.driver.findElement(By.linkText("Reports")).getText();
         String verifyPlannerLink = Hooks.driver.findElement(By.linkText("Planner")).getText();
         String verifyCoursesLink = Hooks.driver.findElement(By.linkText("Courses")).getText();
@@ -36,7 +34,6 @@ public class DefaultDB {
         String verifyCollegesLink = Hooks.driver.findElement(By.linkText("Colleges")).getText();
         String verifyConnectionsink = Hooks.driver.findElement(By.linkText("Connections")).getText();
         String dataverification = Hooks.driver.findElement(By.className("main-navigation")).getText();
-        assertTrue("Error Verification!", verifyHomeLink.contains("home"));
         assertTrue("Error Verification!", verifyReportLink.contains("Reports"));
         assertTrue("Error Verification!", verifyPlannerLink.contains("Planner"));
         assertTrue("Error Verification!", verifyCoursesLink.contains("Courses"));

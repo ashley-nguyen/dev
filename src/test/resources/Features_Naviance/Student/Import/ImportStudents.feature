@@ -8,9 +8,7 @@ Feature: Import Students
   Scenario Outline: Requests Teacher Recommendations
     Given I am logged into Naviance "<account>" as "<user>" with "<password>"
     When I go to Data Import
-    When I click on Add new student records
-    When I click on Choose File button
-    When I write the file name to import students
+    Then I write the file name to import students
 
 
   Examples:
