@@ -5,10 +5,8 @@ Feature:  As a student viewing new Hubs' Student Life tab, I want to see a top b
   Background:
     Given I log in to Family Connection with the following user details:
       | rtsa       | amandahubs | hubs2016  |
-    And I click on the Colleges tab
-    And I go to the Page View for "Auburn"
-    And I click the Beta Button
-    And I click the Student Life tab
+    When I open the HUBS page for "Auburn"
+    And I open the Student Life tab
 
   Scenario: The School Size is displayed with correct data
     Then The School Size should be "Very Large"

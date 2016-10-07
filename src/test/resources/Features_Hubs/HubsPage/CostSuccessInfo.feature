@@ -5,9 +5,7 @@ Feature: As a student exploring a college, I want to see a top bar with high-lev
   Background:
     Given I log in to Family Connection with the following user details:
       | rtsa  | benhubs | hubs2016  |
-    And I click on the Colleges tab
-    And I go to the Page View for "Auburn"
-    And I click the Beta Button
+    When I open the HUBS page for "Auburn"
 
   Scenario Outline: Average Total Cost is displayed with correct data for each income selected in the Information Top bar
     Then Average Total Cost should be "<avgTotalCost>" when the income is "<income>"
@@ -26,7 +24,7 @@ Feature: As a student exploring a college, I want to see a top bar with high-lev
     Then Acceptance Rate should be "83" with correct data in the Information Top bar
 
   Scenario: Priority  is displayed with correct data in the Information Top bar
-    Then The Priority date should be "January" "15" in the Information Top bar
+    Then The Priority date should be "October" "15" in the Information Top bar
 
   Scenario: The user is redirected to Costs Module after clicking "More about Cost & Aid"
     When I click the link "More about Cost & Aid" in the Overview Info Top Bar
@@ -57,7 +55,4 @@ Feature: As a student exploring a college, I want to see a top bar with high-lev
     Then I should be redirected to the section "Application Information" in Admissions
 
   Scenario: Average Total Cost, Graduation Rate and Acceptance Rate should display the date of the data
-    Then The text "from 2016" should be displayed under the following sections in Overview Info Top bar:
-    | Average Total Cost |
-    | Graduation Rate    |
-    | Acceptance Rate    |
+    Then The text "from 2016" should be displayed under the sections in Overview Info Top bar

@@ -5,13 +5,11 @@ Feature:  As a student viewing new Hubs' Student Life tab, I want to see a schoo
   Background:
     Given I log in to Family Connection with the following user details:
       | rtsa       | amandahubs | hubs2016  |
-    And I click on the Colleges tab
-    And I go to the Page View for "Adelphi"
-    And I click the Beta Button
-    And I click the Student Life tab
+    When I open the HUBS page for "Adelphi"
+    And I open the Student Life tab
 
   Scenario: The Available Organizations are displayed with correct data
-    When I click "Organizations" in Student Organizations and Services
+    When I open the "Organizations" tab in Student Organizations and Services
     Then The following Available Organizations are displayed:
     | Academic Frat./Sor.        |
     | Business                   |
@@ -43,8 +41,8 @@ Feature:  As a student viewing new Hubs' Student Life tab, I want to see a schoo
     | Yearbook                   |
 
   Scenario: The Available Sports for men are displayed with correct data
-    When I click "Athletics" in Student Organizations and Services
-    And I click "Men" in Athletics
+    When I open the "Athletics" tab in Student Organizations and Services
+    And I open the "Men" section in Athletics
     Then The following "Men" sports should be displayed:
     #Use 'empty' when that field is empty
     | Soccer,II,empty,NCAA          |
@@ -60,8 +58,8 @@ Feature:  As a student viewing new Hubs' Student Life tab, I want to see a schoo
     | Swimming,II,empty,NCAA        |
 
   Scenario: The Available Sports for women are displayed with correct data
-    When I click "Athletics" in Student Organizations and Services
-    And I click "Women" in Athletics
+    When I open the "Athletics" tab in Student Organizations and Services
+    And I open the "Women" section in Athletics
     Then The following "Women" sports should be displayed:
     #Use 'empty' when that field is empty
     | Softball,II,empty,NCAA        |
@@ -80,8 +78,8 @@ Feature:  As a student viewing new Hubs' Student Life tab, I want to see a schoo
     | Swimming,II,empty,NCAA        |
   
   Scenario: The Available Sports for Co-Ed are displayed with correct data
-    When I click "Athletics" in Student Organizations and Services
-    And I click "Co-Ed" in Athletics
+    When I open the "Athletics" tab in Student Organizations and Services
+    And I open the "Co-Ed" section in Athletics
     Then The following "Co-Ed" sports should be displayed:
     #Use 'empty' when that field is empty
     | Softball,empty,empty,empty         |
