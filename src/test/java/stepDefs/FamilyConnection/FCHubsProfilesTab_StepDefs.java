@@ -18,8 +18,8 @@ import java.util.List;
 public class FCHubsProfilesTab_StepDefs {
     public static WebDriver driver;
 
-    @When("^I click Read More in the Profile with name \"([^\"]*)\"$")
-    public void I_click_Read_More_in_the_Profile_with_name(String profileName) throws Throwable {
+    @When("^I expand the Profile with name \"([^\"]*)\"$")
+    public void I_expand_the_Profile_with_name(String profileName) throws Throwable {
         FCHubsProfilesTab.ClickReadMoreInStudentProfile(profileName);
     }
 
@@ -28,8 +28,8 @@ public class FCHubsProfilesTab_StepDefs {
         FCHubsProfilesTab.VerifyStudentProfileDetails();
     }
 
-    @And("^I click the x button in the profile$")
-    public void I_click_the_x_button_in_the_profile() throws Throwable {
+    @And("^I close the profile$")
+    public void I_close_the_profile() throws Throwable {
         FCHubsProfilesTab.ClickXButtonInProfile();
     }
 

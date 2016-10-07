@@ -5,11 +5,8 @@ Feature: As a student viewing new Hubs' Student Life tab, I want to see a housin
   Background:
     Given I log in to Family Connection with the following user details:
       | rtsa       | ikeahubs | hubs2016  |
-    When I click on the Colleges tab
-    And I search for the college "Adelphi"
-    And I click the college "Adelphi" in the college lookup list
-    And I click the Beta Button
-    And I click the Student Life tab
+    When I open the HUBS page for "Adelphi"
+    And I open the Student Life tab
 
 
   Scenario: The Capacity is displayed with correct data

@@ -53,6 +53,18 @@ public class FCHubsPage extends BaseClass {
     public static WebElement tabCosts;
     @FindBy(how = How.XPATH, using = "//div[@class = 'tabs hubs-top-tabs-bar']/span[text() = 'Profiles']")
     public static WebElement tabProfiles;
+    @FindBy(how = How.CSS, using = ".tabs.hubs-top-tabs-bar span:nth-child(1)")
+    public static WebElement tabOverview;
+    @FindBy(how = How.CSS, using = "div[ng-if=\"vm.averageNetPrices.length > 0\"] div.hub-data-pod__data-age.ng-binding")
+    public static WebElement labelDateAvgNetPrice;
+    @FindBy(how = How.CSS, using = "div[ng-if=\"vm.gradRate\"] div.hub-data-pod__data-age.ng-binding")
+    public static WebElement labelDateGradRate;
+    @FindBy(how = How.CSS, using = "div[ng-if=\"vm.acceptRate\"] div.hub-data-pod__data-age.ng-binding")
+    public static WebElement labelDateAccepRate;
+    @FindBy(how = How.CSS, using = ".hub-deadline__month.ng-binding")
+    public static WebElement labelOverviewTabDeadlineMonth;
+    @FindBy(how = How.CSS, using = ".hub-deadline__day.ng-binding")
+    public static WebElement labelOverviewTabDeadlineDay;
 
     public FCHubsPage(WebDriver driver) {
         super(driver);

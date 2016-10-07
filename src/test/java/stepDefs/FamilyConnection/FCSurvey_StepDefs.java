@@ -23,8 +23,8 @@ public class FCSurvey_StepDefs {
         FCSurvey.FillSurvey(surveyOptions.get(0), surveyOptions.get(1), surveyOptions.get(2));
     }
 
-    @And("^I click the Done button$")
-    public void I_click_the_done_button() throws Throwable {
+    @And("^I submit the survey$")
+    public void I_submit_the_survey() throws Throwable {
         FCSurvey.ClickDoneButton();
     }
 

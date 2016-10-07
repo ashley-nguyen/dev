@@ -5,14 +5,12 @@ Feature:  As a student viewing new Hubs' Student Life tab, I want to see a schoo
   Background:
     Given I log in to Family Connection with the following user details:
       | rtsa       | amandahubs | hubs2016  |
-    And I click on the Colleges tab
-    And I go to the Page View for "Auburn"
-    And I click the Beta Button
-    And I click the Student Life tab
+    When I open the HUBS page for "Auburn"
+    And I open the Student Life tab
 
   Scenario: The Total Students number is displayed with correct data
-    Then The Total Students number should be "25912" in Ethnicity Data
-  @test
+    Then The Total Students number should be "25,912" in Ethnicity Data
+
   Scenario Outline: The percentages for each ethnicity group are displayed with correct data
     Then The percentage for "<ethnicGroup>" is "<value>" in Ethnicity Data
     Examples:
@@ -25,7 +23,7 @@ Feature:  As a student viewing new Hubs' Student Life tab, I want to see a schoo
     | Asian                    | 2%                   |
 
   Scenario: The Total Student number in Gender Data is displayed with correct data
-    Then The Total Students number should be "25912" in Gender Data
+    Then The Total Students number should be "25,912" in Gender Data
 
   Scenario Outline: The percentages of Gender Data are displayed with correct data
     Then The percentage for "<gender>" is "<value>" in Gender Data
@@ -35,7 +33,7 @@ Feature:  As a student viewing new Hubs' Student Life tab, I want to see a schoo
     | Female | 49%                  |
 
   Scenario: The Total Students number in Age is displayed withb correct data
-    Then The Total Students number should be "25912" in Age
+    Then The Total Students number should be "25,912" in Age
 
   Scenario Outline: The percentages of Age are displayed with correct data
     Then The percentage for "<ageGroup>" is "<value>" in Age

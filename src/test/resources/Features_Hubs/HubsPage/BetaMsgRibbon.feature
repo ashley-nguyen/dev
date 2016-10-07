@@ -5,51 +5,18 @@ Feature: Hubs Beta Feeedback Ribbon
   Background:
     Given I log in to Family Connection with the following user details:
       | rtsa       | amandahubs | hubs2016  |
+    When I open the HUBS page for "Auburn"
+    And I open the Survey Page
 
-  Scenario Outline: Feedback button takes the user to a survey page
-    When I click on the Colleges tab
-    And I search for the college "<college>"
-    And I click the college "<college>" in the college lookup list
-    And I click the Beta Button
-    And I click the Feedback Button
-    Then I should see the survey page
-    Examples:
-      | college |
-      | Auburn  |
-
-  Scenario Outline: Survey page can be closed after clicking 'Done'
-    When I click on the Colleges tab
-    And I search for the college "<college>"
-    And I click the college "<college>" in the college lookup list
-    And I click the Beta Button
-    And I click the Feedback Button
-    And I fill the survey with the following data:
+  Scenario: Survey page can be closed after clicking 'Done'
+    When I fill the survey with the following data:
     | Okay design | Just okay | 11th grade/junior |
-    And I click the Done button
+    And I submit the survey
     Then I should be able to close the survey page
-    Examples:
-      | college |
-      | Auburn  |
 
-  Scenario Outline: The Survey page can be closed without completing it
-    When I click on the Colleges tab
-    And I search for the college "<college>"
-    And I click the college "<college>" in the college lookup list
-    And I click the Beta Button
-    And I click the Feedback Button
+  Scenario: The Survey page can be closed without completing it
     Then I should be able to close the survey page
-    Examples:
-      | college |
-      | Auburn  |
 
-  Scenario Outline: The Beta Ribbon is still displayed after closing the Survey page
-    When I click on the Colleges tab
-    And I search for the college "<college>"
-    And I click the college "<college>" in the college lookup list
-    And I click the Beta Button
-    And I click the Feedback Button
-    And I close the Survey page
+  Scenario: The Beta Ribbon is still displayed after closing the Survey page
+    When I close the Survey page
     Then I should see the Feedback Ribbon
-    Examples:
-      | college |
-      | Auburn  |

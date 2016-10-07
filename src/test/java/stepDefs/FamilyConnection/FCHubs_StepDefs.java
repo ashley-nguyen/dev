@@ -23,8 +23,8 @@ public class FCHubs_StepDefs {
         FCHubs.VerifyFeedbackRibbon();
     }
 
-    @And("^I click the Feedback Button$")
-    public void I_click_the_feedback_button() throws Throwable {
+    @And("^I open the Survey Page$")
+    public void I_open_the_survey_page() throws Throwable {
         FCHubs.ClickFeedbackButton();
     }
 
@@ -280,21 +280,6 @@ public class FCHubs_StepDefs {
         FCHubs.VerifyPhoneInFieldContactForm(phoneNumber);
     }
 
-    @When("^I enter \"([^\"]*)\" in the Subject Field$")
-    public void I_enter_in_the_Subject_Field(String subject) throws Throwable {
-        FCHubs.enterSubjectContactForm(subject);
-    }
-
-    @And("^I enter \"([^\"]*)\" in the Message Field$")
-    public void I_enter_in_the_Message_Field(String message) throws Throwable {
-        FCHubs.enterMessageContactForm(message);
-    }
-
-    @And("^I click on 'Send Message'$")
-    public void I_click_on_Send_Message() throws Throwable {
-        FCHubs.ClickSendMessageContactForm();
-    }
-
     @Then("^I should see the message \"([^\"]*)\"$")
     public void I_should_see_the_message(String confirmationMessage) throws Throwable {
         FCHubs.VerifyConfirmationMessageContactForm(confirmationMessage);
@@ -332,16 +317,16 @@ public class FCHubs_StepDefs {
     public void Second_Tutorial_Dialog_Is_Closed() throws Throwable {
         FCHubs.VerifySecondTutorialDialogClosed();
     }
-    @When("^I click the Studies tab$")
-    public void iClickTheStudiesTab() throws Throwable {
+    @When("^I open the Studies tab$")
+    public void I_open_the_Studies_tab() throws Throwable {
         FCHubs.ClickStudiesTab();
     }
     @And("^I open the Admissions tab$")
     public void I_open_the_Admissions_Tab() throws Throwable {
         FCHubs.ClickAdmissionsTab();
     }
-    @And("^I click the Student Life tab$")
-    public void I_click_the_Student_Life_tab() throws Throwable {
+    @And("^I open the Student Life tab$")
+    public void I_open_the_Student_Life_tab() throws Throwable {
         FCHubs.ClickStudentLifeTab();
     }
 
@@ -375,10 +360,10 @@ public class FCHubs_StepDefs {
         FCGoogleMaps.VerifyGoogleMapsURL();
     }
 
-    @Then("^The text \"([^\"]*)\" should be displayed under the following sections in Overview Info Top bar:$")
-    public void The_text_should_be_displayed_under_the_following_sections_in_Overview_Info_Top_Bar(String text, List<String> sections)
+    @Then("^The text \"([^\"]*)\" should be displayed under the sections in Overview Info Top bar$")
+    public void The_text_should_be_displayed_under_the_sections_in_Overview_Info_Top_bar(String text)
             throws Throwable {
-        FCHubs.VerifyDateLabelsInOverviewTopBar(text, sections);
+        FCHubs.VerifyDateLabelsInOverviewTopBar(text);
     }
 
     @And("^I open the Costs tab$")
@@ -386,8 +371,8 @@ public class FCHubs_StepDefs {
         FCHubs.ClickCostsTab();
     }
 
-    @And("^I click the Profiles tab$")
-    public void I_click_the_Profiles_tab() throws Throwable {
+    @And("^I open the Profiles tab$")
+    public void I_open_the_Profiles_tab() throws Throwable {
         FCHubs.ClickProfilesTab();
     }
 
@@ -398,6 +383,18 @@ public class FCHubs_StepDefs {
         FCCollegesTab.ClickGoButton();
         FCCollegesTab.ClickCollegeInCollegeLookup(college);
         FCCollegeView.clickBetaButton();
+    }
+
+    @When("^I send an email with Subject \"([^\"]*)\" and Message \"([^\"]*)\"$")
+    public void I_send_an_email_with_subject_and_message(String subject, String message) throws Throwable {
+        FCHubs.enterSubjectContactForm(subject);
+        FCHubs.enterMessageContactForm(message);
+        FCHubs.ClickSendMessageContactForm();
+    }
+
+    @And("^I send the email$")
+    public void I_send_the_email() throws Throwable {
+        FCHubs.ClickSendMessageContactForm();
     }
 }
 
