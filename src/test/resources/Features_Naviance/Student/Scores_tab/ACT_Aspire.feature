@@ -15,9 +15,9 @@ Feature: Student ACT ASPIRE scores
 
     Examples:
       | student        | subject | score | grade | message                                                                                             |
-      | A101, A101 | english | 457   | 9     | Some elements are out of the ranges for the selected grade level. Please check: English. |
-      | A101, A101 | english | 399   | 9     | Some elements are out of the ranges for the selected grade level. Please check: English. |
-      | A101, A101 | math    | 461   | 9     | Some elements are out of the ranges for the selected grade level. Please check: Math.    |
-      | A101, A101 | math    | 399   | 9     | Some elements are out of the ranges for the selected grade level. Please check: Math.    |
-      | A101, A101 | science | 450   | 9     | Some elements are out of the ranges for the selected grade level. Please check: Science. |
-      | A101, A101 | science | 399   | 9     | Some elements are out of the ranges for the selected grade level. Please check: Science. |
+      | A103, A103 | english | 457   | 9     | Some elements are out of the ranges for the selected grade level. Please check: English. |
+      | A103, A103 | english | 399   | 9     | Some elements are out of the ranges for the selected grade level. Please check: English. |
+      | A103, A103 | math    | 461   | 9     | Some elements are out of the ranges for the selected grade level. Please check: Math.    |
+      | A103, A103 | math    | 399   | 9     | Some elements are out of the ranges for the selected grade level. Please check: Math.    |
+      | A103, A103 | science | 450   | 9     | Some elements are out of the ranges for the selected grade level. Please check: Science. |
+      | A103, A103 | science | 399   | 9     | Some elements are out of the ranges for the selected grade level. Please check: Science. |

@@ -101,8 +101,8 @@ public class TeacherRecommendations_StepDefs {
         TeacherRecommendations.SelectShowMeOptions(item);
     }
 
-    @Then("^I can create request for Teacher Recommendation$")
-    public void I_can_create_request_for_Teacher_Recommendation() throws Throwable {
+    @Then("^I can view request for Teacher Recommendation$")
+    public void I_can_view_request_for_Teacher_Recommendation() throws Throwable {
 
         TeacherRecommendations.VerifySuccessRequestCreationAction();
     }

@@ -73,7 +73,7 @@ public class Connections {
 
     public static void verifyText(String info) throws InterruptedException {
 
-        new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.elementToBeClickable(By.xpath("/html/body/div[1]/table/tbody/tr[1]/td[2]/table/tbody/tr[2]/td[2]/table/tbody/tr[3]/td/table/tbody/tr/td/table/tbody/tr[5]/td/table[3]/tbody/tr[10]/td[1]/a/img")));
+        new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.elementToBeClickable(By.xpath("/html/body/div[1]/table/tbody/tr[1]/td[2]/table/tbody/tr[2]/td[2]/table/tbody/tr[3]/td/table/tbody/tr/td/table/tbody/tr[5]/td/table[3]/tbody/tr[9]/td[1]/a/img")));
         WebElement activeMatchElement =  ConnectionsPage.lnkActiveMatch;
         new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.id("cluetip-inner")));
         WebElement activeMatchSubElement = ConnectionsPage.idSubActiveMatch;

@@ -17,7 +17,7 @@ public class SuccessPlan_StepDefs {
     }
 
     @And("^I add custom task with (.*) (.*)$")
-    public void I_add_custom_task_with(String newTask, String dueDate, String taskName) throws Throwable {
+    public void I_add_custom_task_with(String newTask, String dueDate) throws Throwable {
         SuccessPlan.ClickOnSuccessPlanTab();
         SuccessPlan.ClickOnAddCustomTask();
         SuccessPlan.WriteInNewTask(newTask);
@@ -95,7 +95,7 @@ public class SuccessPlan_StepDefs {
         SuccessPlan.ClickOnSaveButton();
     }
 
-    @Then("^I verify that task \"(.*)\" was created$")
+    @Then("^I verify that task (.*) was created$")
     public void i_verify_task_was_created(String taskName) throws Throwable {
 
         SuccessPlan.verifyTaskCreated(taskName);

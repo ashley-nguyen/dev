@@ -15,6 +15,6 @@ Feature: Student SAT scores
 
     Examples:
       | student       | ebrw | reading | mathematics_score |writing  | math_test | totalscore | year  | link            | test | date    | day | grade | warning                                                        |
-      | A101, A101 | 222  | 38      | 222               |  35     | 22        | 444        |  2016 |  key test scores| SAT  | January | 30  | 12th  | Date out of range, valid range is between March 2016 and today |
-      | A101, A101 | 222  | 38      | 222               |  35     | 22        | 444        |  2016 |  key test scores| SAT  | March   | 30  | 12th  |  |
-      | A101, A101 | 444  | 38      | 222               |  30     | 23        | 444        |  2016 |  key test scores| SAT  | March   | 30  | 12th  |  |
+      | A103, A103 | 222  | 38      | 222               |  35     | 22        | 444        |  2016 |  key test scores| SAT  | January | 30  | 12th  | Date out of range, valid range is between March 2016 and today |
+      | A103, A103 | 222  | 38      | 222               |  35     | 22        | 444        |  2016 |  key test scores| SAT  | March   | 30  | 12th  |  |
+      | A103, A103 | 444  | 38      | 222               |  30     | 23        | 444        |  2016 |  key test scores| SAT  | March   | 30  | 12th  |  |

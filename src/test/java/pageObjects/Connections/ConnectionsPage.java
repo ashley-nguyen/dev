@@ -25,7 +25,7 @@ public class ConnectionsPage extends BaseClass {
     @FindBy(how = How.LINK_TEXT, using = "Family Connection")
     public static WebElement lnkFamilyConnection;
 
-    @FindBy(how = How.XPATH, using = "/html/body/div[1]/table/tbody/tr[1]/td[2]/table/tbody/tr[2]/td[2]/table/tbody/tr[3]/td/table/tbody/tr/td/table/tbody/tr[5]/td/table[3]/tbody/tr[10]/td[1]/a/img")
+    @FindBy(how = How.XPATH, using = "/html/body/div[1]/table/tbody/tr[1]/td[2]/table/tbody/tr[2]/td[2]/table/tbody/tr[3]/td/table/tbody/tr/td/table/tbody/tr[5]/td/table[3]/tbody/tr[9]/td[1]/a/img")
     public static WebElement lnkActiveMatch;
 
     @FindBy(how = How.ID, using = "cluetip-inner")

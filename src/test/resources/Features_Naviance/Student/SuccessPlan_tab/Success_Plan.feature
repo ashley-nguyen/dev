@@ -11,8 +11,8 @@ Feature: Student Success Plan
   @addcustomtask
   Scenario Outline: Add custom task
     When I search for <student> using the global search field
-    And I add custom task with "<taskname>" "<duedate>"
-    Then I verify that task "<taskname>" was created
+    And I add custom task with <taskname> <duedate>
+    Then I verify that task <taskname> was created
 
   Examples:
     | student       | taskname    | duedate   |
@@ -21,8 +21,8 @@ Feature: Student Success Plan
   @viewtaskdetails
   Scenario Outline: Assign school tasks
     When I search for <student> using the global search field
-    And I assign school task with "<item>"
-    Then I verify that task "<item>" was created
+    And I assign school task with <item>
+    Then I verify that task <item> was created
 
   Examples:
     | student       | item                           |
@@ -33,8 +33,8 @@ Feature: Student Success Plan
   @viewtaskdetails
   Scenario Outline: Assign school tasks from district
     When I search for <student> using the global search field
-    And I add custom task from district with "<item>"
-    Then I verify that task "<item>" was created
+    And I add custom task from district with <item>
+    Then I verify that task <item> was created
 
   Examples:
     | student       | item                           |

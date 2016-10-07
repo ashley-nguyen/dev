@@ -11,7 +11,7 @@ Feature: Teacher Recommendation
   @request
   Scenario Outline: Requests Teacher Recommendations
     When I go to request Teacher recommendation with "<request>" "<item>" "<school>"
-    Then I can create request for Teacher Recommendation
+    Then I can view request for Teacher Recommendation
   Examples:
     | school   | request                  | item                        |
     | School A | class of 2016            | All recommendation requests |
@@ -25,11 +25,11 @@ Feature: Teacher Recommendation
     | school   |
     | School A |
 
-  @summary
-  Scenario Outline: Summary Teacher Recommendations
-    When I go to summary of Teacher Recommendation with "<school>" "<GradeFrom>" "<GradeTo>"
-    Then I can go to Summary Teacher Recommendation
-
-  Examples:
-    | school   | GradeFrom                  | GradeTo                  |
-    | School A | class of 2016              | class of 2016            |
+#  @summary
+#  Scenario Outline: Summary Teacher Recommendations
+#    When I go to summary of Teacher Recommendation with "<school>" "<GradeFrom>" "<GradeTo>"
+#    Then I can go to Summary Teacher Recommendation
+#
+#  Examples:
+#    | school   | GradeFrom                  | GradeTo                  |
+#    | School A | class of 2016              | class of 2016            |
