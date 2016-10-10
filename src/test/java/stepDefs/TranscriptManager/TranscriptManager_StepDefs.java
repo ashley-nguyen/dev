@@ -15,7 +15,7 @@ public class TranscriptManager_StepDefs {
         TranscriptManager.NavigateToTranscriptManager();
     }
 
-    @Then("^I will see data in Transcript Manager selecting \"(.*)\"")
+    @Then("^I will see data in Transcript Manager selecting (.*)")
     public void i_will_see_data_in_transcript_manager(String item) throws Throwable {
         TranscriptManager.verifyTranscriptManager();
         TranscriptManager.SelectRequestForm(item);

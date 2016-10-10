@@ -1,6 +1,7 @@
 package stepDefs.Scores;
 
 import actions.Scores.Scores;
+import cucumber.api.java.en.And;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 
@@ -9,7 +10,26 @@ import cucumber.api.java.en.When;
  */
 public class Scores_StepDefs {
 
-    @When("^I click on Scores tab$")
+    @When("^I enter SAT scores with \"(.*)\" \"(.*)\" \"(.*)\" \"(.*)\" \"(.*)\" \"(.*)\" \"(.*)\" \"(.*)\" \"(.*)\" \"(.*)\" \"(.*)\" \"(.*)\"$")
+    public void I_enter_SAT_scores(String link, String test, String date, int day, int year, String grade, int ebrw, int reading, int writing, int mathematics, int math, int total) throws Throwable {
+        Scores.ClickOnScores();
+        Scores.ClickOnKeyTestScores(link);
+        Scores.ClickOnAddScoreButton();
+        Scores.SelectATest(test);
+        Scores.SelectDateTaken(date);
+        Scores.SelectDayTaken(day);
+        Scores.SelectYearTaken(year);
+        Scores.SelectGradeWhenTaken(grade);
+        Scores.fillEBRWScore(ebrw);
+        Scores.fillReadingTestcore(reading);
+        Scores.fillWritingTestcore(writing);
+        Scores.fillMathematicsTestcore(mathematics);
+        Scores.fillMathTestcore(math);
+        Scores.fillTotalTestcore(total);
+        Scores.clickSaveScores();
+    }
+
+    @And("^I click on Scores tab$")
     public void i_click_on_scores_tab() throws Throwable {
         Scores.ClickOnScores();
     }
@@ -116,6 +136,13 @@ public class Scores_StepDefs {
 
     @Then("^I click on update button$")
     public void i_click_on_update_button() throws Throwable {
+        Scores.clickOnUpdateButton();
+    }
+
+    @And("^I edit the scores$")
+    public void I_edit_the_scores() throws Throwable {
+        Scores.ClickOnScores();
+        Scores.clickOnAddEditScores();
         Scores.clickOnUpdateButton();
     }
 

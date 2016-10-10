@@ -84,6 +84,7 @@ public class College {
 
         Actions action = new Actions(driver);
         action.moveToElement(SchoolPageHeader.lnkColleges).build().perform();
+        new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.linkText("College Search")));
         SchoolPageHeader.lnkCollegeSearch.click();
 
         new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.linkText("A")));

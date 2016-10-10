@@ -16,7 +16,7 @@ public class ApplicationManagerPage extends BaseClass {
     public static WebElement lnkApplicationManager;
     @FindBy(how = How.NAME, using = "class")
     public static WebElement selClass;
-    @FindBy(how = How.NAME, using = "consent")
+    @FindBy(how = How.NAME, using = "quicklist")
     public static WebElement formNameTable;
 
     public ApplicationManagerPage(WebDriver driver) {

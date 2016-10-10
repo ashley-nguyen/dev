@@ -48,6 +48,18 @@ public class ManageRolesAndRights_StepDefs {
         ManageRolesAndRights.ClickOnSubmitButton();
     }
 
+    @When("^I move to Teacher Documents$")
+    public void I_move_to_teacher_documents() throws Throwable {
+        GoToSetup();
+        ManageRolesAndRights.ClickOnUserAdminLink();
+        ManageRolesAndRights.ClickOnManageRolesAndRightsLink();
+        ManageRolesAndRights.ClickOnManageLink();
+        ManageRolesAndRights.ClickOnModifyPermissionsLink();
+        ManageRolesAndRights.CheckViewAllTeacherRecForms();
+        ManageRolesAndRights.CheckPrepareMyTeacherRecForms();
+        ManageRolesAndRights.ClickOnSubmitButton();
+    }
+
     @When("^I verify that Confirmation \"(.*)\" message is displayed$")
     public void I_verify_that_confirmation_is_displayed(String message) throws Throwable {
         ManageRolesAndRights.VerifyConfirmationMessage(message);

@@ -15,12 +15,12 @@ Feature: Student PSAT scores
 
     Examples:
       | student       | evidenceReading | reading | writing | mathematics_score | math_test | totalscore | month | year | grade | warning                                                                                                             |
-      | A101, A101    | 160             | 38      | 35      | 160               | 35        | 160        | Jan   | 2014 | 11    | none                                                                                                                |
-      | A101, A101    | 999             |         |         |                   |           |            |       |      |       | Out of Range Scores Detected For Evidence Based Reading and Writing Score, please enter a score between 160 and 760 |
-      | A101, A101    |                 | 0       |         |                   |           |            |       |      |       | Out of Range Scores Detected For Reading Test, please enter a score between 8 and 38                                |
-      | A101, A101    |                 |         | 39      |                   |           |            |       |      |       | Out of Range Scores Detected For Writing Test, please enter a score between 8 and 38                                |
-      | A101, A101    |                 |         |         | 5                 |           |            |       |      |       | Out of Range Scores Detected For Mathematics Score, please enter a score between 160 and 760                        |
-      | A101, A101    |                 |         |         |                   | 40        |            |       |      |       | Out of Range Scores Detected For Math Test, please enter a score between 8 and 38                                   |
+      | A103, A103    | 160             | 38      | 35      | 160               | 35        | 160        | Jan   | 2014 | 11    | none                                                                                                                |
+      | A103, A103    | 999             |         |         |                   |           |            |       |      |       | Out of Range Scores Detected For Evidence Based Reading and Writing Score, please enter a score between 160 and 760 |
+      | A103, A103    |                 | 0       |         |                   |           |            |       |      |       | Out of Range Scores Detected For Reading Test, please enter a score between 8 and 38                                |
+      | A103, A103    |                 |         | 39      |                   |           |            |       |      |       | Out of Range Scores Detected For Writing Test, please enter a score between 8 and 38                                |
+      | A103, A103    |                 |         |         | 5                 |           |            |       |      |       | Out of Range Scores Detected For Mathematics Score, please enter a score between 160 and 760                        |
+      | A103, A103    |                 |         |         |                   | 40        |            |       |      |       | Out of Range Scores Detected For Math Test, please enter a score between 8 and 38                                   |
 
   @psatlegacy
   Scenario Outline: Enter PSAT legacy scores
@@ -30,22 +30,20 @@ Feature: Student PSAT scores
 
     Examples:
       | student       | criticalreading | math | writing | totalscore | month | year | grade | warning                                              |
-      | A101, A101    | 80              | 80   | 80      | 160        | Jan   | 2014 | 11    | none                                                 |
-      | A101, A101    | 81              |      |         |            |       |      |       | Please make sure you enter a score between 20 and 80 |
-      | A101, A101    |                 | 19   |         |            |       |      |       | Please make sure you enter a score between 20 and 80 |
-      | A101, A101    |                 |      | 99      |            |       |      |       | Please make sure you enter a score between 20 and 80 |
+      | A103, A103    | 80              | 80   | 80      | 160        | Jan   | 2014 | 11    | none                                                 |
+      | A103, A103    | 81              |      |         |            |       |      |       | Please make sure you enter a score between 20 and 80 |
+      | A103, A103    |                 | 19   |         |            |       |      |       | Please make sure you enter a score between 20 and 80 |
+      | A103, A103    |                 |      | 99      |            |       |      |       | Please make sure you enter a score between 20 and 80 |
 
   @psataddedit @gd8536
   Scenario Outline: Verify that user can be able to add/edit test scores with no problem.
     When I search for <student> using the global search field
-    And I click on Scores tab
-    And I click on add edit scores link
-    And I click on update button
+    And I edit the scores
     Then I verify that system back to the score tab
 
   Examples:
     | student     |
-    |  a101, a101 |
+    |  a103, a103 |
 
   @psataddedit @gd8536
   Scenario Outline: Verify that user can be able to edit test PSAT scores with no problem.
@@ -56,7 +54,7 @@ Feature: Student PSAT scores
 
   Examples:
     | student        | criticalreading | math | writing | totalscore | month | year | grade | warning |
-    | a101, a101     | 80              | 80   | 80      | 160        | Jan   | 2014 | 11    | none    |
+    | a103, a103     | 80              | 80   | 80      | 160        | Jan   | 2014 | 11    | none    |
 
   @psataddedit @gd8536
   Scenario Outline: Verify that user can't be able to edit test PSAT scores and return warning message.
@@ -67,7 +65,7 @@ Feature: Student PSAT scores
 
   Examples:
     | student        | criticalreading | math | writing | totalscore | month | year | grade | warning |
-    | a101, a101     | 80              | 80   | 80      | 160        | Jan   | 2014 | 11    | none    |
-    | a101, a101     | 81              |      |         |            |       |      |       | Please make sure you enter a score between 20 and 80 |
-    | a101, a101     |                 | 19   |         |            |       |      |       | Please make sure you enter a score between 20 and 80 |
-    | a101, a101     |                 |      | 99      |            |       |      |       | Please make sure you enter a score between 20 and 80 |
+    | a103, a103     | 80              | 80   | 80      | 160        | Jan   | 2014 | 11    | none    |
+    | a103, a103     | 81              |      |         |            |       |      |       | Please make sure you enter a score between 20 and 80 |
+    | a103, a103     |                 | 19   |         |            |       |      |       | Please make sure you enter a score between 20 and 80 |
+    | a103, a103     |                 |      | 99      |            |       |      |       | Please make sure you enter a score between 20 and 80 |

@@ -21,7 +21,7 @@ public class ApplicationManager_Verify {
         Hooks.driver.findElement(By.cssSelector("img[src=\"../../images/processapps/apps_pending_tab_on.gif\"]")).click();
     }
 
-    public static void SelectFormOfPayment(String item) {
+    public static void SelectFormOfPayment(String item) throws InterruptedException {
         driver = Hooks.driver;
         PageFactory.initElements(driver, ApplicationManagerPage.class);
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);

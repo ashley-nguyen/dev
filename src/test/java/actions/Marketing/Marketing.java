@@ -30,7 +30,7 @@ public class Marketing {
         //Changing the frame to test
         driver  = Hooks.driver.switchTo().frame(0);
         //Driver for iframe section can't be mapped for now
-        Boolean imageVerification = driver.findElement(By.xpath("//img[contains(@src,'img/nsi2016_2.jpg')]")).isDisplayed();
+        Boolean imageVerification = driver.findElement(By.xpath("//img[contains(@src,'img/upgraded-by-hobsons.jpg')]")).isDisplayed();
         assertTrue("Verify image exists!", imageVerification);
     }
 
