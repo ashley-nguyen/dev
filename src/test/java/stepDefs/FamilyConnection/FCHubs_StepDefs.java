@@ -76,10 +76,7 @@ public class FCHubs_StepDefs {
         FCHubs.VerifyURLContainsText(site);
     }
 
-    @When("^I click the Request Info button$")
-    public void I_click_the_request_info_button() throws Throwable {
-        FCHubs.ClickRequestInfoButton();
-    }
+    
 
     @When("^I click the Apply Online button$")
     public void I_click_the_apply_online_button() throws Throwable {
@@ -399,5 +396,18 @@ public class FCHubs_StepDefs {
         FCCollegesTab.ClickCollegeInCollegeLookup(college);
         FCCollegeView.clickBetaButton();
     }
+
+    @Then("^I click Communicate Button$")
+    public void i_Click_Communicate_Button() throws Throwable {
+    FCHubs.ClickCommunicate();
+    }
+
+    @When("^I click 'Communicate' link \"([^\"]*)\"$")
+    public void I_Click_Communicate_Link(String clink) throws Throwable {
+        FCHubs.ClickCommunicate();
+        FCHubs.Requestinformationlink(clink);
+    }
+
+
 }
 

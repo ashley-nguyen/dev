@@ -97,15 +97,6 @@ public class FCHubs {
         assertTrue("The current URL does not match " + url, currentURL.contains(url));
     }
 
-    public static void ClickRequestInfoButton() {
-        driver = Hooks.driver;
-        PageFactory.initElements(driver, FCHubsPage.class);
-        new WebDriverWait(Hooks.driver, 20).until(ExpectedConditions.elementToBeClickable(By.xpath
-                ("//a[contains(text(),'Request info')]")));
-        FCHubsPage.buttonRequestInfo.click();
-        ArrayList<String> tabs = new ArrayList<String> (driver.getWindowHandles());
-        driver.switchTo().window(tabs.get(tabs.size() - 1));
-    }
 
     public static void ClickApplyOnlineButton() {
         driver = Hooks.driver;
@@ -144,13 +135,13 @@ public class FCHubs {
     public static void VerifyVisibilityOfLastWebTourElement() {
         driver = Hooks.driver;
         assertTrue("Last element of Web Tour is not visible", driver.findElement(By.xpath
-                ("//span[@id='webtourElement26']")).isDisplayed());
+                ("//span[@id='webtourElement17']")).isDisplayed());
     }
 
     public static void VerifyVisibilityOfPlayButton() {
         driver = Hooks.driver;
         assertTrue("Play button in Youtube video is not visible", driver.findElement(By.xpath
-                ("//span[@id='webtourElement26']/div/*[name()='svg']")).isDisplayed());
+                ("//span[@id='webtourElement17']/div/*[name()='svg']")).isDisplayed());
     }
 
     public static void ClickWebTourElementAtPosition(int elementPosition) {
@@ -572,5 +563,31 @@ public class FCHubs {
         driver = Hooks.driver;
         PageFactory.initElements(driver, FCHubsPage.class);
         FCHubsPage.tabProfiles.click();
+    }
+
+    public static void ClickCommunicate() {
+        driver = Hooks.driver;
+        new WebDriverWait(driver, 20).until(ExpectedConditions.elementToBeClickable(By.xpath
+                ("//a[contains(text(),'Communicate')]")));
+        PageFactory.initElements(driver,FCHubsPage.class);
+        FCHubsPage.buttonCommunicate.click();
+    }
+
+    public static void Requestinformationlink(String clink) {
+        driver = Hooks.driver;
+        WebElement Requestinformationlink = driver.findElement(By.xpath("//li[contains(text(), '" + clink + "')]"));
+            Requestinformationlink.click();
+            ArrayList<String> tabs = new ArrayList<String> (driver.getWindowHandles());
+            driver.switchTo().window(tabs.get(tabs.size() - 1));
+
+
+    }
+
+
+    public static void VerifySendAMessageTextOnDialogBox( String text) {
+        driver = Hooks.driver;
+        WebElement SendMessageText = driver.findElement(By.xpath("//div[@class='contactsAdmissions ng-binding']"));
+        assertTrue("Phone data is not correct", SendMessageText.getText().contains(text));
+
     }
 }

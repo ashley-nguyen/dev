@@ -19,7 +19,7 @@ public class FCHubsPage extends BaseClass {
     @FindBy(how = How.XPATH, using = "//div[@class='fc-grid__row fc-grid__row--xs-center fc-grid__row--lg-start " +
             "fc-grid__row--xs-middle']/div/div/a")
     public static WebElement linkURLIdentifierModule;
-    @FindBy(how = How.XPATH, using = "//a[contains(text(),'Request info')]")
+    @FindBy(how = How.XPATH, using = "//li[contains(text(),'Request Information')]")
     public static WebElement buttonRequestInfo;
     @FindBy(how = How.XPATH, using = "//a[contains(text(),'Apply online')]")
     public static WebElement buttonApplyOnline;
@@ -53,6 +53,9 @@ public class FCHubsPage extends BaseClass {
     public static WebElement tabCosts;
     @FindBy(how = How.XPATH, using = "//div[@class = 'tabs hubs-top-tabs-bar']/span[text() = 'Profiles']")
     public static WebElement tabProfiles;
+
+    @FindBy(how = How.XPATH, using = "//a[contains(text(),'Communicate')]")
+    public static WebElement buttonCommunicate;
 
     public FCHubsPage(WebDriver driver) {
         super(driver);
