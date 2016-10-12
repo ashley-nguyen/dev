@@ -25,7 +25,7 @@ public class ConnectionsPage extends BaseClass {
     @FindBy(how = How.LINK_TEXT, using = "Family Connection")
     public static WebElement lnkFamilyConnection;
 
-    @FindBy(how = How.XPATH, using = "/html/body/div[1]/table/tbody/tr[1]/td[2]/table/tbody/tr[2]/td[2]/table/tbody/tr[3]/td/table/tbody/tr/td/table/tbody/tr[5]/td/table[3]/tbody/tr[10]/td[1]/a/img")
+    @FindBy(how = How.XPATH, using = "/html/body/div[1]/table/tbody/tr[1]/td[2]/table/tbody/tr[2]/td[2]/table/tbody/tr[3]/td/table/tbody/tr/td/table/tbody/tr[5]/td/table[3]/tbody/tr[9]/td[1]/a/img")
     public static WebElement lnkActiveMatch;
 
     @FindBy(how = How.ID, using = "cluetip-inner")
@@ -34,8 +34,42 @@ public class ConnectionsPage extends BaseClass {
     @FindBy(how = How.LINK_TEXT, using = "Select and Update Optional Features")
     public static WebElement linkFCconfiguration;
 
-    //@FindBy(how = How.XPATH, using = "html/body/div[1]/table/tbody/tr[1]/td[2]/table/tbody/tr[2]/td[2]/table/tbody/tr[3]/td/table/tbody/tr/td/table/tbody/tr[5]/td/table[3]/tbody/tr[9]/td[7]/input")
-    //public static WebElement chkboxGrade = By.xpath("html/body/div[1]/table/tbody/tr[1]/td[2]/table/tbody/tr[2]/td[2]/table/tbody/tr[3]/td/table/tbody/tr/td/table/tbody/tr[5]/td/table[3]/tbody/tr[9]/td[7]/input");
+    @FindBy(how = How.LINK_TEXT, using = "letters of recommendation")
+    public static WebElement lnkLettersOfRecommendation;
+
+    @FindBy(how = How.CLASS_NAME, using = "no-recommendations-header")
+    public static WebElement textDefaultMessage;
+
+    @FindBy(how = How.LINK_TEXT, using = "Add Request")
+    public static WebElement addRequestButton;
+
+    @FindBy(how = How.XPATH, using = "//select[@class='fc-select fc-select--full-bleed ng-pristine ng-untouched ng-valid ng-empty']")
+    public static WebElement divSelectTeacher;
+
+    @FindBy(how = How.XPATH, using = "//input[@class='fc-checkbox']")
+    public static WebElement divSelectCollege;
+
+    @FindBy(how = How.XPATH, using = "//input[@class='fc-radio ng-valid ng-not-empty ng-dirty ng-touched ng-valid-parse']")
+    public static WebElement divSelectOptionCollege;
+
+    @FindBy(how = How.XPATH, using = "/html/body/div/div/div/div/recommendations-container/div/ng-view/recommendations-list/table/tbody/tr[1]/td[5]/div[12]/svg")
+    public static WebElement erase;
+
+    @FindBy(how = How.XPATH, using = "//button[@class='fc-button fc-button--primary']")
+    public static WebElement divSaveButton;
+
+    @FindBy(how = How.XPATH, using = "//span[@class='ng-binding']")
+    public static WebElement lnkSuccessMessage;
+
+    @FindBy(how = How.XPATH, using = "//*[@class=\"fc-table\"]/tbody/tr[1]/td[5]/div")
+    public static WebElement divCancelButton;
+
+    @FindBy(how = How.CLASS_NAME, using = "recommendations-list__cancel-prompt-confirm")
+    public static WebElement divConfirmCancelButton;
+
+    @FindBy(how = How.CLASS_NAME, using = "recommendations-list__cancel--disabled")
+    public static WebElement divDisabledCancelIcon;
+
 
     public ConnectionsPage(WebDriver driver) {
         super(driver);

@@ -5,15 +5,11 @@ Feature:  As a student viewing new Hubs' Overview tab, I want to see contact inf
   Background:
     Given I log in to Family Connection with the following user details:
       | rtsa       | amandahubs | hubs2016  |
-    And I click on the Colleges tab
-    And I go to the Page View for "Auburn"
-    And I click the Beta Button
+    When I open the HUBS page for "Auburn"
+    And I open the Studies tab
 
-  Scenario Outline: The Study Options are displayed with correct values
-    When I click the Studies tab
-    Then The Study Option "<studyOption>" should be "available"
-    Examples:
-    | studyOption                    |
+  Scenario: The Study Options are displayed with correct values
+    Then Each Study Option from the following list should be "available"
     | Cooperative Education Programs |
     | Double Major                   |
     | Graduate Study Abroad          |
@@ -23,18 +19,15 @@ Feature:  As a student viewing new Hubs' Overview tab, I want to see contact inf
     | Study Abroad Credit            |
     | Teacher Certification Programs |
 
-  Scenario Outline: The Study Options are displayed with correct values
-    When I click the Studies tab
-    Then The Study Option "<studyOption>" should be "not available"
-    Examples:
-      | studyOption                      |
-      | Accelerated Programs             |
-      | Combined Degree Programs         |
-      | Domestic Study Away Programs     |
-      | External Degree Programs         |
-      | Graduate Study Abroad Credit     |
-      | Graduate Study Abroad Non Credit |
-      | Independent Study                |
-      | Study Abroad Non Credit          |
-      | Weekend College                  |
-      | Weekend Evening Programs         |
+  Scenario: The Study Options are displayed with correct values
+    Then Each Study Option from the following list should be "not available"
+    | Accelerated Programs             |
+    | Combined Degree Programs         |
+    | Domestic Study Away Programs     |
+    | External Degree Programs         |
+    | Graduate Study Abroad Credit     |
+    | Graduate Study Abroad Non Credit |
+    | Independent Study                |
+    | Study Abroad Non Credit          |
+    | Weekend College                  |
+    | Weekend Evening Programs         |

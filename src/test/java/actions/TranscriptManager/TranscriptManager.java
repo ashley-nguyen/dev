@@ -35,13 +35,14 @@ public class TranscriptManager {
         driver = Hooks.driver;
         PageFactory.initElements(driver, TranscriptManagerPage.class);
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-        new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.name("consent")));
+        new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.name("class")));
         Select select = new Select(TranscriptManagerPage.selClass);
         select.selectByVisibleText(item);
         TranscriptManagerPage.formNameTable.isDisplayed();
     }
 
     public static void verifyStudentTranscriptManager() throws InterruptedException {
+        new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("body > div > table > tbody > tr:nth-child(1) > td:nth-child(2) > table > tbody > tr:nth-child(2) > td:nth-child(2) > table > tbody > tr:nth-child(2) > td:nth-child(2) > table > tbody > tr > td > table > tbody > tr:nth-child(5) > td.category11 > div > a:nth-child(2) > img")));
         TranscriptManagerPage.imgTranscriptManagerStudents.click();
     }
 

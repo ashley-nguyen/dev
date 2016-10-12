@@ -63,13 +63,13 @@ public class FCHubsStudiesTab_StepDefs {
         FCHubsStudiesTab.ClickProgramInMajorsOfferedList(program);
     }
 
-    @Then("^The Study Option \"([^\"]*)\" should be \"([^\"]*)\"$")
-    public void The_Study_Option_should_be(String studyOption, String studyOptionAvailability) throws Throwable {
-        FCHubsStudiesTab.VerifyStudyOptions(studyOption, studyOptionAvailability);
-    }
-
     @When("^I click the \"([^\"]*)\" link in Student Life top bar$")
     public void I_click_the_link_in_Student_Life_top_bar(String linkText) throws Throwable {
         FCHubsStudiesTab.ClickLinkInStudentLifeTopBar(linkText);
+    }
+
+    @Then("^Each Study Option from the following list should be \"([^\"]*)\"$")
+    public void eachStudyOptionFromTheFollowingListShouldBe(String status, List<String> studyOptions) throws Throwable {
+        FCHubsStudiesTab.VerifyStudyOptions(status, studyOptions);
     }
 }

@@ -7,9 +7,8 @@ Feature: Assessments
   Scenario Outline: Verify Assessments is displayed correctly
     Given I am logged into Naviance "<account>" as "<user>" with "<password>"
     When I search for <student> using the global search field
-    When I click on Assessments tab
     Then I should not see errors in Assessments
 
   Examples:
     | user           | account | password | student      |
-    | stan.smith     | rtsa    | stan01!  | A105, A105   |
+    | stan.smith     | rtsa    | stan01!  | A103, A103   |

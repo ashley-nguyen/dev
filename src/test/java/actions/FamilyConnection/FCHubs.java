@@ -367,10 +367,9 @@ public class FCHubs {
 
     public static void VerifyPriorityDateInfoTopBar(String month, String priorityDate) {
         driver = Hooks.driver;
-        boolean monthAssertion = driver.findElement(By.xpath("//div[contains(text(), 'Regular Decision Deadline')]" +
-                "/../div/div[contains(text(), '" + month + "')]")).isDisplayed();
-        boolean dayAssertion = driver.findElement(By.xpath("//div[contains(text(), 'Regular Decision Deadline')]" +
-                "/../div/div[contains(text(), '" + priorityDate + "')]")).isDisplayed();
+        PageFactory.initElements(driver, FCHubsPage.class);
+        boolean monthAssertion = FCHubsPage.labelOverviewTabDeadlineMonth.isDisplayed();
+        boolean dayAssertion = FCHubsPage.labelOverviewTabDeadlineDay.isDisplayed();
         assertTrue("The Priority date is not correct", (monthAssertion && dayAssertion));
     }
 
@@ -512,9 +511,25 @@ public class FCHubs {
     }
 
     public static void VerifyActiveTab(String tabName) {
+        String cssSelectorString = "";
         driver = Hooks.driver;
-        WebElement tabElement = driver.findElement(By.xpath("//div[@class = 'fc-tabs__labels']" +
-                "/span[contains(text(), '" + tabName + "')]"));
+        switch(tabName) {
+            case "Overview": cssSelectorString = "1";
+                break;
+            case "Studies": cssSelectorString = "2";
+                break;
+            case "Student Life": cssSelectorString = "3";
+                break;
+            case "Admissions": cssSelectorString = "4";
+                break;
+            case "Costs": cssSelectorString = "5";
+                break;
+            case "Profiles": cssSelectorString = "6";
+                break;
+        }
+        WebElement tabElement = driver.findElement(By.cssSelector(".tabs.hubs-top-tabs-bar span:nth-child(" +
+                cssSelectorString + ")"));
+
         assertTrue("The tab " + tabName + " is not active", tabElement.getAttribute("class").contains("active"));
     }
 
@@ -538,17 +553,14 @@ public class FCHubs {
                 FCHubsAdmissionsTabPage.labelApplicationInformation.getText().equals(sectionLabel));
     }
 
-    public static void VerifyDateLabelsInOverviewTopBar(String text, List<String> sections) {
+    public static void VerifyDateLabelsInOverviewTopBar(String text) {
         driver = Hooks.driver;
+        PageFactory.initElements(driver, FCHubsPage.class);
         boolean result = false;
-        for(int i = 0; i < sections.size(); i++) {
-            if(driver.findElement(
-                    By.xpath("//div[text() = '" + sections.get(i) + "']/../div[text() = '" + text + "']")).isDisplayed()) {
-                result = true;
-            } else {
-                result = false;
-                break;
-            }
+        if(FCHubsPage.labelDateAvgNetPrice.getText().equals(text) &&
+                FCHubsPage.labelDateGradRate.getText().equals(text) &&
+                FCHubsPage.labelDateAccepRate.getText().equals(text)) {
+            result = true;
         }
         assertTrue("The date label is not present or it displays incorrect data", result);
     }

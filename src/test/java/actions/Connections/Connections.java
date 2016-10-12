@@ -6,6 +6,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import pageObjects.Connections.ConnectionsPage;
 import stepDefs.Hooks;
@@ -98,5 +99,105 @@ public class Connections {
         assertTrue("Error Verification Buttons not found!", verifyAgreeButton);
     }
 
+    public static void clickOnLettersOfRecommendation() throws InterruptedException {
+        driver = Hooks.driver;
+        PageFactory.initElements(driver, ConnectionsPage.class);
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.linkText("letters of recommendation")));
+        ConnectionsPage.lnkLettersOfRecommendation.click();
+    }
+
+    public static void defaultMessage() throws InterruptedException {
+        driver = Hooks.driver;
+        PageFactory.initElements(driver, ConnectionsPage.class);
+        WebDriverWait wait = new WebDriverWait(driver, 5);
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("no-recommendations-header")));
+        String dataVerification = ConnectionsPage.textDefaultMessage.getText();
+        assertTrue("Error Verification!", dataVerification.contains("Your recommendation requests will show up here."));
+
+    }
+
+    public static void clickAddRequest() throws InterruptedException {
+        driver = Hooks.driver;
+        PageFactory.initElements(driver, ConnectionsPage.class);
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.linkText("Add Request")));
+        ConnectionsPage.addRequestButton.click();
+    }
+
+    public static void selectTeacher(String item) throws InterruptedException {
+        driver = Hooks.driver;
+        PageFactory.initElements(driver, ConnectionsPage.class);
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        WebDriverWait wait = new WebDriverWait(driver, 9);
+        WebElement selectElement = wait.until(ExpectedConditions.visibilityOf(ConnectionsPage.divSelectTeacher));
+        Select select = new Select(selectElement);
+        select.selectByVisibleText(item);
+    }
+
+    public static void selectCollege() throws InterruptedException {
+        driver = Hooks.driver;
+        PageFactory.initElements(driver, ConnectionsPage.class);
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//input[@class='fc-checkbox']")));
+        ConnectionsPage.divSelectCollege.click();
+    }
+
+    public static void selectOptionForCollege() throws InterruptedException {
+        driver = Hooks.driver;
+        PageFactory.initElements(driver, ConnectionsPage.class);
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//input[@class='fc-radio ng-valid ng-not-empty ng-dirty ng-touched ng-valid-parse']")));
+        ConnectionsPage.divSelectOptionCollege.click();
+    }
+
+    public static void clickSave() throws InterruptedException {
+        driver = Hooks.driver;
+        PageFactory.initElements(driver, ConnectionsPage.class);
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//button[@class='fc-button fc-button--primary']")));
+        ConnectionsPage.divSaveButton.click();
+
+    }
+
+    public static void successMessage(String strText) throws InterruptedException {
+        driver = Hooks.driver;
+        PageFactory.initElements(driver, ConnectionsPage.class);
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        assertTrue("The confirmation message is correct", driver.findElement(By.xpath("//span[@class='ng-binding'][contains(text(), '" + strText + "')]")).isDisplayed());
+    }
+
+    public static void clickCancel() throws InterruptedException {
+        driver = Hooks.driver;
+        PageFactory.initElements(driver, ConnectionsPage.class);
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        Actions builder = new Actions(driver);
+        builder.click(ConnectionsPage.divCancelButton).build().perform();
+    }
+
+    public static void clickConfirmCancel() throws InterruptedException {
+        driver = Hooks.driver;
+        PageFactory.initElements(driver, ConnectionsPage.class);
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.className("recommendations-list__cancel-prompt-confirm")));
+        ConnectionsPage.divConfirmCancelButton.click();
+    }
+
+    public static void cancelSuccessMessage(String info1, String info2) throws InterruptedException {
+        driver = Hooks.driver;
+        PageFactory.initElements(driver, ConnectionsPage.class);
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.className("fc-alert--success")));
+        String dataVerification = Hooks.driver.findElement(By.className("recommendations-list__status")).getText();
+        assertTrue("LOR request cancelled", dataVerification.contains("Cancelled"));
+        //Need to refactor this xpath
+        String cancelMessage = Hooks.driver.findElement(By.xpath("/html/body/div/div/div/div/recommendations-container/div/ng-view/recommendations-list/table/tbody/tr[2]/td/div/span[3]")).getText();
+        assertTrue("LOR cancellation message", cancelMessage.contains(info1));
+        ConnectionsPage.divDisabledCancelIcon.click();
+        String cancelTooltip = Hooks.driver.findElement(By.className("fc-tooltip__content")).getText();
+        System.out.print("cancelTooltip" + cancelTooltip);
+        assertTrue("LOR cancellation tooltip", cancelTooltip.contains(info2));
+    }
 
 }
+

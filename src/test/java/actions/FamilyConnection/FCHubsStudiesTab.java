@@ -106,18 +106,40 @@ public class FCHubsStudiesTab {
         driver.switchTo().window(tabs.get(tabs.size() - 1));
     }
 
-    public static void VerifyStudyOptions(String studyOption, String studyOptionAvailability) {
+    public static void VerifyStudyOptions(String status, List<String> studyOptions) {
         driver = Hooks.driver;
-        WebElement currentStudyOption = driver.findElement(By.xpath("//div/h2[contains(text(), 'Study Options')]" +
-                "/../../div/div/div[text() = '" + studyOption + "']/span"));
-        if(studyOptionAvailability.equals("available")) {
-            assertTrue("The study Options are not correct",
-                    currentStudyOption.getAttribute("class").equals("study-option__program--yes"));
-        } else if(studyOptionAvailability.equals("not available")) {
-            assertTrue("The study Options are not correct",
-                    currentStudyOption.getAttribute("class").equals("study-option__program--no"));
+        boolean result = false;
+        List<WebElement> availableStudyOptions = new ArrayList<>();
+        List<WebElement> unavailableStudyOptions = new ArrayList<>();
+        for(int i = 2; i < 20; i++) {
+            WebElement studyOption = driver.findElement(By.cssSelector(".study-option.fc-grid__row." +
+                    "fc-grid__row--xs-center.fc-grid__row--md-start div:nth-of-type(" + i + ") div div"));
+            if(studyOption.getAttribute("class").contains("study-option__program--unavailable")) {
+                unavailableStudyOptions.add(studyOption);
+            } else {
+                availableStudyOptions.add(studyOption);
+            }
         }
-
+        if(status.equals("available")) {
+            for(int j = 0; j < studyOptions.size(); j++) {
+                if(availableStudyOptions.get(j).getText().equals(studyOptions.get(j))) {
+                    result = true;
+                } else {
+                    result = false;
+                    break;
+                }
+            }
+        } else {
+            for(int j = 0; j < studyOptions.size(); j++) {
+                if(unavailableStudyOptions.get(j).getText().equals(studyOptions.get(j))) {
+                    result = true;
+                } else {
+                    result = false;
+                    break;
+                }
+            }
+        }
+        assertTrue("The study options are not correctly displayed", result);
     }
 
     public static void ClickLinkInStudentLifeTopBar(String linkText) {

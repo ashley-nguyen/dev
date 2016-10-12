@@ -24,8 +24,18 @@ public class FCHubsStudentLifeTab {
 
     public static void VerifySchoolSizeDetail(String sectionName, String number) {
         driver = Hooks.driver;
-        WebElement section = driver.findElement(By.xpath("//span[contains(text(), 'SCHOOL SIZE')]" +
-                "/../../div[contains(text(), '" + sectionName + "')]"));
+        PageFactory.initElements(driver, FCHubsStudentLifeTabPage.class);
+        String sectionNumber = "";
+        switch(sectionName) {
+            case "Undergraduate Students": sectionNumber = "3";
+                break;
+            case "Graduate Students": sectionNumber = "4";
+                break;
+            case "Total Students": sectionNumber = "5";
+                break;
+        }
+        WebElement section = driver.findElement(By.cssSelector("div[ng-if=\"vm.getSchoolSize()\"] div:nth-child(" +
+                sectionNumber + ")"));
         assertTrue("The " + sectionName + " number is incorrect", section.getText().contains(number));
     }
 

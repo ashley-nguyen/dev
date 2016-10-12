@@ -4,36 +4,34 @@ Feature: Colleges Errors test
   as a Naviance user
   I want to be able to add college application
 
+  Background:
+    Given I am logged into Naviance "rtd1" as "stan.smith" with "stan01!"
+
   Scenario Outline: Verify Prospective Colleges is displayed correctly
-    Given I am logged into Naviance "<account>" as "<user>" with "<password>"
     And I enter to School Site
     When I search for <student> using the global search field
-    When I add prospective colleges
     Then I should not see errors in prospective college
 
   Examples:
-    | user           | account | password | student      |
-    | stan.smith     | rtd1    | stan01!  | a101, a101   |
+  | student      |
+  | a103, a103   |
 
   Scenario Outline: Verify Active Applications is displayed correctly
-    Given I am logged into Naviance "<account>" as "<user>" with "<password>"
     And I enter to School Site
     When I search for <student> using the global search field
-    Given I am on the following url "<url>"
-    Then I should not see errors in college pick
+    Then I should not see errors in college pick using "<url>"
 
   Examples:
-    | user           | account | password | student      | url                                                       |
-    | stan.smith     | rtd1    | stan01!  | a101, a101   | https://succeed.naviance.com/collegesmain/collegepick.php |
+   | student      | url                                                       |
+   | a103, a103   | https://succeed.naviance.com/collegesmain/collegepick.php |
 
 
   Scenario Outline: Find College test
-    Given I am logged into Naviance "<account>" as "<user>" with "<password>"
     When I go to find college "<college>"
     Then I should not see errors in find College "<college>"
 
   Examples:
-  | user           | account | password | college            |
-  | stan.smith     | rtd1    | stan01!  | Adelphi University |
+  | college            |
+  | Adelphi University |
 
 

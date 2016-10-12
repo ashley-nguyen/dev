@@ -62,8 +62,8 @@ public class FCHubsStudentLifeTab_StepDefs {
         FCHubsStudentLifeTab.VerifyAgePercentage(ageGroup, value);
     }
 
-    @When("^I click \"([^\"]*)\" in Student Organizations and Services$")
-    public void I_click_in_Student_Organizations_and_Services(String sectionName) throws Throwable {
+    @When("^I open the \"([^\"]*)\" tab in Student Organizations and Services$")
+    public void I_open_the_tab_in_Student_Organizations_and_Services(String sectionName) throws Throwable {
         FCHubsStudentLifeTab.ClickSectionInStudentOrgServ(sectionName);
     }
 
@@ -72,8 +72,8 @@ public class FCHubsStudentLifeTab_StepDefs {
         FCHubsStudentLifeTab.VerifyStudentOrganizations(studentOrgs);
     }
 
-    @And("^I click \"([^\"]*)\" in Athletics$")
-    public void I_click_in_Athletics(String sectionName) throws Throwable {
+    @And("^I open the \"([^\"]*)\" section in Athletics$")
+    public void I_open_the_section_in_Athletics(String sectionName) throws Throwable {
         FCHubsStudentLifeTab.ClickSectionInAthletics(sectionName);
     }
 

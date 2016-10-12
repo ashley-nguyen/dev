@@ -25,7 +25,7 @@ Feature: View student details
     | a101       | Letter of Recommendation     |
     | a101       | Common App Teacher Evaluation|
     | a101       | Written Evaluation           |
-    | a101       | Initial Transcript (active)  |
+#    | a101       | Initial Transcript (active)  |
 
   @edocs @safe @succeed
   Scenario Outline: Verify if it possible a list of uploaded LORs for each college and if the student requested a LOR for the College and Teacher.
@@ -38,7 +38,7 @@ Feature: View student details
     | a101       | Letter of Recommendation     |
     | a101       | Common App Teacher Evaluation|
     | a101       | Written Evaluation           |
-    | a101       | Initial Transcript (active)  |
+#    | a101       | Initial Transcript (active)  |
 
   @edocs @safe @succeed
   Scenario Outline: Verify if it possible to see the author of the LOR and the College's due date.
@@ -53,7 +53,6 @@ Feature: View student details
 
   @edocs @safe @succeed
   Scenario Outline: Verify I cannot take any actions (replace or delete) on another staff member's letter.
-    And I enter to School Site
     When I search for "<studentID>" using the global search field
     When I am accessing the "<studentID>" edocs tab
     When I click on Prepare link
@@ -63,6 +62,7 @@ Feature: View student details
     | studentID  | text         |
     | a101       | Replace      |
     | a101       | Delete       |
+
 
   @edocs @safe @succeed
   Scenario Outline: Verify Under Application, the college for which the student has requested a LOR will be populated.
@@ -147,3 +147,48 @@ Feature: View student details
   Examples:
     | studentID  | text                     |filename        |
     | a101       | Letter of Recommendation |ReadMe.txt      |
+
+  @edocs @safe @succeed @EDOCS234
+  Scenario Outline: Verify Under Application, I want to upload a NACAC fee waiver on behalf of a student to non-common-app colleges via eDocs
+    When I am accessing the "<studentID>" edocs tab
+    When I click on Prepare link
+    When I click on Add Counselor button
+    When I click on Upload a File button
+    When I select "All Applications" from Application
+    When I select "<type>" from Type
+    When I click on Browse button
+    When I write the "<filename>" file path
+    Then I will verify "<type>", "<author>", "<size>", "<action>"
+  Examples:
+    | studentID  | type                     |filename        | author    | size  | action |
+    | a101       | Other School Report      |ReadMe.txt      |Stan Smith | 14.87 | Replace   |
+    | a101       | NACAC Fee Waiver         |ReadMe.txt      |Stan Smith | 14.87 | Replace   |
+
+  @edocs @safe @succeed @EDOCS234
+  Scenario Outline: Verify under Application, I want to upload a NACAC fee waiver on behalf of a student to non-common-app colleges via eDocs using Replace Action.
+    When I am accessing the "<studentID>" edocs tab
+    When I click on Prepare link
+    When I click on Replace button
+    When I click on Upload a File button
+    When I select "All Applications" from Application
+    When I select "<type>" from Type
+    When I click on Browse button
+    When I write the "<filename>" file path
+    Then I will verify "<type>", "<author>", "<size>", "<action>"
+  Examples:
+    | studentID  | type                     |filename        | author    | size  | action |
+    | a101       | Other School Report      |ReadMe.txt      |Stan Smith | 14.87 | Replace   |
+    | a101       | NACAC Fee Waiver         |ReadMe.txt      |Stan Smith | 14.87 | Replace   |
+
+  @edocs @safe @succeed @EDOCS234
+  Scenario Outline: Verify under Application, I want to upload a NACAC fee waiver on behalf of a student to non-common-app colleges via eDocs using Delete action.
+    When I am accessing the "<studentID>" edocs tab
+    When I click on Prepare link
+    When I click on Delete button
+    When I click on Delete Document button
+    Then I will verify "<type>", "<author>", "<size>", "<action>"
+  Examples:
+    | studentID  | type                     | author    | size  | action |
+    | a101       | Other School Report      |Stan Smith | 14.87 | Delete   |
+    | a101       | NACAC Fee W   aiver      |Stan Smith | 14.87 | Delete   |
+##    | a101       | NACAC Fee waiver         |ReadMe.txt      |Stan Smith | 14.87 | Delete   |
