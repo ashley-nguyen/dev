@@ -33,8 +33,8 @@ public class FCHubs_StepDefs {
         FCHubs.VerifyFirstTutorialDialog();
     }
 
-    @And("^I click on Next on FirstTutorial dialog$")
-    public void I_click_next_on_first_tutorial_dialog() throws Throwable {
+    @And("^I navigate to Second Tutorial$")
+    public void I_navigate_to_second_tutorial() throws Throwable {
         FCHubs.ClickNextOnFirstDialog();
 
     }
@@ -76,10 +76,7 @@ public class FCHubs_StepDefs {
         FCHubs.VerifyURLContainsText(site);
     }
 
-    @When("^I click the Request Info button$")
-    public void I_click_the_request_info_button() throws Throwable {
-        FCHubs.ClickRequestInfoButton();
-    }
+    
 
     @When("^I click the Apply Online button$")
     public void I_click_the_apply_online_button() throws Throwable {
@@ -383,6 +380,11 @@ public class FCHubs_StepDefs {
         FCCollegesTab.ClickGoButton();
         FCCollegesTab.ClickCollegeInCollegeLookup(college);
         FCCollegeView.clickBetaButton();
+    }
+    @When("^I click 'Communicate' link \"([^\"]*)\"$")
+    public void I_Click_Communicate_Link(String clink) throws Throwable {
+        FCHubs.ClickCommunicate();
+        FCHubs.Requestinformationlink(clink);
     }
 
     @When("^I send an email with Subject \"([^\"]*)\" and Message \"([^\"]*)\"$")
