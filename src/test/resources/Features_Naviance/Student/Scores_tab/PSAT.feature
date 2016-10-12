@@ -8,9 +8,9 @@ Feature: Student PSAT scores
     Given when I log in with the following user details:
       | rtsa | stan.smith | stan01! |
 
+
   Scenario Outline: Enter PSAT scores
-    When I search for <student> using the global search field
-    And I enter PSAT scores <evidenceReading> <reading> <writing> <mathematics_score> <math_test> <totalscore> <month> <year> <grade>
+    When I search for <student> and enter PSAT scores <evidenceReading> <reading> <writing> <mathematics_score> <math_test> <totalscore> <month> <year> <grade>
     Then I should see PSAT <warning>
 
     Examples:
@@ -24,8 +24,7 @@ Feature: Student PSAT scores
 
   @psatlegacy
   Scenario Outline: Enter PSAT legacy scores
-    When I search for <student> using the global search field
-    And I enter PSAT legacy scores <criticalreading> <math> <writing> <totalscore> <month> <year> <grade>
+    When I search for <student> and enter legacy PSAT scores <criticalreading> <math> <writing> <totalscore> <month> <year> <grade>
     Then I should see PSAT <warning>
 
     Examples:
@@ -37,8 +36,7 @@ Feature: Student PSAT scores
 
   @psataddedit @gd8536
   Scenario Outline: Verify that user can be able to add/edit test scores with no problem.
-    When I search for <student> using the global search field
-    And I edit the scores
+    When I search for <student> and edit the scores
     Then I verify that system back to the score tab
 
   Examples:
@@ -47,9 +45,7 @@ Feature: Student PSAT scores
 
   @psataddedit @gd8536
   Scenario Outline: Verify that user can be able to edit test PSAT scores with no problem.
-    When I search for <student> using the global search field
-    And I enter PSAT legacy scores <criticalreading> <math> <writing> <totalscore> <month> <year> <grade>
-    And I click on update button
+    When I edit PSAT scores for <student> and enter legacy PSAT scores <criticalreading> <math> <writing> <totalscore> <month> <year> <grade>
     Then I verify that system back to the score tab
 
   Examples:
@@ -58,10 +54,8 @@ Feature: Student PSAT scores
 
   @psataddedit @gd8536
   Scenario Outline: Verify that user can't be able to edit test PSAT scores and return warning message.
-    When I search for <student> using the global search field
-    And I enter PSAT legacy scores <criticalreading> <math> <writing> <totalscore> <month> <year> <grade>
-    Then I should see PSAT <warning>
-    Then I verify that system does not back to the score tab
+    When I search for <student> and enter legacy PSAT scores <criticalreading> <math> <writing> <totalscore> <month> <year> <grade>
+    Then I verify that system does not back to the score tab with <warning>
 
   Examples:
     | student        | criticalreading | math | writing | totalscore | month | year | grade | warning |
