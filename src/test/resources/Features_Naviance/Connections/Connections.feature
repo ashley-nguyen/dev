@@ -7,7 +7,7 @@ Feature: Connections Errors test
   Background:
     Given I am logged into Naviance "rtd1" as "stan.smith" with "stan01!"
 
-  Scenario Verify Connections E-Mail displayed correctly
+  Scenario: Verify Connections E-Mail displayed correctly
     When I enter to Check status and view history of emails sent
     Then I should not see errors in Check Status Email
 
