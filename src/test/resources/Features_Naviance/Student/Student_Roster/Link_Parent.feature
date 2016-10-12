@@ -9,11 +9,8 @@ Feature: School employee can link a student to existing parents from the same di
   Scenario: Parent has student at same school (can link)
     Given when I log in with the following user details:
       | etdh | jcounselor | jcounselor01! |
-    When I search for "jbrady001" using "id" the student roster search
-    And I link the parent "Carol Brady" to the current student
-    Then I should see "Carol Brady" on the Student Summary Form
-    Then I should see "4222 Clinton Way" on the Student Summary Form
-    Then I unlink parent
+    When I link to "jbrady001" with "id" to "Mike Brady"
+    Then I will verify that "Mike Brady" with "United States" were linked
 
 #  @database:unlink-cindy
 #  Scenario: 2. Parent has student at another school in the district (can link)
