@@ -7,21 +7,7 @@ Feature: Colleges - College Profile
   Background:
     Given when I log in with the following user details:
       | rtsa | stan.smith | stan01! |
-# THIS IS A FEATURE BROUGHT OVER FROM THE BEHAT TESTS
-#  @Colleges @safe
-#  Scenario: View College Profile
-#    Given I view "Georgetown University" profile
-#    And I should see "Georgetown University"
-#    When I click "Admissions" tab on college profile
-#    Then I should see "Charles  Deacon"
-#    When I click "Academics" tab on college profile
-#    Then I should see "Biophysics"
-#    When I click "Cost & aid" tab on college profile
-#    Then I should see "Patricia A. Mc Wade"
-#    When I click "Extracurriculars" tab on college profile
-#    Then I should see "5053"
 
-# THIS IS A CLEANER FORMAT FOR THE FEATURE ABOVE
   @Colleges @safe
   Scenario Outline: View College Profile
     When I view "Adelphi University" profile

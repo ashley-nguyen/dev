@@ -21,6 +21,20 @@ public class ManageRolesAndRights_StepDefs {
         ManageRolesAndRights.ClickOnManageRolesAndRightsLink();
     }
 
+    @When("^I configure permissions for teacher$")
+    public void I_configure_permissions_for_teacher() throws Throwable {
+        GoToSetup();
+        ManageRolesAndRights.ClickOnUserAdminLink();
+        ManageRolesAndRights.ClickOnManageRolesAndRightsLink();
+        ManageRolesAndRights.ClickOnManageLink();
+        ManageRolesAndRights.ClickOnModifyPermissionsLink();
+        ManageRolesAndRights.CheckViewAllTeacherRecForms();
+        ManageRolesAndRights.CheckPrepareMyTeacherRecForms();
+        ManageRolesAndRights.ClickOnSubmitButton();
+    }
+
+
+
     @When("^I click on manage link$")
     public void I_click_on_manage_link() throws Throwable {
         ManageRolesAndRights.ClickOnManageLink();

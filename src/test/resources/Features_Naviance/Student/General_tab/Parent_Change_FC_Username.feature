@@ -7,13 +7,6 @@ Feature: Counselors viewing a student should be able to change the username for 
   username ONLY for my school, not for all schools associated with this parent.
     Given I am logged into Naviance "<account>" as "<user>" with "<password>"
     Then I search for "A103, A103" using the global search field
-#    And I manually reset the username for "yojo@yahoo.com" to "czechItOut"
-#    Then I should see "The Family Connection Username and Password for this parent have been updated."
-#    And I should see "czechItOut"
-#    Then I authenticate as "carrie.counselor" with password "carrie01!" for school "TCMS"
-#    And I search for students with the last name, first name of "Brady, Cynthia"
-#    Then I should see "carol.brady.ms@dev.naviance.com"
-#    And I should not see "czechItOut"
   Examples:
     | user           | account | password |
     | stan.smith     | rtsa    | stan01!  |
