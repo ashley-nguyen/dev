@@ -5,14 +5,12 @@ Feature: As a student viewing new Hubs' Costs tab, I want to see a top bar with 
   Background:
     Given I log in to Family Connection with the following user details:
       | rtsa  | benhubs | hubs2016  |
-    And I click on the Colleges tab
-    And I go to the Page View for "Adrian"
-    And I click the Beta Button
-    And I click the Costs tab
+    When I open the HUBS page for "Adrian"
+    And I open the Costs tab
 
 
-  Scenario: Tuition Fees for In-State is displayed with correct values for Tuition and Fees
-      Then Tuition and Fee for this college is "$43,400" And AverageNavianceColleges is "$24,551"  displayed
+   Scenario: Tuition Fees for In-State is displayed with correct values for Tuition and Fees
+    Then Tuition and Fee for this college is "$43,400" And AverageNavianceColleges is "$24,551"  displayed
 
 
     Scenario: Tuition Fees for Out-Of State is displayed with correct values for Tuition and Fees

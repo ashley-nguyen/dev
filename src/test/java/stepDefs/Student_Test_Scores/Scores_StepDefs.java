@@ -1,6 +1,7 @@
 package stepDefs.Student_Test_Scores;
 
 import actions.Student.Search.ScoresTab.Scores;
+import actions.Student.Search.Search.Student_Search;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Then;
 
@@ -14,6 +15,15 @@ public class Scores_StepDefs {
         Scores.enterAPTestScores(testtype, score, year, grade);
 
     }
+
+    @And("^I update (.*) AP score with (.*) (.*) (.*) (.*)$")
+    public void I_update_AP_test_scores(String student, String testtype, String score, String year, String grade) throws Throwable {
+
+        Student_Search.searchStudent(student);
+        Scores.enterAPTestScores(testtype, score, year, grade);
+    }
+
+
 
     @Then("^their AP test scores will be displayed (.*) (.*) (.*) (.*)$")
     public void their_AP_test_scores_will_be_displayed_testtype_score_year_grade(String testtype, String score, String year, String grade) throws Throwable {
@@ -61,7 +71,6 @@ public class Scores_StepDefs {
 
     @And("^I enter PSAT legacy scores (.*) (.*) (.*) (.*) (.*) (.*) (.*)$")
     public void I_enter_PSAT_legacy_scores_criticalreading_math_writing_totalscore_month_year_grade(String strCritialReading, String strMath, String strWriting, String strTotal, String strMonth, String strYear, String strGrade) throws Throwable {
-
 
         Scores.enterPSATLegacyTestScores(strCritialReading, strMath, strWriting, strTotal, strMonth, strYear, strGrade);
     }

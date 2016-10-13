@@ -5,20 +5,21 @@ Feature: As a student, I want to see information about the school's programs of 
   Background:
     Given I log in to Family Connection with the following user details:
       | rtsa  | amandahubs | hubs2016  |
-    And I click on the Colleges tab
-    And I go to the Page View for "Adrian"
-    And I click the Beta Button
-    And I click the Studies tab
+    When I open the HUBS page for "Adelphi"
+    Then  I open the Studies tab
+
 
   Scenario: The programs are filtered when the user searches for a program in the search box
-    When I search for a program "Japanese Language and Literature"
+    When I search for a program "Accounting"
     Then The displayed programs should be:
-    | Japanese Language and Literature |
+    | Accounting |
 
   Scenario: The programs for all degrees are displayed when All is selected
     When I click "All" in Majors Offered
     Then The displayed programs should be:
-    | Japanese Studies                                | Biology/Biological Sciences, General                      |
+    # : Will update these values after the IPEDS 2015-2016 run . We will have to manually verify it for general launch
+
+    | French Studies                                | Biology/Biological Sciences, General                      |
     | Exercise Physiology                             | Accounting                                                |
     | Business Administration and Management, General | Business Administration, Management and Operations, Other |
     | Business, Management, Marketing, and Related Support Services, Other | Business/Commerce, General           |
@@ -70,15 +71,15 @@ Feature: As a student, I want to see information about the school's programs of 
   Scenario: The programs with a Masters degree offering are displayed
     When I click "Masters" in Majors Offered
     Then The displayed programs should be:
-    | Athletic Training/Trainer |
-
+    | Health Teacher Education |
+  @test
   Scenario: The programs with a Associates degree offering are displayed
     When I click "Associates" in Majors Offered
     Then The displayed programs should be:
-    | Biology/Biological Sciences, General            |
-    | Business Administration and Management, General |
-    | Sociology                                       |
+    | Crisis/Emergency/Disaster Management           |
+    | Liberal Arts and Sciences/Liberal Studies |
+
 
   Scenario: The colleges offering the program are displayed in college lookup
-    When I click "Japanese Studies" in the Majors Offered list
-    Then I should see the message "Colleges Offering Japanese Studies" in the College Lookup page
+    When I click "French Studies" in the Majors Offered list
+    Then I should see the message "Colleges Offering French Studies" in the College Lookup page

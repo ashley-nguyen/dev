@@ -3,6 +3,7 @@ package stepDefs.Student;
 import actions.Colleges.College;
 import actions.Login.Login;
 import actions.Student.Search.GeneralTab.Student_General;
+import actions.Student.Search.ScoresTab.Scores;
 import actions.Student.Search.Search.Student_Search;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
@@ -40,6 +41,20 @@ public class Student_StepDefs {
     public void I_search_for_student_using_the_global_search_field(String student) throws Throwable {
 
         Student_Search.searchStudent(student);
+    }
+
+    @When("^I search for (\\w+, \\w+) and enter PSAT scores (.*) (.*) (.*) (.*) (.*) (.*) (.*) (.*) (.*)$")
+    public void I_search_for_student_and_enter_psat_scores(String student, String strEvReading, String strReading, String strWriting, String strMathematicsScore, String strMathTest, String strTotalScore, String strMonth, String strYear, String strGrade) throws Throwable {
+
+        Student_Search.searchStudent(student);
+        Scores.enterPSATTestScores(strEvReading, strReading, strWriting, strMathematicsScore, strMathTest, strTotalScore, strMonth, strYear, strGrade);
+    }
+
+    @When("^I search for (\\w+, \\w+) and enter legacy PSAT scores (.*) (.*) (.*) (.*) (.*) (.*) (.*)$")
+    public void I_search_for_student_and_enter_legacy_psat_scores(String student, String strCritialReading, String strMath, String strWriting, String strTotal, String strMonth, String strYear, String strGrade) throws Throwable {
+
+        Student_Search.searchStudent(student);
+        Scores.enterPSATLegacyTestScores(strCritialReading, strMath, strWriting, strTotal, strMonth, strYear, strGrade);
     }
 
     @Then("^their student (.*) will be displayed$")
@@ -81,6 +96,23 @@ public class Student_StepDefs {
 
 
     }
+
+    @When("^I link to \"([^\"]*)\" with \"([^\"]*)\" to \"([^\"]*)\"$")
+    public void I_link_to_parent(String strStudent, String strSearchBy, String strParent) throws Throwable {
+
+        Student_Search.studentRosterSearch(strStudent, strSearchBy);
+        Student_General.linkParent(strParent);
+    }
+
+    @When("^I will verify that \"([^\"]*)\" with \"([^\"]*)\" were linked$")
+    public void I_verify_link(String strData, String strParent) throws Throwable {
+//        Thread.sleep(9999999);
+        Student_General.verifyParent(strData);
+        Student_General.verifyParent(strParent);
+        Student_General.unlinkParent();
+    }
+
+
 
     @And("^I link the parent \"([^\"]*)\" to the current student$")
     public void I_link_the_parent_to_the_current_student(String strParent) throws Throwable {

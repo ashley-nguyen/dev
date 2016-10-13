@@ -18,7 +18,7 @@ public class FCHubsPage extends BaseClass {
     public static WebElement linkNextSecondDialog;
     @FindBy(how = How.CSS, using = ".masthead__address a")
     public static WebElement linkURLIdentifierModule;
-    @FindBy(how = How.XPATH, using = "//a[contains(text(),'Request info')]")
+    @FindBy(how = How.XPATH, using = "//li[contains(text(),'Request Information')]")
     public static WebElement buttonRequestInfo;
     @FindBy(how = How.CSS, using = ".apply-online.fc-button.ng-scope")
     public static WebElement buttonApplyOnline;
@@ -62,6 +62,9 @@ public class FCHubsPage extends BaseClass {
     public static WebElement labelOverviewTabDeadlineMonth;
     @FindBy(how = How.CSS, using = ".hub-deadline__day.ng-binding")
     public static WebElement labelOverviewTabDeadlineDay;
+
+    @FindBy(how = How.XPATH, using = "//a[contains(text(),'Communicate')]")
+    public static WebElement buttonCommunicate;
 
     public FCHubsPage(WebDriver driver) {
         super(driver);

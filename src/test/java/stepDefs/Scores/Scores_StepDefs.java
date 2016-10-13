@@ -1,6 +1,7 @@
 package stepDefs.Scores;
 
 import actions.Scores.Scores;
+import actions.Student.Search.Search.Student_Search;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
@@ -139,6 +140,15 @@ public class Scores_StepDefs {
         Scores.clickOnUpdateButton();
     }
 
+    @Then("^I edit PSAT scores for (.*) and enter legacy PSAT scores (.*) (.*) (.*) (.*) (.*) (.*) (.*)$")
+    public void i_edit_scores(String student, String strCritialReading, String strMath, String strWriting, String strTotal, String strMonth, String strYear, String strGrade) throws Throwable {
+        Student_Search.searchStudent(student);
+        actions.Student.Search.ScoresTab.Scores.enterPSATLegacyTestScores(strCritialReading, strMath, strWriting, strTotal, strMonth, strYear, strGrade);
+        Scores.clickOnUpdateButton();
+    }
+
+
+
     @And("^I edit the scores$")
     public void I_edit_the_scores() throws Throwable {
         Scores.ClickOnScores();
@@ -146,13 +156,26 @@ public class Scores_StepDefs {
         Scores.clickOnUpdateButton();
     }
 
+    @When("^I search for (.*) and edit the scores$")
+    public void I_search_student_and_edit_the_scores(String student) throws Throwable {
+
+        Student_Search.searchStudent(student);
+        Scores.ClickOnScores();
+        Scores.clickOnAddEditScores();
+        Scores.clickOnUpdateButton();
+
+    }
+
+
+
     @Then("^I verify that system back to the score tab$")
     public void i_verify_that_system_back_to_the_score() throws Throwable {
         Scores.verifyTestScorePageBack();
     }
 
-    @Then("^I verify that system does not back to the score tab$")
-    public void i_verify_that_system_does_not_back_to_the_score() throws Throwable {
+    @Then("^I verify that system does not back to the score tab with (.*)$")
+    public void i_verify_that_system_does_not_back_to_the_score(String strWarning) throws Throwable {
+        actions.Student.Search.ScoresTab.Scores.verifyPSATWarning(strWarning);
         Scores.verifyTestScorePageDoesNotBack();
     }
 
