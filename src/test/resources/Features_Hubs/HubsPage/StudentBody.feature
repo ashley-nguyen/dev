@@ -11,16 +11,14 @@ Feature:  As a student viewing new Hubs' Student Life tab, I want to see a schoo
   Scenario: The Total Students number is displayed with correct data
     Then The Total Students number should be "25,912" in Ethnicity Data
 
-  Scenario Outline: The percentages for each ethnicity group are displayed with correct data
-    Then The percentage for "<ethnicGroup>" is "<value>" in Ethnicity Data
-    Examples:
-    | ethnicGroup              | value                |
-    | Native American          | 1%                   |
-    | Ethnicity Unknown        | 1%                   |
-    | White / Caucasian        | 81%                  |
-    | Hispanic / Latino        | 2%                   |
-    | Black / African American | 7%                   |
-    | Asian                    | 2%                   |
+  Scenario: The percentages for each ethnicity group are displayed with correct data
+    Then The percentage for each Ethnic Group in Ethnicity Data is contained in the following table
+      | White / Caucasian,81%       |
+      | Black / African American,7% |
+      | Asian,2%                    |
+      | Hispanic / Latino,2%        |
+      | Ethnicity Unknown,1%        |
+      | Native American,1%          |
 
   Scenario: The Total Student number in Gender Data is displayed with correct data
     Then The Total Students number should be "25,912" in Gender Data

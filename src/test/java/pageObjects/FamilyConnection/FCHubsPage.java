@@ -10,24 +10,23 @@ import pageObjects.BaseClass;
  * Created by jorgemaguina on 5/25/2016.
  */
 public class FCHubsPage extends BaseClass {
-    @FindBy(how = How.XPATH, using = "//div[@class='hub-beta-bar']/a")
+    @FindBy(how = How.CSS, using = ".fc-button.fc-button--ghost.hub-beta-bar__survey-button")
     public static WebElement buttonFeedback;
     @FindBy(how = How.XPATH, using = "//span[@class='fc-tooltip__title'][contains(text(),'Favorite this college')]/../div/div[contains(text(),'Next')]")
     public static WebElement linkNextFirstDialog;
     @FindBy(how = How.XPATH, using = "//div[contains(text(), 'How I compare')]/div[contains(text(), 'Next')]")
     public static WebElement linkNextSecondDialog;
-    @FindBy(how = How.XPATH, using = "//div[@class='fc-grid__row fc-grid__row--xs-center fc-grid__row--lg-start " +
-            "fc-grid__row--xs-middle']/div/div/a")
+    @FindBy(how = How.CSS, using = ".masthead__address a")
     public static WebElement linkURLIdentifierModule;
     @FindBy(how = How.XPATH, using = "//a[contains(text(),'Request info')]")
     public static WebElement buttonRequestInfo;
-    @FindBy(how = How.XPATH, using = "//a[contains(text(),'Apply online')]")
+    @FindBy(how = How.CSS, using = ".apply-online.fc-button.ng-scope")
     public static WebElement buttonApplyOnline;
-    @FindBy(how = How.XPATH, using = "//div[contains (text( ),'Learn More')]")
+    @FindBy(how = How.CSS, using = ".fc-button.masthead-dropdown-menu__button:not(.fc-button--primary)")
     public static WebElement buttonLearnMore;
-    @FindBy(how = How.XPATH, using = "//div[@class='scroll right']")
+    @FindBy(how = How.CSS, using = ".scroll.right")
     public static WebElement buttonRightArrow;
-    @FindBy(how = How.XPATH, using = "//div[@class='webtourLightboxClose']")
+    @FindBy(how = How.CSS, using = ".webtourLightboxClose")
     public static WebElement buttonX;
     @FindBy(how = How.XPATH, using = "//input[@id='subject']")
     public static WebElement textBoxSubjectField;
@@ -43,18 +42,16 @@ public class FCHubsPage extends BaseClass {
     public static WebElement buttonXOnFirstTutorial;
     @FindBy(how = How.XPATH, using ="//span[contains(text(),'Tell us what you think!')]/../span[@role='button']")
     public static WebElement buttonXOnSecondTutorial;
-    @FindBy(how = How.XPATH, using = "//div[@class = 'tabs hubs-top-tabs-bar']/span[text() = 'Studies']")
+    @FindBy(how = How.CSS, using = ".tabs.hubs-top-tabs-bar span:nth-of-type(2)")
     public static WebElement tabStudies;
-    @FindBy(how = How.XPATH, using = "//div[@class = 'tabs hubs-top-tabs-bar']/span[text() = 'Admissions']")
+    @FindBy(how = How.CSS, using = ".tabs.hubs-top-tabs-bar span:nth-of-type(4)")
     public static WebElement tabAdmissions;
-    @FindBy(how = How.XPATH, using = "//div[@class = 'tabs hubs-top-tabs-bar']/span[text() = 'Student Life']")
+    @FindBy(how = How.CSS, using = ".tabs.hubs-top-tabs-bar span:nth-of-type(3)")
     public static WebElement tabStudentLife;
-    @FindBy(how = How.XPATH, using = "//div[@class = 'tabs hubs-top-tabs-bar']/span[text() = 'Costs']")
+    @FindBy(how = How.CSS, using = ".tabs.hubs-top-tabs-bar span:nth-of-type(5)")
     public static WebElement tabCosts;
-    @FindBy(how = How.XPATH, using = "//div[@class = 'tabs hubs-top-tabs-bar']/span[text() = 'Profiles']")
+    @FindBy(how = How.CSS, using = ".tabs.hubs-top-tabs-bar span:nth-of-type(6)")
     public static WebElement tabProfiles;
-    @FindBy(how = How.CSS, using = ".tabs.hubs-top-tabs-bar span:nth-child(1)")
-    public static WebElement tabOverview;
     @FindBy(how = How.CSS, using = "div[ng-if=\"vm.averageNetPrices.length > 0\"] div.hub-data-pod__data-age.ng-binding")
     public static WebElement labelDateAvgNetPrice;
     @FindBy(how = How.CSS, using = "div[ng-if=\"vm.gradRate\"] div.hub-data-pod__data-age.ng-binding")

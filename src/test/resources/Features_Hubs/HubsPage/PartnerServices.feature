@@ -5,9 +5,7 @@ Feature:  As a student exploring a college I want to see the school's paid butto
   Background:
     Given I log in to Family Connection with the following user details:
       | rtsa       | amandahubs | hubs2016  |
-    And I click on the Colleges tab
-    And I go to the Page View for "Adelphi"
-    And I click the Beta Button
+    When I open the HUBS page for "Adelphi"
 
   Scenario: User is taken to correct website after clicking 'Request Info'
     When I click the Request Info button

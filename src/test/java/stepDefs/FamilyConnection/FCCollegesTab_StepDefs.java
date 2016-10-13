@@ -17,8 +17,8 @@ import static junit.framework.TestCase.assertTrue;
 public class FCCollegesTab_StepDefs {
 
 
-    @When("^I click in the college match link$")
-    public void I_click_on_the_college_match_link() throws Throwable {
+    @When("^I open the college match list$")
+    public void I_open_the_college_match_list() throws Throwable {
         FCCollegesTab.ClickCollegeMatchLink();
     }
     @Then("^The college match list should not be displayed$")

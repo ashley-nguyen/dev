@@ -10,7 +10,7 @@ import pageObjects.BaseClass;
  * Created by jorgemaguina on 7/19/2016.
  */
 public class FCHubsStudiesTabPage extends BaseClass {
-    @FindBy(how = How.XPATH, using = "//label[contains(text(), 'Search')]/../input")
+    @FindBy(how = How.ID, using = "studies-programs__search-input")
     public static WebElement textBoxSearch;
 
     public FCHubsStudiesTabPage(WebDriver driver) {

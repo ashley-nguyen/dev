@@ -396,5 +396,18 @@ public class FCHubs_StepDefs {
     public void I_send_the_email() throws Throwable {
         FCHubs.ClickSendMessageContactForm();
     }
+
+    @When("^I open the Colleges tab$")
+    public void iOpenOnTheCollegesTab() throws Throwable {
+        FCDashboard.ClickCollegesTab();
+    }
+
+    @When("^I open the college view for \"([^\"]*)\"$")
+    public void iOpenTheCollegeViewFor(String college) throws Throwable {
+        FCDashboard.ClickCollegesTab();
+        FCCollegesTab.EnterCollegeToSearch(college);
+        FCCollegesTab.ClickGoButton();
+        FCCollegesTab.ClickCollegeInCollegeLookup(college);
+    }
 }
 

@@ -10,9 +10,9 @@ import pageObjects.BaseClass;
  * Created by jorgemaguina on 5/25/2016.
  */
 public class FCCollegeViewPage extends BaseClass {
-    @FindBy(how = How.XPATH, using = "//a[@class='hubsBetaBarButton']")
+    @FindBy(how = How.CSS, using = ".hubsBetaBarButton")
     public static WebElement buttonHubsBeta;
-    @FindBy(how = How.XPATH, using = "//span[@class='hubsBetaBarHide']")
+    @FindBy(how = How.CSS, using = ".hubsBetaBarHide")
     public static WebElement buttonXBetaButtonRibbon;
 
     public FCCollegeViewPage(WebDriver driver) {

@@ -133,7 +133,7 @@ public class FCHubsCostsTab {
         boolean Tuition_InStateAverageNavianceCollege = false;
         boolean InStateTuition = false;
 
-        if (FCHubsCostsTabPage.InStateTuitionThisCollege.getText().equals(tuitionInStateThisCollege));
+        if (FCHubsCostsTabPage.InStateTuitionandFeeforThisCollege.getText().equals(tuitionInStateThisCollege));
         {
             Tuition_InStateThisCollege = true;
 

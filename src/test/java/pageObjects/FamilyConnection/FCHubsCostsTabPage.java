@@ -10,32 +10,24 @@ import pageObjects.BaseClass;
  * Created by jorgemaguina on 8/15/2016.
  */
 public class FCHubsCostsTabPage extends BaseClass {
-    @FindBy(how = How.XPATH, using = "//div[@id = 'cost-module']")
+    @FindBy(how = How.ID, using = "cost-module")
     public static WebElement costModuleLabel;
-    @FindBy(how = How.XPATH, using = "//div[@class = 'hub-data-pod__heading'][contains(text(), 'Typical Monthly Loan " +
-            "Payment')]/../div[@class = 'hub-data-pod--money hub-data-pod--overview ng-binding']")
+    @FindBy(how = How.CSS, using = "div [ng-if=\"vm.tuition.gradsMonthlyLoanAmountPaid\"] " +
+            "div.hub-data-pod--money.hub-data-pod--overview.ng-binding")
     public static WebElement labelTypicalMonthlyLoanPayment;
-
-    @FindBy(how = How.XPATH, using = "//div[@class='costs-tuition-graph__bar__top']/span[@class='costs-tuition-graph__" +
-            "costlabel costs-tuition-graph__costlabel--lime ng-binding']")
+    @FindBy(how = How.CSS, using = ".costs-tuition-graph__costlabel.costs-tuition-graph__costlabel--lime.ng-binding")
     public static WebElement InStateTuitionandFeeforThisCollege;
-    @FindBy(how = How.XPATH, using = "//div[@class='costs-tuition-graph__bar__top']/span[text()='$24,551']")
+    @FindBy(how = How.CSS, using = "div.fc-grid__col.fc-grid__col--xs-12.costs-tuition-graph.ng-scope div:nth-child(2) " +
+            "div.costs-tuition-graph__bar__top span")
     public static WebElement OutofStateTuitionFeesForAverageNavianceColleges;
-
-    @FindBy(how = How.XPATH, using = "//div[@class='costs-tuition-graph__bar__top']/span[@class=\"costs-tuition-graph" +
-            "__costlabel costs-tuition-graph__costlabel--sky ng-binding\"]")
+    @FindBy(how = How.CSS, using = ".costs-tuition-graph__costlabel.costs-tuition-graph__costlabel--sky.ng-binding")
     public static WebElement OutofStateInStateTuitionFeesForThisCollege;
-
-    @FindBy(how = How.XPATH, using = "//div[@class='costs-tuition-graph__bar__top']/span[text()='$26,974']")
+    @FindBy(how = How.CSS, using = "div.fc-grid__col.fc-grid__col--xs-12.costs-tuition-graph.ng-scope " +
+            "div:nth-child(4) div.costs-tuition-graph__bar__top span")
     public static WebElement OutofStateInStateTuitionFeesForAverageNavianceColleges;
-
-    @FindBy(how = How.XPATH, using = "//ul[@class = 'costs-tuition__buttonGroup']/li[2]")
+    @FindBy(how = How.CSS, using = ".fc-grid__row.costs-tuition-button.fc-button[ng-class=" +
+            "\"{'costs-tuition-button--active': vm.showTuition }\"]")
     public static WebElement Tuition;
-
-    @FindBy(how = How.XPATH, using = "//div[@class='costs-tuition-graph__bar__top']/span[@class='costs-tuition-graph" +
-            "__costlabel costs-tuition-graph__costlabel--lime ng-binding']")
-    public static WebElement InStateTuitionThisCollege;
-
     @FindBy(how = How.XPATH, using = "//div[@class='costs-tuition-graph__bar__top']/span[text()='$16,456']")
     public static WebElement InStateTuitionAverageNavianceCollege;
 
