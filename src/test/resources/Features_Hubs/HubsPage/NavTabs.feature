@@ -1,4 +1,4 @@
-@smoketest @nondestructive @hubs @webtour
+@smoketest @nondestructive @hubs @navigationTabs
 Feature:  As a student viewing a college's hub I want to use tabs to navigate among the modules available.
 
   Scenario:

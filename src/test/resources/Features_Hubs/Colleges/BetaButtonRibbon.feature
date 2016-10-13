@@ -6,48 +6,24 @@ Feature: Hubs Beta Button Ribbon (HUBS-12)
   Background:
     Given I log in to Family Connection with the following user details:
       | rtsa       | amandahubs | hubs2016  |
+    When I open the college view for "Auburn"
 
-  Scenario Outline: View Beta Button Ribbon - Hubs Beta Button Ribbon Toggle is set to ON
-    When I click on the Colleges tab
-    And I search for the college "<college>"
-    And I click the college "<college>" in the college lookup list
+  Scenario: View Beta Button Ribbon - Hubs Beta Button Ribbon Toggle is set to ON
     Then I should see the Hubs Page Ribbon
-    Examples:
-      | college |
-      | Auburn  |
 
-  Scenario Outline: Close Beta Ribbon - Hubs Beta Button Ribbon Toggle is set to ON
-    When I click on the Colleges tab
-    And I search for the college "<college>"
-    And I click the college "<college>" in the college lookup list
-    And I click the 'x' on the Beta Button Ribbon
+  Scenario: Close Beta Ribbon - Hubs Beta Button Ribbon Toggle is set to ON
+    When I close the Beta Button Ribbon
     Then I should not see the Hubs Page Ribbon
-    Examples:
-      | college |
-      | Auburn  |
 
-  Scenario Outline: Verify other colleges still see Beta Button Ribbon after closing it for a college - Hubs Beta Button
+  Scenario: Verify other colleges still see Beta Button Ribbon after closing it for a college - Hubs Beta Button
   Ribbon Toggle is set to ON
-    When I click on the Colleges tab
-    And I search for the college "<originalcollege>"
-    And I click the college "<originalcollege>" in the college lookup list
-    And I click the 'x' on the Beta Button Ribbon
-    And I search for the college "<anotherCollege>"
-    And I click the college "<anotherCollege>" in the college lookup list
+    When I close the Beta Button Ribbon
+    And I open the college view for "Adrian"
     Then I should see the Hubs Page Ribbon
-    Examples:
-      | originalcollege | anotherCollege |
-      | Auburn          | Adrian         |
 
-  Scenario Outline: Verify Feedback Ribbon - Hubs Beta Button Ribbon Toggle is set to ON
-    When I click on the Colleges tab
-    And I search for the college "<college>"
-    And I click the college "<college>" in the college lookup list
-    And I click the Beta Button
+  Scenario: Verify Feedback Ribbon - Hubs Beta Button Ribbon Toggle is set to ON
+    When I open the HUBS page for "Auburn"
     Then I should see the Feedback Ribbon
-    Examples:
-      | college |
-      | Auburn  |
 
 
 

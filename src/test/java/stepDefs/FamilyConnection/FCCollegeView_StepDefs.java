@@ -20,8 +20,8 @@ public class FCCollegeView_StepDefs {
         FCCollegeView.VerifyHubsBetaButton();
     }
 
-    @When("^I click the 'x' on the Beta Button Ribbon$")
-    public void I_click_the_x_on_the_beta_button_ribbon() throws Throwable {
+    @When("^I close the Beta Button Ribbon$")
+    public void I_close_the_beta_button_ribbon() throws Throwable {
         FCCollegeView.clickXBetaButtonRibbon();
     }
 

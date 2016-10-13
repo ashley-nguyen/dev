@@ -10,7 +10,7 @@ import pageObjects.BaseClass;
  * Created by jorgemaguina on 8/15/2016.
  */
 public class FCHubsProfilesTabPage extends BaseClass {
-    @FindBy(how = How.XPATH, using = "//div[@class = 'profile__close ng-scope']")
+    @FindBy(how = How.CSS, using = ".profile__close.ng-scope")
     public static WebElement buttonCloseInProfile;
 
     public FCHubsProfilesTabPage(WebDriver driver) {

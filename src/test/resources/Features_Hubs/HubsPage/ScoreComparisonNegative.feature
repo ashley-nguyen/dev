@@ -5,9 +5,7 @@ Feature: As a student viewing new Hubs Overview Tab, I want the default score co
   Background:
     Given I log in to Family Connection with the following user details:
       | rtsa  | benhubs | hubs2016  |
-    And I click on the Colleges tab
-    And I go to the Page View for "Auburn"
-    And I click the Beta Button
+    When I open the HUBS page for "Auburn"
 
   Scenario: A question mark is displayed in the dials that don't have Student's data
     Then A question mark for "ACT" is displayed in the dials that don't have Student's data

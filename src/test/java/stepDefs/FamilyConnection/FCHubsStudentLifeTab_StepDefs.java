@@ -37,9 +37,9 @@ public class FCHubsStudentLifeTab_StepDefs {
         FCHubsStudentLifeTab.VerifyTotalStudentsEthnicityData(totalStudents);
     }
 
-    @Then("^The percentage for \"([^\"]*)\" is \"([^\"]*)\" in Ethnicity Data$")
-    public void The_percentage_for_is(String ethnicGroup, String value) throws Throwable {
-        FCHubsStudentLifeTab.VerifyEthnicGroupPercentage(ethnicGroup, value);
+    @Then("^The percentage for each Ethnic Group in Ethnicity Data is contained in the following table$")
+    public void thePercentageForEachEthnicGroupInEthnicityDataIsContainedInTheFollowingTable(List<String> ethnicGroupsPercent) throws Throwable {
+        FCHubsStudentLifeTab.VerifyEthnicGroupPercentage(ethnicGroupsPercent);
     }
 
     @Then("^The Total Students number should be \"([^\"]*)\" in Gender Data$")
@@ -91,6 +91,4 @@ public class FCHubsStudentLifeTab_StepDefs {
     public void I_should_be_redirected_to_Housing_Information_in_Student_Life() throws Throwable {
         FCHubsStudentLifeTab.VerifyHousingInformationLabel();
     }
-
-
 }

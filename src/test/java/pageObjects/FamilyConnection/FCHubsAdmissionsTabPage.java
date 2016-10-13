@@ -10,15 +10,17 @@ import pageObjects.BaseClass;
  * Created by jorgemaguina on 7/27/2016.
  */
 public class FCHubsAdmissionsTabPage extends BaseClass {
-    @FindBy(how = How.XPATH, using = "//h2[contains(text(), 'Early Action Deadline')]/../div/div[1]")
+    @FindBy(how = How.CSS, using = ".admissions-overview.fc-grid__row.fc-grid__row--xs-center div div div " +
+            "div.hub-deadline__month.ng-binding")
     public static WebElement labelMonthRegDecisionDeadline;
-    @FindBy(how = How.XPATH, using = "//h2[contains(text(), 'Early Action Deadline')]/../div/div[2]")
+    @FindBy(how = How.CSS, using = ".admissions-overview.fc-grid__row.fc-grid__row--xs-center div div div " +
+            "div.hub-deadline__day.ng-binding")
     public static WebElement labelDayRegDecisionDeadline;
-    @FindBy(how = How.XPATH, using = "//h2[contains(text(), 'Acceptance Rate')]/../div/div/div/div/div/div")
+    @FindBy(how = How.CSS, using = ".hub-data-pod--meter-value.hub-data-pod--meter-value--percent.ng-binding")
     public static WebElement labelAcceptanceRate;
-    @FindBy(how = How.XPATH, using = "//h2[contains(text(), 'Application Fees')]/../div")
+    @FindBy(how = How.CSS, using = ".hub-data-pod--money.hub-data-pod--admissions.ng-binding")
     public static WebElement labelApplicationFees;
-    @FindBy(how = How.XPATH, using = "//h2[@id = 'application-info-deadlines']")
+    @FindBy(how = How.ID, using = "application-info-deadlines")
     public static WebElement labelApplicationInformation;
 
     public FCHubsAdmissionsTabPage(WebDriver driver) {
