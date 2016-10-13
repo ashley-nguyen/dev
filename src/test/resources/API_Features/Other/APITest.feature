@@ -2,7 +2,7 @@ Feature: Test for restful service
 
   Scenario Outline: CallRestAPI
     When I call this Rest API
-    When I call LOR Request API with "<token>" token and "<url>" with "<params>"
+    Then I call LOR Request API with "<token>" token and "<url>" with "<params>"
 
   Examples:
   | token                                 | url                                                                     | params                                                     |

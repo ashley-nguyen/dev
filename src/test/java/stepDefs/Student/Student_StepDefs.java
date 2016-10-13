@@ -5,6 +5,7 @@ import actions.Login.Login;
 import actions.Student.Search.GeneralTab.Student_General;
 import actions.Student.Search.ScoresTab.Scores;
 import actions.Student.Search.Search.Student_Search;
+import actions.eDocs.eDocsGeneral;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
@@ -16,9 +17,6 @@ import org.openqa.selenium.WebDriver;
  */
 public class Student_StepDefs {
     public static WebDriver driver;
-
-    // private static String strBaseURL = "https://succeed-internal.naviance.com";
-
 
     @Then("^their student record will be displayed$")
     public void their_student_record_will_be_displayed() throws Throwable {
@@ -79,8 +77,6 @@ public class Student_StepDefs {
     }
 
 
-
-
     //USAGE: When I search for "Aisner, Cathy" using the global search field
     @When("^I search for \"([^\"]*)\" using the global search field$")
     public void I_search_for_using_the_global_search_field(String strStudent) throws Throwable {
@@ -88,13 +84,18 @@ public class Student_StepDefs {
         Student_Search.searchStudent(strStudent);
     }
 
+    @When("^I access with \"([^\"]*)\" to another member staff$")
+    public void I_access_to_another_member_staff(String strStudentID) throws Throwable {
+        Student_Search.searchStudent(strStudentID);
+        Student_Search.studentRosterSearch(strStudentID, "id");
+        eDocsGeneral.NavtoEdocsStudentTab();
+        eDocsGeneral.ClickOnPrepareLink();
+    }
 
     @When("^I search for \"([^\"]*)\" using \"([^\"]*)\" the student roster search$")
     public void I_search_for_using_the_student_roster_search(String strStudent, String strSearchBy) throws Throwable {
 
         Student_Search.studentRosterSearch(strStudent, strSearchBy);
-
-
     }
 
     @When("^I link to \"([^\"]*)\" with \"([^\"]*)\" to \"([^\"]*)\"$")
@@ -106,7 +107,6 @@ public class Student_StepDefs {
 
     @When("^I will verify that \"([^\"]*)\" with \"([^\"]*)\" were linked$")
     public void I_verify_link(String strData, String strParent) throws Throwable {
-//        Thread.sleep(9999999);
         Student_General.verifyParent(strData);
         Student_General.verifyParent(strParent);
         Student_General.unlinkParent();
@@ -117,7 +117,6 @@ public class Student_StepDefs {
     @And("^I link the parent \"([^\"]*)\" to the current student$")
     public void I_link_the_parent_to_the_current_student(String strParent) throws Throwable {
         Student_General.linkParent(strParent);
-
     }
 
     @Then("^I should see \"([^\"]*)\" on the Student Summary Form$")

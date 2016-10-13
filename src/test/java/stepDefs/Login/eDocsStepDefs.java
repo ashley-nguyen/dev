@@ -4,6 +4,7 @@ import actions.Student.Search.Search.Student_Search;
 import actions.eDocs.eDocsGeneral;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
+import cucumber.api.java.en.When;
 
 /**
  * Created by jbarnard on 12/9/2015.
@@ -16,10 +17,68 @@ public class eDocsStepDefs {
         eDocsGeneral.NavtoEdocsStudentTab();
     }
 
+    @When("^I use \"([^\"]*)\" and delete document in eDocs$")
+    public void I_delete_document_in_edocs(String strStudentID) throws Throwable {
+        Student_Search.studentRosterSearch(strStudentID, "id");
+        eDocsGeneral.NavtoEdocsStudentTab();
+        eDocsGeneral.ClickOnPrepareLink();
+        eDocsGeneral.ClickOnDeleteButton();
+        eDocsGeneral.ClickOnDeleteDocumentButton();
+    }
+
+    @When("^I use \"([^\"]*)\" under application selecting \"(.*)\" and \"(.*)\" with \"([^\"]*)\"$")
+    public void I_use_student_under_application_for_letter_recommendation_verifying_text(String strStudentID, String type, String application, String filename) throws Throwable {
+        Student_Search.studentRosterSearch(strStudentID, "id");
+        eDocsGeneral.NavtoEdocsStudentTab();
+        eDocsGeneral.ClickOnPrepareLink();
+        eDocsGeneral.ClickOnAddButton();
+        eDocsGeneral.ClickOnUploadAFileButton();
+        eDocsGeneral.SelectType(type);
+        eDocsGeneral.SelectApplication(application);
+        eDocsGeneral.ClickOnBrowseButton();
+        eDocsGeneral.WritePathFile(filename);
+    }
+
+
+    @Given("^I expand all under application for the \"([^\"]*)\" in \"([^\"]*)\" with \"([^\"]*)\" and \"([^\"]*)\"$")
+    public void I_expand_all_under_application(String strStudentID, String application, String type, String filename) throws Throwable {
+        Student_Search.studentRosterSearch(strStudentID, "id");
+        eDocsGeneral.NavtoEdocsStudentTab();
+        eDocsGeneral.ClickOnPrepareLink();
+        eDocsGeneral.ClickOnReplaceButton();
+        eDocsGeneral.ClickOnUploadAFileButton();
+        eDocsGeneral.SelectApplication(application);
+        eDocsGeneral.SelectType(type);
+        eDocsGeneral.ClickOnBrowseButton();
+        eDocsGeneral.WritePathFile(filename);
+        eDocsGeneral.ClickOnSendLink();
+        eDocsGeneral.ClickOnExpandAllButton();
+    }
+
+
+    @Given("^I expand all button action for the \"([^\"]*)\"$")
+    public void I_expand_all_button_action(String strStudentID) throws Throwable {
+        Student_Search.studentRosterSearch(strStudentID, "id");
+        eDocsGeneral.NavtoEdocsStudentTab();
+        eDocsGeneral.ClickOnSendLink();
+        eDocsGeneral.ClickOnExpandAllButton();
+    }
+
+
     @Then("I click on Prepare link")
     public void I_click_on_prepare_link() throws Throwable {
         eDocsGeneral.ClickOnPrepareLink();
     }
+
+
+    @When("I go to Prepare Link with \"([^\"]*)\"")
+    public void  I_go_to_Prepare_Link(String strStudentID) throws Throwable {
+        Student_Search.studentRosterSearch(strStudentID, "id");
+        eDocsGeneral.NavtoEdocsStudentTab();
+        eDocsGeneral.ClickOnPrepareLink();
+    }
+
+
 
     @Then("I click on Send link")
     public void I_click_on_send_link() throws Throwable {
