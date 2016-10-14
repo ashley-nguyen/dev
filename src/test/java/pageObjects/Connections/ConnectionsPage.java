@@ -49,7 +49,7 @@ public class ConnectionsPage extends BaseClass {
     @FindBy(how = How.XPATH, using = "//input[@class='fc-checkbox']")
     public static WebElement divSelectCollege;
 
-    @FindBy(how = How.XPATH, using = "//input[@class='fc-radio ng-valid ng-not-empty ng-dirty ng-touched ng-valid-parse']")
+    @FindBy(how = How.XPATH, using = "//input[@name='applications']")
     public static WebElement divSelectOptionCollege;
 
     @FindBy(how = How.XPATH, using = "/html/body/div/div/div/div/recommendations-container/div/ng-view/recommendations-list/table/tbody/tr[1]/td[5]/div[12]/svg")
@@ -61,7 +61,7 @@ public class ConnectionsPage extends BaseClass {
     @FindBy(how = How.XPATH, using = "//span[@class='ng-binding']")
     public static WebElement lnkSuccessMessage;
 
-    @FindBy(how = How.XPATH, using = "//*[@class=\"fc-table\"]/tbody/tr[1]/td[5]/div")
+    @FindBy(how = How.XPATH, using = "//div[@class='recommendations-list__cancel ng-scope']")
     public static WebElement divCancelButton;
 
     @FindBy(how = How.CLASS_NAME, using = "recommendations-list__cancel-prompt-confirm")

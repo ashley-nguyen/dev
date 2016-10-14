@@ -147,7 +147,7 @@ public class Connections {
         driver = Hooks.driver;
         PageFactory.initElements(driver, ConnectionsPage.class);
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-        new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//input[@class='fc-radio ng-valid ng-not-empty ng-dirty ng-touched ng-valid-parse']")));
+        new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//input[@name='applications']")));
         ConnectionsPage.divSelectOptionCollege.click();
     }
 
