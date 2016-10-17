@@ -18,6 +18,8 @@ public class FCCollegesPage extends BaseClass {
     public static WebElement buttonGo;
     @FindBy(how = How.CSS, using = "#main-content h3")
     public static WebElement labelStudiesOffering;
+    @FindBy(how = How.CSS, using = "tbody td:nth-of-type(1) a")
+    public static WebElement lnkSingleResultCollegeLookup;
 
     public FCCollegesPage(WebDriver driver) {
         super(driver);

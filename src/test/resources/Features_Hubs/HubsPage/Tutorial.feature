@@ -7,10 +7,8 @@ Feature: Validate as a student visiting a new hubs page for the first time,
       | rtsa       | ikeahubs | hubs2016  |
     When I open the HUBS page for "Adelphi"
 
-
   Scenario: Tutorial 1 dialog is displayed in Hubs
     Then I should see FirstTutorial dialog
-
 
   Scenario: Tell us what you think dialog is displayed in Hubs after click Next on Tutorial 1
     When I navigate to Second Tutorial

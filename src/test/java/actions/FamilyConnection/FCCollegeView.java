@@ -19,8 +19,8 @@ public class FCCollegeView {
 
     public static void VerifyHubsBetaButton() {
         driver = Hooks.driver;
-        assertTrue("The Hubs Beta Button is not displayed", driver.findElement(
-                By.xpath("//a[@class='hubsBetaBarButton']")).isDisplayed());
+        PageFactory.initElements(driver, FCCollegeViewPage.class);
+        assertTrue("The Hubs Beta Button is not displayed", FCCollegeViewPage.buttonHubsBeta.isDisplayed());
     }
 
     public static void clickXBetaButtonRibbon() {
@@ -39,7 +39,6 @@ public class FCCollegeView {
 
     public static void VerifyHubsPageRibbon() {
         driver = Hooks.driver;
-        assertFalse("The Hubs Beta Button Ribbon is displayed", driver.findElement(
-                By.xpath("//div[@class='hubsBetaBar']")).isDisplayed());
+        assertFalse("The Hubs Beta Button Ribbon is displayed", FCCollegeViewPage.buttonHubsBeta.isDisplayed());
     }
 }

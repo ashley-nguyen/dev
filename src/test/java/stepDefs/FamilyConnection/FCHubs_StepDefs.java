@@ -86,7 +86,7 @@ public class FCHubs_StepDefs {
     @When("^I click the 'Learn More' link \"([^\"]*)\"$")
     public void I_click_the_learn_more_link(String link) throws Throwable {
         FCHubs.ClickLearnMoreButton();
-        FCHubs.ClickLearnMoreLink(link);
+        FCHubs.ClickLearnMoreEventsLink(link);
     }
 
     @When("^I click the right navigation arrow \"([^\"]*)\" times$")
@@ -212,11 +212,6 @@ public class FCHubs_StepDefs {
     @Then("^Campus Surroundings is \"([^\"]*)\" in Quick Facts$")
     public void Campus_Surroundings_is_in_Quick_Facts(String surroundings) throws Throwable {
         FCHubs.VerifyCampusSurroundings(surroundings);
-    }
-
-    @Then("^Degrees Offered contains \"([^\"]*)\"$")
-    public void Degrees_Offered_contains(String degree) throws Throwable {
-        FCHubs.VerifyDegreesOfferedQuickFacts(degree);
     }
 
     @Then("^Student's \"([^\"]*)\" should be \"([^\"]*)\" in the Score Comparison module$")
@@ -382,9 +377,9 @@ public class FCHubs_StepDefs {
         FCCollegeView.clickBetaButton();
     }
     @When("^I click 'Communicate' link \"([^\"]*)\"$")
-    public void I_Click_Communicate_Link(String clink) throws Throwable {
+    public void I_Click_Communicate_Link(String link) throws Throwable {
         FCHubs.ClickCommunicate();
-        FCHubs.Requestinformationlink(clink);
+        FCHubs.Requestinformationlink(link);
     }
 
     @When("^I send an email with Subject \"([^\"]*)\" and Message \"([^\"]*)\"$")
@@ -405,11 +400,16 @@ public class FCHubs_StepDefs {
     }
 
     @When("^I open the college view for \"([^\"]*)\"$")
-    public void iOpenTheCollegeViewFor(String college) throws Throwable {
+    public void I_open_the_college_view_for(String college) throws Throwable {
         FCDashboard.ClickCollegesTab();
         FCCollegesTab.EnterCollegeToSearch(college);
         FCCollegesTab.ClickGoButton();
         FCCollegesTab.ClickCollegeInCollegeLookup(college);
+    }
+
+    @Then("^Degrees Offered contains the following values:$")
+    public void Degrees_Offered_contains_the_following_values(List<String> degrees) throws Throwable {
+        FCHubs.VerifyDegreesOfferedQuickFacts(degrees);
     }
 }
 

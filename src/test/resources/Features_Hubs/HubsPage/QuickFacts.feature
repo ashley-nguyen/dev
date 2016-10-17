@@ -25,9 +25,7 @@ Feature:  As a student viewing new Hubs' Overview tab, I want to see contact inf
   Scenario: Campus Surroundings is displayed in Quick Facts with correct data
     Then Campus Surroundings is "Small Town" in Quick Facts
 
-  Scenario Outline: Degrees Offered are displayed with correct values in Quick Facts
-    Then Degrees Offered contains "<degrees>"
-    Examples:
-    | degrees    |
+  Scenario: Degrees Offered are displayed with correct values in Quick Facts
+    Then Degrees Offered contains the following values:
     | Bachelors  |
 

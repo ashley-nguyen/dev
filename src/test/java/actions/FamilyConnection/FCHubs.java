@@ -12,6 +12,7 @@ import stepDefs.Hooks;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.assertFalse;
@@ -24,14 +25,14 @@ public class FCHubs {
 
     public static void VerifyFeedbackRibbon() {
         driver = Hooks.driver;
-        assertTrue("The Hubs Feedbak Ribbon is not displayed", driver.findElement(
-                By.xpath("//div[@class='hub-beta-bar']")).isDisplayed());
+        PageFactory.initElements(driver, FCHubsPage.class);
+        assertTrue("The Hubs Feedbak Ribbon is not displayed", FCHubsPage.buttonFeedback.isDisplayed());
     }
 
     public static void ClickFeedbackButton() {
         driver = Hooks.driver;
-        new WebDriverWait(Hooks.driver, 20).until(ExpectedConditions.elementToBeClickable(By.xpath
-                ("//div[@class='hub-beta-bar']/a")));
+        new WebDriverWait(Hooks.driver, 20).until(ExpectedConditions.elementToBeClickable(By.cssSelector
+                (".fc-button.fc-button--ghost.hub-beta-bar__survey-button")));
         PageFactory.initElements(driver, FCHubsPage.class);
         FCHubsPage.buttonFeedback.click();
         FCHubsPage.buttonFeedback.sendKeys(Keys.RETURN);
@@ -39,10 +40,10 @@ public class FCHubs {
 
     public static void VerifyFirstTutorialDialog() {
         driver = Hooks.driver;
-        new WebDriverWait(Hooks.driver, 20).until(ExpectedConditions.elementToBeClickable(By.xpath
-                ("//span[contains(text(), 'Favorite this college')]")));
-        assertTrue("The First Tutorial Dialog is not displayed", driver.findElement(By.xpath
-                ("//span[contains(text(), 'Favorite this college')]")).isDisplayed());
+        PageFactory.initElements(driver, FCHubsPage.class);
+        new WebDriverWait(Hooks.driver, 20).until(ExpectedConditions.elementToBeClickable(By.cssSelector
+                (".fc-tooltip.fc-tooltip--above.hub-tooltip.hub-tooltip--favorite")));
+        assertTrue("The First Tutorial Dialog is not displayed", FCHubsPage.linkNextFirstDialog.isDisplayed());
     }
 
     public static void ClickNextOnFirstDialog() {
@@ -60,27 +61,26 @@ public class FCHubs {
         driver = Hooks.driver;
         PageFactory.initElements(driver, FCHubsPage.class);
         FCHubsPage.linkNextSecondDialog.click();
-
     }
 
     public static void VerifyThirdTutorialDialog() {
         driver = Hooks.driver;
-        assertTrue("The Third Tutorial Dialog is displayed ", driver.findElement(By.xpath("//span[contains (text( )," +
-                "'Tell us what you think!')]")).isDisplayed());
+        PageFactory.initElements(driver, FCHubsPage.class);
+        assertTrue("The Third Tutorial Dialog is displayed ", FCHubsPage.linkDoneThirdDialog.isDisplayed());
     }
 
     public static void VerifyIdentifierModule() {
         driver = Hooks.driver;
-        assertTrue("The Identifier Module is not present", driver.findElement
-                (By.xpath("//div[@class='fc-grid__row fc-grid__row--xs-center fc-grid__row--lg-start fc-grid__" +
-                        "row--xs-middle']")).isDisplayed());
+        PageFactory.initElements(driver, FCHubsPage.class);
+        assertTrue("The Identifier Module is not present", FCHubsPage.linkURLIdentifierModule.isDisplayed());
     }
 
     public static void VerifyLogoInIdentifierModule() {
         driver = Hooks.driver;
-        assertTrue("The logo in the Identifier Module is not present", driver.findElement
-                (By.xpath("//div[@class='fc-grid__row fc-grid__row--xs-center fc-grid__row--lg-start fc-grid__row--xs-" +
-                        "middle']/div/img[@class='masthead__logo-image']")).isDisplayed());
+        PageFactory.initElements(driver, FCHubsPage.class);
+        new WebDriverWait(Hooks.driver, 20).until(ExpectedConditions.elementToBeClickable(By.cssSelector
+                (".masthead__logo-image")));
+        assertTrue("The logo in the Identifier Module is not present", FCHubsPage.imgLogo.isDisplayed());
     }
 
     public static void ClickURLInIdentifierModule() {
@@ -93,16 +93,17 @@ public class FCHubs {
 
     public static void VerifyURLContainsText(String url) {
         driver = Hooks.driver;
+        new WebDriverWait(Hooks.driver, 20).until(ExpectedConditions.elementToBeClickable(By.cssSelector
+                ("html")));
         String currentURL = driver.getCurrentUrl();
         assertTrue("The current URL does not match " + url, currentURL.contains(url));
     }
 
-
     public static void ClickApplyOnlineButton() {
         driver = Hooks.driver;
         PageFactory.initElements(driver, FCHubsPage.class);
-        new WebDriverWait(Hooks.driver, 20).until(ExpectedConditions.elementToBeClickable(By.xpath
-                ("//a[contains(text(),'Apply online')]")));
+        new WebDriverWait(Hooks.driver, 20).until(ExpectedConditions.elementToBeClickable(By.cssSelector
+                (".apply-online.fc-button.ng-scope")));
         FCHubsPage.buttonApplyOnline.click();
         ArrayList<String> tabs = new ArrayList<String> (driver.getWindowHandles());
         driver.switchTo().window(tabs.get(tabs.size() - 1));
@@ -110,16 +111,18 @@ public class FCHubs {
 
     public static void ClickLearnMoreButton() {
         driver = Hooks.driver;
+        new WebDriverWait(Hooks.driver, 20).until(ExpectedConditions.elementToBeClickable(By.cssSelector
+                (".fc-button.masthead-dropdown-menu__button[ng-class=\"{ 'fc-button--primary' : vm.expandLearnMore }\"]")));
         PageFactory.initElements(driver, FCHubsPage.class);
         FCHubsPage.buttonLearnMore.click();
-        ArrayList<String> tabs = new ArrayList<String> (driver.getWindowHandles());
-        driver.switchTo().window(tabs.get(tabs.size() - 1));
     }
 
-    public static void ClickLearnMoreLink(String link) {
+    public static void ClickLearnMoreEventsLink(String link) {
         driver = Hooks.driver;
-        WebElement learnMoreLink = driver.findElement(By.xpath("//a[contains(text(), '" + link + "')]"));
-        learnMoreLink.click();
+        PageFactory.initElements(driver, FCHubsPage.class);
+        if (FCHubsPage.linklearnMoreEvents.getText().contains(link)) {
+            FCHubsPage.linklearnMoreEvents.click();
+        }
         ArrayList<String> tabs = new ArrayList<String> (driver.getWindowHandles());
         driver.switchTo().window(tabs.get(tabs.size() - 1));
     }
@@ -127,6 +130,8 @@ public class FCHubs {
     public static void ClickRightArrow(int numberOfTimes) {
         driver = Hooks.driver;
         PageFactory.initElements(driver, FCHubsPage.class);
+        new WebDriverWait(Hooks.driver, 20).until(ExpectedConditions.elementToBeClickable(By.cssSelector
+                (".scroll.right")));
         for (int i = 0; i < numberOfTimes; i++) {
             FCHubsPage.buttonRightArrow.click();
         }
@@ -134,8 +139,8 @@ public class FCHubs {
 
     public static void VerifyVisibilityOfLastWebTourElement() {
         driver = Hooks.driver;
-        assertTrue("Last element of Web Tour is not visible", driver.findElement(By.xpath
-                ("//span[@id='webtourElement17']")).isDisplayed());
+        assertTrue("Last element of Web Tour is not visible", driver.findElement(By.id
+                ("hubsWebtourImage17")).isDisplayed());
     }
 
     public static void VerifyVisibilityOfPlayButton() {
@@ -146,7 +151,7 @@ public class FCHubs {
 
     public static void ClickWebTourElementAtPosition(int elementPosition) {
         driver = Hooks.driver;
-        WebElement webTourElement = driver.findElement(By.xpath("//span[@id='webtourElement" + elementPosition + "']"));
+        WebElement webTourElement = driver.findElement(By.id("hubsWebtourImage" + elementPosition));
         webTourElement.click();
     }
 
@@ -180,8 +185,8 @@ public class FCHubs {
     public static void VerifyModalDialogIsNotDisplayed() {
         driver = Hooks.driver;
         try{
-            if(driver.findElement(By.xpath
-                    ("//div[@id='webtourViewer']/div")).isDisplayed()) {
+            if(driver.findElement(By.id
+                    ("webtourViewer")).isDisplayed()) {
                 assertTrue(false);
             }
         } catch(NoSuchElementException e) {
@@ -193,115 +198,119 @@ public class FCHubs {
 
     public static void VerifyNavigationTabs() {
         driver = Hooks.driver;
-        assertTrue("The Navigation Tabs are not displayed", driver.findElement(By.xpath
-                ("//div[@class='tabs hubs-top-tabs-bar']")).isDisplayed());
+        PageFactory.initElements(driver, FCHubsPage.class);
+        assertTrue("The Navigation Tabs are not displayed", FCHubsPage.navTabs.isDisplayed());
     }
 
     public static void VerifySchoolNameAppMailingAdd(String schoolName) {
         driver = Hooks.driver;
-        assertTrue("The School Name is not correct", driver.findElement(By.xpath
-                ("//div[@class='contactsMail ng-binding']" +
-                        "[contains(text(), '" + schoolName + "')]")).isDisplayed());
+        PageFactory.initElements(driver, FCHubsPage.class);
+        assertTrue("The School Name is not correct", FCHubsPage.appMailingAddress.isDisplayed());
     }
 
     public static void VerifyAttnApplicationsAppMailingAdd() {
         driver = Hooks.driver;
-        WebElement appMailingAddText = driver.findElement(By.xpath("//div[@class='contactsMail ng-binding']"));
-        assertTrue("'Attn: Applications' is not displayed", appMailingAddText.getText().contains("Attn: Applications"));
+        PageFactory.initElements(driver, FCHubsPage.class);
+        assertTrue("'Attn: Applications' is not displayed", FCHubsPage.appMailingAddress.getText()
+                .contains("Attn: Applications"));
     }
 
     public static void VerifyAddressAppMailingAdd(String address) {
         driver = Hooks.driver;
-        WebElement appMailingAddText = driver.findElement(By.xpath("//div[@class='contactsMail ng-binding']"));
-        assertTrue("Address data is not correct", appMailingAddText.getText().contains(address));
+        PageFactory.initElements(driver, FCHubsPage.class);
+        assertTrue("Address data is not correct", FCHubsPage.appMailingAddress.getText().contains(address));
     }
 
     public static void VerifyCityAppMailingAdd(String city) {
         driver = Hooks.driver;
-        WebElement appMailingAddText = driver.findElement(By.xpath("//div[@class='contactsMail ng-binding']"));
-        assertTrue("Address data is not correct", appMailingAddText.getText().contains(city));
+        PageFactory.initElements(driver, FCHubsPage.class);
+        assertTrue("Address data is not correct", FCHubsPage.appMailingAddress.getText().contains(city));
     }
 
     public static void VerifyZipAddressAppMailingAdd(String zipAddress) {
         driver = Hooks.driver;
-        WebElement appMailingAddText = driver.findElement(By.xpath("//div[@class='contactsMail ng-binding']"));
-        assertTrue("Address data is not correct", appMailingAddText.getText().contains(zipAddress));
+        PageFactory.initElements(driver, FCHubsPage.class);
+        assertTrue("Address data is not correct", FCHubsPage.appMailingAddress.getText().contains(zipAddress));
     }
 
     public static void VerifyPhoneAdmissions(String phone) {
         driver = Hooks.driver;
-        WebElement admissionsText = driver.findElement(By.xpath("//div[@class='contactsAdmissions ng-binding']"));
-        assertTrue("Phone data is not correct", admissionsText.getText().contains(phone));
+        PageFactory.initElements(driver, FCHubsPage.class);
+        assertTrue("Phone data is not correct", FCHubsPage.contactInfoAdmissions.getText().contains(phone));
     }
 
     public static void VerifyFaxAdmissions(String fax) {
         driver = Hooks.driver;
-        WebElement admissionsText = driver.findElement(By.xpath("//div[@class='contactsAdmissions ng-binding']"));
-        assertTrue("Phone data is not correct", admissionsText.getText().contains(fax));
+        PageFactory.initElements(driver, FCHubsPage.class);
+        assertTrue("Fax data is not correct", FCHubsPage.contactInfoAdmissions.getText().contains(fax));
     }
 
     public static void VerifyFinantialAidNumberAdmissions(String phoneNumber) {
         driver = Hooks.driver;
-        WebElement admissionsText = driver.findElement(By.xpath("//div[@class='contactsAdmissions ng-binding']"));
-        assertTrue("Phone data is not correct", admissionsText.getText().contains(phoneNumber));
+        PageFactory.initElements(driver, FCHubsPage.class);
+        assertTrue("Financial Aid number data is not correct", FCHubsPage.contactInfoAdmissions.getText().contains(phoneNumber));
     }
 
     public static void VerifyEmailAdmissions(String email) {
         driver = Hooks.driver;
-        WebElement admissionsText = driver.findElement(By.xpath("//div[@class='contactsAdmissions ng-binding']"));
-        assertTrue("Phone data is not correct", admissionsText.getText().contains(email));
+        PageFactory.initElements(driver, FCHubsPage.class);
+        assertTrue("Email data is not correct", FCHubsPage.contactInfoAdmissions.getText().contains(email));
     }
 
     public static void VerifyWebsiteQuickFacts(String webSite) {
         driver = Hooks.driver;
-        WebElement admissionsText = driver.findElement(By.xpath("//div/div/h3[contains(text(), 'Quick Facts')]" +
-                "/../../../div/div/a[contains(text(), '" + webSite + "')]"));
-        assertTrue("Website data is not correct", admissionsText.getText().equals(webSite));
+        PageFactory.initElements(driver, FCHubsPage.class);
+        assertTrue("Website data is not correct", FCHubsPage.quickFactsWebsite.getText().equals(webSite));
     }
 
     public static void VerifySchoolTypeQuickFacts(String schoolType) {
         driver = Hooks.driver;
-        WebElement admissionsText = driver.findElement(By.xpath("//div/div/h3[contains(text(), 'Quick Facts')]" +
-                "/../../../div/div[contains(text(), '" + schoolType + "')]"));
-        assertTrue("School Type data is not correct", admissionsText.getText().equals(schoolType));
+        PageFactory.initElements(driver, FCHubsPage.class);
+        assertTrue("School Type data is not correct", FCHubsPage.quickFactsSchoolType.getText().equals(schoolType));
     }
 
     public static void VerifyUndergraduateEnrollmentQuickFacts(String undergraduateEnrollment) {
         driver = Hooks.driver;
-        WebElement admissionsText = driver.findElement(By.xpath("//div/div/h3[contains(text(), 'Quick Facts')]" +
-                "/../../../div/div[contains(text(), '" + undergraduateEnrollment + "')]"));
+        PageFactory.initElements(driver, FCHubsPage.class);
         assertTrue("Undergraduate Enrollment data is not correct",
-                admissionsText.getText().equals(undergraduateEnrollment));
+                FCHubsPage.quickFactsUndergradEnroll.getText().equals(undergraduateEnrollment));
     }
 
     public static void VerifyStudentToFacultyRatioQuickFacts(String studentFacultyRatio) {
         driver = Hooks.driver;
-        WebElement admissionsText = driver.findElement(By.xpath("//div/div/h3[contains(text(), 'Quick Facts')]" +
-                "/../../../div/div[contains(text(), '" + studentFacultyRatio + "')]"));
+        PageFactory.initElements(driver, FCHubsPage.class);
         assertTrue("Student-to-Faculty ratio data is not correct",
-                admissionsText.getText().equals(studentFacultyRatio));
+                FCHubsPage.quickFactsStudentFacultyRatio.getText().equals(studentFacultyRatio));
     }
 
     public static void VerifyReligiousAffiliationQuickFacts(String religion) {
         driver = Hooks.driver;
-        WebElement admissionsText = driver.findElement(By.xpath("//div/div/h3[contains(text(), 'Quick Facts')]" +
-                "/../../../div/div[contains(text(), '" + religion + "')]"));
+        PageFactory.initElements(driver, FCHubsPage.class);
         assertTrue("Student-to-Faculty ratio data is not correct",
-                admissionsText.getText().equals(religion));
+                FCHubsPage.quickFactsReligion.getText().equals(religion));
     }
 
     public static void VerifyCampusSurroundings(String surroundings) {
         driver = Hooks.driver;
-        WebElement admissionsText = driver.findElement(By.xpath("//div/div/h3[contains(text(), 'Quick Facts')]" +
-                "/../../../div/div[contains(text(), '" + surroundings + "')]"));
+        PageFactory.initElements(driver, FCHubsPage.class);
         assertTrue("Campus Surroundings data is not correct",
-                admissionsText.getText().equals(surroundings));
+                FCHubsPage.quickFactsCampusSurr.getText().equals(surroundings));
     }
 
-    public static void VerifyDegreesOfferedQuickFacts(String degree) {
+    public static void VerifyDegreesOfferedQuickFacts(List<String> degrees) {
         driver = Hooks.driver;
-        assertTrue("The degree is not present", driver.findElement(By.xpath("//div/div/h3[contains(text(), " +
-                "'Quick Facts')]/../../../div/div/ul/li[contains(text(), '" + degree + "')]")).isDisplayed());
+        boolean result = false;
+        for (int i = 1; i == degrees.size(); i++) {
+            WebElement degreeElement = driver.findElement(By.cssSelector("li.ng-binding.ng-scope:nth-of-type" +
+                    "(" + i + ")"));
+            if (degreeElement.getText().equals(degrees.get( i - 1))) {
+                result = true;
+            } else {
+                result = false;
+                break;
+            }
+        }
+        assertTrue("The displayed degrees are not correct", result);
     }
 
     public static void VerifyScoreValuesScoreComp(String scoreType, String value) {
@@ -344,25 +353,22 @@ public class FCHubs {
 
     public static void VerifyAvgTotalCostInfoTopBar(String income, String avgTotalCost) {
         driver = Hooks.driver;
-        Select incomeDropDown = new Select(driver.findElement(By.xpath("//select")));
+        PageFactory.initElements(driver, FCHubsPage.class);
+        Select incomeDropDown = new Select(driver.findElement(By.cssSelector("select")));
         incomeDropDown.selectByVisibleText(income);
-        assertTrue("The Average Total Cost is not correct", driver.findElement(By.xpath("//div[@class=" +
-                "'hub-data-pod--money hub-data-pod--overview ng-binding'][contains(text(), " +
-                "'" + avgTotalCost + "')]")).isDisplayed());
+        assertTrue("The Average Total Cost is not correct", FCHubsPage.labelAvgNetPrice.getText().equals(avgTotalCost));
     }
 
     public static void VerifyGraduationRateInfoTopBar(String graduationRate) {
         driver = Hooks.driver;
-        assertTrue("The Graduation Rate is not correct", driver.findElement(By.xpath("//div[contains(text(), " +
-                "'Graduation Rate')]/../div[@class='hub-data-pod--percent hub-data-pod--overview ng-binding']" +
-                "[contains(text(), '" + graduationRate + "')]")).isDisplayed());
+        PageFactory.initElements(driver, FCHubsPage.class);
+        assertTrue("The Graduation Rate is not correct", FCHubsPage.labelGradRate.getText().equals(graduationRate));
     }
 
     public static void VerifyAcceptanceRateInfoTopBar(String acceptanceRate) {
         driver = Hooks.driver;
-        assertTrue("The Acceptance Rate is not correct", driver.findElement(By.xpath("//div[contains(text(), " +
-                "'Acceptance Rate')]/../div[@class='hub-data-pod--percent hub-data-pod--overview ng-binding']" +
-                "[contains(text(), '" + acceptanceRate + "')]")).isDisplayed());
+        PageFactory.initElements(driver, FCHubsPage.class);
+        assertTrue("The Acceptance Rate is not correct", FCHubsPage.labelAcceptanceRate.getText().equals(acceptanceRate));
     }
 
     public static void VerifyPriorityDateInfoTopBar(String month, String priorityDate) {
@@ -459,8 +465,7 @@ public class FCHubs {
         driver = Hooks.driver;
         PageFactory.initElements(driver, FCHubsPage.class);
         try{
-            if(driver.findElement(By.xpath
-                    ("//span[contains(text(),'Favorite this college')]")).isDisplayed()) {
+            if(FCHubsPage.buttonXOnFirstTutorial.isDisplayed()) {
                 assertTrue(false);
             }
         } catch(NoSuchElementException e) {
@@ -481,7 +486,7 @@ public class FCHubs {
         driver = Hooks.driver;
         PageFactory.initElements(driver, FCHubsPage.class);
         try {
-            if (driver.findElement(By.xpath ("//span[contains(text(),'Tell us what you think!')]")).isDisplayed())
+            if (FCHubsPage.buttonXOnSecondTutorial.isDisplayed())
             {
                 assertTrue((false));
             }
@@ -535,8 +540,18 @@ public class FCHubs {
 
     public static void ClickLinkInOverviewInfoTopBar(String linkText) {
         driver = Hooks.driver;
-        driver.findElement(By.xpath("//admissions/div/div/div/div/div/div/a" +
-                "[contains(text(), '" + linkText + "')]")).click();
+        String cssSelectorPart = "";
+        switch (linkText) {
+            case "More about Cost & Aid": cssSelectorPart = "costs-link a";
+                break;
+            case "More about Learning Environment": cssSelectorPart = "studies-tab-link a";
+                break;
+            case "How does this relate to me?": cssSelectorPart = "admissions-tab-link a";
+                break;
+            case "See all deadlines": cssSelectorPart = "deadline-link a";
+                break;
+        }
+        driver.findElement(By.cssSelector(".hub-data-pod__subtext.admissions-" + cssSelectorPart)).click();
     }
 
     public static void VerifySectionLabelInCosts(String sectionLabel) {
@@ -579,22 +594,21 @@ public class FCHubs {
 
     public static void ClickCommunicate() {
         driver = Hooks.driver;
-        new WebDriverWait(driver, 20).until(ExpectedConditions.elementToBeClickable(By.xpath
-                ("//a[contains(text(),'Communicate')]")));
+        new WebDriverWait(driver, 20).until(ExpectedConditions.elementToBeClickable(By.cssSelector
+                (".apply-online.fc-button.ng-scope")));
         PageFactory.initElements(driver,FCHubsPage.class);
         FCHubsPage.buttonCommunicate.click();
     }
 
-    public static void Requestinformationlink(String clink) {
+    public static void Requestinformationlink(String link) {
         driver = Hooks.driver;
-        WebElement Requestinformationlink = driver.findElement(By.xpath("//li[contains(text(), '" + clink + "')]"));
-            Requestinformationlink.click();
-            ArrayList<String> tabs = new ArrayList<String> (driver.getWindowHandles());
-            driver.switchTo().window(tabs.get(tabs.size() - 1));
-
-
+        PageFactory.initElements(driver, FCHubsPage.class);
+        new WebDriverWait(driver, 20).until(ExpectedConditions.elementToBeClickable(By.cssSelector
+                (".fc-dropdown__item.masthead-dropdown-menu__item.ng-scope")));
+        FCHubsPage.buttonRequestInfo.click();
+        ArrayList<String> tabs = new ArrayList<String> (driver.getWindowHandles());
+        driver.switchTo().window(tabs.get(tabs.size() - 1));
     }
-
 
     public static void VerifySendAMessageTextOnDialogBox( String text) {
         driver = Hooks.driver;
