@@ -110,10 +110,12 @@ public class Connections {
     public static void defaultMessage() throws InterruptedException {
         driver = Hooks.driver;
         PageFactory.initElements(driver, ConnectionsPage.class);
-        WebDriverWait wait = new WebDriverWait(driver, 5);
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("no-recommendations-header")));
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+//        WebDriverWait wait = new WebDriverWait(driver, 15);
+//        wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ng-binding")));
+        new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.className("fc-table")));
         String dataVerification = ConnectionsPage.textDefaultMessage.getText();
-        assertTrue("Error Verification!", dataVerification.contains("Your recommendation requests will show up here."));
+        assertTrue("Error Verification!", dataVerification.contains("You can request new letters of recommendation and track the most recent status of your requests here."));
 
     }
 
@@ -164,6 +166,7 @@ public class Connections {
         driver = Hooks.driver;
         PageFactory.initElements(driver, ConnectionsPage.class);
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.className("ng-binding")));
         assertTrue("The confirmation message is correct", driver.findElement(By.xpath("//span[@class='ng-binding'][contains(text(), '" + strText + "')]")).isDisplayed());
     }
 
