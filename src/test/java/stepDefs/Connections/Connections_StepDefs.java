@@ -1,6 +1,7 @@
 package stepDefs.Connections;
 
 import actions.Connections.Connections;
+import actions.FamilyConnection.FCDashboard;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
@@ -63,6 +64,29 @@ public class Connections_StepDefs {
     public void I_Click_On_Letters_Of_Recommendation() throws Throwable {
         Connections.clickOnLettersOfRecommendation();
     }
+
+    @When("^I cancel LOR for me$")
+    public void I_cancel_LOR_for_me() throws Throwable {
+        FCDashboard.ClickCollegesTab();
+        Connections.clickOnLettersOfRecommendation();
+        Connections.clickCancel();
+        Connections.clickConfirmCancel();
+    }
+
+
+
+    @When("^I add request selecting \"(.*)\"$")
+    public void I_add_request_selecting(String item) throws Throwable {
+        FCDashboard.ClickCollegesTab();
+        Connections.clickOnLettersOfRecommendation();
+        Connections.clickAddRequest();
+        Connections.selectTeacher(item);
+        Connections.selectOptionForCollege();
+        Connections.selectCollege();
+        Connections.clickSave();
+    }
+
+
 
     @Then("^I see the default message$")
     public void i_See_The_Default_Message() throws Throwable {

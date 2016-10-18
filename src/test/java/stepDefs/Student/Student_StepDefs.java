@@ -71,6 +71,25 @@ public class Student_StepDefs {
         College.ClickOnAddRequestButton();
     }
 
+    @When("^I add a student request with (.*) and (.*) and (.*)$")
+    public void I_add_a_request_with_teacher_and_application(String student, String teacher, String application) throws Throwable {
+
+        Student_Search.searchStudent(student);
+        College.ClickOnCollegesTab();
+        College.SelectTeacher(teacher);
+        College.SelectApplication(application);
+        College.ClickOnAddRequestButton();
+    }
+
+    @When("^I add a teacher request with (.*) and (.*) and (.*)$")
+    public void I_add_a_request_with_student_teacher_and_application(String student, String teacher, String application) throws Throwable {
+        Student_Search.searchStudent(student);
+        College.ClickOnCollegesTab();
+        College.SelectTeacher(teacher);
+        College.SelectApplication(application);
+        College.ClickOnAddRequestButton();
+    }
+
     @When("^I verify the number of LORs (.*) message$")
     public void I_verify_the_number_of_LORs(String message) throws Throwable {
         College.verifyLORsMessage(message);
