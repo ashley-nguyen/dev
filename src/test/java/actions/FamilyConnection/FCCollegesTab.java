@@ -38,9 +38,9 @@ public class FCCollegesTab {
     public static void ClickCollegeInCollegeLookup(String college) {
         driver = Hooks.driver;
         PageFactory.initElements(driver, FCCollegesPage.class);
-        WebElement collegeLink = driver.findElement(By.xpath("//table[@class='standard striped']/tbody/tr/td/a" +
-                "[contains(text(), '" + college + "')]"));
-        collegeLink.click();
+        if(FCCollegesPage.lnkSingleResultCollegeLookup.getText().contains(college)) {
+            FCCollegesPage.lnkSingleResultCollegeLookup.click();
+        }
     }
 
     public static void VerifyMessageCollegeLookup(String message) {

@@ -24,10 +24,10 @@ Feature:  As a student viewing new Hubs' Overview tab, I want to see contact inf
     Then Zip address should be "36849-0002" in Application Mailing Address
 
   Scenario: Phone is present in Admissions with correct data
-    Then Phone should be "(334)844-6425" in Admissions
+    Then Phone should be "(334) 844-6425" in Admissions
 
   Scenario: Fax is present in Admissions with correct data
-    Then Fax should be "(334)844-6425" in Admissions
+    Then Fax should be "" in Admissions
 
   Scenario: Financial Aid number is present in Admissions with correct data
     Then Financial Aid number should be "(334)844-4367" in Admissions
