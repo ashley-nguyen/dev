@@ -81,7 +81,7 @@ public class Student_StepDefs {
         College.ClickOnAddRequestButton();
     }
 
-    @When("^I add a teacher request with (.*) (.*) and (.*)$")
+    @When("^I add a teacher request with (.*) and (.*) and (.*)$")
     public void I_add_a_request_with_student_teacher_and_application(String student, String teacher, String application) throws Throwable {
         Student_Search.searchStudent(student);
         College.ClickOnCollegesTab();
