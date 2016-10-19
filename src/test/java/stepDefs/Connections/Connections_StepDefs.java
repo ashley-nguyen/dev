@@ -65,6 +65,14 @@ public class Connections_StepDefs {
         Connections.clickOnLettersOfRecommendation();
     }
 
+    @And("^I request new letters of recommendation$")
+    public void I_request_new_letters_of_recommendation() throws Throwable {
+        FCDashboard.ClickCollegesTab();
+        Connections.clickOnLettersOfRecommendation();
+    }
+
+
+
     @When("^I cancel LOR for me$")
     public void I_cancel_LOR_for_me() throws Throwable {
         FCDashboard.ClickCollegesTab();
@@ -86,7 +94,14 @@ public class Connections_StepDefs {
         Connections.clickSave();
     }
 
-
+    @When("^I adding request functionality selecting \"(.*)\"$")
+    public void I_adding_request_functionality_selecting(String item) throws Throwable {
+        Connections.clickAddRequest();
+        Connections.selectTeacher(item);
+        Connections.selectOptionForCollege();
+        Connections.selectCollege();
+        Connections.clickSave();
+    }
 
     @Then("^I see the default message$")
     public void i_See_The_Default_Message() throws Throwable {
@@ -127,6 +142,14 @@ public class Connections_StepDefs {
     public void iClickOnCancelButton() throws Throwable {
         Connections.clickCancel();
     }
+
+    @When("^I cancel LOR request$")
+    public void I_cancel_LOR_request() throws Throwable {
+        Connections.clickCancel();
+        Connections.clickConfirmCancel();
+    }
+
+
 
     @And("^I click on Confirm button$")
     public void iClickOnConfirmButton() throws Throwable {

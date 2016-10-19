@@ -4,25 +4,20 @@ Feature: Family Connection - LOR
   status of my requests here
 
   Background:
-    Given I log into family connection "rtsa" as "star" and "naviance"
-    When I click on the Colleges tab
-    And I click on letters of recommendation
+    Given I log into family connection "rtsa" as "stan.smith" and "stan01!"
+    When I request new letters of recommendation
 
   Scenario: Verify default message when there are no LOR's
     Then I see the default message
 
   Scenario: Verify Add Request functionality
-    When I click on Add Request
-    And I select a teacher  "Jane Teacher"
-    And I select a college
-    And I click save
-    Then I see my request in the list page with success message "Way to go! Jane Teacher will be notified of this recommendation request for 1 colleges."
+    When I adding request functionality selecting "Sejas, Frank"
+    Then I see my request in the list page with success message "Way to go! Frank Sejas will be notified of this recommendation request for"
 
   Scenario Outline: Verify cancelling LOR request
-    When I click on cancel button
-    And I click on Confirm button
+    When I cancel LOR request
     Then The request is cancelled and I verify confirmation message "<info1>" and cancel tooltip "<info2>" text
 
     Examples:
       |info1 | info2 |
-      |Success! Your request for Jane Teacher to write a letter of recommendation for Adelphi University has been cancelled. | Once a letter is no longer "Requested", the request can no longer be cancelled here. Please talk to your teacher or counselor, as they may be able to help.|
+      |Success! Your request for Frank Sejas to write a letter of recommendation for Adelphi University has been cancelled. | Once a letter is no longer "Requested", the request can no longer be cancelled here. Please talk to your teacher or counselor, as they may be able to help.|
