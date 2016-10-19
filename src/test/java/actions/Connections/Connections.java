@@ -93,7 +93,6 @@ public class Connections {
         driver.findElements(By.xpath("//*[@id=\"activematch_events_on-9\"]")).get(0).click();
         driver = Hooks.driver;
         PageFactory.initElements(driver, Connections.class);
-        //new WebDriverWait(Hooks.driver, 30).until(ExpectedConditions.presenceOfElementLocated(By.className("btn-container")));
         Boolean verifyAgreeButton = driver.findElement(By.xpath("//*[@id=\"active-match-events-modal\"]/div[3]/div")).isDisplayed();
         System.out.println("VaLOR" + verifyAgreeButton);
         assertTrue("Error Verification Buttons not found!", verifyAgreeButton);
@@ -129,8 +128,7 @@ public class Connections {
         driver = Hooks.driver;
         PageFactory.initElements(driver, ConnectionsPage.class);
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-        WebDriverWait wait = new WebDriverWait(driver, 9);
-        WebElement selectElement = wait.until(ExpectedConditions.visibilityOf(ConnectionsPage.divSelectTeacher));
+        WebElement selectElement = new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.visibilityOf(ConnectionsPage.divSelectTeacher));
         Select select = new Select(selectElement);
         select.selectByVisibleText(item);
     }
