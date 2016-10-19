@@ -8,29 +8,29 @@ Feature: As a student viewing new Hubs' Costs tab, I want to see a top bar with 
     When I open the HUBS page for "Auburn"
     Then I open the Costs tab
 
-  @test
   Scenario Outline: Average Total Cost is displayed with correct data for each income selected in the Costs Top bar
     Then Average Total Cost should be "<avgTotalCost>" when the income is "<income>" in Costs Top Bar
     Examples:
-    | income      | avgTotalCost  |
+    | income      | avgTotalCost |
     | $30 - $48K  | 16,272       |
-    | $48 - $75K  | 18,240        |
-    | $75 - $110K | 19,276        |
-    | > $110K     | 20,142        |
+    | $48 - $75K  | 18,240       |
+    | $75 - $110K | 19,276       |
+    | > $110K     | 20,142       |
     | $0 - $30K   | 13,191       |
 
   Scenario Outline: % Receiving Grant Aid is displayed with correct data for each Type of Aid selected in the Costs top bar
     Then % Aid should be "<aid>" when the Type of Aid is "<typeOfAid>"
     Examples:
     | typeOfAid            | aid |
-    | Grant                | 54  |
-    | Pell Grant           | 16  |
-    | Federal Student Loan | 35  |
+    | Grant                | 53  |
+    | Pell Grant           | 17  |
+    | Federal Student Loan | 36  |
 
   Scenario: Typical Monthly Loan Payment is displayed with correct data in the Costs top bar
-    Then Typical Monthly Loan Payment is "247/month" in the Costs top bar
+    Then Typical Monthly Loan Payment is "224/month" in the Costs top bar
 
   Scenario: Average Total Cost and % Receiving Grant Aid should display the date of the data
-    Then The text "from 2016" should be displayed under the following sections in Costs Top Bar:
-    | Average Total Cost    |
-    | % Receiving Grant Aid |
+    Then The date text should be displayed under the following sections in Costs Top Bar:
+    | Average Total Cost;from 2016           |
+    | % Receiving Grant Aid;from 2016        |
+    | Typical Monthly Loan Payment;from 2014 |

@@ -4,8 +4,11 @@ import cucumber.api.java.en.Then;
 import gherkin.lexer.Pa;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import pageObjects.FamilyConnection.FCHubsCostsTabPage;
 import stepDefs.Hooks;
 
@@ -21,40 +24,49 @@ public class FCHubsCostsTab {
 
     public static void VerifyStudentFacultyRatioStudiesCostsTopBar(String income, String avgTotalCost) {
         driver = Hooks.driver;
-        Select incomeDropDown = new Select(driver.findElement(By.xpath("//span[contains(text(), 'Income')]" +
-                "/following-sibling::select[1]")));
+        PageFactory.initElements(driver, FCHubsCostsTabPage.class);
+        new WebDriverWait(Hooks.driver, 20).until(ExpectedConditions.elementToBeClickable(By.cssSelector
+                ("select.costs-selector.ng-pristine.ng-valid.ng-not-empty[ng-selected=\"vm.myProfileCost.cost\"]")));
+        Select incomeDropDown = new Select(driver.findElement(By.cssSelector("select.costs-selector.ng-pristine" +
+                ".ng-valid.ng-not-empty[ng-selected=\"vm.myProfileCost.cost\"]")));
         incomeDropDown.selectByVisibleText(income);
-        assertTrue("The Average Total Cost is not correct", driver.findElement(By.xpath("//span[contains(text(), " +
-                "'Income')]/ancestor::div/div[contains(text(), '" + avgTotalCost + "')]")).isDisplayed());
+        assertTrue("The Average Total Cost is not correct", FCHubsCostsTabPage.labelCostsTabAvgNetPrice.getText()
+                .equals(avgTotalCost));
     }
 
     public static void VerifyAidPercent(String aidPercent, String typeOfAid) {
         driver = Hooks.driver;
-        Select typeOfAidDropDown = new Select(driver.findElement(By.xpath(" //span[contains(text(), 'Type of Aid')]" +
-                "/following-sibling::select[1]")));
+        PageFactory.initElements(driver, FCHubsCostsTabPage.class);
+        Select typeOfAidDropDown = new Select(driver.findElement(By.cssSelector("select[ng-model=\"vm.typeOfAid\"]")));
         typeOfAidDropDown.selectByVisibleText(typeOfAid);
-        assertTrue("The Aid Percent is not correct", driver.findElement(By.xpath("//span[contains(text(), " +
-                "'Type of Aid')]/ancestor::div/div[contains(text(), '" + aidPercent + "')]")).isDisplayed());
+        assertTrue("The Aid Percent is not correct", FCHubsCostsTabPage.labelCostsTabRecGrantAid.getText()
+                .equals(aidPercent));
     }
 
     public static void VerifyTipicalMonthlyLoanPayment(String loanPayment) {
         driver = Hooks.driver;
         PageFactory.initElements(driver, FCHubsCostsTabPage.class);
-        System.out.println("aqui " + FCHubsCostsTabPage.labelTypicalMonthlyLoanPayment.getText());
         assertTrue("The Typical Monthly Loan Payment number is not correct",
                 FCHubsCostsTabPage.labelTypicalMonthlyLoanPayment.getText().equals(loanPayment));
     }
 
-    public static void VerifyDateLabelsInCostsTopBar(String dateLabel, List<String> sections) {
+    public static void VerifyDateLabelsInCostsTopBar(List<String> sectionsAndDates) {
         driver = Hooks.driver;
         boolean result = false;
-        for (int i = 0; i < sections.size(); i++) {
-            if (driver.findElement(
-                    By.xpath("//div[text() = '" + sections.get(i) + "']/../div[text() = '" + dateLabel + "']")).isDisplayed()) {
+        WebElement dateElement = null;
+        PageFactory.initElements(driver, FCHubsCostsTabPage.class);
+        for (int i = 0; i < sectionsAndDates.size(); i++) {
+            String [] sectionAndDateElement = sectionsAndDates.get(i).split(";");
+            switch (sectionAndDateElement[0]) {
+                case "Average Total Cost": dateElement = FCHubsCostsTabPage.labelAvgNetPriceDate;
+                    break;
+                case "% Receiving Grant Aid": dateElement = FCHubsCostsTabPage.labelRecGrantAidDate;
+                    break;
+                case "Typical Monthly Loan Payment": dateElement = FCHubsCostsTabPage.labelTypicalMonthlyLoanPaymentDate;
+                    break;
+            }
+            if (dateElement.getText().equals(sectionAndDateElement[1])) {
                 result = true;
-            } else {
-                result = false;
-                break;
             }
         }
         assertTrue("The date label is not present or it displays incorrect data", result);
@@ -65,13 +77,15 @@ public class FCHubsCostsTab {
         boolean result = false;
         for(int i = 0; i < incomesAvgNetCost.size(); i++) {
             String[] listElement = incomesAvgNetCost.get(i).split(";");
-            if(driver.findElement(By.xpath("//div[@class = 'fc-grid__col fc-grid__col--xs-12 fc-grid__col--md-5']" +
-                    "/div/div[contains(text(), '" + listElement[0] + "')]" +
-                    "/following::div[1]")).getText().equals(listElement[1])) {
-                result = true;
-            } else {
-                result = false;
-                break;
+            if(driver.findElement(By.cssSelector(".fc-grid__col.fc-grid__col--xs-12.fc-grid__col--md-5 div.ng-scope" +
+                    ":nth-of-type(" + (i + 2) + ") div.costs-summary__specs")).getText().equals(listElement[0])) {
+                if (driver.findElement(By.cssSelector(".fc-grid__col.fc-grid__col--xs-12.fc-grid__col--md-5 div.ng-scope" +
+                        ":nth-of-type(" + (i + 2) + ") div.costs-summary__specs + div")).getText().equals(listElement[1])) {
+                    result = true;
+                } else {
+                    result = false;
+                    break;
+                }
             }
         }
         assertTrue("The Average Net Cost for the income level is incorrect", result);

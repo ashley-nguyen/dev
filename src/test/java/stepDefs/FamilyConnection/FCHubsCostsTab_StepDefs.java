@@ -35,9 +35,9 @@ public class FCHubsCostsTab_StepDefs {
         FCHubsCostsTab.VerifyTipicalMonthlyLoanPayment(loanPayment);
     }
 
-    @Then("^The text \"([^\"]*)\" should be displayed under the following sections in Costs Top Bar:$")
-    public void The_text_should_be_displayed_under_the_following_sections_in_Costs_Top_Bar(String dateLabel, List<String> sections) throws Throwable {
-        FCHubsCostsTab.VerifyDateLabelsInCostsTopBar(dateLabel, sections);
+    @Then("^The date text should be displayed under the following sections in Costs Top Bar:$")
+    public void The_date_text_should_be_displayed_under_the_following_sections_in_Costs_Top_Bar(List<String> sections) throws Throwable {
+        FCHubsCostsTab.VerifyDateLabelsInCostsTopBar(sections);
     }
 
     @Then("^The following Average Net Cost values should be correct for each income level:$")

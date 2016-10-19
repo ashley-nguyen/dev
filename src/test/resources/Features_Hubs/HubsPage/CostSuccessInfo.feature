@@ -24,7 +24,7 @@ Feature: As a student exploring a college, I want to see a top bar with high-lev
     Then Acceptance Rate should be "83" with correct data in the Information Top bar
 
   Scenario: Priority  is displayed with correct data in the Information Top bar
-    Then The Priority date should be "October" "15" in the Information Top bar
+    Then The Priority date should be "January" "15" in the Information Top bar
 
   Scenario: The user is redirected to Costs Module after clicking "More about Cost & Aid"
     When I click the link "More about Cost & Aid" in the Overview Info Top Bar

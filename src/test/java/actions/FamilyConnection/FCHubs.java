@@ -374,8 +374,8 @@ public class FCHubs {
     public static void VerifyPriorityDateInfoTopBar(String month, String priorityDate) {
         driver = Hooks.driver;
         PageFactory.initElements(driver, FCHubsPage.class);
-        boolean monthAssertion = FCHubsPage.labelOverviewTabDeadlineMonth.isDisplayed();
-        boolean dayAssertion = FCHubsPage.labelOverviewTabDeadlineDay.isDisplayed();
+        boolean monthAssertion = FCHubsPage.labelOverviewTabDeadlineMonth.getText().equals(month);
+        boolean dayAssertion = FCHubsPage.labelOverviewTabDeadlineDay.getText().equals(priorityDate);
         assertTrue("The Priority date is not correct", (monthAssertion && dayAssertion));
     }
 
