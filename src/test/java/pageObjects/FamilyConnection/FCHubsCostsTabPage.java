@@ -75,6 +75,21 @@ public class FCHubsCostsTabPage extends BaseClass {
 
     @FindBy(how = How.XPATH, using = "//ul[@class = 'costs-tuition__buttonGroup']/li[3]")
     public static WebElement RoomAndBoard;
+    @FindBy(how = How.CSS, using = ".fc-grid__row.fc-grid__row--xs-center.admissions div[ng-if=\"vm.averageNetPrices." +
+            "length > 0\"] div.hub-data-pod--money.hub-data-pod--overview.ng-binding")
+    public static WebElement labelCostsTabAvgNetPrice;
+    @FindBy(how = How.CSS, using = ".fc-grid__row.fc-grid__row--xs-center.admissions div[ng-if=\"vm.typeOfAid\"] " +
+            "div.hub-data-pod--percent")
+    public static WebElement labelCostsTabRecGrantAid;
+    @FindBy(how = How.CSS, using = ".fc-grid__row.fc-grid__row--xs-center.admissions div[ng-if=\"vm.averageNetPrices" +
+            ".length > 0\"] div.hub-data-pod__data-age.ng-binding")
+    public static WebElement labelAvgNetPriceDate;
+    @FindBy(how = How.CSS, using = ".fc-grid__row.fc-grid__row--xs-center.admissions div[ng-if=\"vm.typeOfAid\"] " +
+            "div.hub-data-pod__data-age")
+    public static WebElement labelRecGrantAidDate;
+    @FindBy(how = How.CSS, using = ".fc-grid__row.fc-grid__row--xs-center.admissions div[ng-if=\"vm.typeOfAid\"] " +
+            "div.hub-data-pod__data-age")
+    public static WebElement labelTypicalMonthlyLoanPaymentDate;
 
 
     public FCHubsCostsTabPage(WebDriver driver) { super(driver);    }
