@@ -1,7 +1,10 @@
 package actions.Setup;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import pageObjects.Setup.SetupPage;
 import stepDefs.Hooks;
 
@@ -47,8 +50,11 @@ public class DataImport {
        //
         driver.switchTo().activeElement().sendKeys(filePathStudentImport.toString());
         driver.switchTo().activeElement();
+        new WebDriverWait(Hooks.driver, 30).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//input[@name='uploadFile']")));
         SetupPage.btnContinue.click();
+        new WebDriverWait(Hooks.driver, 30).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//input[@value='Continue']")));
         SetupPage.btnContinueDataImport.click();
+        new WebDriverWait(Hooks.driver, 30).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//input[@name='submitMapping']")));
         SetupPage.btnContinueMatchFields.click();
     }
 }

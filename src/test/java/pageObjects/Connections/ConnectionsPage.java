@@ -37,7 +37,7 @@ public class ConnectionsPage extends BaseClass {
     @FindBy(how = How.LINK_TEXT, using = "letters of recommendation")
     public static WebElement lnkLettersOfRecommendation;
 
-    @FindBy(how = How.CLASS_NAME, using = "no-recommendations-header")
+    @FindBy(how = How.CLASS_NAME, using = "ng-binding")
     public static WebElement textDefaultMessage;
 
     @FindBy(how = How.LINK_TEXT, using = "Add Request")

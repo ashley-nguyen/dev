@@ -93,7 +93,6 @@ public class Connections {
         driver.findElements(By.xpath("//*[@id=\"activematch_events_on-9\"]")).get(0).click();
         driver = Hooks.driver;
         PageFactory.initElements(driver, Connections.class);
-        //new WebDriverWait(Hooks.driver, 30).until(ExpectedConditions.presenceOfElementLocated(By.className("btn-container")));
         Boolean verifyAgreeButton = driver.findElement(By.xpath("//*[@id=\"active-match-events-modal\"]/div[3]/div")).isDisplayed();
         System.out.println("VaLOR" + verifyAgreeButton);
         assertTrue("Error Verification Buttons not found!", verifyAgreeButton);
@@ -110,10 +109,10 @@ public class Connections {
     public static void defaultMessage() throws InterruptedException {
         driver = Hooks.driver;
         PageFactory.initElements(driver, ConnectionsPage.class);
-        WebDriverWait wait = new WebDriverWait(driver, 5);
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("no-recommendations-header")));
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.className("fc-table")));
         String dataVerification = ConnectionsPage.textDefaultMessage.getText();
-        assertTrue("Error Verification!", dataVerification.contains("Your recommendation requests will show up here."));
+        assertTrue("Error Verification!", dataVerification.contains("You can request new letters of recommendation and track the most recent status of your requests here."));
 
     }
 
@@ -129,8 +128,7 @@ public class Connections {
         driver = Hooks.driver;
         PageFactory.initElements(driver, ConnectionsPage.class);
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-        WebDriverWait wait = new WebDriverWait(driver, 9);
-        WebElement selectElement = wait.until(ExpectedConditions.visibilityOf(ConnectionsPage.divSelectTeacher));
+        WebElement selectElement = new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.visibilityOf(ConnectionsPage.divSelectTeacher));
         Select select = new Select(selectElement);
         select.selectByVisibleText(item);
     }
@@ -164,6 +162,7 @@ public class Connections {
         driver = Hooks.driver;
         PageFactory.initElements(driver, ConnectionsPage.class);
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.className("ng-binding")));
         assertTrue("The confirmation message is correct", driver.findElement(By.xpath("//span[@class='ng-binding'][contains(text(), '" + strText + "')]")).isDisplayed());
     }
 
