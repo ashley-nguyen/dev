@@ -27,10 +27,10 @@ Feature:  As a student viewing new Hubs' Student Life tab, I want to see a schoo
     Then The percentage for "<gender>" is "<value>" in Gender Data
     Examples:
     | gender | value                |
-    | Male   | 51%                  |
     | Female | 49%                  |
+    | Male   | 51%                  |
 
-  Scenario: The Total Students number in Age is displayed withb correct data
+  Scenario: The Total Students number in Age is displayed with correct data
     Then The Total Students number should be "25,912" in Age
 
   Scenario Outline: The percentages of Age are displayed with correct data

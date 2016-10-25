@@ -11,6 +11,7 @@ Feature:  As a student viewing new Hubs' Student Life tab, I want to see a schoo
   Scenario: The Available Organizations are displayed with correct data
     When I open the "Organizations" tab in Student Organizations and Services
     Then The following Available Organizations are displayed:
+    | Academic Clubs             |
     | Academic Frat./Sor.        |
     | Business                   |
     | Choir                      |
@@ -76,7 +77,7 @@ Feature:  As a student viewing new Hubs' Student Life tab, I want to see a schoo
     | Cross Country,II,empty,NCAA   |
     | Lacrosse,II,empty,NCAA        |
     | Swimming,II,empty,NCAA        |
-  
+
   Scenario: The Available Sports for Co-Ed are displayed with correct data
     When I open the "Athletics" tab in Student Organizations and Services
     And I open the "Co-Ed" section in Athletics

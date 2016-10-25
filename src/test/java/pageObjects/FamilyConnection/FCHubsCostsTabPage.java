@@ -19,7 +19,7 @@ public class FCHubsCostsTabPage extends BaseClass {
     public static WebElement InStateTuitionandFeeforThisCollege;
     @FindBy(how = How.CSS, using = "div.fc-grid__col.fc-grid__col--xs-12.costs-tuition-graph.ng-scope div:nth-child(2) " +
             "div.costs-tuition-graph__bar__top span")
-    public static WebElement OutofStateTuitionFeesForAverageNavianceColleges;
+    public static WebElement InStateTuitionFeesForAverageNavianceColleges;
     @FindBy(how = How.CSS, using = ".costs-tuition-graph__costlabel.costs-tuition-graph__costlabel--sky.ng-binding")
     public static WebElement OutofStateInStateTuitionFeesForThisCollege;
     @FindBy(how = How.CSS, using = "div.fc-grid__col.fc-grid__col--xs-12.costs-tuition-graph.ng-scope " +
@@ -28,49 +28,20 @@ public class FCHubsCostsTabPage extends BaseClass {
     @FindBy(how = How.CSS, using = ".fc-grid__row.costs-tuition-button.fc-button[ng-class=" +
             "\"{'costs-tuition-button--active': vm.showTuition }\"]")
     public static WebElement Tuition;
-    @FindBy(how = How.XPATH, using = "//div[@class='costs-tuition-graph__bar__top']/span[text()='$16,456']")
-    public static WebElement InStateTuitionAverageNavianceCollege;
-
-    @FindBy(how = How.XPATH, using = "//div[@class='costs-tuition-graph__bar__top']/span[@class='costs-tuition-graph__" +
-            "costlabel costs-tuition-graph__costlabel--sky ng-binding']")
-    public static WebElement OutStateTuitionThisCollege;
-
-    @FindBy(how = How.XPATH, using = "//div[@class='costs-tuition-graph__bar__top']/span[text()='$18,834']")
-    public static WebElement OutStateTuitionAverageNavianceCollege;
-
-    @FindBy(how = How.XPATH, using = "//ul[@class = 'costs-tuition__buttonGroup']/li[4]")
+    @FindBy(how = How.CSS, using = "li[ng-click=\"vm.displayTuitionAndFees()\"]")
     public static WebElement TotalFees;
-
-    @FindBy(how = How.XPATH, using = "//div[@class='costs-tuition-graph__bar__top']/span[@class='costs-tuition-graph__" +
-            "costlabel costs-tuition-graph__costlabel--lime ng-binding']")
-    public static WebElement InStateTotalFeesforThisCollege;
-
-    @FindBy(how = How.XPATH, using = "//div[@class='costs-tuition-graph__bar__top']/span[text()='$8,095']")
-    public static WebElement InStateTotalFeesAverageNavianceCollege;
-
-
-    @FindBy(how = How.XPATH, using = "//div[@class='costs-tuition-graph__bar__top']/span[@class='costs-tuition-graph__" +
-            "costlabel costs-tuition-graph__costlabel--sky ng-binding']")
-    public static WebElement OutStateTotalFeesforThisCollege;
-
-    @FindBy(how = How.XPATH, using = "//div[@class='costs-tuition-graph__bar__top']/span[text()='$8,140']")
-    public static WebElement OutStateTotalFeesforAverageNavianceCollege;
-
-    @FindBy(how = How.XPATH, using = "//ul[@class = 'costs-tuition__buttonGroup']/li[5]")
+    @FindBy(how = How.CSS, using = "li[ng-click=\"vm.displayTuitionPerHour()\"]")
     public static WebElement TuitionPerCreditHour;
-
-    @FindBy(how = How.XPATH, using = "//div[@class='costs-tuition-graph__bar__top']/span[@class='costs-tuition-graph__" +
-            "costlabel costs-tuition-graph__costlabel--lime ng-binding']")
+    @FindBy(how = How.CSS, using = ".costs-tuition-graph__costlabel.costs-tuition-graph__costlabel--lime.ng-binding")
     public static WebElement TuitionPerCreditHourThisCollege;
 
-    @FindBy(how = How.XPATH, using = "//div[@class='costs-tuition-graph__bar__top']/span[text()='$615']")
+    @FindBy(how = How.CSS, using = ".costs-tuition-graph__costlabel.costs-tuition-graph__costlabel--grey.ng-binding")
     public static WebElement TuitionPerCreditHourAverageNavianceCollege;
 
-    @FindBy(how = How.XPATH, using = "//div[@class='costs-tuition-graph__bar__top']/span[@class='costs-tuition-graph__" +
-            "costlabel costs-tuition-graph__costlabel--lime ng-binding']")
+    @FindBy(how = How.CSS, using = ".costs-tuition-graph__costlabel.costs-tuition-graph__costlabel--lime.ng-binding")
     public static WebElement RoomAndBoardThisCollege;
 
-    @FindBy(how = How.XPATH, using = "//div[@class='costs-tuition-graph__bar__top']/span[text()='$8,864']")
+    @FindBy(how = How.XPATH, using = ".costs-tuition-graph__costlabel.costs-tuition-graph__costlabel--grey.ng-binding")
     public static WebElement RoomAndBoardAverageNavianceCollege;
 
     @FindBy(how = How.XPATH, using = "//ul[@class = 'costs-tuition__buttonGroup']/li[3]")

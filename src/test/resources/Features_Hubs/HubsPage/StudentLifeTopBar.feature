@@ -24,7 +24,7 @@ Feature:  As a student viewing new Hubs' Student Life tab, I want to see a top b
     Then The "NEAREST CITY" should be "Auburn" in Student Life Top Bar
 
   Scenario: The Distance From Your Highschool is displayed with correct data
-    Then The "DISTANCE FROM YOUR HIGH SCHOOL" should be "677 miles" in Student Life Top Bar
+    Then The "DISTANCE FROM YOUR HIGH SCHOOL" should be "N/A" in Student Life Top Bar
 
   Scenario: The Percent Of Students Living On Campus is displayed with correct data
     Then The "PERCENT OF STUDENTS LIVING ON CAMPUS" should be "21" in Student Life Top Bar
