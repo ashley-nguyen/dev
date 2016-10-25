@@ -15,7 +15,7 @@ Feature: As a student, I want to see information about the school's programs of 
     | Accounting |
 
   Scenario: The programs for all degrees are displayed when All is selected
-    When I click "All" in Majors Offered
+    When I open "All" in Majors Offered
     Then The displayed programs should be:
     # : Will update these values after the IPEDS 2015-2016 run . We will have to manually verify it for general launch
 
@@ -69,12 +69,12 @@ Feature: As a student, I want to see information about the school's programs of 
     | Visual and Performing Arts, General             | Visual and Performing Arts, Other                         |
 
   Scenario: The programs with a Masters degree offering are displayed
-    When I click "Masters" in Majors Offered
+    When I open "Masters" in Majors Offered
     Then The displayed programs should be:
     | Health Teacher Education |
   @test
   Scenario: The programs with a Associates degree offering are displayed
-    When I click "Associates" in Majors Offered
+    When I open "Associates" in Majors Offered
     Then The displayed programs should be:
     | Crisis/Emergency/Disaster Management           |
     | Liberal Arts and Sciences/Liberal Studies |
