@@ -94,144 +94,47 @@ public class FCHubsCostsTab {
     public static void VerifyInStateTuitionAndFees(String thisCollege, String averageNavianceColleges) {
         driver = Hooks.driver;
         PageFactory.initElements(driver, FCHubsCostsTabPage.class);
-        boolean TuitionandFeeInStatevalueThisCollege = false;
-        boolean TuitionandFeeInStateValueAverageNavianceCollege = false;
-        boolean InStateTuitionAndFees = false;
+        boolean tuitionAndFeesInStateValueThisCollege = false;
+        boolean tuitionAndFeesInStateValueAverageNavianceCollege = false;
+        boolean inStateTuitionAndFees = false;
 
         if (FCHubsCostsTabPage.InStateTuitionandFeeforThisCollege.getText().equals(thisCollege)) {
-            TuitionandFeeInStatevalueThisCollege = true;
+            tuitionAndFeesInStateValueThisCollege = true;
         }
 
-        if (FCHubsCostsTabPage.OutofStateTuitionFeesForAverageNavianceColleges.getText().equals(averageNavianceColleges)) {
-            TuitionandFeeInStateValueAverageNavianceCollege = true;
-        }
-        if (TuitionandFeeInStatevalueThisCollege == true && TuitionandFeeInStateValueAverageNavianceCollege == true)
-
-        {
-            InStateTuitionAndFees = true;
+        if (FCHubsCostsTabPage.InStateTuitionFeesForAverageNavianceColleges.getText().equals(averageNavianceColleges)) {
+            tuitionAndFeesInStateValueAverageNavianceCollege = true;
         }
 
-            assertTrue(" In State Tuition and Fee for This College and Average Naviance College is not correct", InStateTuitionAndFees);
+        if (tuitionAndFeesInStateValueThisCollege && tuitionAndFeesInStateValueAverageNavianceCollege) {
+            inStateTuitionAndFees = true;
         }
+
+        assertTrue(" In State Tuition and Fee for This College and Average Naviance College is not correct",
+                inStateTuitionAndFees);
+    }
 
     public static void VerifyOutStateTuitionAndFees(String outStateThisCollege, String outStateAverageNavianceCollege) {
         driver = Hooks.driver;
         PageFactory.initElements(driver,FCHubsCostsTabPage.class);
-        boolean TuitionandFeeOutStatevalueThisCollege = false;
-        boolean TuitionandFeeOutStateValueAverageNavianceCollege = false;
-        boolean OutStateTuitionaAndFees = false;
+        boolean tuitionAndFeesOutStateValueThisCollege = false;
+        boolean tuitionAndFeesOutStateValueAverageNavianceCollege = false;
+        boolean outStateTuitionaAndFees = false;
 
-        if (FCHubsCostsTabPage.OutofStateInStateTuitionFeesForThisCollege.getText().equals(outStateThisCollege));
-        {
-            TuitionandFeeOutStatevalueThisCollege = true;
-
+        if (FCHubsCostsTabPage.OutofStateInStateTuitionFeesForThisCollege.getText().equals(outStateThisCollege)) {
+            tuitionAndFeesOutStateValueThisCollege = true;
         }
 
-        if (FCHubsCostsTabPage.OutofStateInStateTuitionFeesForAverageNavianceColleges.getText().equals(outStateAverageNavianceCollege))
-
-        {
-             TuitionandFeeOutStateValueAverageNavianceCollege = true;
-        }
-         if (TuitionandFeeOutStatevalueThisCollege == true && TuitionandFeeOutStateValueAverageNavianceCollege == true)
-         {
-               OutStateTuitionaAndFees = true;
-         }
-            assertTrue(" Out State Tuition Fee for this college and Average Naviance College is not correct", OutStateTuitionaAndFees);
-    }
-
-    public static void VerifyInStateTutionForThisColleg(String tuitionInStateThisCollege, String tutionInStateAverageNavianceCollege)
-    {
-        driver =  Hooks.driver;
-        PageFactory.initElements(driver,FCHubsCostsTabPage.class);
-        boolean Tuition_InStateThisCollege = false;
-        boolean Tuition_InStateAverageNavianceCollege = false;
-        boolean InStateTuition = false;
-
-        if (FCHubsCostsTabPage.InStateTuitionandFeeforThisCollege.getText().equals(tuitionInStateThisCollege));
-        {
-            Tuition_InStateThisCollege = true;
-
-        }
-        if (FCHubsCostsTabPage.InStateTuitionAverageNavianceCollege.getText().equals(tutionInStateAverageNavianceCollege))
-        {
-            Tuition_InStateAverageNavianceCollege = true;
-        }
-        if (Tuition_InStateThisCollege == true && Tuition_InStateAverageNavianceCollege == true);
-        {
-            InStateTuition = true;
-        }
-        assertTrue("In State Tuition for This College and Average Naviance College is not correct", InStateTuition);
-    }
-
-    public static void VerifyOutStateTutionForAverageNavianceCollege(String tuitionOutStateThisCollege, String tuitionOutStateAverageNavianceCollege)
-    {
-         driver = Hooks.driver;
-         PageFactory.initElements(driver,FCHubsCostsTabPage.class);
-         boolean Tuition_OutStateThisCollege = false;
-         boolean Tuition_OutStateAverageNavianceCollege = false;
-         boolean OutStateTuition = false;
-
-        if(FCHubsCostsTabPage.OutStateTuitionThisCollege.getText().equals(tuitionOutStateThisCollege))
-        {
-            Tuition_OutStateThisCollege = true;
+        if (FCHubsCostsTabPage.OutofStateInStateTuitionFeesForAverageNavianceColleges.getText()
+                .equals(outStateAverageNavianceCollege)) {
+            tuitionAndFeesOutStateValueAverageNavianceCollege = true;
         }
 
-        if (FCHubsCostsTabPage.OutStateTuitionAverageNavianceCollege.getText().equals(tuitionOutStateAverageNavianceCollege))
-        {
-            Tuition_OutStateThisCollege = true;
+        if (tuitionAndFeesOutStateValueThisCollege && tuitionAndFeesOutStateValueAverageNavianceCollege) {
+            outStateTuitionaAndFees = true;
         }
-
-        if(Tuition_OutStateThisCollege == true && Tuition_OutStateAverageNavianceCollege == true )
-        {
-             OutStateTuition = true;
-        }
-        assertTrue("Out State Tuition for This College and Average Naviance College is not correct", OutStateTuition);
-    }
-
-    public static void VerifyInStateTotalFeesForThisCollege(String totalfeesinstateThisCollege, String totalfeesinstateAverageNavianceCollege) {
-
-        driver = Hooks.driver;
-        PageFactory.initElements(driver,FCHubsCostsTabPage.class);
-        boolean TotalFees_InStateThisCollege = false;
-        boolean TotalFees_InStateAverageNavianceCollege = false;
-        boolean InStateTotalFees = false;
-
-        if(FCHubsCostsTabPage.InStateTotalFeesforThisCollege.getText().equals(totalfeesinstateThisCollege))
-        {
-            TotalFees_InStateThisCollege = true;
-        }
-        if (FCHubsCostsTabPage.InStateTotalFeesAverageNavianceCollege.getText().equals(totalfeesinstateAverageNavianceCollege))
-        {
-            TotalFees_InStateAverageNavianceCollege = true;
-
-        }
-        if (TotalFees_InStateThisCollege == true && TotalFees_InStateAverageNavianceCollege == true)
-        {
-            InStateTotalFees = true;
-        }
-    }
-
-    public static void verifyOutStateTotalFeesThisCollege(String totalfeesoutstateThisCollege, String totalfeesoutstateAverageNavianceCollege) {
-        driver= Hooks.driver;
-        PageFactory.initElements(driver,FCHubsCostsTabPage.class);
-        boolean TotalFees_OutStateThisCollege = false;
-        boolean TotalFees_OutStateAverageNavianceCollege = false;
-        boolean OutStateTotalFees = false;
-
-        if (FCHubsCostsTabPage.OutStateTotalFeesforThisCollege.getText().equals(totalfeesoutstateThisCollege))
-        {
-            TotalFees_OutStateThisCollege = true;
-        }
-
-        if (FCHubsCostsTabPage.OutStateTotalFeesforAverageNavianceCollege.getText().equals(totalfeesoutstateAverageNavianceCollege))
-        {
-            TotalFees_OutStateAverageNavianceCollege = true;
-        }
-
-        if (TotalFees_OutStateThisCollege == true && TotalFees_OutStateAverageNavianceCollege == true)
-        {
-            OutStateTotalFees = true;
-        }
+        assertTrue(" Out State Tuition Fee for this college and Average Naviance College is not correct",
+                outStateTuitionaAndFees);
     }
 
 
@@ -242,20 +145,19 @@ public class FCHubsCostsTab {
         boolean TuitionPerCreditHour_AverageNavianceCollege = false;
         boolean TuitionPerCreditHour = false;
 
-        if (FCHubsCostsTabPage.TuitionPerCreditHourThisCollege.getText().equals(creditperhourThisCollege));
-        {
+        if (FCHubsCostsTabPage.TuitionPerCreditHourThisCollege.getText().equals(creditperhourThisCollege)) {
             TuitionPerCreditHour_ThisCollege = true;
         }
 
-        if (FCHubsCostsTabPage.TuitionPerCreditHourAverageNavianceCollege.getText().equals(creditperhourAverageNavianceCollege));
-        {
+        if (FCHubsCostsTabPage.TuitionPerCreditHourAverageNavianceCollege.getText()
+                .equals(creditperhourAverageNavianceCollege)) {
             TuitionPerCreditHour_AverageNavianceCollege = true;
         }
 
-        if(TuitionPerCreditHour_ThisCollege == true && TuitionPerCreditHour_AverageNavianceCollege == true)
-        {
+        if(TuitionPerCreditHour_ThisCollege && TuitionPerCreditHour_AverageNavianceCollege) {
             TuitionPerCreditHour = true;
         }
+        assertTrue("The tuition per credit hour is not correct", TuitionPerCreditHour);
     }
 
     public static void VerifyRoomAndBoard(String roomandboardThisCollege, String roomandboardAverageNavianceCollege) {
@@ -265,19 +167,42 @@ public class FCHubsCostsTab {
         boolean RoomAndBaord_AverageNavinaceCollege = false;
         boolean RoomAndBoard = false;
 
-        if (FCHubsCostsTabPage.RoomAndBoardThisCollege.getText().equals(roomandboardThisCollege));
-        {
+        if (FCHubsCostsTabPage.RoomAndBoardThisCollege.getText().equals(roomandboardThisCollege)) {
             RoomAndBoard_ThisCollege = true;
         }
 
-        if (FCHubsCostsTabPage.RoomAndBoardAverageNavianceCollege.getText().equals(roomandboardAverageNavianceCollege))
-        {
+        if (FCHubsCostsTabPage.RoomAndBoardAverageNavianceCollege.getText().equals(roomandboardAverageNavianceCollege)) {
             RoomAndBaord_AverageNavinaceCollege = true;
         }
 
-        if (RoomAndBoard_ThisCollege == true && RoomAndBaord_AverageNavinaceCollege == true)
+        if (RoomAndBoard_ThisCollege && RoomAndBaord_AverageNavinaceCollege)
         {
             RoomAndBoard = true;
         }
+        assertTrue("The Room and Board fees are not correct", RoomAndBoard);
+    }
+
+    public static void ClickTuition() {
+        driver = Hooks.driver;
+        PageFactory.initElements(driver, FCHubsCostsTabPage.class);
+        FCHubsCostsTabPage.Tuition.click();
+    }
+
+    public static void ClickTotalFees() {
+        driver = Hooks.driver;
+        PageFactory.initElements(driver, FCHubsCostsTabPage.class);
+        FCHubsCostsTabPage.TotalFees.click();
+    }
+
+    public static void ClickTuitionPerCreditHour() {
+        driver = Hooks.driver;
+        PageFactory.initElements(driver,FCHubsCostsTabPage.class);
+        FCHubsCostsTabPage.TuitionPerCreditHour.click();
+    }
+
+    public static void ClickRoomAndBoard() {
+        driver = Hooks.driver;
+        PageFactory.initElements(driver, FCHubsCostsTabPage.class);
+        FCHubsCostsTabPage.RoomAndBoard.click();
     }
 }

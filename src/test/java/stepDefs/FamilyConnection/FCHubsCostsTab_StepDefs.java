@@ -21,7 +21,8 @@ public class FCHubsCostsTab_StepDefs {
     public static WebDriver driver;
 
     @Then("^Average Total Cost should be \"([^\"]*)\" when the income is \"([^\"]*)\" in Costs Top Bar$")
-    public void Average_Total_Cost_should_be_when_the_income_is_in_Costs_Top_Bar(String avgTotalCost, String income) throws Throwable {
+    public void Average_Total_Cost_should_be_when_the_income_is_in_Costs_Top_Bar(String avgTotalCost, String income)
+            throws Throwable {
         FCHubsCostsTab.VerifyStudentFacultyRatioStudiesCostsTopBar(income, avgTotalCost);
     }
 
@@ -36,88 +37,83 @@ public class FCHubsCostsTab_StepDefs {
     }
 
     @Then("^The date text should be displayed under the following sections in Costs Top Bar:$")
-    public void The_date_text_should_be_displayed_under_the_following_sections_in_Costs_Top_Bar(List<String> sections) throws Throwable {
+    public void The_date_text_should_be_displayed_under_the_following_sections_in_Costs_Top_Bar(List<String> sections)
+            throws Throwable {
         FCHubsCostsTab.VerifyDateLabelsInCostsTopBar(sections);
     }
 
     @Then("^The following Average Net Cost values should be correct for each income level:$")
-    public void The_following_Average_Net_Cost_values_should_be_correct_for_each_income_level(List<String> incomesAvgNetCost) throws Throwable {
+    public void The_following_Average_Net_Cost_values_should_be_correct_for_each_income_level
+            (List<String> incomesAvgNetCost) throws Throwable {
         FCHubsCostsTab.VerifyAvgNetCostList(incomesAvgNetCost);
     }
 
     @Then("^Tuition and Fee for this college is \"([^\"]*)\" And AverageNavianceColleges is \"([^\"]*)\"  displayed$")
-    public void tuitionAndFee_For_ThisCollegeIs_And_AverageNavianceColleges_Is_Displayed(String thisCollege, String averageNavianceColleges) throws Throwable {
+    public void tuitionAndFee_For_ThisCollegeIs_And_AverageNavianceColleges_Is_Displayed
+            (String thisCollege, String averageNavianceColleges) throws Throwable {
         FCHubsCostsTab.VerifyInStateTuitionAndFees(thisCollege,averageNavianceColleges);
-
     }
 
-
-    @Then("^Out of State Tuition and Fee for ThisCollege \"([^\"]*)\" and AverageNavianceColleges \"([^\"]*)\" is displayed$")
-    public void outOfState_TuitionAndFee_For_ThisCollegeis_And_AverageNavianceColleges_Is_Displayed(String outStateThisCollege, String outStateAverageNavianceCollege) throws Throwable {
+    @Then("^Out of State Tuition and Fee for ThisCollege \"([^\"]*)\" and AverageNavianceColleges \"([^\"]*)\" " +
+            "is displayed$")
+    public void outOfState_TuitionAndFee_For_ThisCollegeis_And_AverageNavianceColleges_Is_Displayed
+            (String outStateThisCollege, String outStateAverageNavianceCollege) throws Throwable {
         FCHubsCostsTab.VerifyOutStateTuitionAndFees(outStateThisCollege,outStateAverageNavianceCollege);
-
     }
 
-    @When("^Click on link Tuition$")
-    public void clickOnLinkTuition() throws Throwable {
-        driver = Hooks.driver;
-        PageFactory.initElements(driver, FCHubsCostsTabPage.class);
-        FCHubsCostsTabPage.Tuition.click();
+    @When("^I open Tuition$")
+    public void I_open_tuition() throws Throwable {
+        FCHubsCostsTab.ClickTuition();
     }
 
     @Then("^Display In-State tuition for This College \"([^\"]*)\" and AverageNavianceColleges is \"([^\"]*)\"$")
-    public void display_InState_Tuition_For_ThisCollege_And_AverageNavianceColleges_Is(String tuitionInStateThisCollege, String tutionInStateAverageNavianceCollege) throws Throwable {
-        FCHubsCostsTab.VerifyInStateTutionForThisColleg(tuitionInStateThisCollege, tutionInStateAverageNavianceCollege);
+    public void display_InState_Tuition_For_ThisCollege_And_AverageNavianceColleges_Is
+            (String tuitionInStateThisCollege, String tutionInStateAverageNavianceCollege) throws Throwable {
+        FCHubsCostsTab.VerifyInStateTuitionAndFees(tuitionInStateThisCollege, tutionInStateAverageNavianceCollege);
     }
 
     @Then("^Display Out of state tuition for ThisCollege \"([^\"]*)\" and AverageNavianceColleges is \"([^\"]*)\"$")
-    public void display_OutOfState_Tuition_For_ThisCollege_And_AverageNavianceColleges_Is(String tuitionOutStateThisCollege, String tuitionOutStateAverageNavianceCollege) throws Throwable {
-        FCHubsCostsTab.VerifyOutStateTutionForAverageNavianceCollege(tuitionOutStateThisCollege,tuitionOutStateAverageNavianceCollege);
-
+    public void display_OutOfState_Tuition_For_ThisCollege_And_AverageNavianceColleges_Is
+            (String tuitionOutStateThisCollege, String tuitionOutStateAverageNavianceCollege) throws Throwable {
+        FCHubsCostsTab.VerifyOutStateTuitionAndFees(tuitionOutStateThisCollege,tuitionOutStateAverageNavianceCollege);
     }
 
-    @When("^Click on link Total Fees$")
-    public void clickOnLinkTotalFees() throws Throwable {
-          driver = Hooks.driver;
-          PageFactory.initElements(driver, FCHubsCostsTabPage.class);
-          FCHubsCostsTabPage.TotalFees.click();
+    @When("^I open Total Fees$")
+    public void I_open_Total_Fees() throws Throwable {
+        FCHubsCostsTab.ClickTotalFees();
     }
 
     @Then("^Display In state Total Fee for ThisCollege is \"([^\"]*)\" and AverageNavianceColleges is \"([^\"]*)\"$")
-    public void display_InState_TotalFee_For_ThisCollegeIs_And_AverageNavianceCollegesIs(String totalfeesinstateThisCollege, String totalfeesinstateAverageNavianceCollege) throws Throwable {
-     FCHubsCostsTab.VerifyInStateTotalFeesForThisCollege(totalfeesinstateThisCollege,totalfeesinstateAverageNavianceCollege);
-
+    public void display_InState_TotalFee_For_ThisCollegeIs_And_AverageNavianceCollegesIs
+            (String totalfeesinstateThisCollege, String totalfeesinstateAverageNavianceCollege) throws Throwable {
+        FCHubsCostsTab.VerifyInStateTuitionAndFees(totalfeesinstateThisCollege,totalfeesinstateAverageNavianceCollege);
     }
-
 
     @Then("^Display Out of State Total Fees for ThisCollege is \"([^\"]*)\" and AverageNavianceColleges is \"([^\"]*)\"$")
-    public void display_OutOfState_TotalFees_ForThisCollegeIs_And_AverageNavianceCollegesIs(String totalfeesoutstateThisCollege, String totalfeesoutstateAverageNavianceCollege) throws Throwable {
-        FCHubsCostsTab.verifyOutStateTotalFeesThisCollege(totalfeesoutstateThisCollege,totalfeesoutstateAverageNavianceCollege);
+    public void display_OutOfState_TotalFees_ForThisCollegeIs_And_AverageNavianceCollegesIs
+            (String totalfeesoutstateThisCollege, String totalfeesoutstateAverageNavianceCollege) throws Throwable {
+        FCHubsCostsTab.VerifyOutStateTuitionAndFees(totalfeesoutstateThisCollege,totalfeesoutstateAverageNavianceCollege);
     }
 
-    @When("^Click on link Tuition Per Credit Hour$")
-    public void clickOnLinkTuitionPerCreditHour() throws Throwable {
-        driver = Hooks.driver;
-        PageFactory.initElements(driver,FCHubsCostsTabPage.class);
-        FCHubsCostsTabPage.TuitionPerCreditHour.click();
-
+    @When("^I open Tuition Per Credit Hour$")
+    public void I_open_tuition_Per_Credit_Hour() throws Throwable {
+        FCHubsCostsTab.ClickTuitionPerCreditHour();
     }
-
 
     @Then("^Display Tuition Per Credit Hour for ThisCollege is \"([^\"]*)\" and AverageNavianceColleges is \"([^\"]*)\"$")
-    public void display_TuitionPerCreditHour_ForThisCollegeIs_And_AverageNavianceCollegesIs(String creditperhourThisCollege, String creditperhourAverageNavianceCollege) throws Throwable {
+    public void display_TuitionPerCreditHour_ForThisCollegeIs_And_AverageNavianceCollegesIs
+            (String creditperhourThisCollege, String creditperhourAverageNavianceCollege) throws Throwable {
         FCHubsCostsTab.VerifyTuitionPerCreditHour(creditperhourThisCollege,creditperhourAverageNavianceCollege);
     }
 
-    @When("^Click on link Room and Board$")
-    public void clickOnLinkRoomAndBoard() throws Throwable {
-        driver = Hooks.driver;
-        PageFactory.initElements(driver, FCHubsCostsTabPage.class);
-        FCHubsCostsTabPage.RoomAndBoard.click();
+    @When("^I open Room and Board$")
+    public void I_open_Room_and_Board() throws Throwable {
+        FCHubsCostsTab.ClickRoomAndBoard();
     }
 
     @Then("^Display Room and Board Amount for ThisCollege is \"([^\"]*)\" and AverageNavianceColleges \"([^\"]*)\"$")
-    public void display_RoomAndBoardAmount_ForThisCollegeIs_And_AverageNavianceColleges(String roomandboardThisCollege, String roomandboardAverageNavianceCollege) throws Throwable {
+    public void display_RoomAndBoardAmount_ForThisCollegeIs_And_AverageNavianceColleges
+            (String roomandboardThisCollege, String roomandboardAverageNavianceCollege) throws Throwable {
        FCHubsCostsTab.VerifyRoomAndBoard(roomandboardThisCollege,roomandboardAverageNavianceCollege);
     }
 }

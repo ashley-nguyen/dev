@@ -2,6 +2,8 @@ package actions.FamilyConnection;
 
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import pageObjects.FamilyConnection.FCHubsStudentLifeTabPage;
 import stepDefs.Hooks;
 
@@ -42,9 +44,21 @@ public class FCHubsStudentLifeTab {
 
     public static void VerifyStudentLifeTopBarValues(String sectionName, String value) {
         driver = Hooks.driver;
-        WebElement section = driver.findElement(By.xpath("//span[contains(text(), '" + sectionName + "')]" +
-                "/../../div[contains(text(), '" + value + "')]"));
-        assertTrue("The " + sectionName + " value is incorrect", section.getText().equals(value));
+        WebElement sectionElement = null;
+        PageFactory.initElements(driver, FCHubsStudentLifeTabPage.class);
+        switch (sectionName) {
+            case "SCHOOL SIZE" : sectionElement = FCHubsStudentLifeTabPage.labelSchoolSizeOverview;
+                break;
+            case "NEAREST CITY" : sectionElement = FCHubsStudentLifeTabPage.labelNearestCity;
+                break;
+            case "DISTANCE FROM YOUR HIGH SCHOOL" :
+                sectionElement = FCHubsStudentLifeTabPage.labelDistanceFromYourHighSchool;
+                break;
+            case "PERCENT OF STUDENTS LIVING ON CAMPUS" :
+                sectionElement = FCHubsStudentLifeTabPage.labelPercentOfStudentsLivingOnCampus;
+                break;
+        }
+        assertTrue("The " + sectionName + " value is incorrect", sectionElement.getText().equals(value));
     }
 
     public static void VerifyTotalStudentsEthnicityData(String totalStudents) {
@@ -62,14 +76,10 @@ public class FCHubsStudentLifeTab {
             String[] percentElement = ethnicGroupsPercent.get(i).split(",");
             WebElement uiElement = driver.findElement(By.cssSelector(".fc-grid__col--xs-12.fc-grid__col--lg-6." +
                     "student-body-legend div:nth-of-type(" + (i + 1) + ") div.student-body-legend__key-stats.ng-binding"));
-            System.out.println("UI " + percentElement[1]);
-            System.out.println("Lista " + uiElement.getText());
             if(uiElement.getText().trim().equals(percentElement[1].trim())) {
                 result = true;
             } else {
                 result = false;
-                System.out.println("UI " + percentElement[1]);
-                System.out.println("Lista " + uiElement.getText());
                 break;
             }
         }
@@ -86,9 +96,17 @@ public class FCHubsStudentLifeTab {
 
     public static void VerifyGenderPercentage(String gender, String value) {
         driver = Hooks.driver;
-        WebElement genderPercent = driver.findElement(By.xpath("//div[contains(text(), 'Gender Data')]" +
-                "/../../div/div/div/div[contains(text(), '" + gender + "')]/following-sibling::div"));
-        assertTrue("The percent for " + gender + " is not correct", genderPercent.getText().equals(value));
+        PageFactory.initElements(driver, FCHubsStudentLifeTabPage.class);
+        WebElement genderPercent = null;
+        switch (gender) {
+            case "Female" : genderPercent = FCHubsStudentLifeTabPage.labelGenderDataPercentFemale;
+                break;
+            case "Male" : genderPercent = FCHubsStudentLifeTabPage.labelGenderDataPercentMale;
+                break;
+        }
+        String uiPercent = genderPercent.getText();
+
+        assertTrue("The percent for " + gender + " is not correct", uiPercent.equals(value));
     }
 
     public static void VerifyTotalStudentsAge(String totalStudentsAge) {
@@ -100,26 +118,46 @@ public class FCHubsStudentLifeTab {
 
     public static void VerifyAgePercentage(String ageGroup, String value) {
         driver = Hooks.driver;
-        WebElement agePercent = driver.findElement(By.xpath("//div[contains(text(), 'Age')]" +
-                "/../../div/div/div/div[contains(text(), '" + ageGroup + "')]/following-sibling::div"));
+        WebElement agePercent = null;
+        PageFactory.initElements(driver, FCHubsStudentLifeTabPage.class);
+        switch (ageGroup) {
+            case "Under 24" : agePercent = FCHubsStudentLifeTabPage.labelAgeDataUnder24;
+                break;
+            case "Over 24" : agePercent = FCHubsStudentLifeTabPage.labelAgeDataOver24;
+                break;
+        }
         assertTrue("The percent for " + ageGroup + " is not correct", agePercent.getText().equals(value));
     }
     public static void ClickSectionInStudentOrgServ(String sectionName) {
         driver = Hooks.driver;
-        WebElement orgTab = driver.findElement(By.xpath("//h2[contains(text(), 'Student Organizations and Services')]" +
-                "/../div/div/span[text() = '" + sectionName + "']"));
-        orgTab.click();
-        for(int i = 0; i < 4; i++) {
-            orgTab.sendKeys(Keys.ARROW_UP);
+        WebElement sectionElement = null;
+        PageFactory.initElements(driver, FCHubsStudentLifeTabPage.class);
+        switch (sectionName) {
+            case "Organizations" : sectionElement = FCHubsStudentLifeTabPage.buttonOrgAndServOrganizations;
+                break;
+            case "Athletics" : sectionElement = FCHubsStudentLifeTabPage.buttonOrgAndServAthletics;
+                break;
+            case "Greek Life" : sectionElement = FCHubsStudentLifeTabPage.buttonOrgAndServGreekLife;
+                break;
+            case "Services" : sectionElement = FCHubsStudentLifeTabPage.buttonOrgAndServServices;
+                break;
+            case "Computing Resources" : sectionElement = FCHubsStudentLifeTabPage.buttonOrgAndServCompResources;
+                break;
         }
+        JavascriptExecutor jse = (JavascriptExecutor)driver;
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", driver.findElement
+                (By.cssSelector(".student-life-housing-information__data.fc-grid__col.fc-grid__col--xs-7.fc-grid__col--md-6")));
+        sectionElement.click();
     }
 
     public static void VerifyStudentOrganizations(List<String> studentOrgs) {
         driver = Hooks.driver;
         boolean result = false;
+        WebElement uiStudentOrgs = driver.findElement(By.cssSelector(".fc-grid__row.fc-grid__row--xs-start" +
+                ".student-life__organizations"));
+        List<WebElement> elementList = uiStudentOrgs.findElements(By.cssSelector("div:not(.ng-hide)"));
         for(int i = 0; i < studentOrgs.size(); i++) {
-            if(driver.findElement(By.xpath("//h2[contains(text(), 'Student Organizations and Services')]" +
-                    "/../div/div/div/div[text() = '" + studentOrgs.get(i) + "']")).isDisplayed()) {
+            if(elementList.get(i).getText().equals(studentOrgs.get(i))) {
                 result = true;
             } else {
                 result = false;
@@ -131,9 +169,17 @@ public class FCHubsStudentLifeTab {
 
     public static void ClickSectionInAthletics(String sectionName) {
         driver = Hooks.driver;
-        WebElement athleticsTab = driver.findElement(By.xpath("//div[@class = 'student-life__athletics__nav-buttons']" +
-                "/span[text() = '" + sectionName + "']"));
-        athleticsTab.click();
+        PageFactory.initElements(driver, FCHubsStudentLifeTabPage.class);
+        WebElement sectionElement = null;
+        switch (sectionName) {
+            case "Men" : sectionElement = FCHubsStudentLifeTabPage.buttonAthleticsMen;
+                break;
+            case "Women" : sectionElement = FCHubsStudentLifeTabPage.buttonAthleticsWomen;
+                break;
+            case "Co-Ed" : sectionElement = FCHubsStudentLifeTabPage.buttonAthleticsCoEd;
+                break;
+        }
+        sectionElement.click();
     }
 
     public static void VerifySportsInAthletics(String gender, List<String> sports) {
@@ -172,9 +218,23 @@ public class FCHubsStudentLifeTab {
 
     public static void VerifyHousingInformation(String hiLabel, String hiValue) {
         driver = Hooks.driver;
-        WebElement housingValue = driver.findElement(By.xpath("//*[@id='housing-information']/div/div/dl/dt[contains" +
-                "(text(),'" + hiLabel + "')]/../dd"));
-        assertTrue("The Housing Information Value for" + hiLabel + "is not correct", housingValue.getText().equals(hiValue));
+        PageFactory.initElements(driver, FCHubsStudentLifeTabPage.class);
+        WebElement housingInfoElement = null;
+        switch (hiLabel) {
+            case "Capacity" : housingInfoElement = FCHubsStudentLifeTabPage.labelHousingInfoCapacityValue;
+                break;
+            case "Percent" : housingInfoElement = FCHubsStudentLifeTabPage.labelHousingInfoPercentOnCampusValue;
+                break;
+            case "Freshmen" : housingInfoElement = FCHubsStudentLifeTabPage.labelHousingInfoFreshmenOnCampusValue;
+                break;
+            case "Sophomores" : housingInfoElement = FCHubsStudentLifeTabPage.labelHousingInfoSophomoresOnCampusValue;
+                break;
+            case "Juniors" : housingInfoElement = FCHubsStudentLifeTabPage.labelHousingInfoJuniorsOnCampusValue;
+                break;
+            case "Seniors" : housingInfoElement = FCHubsStudentLifeTabPage.labelHousingInfoSeniorsOnCampusValue;
+                break;
+        }
+        assertTrue("The Housing Information Value for" + hiLabel + "is not correct", housingInfoElement.getText().equals(hiValue));
     }
 
     public static void VerifyHousingInformationLabel() {
