@@ -53,8 +53,8 @@ public class FCHubsStudiesTab_StepDefs {
         FCHubsStudiesTab.VerifyProgramsList(programs);
     }
 
-    @When("^I click \"([^\"]*)\" in Majors Offered$")
-    public void I_click_All_in_Majors_Offered(String degree) throws Throwable {
+    @When("^I open \"([^\"]*)\" in Majors Offered$")
+    public void I_open_in_Majors_Offered(String degree) throws Throwable {
         FCHubsStudiesTab.ClickDegreesMajorsOffered(degree);
     }
 

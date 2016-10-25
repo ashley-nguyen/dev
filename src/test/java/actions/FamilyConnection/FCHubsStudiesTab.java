@@ -23,29 +23,36 @@ public class FCHubsStudiesTab {
 
     public static void VerifyStudentFacultyRatioStudiesTopBar(String studentFacultyRatio) {
         driver = Hooks.driver;
-        assertTrue("The Student Faculty Ratio is not correct", driver.findElement(By.xpath("//div[contains(text(), " +
-                "'Student Faculty')]/../div[contains(text(), '" + studentFacultyRatio + "')]")).isDisplayed());
+        PageFactory.initElements(driver, FCHubsStudiesTabPage.class);
+        new WebDriverWait(Hooks.driver, 20).until(ExpectedConditions.elementToBeClickable(By.cssSelector
+                (".hub-data-pod--ratio.hub-data-pod--studies.ng-binding")));
+        assertTrue("The Student Faculty Ratio is not correct", FCHubsStudiesTabPage.labelStuFacRatio.getText()
+                .equals(studentFacultyRatio));
     }
 
     public static void VerifyStudentRetentionStudiesTopBar(String studentRetention) {
         driver = Hooks.driver;
-        assertTrue("The Student Faculty Ratio is not correct", driver.findElement(By.xpath("//div[contains(text(), " +
-                "'Student Retention')]/../div[contains(text(), '" + studentRetention + "')]")).isDisplayed());
+        PageFactory.initElements(driver, FCHubsStudiesTabPage.class);
+        assertTrue("The Student Faculty Ratio is not correct", FCHubsStudiesTabPage.labelStuRetention.getText()
+                .equals(studentRetention));
     }
 
     public static void VerifyGraduationRateStudiesTopBar(String graduationRate) {
         driver = Hooks.driver;
-        assertTrue("The Student Faculty Ratio is not correct",driver.findElement(By.xpath("//div[@class = 'fc-grid__col" +
-                " fc-grid__col--core-width fc-grid--hugged overview-bar']/div/div/div[contains(text(), 'Graduation Rate" +
-                "')]/../div[contains(text(), '"+ graduationRate + "')]")).isDisplayed());
+        PageFactory.initElements(driver, FCHubsStudiesTabPage.class);
+        assertTrue("The Student Faculty Ratio is not correct",FCHubsStudiesTabPage.labelGradRate.getText()
+                .equals(graduationRate));
     }
 
     public static void VerifyDegreesOfferedStudiesTopBar(List<String> degreesOffered) {
         boolean result = false;
         driver = Hooks.driver;
+        WebElement degreesList = driver.findElement(By.cssSelector
+                ("div[ng-if=\"vm.profile.friendlyDegrees.length > 0\"]"));
+        List<WebElement> degreeElements = degreesList.findElements(By.cssSelector("div[ng-repeat=" +
+                "\"degree in vm.profile.friendlyDegrees\"]"));
         for(int i = 0; i < degreesOffered.size(); i++) {
-            if(driver.findElement(By.xpath("//div[@class='hub-data-pod__heading' and contains(text(), " +
-                    "'Degrees Offered')]/../div[contains(text(), '" + degreesOffered.get(i) + "')]")).isDisplayed()) {
+            if(degreeElements.get(i).getText().equals(degreesOffered.get(i))) {
                 result = true;
             } else {
                 result = false;
@@ -58,9 +65,12 @@ public class FCHubsStudiesTab {
     public static void VerifyTopAreasOfStudy(List<String> areasOfStudy) {
         boolean result = false;
         driver = Hooks.driver;
+        WebElement areasOfStudyList = driver.findElement(By.cssSelector
+                (".fc-grid__row.studies-popular.studies-programs__block"));
+        List<WebElement> areasOfStudyElements = areasOfStudyList.findElements(By.cssSelector
+                ("div:not([ng-if=\"vm.dataAge\"])"));
         for(int i = 0; i < areasOfStudy.size(); i++) {
-            if(driver.findElement(By.xpath("//div[@class = 'fc-grid__row studies-popular']/div/h5" +
-                    "[contains(text(), '" + areasOfStudy.get(i) + "')]")).isDisplayed()) {
+            if(areasOfStudyElements.get(i).getText().equals(areasOfStudy.get(i))) {
                 result = true;
             } else {
                 result = false;
@@ -93,8 +103,25 @@ public class FCHubsStudiesTab {
 
     public static void ClickDegreesMajorsOffered(String degree) {
         driver = Hooks.driver;
-        WebElement degreeButton = driver.findElement(By.xpath("//li[@role='button' and " +
-                "contains(text(), '" + degree + "')]"));
+        WebElement majorsOfferedDegree = null;
+        PageFactory.initElements(driver, FCHubsStudiesTabPage.class);
+        switch (degree) {
+            case "All" : majorsOfferedDegree = FCHubsStudiesTabPage.buttonMajorsOfferedAll;
+                break;
+            case "Associates" : majorsOfferedDegree = FCHubsStudiesTabPage.buttonMajorsOfferedAssociates;
+                break;
+            case "Bachelors" : majorsOfferedDegree = FCHubsStudiesTabPage.buttonMajorsOfferedBachelors;
+                break;
+            case "Masters" : majorsOfferedDegree = FCHubsStudiesTabPage.buttonMajorsOfferedMasters;
+                break;
+            case "Doctoral" : majorsOfferedDegree = FCHubsStudiesTabPage.buttonMajorsOfferedDoctoral;
+                break;
+            case "Certificate" : majorsOfferedDegree = FCHubsStudiesTabPage.buttonMajorsOfferedCertificate;
+                break;
+            case "Graduate Certificate" : majorsOfferedDegree = FCHubsStudiesTabPage.buttonMajorsOfferedGradCertificate;
+                break;
+        }
+        majorsOfferedDegree.click();
     }
 
     public static void ClickProgramInMajorsOfferedList(String program) {
