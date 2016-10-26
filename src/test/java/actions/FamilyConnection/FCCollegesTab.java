@@ -55,8 +55,7 @@ public class FCCollegesTab {
         boolean result;
         PageFactory.initElements(driver, FCCollegesPage.class);
         try {
-            WebElement collegeMatchTitle = driver.findElement(By.cssSelector
-                    ("#main-content table:nth-of-type(1) caption"));
+            FCCollegesPage.labelCollegeMatchTitle.isDisplayed();
             result = false;
         } catch (Exception e) {
             result = true;
