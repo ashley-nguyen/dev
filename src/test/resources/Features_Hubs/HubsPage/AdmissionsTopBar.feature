@@ -20,6 +20,6 @@ Feature:  As a student viewing new Hubs' Overview tab, I want to see contact inf
   Scenario: The Important Policies is displayed in Admissions Top Bar with correct data
     Then The Important Policies in Admissions Top Bar should be:
     #Put the Important Policies in the same order than the UI
-      | Open Registration      |
       | Competitive Admissions |
       | Rolling Notification   |
+      | Open Registration      |

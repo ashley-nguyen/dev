@@ -100,14 +100,12 @@ public class FCHubsPage extends BaseClass {
     public static WebElement labelGradRate;
     @FindBy(how = How.CSS, using = "div[ng-if=\"vm.acceptRate\"] div.hub-data-pod--overview")
     public static WebElement labelAcceptanceRate;
-
     @FindBy(how = How.XPATH, using = "//a[contains(text(),'Communicate')]")
     public static WebElement buttonCommunicate;
 
     public FCHubsPage(WebDriver driver) {
         super(driver);
     }
-
 }
 
 

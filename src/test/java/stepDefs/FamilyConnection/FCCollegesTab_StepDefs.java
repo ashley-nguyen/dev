@@ -23,20 +23,7 @@ public class FCCollegesTab_StepDefs {
     }
     @Then("^The college match list should not be displayed$")
     public static void The_college_match_should_not_be_displayed() throws InterruptedException {
-        Boolean verification;
-        for (int second = 0;; second++) {
-            try {
-                WebElement matchList = Hooks.driver.findElement(By.xpath("//table[@class = 'standard']/caption[contains" +
-                        "(text(), 'Colleges Looking For Students Like You')]"));
-            } catch (Exception e) {
-                verification = true;
-                break;
-            }
-            if (second>=60) {
-                verification = false;
-            }
-        }
-        assertTrue("The match list is not present", verification);
+        FCCollegesTab.VerifyCollegeMatchNotDisplayed();
     }
 
     @When("^I search for the college \"([^\"]*)\"$")

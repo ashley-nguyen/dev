@@ -121,11 +121,17 @@ public class FCHubsStudiesTab {
             case "Graduate Certificate" : majorsOfferedDegree = FCHubsStudiesTabPage.buttonMajorsOfferedGradCertificate;
                 break;
         }
+        JavascriptExecutor jse = (JavascriptExecutor)driver;
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", driver.findElement
+                (By.cssSelector(".studies-popular__header.fc-grid__col.fc-grid__col--xs-12")));
         majorsOfferedDegree.click();
     }
 
     public static void ClickProgramInMajorsOfferedList(String program) {
         driver = Hooks.driver;
+        JavascriptExecutor jse = (JavascriptExecutor)driver;
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", driver.findElement
+                (By.cssSelector(".studies-popular__header.fc-grid__col.fc-grid__col--xs-12")));
         WebElement programLink = driver.findElement(By.xpath("//h3[contains(text(), 'Majors Offered at')]" +
                 "/../../div/div/div/ul/li/a[text() = '" + program + "']"));
         programLink.click();

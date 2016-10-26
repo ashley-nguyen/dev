@@ -49,4 +49,19 @@ public class FCCollegesTab {
         assertTrue("The message is not displayed in the College Lookup page",
                 FCCollegesPage.labelStudiesOffering.getText().equals(message));
     }
+
+    public static void VerifyCollegeMatchNotDisplayed() {
+        driver = Hooks.driver;
+        boolean result;
+        PageFactory.initElements(driver, FCCollegesPage.class);
+        try {
+            WebElement collegeMatchTitle = driver.findElement(By.cssSelector
+                    ("#main-content table:nth-of-type(1) caption"));
+            result = false;
+        } catch (Exception e) {
+            result = true;
+            e.printStackTrace();
+        }
+        assertTrue("The message is not displayed in the College Lookup page", result);
+    }
 }

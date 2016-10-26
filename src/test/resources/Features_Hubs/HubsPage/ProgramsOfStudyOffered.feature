@@ -19,7 +19,7 @@ Feature: As a student, I want to see information about the school's programs of 
     Then The displayed programs should be:
     # : Will update these values after the IPEDS 2015-2016 run . We will have to manually verify it for general launch
 
-    | French Studies                                | Biology/Biological Sciences, General                      |
+    | French Studies                                  | Biology/Biological Sciences, General                      |
     | Exercise Physiology                             | Accounting                                                |
     | Business Administration and Management, General | Business Administration, Management and Operations, Other |
     | Business, Management, Marketing, and Related Support Services, Other | Business/Commerce, General           |
@@ -72,14 +72,13 @@ Feature: As a student, I want to see information about the school's programs of 
     When I open "Masters" in Majors Offered
     Then The displayed programs should be:
     | Health Teacher Education |
-  @test
+
   Scenario: The programs with a Associates degree offering are displayed
     When I open "Associates" in Majors Offered
     Then The displayed programs should be:
-    | Crisis/Emergency/Disaster Management           |
+    | Crisis/Emergency/Disaster Management      |
     | Liberal Arts and Sciences/Liberal Studies |
 
-
   Scenario: The colleges offering the program are displayed in college lookup
-    When I click "French Studies" in the Majors Offered list
+    When I open "French Studies" in the Majors Offered list
     Then I should see the message "Colleges Offering French Studies" in the College Lookup page

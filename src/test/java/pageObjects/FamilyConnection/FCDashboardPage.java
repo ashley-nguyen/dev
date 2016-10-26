@@ -15,7 +15,6 @@ public class FCDashboardPage extends BaseClass {
     @FindBy(how = How.LINK_TEXT, using = "Add Request")
     public static WebElement as;
 
-
     public FCDashboardPage(WebDriver driver) {
         super(driver);
     }
