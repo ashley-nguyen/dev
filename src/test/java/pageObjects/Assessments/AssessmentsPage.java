@@ -13,6 +13,9 @@ public class AssessmentsPage extends BaseClass {
     @FindBy(how = How.LINK_TEXT, using = "Assessments")
     public static WebElement Assessments;
 
+    @FindBy(how = How.CLASS_NAME, using = "student-assessments")
+    public static WebElement txtMessage;
+
     public AssessmentsPage(WebDriver driver) {
         super(driver);
     }

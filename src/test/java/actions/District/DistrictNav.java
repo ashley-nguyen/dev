@@ -1,7 +1,6 @@
 package actions.District;
 
 import cucumber.api.DataTable;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -59,7 +58,7 @@ public class DistrictNav {
         PageFactory.initElements(driver, DistrictMyProfilePage.class);
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         Thread.sleep(2000);
-        WebElement test = Hooks.driver.findElement(By.xpath("//a[contains(text(),'edit my profile')]"));
+        WebElement test = DistrictMyProfilePage.txtEditMyProfile;
         test.click();
 
 

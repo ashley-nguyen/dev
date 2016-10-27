@@ -18,7 +18,7 @@ public class ApplicationManager_Verify {
     public static WebDriver driver;
 
     public static void verifyApplicationManager() throws InterruptedException {
-        Hooks.driver.findElement(By.cssSelector("img[src=\"../../images/processapps/apps_pending_tab_on.gif\"]")).click();
+        ApplicationManagerPage.imgApps.click();
     }
 
     public static void SelectFormOfPayment(String item) throws InterruptedException {

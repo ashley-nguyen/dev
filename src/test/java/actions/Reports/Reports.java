@@ -35,7 +35,6 @@ public class Reports {
     public static void ClickOnViewReportButton() {
         driver = Hooks.driver;
         PageFactory.initElements(driver, ReportsPage.class);
-
         new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@id='customize-report']/div[2]/input[2]")));
         ReportsPage.ViewReport.click();
     }
@@ -43,10 +42,10 @@ public class Reports {
     public static void verifyReports() throws InterruptedException {
 
         new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.id("reporting-framework-container")));
-        String errorVerification = Hooks.driver.findElement(By.id("reporting-framework-container")).getText();
-        String dataverification = Hooks.driver.findElement(By.id("reporting-framework-container")).getText();
+        String errorVerification = ReportsPage.txtVerification.getText();
+        String dataVerification = ReportsPage.txtVerification.getText();
         assertTrue("Error Verification!", !errorVerification.contains("Fatal Error"));
-        assertTrue("Verify Data!", dataverification.contains("Customize"));
+        assertTrue("Verify Data!", dataVerification.contains("Customize"));
     }
 
     public static void verifyUsageReports() throws InterruptedException {

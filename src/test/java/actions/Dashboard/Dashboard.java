@@ -29,10 +29,12 @@ public class Dashboard {
     }
 
     public static void verifyDashboard() throws InterruptedException {
+        driver = Hooks.driver;
+        PageFactory.initElements(driver, DashboardPage.class);
         new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.id("course-management-container")));
-        String recentupdates = Hooks.driver.findElement(By.id("course-management-container")).getText();
-        String dataverification = Hooks.driver.findElement(By.id("dashboard-activity")).getText();
-        assertTrue("Error Verification!", !recentupdates.contains("An error occurred!"));
+        String recentUpdates = DashboardPage.txtRecentUpdates.getText();
+        String dataverification = DashboardPage.txtDashboard.getText();
+        assertTrue("Error Verification!", !recentUpdates.contains("An error occurred!"));
         assertTrue("Verify Data!", dataverification.contains("Counselor"));
     }
 }

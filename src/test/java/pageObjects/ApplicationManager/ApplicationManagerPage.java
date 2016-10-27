@@ -18,6 +18,8 @@ public class ApplicationManagerPage extends BaseClass {
     public static WebElement selClass;
     @FindBy(how = How.NAME, using = "quicklist")
     public static WebElement formNameTable;
+    @FindBy(how = How.CSS, using = "img[src=\"../../images/processapps/apps_pending_tab_on.gif\"]")
+    public static WebElement imgApps;
 
     public ApplicationManagerPage(WebDriver driver) {
         super(driver);

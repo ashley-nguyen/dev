@@ -14,6 +14,9 @@ public class DistrictMyProfilePage extends BaseClass {
     @FindBy(how = How.XPATH, using = "//a[contains(text(),'edit my profile')]")
     public static WebElement lnkEditMyProfile;
 
+    @FindBy(how = How.XPATH, using = "//a[contains(text(),'edit my profile')]")
+    public static WebElement txtEditMyProfile;
+
     public DistrictMyProfilePage(WebDriver driver) {
         super(driver);
     }
