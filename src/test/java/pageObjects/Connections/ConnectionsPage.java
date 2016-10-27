@@ -70,6 +70,26 @@ public class ConnectionsPage extends BaseClass {
     @FindBy(how = How.CLASS_NAME, using = "recommendations-list__cancel--disabled")
     public static WebElement divDisabledCancelIcon;
 
+    @FindBy(how = How.XPATH, using = "//*[@id='activematch_events_on-9']")
+    public static WebElement activeMatchEvents;
+
+    @FindBy(how = How.CLASS_NAME, using = "ContextHeader")
+    public static WebElement classHeaderName;
+
+    @FindBy(how = How.CLASS_NAME, using = "table-heading")
+    public static WebElement classTableHeading;
+
+    @FindBy(how = How.CLASS_NAME, using = "table-recommendations-list__status")
+    public static WebElement classRecommendationList;
+
+    @FindBy(how = How.XPATH, using = "//*[@id=\"active-match-events-modal\"]/div[3]/div")
+    public static WebElement agreeButton;
+
+    @FindBy(how = How.XPATH, using = "/html/body/div/div/div/div/recommendations-container/div/ng-view/recommendations-list/table/tbody/tr[2]/td/div/span[3]")
+    public static WebElement cancelMessage;
+
+    @FindBy(how = How.XPATH, using = "fc-tooltip__content")
+    public static WebElement cancelToolTipMessage;
 
     public ConnectionsPage(WebDriver driver) {
         super(driver);
