@@ -8,6 +8,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import pageObjects.Dashboard.DashboardPage;
 import pageObjects.Header.DistrictPageHeader;
+import pageObjects.Marketing.marketingPage;
 import stepDefs.Hooks;
 
 import java.util.concurrent.TimeUnit;
@@ -30,7 +31,7 @@ public class Marketing {
         //Changing the frame to test
         driver  = Hooks.driver.switchTo().frame(0);
         //Driver for iframe section can't be mapped for now
-        Boolean imageVerification = driver.findElement(By.xpath("//img[contains(@src,'img/upgraded-by-hobsons.jpg')]")).isDisplayed();
+        Boolean imageVerification = marketingPage.imgVerification.isDisplayed();
         assertTrue("Verify image exists!", imageVerification);
     }
 
@@ -38,7 +39,7 @@ public class Marketing {
        driver = Hooks.driver;
        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
        new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//img[contains(@src,'/images/navmarketplace_badge.png')]")));
-       Boolean bannerVerification =  Hooks.driver.findElement(By.xpath("//img[contains(@src,'/images/navmarketplace_badge.png')]")).isDisplayed();
+       Boolean bannerVerification =  marketingPage.bannerVerification.isDisplayed();
         assertTrue("Verify banner exists!", bannerVerification);
     }
 

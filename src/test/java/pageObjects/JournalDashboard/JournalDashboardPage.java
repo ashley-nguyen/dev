@@ -14,6 +14,8 @@ public class JournalDashboardPage extends BaseClass {
     public static WebElement School;
     @FindBy(how = How.LINK_TEXT, using = "Journal Dashboard")
     public static WebElement lnkJournalDashboard;
+    @FindBy(how = How.CLASS_NAME, using = "pageheader")
+    public static WebElement txtDataVerification;
 
     public JournalDashboardPage(WebDriver driver) {
         super(driver);

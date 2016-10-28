@@ -28,7 +28,7 @@ public class Assessments {
     }
 
     public static void verifyAssessment() throws InterruptedException {
-        String dataVerification = Hooks.driver.findElement(By.className("student-assessments")).getText();
+        String dataVerification =  AssessmentsPage.txtMessage.getText();
         assertTrue("Error Verification!", !dataVerification.contains("Whoops, looks like something went wrong."));
     }
 }

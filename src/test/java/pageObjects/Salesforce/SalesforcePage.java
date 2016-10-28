@@ -40,6 +40,11 @@ public class SalesforcePage extends BaseClass {
     @FindBy(how = How.ID, using = "po_number")
     public static WebElement PONumber;
 
+    @FindBy(how = How.XPATH, using = "/html/body/div[1]/table/tbody/tr[1]/td[2]/table[1]/tbody/tr[2]/td[2]/div/h3")
+    public static WebElement txtDataVerification;
+
+
+
     public SalesforcePage(WebDriver driver) {
         super(driver);
     }

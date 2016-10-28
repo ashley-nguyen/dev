@@ -1,6 +1,5 @@
 package actions.JournalDashboard;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
 import pageObjects.JournalDashboard.JournalDashboardPage;
@@ -25,7 +24,7 @@ public class JournalDashboard {
     }
 
     public static void verifyJournalDashboard() throws InterruptedException {
-        String dataVerification = Hooks.driver.findElement(By.className("pageheader")).getText();
+        String dataVerification = JournalDashboardPage.txtDataVerification.getText();
         assertTrue("Error Verification!", !dataVerification.contains("Whoops, looks like something went wrong."));
         assertTrue("Title Verification!", dataVerification.contains("JOURNAL DASHBOARD"));
     }

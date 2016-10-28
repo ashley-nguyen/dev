@@ -14,6 +14,9 @@ public class StudentScoresTabPage extends BaseClass {
     @FindBy(how = How.PARTIAL_LINK_TEXT, using = "add/edit")
     public static WebElement lnkaddeditscores;
 
+    @FindBy(how = How.PARTIAL_LINK_TEXT, using = "add/edit scores")
+    public static WebElement lnkaddeditscore;
+
     //#### AP TEST SCORE OBJECTS ON EDIT SCREEN ####
     @FindBy(how = How.NAME, using = "ap_id[1]")
     public static WebElement ddlTestType;
@@ -33,6 +36,8 @@ public class StudentScoresTabPage extends BaseClass {
     public static WebElement txtSubject;
     @FindBy(how = How.NAME, using = "updateScores")
     public static WebElement btnUpdate;
+    @FindBy(how = How.ID, using = "aspire_warning_message_1")
+    public static WebElement txtMessage;
 
     //#### aspire ####
     //#### PSAT ####
@@ -73,6 +78,8 @@ public class StudentScoresTabPage extends BaseClass {
     public static WebElement selPSATLegacyGrade;
     @FindBy(how = How.NAME, using = "updateScores")
     public static WebElement lnkUpdateTestScores;
+    @FindBy(how = How.LINK_TEXT, using = "Scores")
+    public static WebElement lnkScores;
 
     public StudentScoresTabPage(WebDriver driver) {
         super(driver);

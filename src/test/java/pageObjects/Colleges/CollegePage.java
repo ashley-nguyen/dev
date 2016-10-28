@@ -47,6 +47,9 @@ public class CollegePage extends BaseClass {
     @FindBy(how = How.LINK_TEXT, using = "view past visits")
     public static WebElement lnkviewPastVisits;
 
+    @FindBy(how = How.CLASS_NAME, using = "dark_textheader")
+    public static WebElement txtMesaggeVerification;
+
     @FindBy(how = How.NAME, using = "class")
     public static WebElement selClassYear;
 
