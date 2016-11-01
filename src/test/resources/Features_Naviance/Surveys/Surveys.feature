@@ -45,21 +45,3 @@ Feature: Use Surveys created in Naviance
     Given I have a survey created in a primary, secondary district and high school
     When I log into family connection "rtsa" as "pbest" and "test1234"
     Then I will be able to take the survey "state survey 1"
-
-
-#  Scenario: Survey in inactive primary district and active secondary district and high school
-#    Given I have a survey created in an inactive primary district and active secondary district and high school
-#     Then I will be able to take the surveys
-#     Then I will not be able to take the survey for the inactive tennant
-
- #  Scenario: Survey in inactive secondary district and active primary district and high school
- #    Given I have a survey created in an inactive primary district and active secondary district and high school
-   #  When I log into family connection as a student
-    # Then I will be able to take the surveys
-    # Then I will not be able to take the survey for the inactive tennant
-
-  # Scenario: Survey in inactive high school and active primary and secondary district
-   #  Given I have a survey created in an inactive primary district and active secondary district and high school
-    # When I log into family connection as a student
-    # Then I will be able to take the surveys
-    # Then I will not be able to take the survey for the inactive tennant

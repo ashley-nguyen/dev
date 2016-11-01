@@ -46,6 +46,12 @@ public class ReportsPage extends BaseClass {
     @FindBy(how = How.LINK_TEXT, using = "course")
     public static WebElement ViewCourseReport;
 
+    @FindBy(how = How.ID, using = "reporting-framework-container")
+    public static WebElement txtVerification;
+
+    @FindBy(how = How.ID, using = "reporting-framework-container")
+    public static WebElement txtDataVerification;
+
     public ReportsPage(WebDriver driver) {
         super(driver);
     }

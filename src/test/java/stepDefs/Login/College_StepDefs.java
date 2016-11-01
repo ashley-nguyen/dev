@@ -71,7 +71,6 @@ public class College_StepDefs {
 
     @Then("^I will be able to search using the following criteria '(.*)' '(.*)' '(.*)' '(.*)'$")
     public void I_will_be_able_to_search_using_the_following_criteria_SearchCategory_SearchValue_SearchData_SearchResult_(String strCategory, String strValue, String strData, String strResult) throws Throwable {
-//        verifyAdvancedSearchCategory(strSchoolType);
         DoAdvancedCollegeSearch(strCategory, strValue, strData, strResult);
 
     }

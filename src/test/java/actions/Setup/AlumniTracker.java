@@ -3,6 +3,8 @@ package actions.Setup;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import pageObjects.AlumniTracker.AlumniTrackerPage;
 import pageObjects.District.DistrictSetupPage;
 import stepDefs.Hooks;
@@ -57,13 +59,13 @@ public class AlumniTracker {
         driver = Hooks.driver;
         PageFactory.initElements(driver, DistrictSetupPage.class);
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-
         DistrictSetupPage.lnkSingleSignInOptions.click();
     }
 
     public static void verifyFatalErrorAlumniTracker() throws InterruptedException {
-        String dataverification = Hooks.driver.findElement(By.className("top-nav")).getText();
-        assertTrue("Fatal Error Verification!", !dataverification.contains("Fatal Error"));
+        new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.className("top-nav")));
+        String dataVerification = AlumniTrackerPage.txtFatalError.getText();
+        assertTrue("Fatal Error Verification!", !dataVerification.contains("Fatal Error"));
     }
 
     public static void clickOnSchoolSelected(String School) throws InterruptedException {

@@ -19,6 +19,9 @@ public class AlumniTrackerPage extends BaseClass {
     @FindBy(how = How.CLASS_NAME, using = "page_change_text")
     public static WebElement lnkPeparealumnifiles;
 
+    @FindBy(how = How.CLASS_NAME, using = "top-nav")
+    public static WebElement txtFatalError;
+
     @FindBy(how = How.ID,  using = "generate_file_button")
     public static WebElement lnkSendFile;
 

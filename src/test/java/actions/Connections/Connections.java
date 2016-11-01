@@ -29,7 +29,7 @@ public class Connections {
         ConnectionsPage.lnkEnterSchoolSite.click();
         new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.linkText("Connections")));
         ConnectionsPage.lnkConnections.click();
-        Thread.sleep(3000);
+        new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.linkText("E-mail")));
         ConnectionsPage.lnkEmail.click();
         new WebDriverWait(Hooks.driver, 25).until(ExpectedConditions.presenceOfElementLocated(By.linkText("Check status and view history of emails sent")));
         ConnectionsPage.lnkCheckStatusEmailSent.click();
@@ -49,7 +49,7 @@ public class Connections {
 
     public static void verifyNoErrorsInCheckStatusEmail() throws InterruptedException {
         new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.className("ContextHeader")));
-        String dataVerification = Hooks.driver.findElement(By.className("ContextHeader")).getText();
+        String dataVerification = ConnectionsPage.classHeaderName.getText();
         assertTrue("Error Verification!", dataVerification.contains("E-mail Message History"));
     }
 
@@ -63,7 +63,7 @@ public class Connections {
 
     public static void verifyNoErrorsInFamilyConnection() throws InterruptedException {
         new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.className("table-heading")));
-        String dataVerification = Hooks.driver.findElement(By.className("table-heading")).getText();
+        String dataVerification = ConnectionsPage.classTableHeading.getText();
         assertTrue("Error Verification!", dataVerification.contains("Family Connection"));
     }
 
@@ -89,12 +89,11 @@ public class Connections {
 
         driver = Hooks.driver;
         PageFactory.initElements(driver, Connections.class);
-        driver.findElements(By.xpath("//*[@id=\"activematch_events_on-9\"]")).get(0).click();
-        driver.findElements(By.xpath("//*[@id=\"activematch_events_on-9\"]")).get(0).click();
+        ConnectionsPage.activeMatchEvents.click();
+        ConnectionsPage.activeMatchEvents.click();
         driver = Hooks.driver;
         PageFactory.initElements(driver, Connections.class);
-        Boolean verifyAgreeButton = driver.findElement(By.xpath("//*[@id=\"active-match-events-modal\"]/div[3]/div")).isDisplayed();
-        System.out.println("VaLOR" + verifyAgreeButton);
+        Boolean verifyAgreeButton = ConnectionsPage.agreeButton.isDisplayed();
         assertTrue("Error Verification Buttons not found!", verifyAgreeButton);
     }
 
@@ -187,13 +186,12 @@ public class Connections {
         PageFactory.initElements(driver, ConnectionsPage.class);
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.className("fc-alert--success")));
-        String dataVerification = Hooks.driver.findElement(By.className("recommendations-list__status")).getText();
+        String dataVerification = ConnectionsPage.classRecommendationList.getText();
         assertTrue("LOR request cancelled", dataVerification.contains("Cancelled"));
-        //Need to refactor this xpath
-        String cancelMessage = Hooks.driver.findElement(By.xpath("/html/body/div/div/div/div/recommendations-container/div/ng-view/recommendations-list/table/tbody/tr[2]/td/div/span[3]")).getText();
+        String cancelMessage = ConnectionsPage.cancelMessage.getText();
         assertTrue("LOR cancellation message", cancelMessage.contains(info1));
         ConnectionsPage.divDisabledCancelIcon.click();
-        String cancelTooltip = Hooks.driver.findElement(By.className("fc-tooltip__content")).getText();
+        String cancelTooltip = ConnectionsPage.cancelToolTipMessage.getText();
         System.out.print("cancelTooltip" + cancelTooltip);
         assertTrue("LOR cancellation tooltip", cancelTooltip.contains(info2));
     }

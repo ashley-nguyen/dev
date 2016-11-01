@@ -58,19 +58,19 @@ public class Course {
 
     public static void verifyAdvancedComputerScienceContents() throws InterruptedException {
         new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.className("desc")));
-        String courseName = Hooks.driver.findElement(By.className("desc")).getText();
-        String courseID = Hooks.driver.findElement(By.xpath("//*[@id=\"main-content-container\"]/ul/li[2]/p")).getText();
-        String subjectArea = Hooks.driver.findElement(By.xpath("//*[@id=\"main-content-container\"]/ul/li[3]/p")).getText();
-        String credits = Hooks.driver.findElement(By.xpath("//*[@id=\"main-content-container\"]/ul/li[4]/p")).getText();
-        String gradeLevels = Hooks.driver.findElement(By.xpath("//*[@id=\"main-content-container\"]/ul/li[5]/p")).getText();
-        String status = Hooks.driver.findElement(By.xpath("//*[@id=\"main-content-container\"]/ul/li[6]/p")).getText();
-        String description = Hooks.driver.findElement(By.xpath("//*[@id=\"main-content-container\"]/ul/li[7]/p")).getText();
-        String stateID = Hooks.driver.findElement(By.xpath("//*[@id=\"main-content-container\"]/ul/li[8]/p")).getText();
-        String instructionalLevel = Hooks.driver.findElement(By.xpath("//*[@id=\"main-content-container\"]/ul/li[9]/p")).getText();
-        String cteCourse = Hooks.driver.findElement(By.xpath("//*[@id=\"main-content-container\"]/ul/li[10]/p")).getText();
-        String techPrepCourse = Hooks.driver.findElement(By.xpath("//*[@id=\"main-content-container\"]/ul/li[11]/p")).getText();
-        String coursePrerequisites = Hooks.driver.findElement(By.xpath("//*[@id=\"main-content-container\"]/ul/li[12]/p")).getText();
-        String courseCoRequisites = Hooks.driver.findElement(By.xpath("//*[@id=\"main-content-container\"]/ul/li[13]/p")).getText();
+        String courseName = CoursePage.txtCourseName.getText();
+        String courseID = CoursePage.txtCourseId.getText();
+        String subjectArea =  CoursePage.subjectArea.getText();
+        String credits = CoursePage.txtCredits.getText();
+        String gradeLevels = CoursePage.txtGradeLevels.getText();
+        String status = CoursePage.txtStatus.getText();
+        String description = CoursePage.txtDescription.getText();
+        String stateID = CoursePage.txtStateId.getText();
+        String instructionalLevel = CoursePage.txtInstructionalLevel.getText();
+        String cteCourse = CoursePage.txtCteCourse.getText();
+        String techPrepCourse = CoursePage.techPrepCourse.getText();
+        String coursePrerequisites = CoursePage.txtCoursePrerequisites.getText();
+        String courseCoRequisites = CoursePage.txtCourseCoRequisites.getText();
         assertTrue("Course Name Verification!", courseName.contains("Course Name"));
         assertTrue("Course ID", courseID.contains("Course ID"));
         assertTrue("Subject Area", subjectArea.contains("Subject Area"));
@@ -87,10 +87,10 @@ public class Course {
     }
 
     public static void verifyEconomicsContents() throws InterruptedException {
-        String name = Hooks.driver.findElement(By.className("desc")).getText();
-        String nameData = Hooks.driver.findElement(By.className("data")).getText();
-        String standardCategory = Hooks.driver.findElement(By.xpath("//*[@id=\"main-content-container\"]/ul/li[2]/p")).getText();
-        String standardCategoryData = Hooks.driver.findElement(By.xpath("//*[@id=\"main-content-container\"]/ul/li[2]/div")).getText();
+        String name = CoursePage.txtName.getText();
+        String nameData = CoursePage.txtNameData.getText();
+        String standardCategory = CoursePage.txtStandardCategory.getText();
+        String standardCategoryData = CoursePage.txtStandardCategoryData.getText();
         assertTrue("Name", name.contains("Name"));
         assertTrue("Economics", nameData.contains("Economics"));
         assertTrue("Standard Category", standardCategory.contains("Standard Category"));
@@ -98,7 +98,7 @@ public class Course {
     }
 
     public static void verifyRecommendationsNotShowErrors() throws InterruptedException {
-        String recommendationsContents = Hooks.driver.findElement(By.id("content-wrapper")).getText();
+        String recommendationsContents = CoursePage.txtRecommendations.getText();
         assertTrue("Verify Recommendations Contents", recommendationsContents.contains("Recommend Students For A Course"));
         assertTrue("Verify Recommendations Contents", recommendationsContents.contains("View Current Recommended Courses"));
         assertTrue("Verify Recommendations Contents", recommendationsContents.contains("Select a course"));

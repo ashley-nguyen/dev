@@ -17,6 +17,10 @@ public class marketingPage extends BaseClass {
     public static WebElement Image;
     @FindBy(how = How.XPATH, using = "//img[contains(@src,'/images/navmarketplace_badge.png')]")
     public static WebElement ImageContents;
+    @FindBy(how = How.XPATH, using = "//img[contains(@src,'img/upgraded-by-hobsons.jpg')]")
+    public static WebElement imgVerification;
+    @FindBy(how = How.XPATH, using = "//img[contains(@src,'/images/navmarketplace_badge.png')]")
+    public static WebElement bannerVerification;
 
     public marketingPage(WebDriver driver) {
         super(driver);

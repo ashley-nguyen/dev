@@ -30,6 +30,42 @@ public class CoursePage extends BaseClass {
     public static WebElement lnkEnterSchoolSite;
     @FindBy(how = How.LINK_TEXT, using = "recommendations")
     public static WebElement lnkRecommendations;
+    @FindBy(how = How.CLASS_NAME, using = "desc")
+    public static WebElement txtCourseName;
+    @FindBy(how = How.XPATH, using = "//*[@id=\"main-content-container\"]/ul/li[2]/p")
+    public static WebElement txtCourseId;
+    @FindBy(how = How.XPATH, using = "//*[@id=\"main-content-container\"]/ul/li[3]/p")
+    public static WebElement subjectArea;
+    @FindBy(how = How.XPATH, using = "//*[@id=\"main-content-container\"]/ul/li[4]/p")
+    public static WebElement txtCredits;
+    @FindBy(how = How.XPATH, using = "//*[@id=\"main-content-container\"]/ul/li[5]/p")
+    public static WebElement txtGradeLevels;
+    @FindBy(how = How.XPATH, using = "//*[@id=\"main-content-container\"]/ul/li[6]/p")
+    public static WebElement txtStatus;
+    @FindBy(how = How.XPATH, using = "//*[@id=\"main-content-container\"]/ul/li[7]/p")
+    public static WebElement txtDescription;
+    @FindBy(how = How.XPATH, using = "//*[@id=\"main-content-container\"]/ul/li[8]/p")
+    public static WebElement txtStateId;
+    @FindBy(how = How.XPATH, using = "//*[@id=\"main-content-container\"]/ul/li[9]/p")
+    public static WebElement txtInstructionalLevel;
+    @FindBy(how = How.XPATH, using = "//*[@id=\"main-content-container\"]/ul/li[10]/p")
+    public static WebElement txtCteCourse;
+    @FindBy(how = How.XPATH, using = "//*[@id=\"main-content-container\"]/ul/li[11]/p")
+    public static WebElement techPrepCourse;
+    @FindBy(how = How.XPATH, using = "//*[@id=\"main-content-container\"]/ul/li[12]/p")
+    public static WebElement txtCoursePrerequisites;
+    @FindBy(how = How.XPATH, using = "//*[@id=\"main-content-container\"]/ul/li[13]/p")
+    public static WebElement txtCourseCoRequisites;
+    @FindBy(how = How.CLASS_NAME, using = "desc")
+    public static WebElement txtName;
+    @FindBy(how = How.CLASS_NAME, using = "data")
+    public static WebElement txtNameData;
+    @FindBy(how = How.XPATH, using = "//*[@id=\"main-content-container\"]/ul/li[2]/p")
+    public static WebElement txtStandardCategory;
+    @FindBy(how = How.XPATH, using = "//*[@id=\"main-content-container\"]/ul/li[2]/div")
+    public static WebElement txtStandardCategoryData;
+    @FindBy(how = How.ID, using = "content-wrapper")
+    public static WebElement txtRecommendations;
 
     public CoursePage(WebDriver driver) {
         super(driver);
