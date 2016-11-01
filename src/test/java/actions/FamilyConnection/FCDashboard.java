@@ -20,8 +20,7 @@ public class FCDashboard {
         driver = Hooks.driver;
         PageFactory.initElements(driver, FCDashboardPage.class);
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-        new WebDriverWait(Hooks.driver, 20).until(ExpectedConditions.elementToBeClickable(
-                By.cssSelector("#nav li [href=\"/family-connection/colleges/\"]")));
+        new WebDriverWait(Hooks.driver, 20).until(ExpectedConditions.elementToBeClickable(FCDashboardPage.tabColleges));
         FCDashboardPage.tabColleges.click();
     }
 }

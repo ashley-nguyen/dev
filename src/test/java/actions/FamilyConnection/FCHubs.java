@@ -31,8 +31,7 @@ public class FCHubs {
 
     public static void ClickFeedbackButton() {
         driver = Hooks.driver;
-        new WebDriverWait(Hooks.driver, 20).until(ExpectedConditions.elementToBeClickable(By.cssSelector
-                (".fc-button.fc-button--ghost.hub-beta-bar__survey-button")));
+        new WebDriverWait(Hooks.driver, 20).until(ExpectedConditions.elementToBeClickable(FCHubsPage.buttonFeedback));
         PageFactory.initElements(driver, FCHubsPage.class);
         FCHubsPage.buttonFeedback.click();
         FCHubsPage.buttonFeedback.sendKeys(Keys.RETURN);
@@ -41,8 +40,7 @@ public class FCHubs {
     public static void VerifyFirstTutorialDialog() {
         driver = Hooks.driver;
         PageFactory.initElements(driver, FCHubsPage.class);
-        new WebDriverWait(Hooks.driver, 20).until(ExpectedConditions.elementToBeClickable(By.cssSelector
-                (".fc-tooltip.fc-tooltip--above.hub-tooltip.hub-tooltip--favorite")));
+        new WebDriverWait(Hooks.driver, 20).until(ExpectedConditions.elementToBeClickable(FCHubsPage.linkNextFirstDialog));
         assertTrue("The First Tutorial Dialog is not displayed", FCHubsPage.linkNextFirstDialog.isDisplayed());
     }
 
@@ -78,8 +76,7 @@ public class FCHubs {
     public static void VerifyLogoInIdentifierModule() {
         driver = Hooks.driver;
         PageFactory.initElements(driver, FCHubsPage.class);
-        new WebDriverWait(Hooks.driver, 20).until(ExpectedConditions.elementToBeClickable(By.cssSelector
-                (".masthead__logo-image")));
+        new WebDriverWait(Hooks.driver, 20).until(ExpectedConditions.elementToBeClickable(FCHubsPage.imgLogo));
         assertTrue("The logo in the Identifier Module is not present", FCHubsPage.imgLogo.isDisplayed());
     }
 
@@ -102,8 +99,7 @@ public class FCHubs {
     public static void ClickApplyOnlineButton() {
         driver = Hooks.driver;
         PageFactory.initElements(driver, FCHubsPage.class);
-        new WebDriverWait(Hooks.driver, 20).until(ExpectedConditions.elementToBeClickable(By.cssSelector
-                (".apply-online.fc-button.ng-scope")));
+        new WebDriverWait(Hooks.driver, 20).until(ExpectedConditions.elementToBeClickable(FCHubsPage.buttonApplyOnline));
         FCHubsPage.buttonApplyOnline.click();
         ArrayList<String> tabs = new ArrayList<String> (driver.getWindowHandles());
         driver.switchTo().window(tabs.get(tabs.size() - 1));
@@ -111,8 +107,7 @@ public class FCHubs {
 
     public static void ClickLearnMoreButton() {
         driver = Hooks.driver;
-        new WebDriverWait(Hooks.driver, 20).until(ExpectedConditions.elementToBeClickable(By.cssSelector
-                (".fc-button.masthead-dropdown-menu__button[ng-class=\"{ 'fc-button--primary' : vm.expandLearnMore }\"]")));
+        new WebDriverWait(Hooks.driver, 20).until(ExpectedConditions.elementToBeClickable(FCHubsPage.buttonLearnMore));
         PageFactory.initElements(driver, FCHubsPage.class);
         FCHubsPage.buttonLearnMore.click();
     }
@@ -130,8 +125,7 @@ public class FCHubs {
     public static void ClickRightArrow(int numberOfTimes) {
         driver = Hooks.driver;
         PageFactory.initElements(driver, FCHubsPage.class);
-        new WebDriverWait(Hooks.driver, 20).until(ExpectedConditions.elementToBeClickable(By.cssSelector
-                (".scroll.right")));
+        new WebDriverWait(Hooks.driver, 20).until(ExpectedConditions.elementToBeClickable(FCHubsPage.buttonRightArrow));
         for (int i = 0; i < numberOfTimes; i++) {
             FCHubsPage.buttonRightArrow.click();
         }
@@ -139,8 +133,8 @@ public class FCHubs {
 
     public static void VerifyVisibilityOfLastWebTourElement() {
         driver = Hooks.driver;
-        assertTrue("Last element of Web Tour is not visible", driver.findElement(By.id
-                ("hubsWebtourImage17")).isDisplayed());
+        PageFactory.initElements(driver, FCHubsPage.class);
+        assertTrue("Last element of Web Tour is not visible", FCHubsPage.webTourLastImage.isDisplayed());
     }
 
     public static void VerifyVisibilityOfPlayButton() {
@@ -594,8 +588,7 @@ public class FCHubs {
 
     public static void ClickCommunicate() {
         driver = Hooks.driver;
-        new WebDriverWait(driver, 20).until(ExpectedConditions.elementToBeClickable(By.cssSelector
-                (".apply-online.fc-button.ng-scope")));
+        new WebDriverWait(driver, 20).until(ExpectedConditions.elementToBeClickable(FCHubsPage.buttonApplyOnline));
         PageFactory.initElements(driver,FCHubsPage.class);
         FCHubsPage.buttonCommunicate.click();
     }
@@ -603,8 +596,7 @@ public class FCHubs {
     public static void Requestinformationlink(String link) {
         driver = Hooks.driver;
         PageFactory.initElements(driver, FCHubsPage.class);
-        new WebDriverWait(driver, 20).until(ExpectedConditions.elementToBeClickable(By.cssSelector
-                (".fc-dropdown__item.masthead-dropdown-menu__item.ng-scope")));
+        new WebDriverWait(driver, 20).until(ExpectedConditions.elementToBeClickable(FCHubsPage.buttonRequestInfo));
         FCHubsPage.buttonRequestInfo.click();
         ArrayList<String> tabs = new ArrayList<String> (driver.getWindowHandles());
         driver.switchTo().window(tabs.get(tabs.size() - 1));

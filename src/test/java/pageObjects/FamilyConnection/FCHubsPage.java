@@ -102,6 +102,8 @@ public class FCHubsPage extends BaseClass {
     public static WebElement labelAcceptanceRate;
     @FindBy(how = How.XPATH, using = "//a[contains(text(),'Communicate')]")
     public static WebElement buttonCommunicate;
+    @FindBy(how = How.XPATH, using = "hubsWebtourImage17")
+    public static WebElement webTourLastImage;
 
     public FCHubsPage(WebDriver driver) {
         super(driver);
