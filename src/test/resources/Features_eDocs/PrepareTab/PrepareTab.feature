@@ -55,7 +55,6 @@ Feature: View student details
 
   @edocs @safe @succeed
   Scenario Outline: Verify Under Application, the college for which the student has requested a LOR will be populated.
-  When I select "All Applications" from Application
     When I use "<studentID>" under application selecting "All Applications" and "Letter of Recommendation" with "<filename>"
     Then I will verify "<text>" for LORs
 
