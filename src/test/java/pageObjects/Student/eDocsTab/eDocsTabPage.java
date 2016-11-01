@@ -26,6 +26,18 @@ public class eDocsTabPage extends BaseClass  {
         @FindBy(how = How.XPATH, using = "//button[@class='btn btn-small ng-scope']")
         public static WebElement btnAdd;
 
+        @FindBy(how = How.TAG_NAME, using = "body")
+        public static WebElement txtBody;
+
+        @FindBy(how = How.XPATH, using = "//*[@id=\"contents\"]/div[2]/div[2]/div/div[2]")
+        public static WebElement txtVerification;
+
+        @FindBy(how = How.XPATH, using = "//*[@id=\"contents\"]/div[2]/div[2]/div")
+        public static WebElement txtContentsVerification;
+
+        @FindBy(how = How.XPATH, using = "//*[@id=\"contents\"]/div[2]/div[2]/div/div[1]/table")
+        public static WebElement txtTableVerification;
+
         @FindBy(how = How.XPATH, using = "//*[@id=\"contents\"]/div[2]/div[2]/div/div[2]/h3/button")
         public static WebElement btnCounselorAdd;
 
@@ -45,7 +57,6 @@ public class eDocsTabPage extends BaseClass  {
         public static WebElement btnReplace;
 
         @FindBy(how = How.XPATH, using = "//*[@id=\"contents\"]/div[2]/div[2]/div/div[2]/table/tbody/tr/td[5]/div/button[2]")
-
         public static WebElement btnDelete;
 
         @FindBy(how = How.XPATH, using = "//*[@id=\"deleteModal\"]/div[3]/div/button[2]")

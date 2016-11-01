@@ -59,40 +59,45 @@ public class eDocsGeneral {
 
     public static void ClickOnExpandAllButton() throws Throwable {
         driver = Hooks.driver;
-        Thread.sleep(8008);
+        Thread.sleep(8000);
         PageFactory.initElements(driver, eDocsTabPage.class);
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        new WebDriverWait(Hooks.driver, 30).until(ExpectedConditions.visibilityOf(Hooks.driver.findElement(By.xpath("//button[@class='btn btn-small ng-scope']"))));
         eDocsTabPage.btnExpandAll.click();
 
     }
 
     public static void ClickOnAddButton() throws Throwable {
         driver = Hooks.driver;
-        Thread.sleep(8008);
+        Thread.sleep(8000);
         PageFactory.initElements(driver, eDocsTabPage.class);
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        new WebDriverWait(Hooks.driver, 30).until(ExpectedConditions.visibilityOf(Hooks.driver.findElement(By.xpath("//button[@class='btn btn-small ng-scope']"))));
         eDocsTabPage.btnAdd.click();
     }
 
     public static void ClickOnAddCounselorButton() throws Throwable {
         driver = Hooks.driver;
-        Thread.sleep(8008);
+        Thread.sleep(8000);
         PageFactory.initElements(driver, eDocsTabPage.class);
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        new WebDriverWait(Hooks.driver, 30).until(ExpectedConditions.visibilityOf(Hooks.driver.findElement(By.xpath("//*[@id=\"contents\"]/div[2]/div[2]/div/div[2]/h3/button"))));
         eDocsTabPage.btnCounselorAdd.click();
     }
 
     public static void ClickOnReplaceButton() throws Throwable {
         driver = Hooks.driver;
-        Thread.sleep(8008);
+        Thread.sleep(8000);
         PageFactory.initElements(driver, eDocsTabPage.class);
+        new WebDriverWait(Hooks.driver, 30).until(ExpectedConditions.visibilityOf(Hooks.driver.findElement(By.xpath("//*[@id=\"contents\"]/div[2]/div[2]/div/div[2]/table/tbody/tr[1]/td[5]/div/button[1]"))));
         eDocsTabPage.btnReplace.click();
     }
 
     public static void ClickOnDeleteButton() throws Throwable {
         driver = Hooks.driver;
-        Thread.sleep(8008);
+        Thread.sleep(8000);
         PageFactory.initElements(driver, eDocsTabPage.class);
+        new WebDriverWait(Hooks.driver, 30).until(ExpectedConditions.visibilityOf(Hooks.driver.findElement(By.xpath("//*[@id=\"contents\"]/div[2]/div[2]/div/div[2]/table/tbody/tr/td[5]/div/button[2]"))));
         JavascriptExecutor js = (JavascriptExecutor)driver;
         js.executeScript("window.scrollTo(0,Math.max(document.documentElement.scrollHeight,document.body.scrollHeight,document.documentElement.clientHeight));");
         eDocsTabPage.btnDelete.click();
@@ -151,14 +156,14 @@ public class eDocsGeneral {
 
     public static void verifyLorsText (String strData) throws Throwable {
         new WebDriverWait(Hooks.driver, 30).until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("div[class='form-checklist condensed ng-scope']")));
-        Thread.sleep(8008);
+//        Thread.sleep(8008);
         new WebDriverWait(Hooks.driver, 30).until(ExpectedConditions.visibilityOf(Hooks.driver.findElement(By.className("ng-scope"))));
-        String bodyText = Hooks.driver.findElement(By.tagName("body")).getText();
+        String bodyText = eDocsTabPage.txtBody.getText();
         assertTrue("Text not found! "+strData, bodyText.contains(strData));
         if(strData.contains("Replace") || strData.contains("Delete") ){
 
             new WebDriverWait(Hooks.driver, 30).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@id=\"contents\"]/div[2]/div[2]/div/div[2]")));
-            String verifyReplaceText = Hooks.driver.findElement(By.xpath("//*[@id=\"contents\"]/div[2]/div[2]/div/div[2]")).getText();
+            String verifyReplaceText = eDocsTabPage.txtVerification.getText();
             assertTrue("Text not found! "+strData, !verifyReplaceText.contains(strData));
         }
 
@@ -166,7 +171,7 @@ public class eDocsGeneral {
             JavascriptExecutor js = (JavascriptExecutor)driver;
             js.executeScript("window.scrollTo(0,Math.max(document.documentElement.scrollHeight,document.body.scrollHeight,document.documentElement.clientHeight));");
             new WebDriverWait(Hooks.driver, 30).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@id=\"contents\"]/div[2]/div[2]/div/div[1]/table")));
-            String verifyReplaceText = Hooks.driver.findElement(By.xpath("//*[@id=\"contents\"]/div[2]/div[2]/div/div[1]/table")).getText();
+            String verifyReplaceText = eDocsTabPage.txtTableVerification.getText();
             assertTrue("Text not found! "+strData, !verifyReplaceText.contains(strData));
         }
     }
@@ -178,9 +183,9 @@ public class eDocsGeneral {
                 new SimpleDateFormat ("MM/dd/yyyy");
 
         new WebDriverWait(Hooks.driver, 30).until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("div[class='form-checklist condensed ng-scope']")));
-        Thread.sleep(8008);
+//        Thread.sleep(8008);
         new WebDriverWait(Hooks.driver, 30).until(ExpectedConditions.visibilityOf(Hooks.driver.findElement(By.className("ng-scope"))));
-        String bodyText = Hooks.driver.findElement(By.tagName("body")).getText();
+        String bodyText = eDocsTabPage.txtBody.getText();
         assertTrue("Text Type not found! "+ type, bodyText.contains(type));
         assertTrue("Text Author not found! "+ author, bodyText.contains(author));
         assertTrue("Text Date not found! "+ ft.format(date), bodyText.contains(ft.format(date)));
@@ -188,7 +193,7 @@ public class eDocsGeneral {
         assertTrue("Text Action not found! "+ action, bodyText.contains(action));
         if(type.contains("Replace") || type.contains("Delete") ){
             new WebDriverWait(Hooks.driver, 30).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@id=\"contents\"]/div[2]/div[2]/div/div[1]/table")));
-            String verifyReplaceText = Hooks.driver.findElement(By.xpath("//*[@id=\"contents\"]/div[2]/div[2]/div/div[1]/table")).getText();
+            String verifyReplaceText = eDocsTabPage.txtTableVerification.getText();
             assertTrue("Text not found! "+ type, !verifyReplaceText.contains(type));
         }
     }
@@ -213,7 +218,7 @@ public class eDocsGeneral {
         new WebDriverWait(Hooks.driver, 30).until(ExpectedConditions.visibilityOf(Hooks.driver.findElement(By.className("ng-scope"))));
         if(strData.contains("Replace") || strData.contains("Delete") ){
             new WebDriverWait(Hooks.driver, 30).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@id=\"contents\"]/div[2]/div[2]/div")));
-            String verifyReplaceText = Hooks.driver.findElement(By.xpath("//*[@id=\"contents\"]/div[2]/div[2]/div")).getText();
+            String verifyReplaceText = eDocsTabPage.txtContentsVerification.getText();
             assertTrue("Text not found! "+strData, verifyReplaceText.contains(strData));
         }
     }

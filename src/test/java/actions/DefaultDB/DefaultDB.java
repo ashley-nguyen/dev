@@ -27,6 +27,9 @@ public class DefaultDB {
     }
 
     public static void verifyHomePage() throws InterruptedException {
+        driver = Hooks.driver;
+        PageFactory.initElements(driver, DefaultDBPage.class);
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         String verifyReportLink = DefaultDBPage.lnkReports.getText();
         String verifyPlannerLink = DefaultDBPage.lnkPlanner.getText();
         String verifyCoursesLink = DefaultDBPage.lnkCourses.getText();
