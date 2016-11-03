@@ -89,7 +89,7 @@ public class eDocsGeneral {
         driver = Hooks.driver;
         Thread.sleep(8000);
         PageFactory.initElements(driver, eDocsTabPage.class);
-        new WebDriverWait(Hooks.driver, 30).until(ExpectedConditions.visibilityOf(Hooks.driver.findElement(By.xpath("//*[@id=\"contents\"]/div[2]/div[2]/div/div[2]/table/tbody/tr[1]/td[5]/div/button[1]"))));
+        new WebDriverWait(Hooks.driver, 30).until(ExpectedConditions.visibilityOf(Hooks.driver.findElement(By.xpath("//button[@title='Replace']"))));
         eDocsTabPage.btnReplace.click();
     }
 

@@ -53,7 +53,7 @@ public class eDocsTabPage extends BaseClass  {
         @FindBy(how = How.XPATH, using = "//*[@id=\"transcript_upload_div\"]/div[3]/div/div/div[2]/input")
         public static WebElement btnBrowse;
 
-        @FindBy(how = How.XPATH, using = "//*[@id=\"contents\"]/div[2]/div[2]/div/div[2]/table/tbody/tr[1]/td[5]/div/button[1]")
+        @FindBy(how = How.XPATH, using = "//button[@title='Replace']")
         public static WebElement btnReplace;
 
         @FindBy(how = How.XPATH, using = "//button[@title='Delete']")
