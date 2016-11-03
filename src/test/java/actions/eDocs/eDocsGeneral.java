@@ -95,7 +95,7 @@ public class eDocsGeneral {
 
     public static void ClickOnDeleteButton() throws Throwable {
         driver = Hooks.driver;
-        Thread.sleep(8000);
+//        Thread.sleep(8000);
         PageFactory.initElements(driver, eDocsTabPage.class);
         new WebDriverWait(Hooks.driver, 30).until(ExpectedConditions.visibilityOf(Hooks.driver.findElement(By.xpath("//button[@title='Delete']"))));
         JavascriptExecutor js = (JavascriptExecutor)driver;

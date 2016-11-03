@@ -126,5 +126,4 @@ Feature: View student details
     Then I will verify "<type>", "<author>", "<size>", "<action>"
   Examples:
     | studentID  | type                     | author    | size  | action |
-    | a103       | Other School Report      |Stan Smith | 14.87 | Delete   |
-    | a103       | NACAC Fee W   aiver      |Stan Smith | 14.87 | Delete   |
+    | a103       | NACAC Fee Waiver      |Stan Smith | 14.87 | Delete   |
