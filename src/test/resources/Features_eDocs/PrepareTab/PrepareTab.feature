@@ -55,7 +55,6 @@ Feature: View student details
 
   @edocs @safe @succeed
   Scenario Outline: Verify Under Application, the college for which the student has requested a LOR will be populated.
-  When I select "All Applications" from Application
     When I use "<studentID>" under application selecting "All Applications" and "Letter of Recommendation" with "<filename>"
     Then I will verify "<text>" for LORs
 
@@ -127,5 +126,4 @@ Feature: View student details
     Then I will verify "<type>", "<author>", "<size>", "<action>"
   Examples:
     | studentID  | type                     | author    | size  | action |
-    | a103       | Other School Report      |Stan Smith | 14.87 | Delete   |
-    | a103       | NACAC Fee W   aiver      |Stan Smith | 14.87 | Delete   |
+    | a103       | NACAC Fee Waiver      |Stan Smith | 14.87 | Delete   |

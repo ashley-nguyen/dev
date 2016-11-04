@@ -28,16 +28,23 @@ public class Marketing {
     }
 
     public static void verifyImageInLogin() throws InterruptedException {
+        driver = Hooks.driver;
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         //Changing the frame to test
-        driver  = Hooks.driver.switchTo().frame(0);
+
+        PageFactory.initElements(driver, marketingPage.class);
+
         //Driver for iframe section can't be mapped for now
+        driver  = Hooks.driver.switchTo().frame(0);
+        new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//img[contains(@src,'img/upgraded-by-hobsons.jpg')]")));
         Boolean imageVerification = marketingPage.imgVerification.isDisplayed();
         assertTrue("Verify image exists!", imageVerification);
     }
 
     public static void verifyBanner() throws InterruptedException {
-       driver = Hooks.driver;
-       driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        driver = Hooks.driver;
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        PageFactory.initElements(driver, marketingPage.class);
        new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//img[contains(@src,'/images/navmarketplace_badge.png')]")));
        Boolean bannerVerification =  marketingPage.bannerVerification.isDisplayed();
         assertTrue("Verify banner exists!", bannerVerification);
