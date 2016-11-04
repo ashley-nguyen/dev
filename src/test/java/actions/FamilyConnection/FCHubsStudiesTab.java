@@ -24,8 +24,8 @@ public class FCHubsStudiesTab {
     public static void VerifyStudentFacultyRatioStudiesTopBar(String studentFacultyRatio) {
         driver = Hooks.driver;
         PageFactory.initElements(driver, FCHubsStudiesTabPage.class);
-        new WebDriverWait(Hooks.driver, 20).until(ExpectedConditions.elementToBeClickable(By.cssSelector
-                (".hub-data-pod--ratio.hub-data-pod--studies.ng-binding")));
+        new WebDriverWait(Hooks.driver, 20).until(ExpectedConditions.elementToBeClickable(FCHubsStudiesTabPage
+                .labelStuFacRatio));
         assertTrue("The Student Faculty Ratio is not correct", FCHubsStudiesTabPage.labelStuFacRatio.getText()
                 .equals(studentFacultyRatio));
     }
