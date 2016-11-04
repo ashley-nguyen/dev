@@ -59,7 +59,6 @@ public class eDocsGeneral {
 
     public static void ClickOnExpandAllButton() throws Throwable {
         driver = Hooks.driver;
-        Thread.sleep(8000);
         PageFactory.initElements(driver, eDocsTabPage.class);
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         new WebDriverWait(Hooks.driver, 30).until(ExpectedConditions.visibilityOf(Hooks.driver.findElement(By.xpath("//button[@class='btn btn-small ng-scope']"))));
@@ -69,7 +68,6 @@ public class eDocsGeneral {
 
     public static void ClickOnAddButton() throws Throwable {
         driver = Hooks.driver;
-        Thread.sleep(8000);
         PageFactory.initElements(driver, eDocsTabPage.class);
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         new WebDriverWait(Hooks.driver, 30).until(ExpectedConditions.visibilityOf(Hooks.driver.findElement(By.xpath("//button[@class='btn btn-small ng-scope']"))));
@@ -78,7 +76,6 @@ public class eDocsGeneral {
 
     public static void ClickOnAddCounselorButton() throws Throwable {
         driver = Hooks.driver;
-        Thread.sleep(8000);
         PageFactory.initElements(driver, eDocsTabPage.class);
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         new WebDriverWait(Hooks.driver, 30).until(ExpectedConditions.visibilityOf(Hooks.driver.findElement(By.xpath("//*[@id=\"contents\"]/div[2]/div[2]/div/div[2]/h3/button"))));
@@ -87,7 +84,6 @@ public class eDocsGeneral {
 
     public static void ClickOnReplaceButton() throws Throwable {
         driver = Hooks.driver;
-        Thread.sleep(8000);
         PageFactory.initElements(driver, eDocsTabPage.class);
         new WebDriverWait(Hooks.driver, 30).until(ExpectedConditions.visibilityOf(Hooks.driver.findElement(By.xpath("//button[@title='Replace']"))));
         eDocsTabPage.btnReplace.click();
@@ -95,7 +91,6 @@ public class eDocsGeneral {
 
     public static void ClickOnDeleteButton() throws Throwable {
         driver = Hooks.driver;
-//        Thread.sleep(8000);
         PageFactory.initElements(driver, eDocsTabPage.class);
         new WebDriverWait(Hooks.driver, 30).until(ExpectedConditions.visibilityOf(Hooks.driver.findElement(By.xpath("//button[@title='Delete']"))));
         JavascriptExecutor js = (JavascriptExecutor)driver;
@@ -128,18 +123,17 @@ public class eDocsGeneral {
         driver = Hooks.driver;
         PageFactory.initElements(driver, eDocsTabPage.class);
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-        Thread.sleep(8000);
+        new WebDriverWait(Hooks.driver, 30).until(ExpectedConditions.visibilityOf(Hooks.driver.findElement(By.xpath("//select[@id='document_type']"))));
         Select select = new Select(eDocsTabPage.selType);
         select.selectByVisibleText(type);
-        Thread.sleep(8008);
     }
 
     public static void ClickOnBrowseButton() throws Throwable {
         driver = Hooks.driver;
         PageFactory.initElements(driver, eDocsTabPage.class);
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        new WebDriverWait(Hooks.driver, 30).until(ExpectedConditions.visibilityOf(Hooks.driver.findElement(By.xpath("//*[@id=\"transcript_upload_div\"]/div[3]/div/div/div[2]/input"))));
         eDocsTabPage.btnBrowse.click();
-        Thread.sleep(8008);
     }
 
 
@@ -157,7 +151,6 @@ public class eDocsGeneral {
 
     public static void verifyLorsText (String strData) throws Throwable {
         new WebDriverWait(Hooks.driver, 30).until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("div[class='form-checklist condensed ng-scope']")));
-        Thread.sleep(8008);
         new WebDriverWait(Hooks.driver, 30).until(ExpectedConditions.visibilityOf(Hooks.driver.findElement(By.className("ng-scope"))));
         String bodyText = eDocsTabPage.txtBody.getText();
         assertTrue("Text not found! "+strData, bodyText.contains(strData));
@@ -184,7 +177,6 @@ public class eDocsGeneral {
                 new SimpleDateFormat ("MM/dd/yyyy");
 
         new WebDriverWait(Hooks.driver, 30).until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("div[class='form-checklist condensed ng-scope']")));
-//        Thread.sleep(8008);
         new WebDriverWait(Hooks.driver, 30).until(ExpectedConditions.visibilityOf(Hooks.driver.findElement(By.className("ng-scope"))));
         String bodyText = eDocsTabPage.txtBody.getText();
         assertTrue("Text Type not found! "+ type, bodyText.contains(type));
@@ -311,6 +303,7 @@ public class eDocsGeneral {
                 messages = folder.search(new SubjectTerm(subject), folder.getMessages());
                 //Wait for 10 seconds
                 if (messages.length == 0) {
+                    //Sleep time for external wait time in the email inbox
                     Thread.sleep(10000);
                 }
             }
