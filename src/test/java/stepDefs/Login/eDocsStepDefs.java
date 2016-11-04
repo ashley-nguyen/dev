@@ -27,14 +27,14 @@ public class eDocsStepDefs {
     }
 
     @When("^I use \"([^\"]*)\" under application selecting \"(.*)\" and \"(.*)\" with \"([^\"]*)\"$")
-    public void I_use_student_under_application_for_letter_recommendation_verifying_text(String strStudentID, String type, String application, String filename) throws Throwable {
+    public void I_use_student_under_application_for_letter_recommendation_verifying_text(String strStudentID,  String application, String type, String filename) throws Throwable {
         Student_Search.studentRosterSearch(strStudentID, "id");
         eDocsGeneral.NavtoEdocsStudentTab();
         eDocsGeneral.ClickOnPrepareLink();
         eDocsGeneral.ClickOnAddButton();
         eDocsGeneral.ClickOnUploadAFileButton();
-        eDocsGeneral.SelectType(type);
         eDocsGeneral.SelectApplication(application);
+        eDocsGeneral.SelectType(type);
         eDocsGeneral.ClickOnBrowseButton();
         eDocsGeneral.WritePathFile(filename);
     }

@@ -30,7 +30,7 @@ public class DefaultDBPage extends BaseClass {
     public static WebElement lnkConnections;
     @FindBy(how = How.CLASS_NAME, using = "main-navigation")
     public static WebElement txtErrorsMessage;
-    @FindBy(how = How.ID, using = " main-content-container")
+    @FindBy(how = How.ID, using = "main-content-container")
     public static WebElement txtMessage;
 
 
