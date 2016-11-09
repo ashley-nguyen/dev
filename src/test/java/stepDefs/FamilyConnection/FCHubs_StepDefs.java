@@ -76,15 +76,13 @@ public class FCHubs_StepDefs {
         FCHubs.VerifyURLContainsText(site);
     }
 
-    
-
-    @When("^I click the Apply Online button$")
-    public void I_click_the_apply_online_button() throws Throwable {
+    @When("^I open the Apply Online button$")
+    public void I_open_the_apply_online_button() throws Throwable {
         FCHubs.ClickApplyOnlineButton();
     }
 
-    @When("^I click the 'Learn More' link \"([^\"]*)\"$")
-    public void I_click_the_learn_more_link(String link) throws Throwable {
+    @When("^I open the 'Learn More' link \"([^\"]*)\"$")
+    public void I_open_the_learn_more_link(String link) throws Throwable {
         FCHubs.ClickLearnMoreButton();
         FCHubs.ClickLearnMoreEventsLink(link);
     }
@@ -332,8 +330,8 @@ public class FCHubs_StepDefs {
         FCHubs.VerifyActiveTab(tabName);
     }
 
-    @When("^I click the link \"([^\"]*)\" in the Overview Info Top Bar$")
-    public void I_click_the_link_in_the_Overview_Info_Top_Bar(String link) throws Throwable {
+    @When("^I open the link \"([^\"]*)\" in the Overview Info Top Bar$")
+    public void I_open_the_link_in_the_Overview_Info_Top_Bar(String link) throws Throwable {
         FCHubs.ClickLinkInOverviewInfoTopBar(link);
     }
 
@@ -376,8 +374,8 @@ public class FCHubs_StepDefs {
         FCCollegesTab.ClickCollegeInCollegeLookup(college);
         FCCollegeView.clickBetaButton();
     }
-    @When("^I click 'Communicate' link \"([^\"]*)\"$")
-    public void I_Click_Communicate_Link(String link) throws Throwable {
+    @When("^I open 'Communicate' link \"([^\"]*)\"$")
+    public void I_open_Communicate_Link(String link) throws Throwable {
         FCHubs.ClickCommunicate();
         FCHubs.Requestinformationlink(link);
     }

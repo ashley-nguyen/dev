@@ -73,9 +73,9 @@ public class FCHubsPage extends BaseClass {
     public static WebElement labelOverviewTabDeadlineMonth;
     @FindBy(how = How.CSS, using = ".hub-deadline__day.ng-binding")
     public static WebElement labelOverviewTabDeadlineDay;
-    @FindBy(how = How.CSS, using = ".contactsMail.ng-binding")
+    @FindBy(how = How.CSS, using = ".contacts__mail.ng-binding")
     public static WebElement appMailingAddress;
-    @FindBy(how = How.CSS, using = ".contactsAdmissions.ng-binding")
+    @FindBy(how = How.CSS, using = ".contacts__admissions.ng-binding")
     public static WebElement contactInfoAdmissions;
     @FindBy(how = How.CSS, using = ".fc-grid__row.fc-grid__row--md-end.quick-facts-row" +
             "[ng-show=\"vm.profile.displayUrl\"] a")

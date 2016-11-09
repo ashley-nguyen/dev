@@ -35,8 +35,8 @@ public class FCHubsAdmissionsTab_StepDefs {
         FCHubsAdmissionsTab.VerifyImportantPolicies(importantPolicies);
     }
 
-    @When("^I click \"([^\"]*)\" in Application Requirements$")
-    public void I_click_in_Application_Requirements(String section) throws Throwable {
+    @When("^I open \"([^\"]*)\" in Application Requirements$")
+    public void I_open_in_Application_Requirements(String section) throws Throwable {
         FCHubsAdmissionsTab.ClickSectionInAppRequirements(section);
     }
 
@@ -45,8 +45,8 @@ public class FCHubsAdmissionsTab_StepDefs {
         FCHubsAdmissionsTab.VerifyApplicationRequirements(reqType, applicationRequirements);
     }
 
-    @When("^I click \"([^\"]*)\" in Application Information$")
-    public void I_click_in_Application_Information(String tab) throws Throwable {
+    @When("^I open \"([^\"]*)\" in Application Information$")
+    public void I_open_in_Application_Information(String tab) throws Throwable {
         FCHubsAdmissionsTab.ClickApplicationInformationTab(tab);
     }
 

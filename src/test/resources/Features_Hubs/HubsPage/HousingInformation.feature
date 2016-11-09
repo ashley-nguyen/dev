@@ -17,7 +17,7 @@ Feature: As a student viewing new Hubs' Student Life tab, I want to see a housin
 
   Scenario: The Freshmen must live on campus is displayed with correct data
     Then The "Freshmen" should be "No" in Housing Information
-
+@test
   Scenario: The Sophomores must live on Campus is displayed with correct data
     Then The "Sophomores" should be "No" in Housing Information
 

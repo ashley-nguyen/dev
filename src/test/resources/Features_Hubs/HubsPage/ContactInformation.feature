@@ -7,7 +7,6 @@ Feature:  As a student viewing new Hubs' Overview tab, I want to see contact inf
       | rtsa       | amandahubs | hubs2016  |
     When I open the HUBS page for "Auburn"
 
-
   Scenario: School name is present in Application Mailing Address with correct data
     Then The School Name should be "Auburn University" in Application Mailing Address
 
