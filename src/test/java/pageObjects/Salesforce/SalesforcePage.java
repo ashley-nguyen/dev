@@ -40,7 +40,7 @@ public class SalesforcePage extends BaseClass {
     @FindBy(how = How.ID, using = "po_number")
     public static WebElement PONumber;
 
-    @FindBy(how = How.XPATH, using = "/html/body/div[1]/table/tbody/tr[1]/td[2]/table[1]/tbody/tr[2]/td[2]/div/h3")
+    @FindBy(how = How.CSS, using = "html > body > div:nth-of-type(1) > table > tbody > tr:nth-of-type(1) > td:nth-of-type(2) > table:nth-of-type(1) > tbody > tr:nth-of-type(2) > td:nth-of-type(2) > div > h3")
     public static WebElement txtDataVerification;
 
 

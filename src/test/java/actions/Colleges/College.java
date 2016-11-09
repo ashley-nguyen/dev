@@ -157,7 +157,7 @@ public class College {
         PageFactory.initElements(driver, CollegePage.class);
         new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.linkText("prospective colleges")));
         CollegePage.lnkProspectiveColleges.click();
-        new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@id=\"contents\"]/table/tbody/tr[1]/td/table/tbody/tr/td[1]/a")));
+        new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("#contents > table > tbody > tr:nth-of-type(1) > td > table > tbody > tr > td:nth-of-type(1) > a")));
         CollegePage.lnkAddProspectiveColleges.click();
     }
 

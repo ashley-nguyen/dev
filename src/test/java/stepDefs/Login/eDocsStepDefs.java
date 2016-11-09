@@ -36,6 +36,7 @@ public class eDocsStepDefs {
         eDocsGeneral.SelectApplication(application);
         eDocsGeneral.SelectType(type);
         eDocsGeneral.ClickOnBrowseButton();
+        System.out.println("XXXX" + filename);
         eDocsGeneral.WritePathFile(filename);
     }
 

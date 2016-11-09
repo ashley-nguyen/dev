@@ -101,6 +101,7 @@ public class Connections_StepDefs {
         Connections.selectOptionForCollege();
         Connections.selectCollege();
         Connections.clickSave();
+
     }
 
     @Then("^I see the default message$")

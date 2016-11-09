@@ -36,7 +36,7 @@ public class SmtpPage extends BaseClass {
     @FindBy(how = How.ID, using = "addUser")
     public static WebElement AddUser;
 
-    @FindBy(how = How.XPATH, using = "/html/body/div/table/tbody/tr[1]/td[2]/table/tbody/tr[4]/td[2]/table")
+    @FindBy(how = How.CSS, using = "html > body > div > table > tbody > tr:nth-of-type(1) > td:nth-of-type(2) > table > tbody > tr:nth-of-type(4) > td:nth-of-type(2) > table")
     public static WebElement txtDataVerification;
 
     public SmtpPage(WebDriver driver) {

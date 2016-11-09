@@ -30,7 +30,7 @@ Feature: Email Verification
 
   Scenario Outline: Given I am a staff member (WITH edit list of teachers permission), when accessing a student's college tab, in the Teacher Recommendation section, then I select a teacher and college to add a request.  The teacher DOES have an LOR request with a status of: Requested, In Progress, or Submitted for the selected college.
     Given I am logged into Naviance "rtsa" as "stan.smith" with "stan01!"
-    When I add a student request with <student> and <teacher> and <application>
+    When I add a student request with "<student>" and "<teacher>" and "<application>"
     Then I will verify the mail was delivered with "Teacher recommendation can't add request" subject
 
 
@@ -40,7 +40,7 @@ Feature: Email Verification
 
   Scenario Outline: Given I am a staff member (WITH edit list of teachers permission), when accessing a student's college tab, in the Teacher Recommendation section, then I select a teacher and college to add a request.  The MAX NUMBER OF REQUESTS has been fulfilled for the college.  A LOR is counted when there is a request that exists for the student & college combo in one of the following statuses: Requested, In Progress, or Submitted.
     Given I am logged into Naviance "rtsa" as "stan.smith" with "stan01!"
-    When I add a request with <student> <teacher> and <application>
+    When I add a student request with "<student>" and "<teacher>" and "<application>"
     Then I verify the number of LORs <message> message
     Then I will verify the mail was delivered with "Teacher recommendation can't add request" subject
 
@@ -51,7 +51,7 @@ Feature: Email Verification
 
   Scenario Outline: Given I am a staff member (WITH edit list of teachers permission), when accessing a student's college tab, in the Teacher Recommendation section, then I select a teacher and college to add a request.  The MAX NUMBER OF REQUESTS has been fulfilled for the college.  A LOR is counted when there is a request that exists for the student & college combo in one of the following statuses: Requested, In Progress, or Submitted.
     Given I am logged into Naviance "rtsa" as "stan.smith" with "stan01!"
-    When I add a teacher request with <student> and <teacher> and <application>
+    When I add a student request with "<student>" and "<teacher>" and "<application>"
     Then I verify the number of LORs <message> message
 
   Examples:

@@ -32,37 +32,37 @@ public class CoursePage extends BaseClass {
     public static WebElement lnkRecommendations;
     @FindBy(how = How.CLASS_NAME, using = "desc")
     public static WebElement txtCourseName;
-    @FindBy(how = How.XPATH, using = "//*[@id=\"main-content-container\"]/ul/li[2]/p")
+    @FindBy(how = How.CSS, using = "#main-content-container > ul > li:nth-of-type(2) > p")
     public static WebElement txtCourseId;
-    @FindBy(how = How.XPATH, using = "//*[@id=\"main-content-container\"]/ul/li[3]/p")
+    @FindBy(how = How.CSS, using = "#main-content-container > ul > li:nth-of-type(3) > p")
     public static WebElement subjectArea;
-    @FindBy(how = How.XPATH, using = "//*[@id=\"main-content-container\"]/ul/li[4]/p")
+    @FindBy(how = How.CSS, using = "#main-content-container > ul > li:nth-of-type(4) > p")
     public static WebElement txtCredits;
-    @FindBy(how = How.XPATH, using = "//*[@id=\"main-content-container\"]/ul/li[5]/p")
+    @FindBy(how = How.CSS, using = "#main-content-container > ul > li:nth-of-type(5) > p")
     public static WebElement txtGradeLevels;
-    @FindBy(how = How.XPATH, using = "//*[@id=\"main-content-container\"]/ul/li[6]/p")
+    @FindBy(how = How.CSS, using = "#main-content-container > ul > li:nth-of-type(6) > p")
     public static WebElement txtStatus;
-    @FindBy(how = How.XPATH, using = "//*[@id=\"main-content-container\"]/ul/li[7]/p")
+    @FindBy(how = How.CSS, using = "#main-content-container > ul > li:nth-of-type(7) > p")
     public static WebElement txtDescription;
-    @FindBy(how = How.XPATH, using = "//*[@id=\"main-content-container\"]/ul/li[8]/p")
+    @FindBy(how = How.CSS, using = "#main-content-container > ul > li:nth-of-type(8) > p")
     public static WebElement txtStateId;
-    @FindBy(how = How.XPATH, using = "//*[@id=\"main-content-container\"]/ul/li[9]/p")
+    @FindBy(how = How.CSS, using = "#main-content-container > ul > li:nth-of-type(9) > p")
     public static WebElement txtInstructionalLevel;
-    @FindBy(how = How.XPATH, using = "//*[@id=\"main-content-container\"]/ul/li[10]/p")
+    @FindBy(how = How.CSS, using = "#main-content-container > ul > li:nth-of-type(10) > p")
     public static WebElement txtCteCourse;
-    @FindBy(how = How.XPATH, using = "//*[@id=\"main-content-container\"]/ul/li[11]/p")
+    @FindBy(how = How.CSS, using = "#main-content-container > ul > li:nth-of-type(11) > p")
     public static WebElement techPrepCourse;
-    @FindBy(how = How.XPATH, using = "//*[@id=\"main-content-container\"]/ul/li[12]/p")
+    @FindBy(how = How.CSS, using = "#main-content-container > ul > li:nth-of-type(12) > p")
     public static WebElement txtCoursePrerequisites;
-    @FindBy(how = How.XPATH, using = "//*[@id=\"main-content-container\"]/ul/li[13]/p")
+    @FindBy(how = How.CSS, using = "#main-content-container > ul > li:nth-of-type(13) > p")
     public static WebElement txtCourseCoRequisites;
     @FindBy(how = How.CLASS_NAME, using = "desc")
     public static WebElement txtName;
     @FindBy(how = How.CLASS_NAME, using = "data")
     public static WebElement txtNameData;
-    @FindBy(how = How.XPATH, using = "//*[@id=\"main-content-container\"]/ul/li[2]/p")
+    @FindBy(how = How.CSS, using = "#main-content-container > ul > li:nth-of-type(2) > p")
     public static WebElement txtStandardCategory;
-    @FindBy(how = How.XPATH, using = "//*[@id=\"main-content-container\"]/ul/li[2]/div")
+    @FindBy(how = How.CSS, using = "#main-content-container > ul > li:nth-of-type(2) > div")
     public static WebElement txtStandardCategoryData;
     @FindBy(how = How.ID, using = "content-wrapper")
     public static WebElement txtRecommendations;

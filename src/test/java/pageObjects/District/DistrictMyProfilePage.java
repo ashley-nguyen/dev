@@ -11,10 +11,7 @@ import pageObjects.BaseClass;
  */
 public class DistrictMyProfilePage extends BaseClass {
 
-    @FindBy(how = How.XPATH, using = "//a[contains(text(),'edit my profile')]")
-    public static WebElement lnkEditMyProfile;
-
-    @FindBy(how = How.XPATH, using = "//a[contains(text(),'edit my profile')]")
+    @FindBy(how = How.CSS, using = "a:contains(edit my profile)")
     public static WebElement txtEditMyProfile;
 
     public DistrictMyProfilePage(WebDriver driver) {
