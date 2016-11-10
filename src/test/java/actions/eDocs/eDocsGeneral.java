@@ -254,7 +254,7 @@ public class eDocsGeneral {
             File filePathStudentImport = new File(Hooks.class.getResource(CHROME_FILE_NAME).getFile());
             System.out.println("File path" + filePathStudentImport);
             //Sleep time hardcoded to wait the external popup to upload file
-            Thread.sleep(3000);
+            Thread.sleep(8000);
             StringSelection filePath = new StringSelection(filePathStudentImport.toString());
             Toolkit.getDefaultToolkit().getSystemClipboard().setContents(filePath, null);
             Robot r = new Robot();
@@ -296,8 +296,21 @@ public class eDocsGeneral {
         if (filename.contains("index")){
             File filePathStudentImport = new File(Hooks.class.getResource(CHROME_INCORRECT_FORMAT_FILE).getFile());
             System.out.println("File path" + filePathStudentImport);
-            driver.switchTo().activeElement().sendKeys(filePathStudentImport.toString());
-            driver.switchTo().activeElement();
+            //Sleep time hardcoded to wait the external popup to upload file
+            Thread.sleep(3000);
+            StringSelection filePath = new StringSelection(filePathStudentImport.toString());
+            Toolkit.getDefaultToolkit().getSystemClipboard().setContents(filePath, null);
+            Robot r = new Robot();
+            r.keyPress(KeyEvent.VK_ENTER);
+            r.keyRelease(KeyEvent.VK_ENTER);
+            r.keyPress(KeyEvent.VK_CONTROL);
+            r.keyPress(KeyEvent.VK_V);
+            r.keyRelease(KeyEvent.VK_V);
+            r.keyRelease(KeyEvent.VK_CONTROL);
+            r.keyPress(KeyEvent.VK_ENTER);
+            r.keyRelease(KeyEvent.VK_ENTER);
+
+            new WebDriverWait(Hooks.driver, 30).until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("#uploadModal > form > div.modal-footer > button")));
             SetupPage.btnUploadFile.click();
         }
     }
