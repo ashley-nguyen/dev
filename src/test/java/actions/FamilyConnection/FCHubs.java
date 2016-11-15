@@ -31,10 +31,9 @@ public class FCHubs {
 
     public static void ClickFeedbackButton() {
         driver = Hooks.driver;
-        new WebDriverWait(Hooks.driver, 20).until(ExpectedConditions.elementToBeClickable(FCHubsPage.buttonFeedback));
         PageFactory.initElements(driver, FCHubsPage.class);
+        new WebDriverWait(Hooks.driver, 20).until(ExpectedConditions.elementToBeClickable(FCHubsPage.buttonFeedback));
         FCHubsPage.buttonFeedback.click();
-        FCHubsPage.buttonFeedback.sendKeys(Keys.RETURN);
     }
 
     public static void VerifyFirstTutorialDialog() {

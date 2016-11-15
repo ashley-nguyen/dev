@@ -63,8 +63,8 @@ public class FCHubsStudiesTab_StepDefs {
         FCHubsStudiesTab.ClickProgramInMajorsOfferedList(program);
     }
 
-    @When("^I click the \"([^\"]*)\" link in Student Life top bar$")
-    public void I_click_the_link_in_Student_Life_top_bar(String linkText) throws Throwable {
+    @When("^I open the \"([^\"]*)\" link in Student Life top bar$")
+    public void I_open_the_link_in_Student_Life_top_bar(String linkText) throws Throwable {
         FCHubsStudiesTab.ClickLinkInStudentLifeTopBar(linkText);
     }
 

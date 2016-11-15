@@ -9,7 +9,7 @@ Feature:  As a student viewing new Hubs' Overview tab, I want to see contact inf
     And I open the Admissions tab
 
   Scenario Outline: The "Required" requirements for "Freshman" are displayed with correct data
-    When I click "Deadlines" in Application Information
+    When I open "Deadlines" in Application Information
     Then The deadline with name "<name>" and date "<date>" should be displayed in Application Information
     Examples:
     | name                           | date   |

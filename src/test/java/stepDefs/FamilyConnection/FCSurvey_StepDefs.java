@@ -20,7 +20,8 @@ public class FCSurvey_StepDefs {
 
     @And("^I fill the survey with the following data:$")
     public void I_fill_the_survey_with_the_following_data(List<String> surveyOptions) throws Throwable {
-        FCSurvey.FillSurvey(surveyOptions.get(0), surveyOptions.get(1), surveyOptions.get(2));
+        FCSurvey.clickCloseSurveypreview();
+        FCSurvey.FillSurvey(surveyOptions.get(0), surveyOptions.get(1), surveyOptions.get(2), surveyOptions.get(3));
     }
 
     @And("^I submit the survey$")
