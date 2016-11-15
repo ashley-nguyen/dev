@@ -56,4 +56,4 @@ Feature: Email Verification
 
   Examples:
     | student       | teacher             | application         | message |
-    | a103, a103    | Sejas, Frank   | Adelphi University  |Success! A new letter of recommendation request has been created.|
+    | a103, a103    | Jandell Counselor   | Adelphi University  |Success! A new letter of recommendation request has been created.|
