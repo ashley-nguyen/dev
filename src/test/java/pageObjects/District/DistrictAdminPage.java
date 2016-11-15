@@ -8,10 +8,6 @@ import pageObjects.BaseClass;
  */
 public class DistrictAdminPage extends BaseClass {
 
-    //@FindBy(how = How.XPATH, using = "//a[contains(text(),'My Account')]")
-    //public static WebElement lnkMyAccount;
-
-
     public DistrictAdminPage(WebDriver driver) {
         super(driver);
     }

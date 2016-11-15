@@ -11,7 +11,7 @@ import pageObjects.BaseClass;
  */
 public class FCAboutMePage extends BaseClass {
 
-    @FindBy(how = How.XPATH, using = "//div[2]/h1")
+    @FindBy(how = How.CSS, using = "div:nth-of-type(2) > h1")
     public static WebElement txtSurvey;
 
     public FCAboutMePage(WebDriver driver) {

@@ -42,7 +42,6 @@ public class College_StepDefs {
         System.out.println("academics: " + strAcademics);
         System.out.println("cost and aid: " + strCostAid);
         System.out.println("extrac: " + strExtracurriculars);
-
         College.clickCollegeProfileTab("admissions");
         College.verifyCollegeSearchResult(strAdmissions);
         College.clickCollegeProfileTab("academics");

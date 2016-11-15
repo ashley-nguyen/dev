@@ -62,7 +62,7 @@ public class Login {
     }
 
     public static void verifyValidLoginFamilyConnection() throws InterruptedException {
-        new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//dd[@class = 'login']")));
+        new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("dd[class = 'login']")));
         String footnote = loginPage.fc_logged_as_label.getText();
         assertTrue("Text not found!", footnote.contains("Logged in as"));
     }

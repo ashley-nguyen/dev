@@ -50,11 +50,11 @@ public class DataImport {
        //
         driver.switchTo().activeElement().sendKeys(filePathStudentImport.toString());
         driver.switchTo().activeElement();
-        new WebDriverWait(Hooks.driver, 30).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//input[@name='uploadFile']")));
+        new WebDriverWait(Hooks.driver, 30).until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("input[name=uploadFile]")));
         SetupPage.btnContinue.click();
-        new WebDriverWait(Hooks.driver, 30).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//input[@value='Continue']")));
+        new WebDriverWait(Hooks.driver, 30).until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("input[value=Continue]")));
         SetupPage.btnContinueDataImport.click();
-        new WebDriverWait(Hooks.driver, 30).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//input[@name='submitMapping']")));
+        new WebDriverWait(Hooks.driver, 30).until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("input[name=submitMapping]")));
         SetupPage.btnContinueMatchFields.click();
     }
 }

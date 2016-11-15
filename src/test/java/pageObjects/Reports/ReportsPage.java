@@ -16,7 +16,7 @@ public class ReportsPage extends BaseClass {
     @FindBy(how = How.LINK_TEXT, using = "Customize")
     public static WebElement Customize;
 
-    @FindBy(how = How.XPATH, using = "//*[@id=\'customize-report\']/div[2]/input[2]")
+    @FindBy(how = How.CSS, using = "#customize-report > div:nth-of-type(2) > input:nth-of-type(2)")
     public static WebElement ViewReport;
 
     @FindBy(how = How.LINK_TEXT, using = "Usage")

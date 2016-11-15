@@ -36,7 +36,7 @@ public class Marketing {
 
         //Driver for iframe section can't be mapped for now
         driver  = Hooks.driver.switchTo().frame(0);
-        new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//img[contains(@src,'img/upgraded-by-hobsons.jpg')]")));
+        new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("img[src*='upgraded-by-hobsons.jpg']")));
         Boolean imageVerification = marketingPage.imgVerification.isDisplayed();
         assertTrue("Verify image exists!", imageVerification);
     }
@@ -45,7 +45,7 @@ public class Marketing {
         driver = Hooks.driver;
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         PageFactory.initElements(driver, marketingPage.class);
-       new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//img[contains(@src,'/images/navmarketplace_badge.png')]")));
+       new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("img[src*='navmarketplace_badge.png']")));
        Boolean bannerVerification =  marketingPage.bannerVerification.isDisplayed();
         assertTrue("Verify banner exists!", bannerVerification);
     }
@@ -57,7 +57,7 @@ public class Marketing {
 
         Actions action = new Actions(driver);
         action.moveToElement(DistrictPageHeader.districtcog).build().perform();
-        new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.linkText("Logout")));
+        new WebDriverWait(Hooks.driver, 15).until(ExpectedConditions.presenceOfElementLocated(By.linkText("Logout")));
         DistrictPageHeader.lnkLogout.click();
         //wait for something on the setup page to load before trying to click on something else.
         new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.partialLinkText("Sign In")));

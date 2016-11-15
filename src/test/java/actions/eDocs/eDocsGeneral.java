@@ -16,6 +16,8 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import javax.mail.search.SubjectTerm;
 import java.awt.*;
+import java.awt.datatransfer.StringSelection;
+import java.awt.event.KeyEvent;
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
@@ -59,47 +61,43 @@ public class eDocsGeneral {
 
     public static void ClickOnExpandAllButton() throws Throwable {
         driver = Hooks.driver;
-        Thread.sleep(8000);
         PageFactory.initElements(driver, eDocsTabPage.class);
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-        new WebDriverWait(Hooks.driver, 30).until(ExpectedConditions.visibilityOf(Hooks.driver.findElement(By.xpath("//button[@class='btn btn-small ng-scope']"))));
+        new WebDriverWait(Hooks.driver, 30).until(ExpectedConditions.visibilityOf(Hooks.driver.findElement(By.cssSelector("button.btn.btn-small.ng-scope"))));
         eDocsTabPage.btnExpandAll.click();
 
     }
 
     public static void ClickOnAddButton() throws Throwable {
         driver = Hooks.driver;
-        Thread.sleep(8000);
         PageFactory.initElements(driver, eDocsTabPage.class);
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-        new WebDriverWait(Hooks.driver, 30).until(ExpectedConditions.visibilityOf(Hooks.driver.findElement(By.xpath("//button[@class='btn btn-small ng-scope']"))));
+        new WebDriverWait(Hooks.driver, 30).until(ExpectedConditions.visibilityOf(Hooks.driver.findElement(By.cssSelector("button.btn.btn-small.ng-scope"))));
         eDocsTabPage.btnAdd.click();
     }
 
     public static void ClickOnAddCounselorButton() throws Throwable {
         driver = Hooks.driver;
-        Thread.sleep(8000);
         PageFactory.initElements(driver, eDocsTabPage.class);
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-        new WebDriverWait(Hooks.driver, 30).until(ExpectedConditions.visibilityOf(Hooks.driver.findElement(By.xpath("//*[@id=\"contents\"]/div[2]/div[2]/div/div[2]/h3/button"))));
+        new WebDriverWait(Hooks.driver, 30).until(ExpectedConditions.visibilityOf(Hooks.driver.findElement(By.cssSelector("#contents > div:nth-of-type(2) > div:nth-of-type(2) > div > div:nth-of-type(2) > h3 > button"))));
         eDocsTabPage.btnCounselorAdd.click();
     }
 
     public static void ClickOnReplaceButton() throws Throwable {
         driver = Hooks.driver;
-        Thread.sleep(8000);
         PageFactory.initElements(driver, eDocsTabPage.class);
-        new WebDriverWait(Hooks.driver, 30).until(ExpectedConditions.visibilityOf(Hooks.driver.findElement(By.xpath("//button[@title='Replace']"))));
+        new WebDriverWait(Hooks.driver, 30).until(ExpectedConditions.visibilityOf(Hooks.driver.findElement(By.cssSelector("button[title=Replace]"))));
         eDocsTabPage.btnReplace.click();
     }
 
     public static void ClickOnDeleteButton() throws Throwable {
         driver = Hooks.driver;
-//        Thread.sleep(8000);
         PageFactory.initElements(driver, eDocsTabPage.class);
-        new WebDriverWait(Hooks.driver, 30).until(ExpectedConditions.visibilityOf(Hooks.driver.findElement(By.xpath("//button[@title='Delete']"))));
+        new WebDriverWait(Hooks.driver, 30).until(ExpectedConditions.visibilityOf(Hooks.driver.findElement(By.cssSelector("button[title=Delete]"))));
         JavascriptExecutor js = (JavascriptExecutor)driver;
         js.executeScript("window.scrollTo(0,Math.max(document.documentElement.scrollHeight,document.body.scrollHeight,document.documentElement.clientHeight));");
+//        Thread.sleep(99999999);
         eDocsTabPage.btnDelete.click();
     }
 
@@ -128,18 +126,17 @@ public class eDocsGeneral {
         driver = Hooks.driver;
         PageFactory.initElements(driver, eDocsTabPage.class);
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-        Thread.sleep(8000);
+        new WebDriverWait(Hooks.driver, 30).until(ExpectedConditions.visibilityOf(Hooks.driver.findElement(By.cssSelector("select#document_type"))));
         Select select = new Select(eDocsTabPage.selType);
         select.selectByVisibleText(type);
-        Thread.sleep(8008);
     }
 
     public static void ClickOnBrowseButton() throws Throwable {
         driver = Hooks.driver;
         PageFactory.initElements(driver, eDocsTabPage.class);
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        new WebDriverWait(Hooks.driver, 30).until(ExpectedConditions.visibilityOf(Hooks.driver.findElement(By.cssSelector("#transcript_upload_div > div:nth-child(6) > div > div > div.file-name-container"))));
         eDocsTabPage.btnBrowse.click();
-        Thread.sleep(8008);
     }
 
 
@@ -157,13 +154,13 @@ public class eDocsGeneral {
 
     public static void verifyLorsText (String strData) throws Throwable {
         new WebDriverWait(Hooks.driver, 30).until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("div[class='form-checklist condensed ng-scope']")));
-        Thread.sleep(8008);
-        new WebDriverWait(Hooks.driver, 30).until(ExpectedConditions.visibilityOf(Hooks.driver.findElement(By.className("ng-scope"))));
+        new WebDriverWait(Hooks.driver, 30).until(ExpectedConditions.visibilityOf(Hooks.driver.findElement(By.cssSelector("#contents > div:nth-child(3) > div.ng-scope > ng-include > div > div:nth-child(2) > div.checklist-header.ng-binding"))));
+        new WebDriverWait(Hooks.driver, 30).until(ExpectedConditions.visibilityOf(Hooks.driver.findElement(By.cssSelector("#contents > div:nth-child(3) > div.ng-scope > div > div:nth-child(1) > table > tbody > tr:nth-child(1) > td:nth-child(1)"))));
         String bodyText = eDocsTabPage.txtBody.getText();
         assertTrue("Text not found! "+strData, bodyText.contains(strData));
         if(strData.contains("Replace") || strData.contains("Delete") ){
 
-            new WebDriverWait(Hooks.driver, 30).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@id=\"contents\"]/div[2]/div[2]/div/div[2]")));
+            new WebDriverWait(Hooks.driver, 30).until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("#contents > div:nth-of-type(2) > div:nth-of-type(2) > div > div:nth-of-type(2)")));
             String verifyReplaceText = eDocsTabPage.txtVerification.getText();
             assertTrue("Text not found! "+strData, !verifyReplaceText.contains(strData));
         }
@@ -171,7 +168,7 @@ public class eDocsGeneral {
         if(strData.contains("Initial Transcript (active")){
             JavascriptExecutor js = (JavascriptExecutor)driver;
             js.executeScript("window.scrollTo(0,Math.max(document.documentElement.scrollHeight,document.body.scrollHeight,document.documentElement.clientHeight));");
-            new WebDriverWait(Hooks.driver, 30).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@id=\"contents\"]/div[2]/div[2]/div/div[1]/table")));
+            new WebDriverWait(Hooks.driver, 30).until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("#contents > div:nth-of-type(2) > div:nth-of-type(2) > div > div:nth-of-type(1) > table")));
             String verifyReplaceText = eDocsTabPage.txtTableVerification.getText();
             assertTrue("Text not found! "+strData, !verifyReplaceText.contains(strData));
         }
@@ -184,7 +181,6 @@ public class eDocsGeneral {
                 new SimpleDateFormat ("MM/dd/yyyy");
 
         new WebDriverWait(Hooks.driver, 30).until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("div[class='form-checklist condensed ng-scope']")));
-//        Thread.sleep(8008);
         new WebDriverWait(Hooks.driver, 30).until(ExpectedConditions.visibilityOf(Hooks.driver.findElement(By.className("ng-scope"))));
         String bodyText = eDocsTabPage.txtBody.getText();
         assertTrue("Text Type not found! "+ type, bodyText.contains(type));
@@ -193,7 +189,7 @@ public class eDocsGeneral {
         assertTrue("Text Size not found! "+ size, bodyText.contains(size));
         assertTrue("Text Action not found! "+ action, bodyText.contains(action));
         if(type.contains("Replace") || type.contains("Delete") ){
-            new WebDriverWait(Hooks.driver, 30).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@id=\"contents\"]/div[2]/div[2]/div/div[1]/table")));
+            new WebDriverWait(Hooks.driver, 30).until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("#contents > div:nth-of-type(2) > div:nth-of-type(2) > div > div:nth-of-type(1) > table")));
             String verifyReplaceText = eDocsTabPage.txtTableVerification.getText();
             assertTrue("Text not found! "+ type, !verifyReplaceText.contains(type));
         }
@@ -218,7 +214,7 @@ public class eDocsGeneral {
     public static void verifyButtons (String strData) throws Throwable {
         new WebDriverWait(Hooks.driver, 30).until(ExpectedConditions.visibilityOf(Hooks.driver.findElement(By.className("ng-scope"))));
         if(strData.contains("Replace") || strData.contains("Delete") ){
-            new WebDriverWait(Hooks.driver, 30).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@id=\"contents\"]/div[2]/div[2]/div")));
+            new WebDriverWait(Hooks.driver, 30).until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("#contents > div:nth-of-type(2) > div:nth-of-type(2) > div")));
             String verifyReplaceText = eDocsTabPage.txtContentsVerification.getText();
             assertTrue("Text not found! "+strData, verifyReplaceText.contains(strData));
         }
@@ -259,23 +255,64 @@ public class eDocsGeneral {
         if (filename.contains("ReadMe")){
             File filePathStudentImport = new File(Hooks.class.getResource(CHROME_FILE_NAME).getFile());
             System.out.println("File path" + filePathStudentImport);
-            driver.switchTo().activeElement().sendKeys(filePathStudentImport.toString());
-            driver.switchTo().activeElement();
+            //Sleep time hardcoded to wait the external popup to upload file
+            Thread.sleep(8000);
+            StringSelection filePath = new StringSelection(filePathStudentImport.toString());
+            Toolkit.getDefaultToolkit().getSystemClipboard().setContents(filePath, null);
+            Robot r = new Robot();
+            r.keyPress(KeyEvent.VK_ENTER);
+            r.keyRelease(KeyEvent.VK_ENTER);
+            r.keyPress(KeyEvent.VK_CONTROL);
+            r.keyPress(KeyEvent.VK_V);
+            r.keyRelease(KeyEvent.VK_V);
+            r.keyRelease(KeyEvent.VK_CONTROL);
+            r.keyPress(KeyEvent.VK_ENTER);
+            r.keyRelease(KeyEvent.VK_ENTER);
+
+            new WebDriverWait(Hooks.driver, 30).until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("#uploadModal > form > div.modal-footer > button")));
             SetupPage.btnUploadFile.click();
         }
         if (filename.contains("FillTooBigPDF")){
+
             File filePathStudentImport = new File(Hooks.class.getResource(CHROME_FILE_NAME_BIG_SIZE).getFile());
             System.out.println("File path" + filePathStudentImport);
-            driver.switchTo().activeElement().sendKeys(filePathStudentImport.toString());
-            driver.switchTo().activeElement();
+
+            //Sleep time hardcoded to wait the external popup to upload file
+            Thread.sleep(3000);
+            StringSelection filePath = new StringSelection(filePathStudentImport.toString());
+            Toolkit.getDefaultToolkit().getSystemClipboard().setContents(filePath, null);
+            Robot r = new Robot();
+            r.keyPress(KeyEvent.VK_ENTER);
+            r.keyRelease(KeyEvent.VK_ENTER);
+            r.keyPress(KeyEvent.VK_CONTROL);
+            r.keyPress(KeyEvent.VK_V);
+            r.keyRelease(KeyEvent.VK_V);
+            r.keyRelease(KeyEvent.VK_CONTROL);
+            r.keyPress(KeyEvent.VK_ENTER);
+            r.keyRelease(KeyEvent.VK_ENTER);
+
+            new WebDriverWait(Hooks.driver, 30).until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("#uploadModal > form > div.modal-footer > button")));
             SetupPage.btnUploadFile.click();
         }
 
         if (filename.contains("index")){
             File filePathStudentImport = new File(Hooks.class.getResource(CHROME_INCORRECT_FORMAT_FILE).getFile());
             System.out.println("File path" + filePathStudentImport);
-            driver.switchTo().activeElement().sendKeys(filePathStudentImport.toString());
-            driver.switchTo().activeElement();
+            //Sleep time hardcoded to wait the external popup to upload file
+            Thread.sleep(3000);
+            StringSelection filePath = new StringSelection(filePathStudentImport.toString());
+            Toolkit.getDefaultToolkit().getSystemClipboard().setContents(filePath, null);
+            Robot r = new Robot();
+            r.keyPress(KeyEvent.VK_ENTER);
+            r.keyRelease(KeyEvent.VK_ENTER);
+            r.keyPress(KeyEvent.VK_CONTROL);
+            r.keyPress(KeyEvent.VK_V);
+            r.keyRelease(KeyEvent.VK_V);
+            r.keyRelease(KeyEvent.VK_CONTROL);
+            r.keyPress(KeyEvent.VK_ENTER);
+            r.keyRelease(KeyEvent.VK_ENTER);
+
+            new WebDriverWait(Hooks.driver, 30).until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("#uploadModal > form > div.modal-footer > button")));
             SetupPage.btnUploadFile.click();
         }
     }
@@ -311,6 +348,7 @@ public class eDocsGeneral {
                 messages = folder.search(new SubjectTerm(subject), folder.getMessages());
                 //Wait for 10 seconds
                 if (messages.length == 0) {
+                    //Sleep time for external wait time in the email inbox
                     Thread.sleep(10000);
                 }
             }
