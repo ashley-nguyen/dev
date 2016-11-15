@@ -58,7 +58,7 @@ public class eDocsTabPage extends BaseClass  {
         @FindBy(how = How.CSS, using = "button[title=Replace]")
         public static WebElement btnReplace;
 
-        @FindBy(how = How.CSS, using = "button[title=Delete]")
+        @FindBy(how = How.CSS, using = "#deleteModal > div.modal-footer > div > button.btn.btn-primary.add-delete-document-btn.close")
         public static WebElement btnDelete;
 
         @FindBy(how = How.CSS, using = "#deleteModal > div:nth-of-type(3) > div > button:nth-of-type(2)")

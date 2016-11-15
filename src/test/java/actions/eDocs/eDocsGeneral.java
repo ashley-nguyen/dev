@@ -97,6 +97,7 @@ public class eDocsGeneral {
         new WebDriverWait(Hooks.driver, 30).until(ExpectedConditions.visibilityOf(Hooks.driver.findElement(By.cssSelector("button[title=Delete]"))));
         JavascriptExecutor js = (JavascriptExecutor)driver;
         js.executeScript("window.scrollTo(0,Math.max(document.documentElement.scrollHeight,document.body.scrollHeight,document.documentElement.clientHeight));");
+//        Thread.sleep(99999999);
         eDocsTabPage.btnDelete.click();
     }
 
@@ -154,6 +155,7 @@ public class eDocsGeneral {
     public static void verifyLorsText (String strData) throws Throwable {
         new WebDriverWait(Hooks.driver, 30).until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("div[class='form-checklist condensed ng-scope']")));
         new WebDriverWait(Hooks.driver, 30).until(ExpectedConditions.visibilityOf(Hooks.driver.findElement(By.cssSelector("#contents > div:nth-child(3) > div.ng-scope > ng-include > div > div:nth-child(2) > div.checklist-header.ng-binding"))));
+        new WebDriverWait(Hooks.driver, 30).until(ExpectedConditions.visibilityOf(Hooks.driver.findElement(By.cssSelector("#contents > div:nth-child(3) > div.ng-scope > div > div:nth-child(1) > table > tbody > tr:nth-child(1) > td:nth-child(1)"))));
         String bodyText = eDocsTabPage.txtBody.getText();
         assertTrue("Text not found! "+strData, bodyText.contains(strData));
         if(strData.contains("Replace") || strData.contains("Delete") ){
