@@ -34,8 +34,6 @@ public class DefaultDBPage extends BaseClass {
     public static WebElement txtMessage;
 
 
-
-
     public DefaultDBPage(WebDriver driver) {
         super(driver);
     }

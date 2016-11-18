@@ -13,13 +13,13 @@ public class marketingPage extends BaseClass {
 
     @FindBy(how = How.CLASS_NAME, using = "marketing-content")
     public static WebElement Content;
-    @FindBy(how = How.XPATH, using = "//img[contains(@src,'img/nsi2016_2.jpg')]")
+    @FindBy(how = How.CSS, using = "img[src*=img/nsi2016_2.jpg]")
     public static WebElement Image;
-    @FindBy(how = How.XPATH, using = "//img[contains(@src,'/images/navmarketplace_badge.png')]")
+    @FindBy(how = How.CSS, using = "img[src*=navmarketplace_badge.png]")
     public static WebElement ImageContents;
-    @FindBy(how = How.XPATH, using = "//img[contains(@src,'img/upgraded-by-hobsons.jpg')]")
+    @FindBy(how = How.CSS, using = "img[src*='upgraded-by-hobsons.jpg']")
     public static WebElement imgVerification;
-    @FindBy(how = How.XPATH, using = "//img[contains(@src,'/images/navmarketplace_badge.png')]")
+    @FindBy(how = How.CSS, using = "img[src*='navmarketplace_badge.png']")
     public static WebElement bannerVerification;
 
     public marketingPage(WebDriver driver) {

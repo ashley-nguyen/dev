@@ -20,13 +20,13 @@ public class loginPage extends BaseClass {
     public static WebElement password;
     @FindBy(how = How.NAME, using = "Submit")
     public static WebElement signin_button;
-    @FindBy(how = How.XPATH, using = "//input[@value='Log In']")
+    @FindBy(how = How.CSS, using = "input[value=\"Log In\"]")
     public static WebElement fc_signin_button;
-    @FindBy(how = How.XPATH, using = "//dd[@class = 'login']")
+    @FindBy(how = How.CSS, using = "dd[class = 'login']")
     public static WebElement fc_logged_as_label;
     //The next locator must be updated onec the element is added
     //to the page
-    @FindBy(how = How.XPATH, using = "errorMessage")
+    @FindBy(how = How.CSS, using = ".errorMessage")
     public static WebElement fc_bad_credentials_message;
     @FindBy(how = How.CSS, using = "td.footnote")
     public static WebElement valid_foot_note_text;

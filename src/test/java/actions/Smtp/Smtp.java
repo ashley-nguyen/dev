@@ -20,7 +20,7 @@ public class Smtp {
     public static WebDriver driver;
 
     public static void verifyEmail(String newUser) throws InterruptedException {
-        new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.xpath("/html/body/div/table/tbody/tr[1]/td[2]/table/tbody/tr[4]/td[2]/table")));
+        new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("html > body > div > table > tbody > tr:nth-of-type(1) > td:nth-of-type(2) > table > tbody > tr:nth-of-type(4) > td:nth-of-type(2) > table")));
         String pageVerification = SmtpPage.txtDataVerification.getText();
         assertTrue("Error Verification!", !pageVerification.contains("Fatal error"));
         assertTrue("Verify Data!", pageVerification.contains(newUser));

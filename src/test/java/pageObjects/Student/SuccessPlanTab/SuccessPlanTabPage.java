@@ -32,7 +32,7 @@ public class SuccessPlanTabPage extends BaseClass {
     @FindBy(how = How.NAME, using = "send-reminder")
     public static WebElement chbSendReminder;
 
-    @FindBy(how = How.XPATH, using = "//*[@id=\"custom-task\"]/tbody/tr[5]/td/input[2]")
+    @FindBy(how = How.CSS, using = "#custom-task > tbody > tr:nth-of-type(5) > td > input:nth-of-type(2)")
     public static WebElement btnSave;
 
     @FindBy(how = How.CSS, using = "table[class='tablesorter current_tasks']")
@@ -47,16 +47,16 @@ public class SuccessPlanTabPage extends BaseClass {
     @FindBy(how = How.CSS, using = "select[class='csleft']")
     public static WebElement txtTask;
 
-    @FindBy(how = How.XPATH, using = "//*[@id=\"tasklist\"]/form/fieldset/fieldset/input[1]")
+    @FindBy(how = How.CSS, using = "#tasklist > form > fieldset > fieldset > input:nth-of-type(1)")
     public static WebElement btnAdd;
 
-    @FindBy(how = How.XPATH, using = "//*[@id=\"dtasklist\"]/form/fieldset/fieldset/input[1]")
+    @FindBy(how = How.CSS, using = "#dtasklist > form > fieldset > fieldset > input:nth-of-type(1)")
     public static WebElement btnDistrictAdd;
 
-    @FindBy(how = How.XPATH, using = "//*[@id=\"tasklist\"]/form/input[2]")
+    @FindBy(how = How.CSS, using = "#tasklist > form > input:nth-of-type(2)")
     public static WebElement btnAssignSave;
 
-    @FindBy(how = How.XPATH, using = "//*[@id=\"dtasklist\"]/form/input[2]")
+    @FindBy(how = How.CSS, using = "#dtasklist > form > input:nth-of-type(2)")
     public static WebElement btnDistrictAssignSave;
 
     public SuccessPlanTabPage(WebDriver driver) {

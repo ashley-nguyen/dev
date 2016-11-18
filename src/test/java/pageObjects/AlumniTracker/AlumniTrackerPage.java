@@ -28,10 +28,10 @@ public class AlumniTrackerPage extends BaseClass {
     @FindBy(how = How.NAME, using = "classYear[]")
     public static WebElement chkboxSelected;
 
-    @FindBy(how = How.XPATH, using = "//a[@href='school_signin.php?hsid=180837USPU']")
+    @FindBy(how = How.CSS, using = "a[href*='school_signin.php?hsid=180837USPU']")
     public static WebElement lnkSelectedSchoolA;
 
-    @FindBy(how = How.XPATH, using = "//a[@href='school_signin.php?hsid=180846USPU']")
+    @FindBy(how = How.CSS, using = "a[href*='school_signin.php?hsid=180846USPU']")
     public static WebElement lnkSelectedSchoolE;
 
     public AlumniTrackerPage(WebDriver driver) {
