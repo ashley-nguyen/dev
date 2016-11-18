@@ -87,8 +87,8 @@ public class FCHubs_StepDefs {
         FCHubs.ClickLearnMoreEventsLink(link);
     }
 
-    @When("^I click the right navigation arrow \"([^\"]*)\" times$")
-    public void I_click_the_navigation_arrow_times(int numberOfTimes) throws Throwable {
+    @When("^I go to the right \"([^\"]*)\" times$")
+    public void I_go_to_the_right_times(int numberOfTimes) throws Throwable {
         FCHubs.ClickRightArrow(numberOfTimes);
     }
 
@@ -102,8 +102,8 @@ public class FCHubs_StepDefs {
         FCHubs.VerifyVisibilityOfPlayButton();
     }
 
-    @When("^I click the Web Tour element at position \"([^\"]*)\"$")
-    public void iClickTheWebTourElementAtPosition(int elementPosition) throws Throwable {
+    @When("^I open the Web Tour element at position \"([^\"]*)\"$")
+    public void iOpenTheWebTourElementAtPosition(int elementPosition) throws Throwable {
         FCHubs.ClickWebTourElementAtPosition(elementPosition);
     }
 
@@ -122,7 +122,7 @@ public class FCHubs_StepDefs {
         FCHubs.ClickLinkInContentInModal(linkText);
     }
 
-    @And("^I click the 'x' in the modal dialog$")
+    @And("^I close the modal dialog with the 'x' button$")
     public void I_click_the_x_in_the_modal_dialog() throws Throwable {
         FCHubs.ClickXInModalDialog();
     }
@@ -372,7 +372,7 @@ public class FCHubs_StepDefs {
         FCCollegesTab.EnterCollegeToSearch(college);
         FCCollegesTab.ClickGoButton();
         FCCollegesTab.ClickCollegeInCollegeLookup(college);
-        FCCollegeView.clickBetaButton();
+        //FCCollegeView.clickBetaButton();
     }
     @When("^I open 'Communicate' link \"([^\"]*)\"$")
     public void I_open_Communicate_Link(String link) throws Throwable {

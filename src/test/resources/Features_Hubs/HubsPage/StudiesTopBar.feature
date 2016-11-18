@@ -20,5 +20,5 @@ Feature: Purpose: As a student viewing new Hubs' Studies tab, I want to see key 
   Scenario: The Degrees offered is displayed with correct data in Studies Top Bar
     Then The Degrees offered are displayed with correct data in Studies Top bar:
     | Associates |
-    | Bachelors  |
     | Masters    |
+    | Bachelors  |

@@ -58,7 +58,7 @@ public class Login {
 
         loginPage.fc_signin_button.click();
 
-        new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.elementToBeClickable(By.linkText("log out")));
+        new WebDriverWait(Hooks.driver, 20).until(ExpectedConditions.elementToBeClickable(By.linkText("log out")));
     }
 
     public static void verifyValidLoginFamilyConnection() throws InterruptedException {

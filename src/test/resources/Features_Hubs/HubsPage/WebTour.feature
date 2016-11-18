@@ -8,7 +8,7 @@ Feature:  As a student exploring a college I want to see paid webtour to underst
     When I open the HUBS page for "Adelphi"
 
   Scenario: User is able to scroll content using arrows
-    When I click the right navigation arrow "7" times
+    When I go to the right "7" times
     Then I should see the last Web Tour element
     # we do not have Video for Adelphi , commenting it for now
     #Scenario: Play button is present on thumbnail
@@ -28,6 +28,6 @@ Feature:  As a student exploring a college I want to see paid webtour to underst
     #Then I should see the URL for "http://agriculture.auburn.edu/" open in a new page
 
   Scenario: Web Tour modal closes after clicking the 'x'
-    When I click the Web Tour element at position "3"
-    And I click the 'x' in the modal dialog
+    When I open the Web Tour element at position "3"
+    And I close the modal dialog with the 'x' button
     Then The modal dialog should be closed

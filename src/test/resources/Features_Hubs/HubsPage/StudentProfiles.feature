@@ -8,10 +8,10 @@ Feature: As a student viewing new Hubs, I want to see the student profiles in th
     And I open the Profiles tab
 
   Scenario: The Student Profile details are displayed after clicking Read More
-    When I expand the Profile with name "Camilo Malagon"
+    When I expand the Profile with name "Carolina"
     Then I should see the details of the profile
 
   Scenario: Student Profiles are collapsed after clicking the x button
-    When I expand the Profile with name "Camilo Malagon"
+    When I expand the Profile with name "Carolina"
     And I close the profile
-    Then The profile with name "Camilo Malagon" should be collapsed
+    Then The profile with name "Carolina" should be collapsed
