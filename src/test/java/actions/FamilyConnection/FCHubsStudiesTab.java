@@ -145,8 +145,8 @@ public class FCHubsStudiesTab {
         List<WebElement> availableStudyOptions = new ArrayList<>();
         List<WebElement> unavailableStudyOptions = new ArrayList<>();
         for(int i = 2; i < 20; i++) {
-            WebElement studyOption = driver.findElement(By.cssSelector(".study-option.fc-grid__row." +
-                    "fc-grid__row--xs-center.fc-grid__row--md-start div:nth-of-type(" + i + ") div div"));
+            WebElement studyOption = driver.findElement(By.cssSelector(".study-option.fc-grid__row.fc-grid__row--xs-" +
+                    "center.fc-grid__row--md-start div:nth-of-type(" + i + ") div.study-option__row"));
             if(studyOption.getAttribute("class").contains("study-option__program--unavailable")) {
                 unavailableStudyOptions.add(studyOption);
             } else {

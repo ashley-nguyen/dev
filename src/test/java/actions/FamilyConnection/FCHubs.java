@@ -259,12 +259,14 @@ public class FCHubs {
     public static void VerifySchoolTypeQuickFacts(String schoolType) {
         driver = Hooks.driver;
         PageFactory.initElements(driver, FCHubsPage.class);
+        new WebDriverWait(driver, 20).until(ExpectedConditions.elementToBeClickable(FCHubsPage.quickFactsSchoolType));
         assertTrue("School Type data is not correct", FCHubsPage.quickFactsSchoolType.getText().equals(schoolType));
     }
 
     public static void VerifyUndergraduateEnrollmentQuickFacts(String undergraduateEnrollment) {
         driver = Hooks.driver;
         PageFactory.initElements(driver, FCHubsPage.class);
+        new WebDriverWait(driver, 20).until(ExpectedConditions.elementToBeClickable(FCHubsPage.quickFactsUndergradEnroll));
         assertTrue("Undergraduate Enrollment data is not correct",
                 FCHubsPage.quickFactsUndergradEnroll.getText().equals(undergraduateEnrollment));
     }
@@ -272,6 +274,7 @@ public class FCHubs {
     public static void VerifyStudentToFacultyRatioQuickFacts(String studentFacultyRatio) {
         driver = Hooks.driver;
         PageFactory.initElements(driver, FCHubsPage.class);
+        new WebDriverWait(driver, 20).until(ExpectedConditions.elementToBeClickable(FCHubsPage.quickFactsStudentFacultyRatio));
         assertTrue("Student-to-Faculty ratio data is not correct",
                 FCHubsPage.quickFactsStudentFacultyRatio.getText().equals(studentFacultyRatio));
     }
@@ -286,6 +289,7 @@ public class FCHubs {
     public static void VerifyCampusSurroundings(String surroundings) {
         driver = Hooks.driver;
         PageFactory.initElements(driver, FCHubsPage.class);
+        new WebDriverWait(driver, 20).until(ExpectedConditions.elementToBeClickable(FCHubsPage.quickFactsCampusSurr));
         assertTrue("Campus Surroundings data is not correct",
                 FCHubsPage.quickFactsCampusSurr.getText().equals(surroundings));
     }
@@ -550,6 +554,7 @@ public class FCHubs {
     public static void VerifySectionLabelInCosts(String sectionLabel) {
         driver = Hooks.driver;
         PageFactory.initElements(driver, FCHubsCostsTabPage.class);
+        new WebDriverWait(driver, 20).until(ExpectedConditions.elementToBeClickable(FCHubsCostsTabPage.costModuleLabel));
         assertTrue("The section " + sectionLabel + " is not displayed",
                 FCHubsCostsTabPage.costModuleLabel.getText().equals(sectionLabel));
     }

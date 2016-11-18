@@ -12,7 +12,7 @@ import pageObjects.BaseClass;
 public class FCHubsPage extends BaseClass {
     @FindBy(how = How.CSS, using = ".masthead__logo-image")
     public static WebElement imgLogo;
-    @FindBy(how = How.CSS, using = ".fc-button.fc-button--ghost.hub-beta-bar__survey-button")
+    @FindBy(how = How.CSS, using = ".fc-button.hub-beta-bar__survey-button")
     public static WebElement buttonFeedback;
     @FindBy(how = How.CSS, using = ".tabs.hubs-top-tabs-bar")
     public static WebElement navTabs;
@@ -80,19 +80,20 @@ public class FCHubsPage extends BaseClass {
     @FindBy(how = How.CSS, using = ".fc-grid__row.fc-grid__row--md-end.quick-facts-row" +
             "[ng-show=\"vm.profile.displayUrl\"] a")
     public static WebElement quickFactsWebsite;
-    @FindBy(how = How.CSS, using = ".summary-profile__body.fc-grid__col.fc-grid__col--xs-12.fc-grid__col--md-8-offset-2 " +
+    @FindBy(how = How.CSS, using = ".summary-profile__body.fc-grid__col.fc-grid__col--xs-12.fc-grid__col--md-6 " +
             "div:nth-of-type(3) div.ng-binding")
     public static WebElement quickFactsSchoolType;
-    @FindBy(how = How.CSS, using = ".summary-profile__body.fc-grid__col.fc-grid__col--xs-12.fc-grid__col--md-8-offset-2 " +
+    @FindBy(how = How.CSS, using = ".summary-profile__body.fc-grid__col.fc-grid__col--xs-12.fc-grid__col--md-6 " +
             "div:nth-of-type(4) div.ng-binding")
     public static WebElement quickFactsUndergradEnroll;
-    @FindBy(how = How.CSS, using = ".summary-profile__body.fc-grid__col.fc-grid__col--xs-12.fc-grid__col--md-8-offset-2 " +
+    @FindBy(how = How.CSS, using = ".summary-profile__body.fc-grid__col.fc-grid__col--xs-12.fc-grid__col--md-6 " +
             "div:nth-of-type(5) div.ng-binding")
     public static WebElement quickFactsStudentFacultyRatio;
-    @FindBy(how = How.CSS, using = ".fc-grid__row.fc-grid__row--md-end.quick-facts-row[ng-show=\"vm.friendlyAffiliation" +
-            " && vm.friendlyAffiliation !== 'None'\"] div.ng-binding")
+    @FindBy(how = How.CSS, using = ".summary-profile__body.fc-grid__col.fc-grid__col--xs-12.fc-grid__col--md-6 " +
+            "div:nth-of-type(6) div.ng-binding")
     public static WebElement quickFactsReligion;
-    @FindBy(how = How.CSS, using = "div[ng-show=\"vm.friendlySetting\"] div.ng-binding")
+    @FindBy(how = How.CSS, using = ".summary-profile__body.fc-grid__col.fc-grid__col--xs-12.fc-grid__col--md-6 " +
+            "div:nth-of-type(7) div.ng-binding")
     public static WebElement quickFactsCampusSurr;
     @FindBy(how = How.CSS, using = ".hub-data-pod--money.hub-data-pod--overview.ng-binding")
     public static WebElement labelAvgNetPrice;
@@ -102,7 +103,7 @@ public class FCHubsPage extends BaseClass {
     public static WebElement labelAcceptanceRate;
     @FindBy(how = How.XPATH, using = "//a[contains(text(),'Communicate')]")
     public static WebElement buttonCommunicate;
-    @FindBy(how = How.XPATH, using = "hubsWebtourImage17")
+    @FindBy(how = How.ID, using = "hubsWebtourImage17")
     public static WebElement webTourLastImage;
 
     public FCHubsPage(WebDriver driver) {

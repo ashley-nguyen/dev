@@ -10,7 +10,7 @@ import pageObjects.BaseClass;
  * Created by jorgemaguina on 8/15/2016.
  */
 public class FCHubsCostsTabPage extends BaseClass {
-    @FindBy(how = How.ID, using = "cost-module")
+    @FindBy(how = How.CSS, using = ".costs-summary__statement-header.fc-grid__col.fc-grid__col--core-width h1")
     public static WebElement costModuleLabel;
     @FindBy(how = How.CSS, using = "div [ng-if=\"vm.tuition.gradsMonthlyLoanAmountPaid\"] " +
             "div.hub-data-pod--money.hub-data-pod--overview.ng-binding")
