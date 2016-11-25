@@ -372,7 +372,7 @@ public class FCHubs_StepDefs {
         FCCollegesTab.EnterCollegeToSearch(college);
         FCCollegesTab.ClickGoButton();
         FCCollegesTab.ClickCollegeInCollegeLookup(college);
-        //FCCollegeView.clickBetaButton();
+//        FCCollegeView.clickBetaButton();
     }
     @When("^I open 'Communicate' link \"([^\"]*)\"$")
     public void I_open_Communicate_Link(String link) throws Throwable {
@@ -408,6 +408,22 @@ public class FCHubs_StepDefs {
     @Then("^Degrees Offered contains the following values:$")
     public void Degrees_Offered_contains_the_following_values(List<String> degrees) throws Throwable {
         FCHubs.VerifyDegreesOfferedQuickFacts(degrees);
+    }
+
+    @Then("^The number in overlaps should be the same as the number of colleges in the following json:$")
+    public void The_number_in_overlaps_should_be_the_same_as_the_number_of_colleges_in_the_following_json
+            (String jsonText) throws Throwable {
+        FCHubs.VerifyOverlapsNumber(jsonText);
+    }
+
+    @When("^I open the overlaps list in Legacy Family Connection$")
+    public void I_open_the_overlaps_list_in_Legacy_Family_Connection() throws Throwable {
+        FCHubs.clickLearnMoreOverlaps();
+    }
+
+    @Then("^The colleges in the legacy list should be contained in the following json:$")
+    public void The_colleges_in_the_legacy_list_should_be_contained_in_the_following_json(String jsonText) throws Throwable {
+        FCHubs.verifyJsonContainsColleges(jsonText);
     }
 }
 

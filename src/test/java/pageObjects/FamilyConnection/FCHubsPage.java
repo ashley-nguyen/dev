@@ -105,6 +105,10 @@ public class FCHubsPage extends BaseClass {
     public static WebElement buttonCommunicate;
     @FindBy(how = How.ID, using = "hubsWebtourImage17")
     public static WebElement webTourLastImage;
+    @FindBy(how = How.CSS, using = ".hub-data-pod--overview.hub-data-pod--number.ng-binding")
+    public static WebElement labelOverlapsNumber;
+    @FindBy(how = How.CSS, using = ".fc-button.fc-button--size-small.fc-button--medium-teal")
+    public static WebElement buttonOverlapsLearnMore;
 
     public FCHubsPage(WebDriver driver) {
         super(driver);
