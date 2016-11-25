@@ -9,6 +9,15 @@ Feature: Student Send details
     When I configure permissions for teacher
     Then I verify that Confirmation "The permissions for this role have been updated" message is displayed
 
+  @edocs @safe @succeed
+  Scenario Outline: Verify All LOR request for specific colleges will continue to display "requested"
+    When I use "<studentID>" under application selecting "All Applications" and "Letter of Recommendation" with "<filename>"
+    Then I will verify "<text>" for LORs
+
+  Examples:
+    | studentID  | text                     |filename        |
+    | a103       | Letter of Recommendation |ReadMe.txt      |
+
   @edocs @safe @succeed @EDOCS234
   Scenario Outline: Verify under Send page, the NACAC Fee Waiver will be listed as an available document to send to Electronic, Mail Only or Coalition App colleges.
     When I expand all button action for the "<studentID>"
@@ -29,7 +38,7 @@ Feature: Student Send details
 
   @edocs @safe @succeed @EDOCS234
   Scenario Outline: Verify under Application, I want to upload a NACAC fee waiver on behalf of a student to non-common-app colleges via eDocs using Replace Action.
-    When I expand all under application for the "<studentID>" in "All Applications" with "<type>" and "<filename>"
+    When I expand all under application to replace the "<studentID>" in "All Applications" with "<type>" and "<filename>"
     Then I will verify "<information>" information and "<action>" action
   Examples:
     | studentID  | type                     |filename        | information    | action |
