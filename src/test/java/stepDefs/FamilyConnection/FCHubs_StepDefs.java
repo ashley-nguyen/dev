@@ -44,10 +44,10 @@ public class FCHubs_StepDefs {
         FCHubs.VerifySecondTutorialDialog();
     }
 
-    @And("^I click on Next on SecondTutorial dialog$")
-    public void I_click_Next_on_second_tutorial_dialog() throws Throwable {
+    @And("^I navigate to the Third Tutorial$")
+    public void I_navigate_to_the_Third_Tutorial() throws Throwable {
+        FCHubs.ClickNextOnFirstDialog();
         FCHubs.ClickNextOnSecondDialog();
-
     }
 
     @Then("^I should see ThirdTutorial dialog$")
@@ -424,6 +424,11 @@ public class FCHubs_StepDefs {
     @Then("^The colleges in the legacy list should be contained in the following json:$")
     public void The_colleges_in_the_legacy_list_should_be_contained_in_the_following_json(String jsonText) throws Throwable {
         FCHubs.verifyJsonContainsColleges(jsonText);
+    }
+
+    @Then("^I should see the 'Looking for Scattergrams' tutorial$")
+    public void I_should_see_the_looking_for_Scattergrams_tutorial() throws Throwable {
+        FCHubs.VerifySecondTutorialDialog();
     }
 }
 

@@ -54,8 +54,8 @@ public class FCHubs {
 
     public static void VerifySecondTutorialDialog() {
         driver = Hooks.driver;
-        assertTrue("The Second Tutorial Dialog is displayed ", driver.findElement(By.xpath
-                ("//span[contains(text(), 'Plan your applications')]")).isDisplayed());
+        PageFactory.initElements(driver, FCHubsPage.class);
+        assertTrue("The Second Tutorial Dialog is displayed ", FCHubsPage.labelScattergramsDialog.isDisplayed());
     }
     public static void ClickNextOnSecondDialog() {
         driver = Hooks.driver;
