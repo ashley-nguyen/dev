@@ -101,7 +101,8 @@ public class College {
         driver = Hooks.driver;
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         PageFactory.initElements(driver, CollegePage.class);
-        new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.xpath("(//a[contains(text(),'Colleges')])[2]")));
+//        new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.xpath("(//a[contains(text(),'Colleges')])[2]")));
+        new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("#primary > li:nth-child(6) > a")));
         CollegePage.tabColleges.click();
     }
 
