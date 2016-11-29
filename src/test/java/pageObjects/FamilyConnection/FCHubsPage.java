@@ -19,9 +19,13 @@ public class FCHubsPage extends BaseClass {
     @FindBy(how = How.CSS, using = ".fc-tooltip.fc-tooltip--above.hub-tooltip.hub-tooltip--favorite " +
             "div.hub-tooltip__next.ng-binding")
     public static WebElement linkNextFirstDialog;
-    @FindBy(how = How.XPATH, using = "//div[contains(text(), 'How I compare')]/div[contains(text(), 'Next')]")
+    @FindBy(how = How.CSS, using = "div[ng-show=\"vm.introService.isVisible('scattergrams')\"] span.fc-tooltip__title")
+    public static WebElement labelScattergramsDialog;
+    @FindBy(how = How.CSS, using = "div[ng-show=\"vm.introService.isVisible('scattergrams')\"] " +
+            "div.hub-tooltip__next.ng-binding")
     public static WebElement linkNextSecondDialog;
-    @FindBy(how = How.CSS, using = ".fc-tooltip.fc-tooltip--below.hub-tooltip.hub-tooltip--feedback div.hub-tooltip__next.ng-binding")
+    @FindBy(how = How.CSS, using = ".fc-tooltip.fc-tooltip--below.hub-tooltip.hub-tooltip--feedback " +
+            "div.hub-tooltip__next.ng-binding")
     public static WebElement linkDoneThirdDialog;
     @FindBy(how = How.CSS, using = ".masthead__address a")
     public static WebElement linkURLIdentifierModule;
@@ -105,6 +109,10 @@ public class FCHubsPage extends BaseClass {
     public static WebElement buttonCommunicate;
     @FindBy(how = How.ID, using = "hubsWebtourImage17")
     public static WebElement webTourLastImage;
+    @FindBy(how = How.CSS, using = ".hub-data-pod--overview.hub-data-pod--number.ng-binding")
+    public static WebElement labelOverlapsNumber;
+    @FindBy(how = How.CSS, using = ".fc-button.fc-button--size-small.fc-button--medium-teal")
+    public static WebElement buttonOverlapsLearnMore;
 
     public FCHubsPage(WebDriver driver) {
         super(driver);

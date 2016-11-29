@@ -1,5 +1,8 @@
 package actions.FamilyConnection;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -51,8 +54,8 @@ public class FCHubs {
 
     public static void VerifySecondTutorialDialog() {
         driver = Hooks.driver;
-        assertTrue("The Second Tutorial Dialog is displayed ", driver.findElement(By.xpath
-                ("//span[contains(text(), 'Plan your applications')]")).isDisplayed());
+        PageFactory.initElements(driver, FCHubsPage.class);
+        assertTrue("The Second Tutorial Dialog is displayed ", FCHubsPage.labelScattergramsDialog.isDisplayed());
     }
     public static void ClickNextOnSecondDialog() {
         driver = Hooks.driver;
@@ -611,5 +614,72 @@ public class FCHubs {
         WebElement SendMessageText = driver.findElement(By.xpath("//div[@class='contactsAdmissions ng-binding']"));
         assertTrue("Phone data is not correct", SendMessageText.getText().contains(text));
 
+    }
+
+    public static void VerifyOverlapsNumber(String jsonText) {
+        driver = Hooks.driver;
+        PageFactory.initElements(driver, FCHubsPage.class);
+        JSONArray overlapsJson = null;
+        try {
+            overlapsJson = new JSONArray(jsonText);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        assertTrue("The number in Overlaps does not equal the number of elements in the json overlaps list",
+                overlapsJson.length() == Integer.parseInt(FCHubsPage.labelOverlapsNumber.getText()));
+    }
+
+    public static void clickLearnMoreOverlaps() {
+        driver = Hooks.driver;
+        PageFactory.initElements(driver, FCHubsPage.class);
+        FCHubsPage.buttonOverlapsLearnMore.click();
+    }
+
+    public static void verifyJsonContainsColleges(String jsonText) {
+        driver = Hooks.driver;
+        PageFactory.initElements(driver, FCHubsPage.class);
+        List<String> overlapsNames = new ArrayList<>();
+        List<String> overlapsLegacyList = new ArrayList<>();
+        JSONArray jsonArrayElement = null;
+        boolean result = false;
+        ArrayList<String> tabs = new ArrayList<String> (driver.getWindowHandles());
+        driver.switchTo().window(tabs.get(tabs.size() - 1));
+        try {
+            jsonArrayElement = new JSONArray(jsonText);
+            for (int i = 0; i < jsonArrayElement.length(); i++) {
+                JSONObject jsonObjectElement = jsonArrayElement.getJSONObject(i);
+                overlapsLegacyList.add(jsonObjectElement.getString("name"));
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        List<WebElement> overlapsLegacyListUI = driver.findElements(By.cssSelector(".standard td a"));
+        for (int i = 0; i < overlapsLegacyListUI.size(); i++) {
+            overlapsNames.add(overlapsLegacyListUI.get(i).getText());
+        }
+
+        for (String overlapElement : overlapsNames) {
+            overlapElement = overlapElement.replace("State", "");
+            overlapElement = overlapElement.replace(" ", "");
+            overlapElement = overlapElement.replace("U", "");
+            overlapElement = overlapElement.replace("Coll", "");
+            overlapElement = overlapElement.replace("of", "");
+            overlapElement = overlapElement.replace("Ag", "");
+            overlapElement = overlapElement.replace("CC", "");
+            overlapElement = overlapElement.trim();
+        }
+
+        for (int j = 0; j < overlapsNames.size(); j++) {
+            for (int k = 0; k < overlapsLegacyList.size(); k++) {
+                if (overlapsLegacyList.get(j).contains(overlapsLegacyList.get(j))) {
+                    result = true;
+                } else {
+                    result = false;
+                    break;
+                }
+            }
+        }
+        assertTrue("The legacy overlaps list does not correspond to the json data", result);
     }
 }

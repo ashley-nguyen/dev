@@ -56,3 +56,49 @@ Feature: As a student exploring a college, I want to see a top bar with high-lev
 
   Scenario: Average Total Cost, Graduation Rate and Acceptance Rate should display the date of the data
     Then The text "from 2016" should be displayed under the sections in Overview Info Top bar
+
+  Scenario: The number of colleges with overlaps in the legacy list should be the same than the number in Overlaps
+    Then The number in overlaps should be the same as the number of colleges in the following json:
+    """
+    [
+      {"collegeId":"28ac2561-8516-4896-91b1-68c7052f7d97","name":"Alabama A&M University"},
+      {"collegeId":"f305d160-7f87-430c-b7ea-c8b5445b0413","name":"Art Academy of Cincinnati"},
+      {"collegeId":"d5b6754a-f8aa-49e5-8e8c-d3f7ad0df210","name":"Adelphi University"},
+      {"collegeId":"d5b6754a-f8aa-49e5-8e8c-d3f7ad0df212","name":"George Mason University"},
+      {"collegeId":"d5b6754a-f8aa-49e5-8e8c-d3f7ad0df2e6","name":"Albion College"},
+      {"collegeId":"d5b6754a-f8aa-49e5-8e8c-d3f7ad0df2e3","name":"Adrian College"},
+      {"collegeId":"d5b6754a-f8aa-49e5-8e8c-d3f7ad0df2e9","name":"Alpena Community College"},
+      {"collegeId":"beedc948-9eb5-482c-b009-6f1c1e4c5937","name":"Alabama State University"},
+      {"collegeId":"a004ba0c-feb0-4af6-b300-dc68209c9bc1","name":"University of Washington"},
+      {"collegeId":"d5b6754a-f8aa-49e5-8e8c-d3f7ad0df2e4","name":"University of Montevallo"},
+      {"collegeId":"d5b6754a-f8aa-49e5-8e8c-d3f7ad0df2e7","name":"Alcorn State University"},
+      {"collegeId":"f519eb2c-2660-43ac-89cd-59d3279a7797","name":"University of California, Berkeley"},
+      {"collegeId":"d5b6754a-f8aa-49e5-8e8c-d3f7ad0df2e8","name":"Alma College"},
+      {"collegeId":"ff3e8062-9743-4e1d-bdd6-84f539a0dc68","name":"The Ohio State University, Agricultural Technical Institute"},
+      {"collegeId":"d5b6754a-f8aa-49e5-8e8c-d3f7ad0df211","name":"The University of Arizona"},
+      {"collegeId":"c1413763-f9cb-401b-9b46-1004e0dee2aa","name":"Virginia Highlands Community College"}
+    ]
+    """
+  Scenario: The colleges in the list in legacy should be contained in the json list obtained from the overlaps endpoint
+    When I open the overlaps list in Legacy Family Connection
+    Then The colleges in the legacy list should be contained in the following json:
+    """
+    [
+      {"collegeId":"28ac2561-8516-4896-91b1-68c7052f7d97","name":"Alabama A&M University"},
+      {"collegeId":"f305d160-7f87-430c-b7ea-c8b5445b0413","name":"Art Academy of Cincinnati"},
+      {"collegeId":"d5b6754a-f8aa-49e5-8e8c-d3f7ad0df210","name":"Adelphi University"},
+      {"collegeId":"d5b6754a-f8aa-49e5-8e8c-d3f7ad0df212","name":"George Mason University"},
+      {"collegeId":"d5b6754a-f8aa-49e5-8e8c-d3f7ad0df2e6","name":"Albion College"},
+      {"collegeId":"d5b6754a-f8aa-49e5-8e8c-d3f7ad0df2e3","name":"Adrian College"},
+      {"collegeId":"d5b6754a-f8aa-49e5-8e8c-d3f7ad0df2e9","name":"Alpena Community College"},
+      {"collegeId":"beedc948-9eb5-482c-b009-6f1c1e4c5937","name":"Alabama State University"},
+      {"collegeId":"a004ba0c-feb0-4af6-b300-dc68209c9bc1","name":"University of Washington"},
+      {"collegeId":"d5b6754a-f8aa-49e5-8e8c-d3f7ad0df2e4","name":"University of Montevallo"},
+      {"collegeId":"d5b6754a-f8aa-49e5-8e8c-d3f7ad0df2e7","name":"Alcorn State University"},
+      {"collegeId":"f519eb2c-2660-43ac-89cd-59d3279a7797","name":"University of California, Berkeley"},
+      {"collegeId":"d5b6754a-f8aa-49e5-8e8c-d3f7ad0df2e8","name":"Alma College"},
+      {"collegeId":"ff3e8062-9743-4e1d-bdd6-84f539a0dc68","name":"The Ohio State University, Agricultural Technical Institute"},
+      {"collegeId":"d5b6754a-f8aa-49e5-8e8c-d3f7ad0df211","name":"The University of Arizona"},
+      {"collegeId":"c1413763-f9cb-401b-9b46-1004e0dee2aa","name":"Virginia Highlands Community College"}
+    ]
+    """
