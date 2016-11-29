@@ -63,7 +63,8 @@ public class eDocsGeneral {
         driver = Hooks.driver;
         PageFactory.initElements(driver, eDocsTabPage.class);
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-        new WebDriverWait(Hooks.driver, 30).until(ExpectedConditions.visibilityOf(Hooks.driver.findElement(By.cssSelector("button.btn.btn-small.ng-scope"))));
+        new WebDriverWait(Hooks.driver, 30).until(ExpectedConditions.visibilityOf(Hooks.driver.findElement(By.cssSelector("button[class='btn btn-primary ng-scope']"))));
+        new WebDriverWait(Hooks.driver, 30).until(ExpectedConditions.visibilityOf(Hooks.driver.findElement(By.cssSelector("button[class='btn btn-small ng-scope']"))));
         eDocsTabPage.btnExpandAll.click();
 
     }
@@ -97,7 +98,6 @@ public class eDocsGeneral {
         new WebDriverWait(Hooks.driver, 30).until(ExpectedConditions.visibilityOf(Hooks.driver.findElement(By.cssSelector("button[title=Delete]"))));
         JavascriptExecutor js = (JavascriptExecutor)driver;
         js.executeScript("window.scrollTo(0,Math.max(document.documentElement.scrollHeight,document.body.scrollHeight,document.documentElement.clientHeight));");
-//        Thread.sleep(99999999);
         eDocsTabPage.btnDelete.click();
     }
 
@@ -111,12 +111,14 @@ public class eDocsGeneral {
         driver = Hooks.driver;
         PageFactory.initElements(driver, eDocsTabPage.class);
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        new WebDriverWait(Hooks.driver, 30).until(ExpectedConditions.visibilityOf(Hooks.driver.findElement(By.xpath("//button[contains(@class,'btn btn-upload-toggle span12 btn-primary') or contains(@class,'btn btn-upload-toggle span12')]"))));
         eDocsTabPage.btnUploadAFile.click();
     }
 
     public static void SelectApplication(String application) throws Throwable {
         driver = Hooks.driver;
         PageFactory.initElements(driver, eDocsTabPage.class);
+        new WebDriverWait(Hooks.driver, 30).until(ExpectedConditions.visibilityOf(Hooks.driver.findElement(By.cssSelector("select[name=application_id_select]"))));
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         Select select = new Select(eDocsTabPage.selApplication);
         select.selectByVisibleText(application);
@@ -158,11 +160,18 @@ public class eDocsGeneral {
         new WebDriverWait(Hooks.driver, 30).until(ExpectedConditions.visibilityOf(Hooks.driver.findElement(By.cssSelector("#contents > div:nth-child(3) > div.ng-scope > div > div:nth-child(1) > table > tbody > tr:nth-child(1) > td:nth-child(1)"))));
         String bodyText = eDocsTabPage.txtBody.getText();
         assertTrue("Text not found! "+strData, bodyText.contains(strData));
-        if(strData.contains("Replace") || strData.contains("Delete") ){
+        if(strData.contains("Replace")){
 
-            new WebDriverWait(Hooks.driver, 30).until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("#contents > div:nth-of-type(2) > div:nth-of-type(2) > div > div:nth-of-type(2)")));
+            new WebDriverWait(Hooks.driver, 30).until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("button[title='Replace']")));
             String verifyReplaceText = eDocsTabPage.txtVerification.getText();
-            assertTrue("Text not found! "+strData, !verifyReplaceText.contains(strData));
+            assertTrue("Text not found! " + strData, verifyReplaceText.contains(strData));
+        }
+
+        if(strData.contains("Delete") ){
+
+            new WebDriverWait(Hooks.driver, 30).until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("button[title='Delete']")));
+            String verifyReplaceText = eDocsTabPage.btnDeleteTeacherDocument.getText();
+            assertTrue("Text not found! "+strData, verifyReplaceText.contains(strData));
         }
 
         if(strData.contains("Initial Transcript (active")){

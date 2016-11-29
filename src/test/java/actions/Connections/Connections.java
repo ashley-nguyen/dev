@@ -111,6 +111,8 @@ public class Connections {
         PageFactory.initElements(driver, ConnectionsPage.class);
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.className("fc-table")));
+        new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.linkText("Add Request")));
+
         String dataVerification = ConnectionsPage.textDefaultMessage.getText();
         assertTrue("Error Verification!", dataVerification.contains("You can request new letters of recommendation and track the most recent status of your requests here."));
 
@@ -138,6 +140,8 @@ public class Connections {
         PageFactory.initElements(driver, ConnectionsPage.class);
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("input.fc-checkbox")));
+        new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("button[class='fc-button fc-button--primary']")));
+        new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("input[class='fc-checkbox']")));
         ConnectionsPage.divSelectCollege.click();
     }
 
@@ -163,6 +167,7 @@ public class Connections {
         PageFactory.initElements(driver, ConnectionsPage.class);
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.className("ng-binding")));
+        new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("button[class='fc-button fc-button--primary']")));
         assertTrue("The confirmation message is correct", driver.findElement(By.xpath("//span[@class='ng-binding'][contains(text(), '" + strText + "')]")).isDisplayed());
     }
 
@@ -170,7 +175,7 @@ public class Connections {
         driver = Hooks.driver;
         PageFactory.initElements(driver, ConnectionsPage.class);
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-        new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("div.recommendations-list__cancel.ng-scope")));
+        new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("svg[class='fc-icon recommendations-list__cancel--enabled ng-scope']")));
         Actions builder = new Actions(driver);
         builder.click(ConnectionsPage.divCancelButton).build().perform();
     }
@@ -180,6 +185,7 @@ public class Connections {
         PageFactory.initElements(driver, ConnectionsPage.class);
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.className("recommendations-list__cancel-prompt-confirm")));
+
         ConnectionsPage.divConfirmCancelButton.click();
     }
 
@@ -187,15 +193,51 @@ public class Connections {
         driver = Hooks.driver;
         PageFactory.initElements(driver, ConnectionsPage.class);
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-        new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.className("table-recommendations-list__status")));
+        new WebDriverWait(Hooks.driver, 30).until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("div[class='fc-alert fc-alert--success fc-alert--normal-text']")));
+        new WebDriverWait(Hooks.driver, 30).until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("body > div > div > div > div > recommendations-container > div > div > ng-view > recommendations-list > table > tbody > tr:nth-child(4) > td > div")));
         String dataVerification = ConnectionsPage.classRecommendationList.getText();
-        assertTrue("LOR request cancelled", dataVerification.contains("Cancelled"));
+        assertTrue("LOR request cancelled", dataVerification.contains("cancelled"));
         String cancelMessage = ConnectionsPage.cancelMessage.getText();
         assertTrue("LOR cancellation message", cancelMessage.contains(info1));
         ConnectionsPage.divDisabledCancelIcon.click();
         String cancelTooltip = ConnectionsPage.cancelToolTipMessage.getText();
         System.out.print("cancelTooltip" + cancelTooltip);
         assertTrue("LOR cancellation tooltip", cancelTooltip.contains(info2));
+    }
+
+    public static void submitVerification(String text) throws InterruptedException {
+        driver = Hooks.driver;
+        PageFactory.initElements(driver, ConnectionsPage.class);
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        new WebDriverWait(Hooks.driver, 30).until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("tr[class='fc-table__row recommendations-list__table-row ng-scope']")));
+        new WebDriverWait(Hooks.driver, 30).until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("span[class='ng-binding']")));
+        String dataVerification = ConnectionsPage.classSubmitted.getText();
+        assertTrue("LOR Submitted", dataVerification.contains(text));
+    }
+
+    public static void clickOnSubmittedLink() throws InterruptedException {
+        driver = Hooks.driver;
+        PageFactory.initElements(driver, ConnectionsPage.class);
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        new WebDriverWait(Hooks.driver, 30).until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("span[class='recommendations-list__status ng-binding']")));
+        ConnectionsPage.spanSubmittedLink.click();
+    }
+
+    public static void submitTextVerification(String text) throws InterruptedException {
+        driver = Hooks.driver;
+        PageFactory.initElements(driver, ConnectionsPage.class);
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+
+        new WebDriverWait(Hooks.driver, 30).until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("div[class='recommendations-list__tooltip-container']")));
+        new WebDriverWait(Hooks.driver, 30).until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("div[class='fc-tooltip__title recommendations-list__tooltip-timestamp']")));
+        new WebDriverWait(Hooks.driver, 30).until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("div[class='ng-binding ng-scope']")));
+        new WebDriverWait(Hooks.driver, 30).until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("div[class='fc-tooltip__content ng-binding']")));
+        WebElement submittedTextElement = ConnectionsPage.divSubmittedText;
+        Actions action = new Actions(driver);
+        Actions hoverOverRegistrar = action.moveToElement(submittedTextElement);
+        hoverOverRegistrar.clickAndHold(submittedTextElement).perform();
+        String textVerification = submittedTextElement.getText();
+        assertTrue("Error Verification for Submitted text contents!", textVerification.contains(text));
     }
 
 }

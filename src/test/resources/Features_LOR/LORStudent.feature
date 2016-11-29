@@ -21,3 +21,17 @@ Feature: Family Connection - LOR
     Examples:
       |info1 | info2 |
       |Success! Your request for Frank Sejas to write a letter of recommendation for Adelphi University has been cancelled. | Once a letter is no longer "Requested", the request can no longer be cancelled here. Please talk to your teacher or counselor, as they may be able to help.|
+
+  @Edocs358
+  Scenario: As a student, I want to see the applications with a submitted LOR for an "All Applications" request
+    Then I verify LOR request is automatically updated to "Submitted"
+
+  @Edocs358
+  Scenario Outline: Student clicks on the "Submitted" status to see more information
+    When I click on Submitted status
+   Then I verify the Submitted status text "<text>"
+
+  Examples:
+    | text                  |
+    |  by Jandell Counselor |
+    | Requested |

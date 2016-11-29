@@ -21,7 +21,7 @@ public class eDocsTabPage extends BaseClass  {
         @FindBy(how = How.PARTIAL_LINK_TEXT, using = "Send")
         public static WebElement lnkSend;
 
-        @FindBy(how = How.CSS, using = "button.btn.btn-small.ng-scope")
+        @FindBy(how = How.CSS, using = "button[class='btn btn-small ng-scope']")
         public static WebElement btnExpandAll;
 
         @FindBy(how = How.CSS, using = "button.btn.btn-small.ng-scope")
@@ -30,9 +30,8 @@ public class eDocsTabPage extends BaseClass  {
         @FindBy(how = How.TAG_NAME, using = "body")
         public static WebElement txtBody;
 
-        @FindBy(how = How.CSS, using = "#contents > div:nth-of-type(2) > div:nth-of-type(2) > div > div:nth-of-type(2)")
+        @FindBy(how = How.CSS, using = "button[title='Replace']")
         public static WebElement txtVerification;
-
 
         @FindBy(how = How.CSS, using = "#contents > div:nth-of-type(2) > div:nth-of-type(2) > div")
         public static WebElement txtContentsVerification;
@@ -58,10 +57,13 @@ public class eDocsTabPage extends BaseClass  {
         @FindBy(how = How.CSS, using = "button[title=Replace]")
         public static WebElement btnReplace;
 
-        @FindBy(how = How.CSS, using = "#deleteModal > div.modal-footer > div > button.btn.btn-primary.add-delete-document-btn.close")
+        @FindBy(how = How.CSS, using = "button[title=Delete]")
         public static WebElement btnDelete;
 
-        @FindBy(how = How.CSS, using = "#deleteModal > div:nth-of-type(3) > div > button:nth-of-type(2)")
+        @FindBy(how = How.CSS, using = "button[title=Delete]")
+        public static WebElement btnDeleteTeacherDocument;
+
+        @FindBy(how = How.CSS, using = "button[class='btn btn-primary add-delete-document-btn close']")
         public static WebElement btnDeleteDocument;
 
         public eDocsTabPage(WebDriver driver) {

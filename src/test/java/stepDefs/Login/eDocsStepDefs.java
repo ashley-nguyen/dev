@@ -32,6 +32,10 @@ public class eDocsStepDefs {
         eDocsGeneral.NavtoEdocsStudentTab();
         eDocsGeneral.ClickOnPrepareLink();
         eDocsGeneral.ClickOnAddButton();
+        if (filename == "FillTooBigPDF.pdf")
+        {
+            eDocsGeneral.ClickOnUploadAFileButton();
+        }
         eDocsGeneral.ClickOnUploadAFileButton();
         eDocsGeneral.SelectApplication(application);
         eDocsGeneral.SelectType(type);
@@ -49,6 +53,19 @@ public class eDocsStepDefs {
         eDocsGeneral.ClickOnUploadAFileButton();
         eDocsGeneral.SelectApplication(application);
         eDocsGeneral.SelectType(type);
+        eDocsGeneral.ClickOnBrowseButton();
+        eDocsGeneral.WritePathFile(filename);
+        eDocsGeneral.ClickOnSendLink();
+        eDocsGeneral.ClickOnExpandAllButton();
+    }
+
+    @Given("^I expand all under application to replace the \"([^\"]*)\" in \"([^\"]*)\" with \"([^\"]*)\" and \"([^\"]*)\"$")
+    public void I_expand_all_under_application_to_replace(String strStudentID, String application, String type, String filename) throws Throwable {
+        Student_Search.studentRosterSearch(strStudentID, "id");
+        eDocsGeneral.NavtoEdocsStudentTab();
+        eDocsGeneral.ClickOnPrepareLink();
+        eDocsGeneral.ClickOnReplaceButton();
+        eDocsGeneral.ClickOnUploadAFileButton();
         eDocsGeneral.ClickOnBrowseButton();
         eDocsGeneral.WritePathFile(filename);
         eDocsGeneral.ClickOnSendLink();

@@ -29,7 +29,7 @@ public class CollegePage extends BaseClass {
     @FindBy(how = How.LINK_TEXT, using = "Extracurriculars")
     public static WebElement tabExtracurriculars;
 
-    @FindBy(how = How.XPATH, using = "(//a[contains(text(),'Colleges')])[2]")
+    @FindBy(how = How.CSS, using = "#primary > li:nth-child(6) > a")
     public static WebElement tabColleges;
 
     @FindBy(how = How.LINK_TEXT, using = "prospective colleges")

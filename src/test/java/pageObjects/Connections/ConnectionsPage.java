@@ -31,6 +31,9 @@ public class ConnectionsPage extends BaseClass {
     @FindBy(how = How.ID, using = "cluetip-inner")
     public static WebElement idSubActiveMatch;
 
+    @FindBy(how = How.CSS, using = "div[class='fc-tooltip__title recommendations-list__tooltip-timestamp")
+    public static WebElement divSubmittedText;
+
     @FindBy(how = How.LINK_TEXT, using = "Select and Update Optional Features")
     public static WebElement linkFCconfiguration;
 
@@ -46,7 +49,7 @@ public class ConnectionsPage extends BaseClass {
     @FindBy(how = How.CSS, using = "select.fc-select.fc-select--full-bleed.ng-pristine.ng-untouched.ng-valid.ng-empty")
     public static WebElement divSelectTeacher;
 
-    @FindBy(how = How.CSS, using = "input.fc-checkbox")
+    @FindBy(how = How.CSS, using = "input[class='fc-checkbox']")
     public static WebElement divSelectCollege;
 
     @FindBy(how = How.CSS, using = "input[name=applications]")
@@ -55,7 +58,7 @@ public class ConnectionsPage extends BaseClass {
     @FindBy(how = How.CSS, using = "button.fc-button.fc-button--primary")
     public static WebElement divSaveButton;
 
-    @FindBy(how = How.CSS, using = "div.recommendations-list__cancel.ng-scope")
+    @FindBy(how = How.CSS, using = "svg[class='fc-icon recommendations-list__cancel--enabled ng-scope']")
     public static WebElement divCancelButton;
 
     @FindBy(how = How.CLASS_NAME, using = "recommendations-list__cancel-prompt-confirm")
@@ -73,13 +76,19 @@ public class ConnectionsPage extends BaseClass {
     @FindBy(how = How.CLASS_NAME, using = "table-heading")
     public static WebElement classTableHeading;
 
-    @FindBy(how = How.CLASS_NAME, using = "table-recommendations-list__status")
+    @FindBy(how = How.CSS, using = "body > div > div > div > div > recommendations-container > div > div > ng-view > recommendations-list > table > tbody > tr:nth-child(4) > td > div")
     public static WebElement classRecommendationList;
+
+    @FindBy(how = How.CSS, using = "tr[class='fc-table__row recommendations-list__table-row ng-scope']")
+    public static WebElement classSubmitted;
+
+    @FindBy(how = How.CSS, using = "span[class='recommendations-list__status ng-binding']")
+    public static WebElement spanSubmittedLink;
 
     @FindBy(how = How.CSS, using = "#active-match-events-modal > div:nth-of-type(3) > div")
     public static WebElement agreeButton;
 
-    @FindBy(how = How.CSS, using = "body > div > div > div > div > recommendations-container > div > div > ng-view > recommendations-list > table > tbody > tr:nth-child(3) > td > div")
+    @FindBy(how = How.CSS, using = "div[class='fc-alert fc-alert--success fc-alert--normal-text']")
     public static WebElement cancelMessage;
 
     @FindBy(how = How.CSS, using = ".fc-tooltip__content")
