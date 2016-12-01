@@ -7,6 +7,7 @@ import org.openqa.selenium.support.PageFactory;
 import pageObjects.FamilyConnection.FCCollegesPage;
 import stepDefs.Hooks;
 
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 import static junit.framework.TestCase.assertTrue;
 
@@ -62,5 +63,14 @@ public class FCCollegesTab {
             e.printStackTrace();
         }
         assertTrue("The message is not displayed in the College Lookup page", result);
+    }
+
+    public static void removeCollegeFromImThinkingAboutListLegacy(String college) {
+        driver = Hooks.driver;
+        PageFactory.initElements(driver, FCCollegesPage.class);
+        WebElement collegeCheckbox = driver.findElement(By.xpath("//a[contains(text(), '" + college
+                + "')]/ancestor::tr/td[1]"));
+        collegeCheckbox.click();
+        FCCollegesPage.buttonRemoveFromList.click();
     }
 }

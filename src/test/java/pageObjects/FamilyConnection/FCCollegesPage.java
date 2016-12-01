@@ -22,6 +22,8 @@ public class FCCollegesPage extends BaseClass {
     public static WebElement lnkSingleResultCollegeLookup;
     @FindBy(how = How.CSS, using = "#main-content table:nth-of-type(1) caption")
     public static WebElement labelCollegeMatchTitle;
+    @FindBy(how = How.ID, using = "amRemoveProspective")
+    public static WebElement buttonRemoveFromList;
 
     public FCCollegesPage(WebDriver driver) {
         super(driver);

@@ -113,6 +113,12 @@ public class FCHubsPage extends BaseClass {
     public static WebElement labelOverlapsNumber;
     @FindBy(how = How.CSS, using = ".fc-button.fc-button--size-small.fc-button--medium-teal")
     public static WebElement buttonOverlapsLearnMore;
+    @FindBy(how = How.CSS, using = "div.masthead__heart.ng-scope svg")
+    public static WebElement buttonAddToCollegesImThinkingAbout;
+    @FindBy(how = How.CSS, using = "svg[class=\"fc-icon masthead__heart--full\"]")
+    public static WebElement buttonAddToCollegesImThinkingAboutFull;
+    @FindBy(how = How.CSS, using = ".fc-tooltip__content.ng-scope")
+    public static WebElement tooltipHeartIcon;
 
     public FCHubsPage(WebDriver driver) {
         super(driver);
