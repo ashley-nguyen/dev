@@ -168,6 +168,7 @@ public class Connections {
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.className("ng-binding")));
         new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("button[class='fc-button fc-button--primary']")));
+        new WebDriverWait(Hooks.driver, 30).until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("div[class='fc-alert fc-alert--success fc-alert--margin-top-hug ng-scope']")));
         assertTrue("The confirmation message is correct", driver.findElement(By.xpath("//span[@class='ng-binding'][contains(text(), '" + strText + "')]")).isDisplayed());
     }
 
@@ -233,11 +234,23 @@ public class Connections {
         new WebDriverWait(Hooks.driver, 30).until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("div[class='ng-binding ng-scope']")));
         new WebDriverWait(Hooks.driver, 30).until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("div[class='fc-tooltip__content ng-binding']")));
         WebElement submittedTextElement = ConnectionsPage.divSubmittedText;
-        Actions action = new Actions(driver);
-        Actions hoverOverRegistrar = action.moveToElement(submittedTextElement);
-        hoverOverRegistrar.clickAndHold(submittedTextElement).perform();
-        String textVerification = submittedTextElement.getText();
-        assertTrue("Error Verification for Submitted text contents!", textVerification.contains(text));
+        if (text.contains("Date"))
+        {
+            Actions action = new Actions(driver);
+            Actions hoverOverRegistrar = action.moveToElement(submittedTextElement);
+            hoverOverRegistrar.clickAndHold(submittedTextElement).perform();
+            String textVerification = submittedTextElement.getText().substring(0, 30);
+            Boolean dateStringExists = textVerification.matches(".*\\w{3}\\s\\d{2}\\s\\d{4}.*");
+            assertTrue("Error Verification for Submitted text contents!", dateStringExists);
+        }
+        else
+        {
+            Actions action = new Actions(driver);
+            Actions hoverOverRegistrar = action.moveToElement(submittedTextElement);
+            hoverOverRegistrar.clickAndHold(submittedTextElement).perform();
+            String textVerification = submittedTextElement.getText();
+            assertTrue("Error Verification for Submitted text contents!", textVerification.contains(text));
+        }
     }
 
 }

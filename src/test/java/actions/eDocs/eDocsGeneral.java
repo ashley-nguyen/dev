@@ -77,6 +77,14 @@ public class eDocsGeneral {
         eDocsTabPage.btnAdd.click();
     }
 
+    public static void ClickOnTranscriptAddButton() throws Throwable {
+        driver = Hooks.driver;
+        PageFactory.initElements(driver, eDocsTabPage.class);
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        new WebDriverWait(Hooks.driver, 30).until(ExpectedConditions.visibilityOf(Hooks.driver.findElement(By.cssSelector("#contents > div:nth-child(3) > div.ng-scope > div > div:nth-child(3) > h3 > button"))));
+        eDocsTabPage.btnTranscriptAdd.click();
+    }
+
     public static void ClickOnAddCounselorButton() throws Throwable {
         driver = Hooks.driver;
         PageFactory.initElements(driver, eDocsTabPage.class);
@@ -139,6 +147,14 @@ public class eDocsGeneral {
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         new WebDriverWait(Hooks.driver, 30).until(ExpectedConditions.visibilityOf(Hooks.driver.findElement(By.cssSelector("#transcript_upload_div > div:nth-child(6) > div > div > div.file-name-container"))));
         eDocsTabPage.btnBrowse.click();
+    }
+
+    public static void ClickOnTranscriptBrowseButton() throws Throwable {
+        driver = Hooks.driver;
+        PageFactory.initElements(driver, eDocsTabPage.class);
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        new WebDriverWait(Hooks.driver, 30).until(ExpectedConditions.visibilityOf(Hooks.driver.findElement(By.cssSelector("#transcript_upload_div > div:nth-child(4) > div > div > div.file-name-container"))));
+        eDocsTabPage.btnTranscriptBrowse.click();
     }
 
 
