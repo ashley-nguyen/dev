@@ -4,7 +4,10 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import pageObjects.FamilyConnection.FCCollegesPage;
+import pageObjects.FamilyConnection.FCHubsPage;
 import stepDefs.Hooks;
 
 import java.util.List;
@@ -72,5 +75,30 @@ public class FCCollegesTab {
                 + "')]/ancestor::tr/td[1]"));
         collegeCheckbox.click();
         FCCollegesPage.buttonRemoveFromList.click();
+    }
+
+    public static void clickSignUpButton() {
+        driver = Hooks.driver;
+        PageFactory.initElements(driver, FCCollegesPage.class);
+        FCCollegesPage.buttonSignUp.click();
+    }
+
+    public static void verifyCollegeVisitConfirmationMessage() {
+        driver = Hooks.driver;
+        PageFactory.initElements(driver, FCCollegesPage.class);
+        assertTrue("The confirmation message is not displayed", FCCollegesPage.labelConfirmationAlert.isDisplayed());
+    }
+
+    public static void clickRemoveFromList() {
+        driver = Hooks.driver;
+        PageFactory.initElements(driver, FCCollegesPage.class);
+        FCCollegesPage.buttonRemoveMeFromList.click();
+    }
+
+    public static void verifyCollegeVisitInfoPage() {
+        driver = Hooks.driver;
+        PageFactory.initElements(driver, FCCollegesPage.class);
+        assertTrue("The college visit information page is not displayed", FCCollegesPage.titleCollegeVisitInfo
+                .isDisplayed());
     }
 }

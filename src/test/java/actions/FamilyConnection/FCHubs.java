@@ -780,4 +780,24 @@ public class FCHubs {
             action.moveToElement(FCHubsPage.buttonAddToCollegesImThinkingAbout).perform();
         }
     }
+
+    public static void clickRegisterInCollegeVisit(String position) {
+        driver = Hooks.driver;
+        WebElement registerButton = driver.findElement(By.cssSelector("tbody tr:nth-of-type(" + position + ") td a"));
+        JavascriptExecutor jse = (JavascriptExecutor)driver;
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", registerButton);
+        jse.executeScript("scroll(0, 500);");
+        new WebDriverWait(Hooks.driver, 20).until(ExpectedConditions.textToBePresentInElementLocated(By.cssSelector
+                ("tbody tr:nth-of-type(" + position + ") td a"), "Register"));
+        registerButton.click();
+    }
+
+    public static void clickDetailsInCollegeVisit(String position) {
+        driver = Hooks.driver;
+        WebElement registerButton = driver.findElement(By.cssSelector("tbody tr:nth-of-type(" + position + ") td a"));
+        JavascriptExecutor jse = (JavascriptExecutor)driver;
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", registerButton);
+        jse.executeScript("scroll(0, 500);");
+        registerButton.click();
+    }
 }

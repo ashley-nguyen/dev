@@ -372,7 +372,7 @@ public class FCHubs_StepDefs {
         FCCollegesTab.EnterCollegeToSearch(college);
         FCCollegesTab.ClickGoButton();
         FCCollegesTab.ClickCollegeInCollegeLookup(college);
-//        FCCollegeView.clickBetaButton();
+        FCCollegeView.clickBetaButton();
     }
     @When("^I open 'Communicate' link \"([^\"]*)\"$")
     public void I_open_Communicate_Link(String link) throws Throwable {
@@ -479,6 +479,16 @@ public class FCHubs_StepDefs {
     @When("^I go over the heart icon when it is pink$")
     public void I_go_over_the_heart_icon_when_it_is_pink() throws Throwable {
         FCHubs.hoverOverPinkHeart();
+    }
+
+    @When("^I open the college visit in position \"([^\"]*)\"$")
+    public void I_open_the_college_visit_in_position(String position) throws Throwable {
+        FCHubs.clickRegisterInCollegeVisit(position);
+    }
+
+    @When("^I open the college visit details in position \"([^\"]*)\"$")
+    public void iOpenTheCollegeVisitDetailsInPosition(String position) throws Throwable {
+        FCHubs.clickDetailsInCollegeVisit(position);
     }
 }
 
