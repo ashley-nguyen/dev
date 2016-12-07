@@ -1,6 +1,7 @@
 package stepDefs.Login;
 
 import actions.Login.Login;
+import cucumber.api.PendingException;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
@@ -105,5 +106,11 @@ public class Login_StepDefs {
 
         Login.verifyValidLoginFamilyConnection();
 
+    }
+
+    @Given("^I log in to Family Connection as a parent with the following user details:$")
+    public void I_log_in_to_Family_Connection_as_a_parent_with_the_following_user_details(List<String> usercreds)
+            throws Throwable {
+        Login.DoFCLoginParent(usercreds.get(0), usercreds.get(1), usercreds.get(2), usercreds.get(3));
     }
 }

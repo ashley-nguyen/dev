@@ -22,6 +22,16 @@ public class FCCollegesPage extends BaseClass {
     public static WebElement lnkSingleResultCollegeLookup;
     @FindBy(how = How.CSS, using = "#main-content table:nth-of-type(1) caption")
     public static WebElement labelCollegeMatchTitle;
+    @FindBy(how = How.ID, using = "amRemoveProspective")
+    public static WebElement buttonRemoveFromList;
+    @FindBy(how = How.NAME, using = "signUp")
+    public static WebElement buttonSignUp;
+    @FindBy(how = How.CSS, using = ".confirmation.alert")
+    public static WebElement labelConfirmationAlert;
+    @FindBy(how = How.NAME, using = "remove")
+    public static WebElement buttonRemoveMeFromList;
+    @FindBy(how = How.CSS, using = "#main-content h1")
+    public static WebElement titleCollegeVisitInfo;
 
     public FCCollegesPage(WebDriver driver) {
         super(driver);

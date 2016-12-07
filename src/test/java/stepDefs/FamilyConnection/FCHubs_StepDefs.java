@@ -3,6 +3,7 @@ package stepDefs.FamilyConnection;
 import actions.FamilyConnection.*;
 import cucumber.api.PendingException;
 import cucumber.api.java.en.And;
+import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import org.openqa.selenium.WebDriver;
@@ -36,7 +37,6 @@ public class FCHubs_StepDefs {
     @And("^I navigate to Second Tutorial$")
     public void I_navigate_to_second_tutorial() throws Throwable {
         FCHubs.ClickNextOnFirstDialog();
-
     }
 
     @Then("^I should see SecondTutorial dialog$")
@@ -66,8 +66,8 @@ public class FCHubs_StepDefs {
         FCHubs.VerifyLogoInIdentifierModule();
     }
 
-    @When("^I click the URL at the side of the logo$")
-    public void I_click_the_URL_at_the_side_of_the_logo() throws Throwable {
+    @When("^I open the URL at the side of the logo$")
+    public void I_open_the_URL_at_the_side_of_the_logo() throws Throwable {
         FCHubs.ClickURLInIdentifierModule();
     }
 
@@ -372,7 +372,7 @@ public class FCHubs_StepDefs {
         FCCollegesTab.EnterCollegeToSearch(college);
         FCCollegesTab.ClickGoButton();
         FCCollegesTab.ClickCollegeInCollegeLookup(college);
-//        FCCollegeView.clickBetaButton();
+        FCCollegeView.clickBetaButton();
     }
     @When("^I open 'Communicate' link \"([^\"]*)\"$")
     public void I_open_Communicate_Link(String link) throws Throwable {
@@ -429,6 +429,66 @@ public class FCHubs_StepDefs {
     @Then("^I should see the 'Looking for Scattergrams' tutorial$")
     public void I_should_see_the_looking_for_Scattergrams_tutorial() throws Throwable {
         FCHubs.VerifySecondTutorialDialog();
+    }
+
+    @When("^I add the college to the 'I'm thinking about' list using the heart icon$")
+    public void I_add_the_college_to_the_Im_thinking_about_list_using_the_heart_icon() throws Throwable {
+        FCHubs.clickWhiteHeartThinkingAboutList();
+    }
+
+    @Then("^The heart should change its status to indicate that it is clicked$")
+    public void The_heart_should_change_its_status_to_indicate_that_it_is_clicked() throws Throwable {
+        FCHubs.verifyHeartStatusClicked();
+    }
+
+    @Then("^The college \"([^\"]*)\" should be added to the 'I'm thinking about list'$")
+    public void The_college_should_be_aAdded_to_the_Im_thinking_about_list(String college) throws Throwable {
+        FCHubs.verifyCollegeAddedtoImThinkingAboutList(college);
+    }
+
+    @And("^I remove the college \"([^\"]*)\" from the 'I'm thinking about' list in legacy$")
+    public void I_remove_the_college_from_the_Im_thinking_about_list_in_legacy(String college) throws Throwable {
+        FCCollegesTab.removeCollegeFromImThinkingAboutListLegacy(college);
+    }
+
+    @Given("^The college is added to the 'I'm thinking about' list$")
+    public void The_college_is_added_to_the_Im_thinking_about_list() throws Throwable {
+        FCHubs.clickWhiteHeartThinkingAboutList();
+    }
+
+    @When("^I take the college out of the 'I'm thinking about' list using the heart icon$")
+    public void I_take_the_college_out_of_the_Im_thinking_about_list_using_the_heart_icon() throws Throwable {
+        FCHubs.clickPinkHeartThinkingAboutList();
+    }
+
+    @Then("^The college \"([^\"]*)\" should not be present in the 'I'm thinking about' list$")
+    public void The_college_should_not_be_present_in_the_Im_thinking_about_list(String college) throws Throwable {
+        FCHubs.verifyCollegeIsNotInImThinkingAboutList(college);
+    }
+
+    @When("^I go over the heart icon when it is white$")
+    public void I_go_over_the_heart_icon_when_it_is_white() throws Throwable {
+        FCHubs.hoverOverWhiteHeart();
+    }
+
+    @Then("^I should see a tooltip with the text \"([^\"]*)\"$")
+    public void I_should_see_a_tool_tip_with_the_text(String heartTooltipText) throws Throwable {
+        FCHubs.verifyHeartTooltip(heartTooltipText);
+    }
+
+    @When("^I go over the heart icon when it is pink$")
+    public void I_go_over_the_heart_icon_when_it_is_pink() throws Throwable {
+        FCHubs.hoverOverPinkHeart();
+    }
+
+    @When("^I open the college visit in position \"([^\"]*)\"$")
+    public void I_open_the_college_visit_in_position(String position) throws Throwable {
+        FCHubs.clickRegisterInCollegeVisit(position);
+    }
+
+    @When("^I open the college visit details in position \"([^\"]*)\"$")
+    public void iOpenTheCollegeVisitDetailsInPosition(String position) throws Throwable {
+        FCHubs.clickDetailsInCollegeVisit(position);
     }
 }
 
