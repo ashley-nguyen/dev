@@ -26,12 +26,22 @@ Feature: Family Connection - LOR
   Scenario: As a student, I want to see the applications with a submitted LOR for an "All Applications" request
     Then I verify LOR request is automatically updated to "Submitted"
 
-  @Edocs358
+  @Edocs358 @Edocs369
   Scenario Outline: Student clicks on the "Submitted" status to see more information
     When I click on Submitted status
    Then I verify the Submitted status text "<text>"
 
   Examples:
     | text                  |
-    |  by Jandell Counselor |
+    | Cancelled              |
+    |  by  |
     | Requested |
+
+  @Edocs365
+  Scenario Outline: Verify for an All Applications LOR request, display date and time that LOR request was manually updated to submitted in Teacher Rec Manager if no documents were submitted via eDocs
+    When I click on Submitted status
+    Then I verify the Submitted status text "<text>"
+
+  Examples:
+    | text             |
+    | Date             |

@@ -27,6 +27,9 @@ public class eDocsTabPage extends BaseClass  {
         @FindBy(how = How.CSS, using = "button.btn.btn-small.ng-scope")
         public static WebElement btnAdd;
 
+        @FindBy(how = How.CSS, using = "#contents > div:nth-child(3) > div.ng-scope > div > div:nth-child(3) > h3 > button")
+        public static WebElement btnTranscriptAdd;
+
         @FindBy(how = How.TAG_NAME, using = "body")
         public static WebElement txtBody;
 
@@ -53,6 +56,9 @@ public class eDocsTabPage extends BaseClass  {
 
         @FindBy(how = How.CSS, using = "#transcript_upload_div > div:nth-child(6) > div > div > div.file-name-container")
         public static WebElement btnBrowse;
+
+        @FindBy(how = How.CSS, using = "#transcript_upload_div > div:nth-child(4) > div > div > div.file-name-container")
+        public static WebElement btnTranscriptBrowse;
 
         @FindBy(how = How.CSS, using = "button[title=Replace]")
         public static WebElement btnReplace;
