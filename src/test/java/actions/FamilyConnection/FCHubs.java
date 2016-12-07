@@ -9,6 +9,7 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import pageObjects.FamilyConnection.FCCollegesPage;
 import pageObjects.FamilyConnection.FCHubsAdmissionsTabPage;
 import pageObjects.FamilyConnection.FCHubsCostsTabPage;
 import pageObjects.FamilyConnection.FCHubsPage;
@@ -708,7 +709,7 @@ public class FCHubs {
         driver = Hooks.driver;
         PageFactory.initElements(driver, FCHubsPage.class);
         boolean result = false;
-        driver.get("https://connection-int.dev.naviance.com/family-connection/colleges/application/consideration");
+        driver.get(FCHubsPage.URLimThinkingAboutList);
         List<WebElement> imThinkingAboutListElements = driver.findElements(By.cssSelector(".less-pad.standard.striped " +
                 "td:nth-of-type(2)"));
         for (WebElement collegeInList : imThinkingAboutListElements) {
@@ -731,11 +732,10 @@ public class FCHubs {
     public static void verifyCollegeIsNotInImThinkingAboutList(String college) {
         driver = Hooks.driver;
         PageFactory.initElements(driver, FCHubsPage.class);
+        PageFactory.initElements(driver, FCCollegesPage.class);
         boolean result = false;
-        driver.get("https://connection-int.dev.naviance.com/family-connection/colleges/application/consideration");
-        List<WebElement> imThinkingAboutListElements = driver.findElements(By.cssSelector(".less-pad.standard.striped " +
-                "td:nth-of-type(2)"));
-        for (WebElement collegeInList : imThinkingAboutListElements) {
+        driver.get(FCHubsPage.URLimThinkingAboutList);
+        for (WebElement collegeInList : FCCollegesPage.imThinkingAboutListElements) {
             if (collegeInList.getText().contains(college)) {
                 result = false;
                 break;

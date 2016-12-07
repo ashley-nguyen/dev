@@ -1,10 +1,13 @@
 package pageObjects.FamilyConnection;
 
+import net.serenitybdd.core.annotations.findby.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 import pageObjects.BaseClass;
+
+import java.util.List;
 
 /**
  * Created by jorgemaguina on 5/25/2016.
@@ -32,6 +35,9 @@ public class FCCollegesPage extends BaseClass {
     public static WebElement buttonRemoveMeFromList;
     @FindBy(how = How.CSS, using = "#main-content h1")
     public static WebElement titleCollegeVisitInfo;
+
+    public static List<WebElement> imThinkingAboutListElements = driver.findElements(By.cssSelector(".less-pad" +
+            ".standard.striped td:nth-of-type(2)"));
 
     public FCCollegesPage(WebDriver driver) {
         super(driver);

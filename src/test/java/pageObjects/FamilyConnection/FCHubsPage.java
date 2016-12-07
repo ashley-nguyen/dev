@@ -120,6 +120,9 @@ public class FCHubsPage extends BaseClass {
     @FindBy(how = How.CSS, using = ".fc-tooltip__content.ng-scope")
     public static WebElement tooltipHeartIcon;
 
+    public static String URLimThinkingAboutList = "https://connection-int.dev.naviance.com/family-connection" +
+            "/colleges/application/consideration";
+
     public FCHubsPage(WebDriver driver) {
         super(driver);
     }
