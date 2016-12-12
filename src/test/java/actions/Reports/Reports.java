@@ -2,12 +2,14 @@ package actions.Reports;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import pageObjects.Reports.ReportsPage;
 import stepDefs.Hooks;
 
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import static org.junit.Assert.assertTrue;
@@ -86,6 +88,37 @@ public class Reports {
         PageFactory.initElements(driver, ReportsPage.class);
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         assertTrue("Verify Report exists!", new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.elementToBeClickable(ReportsPage.ViewCollegeReport)).isDisplayed());
+    }
+
+    public static void verifyReports(String report) throws InterruptedException {
+
+        driver = Hooks.driver;
+        PageFactory.initElements(driver, ReportsPage.class);
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        int index = 0;
+        int out = 0;
+      //  List<WebElement> tableRows = ReportsPage.reportTable.findElements(By.tagName("tr"));
+       List<WebElement> tableRows = ReportsPage.reportTable.findElements(By.cssSelector("#Student_reports>tbody>tr>td:nth-of-type(1)"));
+        for(WebElement trElement : tableRows)
+        {
+           // System.out.println("Table info:" + tableRows.get(index).getText());
+          //  if (tableRows.get(index).getText() == report)
+            if (tableRows.get(index).getText().equals(report))
+            {
+               // assertTrue("Verify Report exists!", tableRows.get(index).getText() == report);
+                System.out.println("Student Report " + report + " exists!");
+                out = 1;
+                break;
+            }
+            else
+            {
+                index = index +1;
+            }
+
+        }
+           if (out ==0) {
+               System.out.println("Student Report " + report + " doesn't exists!");
+           }
     }
 
     public static void verifyScoreReports() throws InterruptedException {

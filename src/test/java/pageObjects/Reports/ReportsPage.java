@@ -52,6 +52,12 @@ public class ReportsPage extends BaseClass {
     @FindBy(how = How.ID, using = "reporting-framework-container")
     public static WebElement txtDataVerification;
 
+    @FindBy(how = How.CSS, using = "table[class = 'table table-sortable']")
+    public static WebElement reportTable;
+
+
+
+
     public ReportsPage(WebDriver driver) {
         super(driver);
     }
