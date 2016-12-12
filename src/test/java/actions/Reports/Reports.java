@@ -97,15 +97,12 @@ public class Reports {
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         int index = 0;
         int out = 0;
-      //  List<WebElement> tableRows = ReportsPage.reportTable.findElements(By.tagName("tr"));
-       List<WebElement> tableRows = ReportsPage.reportTable.findElements(By.cssSelector("#Student_reports>tbody>tr>td:nth-of-type(1)"));
+        List<WebElement> tableRows = ReportsPage.reportTable.findElements(By.cssSelector("#Student_reports>tbody>tr>td:nth-of-type(1)"));
         for(WebElement trElement : tableRows)
         {
-           // System.out.println("Table info:" + tableRows.get(index).getText());
-          //  if (tableRows.get(index).getText() == report)
+
             if (tableRows.get(index).getText().equals(report))
             {
-               // assertTrue("Verify Report exists!", tableRows.get(index).getText() == report);
                 System.out.println("Student Report " + report + " exists!");
                 out = 1;
                 break;
