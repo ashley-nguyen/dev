@@ -430,5 +430,10 @@ public class FCHubs_StepDefs {
     public void I_should_see_the_looking_for_Scattergrams_tutorial() throws Throwable {
         FCHubs.VerifySecondTutorialDialog();
     }
+
+    @When("^I open Recommended Events from sticky bar$")
+    public void I_Open_Recommended_Events_From_Sticky_Bar() throws Throwable {
+        FCHubs.clickRecommendedEvents();
+    }
 }
 

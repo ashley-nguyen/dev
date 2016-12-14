@@ -682,4 +682,11 @@ public class FCHubs {
         }
         assertTrue("The legacy overlaps list does not correspond to the json data", result);
     }
+
+    public static void clickRecommendedEvents() {
+        driver = Hooks.driver;
+        PageFactory.initElements(driver, FCHubsPage.class);
+        FCHubsPage.buttonRecommendedEvents.click();
+
+    }
 }
