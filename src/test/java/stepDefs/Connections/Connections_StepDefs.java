@@ -158,13 +158,11 @@ public class Connections_StepDefs {
     @When("^I click on Submitted status$")
     public void I_click_on_Submitted_status() throws Throwable {
         Connections.clickOnSubmittedLink();
-//        Thread.sleep(9999999);
     }
 
     @When("^I verify the Submitted status text \"([^\"]*)\"$")
     public void I_verify_the_Submitted_status_text(String text) throws Throwable {
         Connections.submitTextVerification(text);
-//        Thread.sleep(999999999);
     }
 
 

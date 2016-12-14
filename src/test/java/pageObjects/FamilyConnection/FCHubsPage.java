@@ -115,8 +115,15 @@ public class FCHubsPage extends BaseClass {
     public static WebElement buttonOverlapsLearnMore;
     @FindBy(how = How.CSS, using = "a[ng-if=\"vm.hubsEventsCollegesLink\"]")
     public static WebElement buttonRecommendedEvents;
+    @FindBy(how = How.CSS, using = "div.masthead__heart.ng-scope svg")
+    public static WebElement buttonAddToCollegesImThinkingAbout;
+    @FindBy(how = How.CSS, using = "svg[class=\"fc-icon masthead__heart--full\"]")
+    public static WebElement buttonAddToCollegesImThinkingAboutFull;
+    @FindBy(how = How.CSS, using = ".fc-tooltip__content.ng-scope")
+    public static WebElement tooltipHeartIcon;
 
-
+    public static String URLimThinkingAboutList = "https://connection-int.dev.naviance.com/family-connection" +
+            "/colleges/application/consideration";
     public FCHubsPage(WebDriver driver) {
         super(driver);
     }

@@ -4,10 +4,12 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.openqa.selenium.*;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import pageObjects.FamilyConnection.FCCollegesPage;
 import pageObjects.FamilyConnection.FCHubsAdmissionsTabPage;
 import pageObjects.FamilyConnection.FCHubsCostsTabPage;
 import pageObjects.FamilyConnection.FCHubsPage;
@@ -683,10 +685,126 @@ public class FCHubs {
         assertTrue("The legacy overlaps list does not correspond to the json data", result);
     }
 
+
     public static void clickRecommendedEvents() {
         driver = Hooks.driver;
         PageFactory.initElements(driver, FCHubsPage.class);
         FCHubsPage.buttonRecommendedEvents.click();
+    }
+  
+    public static void clickWhiteHeartThinkingAboutList() {
+        driver = Hooks.driver;
+        PageFactory.initElements(driver, FCHubsPage.class);
+        if (FCHubsPage.buttonAddToCollegesImThinkingAbout.getAttribute("class").equals("fc-icon")) {
+            FCHubsPage.buttonAddToCollegesImThinkingAbout.click();
+        }
+    }
 
+    public static void verifyHeartStatusClicked() {
+        driver = Hooks.driver;
+        PageFactory.initElements(driver, FCHubsPage.class);
+        boolean result = false;
+        new WebDriverWait(driver, 20).until(ExpectedConditions.elementToBeClickable
+                (FCHubsPage.buttonAddToCollegesImThinkingAboutFull));
+        if (FCHubsPage.buttonAddToCollegesImThinkingAboutFull.isDisplayed()) {
+            result = true;
+        }
+        assertTrue("The heart was not clicked", result);
+    }
+
+    public static void verifyCollegeAddedtoImThinkingAboutList(String college) {
+        driver = Hooks.driver;
+        PageFactory.initElements(driver, FCHubsPage.class);
+        boolean result = false;
+        driver.get(FCHubsPage.URLimThinkingAboutList);
+        List<WebElement> imThinkingAboutListElements = driver.findElements(By.cssSelector(".less-pad.standard.striped " +
+                "td:nth-of-type(2)"));
+        for (WebElement collegeInList : imThinkingAboutListElements) {
+            if (collegeInList.getText().contains(college)) {
+                result = true;
+            }
+        }
+        assertTrue("College was not added to the I'm thinking about list", result);
+    }
+
+    public static void clickPinkHeartThinkingAboutList() {
+        driver = Hooks.driver;
+        PageFactory.initElements(driver, FCHubsPage.class);
+        FCHubsPage.imgLogo.click();
+        if (FCHubsPage.buttonAddToCollegesImThinkingAbout.getAttribute("class").equals("fc-icon masthead__heart--full")) {
+            FCHubsPage.buttonAddToCollegesImThinkingAbout.click();
+        }
+    }
+
+    public static void verifyCollegeIsNotInImThinkingAboutList(String college) {
+        driver = Hooks.driver;
+        PageFactory.initElements(driver, FCHubsPage.class);
+        PageFactory.initElements(driver, FCCollegesPage.class);
+        boolean result = false;
+        driver.get(FCHubsPage.URLimThinkingAboutList);
+        for (WebElement collegeInList : FCCollegesPage.imThinkingAboutListElements) {
+            if (collegeInList.getText().contains(college)) {
+                result = false;
+                break;
+            } else {
+                result = true;
+            }
+        }
+        assertTrue("College is in the I'm thinking about list", result);
+    }
+
+    public static void hoverOverWhiteHeart() {
+        driver = Hooks.driver;
+        PageFactory.initElements(driver, FCHubsPage.class);
+        new WebDriverWait(Hooks.driver, 20).until(ExpectedConditions.elementToBeClickable(FCHubsPage.linkNextFirstDialog));
+        FCHubsPage.linkNextFirstDialog.click();
+        if (FCHubsPage.buttonAddToCollegesImThinkingAbout.getAttribute("class").equals("fc-icon")) {
+            Actions action  = new Actions(driver);
+            action.moveToElement(FCHubsPage.buttonAddToCollegesImThinkingAbout).perform();
+        }
+    }
+
+    public static void verifyHeartTooltip(String heartTooltipText) {
+        driver = Hooks.driver;
+        PageFactory.initElements(driver, FCHubsPage.class);
+        boolean result = false;
+        new WebDriverWait(driver, 20).until(ExpectedConditions.elementToBeClickable
+                (FCHubsPage.tooltipHeartIcon));
+        if (FCHubsPage.tooltipHeartIcon.getText().equals(heartTooltipText)) {
+            result = true;
+        }
+        assertTrue("The tooltip from the Heart Icon is not displayed", result);
+    }
+
+    public static void hoverOverPinkHeart() {
+        driver = Hooks.driver;
+        PageFactory.initElements(driver, FCHubsPage.class);
+        new WebDriverWait(Hooks.driver, 20).until(ExpectedConditions.elementToBeClickable(FCHubsPage.linkNextFirstDialog));
+        clickWhiteHeartThinkingAboutList();
+        FCHubsPage.linkNextFirstDialog.click();
+        if (FCHubsPage.buttonAddToCollegesImThinkingAbout.getAttribute("class").equals("fc-icon masthead__heart--full")) {
+            Actions action  = new Actions(driver);
+            action.moveToElement(FCHubsPage.buttonAddToCollegesImThinkingAbout).perform();
+        }
+    }
+
+    public static void clickRegisterInCollegeVisit(String position) {
+        driver = Hooks.driver;
+        WebElement registerButton = driver.findElement(By.cssSelector("tbody tr:nth-of-type(" + position + ") td a"));
+        JavascriptExecutor jse = (JavascriptExecutor)driver;
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", registerButton);
+        jse.executeScript("scroll(0, 500);");
+        new WebDriverWait(Hooks.driver, 20).until(ExpectedConditions.textToBePresentInElementLocated(By.cssSelector
+                ("tbody tr:nth-of-type(" + position + ") td a"), "Register"));
+        registerButton.click();
+    }
+
+    public static void clickDetailsInCollegeVisit(String position) {
+        driver = Hooks.driver;
+        WebElement registerButton = driver.findElement(By.cssSelector("tbody tr:nth-of-type(" + position + ") td a"));
+        JavascriptExecutor jse = (JavascriptExecutor)driver;
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", registerButton);
+        jse.executeScript("scroll(0, 500);");
+        registerButton.click();
     }
 }

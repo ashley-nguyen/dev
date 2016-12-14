@@ -127,3 +127,13 @@ Feature: View student details
   Examples:
     | studentID  | type                     | author    | size  | action |
     | a103       | NACAC Fee Waiver      |Stan Smith | 14.87 | Delete   |
+
+
+  @edocs @safe @EDOCS12
+  Scenario Outline: Verify prevent uploading/sending multiple student transcripts for a single student due to FERPA violation
+    When I use "<studentID>" under transcript selecting "Initial Transcript" with "<filename>"
+    Then I will verify "<text>" for LORs
+
+  Examples:
+    | studentID  | text                     |filename        |
+    | a103       | Initial Transcript       |ReadMe.txt      |
