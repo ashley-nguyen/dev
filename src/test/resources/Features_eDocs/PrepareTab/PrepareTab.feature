@@ -132,8 +132,17 @@ Feature: View student details
   @edocs @safe @EDOCS12
   Scenario Outline: Verify prevent uploading/sending multiple student transcripts for a single student due to FERPA violation
     When I use "<studentID>" under transcript selecting "Initial Transcript" with "<filename>"
-    Then I will verify "<text>" for LORs
+    Then I will verify "<text>" with "<message>" messages for LORs
 
   Examples:
-    | studentID  | text                     |filename        |
-    | a103       | Initial Transcript       |ReadMe.txt      |
+    | studentID  |filename        | text |message                                                                               |
+    | a103       |Doc21.pdf       | Initial Transcript     |Upload Failed: Initial Transcript - Sorry, transcripts must be no longer than 20 pages|
+
+  @edocs @safe @succeed
+  Scenario Outline: Verify I get an error message that says my file size it too big.
+    When I use "<studentID>" under application selecting "All Applications" and "Letter of Recommendation" with "<filename>"
+    Then I will verify "<text>" file big message
+
+  Examples:
+    | studentID  | text                             | filename            |
+    | a101       | Selected file is more than 500KB | FillTooBigPDF.pdf|

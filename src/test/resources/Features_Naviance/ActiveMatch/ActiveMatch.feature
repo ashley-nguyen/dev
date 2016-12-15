@@ -19,5 +19,5 @@ Feature: Active Match (NAVCORE-177)
     Then I should not see errors in Family Connection in "<level>" grade level
 
   Examples:
-  | level |
-  |  9    |
+    | level |
+    |  9    |

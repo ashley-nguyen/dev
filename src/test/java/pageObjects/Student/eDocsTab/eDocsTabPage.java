@@ -42,6 +42,9 @@ public class eDocsTabPage extends BaseClass  {
         @FindBy(how = How.CSS, using = "#contents > div:nth-of-type(2) > div:nth-of-type(2) > div > div:nth-of-type(1) > table")
         public static WebElement txtTableVerification;
 
+        @FindBy(how = How.CSS, using = "div[id='contents']")
+        public static WebElement txtTranscriptTableVerification;
+
         @FindBy(how = How.CSS, using = "#contents > div:nth-of-type(2) > div:nth-of-type(2) > div > div:nth-of-type(2) > h3 > button")
         public static WebElement btnCounselorAdd;
 

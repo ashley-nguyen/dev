@@ -179,6 +179,11 @@ public class eDocsStepDefs {
         eDocsGeneral.verifyLorsText(strtext);
     }
 
+    @Then("^I will verify \"([^\"]*)\" with \"([^\"]*)\" messages for LORs$")
+    public void I_will_verify_messagelors(String strtext, String strMessage) throws Throwable {
+        eDocsGeneral.verifyLorsMessagesText(strtext, strMessage);
+    }
+
     @Then("^I will verify \"([^\"]*)\", \"([^\"]*)\", \"([^\"]*)\", \"([^\"]*)\"$")
     public void I_will_verify_fields_for_lors(String type, String author, String size, String action) throws Throwable {
         eDocsGeneral.verifyLorsFieldsText(type, author, size, action);
