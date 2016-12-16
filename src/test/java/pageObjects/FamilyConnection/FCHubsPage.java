@@ -116,6 +116,8 @@ public class FCHubsPage extends BaseClass {
     public static WebElement labelOverlapsNumber;
     @FindBy(how = How.CSS, using = ".fc-button.fc-button--size-small.fc-button--medium-teal")
     public static WebElement buttonOverlapsLearnMore;
+    @FindBy(how = How.CSS, using = "a[ng-if=\"vm.hubsEventsCollegesLink\"]")
+    public static WebElement buttonRecommendedEvents;
     @FindBy(how = How.CSS, using = "div.masthead__heart.ng-scope svg")
     public static WebElement buttonAddToCollegesImThinkingAbout;
     @FindBy(how = How.CSS, using = "svg[class=\"fc-icon masthead__heart--full\"]")
@@ -141,7 +143,7 @@ public class FCHubsPage extends BaseClass {
 
     public static String URLimThinkingAboutList = "https://connection-int.dev.naviance.com/family-connection" +
             "/colleges/application/consideration";
-
+  
     public static List<WebElement> scoreQualificationsList = driver.findElements(By.cssSelector("div.bottom div" +
             ".ng-binding:not([aria-hidden=\"false\"])"));
 

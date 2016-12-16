@@ -415,6 +415,11 @@ public class FCHubs_StepDefs {
         FCHubs.VerifySecondTutorialDialog();
     }
 
+    @When("^I open Recommended Events from sticky bar$")
+    public void I_Open_Recommended_Events_From_Sticky_Bar() throws Throwable {
+        FCHubs.clickRecommendedEvents();
+    }
+
     @When("^I add the college to the 'I'm thinking about' list using the heart icon$")
     public void I_add_the_college_to_the_Im_thinking_about_list_using_the_heart_icon() throws Throwable {
         FCHubs.clickWhiteHeartThinkingAboutList();
