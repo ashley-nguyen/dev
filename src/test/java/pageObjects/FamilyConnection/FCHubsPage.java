@@ -1,10 +1,13 @@
 package pageObjects.FamilyConnection;
 
+import net.serenitybdd.core.annotations.findby.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 import pageObjects.BaseClass;
+
+import java.util.List;
 
 /**
  * Created by jorgemaguina on 5/25/2016.
@@ -119,9 +122,28 @@ public class FCHubsPage extends BaseClass {
     public static WebElement buttonAddToCollegesImThinkingAboutFull;
     @FindBy(how = How.CSS, using = ".fc-tooltip__content.ng-scope")
     public static WebElement tooltipHeartIcon;
+    @FindBy(how = How.CSS, using = "span[ng-class=\"{true:'scoreLow', false:'score'}[vm.compares.gpa == vm.low]\"]")
+    public static WebElement labelGPAValue;
+    @FindBy(how = How.CSS, using = "span[ng-class=\"{true:'scoreLow', false:'score'}[vm.compares.sat == vm.low]\"]")
+    public static WebElement labelSATValue;
+    @FindBy(how = How.CSS, using = "span[ng-class=\"{true:'scoreLow', false:'score'}[vm.compares.act == vm.low]\"]")
+    public static WebElement labelACTValue;
+    @FindBy(how = How.CSS, using = "div[ng-show=\"vm.otherScores.gpaStatistics.average\"]")
+    public static WebElement labelAvgGPAValue;
+    @FindBy(how = How.CSS, using = "div[ng-show=\"vm.otherScores.satStatistics.average\"]")
+    public static WebElement labelAvgSATValue;
+    @FindBy(how = How.CSS, using = "div[ng-show=\"vm.otherScores.actStatistics.average\"]")
+    public static WebElement labelAvgACTValue;
+    @FindBy(how = How.CSS, using = "span[ng-if=\"vm.compares.overall == vm.aboveAvg\"]")
+    public static WebElement labelOverallAvgConclusionText;
+    @FindBy(how = How.CSS, using = "div[ng-show=\"!(vm.studentScores.concordedAct > 0)\"]")
+    public static WebElement labelACTQuestionMark;
 
     public static String URLimThinkingAboutList = "https://connection-int.dev.naviance.com/family-connection" +
             "/colleges/application/consideration";
+
+    public static List<WebElement> scoreQualificationsList = driver.findElements(By.cssSelector("div.bottom div" +
+            ".ng-binding:not([aria-hidden=\"false\"])"));
 
     public FCHubsPage(WebDriver driver) {
         super(driver);

@@ -315,42 +315,87 @@ public class FCHubs {
         assertTrue("The displayed degrees are not correct", result);
     }
 
-    public static void VerifyScoreValuesScoreComp(String scoreType, String value) {
+    public static void VerifyScoreValuesScoreComp(List<String> scoreValueList) {
         driver = Hooks.driver;
-        assertTrue("The Student's " +  scoreType + " is not correct", driver.findElement(By.xpath("//center" +
-                "[contains(text(), '" + scoreType + "')]/../div/div[contains(text(), 'You')]" +
-                "/span[contains(text(), '" + value + "')]")).isDisplayed());
+        PageFactory.initElements(driver, FCHubsPage.class);
+        boolean result = true;
+        WebElement valueElement = null;
+        for (String scoreValueElement : scoreValueList) {
+            switch (scoreValueElement.split(";")[0]) {
+                case "GPA" : valueElement = FCHubsPage.labelGPAValue;
+                    break;
+                case "SAT" : valueElement = FCHubsPage.labelSATValue;
+                    break;
+                case "ACT" : valueElement = FCHubsPage.labelACTValue;
+                    break;
+            }
+            new WebDriverWait(driver, 20).until(ExpectedConditions.elementToBeClickable(FCHubsPage.labelGPAValue));
+            if (scoreValueElement.split(";")[1].equals(valueElement.getText())) {
+                result = true;
+            } else {
+                result = false;
+                break;
+            }
+        }
+        assertTrue("The score values are not correct", result);
     }
 
-    public static void VerifyAvgValuesScoreComp(String avgScoreType, String avgValue) {
+    public static void VerifyAvgValuesScoreComp(List<String> avgScoreValueList) {
         driver = Hooks.driver;
-        assertTrue("The average " + avgScoreType  + " is not correct", driver.findElement(By.xpath("//center" +
-                "[contains(text(), '" + avgScoreType +"')]/../div/div[contains(text(), 'Admitted Average')]/span" +
-                "[contains(text(), '" + avgValue + "')]")).isDisplayed());
+        PageFactory.initElements(driver, FCHubsPage.class);
+        boolean result = true;
+        WebElement valueElement = null;
+        for (String scoreValueElement : avgScoreValueList) {
+            switch (scoreValueElement.split(";")[0]) {
+                case "GPA" : valueElement = FCHubsPage.labelAvgGPAValue;
+                    break;
+                case "SAT" : valueElement = FCHubsPage.labelAvgSATValue;
+                    break;
+                case "ACT" : valueElement = FCHubsPage.labelAvgACTValue;
+                    break;
+            }
+            new WebDriverWait(driver, 20).until(ExpectedConditions.elementToBeClickable(FCHubsPage.labelAvgGPAValue));
+            if (valueElement.getText().contains(scoreValueElement.split(";")[1])) {
+                result = true;
+            } else {
+                result = false;
+                break;
+            }
+        }
+        assertTrue("The score values are not correct", result);
     }
 
-    public static void VerifyScoreTextScoreComp(String scoreType, String scoreText) {
+    public static void verifyScoreTextScoreComp(List<String> scoresList) {
         driver = Hooks.driver;
-        assertTrue("The score text is not correct", driver.findElement(By.xpath("//center[contains(text()" +
-                ", '" + scoreType + "')]/../div/div[contains(text(), '" + scoreText + "')]")).isDisplayed());
+        PageFactory.initElements(driver, FCHubsPage.class);
+        boolean result = false;
+        for (int i = 0; i < scoresList.size(); i++) {
+            if (FCHubsPage.scoreQualificationsList.get(i).getText().equals(scoresList.get(i).split(";")[1])) {
+                result = true;
+            } else {
+                result = false;
+                break;
+            }
+        }
+        assertTrue("The score qualifications are not correct", result);
     }
 
     public static void VerifyOverallAverageTextScoreComp(String overallAvgText) {
         driver = Hooks.driver;
-        boolean isPresent = false;
-        WebElement upperText = driver.findElement(By.xpath("//div[@ng-if='vm.diff.overall < vm.good']"));
-        WebElement bottomText = driver.findElement(By.xpath("//div[@ng-if='vm.improves.length > 0' and " +
-                "@class='fc-grid__row fc-grid__row--xs-center ng-scope']/div/span/font"));
-        if(upperText.getText().equals(overallAvgText) || bottomText.getText().equals(overallAvgText)) {
-            isPresent = true;
-        }
-        assertTrue("The Overall Average text is not present", isPresent);
+        PageFactory.initElements(driver, FCHubsPage.class);
+        assertTrue("The Overall Average text is not present", FCHubsPage.labelOverallAvgConclusionText.getText().equals
+                (overallAvgText));
     }
 
     public static void VerifyQuestionMarkScoreComp(String scoreType) {
         driver = Hooks.driver;
-        assertTrue("The score text is not correct", driver.findElement(By.xpath("//center[contains(text(), " +
-                "'" + scoreType + "')]/../div/div/div/div[contains(text(), '?')]")).isDisplayed());
+        PageFactory.initElements(driver, FCHubsPage.class);
+        WebElement dialOrQuestionElement = null;
+        switch (scoreType) {
+            case "ACT" : dialOrQuestionElement = FCHubsPage.labelACTQuestionMark;
+                break;
+        }
+        assertTrue("The score text is not correct", dialOrQuestionElement.isDisplayed());
     }
 
     public static void VerifyAvgTotalCostInfoTopBar(String income, String avgTotalCost) {
@@ -542,17 +587,21 @@ public class FCHubs {
 
     public static void ClickLinkInOverviewInfoTopBar(String linkText) {
         driver = Hooks.driver;
+
         String cssSelectorPart = "";
         switch (linkText) {
             case "More about Cost & Aid": cssSelectorPart = "costs-link a";
                 break;
             case "More about Learning Environment": cssSelectorPart = "studies-tab-link a";
                 break;
-            case "How does this relate to me?": cssSelectorPart = "admissions-tab-link a";
+            case "Check out Scattergrams to see how this relates to you": cssSelectorPart = "admissions-tab-link " +
+                    "a:not(.ng-hide)";
                 break;
             case "See all deadlines": cssSelectorPart = "deadline-link a";
                 break;
         }
+        new WebDriverWait(driver, 20).until(ExpectedConditions.elementToBeClickable(By.cssSelector
+                (".hub-data-pod__subtext.admissions-" + cssSelectorPart)));
         driver.findElement(By.cssSelector(".hub-data-pod__subtext.admissions-" + cssSelectorPart)).click();
     }
 

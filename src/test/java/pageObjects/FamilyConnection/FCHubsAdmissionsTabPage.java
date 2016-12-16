@@ -1,10 +1,13 @@
 package pageObjects.FamilyConnection;
 
+import net.serenitybdd.core.annotations.findby.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 import pageObjects.BaseClass;
+
+import java.util.List;
 
 /**
  * Created by jorgemaguina on 7/27/2016.
@@ -43,6 +46,11 @@ public class FCHubsAdmissionsTabPage extends BaseClass {
     @FindBy(how = How.CSS, using = "div[ng-if=\"vm.informationTabs.getActive() == 'deadlines'\"] " +
             "div.fc-grid__col--xs-12.fc-grid__col--sm-6:nth-of-type(1) div.hub-deadline__day.ng-binding")
     public static WebElement labelAppInfoRegDecDeadlineDay;
+
+    public static List<WebElement> listImportantPolicies = driver.findElements(By.cssSelector(".hub-data-pod--policy" +
+            ".ng-binding.ng-scope"));
+    public static List<WebElement> listDeadlines = driver.findElements(By.cssSelector(".admissions-information__" +
+            "deadline-item.ng-scope"));
 
     public FCHubsAdmissionsTabPage(WebDriver driver) {
         super(driver);
