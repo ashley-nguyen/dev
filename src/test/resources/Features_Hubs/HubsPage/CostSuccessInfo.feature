@@ -45,7 +45,7 @@ Feature: As a student exploring a college, I want to see a top bar with high-lev
   Scenario: The user is redirected to Admissions tab after clicking "How does this relate to me?"
     When I open the link "How does this relate to me?" in the Overview Info Top Bar
     Then I should be redirected to the tab "Admissions"
-x
+
   Scenario: The URL contains "Admissions"
     When I open the link "Check out Scattergrams to see how this relates to you" in the Overview Info Top Bar
     Then The URL should contain "Admissions"
