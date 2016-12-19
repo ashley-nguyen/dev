@@ -2,6 +2,7 @@ package stepDefs.Connections;
 
 import actions.Connections.Connections;
 import actions.FamilyConnection.FCDashboard;
+import cucumber.api.PendingException;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
@@ -59,6 +60,7 @@ public class Connections_StepDefs {
         Connections.verifyEnableGrade(grade);
     }
 
+    //LOR StepDefs
 
     @And("^I click on letters of recommendation$")
     public void I_Click_On_Letters_Of_Recommendation() throws Throwable {
@@ -71,8 +73,6 @@ public class Connections_StepDefs {
         Connections.clickOnLettersOfRecommendation();
     }
 
-
-
     @When("^I cancel LOR for me$")
     public void I_cancel_LOR_for_me() throws Throwable {
         FCDashboard.ClickCollegesTab();
@@ -81,31 +81,15 @@ public class Connections_StepDefs {
         Connections.clickConfirmCancel();
     }
 
-
-
     @When("^I add request selecting \"(.*)\"$")
     public void I_add_request_selecting(String item) throws Throwable {
         FCDashboard.ClickCollegesTab();
         Connections.clickOnLettersOfRecommendation();
         Connections.clickAddRequest();
         Connections.selectTeacher(item);
-        Connections.selectOptionForCollege();
+        Connections.selectSpecificCollege();
         Connections.selectCollege();
         Connections.clickSave();
-    }
-
-    @When("^I adding request functionality selecting \"(.*)\"$")
-    public void I_adding_request_functionality_selecting(String item) throws Throwable {
-        Connections.clickAddRequest();
-        Connections.selectTeacher(item);
-        Connections.selectOptionForCollege();
-        Connections.selectCollege();
-        Connections.clickSave();
-    }
-
-    @Then("^I see the default message$")
-    public void i_See_The_Default_Message() throws Throwable {
-        Connections.defaultMessage();
     }
 
     @When("^I click on Add Request$")
@@ -125,7 +109,7 @@ public class Connections_StepDefs {
 
     @And("^I select option for college$")
     public void i_select_option_for_college() throws Throwable {
-        Connections.selectOptionForCollege();
+        Connections.selectSpecificCollege();
     }
 
     @And("^I click save$")
@@ -133,10 +117,6 @@ public class Connections_StepDefs {
         Connections.clickSave();
     }
 
-    @Then("^I see my request in the list page with success message \"([^\"]*)\"$")
-    public void iSeeMyRequestInTheListPageWithSuccessMessage(String strText) throws Throwable {
-        Connections.successMessage(strText);
-    }
 
     @When("^I click on cancel button$")
     public void iClickOnCancelButton() throws Throwable {
@@ -150,14 +130,66 @@ public class Connections_StepDefs {
     }
 
 
-
     @And("^I click on Confirm button$")
     public void iClickOnConfirmButton() throws Throwable {
         Connections.clickConfirmCancel();
     }
 
-    @Then("^The request is cancelled and I verify confirmation message \"(.*)\" and cancel tooltip \"(.*)\" text$")
-    public void theRequestIsCancelledAndIVerifyConfirmationMessageAndCancelTooltipText(String info1, String info2) throws Throwable {
-        Connections.cancelSuccessMessage(info1, info2);
+
+    @When("^I add a new request for All Applications for teacher \"([^\"]*)\"$")
+    public void iAddANewRequestForAllApplicationsForTeacher(String item) throws Throwable {
+        Connections.clickAddRequest();
+        Connections.selectTeacher(item);
+        Connections.selectAllApplications();
+        Connections.clickSave();
     }
+
+    @Then("^I see the new request in List Page with success message \"([^\"]*)\"$")
+    public void iSeeTheNewRequestInListPageWithSuccessMessage(String strText) throws Throwable {
+        Connections.successMessage(strText);
+    }
+
+    @When("^I add a new request for Specific College for teacher \"([^\"]*)\"$")
+    public void iAddANewRequestForSpecificCollegeForTeacher(String item) throws Throwable {
+        Connections.clickAddRequest();
+        Connections.selectTeacher(item);
+        Connections.selectSpecificCollege();
+        Connections.selectCollege();
+        Connections.clickSave();
+    }
+
+    @When("^I add a new request for All Applications for the same teacher \"([^\"]*)\"$")
+    public void iAddANewRequestForAllApplicationsForTheSameTeacher(String item) throws Throwable {
+        Connections.clickAddRequest();
+        Connections.selectTeacher(item);
+    }
+
+    @Then("^I see error message for selecting the same teacher for All Applications \"([^\"]*)\"$")
+    public void iSeeErrorMessageForSelectingTheSameTeacherForAllApplications(String strText) throws Throwable {
+        Connections.duplicateTeacherRequestErrorMessage(strText);
+
+    }
+
+    @And("^I see error message for selecting the same teacher for Specific College \"([^\"]*)\"$")
+    public void iSeeErrorMessageForSelectingTheSameTeacherForSpecificCollege(String strText) throws Throwable {
+        Connections.selectSpecificCollege();
+        Connections.sameStaffErrorMessage(strText);
+    }
+
+    @When("^I am in Request Page$")
+    public void iAmInRequestPage() throws Throwable {
+        Connections.clickAddRequest();
+    }
+
+    @Then("^I verify All Applications option info tooltip \"([^\"]*)\"\"([^\"]*)\"$")
+    public void iVerifyAllApplicationsOptionInfoTooltip(String strText1, String strText2) throws Throwable {
+        Connections.clickAllApplicationsTooltip();
+        Connections.allApplicationsInfoMessage(strText1,strText2);
+    }
+
+    @Then("^The request is cancelled and I verify confirmation message \"(.*)\"$")
+    public void theRequestIsCancelledAndIVerifyConfirmationMessage(String strText) throws Throwable {
+        Connections.cancelSuccessMessage(strText);
+    }
+
 }

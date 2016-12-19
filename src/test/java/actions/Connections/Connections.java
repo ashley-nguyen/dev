@@ -98,6 +98,8 @@ public class Connections {
         assertTrue("Error Verification Buttons not found!", verifyAgreeButton);
     }
 
+    // LOR Feature methods
+
     public static void clickOnLettersOfRecommendation() throws InterruptedException {
         driver = Hooks.driver;
         PageFactory.initElements(driver, ConnectionsPage.class);
@@ -106,15 +108,6 @@ public class Connections {
         ConnectionsPage.lnkLettersOfRecommendation.click();
     }
 
-    public static void defaultMessage() throws InterruptedException {
-        driver = Hooks.driver;
-        PageFactory.initElements(driver, ConnectionsPage.class);
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-        new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.className("fc-table")));
-        String dataVerification = ConnectionsPage.textDefaultMessage.getText();
-        assertTrue("Error Verification!", dataVerification.contains("You can request new letters of recommendation and track the most recent status of your requests here."));
-
-    }
 
     public static void clickAddRequest() throws InterruptedException {
         driver = Hooks.driver;
@@ -131,7 +124,7 @@ public class Connections {
         WebElement selectElement = new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.visibilityOf(ConnectionsPage.divSelectTeacher));
         Select select = new Select(selectElement);
         select.selectByVisibleText(item);
-    }
+    };
 
     public static void selectCollege() throws InterruptedException {
         driver = Hooks.driver;
@@ -141,12 +134,20 @@ public class Connections {
         ConnectionsPage.divSelectCollege.click();
     }
 
-    public static void selectOptionForCollege() throws InterruptedException {
+    public static void selectSpecificCollege() throws InterruptedException {
         driver = Hooks.driver;
         PageFactory.initElements(driver, ConnectionsPage.class);
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//input[@name='applications']")));
-        ConnectionsPage.divSelectOptionCollege.click();
+        ConnectionsPage.divSpecificCollege.click();
+    };
+
+    public static void selectAllApplications() throws InterruptedException {
+        driver = Hooks.driver;
+        PageFactory.initElements(driver, ConnectionsPage.class);
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//input[@value='all-applications']")));
+        ConnectionsPage.divAllApplications.click();
     }
 
     public static void clickSave() throws InterruptedException {
@@ -166,6 +167,42 @@ public class Connections {
         assertTrue("The confirmation message is correct", driver.findElement(By.xpath("//span[@class='ng-binding'][contains(text(), '" + strText + "')]")).isDisplayed());
     }
 
+    public static void duplicateTeacherRequestErrorMessage(String strText) throws InterruptedException {
+        driver = Hooks.driver;
+        PageFactory.initElements(driver, ConnectionsPage.class);
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.className("add-request__duplicate-teacher-message")));
+        String dataVerification = ConnectionsPage.divDuplicateTeacherRequest.getText();
+        assertTrue("Error Verification!", dataVerification.contains(strText));
+    }
+
+    public static void sameStaffErrorMessage(String strText) throws InterruptedException {
+        driver = Hooks.driver;
+        PageFactory.initElements(driver, ConnectionsPage.class);
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.className("add-request__disabled-message")));
+        String dataVerification = ConnectionsPage.divDuplicateSpecificCollegeTeacherRequest.getText();
+        assertTrue("Error Verification!", dataVerification.contains(strText));
+    }
+
+    public static void clickAllApplicationsTooltip() throws InterruptedException {
+        driver = Hooks.driver;
+        PageFactory.initElements(driver, ConnectionsPage.class);
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.className("add-request__info-tooltip-icon")));
+        ConnectionsPage.allApplicationsInfoIcon.click();
+    }
+
+    public static void allApplicationsInfoMessage(String strText1, String strText2) throws InterruptedException {
+        driver = Hooks.driver;
+        PageFactory.initElements(driver, ConnectionsPage.class);
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.className("add-request__info-tooltip-content")));
+        String dataVerification = ConnectionsPage.allApplicationsInfoContent.getText();
+        assertTrue("Message Verification!", dataVerification.contains(strText1));
+        assertTrue("Message Verification!", dataVerification.contains(strText2));
+    }
+
     public static void clickCancel() throws InterruptedException {
         driver = Hooks.driver;
         PageFactory.initElements(driver, ConnectionsPage.class);
@@ -182,20 +219,13 @@ public class Connections {
         ConnectionsPage.divConfirmCancelButton.click();
     }
 
-    public static void cancelSuccessMessage(String info1, String info2) throws InterruptedException {
+    public static void cancelSuccessMessage(String strText) throws InterruptedException {
         driver = Hooks.driver;
         PageFactory.initElements(driver, ConnectionsPage.class);
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.className("fc-alert--success")));
-        String dataVerification = Hooks.driver.findElement(By.className("recommendations-list__status")).getText();
-        assertTrue("LOR request cancelled", dataVerification.contains("Cancelled"));
-        //Need to refactor this xpath
-        String cancelMessage = Hooks.driver.findElement(By.xpath("/html/body/div/div/div/div/recommendations-container/div/ng-view/recommendations-list/table/tbody/tr[2]/td/div/span[3]")).getText();
-        assertTrue("LOR cancellation message", cancelMessage.contains(info1));
-        ConnectionsPage.divDisabledCancelIcon.click();
-        String cancelTooltip = Hooks.driver.findElement(By.className("fc-tooltip__content")).getText();
-        System.out.print("cancelTooltip" + cancelTooltip);
-        assertTrue("LOR cancellation tooltip", cancelTooltip.contains(info2));
+        String dataVerification = Hooks.driver.findElement(By.className("fc-alert--normal-text")).getText();
+        assertTrue("LOR request cancelled", dataVerification.contains(strText));
     }
 
 }
