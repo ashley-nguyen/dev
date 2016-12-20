@@ -9,7 +9,7 @@ Feature: Reports tests
       | rtsa | stan.smith | stan01! |
 
   @Studentreport
-  Scenario Outline: Verify College Reports Custom page
+  Scenario Outline: Verify Students Reports Custom page
     Then I verify "<report>" report page
 
   Examples:

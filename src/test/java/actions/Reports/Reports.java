@@ -118,6 +118,34 @@ public class Reports {
            }
     }
 
+    public static void verifyCourseReporting(String CourseReport) throws InterruptedException {
+
+        driver = Hooks.driver;
+        PageFactory.initElements(driver, ReportsPage.class);
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        int index = 0;
+        int out = 0;
+        List<WebElement> tableRows = ReportsPage.reportTable.findElements(By.cssSelector("#Course_reports>tbody>tr>td:nth-of-type(1)"));
+        for(WebElement trElement : tableRows)
+        {
+
+            if (tableRows.get(index).getText().equals(CourseReport))
+            {
+                System.out.println("Course Report " + CourseReport + " exists!");
+                out = 1;
+                break;
+            }
+            else
+            {
+                index = index +1;
+            }
+
+        }
+        if (out ==0) {
+            System.out.println("Course Report " + CourseReport + " doesn't exists!");
+        }
+    }
+
     public static void verifyScoreReports() throws InterruptedException {
 
         driver = Hooks.driver;
