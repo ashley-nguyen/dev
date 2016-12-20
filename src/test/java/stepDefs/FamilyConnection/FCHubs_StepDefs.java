@@ -494,5 +494,15 @@ public class FCHubs_StepDefs {
     public void the_score_text_for_each_score_type_should_be_as_follows(List<String> scoresList) throws Throwable {
         FCHubs.verifyScoreTextScoreComp(scoresList);
     }
+
+    @When("^I switch the comparison to be made against all students accepted by the college$")
+    public void I_switch_the_comparison_to_be_made_against_all_students_accepted_by_the_college() throws Throwable {
+        FCHubs.clickCompareMeWithAllAcceptedApplicants();
+    }
+
+    @Then("^I should see the the comparison made against all students accepted by the college$")
+    public void I_should_see_the_the_comparison_made_against_all_students_accepted_by_the_college() throws Throwable {
+        FCHubs.verifyComparisonAgainstAllStudents();
+    }
 }
 

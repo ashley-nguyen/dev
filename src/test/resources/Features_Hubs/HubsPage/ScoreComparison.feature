@@ -29,3 +29,8 @@ Feature: As a student viewing new Hubs Overview Tab, I want the default score co
 
   Scenario: Overall Average text is present with correct values in Score Comparison module
     Then The Overall Average text should be "It looks like you are on track." in the Score Comparison module
+
+  Scenario: The comparison against all the students is displayed after clicking the button 'Compare me with all
+  accepted applicants'
+    When I switch the comparison to be made against all students accepted by the college
+    Then I should see the the comparison made against all students accepted by the college

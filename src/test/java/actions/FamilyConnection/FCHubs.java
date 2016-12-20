@@ -856,4 +856,22 @@ public class FCHubs {
         jse.executeScript("scroll(0, 500);");
         registerButton.click();
     }
+
+    public static void clickCompareMeWithAllAcceptedApplicants() {
+        driver = Hooks.driver;
+        PageFactory.initElements(driver, FCHubsPage.class);
+        new WebDriverWait(Hooks.driver, 20).until(ExpectedConditions.elementToBeClickable
+                (FCHubsPage.buttonCompareMeWithAllAcceptedApplicants));
+        JavascriptExecutor jse = (JavascriptExecutor)driver;
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);",
+                FCHubsPage.contactInfoAdmissions);
+        FCHubsPage.buttonCompareMeWithAllAcceptedApplicants.click();
+    }
+
+    public static void verifyComparisonAgainstAllStudents() {
+        driver = Hooks.driver;
+        PageFactory.initElements(driver, FCHubsPage.class);
+        assertTrue("Compare me section was not switched to compare against all students",
+                FCHubsPage.labelAllStudents.isDisplayed());
+    }
 }

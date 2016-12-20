@@ -140,6 +140,10 @@ public class FCHubsPage extends BaseClass {
     public static WebElement labelOverallAvgConclusionText;
     @FindBy(how = How.CSS, using = "div[ng-show=\"!(vm.studentScores.concordedAct > 0)\"]")
     public static WebElement labelACTQuestionMark;
+    @FindBy(how = How.CSS, using = "div.compare__button-container-bottom.fc-grid__row.fc-grid__row--xs-center")
+    public static WebElement buttonCompareMeWithAllAcceptedApplicants;
+    @FindBy(how = How.CSS, using = "h2.ng-binding span[ng-show=\"vm.compareToggleState == 'college'\"]")
+    public static WebElement labelAllStudents;
 
     public static String URLimThinkingAboutList = "https://connection-int.dev.naviance.com/family-connection" +
             "/colleges/application/consideration";
