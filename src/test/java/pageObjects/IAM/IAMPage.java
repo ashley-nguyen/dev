@@ -10,7 +10,7 @@ import pageObjects.BaseClass;
  * Created by franksejas on 1/22/2016.
  */
 public class IAMPage extends BaseClass {
-    @FindBy(how = How.XPATH, using = "//input[@value='Sign In']")
+    @FindBy(how = How.CSS, using = "input[value=\"Sign In\"]")
     public static WebElement Login;
 
     public IAMPage(WebDriver driver) {

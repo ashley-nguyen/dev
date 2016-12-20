@@ -19,19 +19,19 @@ public class SetupPage extends BaseClass {
     @FindBy(how = How.LINK_TEXT, using = "Add new student records")
     public static WebElement lnkAddNewStudentRecords;
 
-    @FindBy(how = How.XPATH, using = "//input[@name='datafile']")
+    @FindBy(how = How.CSS, using = "input[name=datafile]")
     public static WebElement btnChooseFile;
 
-    @FindBy(how = How.XPATH, using = "//input[@name='uploadFile']")
+    @FindBy(how = How.CSS, using = "input[name=uploadFile]")
     public static WebElement btnContinue;
 
-    @FindBy(how = How.XPATH, using = "//button[@class='btn btn-primary ng-scope']")
+    @FindBy(how = How.CSS, using = "#uploadModal > form > div.modal-footer > button")
     public static WebElement btnUploadFile;
 
-    @FindBy(how = How.XPATH, using = "//input[@value='Continue']")
+    @FindBy(how = How.CSS, using = "input[value=Continue]")
     public static WebElement btnContinueDataImport;
 
-    @FindBy(how = How.XPATH, using = "//input[@name='submitMapping']")
+    @FindBy(how = How.CSS, using = "input[name=submitMapping]")
     public static WebElement btnContinueMatchFields;
 
     public SetupPage(WebDriver driver) {

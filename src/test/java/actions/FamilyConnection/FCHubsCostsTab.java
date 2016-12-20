@@ -1,7 +1,5 @@
 package actions.FamilyConnection;
 
-import cucumber.api.java.en.Then;
-import gherkin.lexer.Pa;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -25,8 +23,7 @@ public class FCHubsCostsTab {
     public static void VerifyStudentFacultyRatioStudiesCostsTopBar(String income, String avgTotalCost) {
         driver = Hooks.driver;
         PageFactory.initElements(driver, FCHubsCostsTabPage.class);
-        new WebDriverWait(Hooks.driver, 20).until(ExpectedConditions.elementToBeClickable(By.cssSelector
-                ("select.costs-selector.ng-pristine.ng-valid.ng-not-empty[ng-selected=\"vm.myProfileCost.cost\"]")));
+        new WebDriverWait(Hooks.driver, 20).until(ExpectedConditions.elementToBeClickable(FCHubsCostsTabPage.labelCostsTabAvgNetPrice));
         Select incomeDropDown = new Select(driver.findElement(By.cssSelector("select.costs-selector.ng-pristine" +
                 ".ng-valid.ng-not-empty[ng-selected=\"vm.myProfileCost.cost\"]")));
         incomeDropDown.selectByVisibleText(income);

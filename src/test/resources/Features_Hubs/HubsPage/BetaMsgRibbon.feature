@@ -10,7 +10,10 @@ Feature: Hubs Beta Feeedback Ribbon
 
   Scenario: Survey page can be closed after clicking 'Done'
     When I fill the survey with the following data:
-    | Okay design | Just okay | 11th grade/junior |
+    # The following number are 1 for 'Awful'  and 7 for 'Excellent'
+    # The third section answers if the student is in high school (yes or no)
+    # The last section is the student's grade
+    | 5 | 5 | yes | 12th |
     And I submit the survey
     Then I should be able to close the survey page
 

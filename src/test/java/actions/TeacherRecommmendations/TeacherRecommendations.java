@@ -62,7 +62,6 @@ public class TeacherRecommendations {
         new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.name("class")));
         Select select = new Select(TeacherRecommendationsPage.selClass);
         select.selectByVisibleText(grade);
-//        Thread.sleep(9999999);
         TeacherRecommendationsPage.formNameTable.isDisplayed();
     }
 

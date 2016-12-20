@@ -8,6 +8,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import pageObjects.Dashboard.DashboardPage;
 import pageObjects.Header.DistrictPageHeader;
+import pageObjects.Marketing.marketingPage;
 import stepDefs.Hooks;
 
 import java.util.concurrent.TimeUnit;
@@ -27,18 +28,25 @@ public class Marketing {
     }
 
     public static void verifyImageInLogin() throws InterruptedException {
+        driver = Hooks.driver;
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         //Changing the frame to test
-        driver  = Hooks.driver.switchTo().frame(0);
+
+        PageFactory.initElements(driver, marketingPage.class);
+
         //Driver for iframe section can't be mapped for now
-        Boolean imageVerification = driver.findElement(By.xpath("//img[contains(@src,'img/upgraded-by-hobsons.jpg')]")).isDisplayed();
+        driver  = Hooks.driver.switchTo().frame(0);
+        new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("img[src*='upgraded-by-hobsons.jpg']")));
+        Boolean imageVerification = marketingPage.imgVerification.isDisplayed();
         assertTrue("Verify image exists!", imageVerification);
     }
 
     public static void verifyBanner() throws InterruptedException {
-       driver = Hooks.driver;
-       driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-       new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//img[contains(@src,'/images/navmarketplace_badge.png')]")));
-       Boolean bannerVerification =  Hooks.driver.findElement(By.xpath("//img[contains(@src,'/images/navmarketplace_badge.png')]")).isDisplayed();
+        driver = Hooks.driver;
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        PageFactory.initElements(driver, marketingPage.class);
+       new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("img[src*='navmarketplace_badge.png']")));
+       Boolean bannerVerification =  marketingPage.bannerVerification.isDisplayed();
         assertTrue("Verify banner exists!", bannerVerification);
     }
 
@@ -49,7 +57,7 @@ public class Marketing {
 
         Actions action = new Actions(driver);
         action.moveToElement(DistrictPageHeader.districtcog).build().perform();
-        new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.linkText("Logout")));
+        new WebDriverWait(Hooks.driver, 15).until(ExpectedConditions.presenceOfElementLocated(By.linkText("Logout")));
         DistrictPageHeader.lnkLogout.click();
         //wait for something on the setup page to load before trying to click on something else.
         new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.partialLinkText("Sign In")));

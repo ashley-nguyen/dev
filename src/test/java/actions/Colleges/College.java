@@ -30,26 +30,15 @@ public class College {
         driver = Hooks.driver;
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         PageFactory.initElements(driver, SchoolPageHeader.class);
-
-        //click Colleges link
         new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.linkText("Colleges")));
         SchoolPageHeader.lnkColleges.click();
-
         new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.linkText("build from lists")));
-
-
         PageFactory.initElements(driver, CollegePage.class);
-        //enter college name in lookup by name box
         CollegePage.txtCollegename.sendKeys(strCollege);
-        //click go
         CollegePage.btnSearch.click();
-        //select college from results list
         new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.linkText(strCollege)));
         WebElement lnkCollege = driver.findElement(By.linkText(strCollege));
         lnkCollege.click();
-        Thread.sleep(5000);
-
-
     }
 
     public static void clickCollegeProfileTab(String strTab) throws InterruptedException {
@@ -78,21 +67,13 @@ public class College {
         driver = Hooks.driver;
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         PageFactory.initElements(driver, SchoolPageHeader.class);
-
-        //click Colleges link
-
-
         Actions action = new Actions(driver);
         action.moveToElement(SchoolPageHeader.lnkColleges).build().perform();
         new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.linkText("College Search")));
         SchoolPageHeader.lnkCollegeSearch.click();
-
         new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.linkText("A")));
-
-        //click advanced search link
         PageFactory.initElements(driver, CollegeSearchPage.class);
         CollegeSearchPage.btnAdvancedSearchGo.click();
-
         new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.linkText("School type")));
     }
 
@@ -100,42 +81,30 @@ public class College {
         driver = Hooks.driver;
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         PageFactory.initElements(driver, SchoolPageHeader.class);
-
-        //click Colleges link
         Actions action = new Actions(driver);
         new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.linkText("Colleges")));
         action.moveToElement(SchoolPageHeader.lnkColleges).build().perform();
         Thread.sleep(3000);
         SchoolPageHeader.lnkFindColleges.click();
-
         new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.linkText("A")));
-
         SchoolPageHeader.lnkA.click();
-//        WebElement lnkCollegeName = Hooks.driver.findElement(By.linkText(strCollegeName));
-//        lnkCollegeName.click();
-
     }
 
     public static void DoAdvancedCollegeSearch(String strCategory, String strValue, String strData, String strResult) throws InterruptedException {
         driver = Hooks.driver;
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-        //select which criteria to search on
-        //strValue will be the link text for the link of search category
         WebElement lnkCategory = Hooks.driver.findElement(By.linkText(strCategory));
         lnkCategory.click();
-
-
     }
 
     public static void ClickOnCollegesTab() throws InterruptedException {
         driver = Hooks.driver;
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-        Thread.sleep(8000);
         PageFactory.initElements(driver, CollegePage.class);
+//        new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.xpath("(//a[contains(text(),'Colleges')])[2]")));
+        new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("#primary > li:nth-child(6) > a")));
         CollegePage.tabColleges.click();
     }
-
-
 
     public static void SelectTeacher(String item) {
         driver = Hooks.driver;
@@ -171,14 +140,13 @@ public class College {
     public static void ClickOnSchoolSiteLink() throws InterruptedException {
         driver = Hooks.driver;
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-        Thread.sleep(8000);
         PageFactory.initElements(driver, CollegePage.class);
+        new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.linkText("Enter school site")));
         CollegePage.lnkEnterSchoolSite.click();
     }
 
     public static void ClickOnActiveApplicationsLink() {
         driver = Hooks.driver;
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         PageFactory.initElements(driver, CollegePage.class);
         CollegePage.lnkActiveApplications.click();
@@ -187,63 +155,48 @@ public class College {
     public static void ClickOnAddProspectiveColleges() throws InterruptedException {
         driver = Hooks.driver;
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-        Thread.sleep(8000);
         PageFactory.initElements(driver, CollegePage.class);
+        new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.linkText("prospective colleges")));
         CollegePage.lnkProspectiveColleges.click();
-        Thread.sleep(8000);
+        new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("#contents > table > tbody > tr:nth-of-type(1) > td > table > tbody > tr > td:nth-of-type(1) > a")));
         CollegePage.lnkAddProspectiveColleges.click();
     }
 
     public static void ClickOnViewPastVisitsLink() {
         driver = Hooks.driver;
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-        //PageFactory.initElements(driver, CollegePage.class);
-        //CollegePage.lnkEnterSchoolSite.click();
-
         PageFactory.initElements(driver, SchoolPageHeader.class);
-
         Actions action = new Actions(driver);
         action.moveToElement(SchoolPageHeader.lnkColleges).build().perform();
         SchoolPageHeader.lnkCollegeVisits.click();
-        //add in a little wait here.
         new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.linkText("view past visits")));
-
         PageFactory.initElements(driver, CollegePage.class);
         CollegePage.lnkviewPastVisits.click();
-
         new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.name("class")));
-
-
     }
 
     public static void SelectClassYear(String strClassYear) throws InterruptedException {
         driver = Hooks.driver;
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         PageFactory.initElements(driver, CollegePage.class);
-
         CollegePage.selClassYear.click();
-
         List<WebElement> options = CollegePage.selClassYear.findElements(By.tagName("option"));
         for (WebElement option : options) {
             if (option.getText().contains(strClassYear))
                 option.click();
             break;
         }
-
-       // Thread.sleep(8000);
     }
 
     public static void verifyCollegeSearchResult(String strText) throws InterruptedException {
         driver = Hooks.driver;
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-        //System.out.println(driver.getPageSource());
         new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.id("contents")));
         assertTrue("text not found: " + strText, driver.getPageSource().contains(strText));
     }
 
 
     public static void verifyAdvancedSearchCategory(String strText) throws InterruptedException {
-        //verify the category passed in is displayed for the advanced search
         driver = Hooks.driver;
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         assertTrue("text not found: " + strText, driver.getPageSource().contains(strText));
@@ -256,7 +209,7 @@ public class College {
     }
 
     public static void verifyNoErrorsInProspectiveCollege() throws InterruptedException {
-        String dataVerification = Hooks.driver.findElement(By.className("dark_textheader")).getText();
+        String dataVerification = CollegePage.txtMesaggeVerification.getText();
         assertTrue("Error Verification!", dataVerification.contains("ADD PROSPECTIVE COLLEGES"));
     }
 

@@ -14,6 +14,10 @@ public class DashboardPage extends BaseClass {
     public static WebElement School;
     @FindBy(how = How.LINK_TEXT, using = "Planner")
     public static WebElement Planner;
+    @FindBy(how = How.ID, using = "course-management-container")
+    public static WebElement txtRecentUpdates;
+    @FindBy(how = How.ID, using = "dashboard-activity")
+    public static WebElement txtDashboard;
 
     public DashboardPage(WebDriver driver) {
         super(driver);

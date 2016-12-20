@@ -23,20 +23,7 @@ public class FCCollegesTab_StepDefs {
     }
     @Then("^The college match list should not be displayed$")
     public static void The_college_match_should_not_be_displayed() throws InterruptedException {
-        Boolean verification;
-        for (int second = 0;; second++) {
-            try {
-                WebElement matchList = Hooks.driver.findElement(By.xpath("//table[@class = 'standard']/caption[contains" +
-                        "(text(), 'Colleges Looking For Students Like You')]"));
-            } catch (Exception e) {
-                verification = true;
-                break;
-            }
-            if (second>=60) {
-                verification = false;
-            }
-        }
-        assertTrue("The match list is not present", verification);
+        FCCollegesTab.VerifyCollegeMatchNotDisplayed();
     }
 
     @When("^I search for the college \"([^\"]*)\"$")
@@ -53,5 +40,25 @@ public class FCCollegesTab_StepDefs {
     @Then("^I should see the message \"([^\"]*)\" in the College Lookup page$")
     public void iShouldSeeTheMessageInTheCollegeLookupPage(String message) throws Throwable {
         FCCollegesTab.VerifyMessageCollegeLookup(message);
+    }
+
+    @When("^I sign up to the college visit$")
+    public void I_sign_up_to_the_college_visit() throws Throwable {
+        FCCollegesTab.clickSignUpButton();
+    }
+
+    @Then("^I should see a confirmation message$")
+    public void I_should_see_a_confirmation_message() throws Throwable {
+        FCCollegesTab.verifyCollegeVisitConfirmationMessage();
+    }
+
+    @And("^Remove myself from the college visit$")
+    public void Remove_myself_from_the_college_visit() throws Throwable {
+        FCCollegesTab.clickRemoveFromList();
+    }
+
+    @Then("^I should see the college visit information page$")
+    public void I_should_see_the_college_visit_information_page() throws Throwable {
+        FCCollegesTab.verifyCollegeVisitInfoPage();
     }
 }

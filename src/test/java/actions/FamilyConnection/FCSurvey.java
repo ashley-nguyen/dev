@@ -4,6 +4,7 @@ import org.openqa.selenium.*;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import pageObjects.FamilyConnection.FCHubsPage;
 import pageObjects.FamilyConnection.FCSurveyPage;
 import stepDefs.Hooks;
 
@@ -25,65 +26,59 @@ public class FCSurvey {
                 By.xpath("//span[@class='title-text']")).isDisplayed());
     }
 
-    public static void FillSurvey(String overallDesign, String howUsefulInfo, String grade) {
+    public static void FillSurvey(String overallDesign, String howUsefulInfo, String highSchool, String grade) {
         driver = Hooks.driver;
-        int overallDesignOption = 0;
-        int howUsefulInfoOption = 0;
-        int gradeOption = 0;
+        PageFactory.initElements(driver, FCSurveyPage.class);
+        int highSchoolYesNo = 0;
+        int gradeNumber = 0;
         ArrayList<String> windows = new ArrayList<String> (driver.getWindowHandles());
         driver.switchTo().window(windows.get(windows.size() - 1));
-        new WebDriverWait(Hooks.driver, 20).until(ExpectedConditions.presenceOfElementLocated(By.cssSelector
-                (".title-text")));
+        driver.switchTo().frame("survey-preview");
 
-        switch (overallDesign) {
-            case "Great design": overallDesignOption = 1;
-                break;
-            case "Good design": overallDesignOption = 2;
-                break;
-            case "Okay design": overallDesignOption = 3;
-                break;
-            case "Bad design": overallDesignOption = 4;
-                break;
-            case "Awful design": overallDesignOption = 5;
-                break;
+        new WebDriverWait(Hooks.driver, 20).until(ExpectedConditions.elementToBeClickable(By.cssSelector("tr.question-matrix-row-even" +
+                ".question-matrix-row-last td:nth-of-type(" + overallDesign + ")")));
+
+        WebElement overallDesignElement = driver.findElement(By.cssSelector("tr.question-matrix-row-even" +
+                ".question-matrix-row-last td:nth-of-type(" + overallDesign + ") div input"));
+        overallDesignElement.click();
+
+
+        WebElement howUsefulInfoElement = driver.findElement(By.cssSelector("div[data-qnumber=\"2\"] tr.question-matrix-row-even" +
+                ".question-matrix-row-last td:nth-of-type(" + howUsefulInfo + ") div input"));
+        howUsefulInfoElement.click();
+
+
+        if(highSchool.equals("yes")) {
+            highSchoolYesNo = 1;
+        } else {
+            highSchoolYesNo = 2;
         }
 
-        switch (howUsefulInfo) {
-            case "Very useful": howUsefulInfoOption = 1;
-                break;
-            case "Somewhat useful": howUsefulInfoOption = 2;
-                break;
-            case "Just okay": howUsefulInfoOption = 3;
-                break;
-            case "Not so useful": howUsefulInfoOption = 4;
-                break;
-            case "Not at all useful": howUsefulInfoOption = 5;
-                break;
-        }
+        WebElement highSchoolQuestion = driver.findElement(By.cssSelector("div.question-body.clearfix.notranslate div div:nth-of-type("
+                + highSchoolYesNo + ")"));
+        JavascriptExecutor jse = (JavascriptExecutor)driver;
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", highSchoolQuestion);
+        jse.executeScript("scroll(0, 250);");
+
+        highSchoolQuestion.click();
+
+        FCSurveyPage.buttonNext.click();
 
         switch (grade) {
-            case "9th grade/freshman": gradeOption = 1;
+            case "9th" : gradeNumber = 1;
                 break;
-            case "10th grade/sophomore": gradeOption = 2;
+            case "10th" : gradeNumber = 2;
                 break;
-            case "11th grade/junior": gradeOption = 3;
+            case  "11th" : gradeNumber = 3;
                 break;
-            case "12th grade/senior": gradeOption = 4;
-                break;
-            case "Other (please specify)": gradeOption = 5;
+            case  "12th" : gradeNumber = 4;
                 break;
         }
-        WebElement overallDesignList = driver.findElement(By.cssSelector(".questions.clearfix div.question-row.clearfix" +
-                ":nth-of-type(1) div.answer-option-cell:nth-of-type(" + overallDesignOption + ") .radio-button-display"));
-        overallDesignList.click();
-        WebElement howUsefulInfoList = driver.findElement(By.cssSelector(".questions.clearfix div.question-row.clearfix" +
-                ":nth-of-type(2) div.answer-option-cell:nth-of-type(" + howUsefulInfoOption + ") .radio-button-display"));
-        howUsefulInfoList.click();
-        WebElement gradeList = driver.findElement(By.cssSelector(".questions.clearfix div.question-row.clearfix" +
-                ":nth-of-type(4) div.answer-option-cell:nth-of-type(" + gradeOption + ") .radio-button-display"));
-        JavascriptExecutor jse = (JavascriptExecutor)driver;
-        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", gradeList);
-        gradeList.click();
+
+        driver.findElement(By.cssSelector("div.question-body.clearfix.notranslate div " +
+                "div:nth-of-type(" + gradeNumber + ")")).click();
+
+        FCSurveyPage.buttonNext2.click();
     }
 
     public static void ClickDoneButton() {
@@ -97,7 +92,7 @@ public class FCSurvey {
         ArrayList<String> tabs = new ArrayList<String> (driver.getWindowHandles());
         driver.switchTo().window(tabs.get(tabs.size() - 1));
         driver.close();
-        driver.switchTo().window(tabs.get(1));
+        driver.switchTo().window(tabs.get(0));
         assertTrue("It is not possible to close Survey Page", driver.findElement(By.xpath
                 ("//div[@class='hub-beta-bar']")).isDisplayed());
     }
@@ -107,6 +102,14 @@ public class FCSurvey {
         ArrayList<String> tabs = new ArrayList<String> (driver.getWindowHandles());
         driver.switchTo().window(tabs.get(tabs.size() - 1));
         driver.close();
-        driver.switchTo().window(tabs.get(1));
+        driver.switchTo().window(tabs.get(0));
+    }
+
+    public static void clickCloseSurveypreview() {
+        driver = Hooks.driver;
+        ArrayList<String> tabs = new ArrayList<String> (driver.getWindowHandles());
+        driver.switchTo().window(tabs.get(tabs.size() - 1));
+        PageFactory.initElements(driver, FCSurveyPage.class);
+        FCSurveyPage.buttonClosePreview.click();
     }
 }

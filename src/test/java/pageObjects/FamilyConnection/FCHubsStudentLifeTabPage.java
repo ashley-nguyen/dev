@@ -58,23 +58,17 @@ public class FCHubsStudentLifeTabPage extends BaseClass {
     public static WebElement buttonAthleticsWomen;
     @FindBy(how = How.CSS, using = ".student-life__athletics__nav-buttons span:nth-of-type(3)")
     public static WebElement buttonAthleticsCoEd;
-    @FindBy(how = How.CSS, using = ".student-life-housing-information__data.fc-grid__col.fc-grid__col--xs-7" +
-            ".fc-grid__col--md-6 dl:nth-of-type(1) dd")
+    @FindBy(how = How.CSS, using = ".student-life-housing-information__data dl:nth-of-type(1) dd.ng-binding")
     public static WebElement labelHousingInfoCapacityValue;
-    @FindBy(how = How.CSS, using = ".student-life-housing-information__data.fc-grid__col.fc-grid__col--xs-7" +
-            ".fc-grid__col--md-6 dl:nth-of-type(2) dd")
+    @FindBy(how = How.CSS, using = ".student-life-housing-information__data dl:nth-of-type(2) dd.ng-binding")
     public static WebElement labelHousingInfoPercentOnCampusValue;
-    @FindBy(how = How.CSS, using = ".student-life-housing-information__data.fc-grid__col.fc-grid__col--xs-7" +
-            ".fc-grid__col--md-6 dl:nth-of-type(3) dd")
+    @FindBy(how = How.CSS, using = ".student-life-housing-information__data dl:nth-of-type(3) dd.ng-binding")
     public static WebElement labelHousingInfoFreshmenOnCampusValue;
-    @FindBy(how = How.CSS, using = ".student-life-housing-information__data.fc-grid__col.fc-grid__col--xs-7" +
-            ".fc-grid__col--md-6 dl:nth-of-type(4) dd")
+    @FindBy(how = How.CSS, using = ".student-life-housing-information__data dl:nth-of-type(4) dd.ng-binding")
     public static WebElement labelHousingInfoSophomoresOnCampusValue;
-    @FindBy(how = How.CSS, using = ".student-life-housing-information__data.fc-grid__col.fc-grid__col--xs-7" +
-            ".fc-grid__col--md-6 dl:nth-of-type(5) dd")
+    @FindBy(how = How.CSS, using = ".student-life-housing-information__data dl:nth-of-type(5) dd.ng-binding")
     public static WebElement labelHousingInfoJuniorsOnCampusValue;
-    @FindBy(how = How.CSS, using = ".student-life-housing-information__data.fc-grid__col.fc-grid__col--xs-7" +
-            ".fc-grid__col--md-6 dl:nth-of-type(6) dd")
+    @FindBy(how = How.CSS, using = ".student-life-housing-information__data dl:nth-of-type(6) dd.ng-binding")
     public static WebElement labelHousingInfoSeniorsOnCampusValue;
 
     public FCHubsStudentLifeTabPage(WebDriver driver) {

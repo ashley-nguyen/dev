@@ -27,3 +27,27 @@ Feature: Family Connection - LOR
   Scenario: Verify cancelling LOR request
     When I cancel LOR request
     Then The request is cancelled and I verify confirmation message "Success! Your request for Jane Teacher to write a letter of recommendation for All Applications has been cancelled."
+
+#  @Edocs358
+#  Scenario: As a student, I want to see the applications with a submitted LOR for an "All Applications" request
+#    Then I verify LOR request is automatically updated to "Submitted"
+#
+#  @Edocs358 @Edocs369
+#  Scenario Outline: Student clicks on the "Submitted" status to see more information
+#    When I click on Submitted status
+#   Then I verify the Submitted status text "<text>"
+#
+#  Examples:
+#    | text                  |
+#    | Cancelled              |
+#    |  by  |
+#    | Requested |
+#
+#  @Edocs365
+#  Scenario Outline: Verify for an All Applications LOR request, display date and time that LOR request was manually updated to submitted in Teacher Rec Manager if no documents were submitted via eDocs
+#    When I click on Submitted status
+#    Then I verify the Submitted status text "<text>"
+#
+#  Examples:
+#    | text             |
+#    | Date             |

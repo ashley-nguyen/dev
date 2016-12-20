@@ -4,6 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import pageObjects.Login.loginPage;
 import stepDefs.Hooks;
@@ -58,11 +59,11 @@ public class Login {
 
         loginPage.fc_signin_button.click();
 
-        new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.elementToBeClickable(By.linkText("log out")));
+        new WebDriverWait(Hooks.driver, 20).until(ExpectedConditions.elementToBeClickable(By.linkText("log out")));
     }
 
     public static void verifyValidLoginFamilyConnection() throws InterruptedException {
-        new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//dd[@class = 'login']")));
+        new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("dd[class = 'login']")));
         String footnote = loginPage.fc_logged_as_label.getText();
         assertTrue("Text not found!", footnote.contains("Logged in as"));
     }
@@ -87,5 +88,26 @@ public class Login {
         new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.name("username")));
         Boolean messagepresent = loginPage.fc_bad_credentials_message.isDisplayed();
         assertTrue("Message not found!", messagepresent);
+    }
+
+    public static void DoFCLoginParent(String fcAccount, String strUserName, String strPassword, String strStudentName) {
+        driver = Hooks.driver;
+        PageFactory.initElements(driver, loginPage.class);
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        driver.get(Hooks.strBaseURL + "/family-connection/" + fcAccount);
+
+        new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.partialLinkText("forgot your password")));
+
+        loginPage.UserName.sendKeys(strUserName);
+
+        loginPage.password.sendKeys(strPassword);
+
+        loginPage.fc_signin_button.click();
+
+        Select childDropDown = new Select(loginPage.childDropDown);
+        childDropDown.selectByVisibleText(strStudentName);
+        loginPage.buttonGo.click();
+
+        new WebDriverWait(Hooks.driver, 20).until(ExpectedConditions.elementToBeClickable(By.linkText("log out")));
     }
 }

@@ -46,6 +46,7 @@ public class FCHubsStudentLifeTab {
         driver = Hooks.driver;
         WebElement sectionElement = null;
         PageFactory.initElements(driver, FCHubsStudentLifeTabPage.class);
+        new WebDriverWait(driver, 20).until(ExpectedConditions.elementToBeClickable(By.id("js-fc-user-nav__student-name")));
         switch (sectionName) {
             case "SCHOOL SIZE" : sectionElement = FCHubsStudentLifeTabPage.labelSchoolSizeOverview;
                 break;
@@ -146,7 +147,8 @@ public class FCHubsStudentLifeTab {
         }
         JavascriptExecutor jse = (JavascriptExecutor)driver;
         ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", driver.findElement
-                (By.cssSelector(".student-life-housing-information__data.fc-grid__col.fc-grid__col--xs-7.fc-grid__col--md-6")));
+                (By.cssSelector(".student-life-housing-information__data.fc-grid__col.fc-grid__col--xs-12" +
+                        ".fc-grid__col--sm-7.fc-grid__col--md-6")));
         sectionElement.click();
     }
 
@@ -179,6 +181,10 @@ public class FCHubsStudentLifeTab {
             case "Co-Ed" : sectionElement = FCHubsStudentLifeTabPage.buttonAthleticsCoEd;
                 break;
         }
+        JavascriptExecutor jse = (JavascriptExecutor)driver;
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", driver.findElement
+                (By.cssSelector(".student-life-housing-information__data.fc-grid__col.fc-grid__col--xs-12" +
+                        ".fc-grid__col--sm-7.fc-grid__col--md-6")));
         sectionElement.click();
     }
 

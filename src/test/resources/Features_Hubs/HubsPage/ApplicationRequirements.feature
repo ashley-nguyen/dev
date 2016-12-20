@@ -9,7 +9,7 @@ Feature:  As a student viewing new Hubs' Overview tab, I want to see contact inf
     And I open the Admissions tab
 
   Scenario: The "Required" requirements for "Freshman" are displayed with correct data
-    When I click "Freshman" in Application Requirements
+    When I open "Freshman" in Application Requirements
     Then I should see the "Required" requirements in Application Requirements:
     | ACT                  |
     | College Prep Program |
@@ -20,31 +20,31 @@ Feature:  As a student viewing new Hubs' Overview tab, I want to see contact inf
     | Test Scores          |
 
   Scenario: The "Recommended" requirements for "Freshman" are displayed with correct data
-    When I click "Freshman" in Application Requirements
+    When I open "Freshman" in Application Requirements
     Then I should see the "Recommended" requirements in Application Requirements:
     | Campus Visit    |
     | Class Rank      |
     | Recommendations |
 
   Scenario: The "Optional" requirements for "Freshman" are displayed with correct data
-    When I click "Freshman" in Application Requirements
+    When I open "Freshman" in Application Requirements
     Then I should see the "Optional" requirements in Application Requirements:
     | Interview                     |
     | SAT Subject                   |
     | Talent / Ability / Competency |
 
   Scenario: The "Required" requirements for "Transfer" are displayed with correct data
-    When I click "Transfer" in Application Requirements
+    When I open "Transfer" in Application Requirements
     Then I should see the "Recommended" requirements in Application Requirements:
     | Campus Visit |
 
   Scenario: The "Recommended" requirements for "Transfer" are displayed with correct data
-    When I click "Transfer" in Application Requirements
+    When I open "Transfer" in Application Requirements
     Then I should see the "Optional" requirements in Application Requirements:
     | Interview |
 
   Scenario: The "Required" requirements for "International" are displayed with correct data
-    When I click "International" in Application Requirements
+    When I open "International" in Application Requirements
     Then I should see the "Required" requirements in Application Requirements:
     | Ability to Finance |
     | SAT                |

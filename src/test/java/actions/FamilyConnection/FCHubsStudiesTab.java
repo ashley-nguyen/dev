@@ -24,8 +24,8 @@ public class FCHubsStudiesTab {
     public static void VerifyStudentFacultyRatioStudiesTopBar(String studentFacultyRatio) {
         driver = Hooks.driver;
         PageFactory.initElements(driver, FCHubsStudiesTabPage.class);
-        new WebDriverWait(Hooks.driver, 20).until(ExpectedConditions.elementToBeClickable(By.cssSelector
-                (".hub-data-pod--ratio.hub-data-pod--studies.ng-binding")));
+        new WebDriverWait(Hooks.driver, 20).until(ExpectedConditions.elementToBeClickable(FCHubsStudiesTabPage
+                .labelStuFacRatio));
         assertTrue("The Student Faculty Ratio is not correct", FCHubsStudiesTabPage.labelStuFacRatio.getText()
                 .equals(studentFacultyRatio));
     }
@@ -121,11 +121,17 @@ public class FCHubsStudiesTab {
             case "Graduate Certificate" : majorsOfferedDegree = FCHubsStudiesTabPage.buttonMajorsOfferedGradCertificate;
                 break;
         }
+        JavascriptExecutor jse = (JavascriptExecutor)driver;
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", driver.findElement
+                (By.cssSelector(".studies-popular__header.fc-grid__col.fc-grid__col--xs-12")));
         majorsOfferedDegree.click();
     }
 
     public static void ClickProgramInMajorsOfferedList(String program) {
         driver = Hooks.driver;
+        JavascriptExecutor jse = (JavascriptExecutor)driver;
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", driver.findElement
+                (By.cssSelector(".studies-popular__header.fc-grid__col.fc-grid__col--xs-12")));
         WebElement programLink = driver.findElement(By.xpath("//h3[contains(text(), 'Majors Offered at')]" +
                 "/../../div/div/div/ul/li/a[text() = '" + program + "']"));
         programLink.click();
@@ -136,29 +142,22 @@ public class FCHubsStudiesTab {
     public static void VerifyStudyOptions(String status, List<String> studyOptions) {
         driver = Hooks.driver;
         boolean result = false;
-        List<WebElement> availableStudyOptions = new ArrayList<>();
-        List<WebElement> unavailableStudyOptions = new ArrayList<>();
-        for(int i = 2; i < 20; i++) {
-            WebElement studyOption = driver.findElement(By.cssSelector(".study-option.fc-grid__row." +
-                    "fc-grid__row--xs-center.fc-grid__row--md-start div:nth-of-type(" + i + ") div div"));
-            if(studyOption.getAttribute("class").contains("study-option__program--unavailable")) {
-                unavailableStudyOptions.add(studyOption);
-            } else {
-                availableStudyOptions.add(studyOption);
-            }
-        }
-        if(status.equals("available")) {
-            for(int j = 0; j < studyOptions.size(); j++) {
-                if(availableStudyOptions.get(j).getText().equals(studyOptions.get(j))) {
+        if (status.equals("not available")) {
+            List<WebElement> notAvailableElements = driver.findElements(By.cssSelector(".study-option__icon" +
+                    ".study-option__icon--no + div"));
+            for (int i = 0; i < studyOptions.size(); i++) {
+                if (notAvailableElements.get(i).getText().equals(studyOptions.get(i))) {
                     result = true;
                 } else {
                     result = false;
                     break;
                 }
             }
-        } else {
-            for(int j = 0; j < studyOptions.size(); j++) {
-                if(unavailableStudyOptions.get(j).getText().equals(studyOptions.get(j))) {
+        } else if (status.equals("available")) {
+            List<WebElement> availableElements = driver.findElements(By.cssSelector(".study-option__icon" +
+                    ".study-option__icon--yes + div"));
+            for (int i = 0; i < studyOptions.size(); i++) {
+                if (availableElements.get(i).getText().equals(studyOptions.get(i))) {
                     result = true;
                 } else {
                     result = false;
@@ -166,6 +165,7 @@ public class FCHubsStudiesTab {
                 }
             }
         }
+
         assertTrue("The study options are not correctly displayed", result);
     }
 

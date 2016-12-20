@@ -58,13 +58,13 @@ public class FCHubsStudiesTab_StepDefs {
         FCHubsStudiesTab.ClickDegreesMajorsOffered(degree);
     }
 
-    @When("^I click \"([^\"]*)\" in the Majors Offered list$")
-    public void I_click_in_the_Majors_Offered_list(String program) throws Throwable {
+    @When("^I open \"([^\"]*)\" in the Majors Offered list$")
+    public void I_open_in_the_Majors_Offered_list(String program) throws Throwable {
         FCHubsStudiesTab.ClickProgramInMajorsOfferedList(program);
     }
 
-    @When("^I click the \"([^\"]*)\" link in Student Life top bar$")
-    public void I_click_the_link_in_Student_Life_top_bar(String linkText) throws Throwable {
+    @When("^I open the \"([^\"]*)\" link in Student Life top bar$")
+    public void I_open_the_link_in_Student_Life_top_bar(String linkText) throws Throwable {
         FCHubsStudiesTab.ClickLinkInStudentLifeTopBar(linkText);
     }
 

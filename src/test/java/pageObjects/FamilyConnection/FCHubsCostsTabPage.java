@@ -10,7 +10,7 @@ import pageObjects.BaseClass;
  * Created by jorgemaguina on 8/15/2016.
  */
 public class FCHubsCostsTabPage extends BaseClass {
-    @FindBy(how = How.ID, using = "cost-module")
+    @FindBy(how = How.CSS, using = ".costs-summary__statement-header.fc-grid__col.fc-grid__col--core-width h1")
     public static WebElement costModuleLabel;
     @FindBy(how = How.CSS, using = "div [ng-if=\"vm.tuition.gradsMonthlyLoanAmountPaid\"] " +
             "div.hub-data-pod--money.hub-data-pod--overview.ng-binding")
@@ -34,16 +34,12 @@ public class FCHubsCostsTabPage extends BaseClass {
     public static WebElement TuitionPerCreditHour;
     @FindBy(how = How.CSS, using = ".costs-tuition-graph__costlabel.costs-tuition-graph__costlabel--lime.ng-binding")
     public static WebElement TuitionPerCreditHourThisCollege;
-
     @FindBy(how = How.CSS, using = ".costs-tuition-graph__costlabel.costs-tuition-graph__costlabel--grey.ng-binding")
     public static WebElement TuitionPerCreditHourAverageNavianceCollege;
-
     @FindBy(how = How.CSS, using = ".costs-tuition-graph__costlabel.costs-tuition-graph__costlabel--lime.ng-binding")
     public static WebElement RoomAndBoardThisCollege;
-
     @FindBy(how = How.XPATH, using = ".costs-tuition-graph__costlabel.costs-tuition-graph__costlabel--grey.ng-binding")
     public static WebElement RoomAndBoardAverageNavianceCollege;
-
     @FindBy(how = How.XPATH, using = "//ul[@class = 'costs-tuition__buttonGroup']/li[3]")
     public static WebElement RoomAndBoard;
     @FindBy(how = How.CSS, using = ".fc-grid__row.fc-grid__row--xs-center.admissions div[ng-if=\"vm.averageNetPrices." +
@@ -62,11 +58,7 @@ public class FCHubsCostsTabPage extends BaseClass {
             "div.hub-data-pod__data-age")
     public static WebElement labelTypicalMonthlyLoanPaymentDate;
 
-
     public FCHubsCostsTabPage(WebDriver driver) { super(driver);    }
-
-
-
 }
 
 

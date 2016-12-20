@@ -69,12 +69,10 @@ public class Scores {
         try {
             new WebDriverWait(Hooks.driver, 15).until(ExpectedConditions.presenceOfElementLocated(By.linkText("add/edit scores")));
             StudentScoresTabPage.lnkaddeditscores.click();
-            //new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//dd[@class = 'site-container students']")));
-            Thread.sleep(3000);
+            new WebDriverWait(Hooks.driver, 15).until(ExpectedConditions.presenceOfElementLocated(By.name("aspire[1][grade]")));
             StudentScoresTabPage.cboGrade.sendKeys(grade);
             StudentScoresTabPage.cboGrade.sendKeys(Keys.TAB);
             //WebElement defined here instead of page object due to the subject param.
-            //StudentScoresTabPage.txtSubject.sendKeys(score);
             WebElement txtsubject = Hooks.driver.findElement(By.id("aspire[1][" + subject + "]"));
             txtsubject.sendKeys(score);
             txtsubject.sendKeys(Keys.TAB);
@@ -93,7 +91,7 @@ public class Scores {
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         try {
             new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.linkText("add/edit scores")));
-            WebElement lnkaddeditscores = Hooks.driver.findElement(By.partialLinkText("add/edit scores"));
+            WebElement lnkaddeditscores = StudentScoresTabPage.lnkaddeditscore;
             lnkaddeditscores.click();
             new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@id='psat[1][ev_based_read_write]']")));
             StudentScoresTabPage.txtEvReadWrit.sendKeys(strEvReading);
@@ -172,7 +170,8 @@ public class Scores {
             //WAIT FOR THE SAVE AND RETURN TO THE SCORES TAB
             new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.linkText("test scores")));
 
-            String bodyText = Hooks.driver.findElement(By.tagName("body")).getText();
+            String bodyText =
+                    Hooks.driver.findElement(By.tagName("body")).getText();
             assertTrue("Text not found!", bodyText.contains(testtype));
             assertTrue("Text not found!", bodyText.contains(score));
             assertTrue("Text not found!", bodyText.contains(year));
@@ -219,8 +218,7 @@ public class Scores {
 
     public static void verifyASPIRETestScoreWarning(String strMessage) throws Throwable {
         //try {
-        WebElement warn =
-                Hooks.driver.findElement(By.id("aspire_warning_message_1"));
+        WebElement warn = StudentScoresTabPage.txtMessage;
         assertTrue("Expected: " + strMessage + " but the following was displayed insted: " + warn.getText(), warn.getText().contains(strMessage));
         /*} catch (NoSuchElementException e) {
             e.getMessage();
@@ -232,7 +230,7 @@ public class Scores {
 
     public static void verifyLegacyACTScores(String strEnglish, String strMath, String strReading, String strScience, String strWritSub, String strCombEngWri, String strComposite, String strDate, String strGrade) throws Throwable {
         try {
-            WebElement tabScores = Hooks.driver.findElement(By.linkText("Scores"));
+            WebElement tabScores = StudentScoresTabPage.lnkScores;
             tabScores.click();
 
             //TO BE COMPLETED LATER WHEN THE TABLE ROWS ARE NAMED

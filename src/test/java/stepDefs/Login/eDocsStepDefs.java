@@ -27,15 +27,31 @@ public class eDocsStepDefs {
     }
 
     @When("^I use \"([^\"]*)\" under application selecting \"(.*)\" and \"(.*)\" with \"([^\"]*)\"$")
-    public void I_use_student_under_application_for_letter_recommendation_verifying_text(String strStudentID, String type, String application, String filename) throws Throwable {
+    public void I_use_student_under_application_for_letter_recommendation_verifying_text(String strStudentID,  String application, String type, String filename) throws Throwable {
         Student_Search.studentRosterSearch(strStudentID, "id");
         eDocsGeneral.NavtoEdocsStudentTab();
         eDocsGeneral.ClickOnPrepareLink();
         eDocsGeneral.ClickOnAddButton();
+        if (filename == "FillTooBigPDF.pdf")
+        {
+            eDocsGeneral.ClickOnUploadAFileButton();
+        }
+        eDocsGeneral.ClickOnUploadAFileButton();
+        eDocsGeneral.SelectApplication(application);
+        eDocsGeneral.SelectType(type);
+        eDocsGeneral.ClickOnBrowseButton();
+        eDocsGeneral.WritePathFile(filename);
+    }
+
+    @When("^I use \"([^\"]*)\" under transcript selecting \"(.*)\" with \"([^\"]*)\"$")
+    public void I_use_transcript_under_application_for_letter_recommendation_verifying_text(String strStudentID,  String type, String filename) throws Throwable {
+        Student_Search.studentRosterSearch(strStudentID, "id");
+        eDocsGeneral.NavtoEdocsStudentTab();
+        eDocsGeneral.ClickOnPrepareLink();
+        eDocsGeneral.ClickOnTranscriptAddButton();
         eDocsGeneral.ClickOnUploadAFileButton();
         eDocsGeneral.SelectType(type);
-        eDocsGeneral.SelectApplication(application);
-        eDocsGeneral.ClickOnBrowseButton();
+        eDocsGeneral.ClickOnTranscriptBrowseButton();
         eDocsGeneral.WritePathFile(filename);
     }
 
@@ -49,6 +65,19 @@ public class eDocsStepDefs {
         eDocsGeneral.ClickOnUploadAFileButton();
         eDocsGeneral.SelectApplication(application);
         eDocsGeneral.SelectType(type);
+        eDocsGeneral.ClickOnBrowseButton();
+        eDocsGeneral.WritePathFile(filename);
+        eDocsGeneral.ClickOnSendLink();
+        eDocsGeneral.ClickOnExpandAllButton();
+    }
+
+    @Given("^I expand all under application to replace the \"([^\"]*)\" in \"([^\"]*)\" with \"([^\"]*)\" and \"([^\"]*)\"$")
+    public void I_expand_all_under_application_to_replace(String strStudentID, String application, String type, String filename) throws Throwable {
+        Student_Search.studentRosterSearch(strStudentID, "id");
+        eDocsGeneral.NavtoEdocsStudentTab();
+        eDocsGeneral.ClickOnPrepareLink();
+        eDocsGeneral.ClickOnReplaceButton();
+        eDocsGeneral.ClickOnUploadAFileButton();
         eDocsGeneral.ClickOnBrowseButton();
         eDocsGeneral.WritePathFile(filename);
         eDocsGeneral.ClickOnSendLink();
