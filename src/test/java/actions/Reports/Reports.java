@@ -97,13 +97,14 @@ public class Reports {
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         int index = 0;
         int out = 0;
-        List<WebElement> tableRows = ReportsPage.reportTable.findElements(By.cssSelector("#Student_reports>tbody>tr>td:nth-of-type(1)"));
+
+         List<WebElement> tableRows = ReportsPage.reportTable.findElements(By.cssSelector("#Student_reports>tbody>tr>td:nth-of-type(1)"));
         for(WebElement trElement : tableRows)
         {
 
             if (tableRows.get(index).getText().equals(report))
             {
-                System.out.println("Student Report " + report + " exists!");
+               assertTrue("Verify Student Report exists!", tableRows.get(index).getText().contains(report));
                 out = 1;
                 break;
             }
@@ -114,8 +115,35 @@ public class Reports {
 
         }
            if (out ==0) {
-               System.out.println("Student Report " + report + " doesn't exists!");
+               assertTrue("Error Verification!", !tableRows.get(index).getText().contains(report));
            }
+    }
+
+    public static void verifyCourseReporting(String CourseReport) throws InterruptedException {
+
+        driver = Hooks.driver;
+        PageFactory.initElements(driver, ReportsPage.class);
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        int index = 0;
+        int out = 0;
+        List<WebElement> tableRows = driver.findElements(By.cssSelector("#Course_reports>tbody>tr>td:nth-of-type(1)"));
+        for(WebElement trElement : tableRows)
+        {
+            if (tableRows.get(index).getText().equals(CourseReport))
+            {
+                assertTrue("Course Report exists!", tableRows.get(index).getText().contains(CourseReport));
+                out = 1;
+                break;
+            }
+            else
+            {
+                index = index +1;
+            }
+
+        }
+        if (out ==0) {
+            assertTrue("Error Verification!", !tableRows.get(index).getText().contains(CourseReport));
+        }
     }
 
     public static void verifyScoreReports() throws InterruptedException {
