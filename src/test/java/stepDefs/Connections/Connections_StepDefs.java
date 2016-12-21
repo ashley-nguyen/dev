@@ -160,8 +160,8 @@ public class Connections_StepDefs {
     }
 
     @Then("^I see the new request in List Page with success message \"([^\"]*)\"$")
-    public void iSeeTheNewRequestInListPageWithSuccessMessage(String strText) throws Throwable {
-        Connections.successMessage(strText);
+    public void iSeeTheNewRequestInListPageWithSuccessMessage(String strSuccessMessage) throws Throwable {
+        Connections.successMessage(strSuccessMessage);
     }
 
     @When("^I add a new request for Specific College for teacher \"([^\"]*)\"$")
@@ -180,15 +180,15 @@ public class Connections_StepDefs {
     }
 
     @Then("^I see error message for selecting the same teacher for All Applications \"([^\"]*)\"$")
-    public void iSeeErrorMessageForSelectingTheSameTeacherForAllApplications(String strText) throws Throwable {
-        Connections.duplicateTeacherRequestErrorMessage(strText);
+    public void iSeeErrorMessageForSelectingTheSameTeacherForAllApplications(String strErrorMessageText) throws Throwable {
+        Connections.duplicateTeacherRequestErrorMessage(strErrorMessageText);
 
     }
 
     @And("^I see error message for selecting the same teacher for Specific College \"([^\"]*)\"$")
-    public void iSeeErrorMessageForSelectingTheSameTeacherForSpecificCollege(String strText) throws Throwable {
+    public void iSeeErrorMessageForSelectingTheSameTeacherForSpecificCollege(String strErrorMessageText) throws Throwable {
         Connections.selectSpecificCollege();
-        Connections.sameStaffErrorMessage(strText);
+        Connections.sameStaffErrorMessage(strErrorMessageText);
     }
 
     @When("^I am in Request Page$")
@@ -197,14 +197,14 @@ public class Connections_StepDefs {
     }
 
     @Then("^I verify All Applications option info tooltip \"([^\"]*)\"\"([^\"]*)\"$")
-    public void iVerifyAllApplicationsOptionInfoTooltip(String strText1, String strText2) throws Throwable {
+    public void iVerifyAllApplicationsOptionInfoTooltip(String strTooltipTextPart1, String strTooltipTextPart2) throws Throwable {
         Connections.clickAllApplicationsTooltip();
-        Connections.allApplicationsInfoMessage(strText1,strText2);
+        Connections.allApplicationsInfoMessage(strTooltipTextPart1,strTooltipTextPart2);
     }
 
     @Then("^The request is cancelled and I verify confirmation message \"(.*)\"$")
-    public void theRequestIsCancelledAndIVerifyConfirmationMessage(String strText) throws Throwable {
-        Connections.cancelSuccessMessage(strText);
+    public void theRequestIsCancelledAndIVerifyConfirmationMessage(String strCancelSuccessMessageText) throws Throwable {
+        Connections.cancelSuccessMessage(strCancelSuccessMessageText);
     }
 
 }
