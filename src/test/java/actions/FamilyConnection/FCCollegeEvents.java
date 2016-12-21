@@ -22,10 +22,10 @@ public class FCCollegeEvents {
         assertTrue("The College Events page is Not Displayed ", FCCollegeEventsPage.labelCollegeEventsTitle.isDisplayed());
     }
 
-    public static void SignUpforCollegeEvent(String SchoolEvent) {
+    public static void ClickSignUpforCollegeEvent(String SchoolEvent) {
         driver = Hooks.driver;
         PageFactory.initElements(driver,FCCollegeEvents.class);
-        FCCollegeEventsPage.SignUpforCollegeEvent.click();
+        FCCollegeEvents.ClickSignUpforCollegeEvent(SchoolEvent);
 
     }
 
@@ -39,7 +39,7 @@ public class FCCollegeEvents {
 
     public static void ClickSignUpButton() {
         driver = Hooks.driver;
-        PageFactory.initElements(driver,FCCollegeEventsPage.class);
+        PageFactory.initElements(driver,FCCollegeEvents.class);
         FCCollegeEventsPage.clickSignUpButton.click();
     }
 
@@ -50,16 +50,4 @@ public class FCCollegeEvents {
 
     }
 
-    public static void ClickSignUpButtonForCollegeandForEvent(String nameSchool, String nameEvent) {
-        driver = Hooks.driver;
-        PageFactory.initElements(driver,FCCollegeEventsPage.class);
-        FCCollegeEventsPage.buttonSignUponCollegeEvents.click();
-
-    }
-
-    public static void ClickReturntoAllEventslink() {
-        driver = Hooks.driver;
-        PageFactory.initElements(driver,FCCollegeEventsPage.class);
-        FCCollegeEventsPage.LinkReturntoAllEvents.click();
-    }
 }
