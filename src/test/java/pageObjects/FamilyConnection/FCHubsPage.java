@@ -144,12 +144,23 @@ public class FCHubsPage extends BaseClass {
     public static WebElement buttonCompareMeWithAllAcceptedApplicants;
     @FindBy(how = How.CSS, using = "h2.ng-binding span[ng-show=\"vm.compareToggleState == 'college'\"]")
     public static WebElement labelAllStudents;
+    @FindBy(how = How.CSS, using = "div.fc-grid__col--md-9.fc-grid__col--xs-12 div.gauge-container:nth-of-type(1) " +
+            "div.ng-binding:not([ng-show=\"vm.otherScores.gpaStatistics.average\"])")
+    public static WebElement labelScoreQualificationGPA;
+    @FindBy(how = How.CSS, using = "div.fc-grid__col--md-9.fc-grid__col--xs-12 div.gauge-container:nth-of-type(2) " +
+            "div.ng-binding:not([ng-show=\"vm.otherScores.satStatistics.average\"])")
+    public static WebElement labelScoreQualificationSAT;
+    @FindBy(how = How.CSS, using = "div.fc-grid__col--md-9.fc-grid__col--xs-12 div.gauge-container:nth-of-type(3) " +
+            "div.ng-binding:not([ng-show=\"vm.otherScores.actStatistics.average\"])")
+    public static WebElement labelScoreQualificationACT;
+    @FindBy(how = How.CSS, using = "div.fc-grid__col--md-9.fc-grid__col--xs-12 div.gauge-container:nth-of-type(4) " +
+            "div.ng-binding")
+    public static WebElement labelScoreQualificationOverallAvg;
+    @FindBy(how = How.CSS, using = ".compareNotes.fc-grid__row.fc-grid__row--xs-center")
+    public static WebElement labelCompareMeSectionNotes;
 
     public static String URLimThinkingAboutList = "https://connection-int.dev.naviance.com/family-connection" +
             "/colleges/application/consideration";
-  
-    public static List<WebElement> scoreQualificationsList = driver.findElements(By.cssSelector("div.bottom div" +
-            ".ng-binding:not([aria-hidden=\"false\"])"));
 
     public FCHubsPage(WebDriver driver) {
         super(driver);

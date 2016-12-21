@@ -23,8 +23,6 @@ public class FCHubsAdmissionsTabPage extends BaseClass {
     public static WebElement labelAcceptanceRate;
     @FindBy(how = How.CSS, using = ".hub-data-pod--money.hub-data-pod--admissions.ng-binding")
     public static WebElement labelApplicationFees;
-    @FindBy(how = How.ID, using = "application-info-deadlines")
-    public static WebElement labelApplicationInformation;
     @FindBy(how = How.CSS, using = ".fc-button.fc-button--twilight.ng-binding.ng-scope.fc-button--active")
     public static WebElement buttonAppReqFreshman;
     @FindBy(how = How.CSS, using = ".fc-button-group.fc-button-group--section-switch li:nth-of-type(2)")
@@ -40,15 +38,9 @@ public class FCHubsAdmissionsTabPage extends BaseClass {
     @FindBy(how = How.CSS, using = "span[ng-class=\"{'fc-tabs__label--active': vm.informationTabs.getActive() == " +
             "'fees'}\"]")
     public static WebElement buttonAppReqFees;
-    @FindBy(how = How.CSS, using = "div[ng-if=\"vm.informationTabs.getActive() == 'deadlines'\"] " +
-            "div.fc-grid__col--xs-12.fc-grid__col--sm-6:nth-of-type(1) div.hub-deadline__month.ng-binding\n")
-    public static WebElement labelAppInfoRegDecDeadlineMonth;
-    @FindBy(how = How.CSS, using = "div[ng-if=\"vm.informationTabs.getActive() == 'deadlines'\"] " +
-            "div.fc-grid__col--xs-12.fc-grid__col--sm-6:nth-of-type(1) div.hub-deadline__day.ng-binding")
-    public static WebElement labelAppInfoRegDecDeadlineDay;
+    @FindBy(how = How.CSS, using = "div[ng-if=\"vm.policies.length > 0\"]")
+    public static WebElement sectionImportantPolicies;
 
-    public static List<WebElement> listImportantPolicies = driver.findElements(By.cssSelector(".hub-data-pod--policy" +
-            ".ng-binding.ng-scope"));
     public static List<WebElement> listDeadlines = driver.findElements(By.cssSelector(".admissions-information__" +
             "deadline-item.ng-scope"));
 

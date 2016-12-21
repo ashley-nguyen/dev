@@ -369,14 +369,27 @@ public class FCHubs {
         driver = Hooks.driver;
         PageFactory.initElements(driver, FCHubsPage.class);
         boolean result = false;
-        for (int i = 0; i < scoresList.size(); i++) {
-            if (FCHubsPage.scoreQualificationsList.get(i).getText().equals(scoresList.get(i).split(";")[1])) {
+        WebElement scoreUIElement = null;
+
+        for (String scoreStringElement : scoresList) {
+            switch (scoreStringElement.split(";")[0]) {
+                case "GPA" : scoreUIElement = FCHubsPage.labelScoreQualificationGPA;
+                    break;
+                case "SAT" : scoreUIElement = FCHubsPage.labelScoreQualificationSAT;
+                    break;
+                case "ACT" : scoreUIElement = FCHubsPage.labelScoreQualificationACT;
+                    break;
+                case "OVERALL AVERAGE" : scoreUIElement = FCHubsPage.labelScoreQualificationOverallAvg;
+                    break;
+            }
+            if (scoreUIElement.getText().equals(scoreStringElement.split(";")[1])) {
                 result = true;
             } else {
                 result = false;
                 break;
             }
         }
+
         assertTrue("The score qualifications are not correct", result);
     }
 
@@ -616,8 +629,10 @@ public class FCHubs {
     public static void VerifySectionLabelInAdmissions(String sectionLabel) {
         driver = Hooks.driver;
         PageFactory.initElements(driver, FCHubsAdmissionsTabPage.class);
+        new WebDriverWait(driver, 20).until(ExpectedConditions.elementToBeClickable
+                (FCHubsAdmissionsTabPage.buttonAppReqDeadlines));
         assertTrue("The section " + sectionLabel + " is not displayed",
-                FCHubsAdmissionsTabPage.labelApplicationInformation.getText().equals(sectionLabel));
+                FCHubsAdmissionsTabPage.buttonAppReqDeadlines.isDisplayed());
     }
 
     public static void VerifyDateLabelsInOverviewTopBar(String text) {
@@ -864,7 +879,7 @@ public class FCHubs {
                 (FCHubsPage.buttonCompareMeWithAllAcceptedApplicants));
         JavascriptExecutor jse = (JavascriptExecutor)driver;
         ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);",
-                FCHubsPage.contactInfoAdmissions);
+                FCHubsPage.labelCompareMeSectionNotes);
         FCHubsPage.buttonCompareMeWithAllAcceptedApplicants.click();
     }
 

@@ -42,15 +42,12 @@ Feature: As a student exploring a college, I want to see a top bar with high-lev
     When I open the link "More about Learning Environment" in the Overview Info Top Bar
     Then The URL should contain "Studies"
 
-  Scenario: The user is redirected to Admissions tab after clicking "How does this relate to me?"
-    When I open the link "How does this relate to me?" in the Overview Info Top Bar
-    Then I should be redirected to the tab "Admissions"
-
   Scenario: The URL contains "Admissions"
     When I open the link "Check out Scattergrams to see how this relates to you" in the Overview Info Top Bar
     Then The URL should contain "Admissions"
 
-  Scenario: The user is redirected to Application Information section after clicking "See all deadlines" (Bug: HUBS-774)
+  Scenario: The user is redirected to Application Information section after clicking "See all deadlines"
+  (Bug: HUBS-774-fixed)
     When I open the link "See all deadlines" in the Overview Info Top Bar
     Then I should be redirected to the section "Application Information" in Admissions
 

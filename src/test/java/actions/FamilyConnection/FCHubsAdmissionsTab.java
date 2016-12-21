@@ -55,14 +55,11 @@ public class FCHubsAdmissionsTab {
     public static void VerifyImportantPolicies(List<String> importantPolicies) {
         driver = Hooks.driver;
         PageFactory.initElements(driver, FCHubsAdmissionsTabPage.class);
-        boolean result = false;
-        for (int i = 0;  i < importantPolicies.size(); i++) {
-            if (importantPolicies.contains(FCHubsAdmissionsTabPage.listImportantPolicies.get(i).getText())) {
-                result = true;
-            } else {
-                result = false;
-                break;
-            }
+        boolean result = true;
+        List<WebElement> policyElements = FCHubsAdmissionsTabPage.sectionImportantPolicies.findElements
+                (By.tagName("div"));
+        for (WebElement policyElement : policyElements) {
+            result = importantPolicies.contains(policyElement.getText());
         }
         assertTrue("The displayed Important Policies are not correct", result);
     }
