@@ -35,6 +35,7 @@ public class eDocsGeneral {
     public static WebDriver driver;
     private static String CHROME_FILE_NAME = "/Files/ReadMe.txt";
     private static String CHROME_FILE_NAME_BIG_SIZE = "/Files/FillTooBigPDF.pdf";
+    private static String CHROME_FILE_NAME_PAGES_SIZE = "/Files/Doc21.pdf";
     private static String CHROME_INCORRECT_FORMAT_FILE = "/Files/index.html";
 
 
@@ -190,13 +191,27 @@ public class eDocsGeneral {
             assertTrue("Text not found! "+strData, verifyReplaceText.contains(strData));
         }
 
-        if(strData.contains("Initial Transcript (active")){
+        if(strData.contains("Initial Transcript")){
             JavascriptExecutor js = (JavascriptExecutor)driver;
             js.executeScript("window.scrollTo(0,Math.max(document.documentElement.scrollHeight,document.body.scrollHeight,document.documentElement.clientHeight));");
-            new WebDriverWait(Hooks.driver, 30).until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("#contents > div:nth-of-type(2) > div:nth-of-type(2) > div > div:nth-of-type(1) > table")));
-            String verifyReplaceText = eDocsTabPage.txtTableVerification.getText();
-            assertTrue("Text not found! "+strData, !verifyReplaceText.contains(strData));
+            new WebDriverWait(Hooks.driver, 30).until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("div[id='contents']")));
+            String verifyReplaceText = eDocsTabPage.txtTranscriptTableVerification.getText();
+            assertTrue("Text not found! " + strData, !verifyReplaceText.contains(strData));
         }
+    }
+
+    public static void verifyLorsMessagesText (String strData, String strMessage) throws Throwable {
+        new WebDriverWait(Hooks.driver, 30).until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("div[class='form-checklist condensed ng-scope']")));
+        new WebDriverWait(Hooks.driver, 30).until(ExpectedConditions.visibilityOf(Hooks.driver.findElement(By.cssSelector("#contents > div:nth-child(3) > div.ng-scope > ng-include > div > div:nth-child(2) > div.checklist-header.ng-binding"))));
+        new WebDriverWait(Hooks.driver, 30).until(ExpectedConditions.visibilityOf(Hooks.driver.findElement(By.cssSelector("#contents > div:nth-child(3) > div.ng-scope > div > div:nth-child(1) > table > tbody > tr:nth-child(1) > td:nth-child(1)"))));
+        String bodyText = eDocsTabPage.txtBody.getText();
+        assertTrue("Text not found! "+strData, bodyText.contains(strData));
+            JavascriptExecutor js = (JavascriptExecutor)driver;
+            js.executeScript("window.scrollTo(0,Math.max(document.documentElement.scrollHeight,document.body.scrollHeight,document.documentElement.clientHeight));");
+            new WebDriverWait(Hooks.driver, 30).until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("div[id='contents']")));
+            String verifyReplaceText = eDocsTabPage.txtTranscriptTableVerification.getText();
+            assertTrue("Text not found! "+ strMessage, verifyReplaceText.contains(strMessage));
+
     }
 
     public static void verifyLorsFieldsText (String type, String author, String size, String action) throws Throwable {
@@ -281,7 +296,7 @@ public class eDocsGeneral {
             File filePathStudentImport = new File(Hooks.class.getResource(CHROME_FILE_NAME).getFile());
             System.out.println("File path" + filePathStudentImport);
             //Sleep time hardcoded to wait the external popup to upload file
-            Thread.sleep(8000);
+            Thread.sleep(3000);
             StringSelection filePath = new StringSelection(filePathStudentImport.toString());
             Toolkit.getDefaultToolkit().getSystemClipboard().setContents(filePath, null);
             Robot r = new Robot();
@@ -303,7 +318,7 @@ public class eDocsGeneral {
             System.out.println("File path" + filePathStudentImport);
 
             //Sleep time hardcoded to wait the external popup to upload file
-            Thread.sleep(3000);
+            Thread.sleep(9000);
             StringSelection filePath = new StringSelection(filePathStudentImport.toString());
             Toolkit.getDefaultToolkit().getSystemClipboard().setContents(filePath, null);
             Robot r = new Robot();
@@ -325,6 +340,27 @@ public class eDocsGeneral {
             System.out.println("File path" + filePathStudentImport);
             //Sleep time hardcoded to wait the external popup to upload file
             Thread.sleep(3000);
+            StringSelection filePath = new StringSelection(filePathStudentImport.toString());
+            Toolkit.getDefaultToolkit().getSystemClipboard().setContents(filePath, null);
+            Robot r = new Robot();
+            r.keyPress(KeyEvent.VK_ENTER);
+            r.keyRelease(KeyEvent.VK_ENTER);
+            r.keyPress(KeyEvent.VK_CONTROL);
+            r.keyPress(KeyEvent.VK_V);
+            r.keyRelease(KeyEvent.VK_V);
+            r.keyRelease(KeyEvent.VK_CONTROL);
+            r.keyPress(KeyEvent.VK_ENTER);
+            r.keyRelease(KeyEvent.VK_ENTER);
+
+            new WebDriverWait(Hooks.driver, 30).until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("#uploadModal > form > div.modal-footer > button")));
+            SetupPage.btnUploadFile.click();
+        }
+
+        if (filename.contains("Doc")){
+            File filePathStudentImport = new File(Hooks.class.getResource(CHROME_FILE_NAME_PAGES_SIZE).getFile());
+            System.out.println("File path" + filePathStudentImport);
+            //Sleep time hardcoded to wait the external popup to upload file
+            Thread.sleep(8000);
             StringSelection filePath = new StringSelection(filePathStudentImport.toString());
             Toolkit.getDefaultToolkit().getSystemClipboard().setContents(filePath, null);
             Robot r = new Robot();

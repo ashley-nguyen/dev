@@ -180,7 +180,7 @@ public class College {
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         PageFactory.initElements(driver, CollegePage.class);
         CollegePage.selClassYear.click();
-        List<WebElement> options = CollegePage.selClassYear.findElements(By.tagName("option"));
+            List<WebElement> options = CollegePage.selClassYear.findElements(By.tagName("option"));
         for (WebElement option : options) {
             if (option.getText().contains(strClassYear))
                 option.click();
