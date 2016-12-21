@@ -22,8 +22,18 @@ public class FCCollegeEventsPage extends BaseClass {
     @FindBy(how = How.CSS, using = "h2:not([class=\"event-summary__college-name ng-binding\"]):not([class=\"ng-scope\"])")
     public static WebElement labelConfirmationMessage;
 
+    @FindBy(how = How.CSS, using = ".event-summary__status-column span.fc-button.fc-button--call-to-action.ng-binding")
+    public static WebElement buttonSignUponCollegeEvents;
+
+    @FindBy(how = How.CSS, using = ".event-summary__status-column span.fc-button.fc-button--call-to-action.ng-binding")
+    public static WebElement SignUpforCollegeEvent;
+
+    @FindBy(how = How.CSS, using = "a[href='#/']")
+    public static WebElement LinkReturntoAllEvents;
+
     public FCCollegeEventsPage(WebDriver driver) {
         super(driver);
     }
 
-}
+    }
+
