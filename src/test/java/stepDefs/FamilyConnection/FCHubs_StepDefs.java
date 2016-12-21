@@ -212,22 +212,6 @@ public class FCHubs_StepDefs {
         FCHubs.VerifyCampusSurroundings(surroundings);
     }
 
-    @Then("^Student's \"([^\"]*)\" should be \"([^\"]*)\" in the Score Comparison module$")
-    public void Students_should_be_in_the_Score_Comparison_Module(String scoreType, String value) throws Throwable {
-        FCHubs.VerifyScoreValuesScoreComp(scoreType, value);
-    }
-
-    @Then("^Average \"([^\"]*)\" should be \"([^\"]*)\" with correct values in the Score Comparison module$")
-    public void Average_should_be_with_correct_values_in_the_Score_Comparison_Module(String avgScoreType,
-                                                                                     String avgValue) throws Throwable {
-        FCHubs.VerifyAvgValuesScoreComp(avgScoreType, avgValue);
-    }
-
-    @Then("^The score text for \"([^\"]*)\" should be \"([^\"]*)\"$")
-    public void The_score_text_for_should_be(String scoreType, String scoreText) throws Throwable {
-        FCHubs.VerifyScoreTextScoreComp(scoreType, scoreText);
-    }
-
     @Then("^The Overall Average text should be \"([^\"]*)\" in the Score Comparison module$")
     public void The_Overall_Average_text_should_be_in_the_Score_Comparison_module(String overallAvgText)
             throws Throwable {
@@ -494,6 +478,31 @@ public class FCHubs_StepDefs {
     @When("^I open the college visit details in position \"([^\"]*)\"$")
     public void iOpenTheCollegeVisitDetailsInPosition(String position) throws Throwable {
         FCHubs.clickDetailsInCollegeVisit(position);
+    }
+
+    @Then("^Student's score type and value should correspond to the following data in the Score Comparison module:$")
+    public void studentSScoreTypeAndValueShouldCorrespondToTheFollowingDataInTheScoreComparisonModule(List<String> scoreValueList) throws Throwable {
+        FCHubs.VerifyScoreValuesScoreComp(scoreValueList);
+    }
+
+    @Then("^Average score type and value should correspond to the following data in the Score Comparison module$")
+    public void averageScoreTypeAndValueShouldCorrespondToTheFollowingDataInTheScoreComparisonModule(List<String> avgScoreValueList) throws Throwable {
+        FCHubs.VerifyAvgValuesScoreComp(avgScoreValueList);
+    }
+
+    @Then("^The score text for each score type should be as follows:$")
+    public void the_score_text_for_each_score_type_should_be_as_follows(List<String> scoresList) throws Throwable {
+        FCHubs.verifyScoreTextScoreComp(scoresList);
+    }
+
+    @When("^I switch the comparison to be made against all students accepted by the college$")
+    public void I_switch_the_comparison_to_be_made_against_all_students_accepted_by_the_college() throws Throwable {
+        FCHubs.clickCompareMeWithAllAcceptedApplicants();
+    }
+
+    @Then("^I should see the the comparison made against all students accepted by the college$")
+    public void I_should_see_the_the_comparison_made_against_all_students_accepted_by_the_college() throws Throwable {
+        FCHubs.verifyComparisonAgainstAllStudents();
     }
 }
 

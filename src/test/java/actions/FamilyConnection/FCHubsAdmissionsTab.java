@@ -54,15 +54,12 @@ public class FCHubsAdmissionsTab {
 
     public static void VerifyImportantPolicies(List<String> importantPolicies) {
         driver = Hooks.driver;
-        boolean result = false;
-        for(int i = 0;  i < importantPolicies.size(); i++) {
-            if(driver.findElement(By.cssSelector("div[ng-if=\"vm.policies.length > 0\"] " +
-                    "div:nth-of-type(" + (i + 1) + ")")).getText().equals(importantPolicies.get(i))) {
-                result = true;
-            } else {
-                result = false;
-                break;
-            }
+        PageFactory.initElements(driver, FCHubsAdmissionsTabPage.class);
+        boolean result = true;
+        List<WebElement> policyElements = FCHubsAdmissionsTabPage.sectionImportantPolicies.findElements
+                (By.tagName("div"));
+        for (WebElement policyElement : policyElements) {
+            result = importantPolicies.contains(policyElement.getText());
         }
         assertTrue("The displayed Important Policies are not correct", result);
     }
@@ -121,24 +118,23 @@ public class FCHubsAdmissionsTab {
 
     public static void VerifyDeadline(String deadlineName, String date) {
         driver = Hooks.driver;
+        PageFactory.initElements(driver, FCHubsAdmissionsTabPage.class);
         boolean result = false;
-        int deadlineElementNumber = 0;
-        switch (deadlineName) {
-            case "Early Action Deadline": deadlineElementNumber = 1;
-                break;
-            case "Rolling Deadline": deadlineElementNumber = 2;
-                break;
+
+        for (int i = 0; i < FCHubsAdmissionsTabPage.listDeadlines.size(); i++) {
+            WebElement elementText = FCHubsAdmissionsTabPage.listDeadlines.get(i).findElement(By.cssSelector("span"));
+            if (elementText.getText().equals(deadlineName)) {
+                WebElement monthElement = FCHubsAdmissionsTabPage.listDeadlines.get(i).findElement(By.cssSelector
+                        ("div.hub-deadline__month"));
+                WebElement dayElement = FCHubsAdmissionsTabPage.listDeadlines.get(i).findElement(By.cssSelector("div " +
+                        "div:nth-of-type(2)"));
+                if(monthElement.getText().equals(date.split(" ")[0])
+                    && dayElement.getText().equals(date.split(" ")[1])) {
+                    result = true;
+                }
+            }
         }
-        WebElement deadlineElementMonth = driver.findElement(By.cssSelector("div[ng-if=\"vm.informationTabs.getActive() " +
-                "== 'deadlines'\"] div.fc-grid__col--xs-12.fc-grid__col--sm-6:nth-of-type(" + deadlineElementNumber + ")" +
-                " div.hub-deadline__month.ng-binding"));
-        WebElement deadlineElementDay = driver.findElement(By.cssSelector("div[ng-if=\"vm.informationTabs.getActive() " +
-                "== 'deadlines'\"] div.fc-grid__col--xs-12.fc-grid__col--sm-6:nth-of-type(" + deadlineElementNumber + ")" +
-                " div.hub-deadline__day.ng-binding"));
-        if(deadlineElementMonth.getText().equals(date.split(" ")[0])
-                && deadlineElementDay.getText().equals(date.split(" ")[1])) {
-            result = true;
-        }
+
         assertTrue("The deadline is not correct", result);
     }
 }

@@ -1,10 +1,13 @@
 package pageObjects.FamilyConnection;
 
+import net.serenitybdd.core.annotations.findby.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 import pageObjects.BaseClass;
+
+import java.util.List;
 
 /**
  * Created by jorgemaguina on 5/25/2016.
@@ -121,9 +124,44 @@ public class FCHubsPage extends BaseClass {
     public static WebElement buttonAddToCollegesImThinkingAboutFull;
     @FindBy(how = How.CSS, using = ".fc-tooltip__content.ng-scope")
     public static WebElement tooltipHeartIcon;
+    @FindBy(how = How.CSS, using = "span[ng-class=\"{true:'scoreLow', false:'score'}[vm.compares.gpa == vm.low]\"]")
+    public static WebElement labelGPAValue;
+    @FindBy(how = How.CSS, using = "span[ng-class=\"{true:'scoreLow', false:'score'}[vm.compares.sat == vm.low]\"]")
+    public static WebElement labelSATValue;
+    @FindBy(how = How.CSS, using = "span[ng-class=\"{true:'scoreLow', false:'score'}[vm.compares.act == vm.low]\"]")
+    public static WebElement labelACTValue;
+    @FindBy(how = How.CSS, using = "div[ng-show=\"vm.otherScores.gpaStatistics.average\"]")
+    public static WebElement labelAvgGPAValue;
+    @FindBy(how = How.CSS, using = "div[ng-show=\"vm.otherScores.satStatistics.average\"]")
+    public static WebElement labelAvgSATValue;
+    @FindBy(how = How.CSS, using = "div[ng-show=\"vm.otherScores.actStatistics.average\"]")
+    public static WebElement labelAvgACTValue;
+    @FindBy(how = How.CSS, using = "span[ng-if=\"vm.compares.overall == vm.aboveAvg\"]")
+    public static WebElement labelOverallAvgConclusionText;
+    @FindBy(how = How.CSS, using = "div[ng-show=\"!(vm.studentScores.concordedAct > 0)\"]")
+    public static WebElement labelACTQuestionMark;
+    @FindBy(how = How.CSS, using = "div.compare__button-container-bottom.fc-grid__row.fc-grid__row--xs-center")
+    public static WebElement buttonCompareMeWithAllAcceptedApplicants;
+    @FindBy(how = How.CSS, using = "h2.ng-binding span[ng-show=\"vm.compareToggleState == 'college'\"]")
+    public static WebElement labelAllStudents;
+    @FindBy(how = How.CSS, using = "div.fc-grid__col--md-9.fc-grid__col--xs-12 div.gauge-container:nth-of-type(1) " +
+            "div.ng-binding:not([ng-show=\"vm.otherScores.gpaStatistics.average\"])")
+    public static WebElement labelScoreQualificationGPA;
+    @FindBy(how = How.CSS, using = "div.fc-grid__col--md-9.fc-grid__col--xs-12 div.gauge-container:nth-of-type(2) " +
+            "div.ng-binding:not([ng-show=\"vm.otherScores.satStatistics.average\"])")
+    public static WebElement labelScoreQualificationSAT;
+    @FindBy(how = How.CSS, using = "div.fc-grid__col--md-9.fc-grid__col--xs-12 div.gauge-container:nth-of-type(3) " +
+            "div.ng-binding:not([ng-show=\"vm.otherScores.actStatistics.average\"])")
+    public static WebElement labelScoreQualificationACT;
+    @FindBy(how = How.CSS, using = "div.fc-grid__col--md-9.fc-grid__col--xs-12 div.gauge-container:nth-of-type(4) " +
+            "div.ng-binding")
+    public static WebElement labelScoreQualificationOverallAvg;
+    @FindBy(how = How.CSS, using = ".compareNotes.fc-grid__row.fc-grid__row--xs-center")
+    public static WebElement labelCompareMeSectionNotes;
 
     public static String URLimThinkingAboutList = "https://connection-int.dev.naviance.com/family-connection" +
             "/colleges/application/consideration";
+
     public FCHubsPage(WebDriver driver) {
         super(driver);
     }
