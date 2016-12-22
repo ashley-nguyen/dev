@@ -224,9 +224,9 @@ public class FCHubs_StepDefs {
         FCHubs.VerifyQuestionMarkScoreComp(scoreType);
     }
 
-    @Then("^Average Total Cost should be \"([^\"]*)\" when the income is \"([^\"]*)\"$")
-    public void Average_Total_Cost_should_be_when_the_income_is(String avgTotalCost, String income) throws Throwable {
-        FCHubs.VerifyAvgTotalCostInfoTopBar(income, avgTotalCost);
+    @Then("^Average Total Cost should correspond to the income as follows:$")
+    public void averageTotalCostShouldCorrespondToTheIncomeAsFollows(List<String> incomeList) throws Throwable {
+        FCHubs.VerifyAvgTotalCostInfoTopBar(incomeList);
     }
 
     @Then("^Graduation Rate should be \"([^\"]*)\" with correct data in the Information Top bar$")

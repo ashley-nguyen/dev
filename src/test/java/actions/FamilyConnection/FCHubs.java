@@ -411,12 +411,17 @@ public class FCHubs {
         assertTrue("The score text is not correct", dialOrQuestionElement.isDisplayed());
     }
 
-    public static void VerifyAvgTotalCostInfoTopBar(String income, String avgTotalCost) {
+    public static void VerifyAvgTotalCostInfoTopBar(List<String> incomeList) {
         driver = Hooks.driver;
         PageFactory.initElements(driver, FCHubsPage.class);
-        Select incomeDropDown = new Select(driver.findElement(By.cssSelector("select")));
-        incomeDropDown.selectByVisibleText(income);
-        assertTrue("The Average Total Cost is not correct", FCHubsPage.labelAvgNetPrice.getText().equals(avgTotalCost));
+        boolean result = false;
+        Select incomeDropDown = new Select(driver.findElement(By.cssSelector(FCHubsPage.incomeDropDownLocator)));
+        for (String incomeElement : incomeList) {
+            incomeDropDown.selectByVisibleText(incomeElement.split(";")[0]);
+            result = incomeElement.split(";")[1]
+                    .equals(FCHubsPage.labelAvgNetPrice.getText());
+        }
+        assertTrue("The Average Total Cost is not correct", result);
     }
 
     public static void VerifyGraduationRateInfoTopBar(String graduationRate) {

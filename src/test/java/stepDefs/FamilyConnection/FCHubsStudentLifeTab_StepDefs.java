@@ -47,9 +47,9 @@ public class FCHubsStudentLifeTab_StepDefs {
         FCHubsStudentLifeTab.VerifyTotalStudentsGenderData(totalStudentsGender);
     }
 
-    @Then("^The percentage for \"([^\"]*)\" is \"([^\"]*)\" in Gender Data$")
-    public void The_percentage_for_is_in_Gender_Data(String gender, String value) throws Throwable {
-        FCHubsStudentLifeTab.VerifyGenderPercentage(gender, value);
+    @Then("^The percentage for each gender in Gender Data is as follows:$")
+    public void The_percentage_for_each_gender_in_Gender_Data_is_as_follows(List<String> genderPercentageList) throws Throwable {
+        FCHubsStudentLifeTab.VerifyGenderPercentage(genderPercentageList);
     }
 
     @Then("^The Total Students number should be \"([^\"]*)\" in Age$")
@@ -57,9 +57,9 @@ public class FCHubsStudentLifeTab_StepDefs {
         FCHubsStudentLifeTab.VerifyTotalStudentsAge(totalStudentsAge);
     }
 
-    @Then("^The percentage for \"([^\"]*)\" is \"([^\"]*)\" in Age$")
-    public void The_percentage_for_is_in_Age(String ageGroup, String value) throws Throwable {
-        FCHubsStudentLifeTab.VerifyAgePercentage(ageGroup, value);
+    @Then("^The percentage for each age group in Age is as follows:$")
+    public void thePercentageForEachAgeGroupInAgeIsAsFollows(List<String> agePercentagesList) throws Throwable {
+        FCHubsStudentLifeTab.VerifyAgePercentage(agePercentagesList);
     }
 
     @When("^I open the \"([^\"]*)\" tab in Student Organizations and Services$")

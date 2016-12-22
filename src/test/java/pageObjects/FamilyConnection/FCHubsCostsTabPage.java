@@ -1,9 +1,11 @@
 package pageObjects.FamilyConnection;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
+import org.openqa.selenium.support.ui.Select;
 import pageObjects.BaseClass;
 
 /**
@@ -57,6 +59,10 @@ public class FCHubsCostsTabPage extends BaseClass {
     @FindBy(how = How.CSS, using = ".fc-grid__row.fc-grid__row--xs-center.admissions div[ng-if=\"vm.typeOfAid\"] " +
             "div.hub-data-pod__data-age")
     public static WebElement labelTypicalMonthlyLoanPaymentDate;
+
+    public static Select incomeDropDown = new Select(driver.findElement(By.cssSelector
+            ("select.costs-selector.ng-pristine.ng-valid.ng-not-empty[ng-selected=\"vm.myProfileCost.cost\"]")));
+    public static String aidDropDownString = "select[ng-model=\"vm.typeOfAid\"]";
 
     public FCHubsCostsTabPage(WebDriver driver) { super(driver);    }
 }

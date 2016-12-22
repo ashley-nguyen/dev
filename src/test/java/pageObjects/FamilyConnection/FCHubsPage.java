@@ -161,6 +161,7 @@ public class FCHubsPage extends BaseClass {
 
     public static String URLimThinkingAboutList = "https://connection-int.dev.naviance.com/family-connection" +
             "/colleges/application/consideration";
+    public static String incomeDropDownLocator = "select";
 
     public FCHubsPage(WebDriver driver) {
         super(driver);

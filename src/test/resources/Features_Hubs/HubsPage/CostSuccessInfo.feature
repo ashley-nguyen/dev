@@ -7,15 +7,13 @@ Feature: As a student exploring a college, I want to see a top bar with high-lev
       | rtsa  | benhubs | hubs2016  |
     When I open the HUBS page for "Auburn"
 
-  Scenario Outline: Average Total Cost is displayed with correct data for each income selected in the Information Top bar
-    Then Average Total Cost should be "<avgTotalCost>" when the income is "<income>"
-    Examples:
-    | income      | avgTotalCost |
-    | $0 - $30K   | 13,191        |
-    | $30 - $48K  | 16,272        |
-    | $48 - $75K  | 18,240        |
-    | $75 - $110K | 19,276        |
-    | > $110K     | 20,142        |
+  Scenario: Average Total Cost is displayed with correct data for each income selected in the Information Top bar
+    Then Average Total Cost should correspond to the income as follows:
+    | $0 - $30K;13,191   |
+    | $30 - $48K;16,272  |
+    | $48 - $75K;18,240  |
+    | $75 - $110K;19,276 |
+    | > $110K;20,142     |
 
   Scenario: Graduation Rate is displayed with correct data in the Information Top bar
     Then Graduation Rate should be "66" with correct data in the Information Top bar

@@ -95,19 +95,22 @@ public class FCHubsStudentLifeTab {
                 FCHubsStudentLifeTabPage.labelTotalStudentsGenderData.getText().equals(totalStudentsGender));
     }
 
-    public static void VerifyGenderPercentage(String gender, String value) {
+    public static void VerifyGenderPercentage(List<String> genderPercentageList) {
         driver = Hooks.driver;
         PageFactory.initElements(driver, FCHubsStudentLifeTabPage.class);
+        boolean result = false;
         WebElement genderPercent = null;
-        switch (gender) {
-            case "Female" : genderPercent = FCHubsStudentLifeTabPage.labelGenderDataPercentFemale;
-                break;
-            case "Male" : genderPercent = FCHubsStudentLifeTabPage.labelGenderDataPercentMale;
-                break;
+        for (String genderPercentageElement : genderPercentageList){
+            switch (genderPercentageElement.split(";")[0]) {
+                case "Female" : genderPercent = FCHubsStudentLifeTabPage.labelGenderDataPercentFemale;
+                    break;
+                case "Male" : genderPercent = FCHubsStudentLifeTabPage.labelGenderDataPercentMale;
+                    break;
+            }
+            result = genderPercentageElement.split(";")[1].equals(genderPercent.getText());
         }
-        String uiPercent = genderPercent.getText();
 
-        assertTrue("The percent for " + gender + " is not correct", uiPercent.equals(value));
+        assertTrue("The percent for the genders is not correct", result);
     }
 
     public static void VerifyTotalStudentsAge(String totalStudentsAge) {
@@ -117,17 +120,22 @@ public class FCHubsStudentLifeTab {
                 FCHubsStudentLifeTabPage.labelTotalStudentsAgeData.getText().equals(totalStudentsAge));
     }
 
-    public static void VerifyAgePercentage(String ageGroup, String value) {
+    public static void VerifyAgePercentage(List<String> agePercentageList) {
         driver = Hooks.driver;
         WebElement agePercent = null;
+        boolean result = false;
         PageFactory.initElements(driver, FCHubsStudentLifeTabPage.class);
-        switch (ageGroup) {
-            case "Under 24" : agePercent = FCHubsStudentLifeTabPage.labelAgeDataUnder24;
-                break;
-            case "Over 24" : agePercent = FCHubsStudentLifeTabPage.labelAgeDataOver24;
-                break;
+        for (String agePercentElement : agePercentageList) {
+            switch (agePercentElement.split(";")[0]) {
+                case "Under 24" : agePercent = FCHubsStudentLifeTabPage.labelAgeDataUnder24;
+                    break;
+                case "Over 24" : agePercent = FCHubsStudentLifeTabPage.labelAgeDataOver24;
+                    break;
+            }
+            result = agePercentElement.split(";")[1].equals(agePercent.getText());
         }
-        assertTrue("The percent for " + ageGroup + " is not correct", agePercent.getText().equals(value));
+
+        assertTrue("The percent for the age groups is not correct", result);
     }
     public static void ClickSectionInStudentOrgServ(String sectionName) {
         driver = Hooks.driver;

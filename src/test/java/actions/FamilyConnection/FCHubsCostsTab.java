@@ -10,6 +10,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import pageObjects.FamilyConnection.FCHubsCostsTabPage;
 import stepDefs.Hooks;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.Assert.assertTrue;
@@ -20,24 +21,38 @@ import static org.junit.Assert.assertTrue;
 public class FCHubsCostsTab {
     public static WebDriver driver;
 
-    public static void VerifyStudentFacultyRatioStudiesCostsTopBar(String income, String avgTotalCost) {
+    public static void VerifyStudentFacultyRatioStudiesCostsTopBar(List<String> incomeAvgTotalCostList) {
         driver = Hooks.driver;
         PageFactory.initElements(driver, FCHubsCostsTabPage.class);
-        new WebDriverWait(Hooks.driver, 20).until(ExpectedConditions.elementToBeClickable(FCHubsCostsTabPage.labelCostsTabAvgNetPrice));
-        Select incomeDropDown = new Select(driver.findElement(By.cssSelector("select.costs-selector.ng-pristine" +
-                ".ng-valid.ng-not-empty[ng-selected=\"vm.myProfileCost.cost\"]")));
-        incomeDropDown.selectByVisibleText(income);
-        assertTrue("The Average Total Cost is not correct", FCHubsCostsTabPage.labelCostsTabAvgNetPrice.getText()
-                .equals(avgTotalCost));
+        boolean result = false;
+        new WebDriverWait(Hooks.driver, 20).until(ExpectedConditions.elementToBeClickable(FCHubsCostsTabPage
+                .labelCostsTabAvgNetPrice));
+        for (String incomeAvgTotalCostElement : incomeAvgTotalCostList) {
+            FCHubsCostsTabPage.incomeDropDown.selectByVisibleText(incomeAvgTotalCostElement.split(";")[0]);
+            result = incomeAvgTotalCostElement.split(";")[1]
+                    .equals(FCHubsCostsTabPage.labelCostsTabAvgNetPrice.getText());
+        }
+        assertTrue("The Average Total Cost is not correct", result);
     }
 
-    public static void VerifyAidPercent(String aidPercent, String typeOfAid) {
+    public static void VerifyAidPercent(List<String> aidList) {
         driver = Hooks.driver;
         PageFactory.initElements(driver, FCHubsCostsTabPage.class);
-        Select typeOfAidDropDown = new Select(driver.findElement(By.cssSelector("select[ng-model=\"vm.typeOfAid\"]")));
-        typeOfAidDropDown.selectByVisibleText(typeOfAid);
-        assertTrue("The Aid Percent is not correct", FCHubsCostsTabPage.labelCostsTabRecGrantAid.getText()
-                .equals(aidPercent));
+        List<String> aidElementAidType = new ArrayList<String>();
+        List<String> aidNumber = new ArrayList<String>();
+        Select aidDropDown = new Select(driver.findElement(By.cssSelector(FCHubsCostsTabPage.aidDropDownString)));
+        boolean result = false;
+        new WebDriverWait(Hooks.driver, 20).until(ExpectedConditions.elementToBeClickable(FCHubsCostsTabPage
+                .labelCostsTabRecGrantAid));
+        for (String aidElement : aidList) {
+            aidElementAidType.add(aidElement.split(";")[0]);
+            aidNumber.add(aidElement.split(";")[1]);
+        }
+        for (int i = 0; i < aidElementAidType.size(); i++) {
+            aidDropDown.selectByVisibleText(aidElementAidType.get(i));
+            result = aidNumber.get(i).equals(FCHubsCostsTabPage.labelCostsTabRecGrantAid.getText());
+        }
+        assertTrue("The Aid Percent is not correct", result);
     }
 
     public static void VerifyTipicalMonthlyLoanPayment(String loanPayment) {
