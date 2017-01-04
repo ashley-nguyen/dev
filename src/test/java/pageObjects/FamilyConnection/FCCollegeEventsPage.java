@@ -29,7 +29,13 @@ public class FCCollegeEventsPage extends BaseClass {
     public static WebElement SignUpforCollegeEvent;
 
     @FindBy(how = How.CSS, using = "a[href='#/']")
-    public static WebElement LinkReturntoAllEvents;
+    public static WebElement linkReturntoAllEvents;
+
+    @FindBy(how = How.CSS, using = ".fc-button.fc-button--ghost-light.fc-button--size-small")
+    public static WebElement recommendedEvents;
+
+    @FindBy(how = How.CSS, using = ".fc-info-tag.fc-info-tag--recommended.ng-scope")
+    public static WebElement verifyRecommendedEventsText;
 
     public FCCollegeEventsPage(WebDriver driver) {
         super(driver);

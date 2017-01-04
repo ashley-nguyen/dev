@@ -10,7 +10,6 @@ Feature:  As a student viewing new Hubs' events screen , I want to see events so
     When I open Recommended Events from sticky bar
     Then I should see College Events Details
 
-
   Scenario:
     When I open Recommended Events from sticky bar
     When SignUp for school "Adrian" for Event "Mandeep -Automation Test2"
@@ -18,7 +17,6 @@ Feature:  As a student viewing new Hubs' events screen , I want to see events so
     When I signup for Adrian School Event
     Then Message displayed "You're signed up for this event!"
 
-  
   Scenario:
     Given I open Recommended Events from sticky bar
     When SignUp for school "Adrian" for Event "Mandeep - Automation Event3"
@@ -26,10 +24,14 @@ Feature:  As a student viewing new Hubs' events screen , I want to see events so
     When I signup for Adrian School Event
     Then Message displayed "You're signed up for this event!"
 
-  @test
   Scenario:
     Given I open Recommended Events from sticky bar
     When  SignUp for school "Adrian" for Event "Mandeep -Automation Event1"
     When I signup for Adrian School Event
     When I Return to All Events Page
     Then I should see College Events Details
+
+  Scenario:
+     Given I open Recommended Events from sticky bar
+     When I click on See Recommended Events
+     Then Recommended events are displayed on screen
