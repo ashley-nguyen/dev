@@ -346,6 +346,7 @@ public class FCHubs {
         boolean result = true;
         WebElement valueElement = null;
         for (String scoreValueElement : avgScoreValueList) {
+
             switch (scoreValueElement.split(";")[0]) {
                 case "GPA" : valueElement = FCHubsPage.labelAvgGPAValue;
                     break;
@@ -354,6 +355,8 @@ public class FCHubs {
                 case "ACT" : valueElement = FCHubsPage.labelAvgACTValue;
                     break;
             }
+            System.out.println("UI: " + valueElement.getText());
+            System.out.println("Data: " + scoreValueElement.split(";")[1]);
             new WebDriverWait(driver, 20).until(ExpectedConditions.elementToBeClickable(FCHubsPage.labelAvgGPAValue));
             if (valueElement.getText().contains(scoreValueElement.split(";")[1])) {
                 result = true;
@@ -382,6 +385,7 @@ public class FCHubs {
                 case "OVERALL AVERAGE" : scoreUIElement = FCHubsPage.labelScoreQualificationOverallAvg;
                     break;
             }
+            new WebDriverWait(driver, 20).until(ExpectedConditions.elementToBeClickable(scoreUIElement));
             if (scoreUIElement.getText().equals(scoreStringElement.split(";")[1])) {
                 result = true;
             } else {
@@ -396,6 +400,8 @@ public class FCHubs {
     public static void VerifyOverallAverageTextScoreComp(String overallAvgText) {
         driver = Hooks.driver;
         PageFactory.initElements(driver, FCHubsPage.class);
+        new WebDriverWait(driver, 20).until(ExpectedConditions.elementToBeClickable
+                (FCHubsPage.labelOverallAvgConclusionText));
         assertTrue("The Overall Average text is not present", FCHubsPage.labelOverallAvgConclusionText.getText().equals
                 (overallAvgText));
     }
@@ -880,11 +886,11 @@ public class FCHubs {
     public static void clickCompareMeWithAllAcceptedApplicants() {
         driver = Hooks.driver;
         PageFactory.initElements(driver, FCHubsPage.class);
-        new WebDriverWait(Hooks.driver, 20).until(ExpectedConditions.elementToBeClickable
-                (FCHubsPage.buttonCompareMeWithAllAcceptedApplicants));
         JavascriptExecutor jse = (JavascriptExecutor)driver;
         ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);",
                 FCHubsPage.labelCompareMeSectionNotes);
+        new WebDriverWait(Hooks.driver, 20).until(ExpectedConditions.elementToBeClickable
+                (FCHubsPage.labelOtherStudentsFromHS));
         FCHubsPage.buttonCompareMeWithAllAcceptedApplicants.click();
     }
 
@@ -893,5 +899,23 @@ public class FCHubs {
         PageFactory.initElements(driver, FCHubsPage.class);
         assertTrue("Compare me section was not switched to compare against all students",
                 FCHubsPage.labelAllStudents.isDisplayed());
+    }
+
+    public static void verifyComparisonAgainstOtherStudentsFromHS() {
+        driver = Hooks.driver;
+        PageFactory.initElements(driver, FCHubsPage.class);
+        assertTrue("Compare me section was not switched to compare against all students",
+                FCHubsPage.labelOtherStudentsFromHS.isDisplayed());
+    }
+
+    public static void clickCompareMeWithStudentsFromMyHS() {
+        driver = Hooks.driver;
+        PageFactory.initElements(driver, FCHubsPage.class);
+        JavascriptExecutor jse = (JavascriptExecutor)driver;
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);",
+                FCHubsPage.labelCompareMeSectionNotes);
+        new WebDriverWait(Hooks.driver, 20).until(ExpectedConditions.elementToBeClickable
+                (FCHubsPage.labelAllStudents));
+        FCHubsPage.buttonCompareMeWithAllAcceptedApplicants.click();
     }
 }

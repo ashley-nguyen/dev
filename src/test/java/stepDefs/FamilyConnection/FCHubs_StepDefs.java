@@ -504,5 +504,15 @@ public class FCHubs_StepDefs {
     public void I_should_see_the_the_comparison_made_against_all_students_accepted_by_the_college() throws Throwable {
         FCHubs.verifyComparisonAgainstAllStudents();
     }
+
+    @When("^I switch the comparison to be made against other students from the students' school$")
+    public void iSwitchTheComparisonToBeMadeAgainstOtherStudentsFromTheStudentsSchool() throws Throwable {
+        FCHubs.clickCompareMeWithStudentsFromMyHS();
+    }
+
+    @Then("^I should see the the comparison made against other students from the students' school$")
+    public void iShouldSeeTheTheComparisonMadeAgainstOtherStudentsFromTheStudentsSchool() throws Throwable {
+        FCHubs.verifyComparisonAgainstOtherStudentsFromHS();
+    }
 }
 

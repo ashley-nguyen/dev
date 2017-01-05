@@ -34,3 +34,5 @@ Feature: As a student viewing new Hubs Overview Tab, I want the default score co
   accepted applicants'
     When I switch the comparison to be made against all students accepted by the college
     Then I should see the the comparison made against all students accepted by the college
+    When I switch the comparison to be made against other students from the students' school
+    Then I should see the the comparison made against other students from the students' school

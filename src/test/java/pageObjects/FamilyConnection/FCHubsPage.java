@@ -144,6 +144,8 @@ public class FCHubsPage extends BaseClass {
     public static WebElement buttonCompareMeWithAllAcceptedApplicants;
     @FindBy(how = How.CSS, using = "h2.ng-binding span[ng-show=\"vm.compareToggleState == 'college'\"]")
     public static WebElement labelAllStudents;
+    @FindBy(how = How.CSS, using = "span[ng-show=\"vm.compareToggleState == 'peers'\"]")
+    public static WebElement labelOtherStudentsFromHS;
     @FindBy(how = How.CSS, using = "div.fc-grid__col--md-9.fc-grid__col--xs-12 div.gauge-container:nth-of-type(1) " +
             "div.ng-binding:not([ng-show=\"vm.otherScores.gpaStatistics.average\"])")
     public static WebElement labelScoreQualificationGPA;
