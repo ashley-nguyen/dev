@@ -9,21 +9,21 @@ Feature: As a student viewing new Hubs Overview Tab, I want the default score co
 
   Scenario: Student's GPA, SAT and ACT are present with correct values in Score Comparison module
     Then Student's score type and value should correspond to the following data in the Score Comparison module:
-    | GPA;3.75 |
-    | SAT;640  |
-    | ACT;26   |
+    | GPA;3.7  |
+    | SAT;1590 |
+    | ACT;33   |
 
   Scenario: Average GPA, SAT and ACT are present with correct values in Score Comparison module
     Then Average score type and value should correspond to the following data in the Score Comparison module
-    | GPA;3.82 |
-    | SAT;1236 |
-    | ACT;21   |
+    | GPA;2.79 |
+    | SAT;1427 |
+    | ACT;29   |
 
   Scenario: The score text is displayed with correct values under each dial
     Then The score text for each score type should be as follows:
     #use 'empty' when the value in the UI is empty
-    | GPA;FAIR             |
-    | SAT;FAIR             |
+    | GPA;GOOD             |
+    | SAT;GOOD             |
     | ACT;GOOD             |
     | OVERALL AVERAGE;GOOD |
 
