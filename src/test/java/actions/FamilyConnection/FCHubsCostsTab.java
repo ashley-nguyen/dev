@@ -1,6 +1,7 @@
 package actions.FamilyConnection;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
@@ -25,10 +26,11 @@ public class FCHubsCostsTab {
         driver = Hooks.driver;
         PageFactory.initElements(driver, FCHubsCostsTabPage.class);
         boolean result = false;
+        Select incomeDropDownSelect = new Select(driver.findElement(By.cssSelector(FCHubsCostsTabPage.incomeDropDownString)));
         new WebDriverWait(Hooks.driver, 20).until(ExpectedConditions.elementToBeClickable(FCHubsCostsTabPage
                 .labelCostsTabAvgNetPrice));
         for (String incomeAvgTotalCostElement : incomeAvgTotalCostList) {
-            FCHubsCostsTabPage.incomeDropDown.selectByVisibleText(incomeAvgTotalCostElement.split(";")[0]);
+            incomeDropDownSelect.selectByVisibleText(incomeAvgTotalCostElement.split(";")[0]);
             result = incomeAvgTotalCostElement.split(";")[1]
                     .equals(FCHubsCostsTabPage.labelCostsTabAvgNetPrice.getText());
         }
@@ -191,30 +193,31 @@ public class FCHubsCostsTab {
         {
             RoomAndBoard = true;
         }
+
         assertTrue("The Room and Board fees are not correct", RoomAndBoard);
     }
 
     public static void ClickTuition() {
         driver = Hooks.driver;
         PageFactory.initElements(driver, FCHubsCostsTabPage.class);
-        FCHubsCostsTabPage.Tuition.click();
+        FCHubsCostsTabPage.Tuition.sendKeys(Keys.RETURN);
     }
 
     public static void ClickTotalFees() {
         driver = Hooks.driver;
         PageFactory.initElements(driver, FCHubsCostsTabPage.class);
-        FCHubsCostsTabPage.TotalFees.click();
+        FCHubsCostsTabPage.TotalFees.sendKeys(Keys.RETURN);
     }
 
     public static void ClickTuitionPerCreditHour() {
         driver = Hooks.driver;
         PageFactory.initElements(driver,FCHubsCostsTabPage.class);
-        FCHubsCostsTabPage.TuitionPerCreditHour.click();
+        FCHubsCostsTabPage.TuitionPerCreditHour.sendKeys(Keys.RETURN);
     }
 
     public static void ClickRoomAndBoard() {
         driver = Hooks.driver;
         PageFactory.initElements(driver, FCHubsCostsTabPage.class);
-        FCHubsCostsTabPage.RoomAndBoard.click();
+        FCHubsCostsTabPage.RoomAndBoard.sendKeys(Keys.RETURN);
     }
 }

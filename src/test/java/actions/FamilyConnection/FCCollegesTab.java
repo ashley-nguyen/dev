@@ -30,6 +30,8 @@ public class FCCollegesTab {
     public static void EnterCollegeToSearch(String searchParameter) {
         driver = Hooks.driver;
         PageFactory.initElements(driver, FCCollegesPage.class);
+        new WebDriverWait(Hooks.driver, 20).until(ExpectedConditions.elementToBeClickable
+                (FCCollegesPage.textAreaSearchCollege));
         FCCollegesPage.textAreaSearchCollege.sendKeys(searchParameter);
     }
 
@@ -77,28 +79,16 @@ public class FCCollegesTab {
         FCCollegesPage.buttonRemoveFromList.click();
     }
 
-    public static void clickSignUpButton() {
-        driver = Hooks.driver;
-        PageFactory.initElements(driver, FCCollegesPage.class);
-        FCCollegesPage.buttonSignUp.click();
-    }
-
-    public static void verifyCollegeVisitConfirmationMessage() {
-        driver = Hooks.driver;
-        PageFactory.initElements(driver, FCCollegesPage.class);
-        assertTrue("The confirmation message is not displayed", FCCollegesPage.labelConfirmationAlert.isDisplayed());
-    }
-
-    public static void clickRemoveFromList() {
-        driver = Hooks.driver;
-        PageFactory.initElements(driver, FCCollegesPage.class);
-        FCCollegesPage.buttonRemoveMeFromList.click();
-    }
-
     public static void verifyCollegeVisitInfoPage() {
         driver = Hooks.driver;
         PageFactory.initElements(driver, FCCollegesPage.class);
         assertTrue("The college visit information page is not displayed", FCCollegesPage.titleCollegeVisitInfo
                 .isDisplayed());
+    }
+
+    public static void clickAddToThinkingAboutList() {
+        driver = Hooks.driver;
+        PageFactory.initElements(driver, FCCollegesPage.class);
+        FCCollegesPage.linkAddToImThinkingAboutList.click();
     }
 }

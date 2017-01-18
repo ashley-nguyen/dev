@@ -356,7 +356,7 @@ public class FCHubs_StepDefs {
         FCCollegesTab.EnterCollegeToSearch(college);
         FCCollegesTab.ClickGoButton();
         FCCollegesTab.ClickCollegeInCollegeLookup(college);
-        FCCollegeView.clickBetaButton();
+//        FCCollegeView.clickBetaButton();
     }
     @When("^I open 'Communicate' link \"([^\"]*)\"$")
     public void I_open_Communicate_Link(String link) throws Throwable {
@@ -440,9 +440,9 @@ public class FCHubs_StepDefs {
         FCCollegesTab.removeCollegeFromImThinkingAboutListLegacy(college);
     }
 
-    @Given("^The college is added to the 'I'm thinking about' list$")
-    public void The_college_is_added_to_the_Im_thinking_about_list() throws Throwable {
-        FCHubs.clickWhiteHeartThinkingAboutList();
+    @Given("^The college \"([^\"]*)\" is added to the 'I'm thinking about' list$")
+    public void The_college_is_added_to_the_Im_thinking_about_list(String college) throws Throwable {
+        FCHubs.clickAddToCollegesThinkingAboutPinkButton();
     }
 
     @When("^I take the college out of the 'I'm thinking about' list using the heart icon$")
@@ -513,6 +513,31 @@ public class FCHubs_StepDefs {
     @Then("^I should see the the comparison made against other students from the students' school$")
     public void iShouldSeeTheTheComparisonMadeAgainstOtherStudentsFromTheStudentsSchool() throws Throwable {
         FCHubs.verifyComparisonAgainstOtherStudentsFromHS();
+    }
+
+    @Then("^I should see the Counselor Comments$")
+    public void I_should_see_the_Counselor_Comments() throws Throwable {
+        FCHubs.verifyCounselorComments();
+    }
+
+    @Then("^I should see a confirmation message$")
+    public void I_should_see_a_confirmation_message() throws Throwable {
+        FCHubs.verifyCollegeVisitConfirmationMessage();
+    }
+
+    @And("^Remove myself from the college visit at position \"([^\"]*)\"$")
+    public void remove_myself_from_the_college_visit(String position) throws Throwable {
+        FCHubs.clickRemoveFromList(position);
+    }
+
+    @Then("^I should see a confirmation message for the cancellation$")
+    public void I_should_see_a_confirmation_message_for_the_cancellation() throws Throwable {
+        FCHubs.verifyCollegeVisitCancellationMessage();
+    }
+
+    @Then("^No Register button should be displayed$")
+    public void no_register_button_should_be_displayed() throws Throwable {
+        FCHubs.verifyRegisterButtonNotPresent();
     }
 }
 

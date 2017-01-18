@@ -1,9 +1,6 @@
 package actions.FamilyConnection;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -81,7 +78,7 @@ public class FCHubsAdmissionsTab {
         JavascriptExecutor jse = (JavascriptExecutor)driver;
         ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", sectionElement);
         jse.executeScript("scroll(0, -250);");
-        sectionElement.click();
+        sectionElement.sendKeys(Keys.RETURN);
     }
 
     public static void VerifyApplicationRequirements(String reqType, List<String> applicationRequirements) {
@@ -119,14 +116,15 @@ public class FCHubsAdmissionsTab {
     public static void VerifyDeadline(String deadlineName, String date) {
         driver = Hooks.driver;
         PageFactory.initElements(driver, FCHubsAdmissionsTabPage.class);
+        List<WebElement> deadlinesList = driver.findElements(By.cssSelector(FCHubsAdmissionsTabPage.listDeadlinesLocator));
         boolean result = false;
 
-        for (int i = 0; i < FCHubsAdmissionsTabPage.listDeadlines.size(); i++) {
-            WebElement elementText = FCHubsAdmissionsTabPage.listDeadlines.get(i).findElement(By.cssSelector("span"));
+        for (int i = 0; i < deadlinesList.size(); i++) {
+            WebElement elementText = deadlinesList.get(i).findElement(By.cssSelector("span"));
             if (elementText.getText().equals(deadlineName)) {
-                WebElement monthElement = FCHubsAdmissionsTabPage.listDeadlines.get(i).findElement(By.cssSelector
+                WebElement monthElement = deadlinesList.get(i).findElement(By.cssSelector
                         ("div.hub-deadline__month"));
-                WebElement dayElement = FCHubsAdmissionsTabPage.listDeadlines.get(i).findElement(By.cssSelector("div " +
+                WebElement dayElement = deadlinesList.get(i).findElement(By.cssSelector("div " +
                         "div:nth-of-type(2)"));
                 if(monthElement.getText().equals(date.split(" ")[0])
                     && dayElement.getText().equals(date.split(" ")[1])) {

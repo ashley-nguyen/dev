@@ -45,14 +45,12 @@ public class FCHubsStudiesTab {
     }
 
     public static void VerifyDegreesOfferedStudiesTopBar(List<String> degreesOffered) {
-        boolean result = false;
         driver = Hooks.driver;
-        WebElement degreesList = driver.findElement(By.cssSelector
-                ("div[ng-if=\"vm.profile.friendlyDegrees.length > 0\"]"));
-        List<WebElement> degreeElements = degreesList.findElements(By.cssSelector("div[ng-repeat=" +
-                "\"degree in vm.profile.friendlyDegrees\"]"));
-        for(int i = 0; i < degreesOffered.size(); i++) {
-            if(degreeElements.get(i).getText().equals(degreesOffered.get(i))) {
+        PageFactory.initElements(driver, FCHubsStudiesTabPage.class);
+        boolean result = false;
+        List<WebElement> uiElements = driver.findElements(By.cssSelector(FCHubsStudiesTabPage.listDegreesOffered));
+        for (WebElement uiElement : uiElements) {
+            if (degreesOffered.contains(uiElement.getText())) {
                 result = true;
             } else {
                 result = false;

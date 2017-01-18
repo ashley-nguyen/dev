@@ -13,14 +13,14 @@ Feature:  As a student viewing new Hubs' Overview tab, I want to see contact inf
   Scenario: 'Attn: Applications'  is present in Application Mailing Address
     Then 'Attn: Applications' should be displayed in Application Mailing Address
 
-  Scenario: Address is present in Application Mailing Address with correct data
+  Scenario: Address is present in Application Mailing Address with correct data (Defect: HUBS-832 fixed)
     Then Address should be "108 Mary Martin Hall" in Application Mailing Address
 
   Scenario: City is present in Application Mailing Address with correct data
     Then City should be "Auburn AL" in Application Mailing Address
 
   Scenario: Zip address is present in Application Mailing Address with correct data
-    Then Zip address should be "36849-0002" in Application Mailing Address
+    Then Zip address should be "36849" in Application Mailing Address
 
   Scenario: Phone is present in Admissions with correct data
     Then Phone should be "(334) 844-6425" in Admissions

@@ -1,5 +1,6 @@
 package actions.FamilyConnection;
 
+import junit.framework.TestCase;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -51,6 +52,7 @@ public class FCHubs {
     public static void ClickNextOnFirstDialog() {
         driver = Hooks.driver;
         PageFactory.initElements(driver, FCHubsPage.class);
+        new WebDriverWait(Hooks.driver, 20).until(ExpectedConditions.elementToBeClickable(FCHubsPage.linkNextFirstDialog));
         FCHubsPage.linkNextFirstDialog.click();
     }
 
@@ -68,7 +70,7 @@ public class FCHubs {
     public static void VerifyThirdTutorialDialog() {
         driver = Hooks.driver;
         PageFactory.initElements(driver, FCHubsPage.class);
-        assertTrue("The Third Tutorial Dialog is displayed ", FCHubsPage.linkDoneThirdDialog.isDisplayed());
+        assertTrue("The Third Tutorial Dialog is displayed ", FCHubsPage.linkNextThirdDialog.isDisplayed());
     }
 
     public static void VerifyIdentifierModule() {
@@ -111,8 +113,8 @@ public class FCHubs {
 
     public static void ClickLearnMoreButton() {
         driver = Hooks.driver;
-        new WebDriverWait(Hooks.driver, 20).until(ExpectedConditions.elementToBeClickable(FCHubsPage.buttonLearnMore));
         PageFactory.initElements(driver, FCHubsPage.class);
+        new WebDriverWait(Hooks.driver, 20).until(ExpectedConditions.elementToBeClickable(FCHubsPage.buttonLearnMore));
         FCHubsPage.buttonLearnMore.click();
     }
 
@@ -330,7 +332,7 @@ public class FCHubs {
                     break;
             }
             new WebDriverWait(driver, 20).until(ExpectedConditions.elementToBeClickable(FCHubsPage.labelGPAValue));
-            if (scoreValueElement.split(";")[1].equals(valueElement.getText())) {
+            if (scoreValueElement.split(";")[1].equals(valueElement.getText().trim())) {
                 result = true;
             } else {
                 result = false;
@@ -372,6 +374,7 @@ public class FCHubs {
         driver = Hooks.driver;
         PageFactory.initElements(driver, FCHubsPage.class);
         boolean result = false;
+        boolean resultForEmptyData = false;
         WebElement scoreUIElement = null;
 
         for (String scoreStringElement : scoresList) {
@@ -386,15 +389,22 @@ public class FCHubs {
                     break;
             }
             new WebDriverWait(driver, 20).until(ExpectedConditions.elementToBeClickable(scoreUIElement));
-            if (scoreUIElement.getText().equals(scoreStringElement.split(";")[1])) {
-                result = true;
+            System.out.println("UI: " + scoreUIElement.getText());
+            System.out.println("Datos: " + scoreStringElement.split(";")[1]);
+
+            if (scoreStringElement.split(";")[1].equals("empty") && scoreUIElement.getText().equals("")) {
+                resultForEmptyData = true;
             } else {
-                result = false;
-                break;
+                if (scoreUIElement.getText().equals(scoreStringElement.split(";")[1])) {
+                    result = true;
+                } else {
+                    result = false;
+                    break;
+                }
             }
         }
 
-        assertTrue("The score qualifications are not correct", result);
+        assertTrue("The score qualifications are not correct", result && resultForEmptyData);
     }
 
     public static void VerifyOverallAverageTextScoreComp(String overallAvgText) {
@@ -412,6 +422,8 @@ public class FCHubs {
         WebElement dialOrQuestionElement = null;
         switch (scoreType) {
             case "ACT" : dialOrQuestionElement = FCHubsPage.labelACTQuestionMark;
+                break;
+            case "SAT" : dialOrQuestionElement = FCHubsPage.labelSATQuestionMark;
                 break;
         }
         assertTrue("The score text is not correct", dialOrQuestionElement.isDisplayed());
@@ -672,8 +684,8 @@ public class FCHubs {
 
     public static void ClickCommunicate() {
         driver = Hooks.driver;
+        PageFactory.initElements(driver, FCHubsPage.class);
         new WebDriverWait(driver, 20).until(ExpectedConditions.elementToBeClickable(FCHubsPage.buttonApplyOnline));
-        PageFactory.initElements(driver,FCHubsPage.class);
         FCHubsPage.buttonCommunicate.click();
     }
 
@@ -770,9 +782,7 @@ public class FCHubs {
     public static void clickWhiteHeartThinkingAboutList() {
         driver = Hooks.driver;
         PageFactory.initElements(driver, FCHubsPage.class);
-        if (FCHubsPage.buttonAddToCollegesImThinkingAbout.getAttribute("class").equals("fc-icon")) {
-            FCHubsPage.buttonAddToCollegesImThinkingAbout.click();
-        }
+        FCHubsPage.buttonAddToCollegesImThinkingAbout.click();
     }
 
     public static void verifyHeartStatusClicked() {
@@ -806,9 +816,11 @@ public class FCHubs {
         driver = Hooks.driver;
         PageFactory.initElements(driver, FCHubsPage.class);
         FCHubsPage.imgLogo.click();
-        if (FCHubsPage.buttonAddToCollegesImThinkingAbout.getAttribute("class").equals("fc-icon masthead__heart--full")) {
-            FCHubsPage.buttonAddToCollegesImThinkingAbout.click();
-        }
+        new WebDriverWait(Hooks.driver, 20).until(ExpectedConditions.elementToBeClickable
+                (FCHubsPage.tabCollegesTopBar));
+        FCHubsPage.buttonAddToCollegesImThinkingAbout.click();
+        new WebDriverWait(Hooks.driver, 20).until(ExpectedConditions.elementToBeClickable
+                (FCHubsPage.buttonAddToCollegesImThinkingAboutPinkBar));
     }
 
     public static void verifyCollegeIsNotInImThinkingAboutList(String college) {
@@ -816,9 +828,14 @@ public class FCHubs {
         PageFactory.initElements(driver, FCHubsPage.class);
         PageFactory.initElements(driver, FCCollegesPage.class);
         boolean result = false;
-        driver.get(FCHubsPage.URLimThinkingAboutList);
-        for (WebElement collegeInList : FCCollegesPage.imThinkingAboutListElements) {
+        if(driver.getCurrentUrl().contains("https://static.naviance.com")) {
+            FCHubsPage.buttonImThinkingAboutStickybar.click();
+        }
+        List<WebElement> imThinkingAboutListElements = driver.findElements
+                (By.cssSelector(FCCollegesPage.imThinkingAboutListElementsString));
+        for (WebElement collegeInList : imThinkingAboutListElements) {
             if (collegeInList.getText().contains(college)) {
+                System.out.println("Valor: " + collegeInList.getText());
                 result = false;
                 break;
             } else {
@@ -854,24 +871,25 @@ public class FCHubs {
     public static void hoverOverPinkHeart() {
         driver = Hooks.driver;
         PageFactory.initElements(driver, FCHubsPage.class);
-        new WebDriverWait(Hooks.driver, 20).until(ExpectedConditions.elementToBeClickable(FCHubsPage.linkNextFirstDialog));
-        clickWhiteHeartThinkingAboutList();
+        new WebDriverWait(Hooks.driver, 20).until(ExpectedConditions.elementToBeClickable
+                (FCHubsPage.linkNextFirstDialog));
         FCHubsPage.linkNextFirstDialog.click();
-        if (FCHubsPage.buttonAddToCollegesImThinkingAbout.getAttribute("class").equals("fc-icon masthead__heart--full")) {
-            Actions action  = new Actions(driver);
-            action.moveToElement(FCHubsPage.buttonAddToCollegesImThinkingAbout).perform();
-        }
+        FCHubsPage.buttonAddToCollegesImThinkingAboutPinkBar.click();
+        new WebDriverWait(Hooks.driver, 20).until(ExpectedConditions.elementToBeClickable
+                (FCHubsPage.buttonAddToCollegesImThinkingAboutFull));
+        Actions action  = new Actions(driver);
+        action.moveToElement(FCHubsPage.buttonAddToCollegesImThinkingAbout).perform();
     }
 
     public static void clickRegisterInCollegeVisit(String position) {
         driver = Hooks.driver;
-        WebElement registerButton = driver.findElement(By.cssSelector("tbody tr:nth-of-type(" + position + ") td a"));
+        WebElement registerButton = driver.findElement(By.cssSelector("tbody tr:nth-of-type(" + position + ") td span"));
         JavascriptExecutor jse = (JavascriptExecutor)driver;
         ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", registerButton);
         jse.executeScript("scroll(0, 500);");
         new WebDriverWait(Hooks.driver, 20).until(ExpectedConditions.textToBePresentInElementLocated(By.cssSelector
-                ("tbody tr:nth-of-type(" + position + ") td a"), "Register"));
-        registerButton.click();
+                ("tbody tr:nth-of-type(" + position + ") td span"), "Register"));
+        registerButton.sendKeys(Keys.RETURN);
     }
 
     public static void clickDetailsInCollegeVisit(String position) {
@@ -880,7 +898,7 @@ public class FCHubs {
         JavascriptExecutor jse = (JavascriptExecutor)driver;
         ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", registerButton);
         jse.executeScript("scroll(0, 500);");
-        registerButton.click();
+        registerButton.sendKeys(Keys.RETURN);
     }
 
     public static void clickCompareMeWithAllAcceptedApplicants() {
@@ -917,5 +935,70 @@ public class FCHubs {
         new WebDriverWait(Hooks.driver, 20).until(ExpectedConditions.elementToBeClickable
                 (FCHubsPage.labelAllStudents));
         FCHubsPage.buttonCompareMeWithAllAcceptedApplicants.click();
+    }
+
+    public static void verifyCounselorComments() {
+        driver = Hooks.driver;
+        PageFactory.initElements(driver, FCHubsPage.class);
+        new WebDriverWait(Hooks.driver, 20).until(ExpectedConditions.elementToBeClickable
+                (FCHubsPage.labelCounselorCommentsTitle));
+        assertTrue("The Counselor Comments are not displayed", FCHubsPage.labelCounselorCommentsTitle.isDisplayed());
+    }
+
+    public static void verifyCollegeVisitConfirmationMessage() {
+        driver = Hooks.driver;
+        PageFactory.initElements(driver, FCHubsPage.class);
+        TestCase.assertTrue("The confirmation message is not displayed",
+                FCHubsPage.visitRegistrationSuccessMsg.isDisplayed());
+    }
+
+    public static void clickRemoveFromList(String position) {
+        driver = Hooks.driver;
+        WebElement registerButton = driver.findElement(By.cssSelector("tbody tr:nth-of-type(" + position + ") td span"));
+        JavascriptExecutor jse = (JavascriptExecutor)driver;
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", registerButton);
+        jse.executeScript("scroll(0, 500);");
+        new WebDriverWait(Hooks.driver, 20).until(ExpectedConditions.textToBePresentInElementLocated(By.cssSelector
+                ("tbody tr:nth-of-type(" + position + ") td span"), "Cancel"));
+        if(registerButton.getText().equals("Cancel")) {
+            registerButton.sendKeys(Keys.RETURN);
+        }
+    }
+
+    public static void verifyCollegeVisitCancellationMessage() {
+        driver = Hooks.driver;
+        PageFactory.initElements(driver, FCHubsPage.class);
+        new WebDriverWait(Hooks.driver, 20).until(ExpectedConditions.elementToBeClickable
+                (FCHubsPage.visitRegistrationCancelMsg));
+        assertTrue("The cacncellation message is not displayed", FCHubsPage.visitRegistrationCancelMsg.isDisplayed());
+    }
+
+    public static void clickImThinkingAboutStickyBar() {
+        driver = Hooks.driver;
+        PageFactory.initElements(driver, FCHubsPage.class);
+        new WebDriverWait(Hooks.driver, 20).until(ExpectedConditions.elementToBeClickable
+                (FCHubsPage.buttonImThinkingAboutStickybar));
+        FCHubsPage.buttonImThinkingAboutStickybar.click();
+    }
+
+    public static void verifyRegisterButtonNotPresent() {
+        driver = Hooks.driver;
+        PageFactory.initElements(driver, FCHubsPage.class);
+        boolean result;
+        try {
+            FCHubsPage.firstCollegeVisitsRegisterButton.isDisplayed();
+            result = false;
+        } catch (NoSuchElementException e) {
+            result = true;
+        }
+        assertTrue("The Register button is displayed", result);
+    }
+
+    public static void clickAddToCollegesThinkingAboutPinkButton() {
+        driver = Hooks.driver;
+        PageFactory.initElements(driver, FCHubsPage.class);
+        FCHubsPage.buttonAddToCollegesImThinkingAboutPinkBar.click();
+        new WebDriverWait(Hooks.driver, 20).until(ExpectedConditions.invisibilityOfElementLocated(
+                By.cssSelector("a[ng-click=\"vm.addToList()\"]")));
     }
 }
