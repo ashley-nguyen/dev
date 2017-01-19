@@ -18,7 +18,7 @@ Feature: As a student viewing new Hubs Overview Tab, I want the default score co
     | GPA;2.62 |
     | SAT;800  |
     | ACT;29   |
-  @test
+
   Scenario: The score text is displayed with correct values under each dial
     Then The score text for each score type should be as follows:
     #use 'empty' when the value in the UI is empty

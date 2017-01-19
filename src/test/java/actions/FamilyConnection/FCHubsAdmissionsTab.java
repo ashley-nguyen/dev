@@ -110,7 +110,7 @@ public class FCHubsAdmissionsTab {
         }
         JavascriptExecutor jse = (JavascriptExecutor)driver;
         ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", appInfoTab);
-        appInfoTab.click();
+        appInfoTab.sendKeys(Keys.RETURN);
     }
 
     public static void VerifyDeadline(String deadlineName, String date) {

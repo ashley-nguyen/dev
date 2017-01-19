@@ -389,8 +389,6 @@ public class FCHubs {
                     break;
             }
             new WebDriverWait(driver, 20).until(ExpectedConditions.elementToBeClickable(scoreUIElement));
-            System.out.println("UI: " + scoreUIElement.getText());
-            System.out.println("Datos: " + scoreStringElement.split(";")[1]);
 
             if (scoreStringElement.split(";")[1].equals("empty") && scoreUIElement.getText().equals("")) {
                 resultForEmptyData = true;
@@ -595,6 +593,7 @@ public class FCHubs {
     public static void ClickStudentLifeTab() {
         driver = Hooks.driver;
         PageFactory.initElements(driver, FCHubsPage.class);
+        new WebDriverWait(driver, 20).until(ExpectedConditions.elementToBeClickable(FCHubsPage.tabStudentLife));
         FCHubsPage.tabStudentLife.click();
     }
 
@@ -905,11 +904,12 @@ public class FCHubs {
         driver = Hooks.driver;
         PageFactory.initElements(driver, FCHubsPage.class);
         JavascriptExecutor jse = (JavascriptExecutor)driver;
-        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);",
-                FCHubsPage.labelCompareMeSectionNotes);
         new WebDriverWait(Hooks.driver, 20).until(ExpectedConditions.elementToBeClickable
                 (FCHubsPage.labelOtherStudentsFromHS));
-        FCHubsPage.buttonCompareMeWithAllAcceptedApplicants.click();
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);",
+                FCHubsPage.labelCompareMeSectionNotes);
+
+        FCHubsPage.buttonCompareMeWithAllAcceptedApplicants.sendKeys(Keys.RETURN);
     }
 
     public static void verifyComparisonAgainstAllStudents() {
@@ -934,7 +934,7 @@ public class FCHubs {
                 FCHubsPage.labelCompareMeSectionNotes);
         new WebDriverWait(Hooks.driver, 20).until(ExpectedConditions.elementToBeClickable
                 (FCHubsPage.labelAllStudents));
-        FCHubsPage.buttonCompareMeWithAllAcceptedApplicants.click();
+        FCHubsPage.buttonCompareMeWithAllAcceptedApplicants.sendKeys(Keys.RETURN);
     }
 
     public static void verifyCounselorComments() {

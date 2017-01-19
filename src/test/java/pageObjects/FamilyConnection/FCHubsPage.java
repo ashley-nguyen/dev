@@ -79,7 +79,7 @@ public class FCHubsPage extends BaseClass {
     public static WebElement labelOverviewTabDeadlineMonth;
     @FindBy(how = How.CSS, using = ".hub-deadline__day.ng-binding")
     public static WebElement labelOverviewTabDeadlineDay;
-    @FindBy(how = How.CSS, using = "div[ng-if=\"vm.applicationsOffice.address.street2\"]")
+    @FindBy(how = How.CSS, using = "div.contacts__mail.ng-binding")
     public static WebElement appMailingAddress;
     @FindBy(how = How.CSS, using = ".contacts__admissions.ng-binding")
     public static WebElement contactInfoAdmissions;
@@ -141,7 +141,7 @@ public class FCHubsPage extends BaseClass {
     public static WebElement labelACTQuestionMark;
     @FindBy(how = How.CSS, using = "div[ng-show=\"!(vm.studentScores.concordedSat > 0)\"]")
     public static WebElement labelSATQuestionMark;
-    @FindBy(how = How.CSS, using = "div.compare__button-container-bottom.fc-grid__row.fc-grid__row--xs-center")
+    @FindBy(how = How.CSS, using = "div.compare__button-container-bottom.fc-grid__row.fc-grid__row--xs-center div")
     public static WebElement buttonCompareMeWithAllAcceptedApplicants;
     @FindBy(how = How.CSS, using = "h2.ng-binding span[ng-show=\"vm.compareToggleState == 'college'\"]")
     public static WebElement labelAllStudents;
