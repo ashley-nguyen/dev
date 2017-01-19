@@ -157,7 +157,7 @@ public class FCHubsStudentLifeTab {
         ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", driver.findElement
                 (By.cssSelector(".student-life-housing-information__data.fc-grid__col.fc-grid__col--xs-12" +
                         ".fc-grid__col--sm-7.fc-grid__col--md-6")));
-        sectionElement.click();
+        sectionElement.sendKeys(Keys.RETURN);
     }
 
     public static void VerifyStudentOrganizations(List<String> studentOrgs) {
