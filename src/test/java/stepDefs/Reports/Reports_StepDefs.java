@@ -64,6 +64,13 @@ public class Reports_StepDefs {
 
     }
 
+    @Then("^I verify scholarship \"(.*)\" report page$")
+    public void i_verify_scholarship_reports(String ScholarshipReports) throws Throwable {
+        Reports.NavigateToReports();
+        Reports.verifyScholarshipReporting(ScholarshipReports);
+
+    }
+
 
     @Then("^I verify score report page$")
     public void i_verify_score_report() throws Throwable {
