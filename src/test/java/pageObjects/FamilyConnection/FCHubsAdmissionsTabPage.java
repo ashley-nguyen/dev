@@ -43,6 +43,7 @@ public class FCHubsAdmissionsTabPage extends BaseClass {
 
     public static List<WebElement> listDeadlines = driver.findElements(By.cssSelector(".admissions-information__" +
             "deadline-item.ng-scope"));
+    public static String listDeadlinesLocator = ".admissions-information__deadline-item.ng-scope";
 
     public FCHubsAdmissionsTabPage(WebDriver driver) {
         super(driver);

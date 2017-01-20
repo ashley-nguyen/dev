@@ -9,7 +9,6 @@ Feature: As a student, I should be able to see the College Visits my counselor c
 
   Scenario: I'm able to register to a visit
     When I open the college visit in position "1"
-    And I sign up to the college visit
     Then I should see a confirmation message
-    And Remove myself from the college visit
-
+    When Remove myself from the college visit at position "1"
+    Then I should see a confirmation message for the cancellation

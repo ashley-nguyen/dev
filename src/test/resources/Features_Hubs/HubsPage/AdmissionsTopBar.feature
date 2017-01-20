@@ -9,7 +9,7 @@ Feature:  As a student viewing new Hubs' Overview tab, I want to see contact inf
     And I open the Admissions tab
 
   Scenario: The Early Decision Deadline is displayed in Admissions Top Bar with correct data
-    Then The Early Decision Deadline should be "January 15" in Admissions Top bar
+    Then The Early Decision Deadline should be "October 15" in Admissions Top bar
 
   Scenario: The Acceptance Rate is displayed in Admissions Top Bar with correct data
     Then The Acceptance Rate should be "83" in Admissions Top Bar

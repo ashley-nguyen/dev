@@ -34,6 +34,9 @@ public class FCHubsStudiesTabPage extends BaseClass {
     @FindBy(how = How.CSS, using = ".studies-programs__filter li:nth-of-type(7)")
     public static WebElement buttonMajorsOfferedGradCertificate;
 
+    public static String listDegreesOffered = "div[ng-if=\"vm.profile.friendlyDegrees.length > 0\"] " +
+            "div.hub-data-pod--degree.ng-binding.ng-scope";
+
     public FCHubsStudiesTabPage(WebDriver driver) {
         super(driver);
     }
