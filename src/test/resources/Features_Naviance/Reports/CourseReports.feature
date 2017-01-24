@@ -1,8 +1,8 @@
 @reports @td2 @district @regression
-Feature: Reports tests
-  in order to navigate to Reports
+Feature: Course Reports tests
+  In order to navigate to Reports
   as a Naviance user
-  I want to verify that would not show "A Fatal Error!"
+  I want to verify the existance of all the reports under Course Report
 
   Background:
     Given when I log in with the following user details:
