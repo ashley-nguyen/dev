@@ -356,7 +356,10 @@ public class FCHubs_StepDefs {
         FCCollegesTab.EnterCollegeToSearch(college);
         FCCollegesTab.ClickGoButton();
         FCCollegesTab.ClickCollegeInCollegeLookup(college);
-//        FCCollegeView.clickBetaButton();
+        /*The following callings inside this method will be commented as needed. This is because sometimes a toggle
+        * is switched to use the Beta button, and the same with the Authorize button*/
+        FCCollegeView.clickBetaButton();
+//        FCCollegeView.clickAuthorizeButton();
     }
     @When("^I open 'Communicate' link \"([^\"]*)\"$")
     public void I_open_Communicate_Link(String link) throws Throwable {
@@ -538,6 +541,26 @@ public class FCHubs_StepDefs {
     @Then("^No Register button should be displayed$")
     public void no_register_button_should_be_displayed() throws Throwable {
         FCHubs.verifyRegisterButtonNotPresent();
+    }
+
+    @Then("^I should see the Recommended Courses with the following data:$")
+    public void I_should_see_the_Recommended_Courses_with_the_following_data(List<String> recommendedCoursesList) throws Throwable {
+        FCHubs.verifyRecommendedCourses(recommendedCoursesList);
+    }
+
+    @When("^I sort data using the \"([^\"]*)\" header$")
+    public void I_sort_the_using_the_header(String header) throws Throwable {
+        FCHubs.clickRecommendedCoursesHeader(header);
+    }
+
+    @Then("^The course names are sorted alphabetically$")
+    public void the_are_sorted_alphabetically() throws Throwable {
+        FCHubs.verifyDataIsAlphabeticallySorted();
+    }
+
+    @Then("^The \"([^\"]*)\" are sorted from greatest to least$")
+    public void theAreSortedFromGreatestToLeast(String dataType) throws Throwable {
+        FCHubs.verifyYearsDataIsSorted(dataType);
     }
 }
 
