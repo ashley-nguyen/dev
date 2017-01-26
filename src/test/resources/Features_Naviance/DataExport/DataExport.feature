@@ -11,5 +11,5 @@ Scenario Outline: Verify Data Export from district
 
 Examples:
   | account     | user       | password  | text                 |
-  | rtd1        | stan.smith | stan01!   | Naviance Data Export |
+  | blueqa1        | frank.district | password   | Naviance Data Export |
 

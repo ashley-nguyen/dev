@@ -11,5 +11,5 @@ Feature: Type-casted year input to in  test
 
     Examples:
       | user       | account | password | ClassYear |
-      | stan.smith | rtd1    | stan01!  | 2009      |
+      | frank.district | blueqa1    | password  | 2009      |
 
