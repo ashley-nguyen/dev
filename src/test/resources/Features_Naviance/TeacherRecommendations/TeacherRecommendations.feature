@@ -6,7 +6,7 @@ Feature: Teacher Recommendation
 
   Background:
     Given when I log in with the following user details:
-      | rtd1 | stan.smith | stan01! |
+      | blueqa1 | frank.district | password  |
 
   @request
   Scenario Outline: Requests Teacher Recommendations

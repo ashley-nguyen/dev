@@ -11,5 +11,5 @@ Scenario Outline: Verify Salesforce
 
 Examples:
   | account     | user       | password  |
-  | rtd1        | stan.smith | stan01!   |
+  | blueqa1     | frank.district | password  |
 
