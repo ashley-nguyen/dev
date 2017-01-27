@@ -1,8 +1,10 @@
 package actions.FamilyConnection;
 
+import com.gargoylesoftware.htmlunit.ElementNotFoundException;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import pageObjects.FamilyConnection.FCHubsAdmissionsTabPage;
 import pageObjects.FamilyConnection.FCHubsPage;
@@ -134,5 +136,255 @@ public class FCHubsAdmissionsTab {
         }
 
         assertTrue("The deadline is not correct", result);
+    }
+
+    public static void verifyRecommendedCourses(List<String> recommendedCoursesList) {
+        driver = Hooks.driver;
+        PageFactory.initElements(driver, FCHubsAdmissionsTabPage.class);
+        boolean resultNames = false;
+        boolean resultYearsReq = false;
+        boolean resultYearsRec = false;
+        List<WebElement> courseNamesListUI = driver.findElements(By.cssSelector
+                (FCHubsAdmissionsTabPage.courseNamesLocator));
+        List<WebElement> yearsRequiredListUI = driver.findElements(By.cssSelector
+                (FCHubsAdmissionsTabPage.yearsRequiredLocator));
+        List<WebElement> yearsRecommendedListUI = driver.findElements(By.cssSelector
+                (FCHubsAdmissionsTabPage.yearsRecommendedLocator));
+
+        List<String> courseNamesListData = new ArrayList<>();
+        List<String> yearsRequiredListData = new ArrayList<>();
+        List<String> yearsRecommendedListData = new ArrayList<>();
+
+        for (String recommendedCourseElement : recommendedCoursesList) {
+            courseNamesListData.add(recommendedCourseElement.split(";")[0]);
+            if (recommendedCourseElement.split(";")[1].equals("empty")) {
+                yearsRequiredListData.add("");
+            } else {
+                yearsRequiredListData.add(recommendedCourseElement.split(";")[1]);
+            }
+            if (recommendedCourseElement.split(";")[2].equals("empty")) {
+                yearsRecommendedListData.add("");
+            } else {
+                yearsRecommendedListData.add(recommendedCourseElement.split(";")[2]);
+            }
+        }
+
+
+        for (WebElement courseNameElement : courseNamesListUI) {
+            if (courseNamesListData.contains(courseNameElement.getText())) {
+                resultNames = true;
+            } else {
+                resultNames = false;
+                break;
+            }
+        }
+
+        for (WebElement yearsRequiredElement : yearsRequiredListUI) {
+            if (yearsRequiredListData.contains(yearsRequiredElement.getText())) {
+                resultYearsReq = true;
+            } else {
+                resultYearsReq = false;
+                break;
+            }
+        }
+
+        for (WebElement yearsRecommendedElement : yearsRecommendedListUI) {
+            if (yearsRecommendedListData.contains(yearsRecommendedElement.getText())) {
+                resultYearsRec = true;
+            } else {
+                resultYearsRec = false;
+                break;
+            }
+        }
+        assertTrue("The data in Recommended Events is not correct", resultNames && resultYearsReq && resultYearsRec);
+    }
+
+    public static void clickRecommendedCoursesHeader(String header) {
+        driver = Hooks.driver;
+        PageFactory.initElements(driver, FCHubsAdmissionsTabPage.class);
+        WebElement headerElement = null;
+        new WebDriverWait(Hooks.driver, 20).until(ExpectedConditions.elementToBeClickable
+                (FCHubsAdmissionsTabPage.linkYearsRecommendedHeader));
+        switch (header) {
+            case "Course Names" : headerElement = FCHubsAdmissionsTabPage.linkCourseNameHeader;
+                break;
+            case "Years Required" : headerElement = FCHubsAdmissionsTabPage.linkYearsRequiredHeader;
+                break;
+            case "Years Recommended" : headerElement = FCHubsAdmissionsTabPage.linkYearsRecommendedHeader;
+                break;
+        }
+        headerElement.sendKeys(Keys.RETURN);
+        if (header.equals("Years Recommended")) headerElement.sendKeys(Keys.RETURN);
+    }
+
+    public static void verifyDataIsAlphabeticallySorted() {
+        driver = Hooks.driver;
+        PageFactory.initElements(driver, FCHubsAdmissionsTabPage.class);
+        boolean result = false;
+        List<Character> firstLettersList = new ArrayList<>();
+        List<WebElement> elementsList = driver.findElements(By.cssSelector(FCHubsAdmissionsTabPage.courseNamesLocator));
+
+        for (WebElement element : elementsList) {
+            System.out.println("Control: " + element.getText());
+            firstLettersList.add(element.getText().charAt(0));
+        }
+
+        for (int i = 0; i < (firstLettersList.size() - 1); i++) {
+            if (firstLettersList.get(i + 1) < firstLettersList.get(i)) {
+                result = false;
+                break;
+            } else {
+                result = true;
+            }
+        }
+
+        assertTrue("The course names are not correctly sorted", result);
+    }
+
+    public static void verifyYearsDataIsSorted(String dataType) {
+        driver = Hooks.driver;
+        PageFactory.initElements(driver, FCHubsAdmissionsTabPage.class);
+        List<Integer> correctedElementList = new ArrayList<>();
+        boolean result = false;
+        String locator = "";
+
+        switch (dataType) {
+            case "years required" : locator = FCHubsAdmissionsTabPage.yearsRequiredLocator;
+                break;
+            case "years recommended" : locator = FCHubsAdmissionsTabPage.yearsRecommendedLocator;
+                break;
+        }
+
+        List<WebElement> elementsList = driver.findElements(By.cssSelector(locator));
+
+        for (WebElement element : elementsList) {
+            if (element.getText().equals("")) {
+                correctedElementList.add(0);
+            } else {
+                correctedElementList.add(Integer.parseInt(element.getText()));
+            }
+        }
+
+        for (int i = 0; i < (correctedElementList.size() - 1); i++) {
+            System.out.println("Num: " + correctedElementList.get(i));
+            if (correctedElementList.get(i + 1) < correctedElementList.get(i)) {
+                result = false;
+                break;
+            } else {
+                result = true;
+            }
+        }
+
+        assertTrue("The data is not correctly sorted", result);
+    }
+
+    public static void verifyDropDownOptions(String dropDownIdentifier, List<String> dropDownOptions) {
+        driver = Hooks.driver;
+        PageFactory.initElements(driver, FCHubsAdmissionsTabPage.class);
+        boolean result = false;
+        String dropDownLocator = "";
+        switch (dropDownIdentifier) {
+            case "Comparing" : dropDownLocator = FCHubsAdmissionsTabPage.comparingDropDownLocator;
+                break;
+            case "vs." : dropDownLocator = FCHubsAdmissionsTabPage.vsDropDownLocator;
+                break;
+        }
+        Select dropDown = new Select(driver.findElement(By.cssSelector(dropDownLocator)));
+        List<WebElement> optionsList = dropDown.getOptions();
+        for (WebElement optionUI : optionsList) {
+            System.out.println("UI: " + optionUI.getText());
+            if (dropDownOptions.contains(optionUI.getText())) {
+                result = true;
+            } else {
+                result = false;
+                break;
+            }
+        }
+        assertTrue("The options in the DropDown are not correct", result);
+    }
+
+    public static void verifyScattergramsSection(String section) {
+        driver = Hooks.driver;
+        PageFactory.initElements(driver, FCHubsAdmissionsTabPage.class);
+        WebElement sectionElement = null;
+        switch (section) {
+            case "KEY section" : sectionElement =  FCHubsAdmissionsTabPage.keySectionScattergrams;
+                break;
+            case "description" : sectionElement =  FCHubsAdmissionsTabPage.textBoxDescriptionScattergrams;
+                break;
+        }
+        new WebDriverWait(Hooks.driver, 20).until(ExpectedConditions.elementToBeClickable
+                (FCHubsAdmissionsTabPage.keySectionScattergrams));
+        assertTrue("The KEY section in Scattergrams is not displayed", sectionElement.isDisplayed());
+    }
+
+    public static void clickShowMoreScattergrams() {
+        driver = Hooks.driver;
+        PageFactory.initElements(driver, FCHubsAdmissionsTabPage.class);
+        new WebDriverWait(Hooks.driver, 20).until(ExpectedConditions.elementToBeClickable
+                (FCHubsAdmissionsTabPage.linkShowMoreScattergrams));
+        new WebDriverWait(Hooks.driver, 20).until(ExpectedConditions.elementToBeClickable
+                (FCHubsAdmissionsTabPage.imageScattergrams));
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);",
+                FCHubsAdmissionsTabPage.keySectionScattergrams);
+        FCHubsAdmissionsTabPage.linkShowMoreScattergrams.click();
+    }
+
+    public static void verifyExpandedDescriptionScattergrams() {
+        driver = Hooks.driver;
+        PageFactory.initElements(driver, FCHubsAdmissionsTabPage.class);
+        new WebDriverWait(Hooks.driver, 20).until(ExpectedConditions.elementToBeClickable
+                (FCHubsAdmissionsTabPage.textBoxDescriptionScattergramsExpanded));
+        assertTrue("The Scattergrams description is not expanded after clicking 'Show more'",
+                FCHubsAdmissionsTabPage.textBoxDescriptionScattergramsExpanded.isDisplayed());
+    }
+
+    public static void clickShowLessScattergrams() {
+        driver = Hooks.driver;
+        PageFactory.initElements(driver, FCHubsAdmissionsTabPage.class);
+        new WebDriverWait(Hooks.driver, 20).until(ExpectedConditions.elementToBeClickable
+                (FCHubsAdmissionsTabPage.linkShowMoreScattergrams));
+        new WebDriverWait(Hooks.driver, 20).until(ExpectedConditions.elementToBeClickable
+                (FCHubsAdmissionsTabPage.imageScattergrams));
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);",
+                FCHubsAdmissionsTabPage.keySectionScattergrams);
+        FCHubsAdmissionsTabPage.linkShowLessScattergrams.click();
+    }
+
+    public static void clickInfoIconScattergrams() {
+        driver = Hooks.driver;
+        PageFactory.initElements(driver, FCHubsAdmissionsTabPage.class);
+        new WebDriverWait(Hooks.driver, 20).until(ExpectedConditions.elementToBeClickable
+                (FCHubsAdmissionsTabPage.linkShowMoreScattergrams));
+        FCHubsAdmissionsTabPage.infoIconScattergrams.sendKeys(Keys.RETURN);
+    }
+
+    public static void verifyTooltipScattergrams() {
+        driver = Hooks.driver;
+        PageFactory.initElements(driver, FCHubsAdmissionsTabPage.class);
+        assertTrue("The information tooltip is not displayed",
+                FCHubsAdmissionsTabPage.buttonXTooltipScattergrams.isDisplayed());
+    }
+
+    public static void clickXTooltipScattergrams() {
+        driver = Hooks.driver;
+        PageFactory.initElements(driver, FCHubsAdmissionsTabPage.class);
+        new WebDriverWait(Hooks.driver, 20).until(ExpectedConditions.elementToBeClickable
+                (FCHubsAdmissionsTabPage.imageScattergrams));
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);",
+                FCHubsAdmissionsTabPage.labelMonthRegDecisionDeadline);
+        FCHubsAdmissionsTabPage.buttonXTooltipScattergrams.click();
+    }
+
+    public static void verifyScattergramsTooltipClosed() {
+        driver = Hooks.driver;
+        PageFactory.initElements(driver, FCHubsAdmissionsTabPage.class);
+        boolean result = false;
+        try {
+            FCHubsAdmissionsTabPage.buttonXTooltipScattergrams.isDisplayed();
+        } catch (NoSuchElementException e) {
+            result = true;
+        }
+        assertTrue("The information tooltip is displayed", result);
     }
 }
