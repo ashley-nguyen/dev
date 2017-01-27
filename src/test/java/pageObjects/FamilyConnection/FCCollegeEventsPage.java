@@ -37,6 +37,32 @@ public class FCCollegeEventsPage extends BaseClass {
     @FindBy(how = How.CSS, using = ".fc-info-tag.fc-info-tag--recommended.ng-scope")
     public static WebElement verifyRecommendedEventsText;
 
+    @FindBy(how = How.CSS, using = "a[href='https://fc-events-app.naviance.com/college-events-app']")
+    public static WebElement UpcomingCollegeEvents;
+
+    @FindBy(how = How.CSS, using = ".fc-button.fc-button--primary[ng-click=\"vm.toggleForm()\"]")
+    public static WebElement eventsMoreOptions;
+
+    @FindBy(how = How.CSS, using = "div.search-form__fields.search-form__fields--open div.fc-central-content > strong")
+    public static WebElement VerifyFindEventsByOptionsText;
+
+   @FindBy(how = How.CSS, using = "select[ng-change='vm.updateZip()']")
+    public static WebElement selectDistanceandEnterZipCodeValue;
+
+    @FindBy(how = How.CSS, using = "[ng-required=\"vm.isZipRequired()\"]")
+    public static WebElement eventsTextBoxForZipCode;
+
+    @FindBy(how = How.CSS, using = ".fc-button.fc-button--primary")
+    public static WebElement clickShowResults;
+
+    @FindBy(how = How.CSS, using = "h3")
+    public static WebElement verifyFilteredEventsData;
+
+    @FindBy(how = How.CSS, using = ".fc-tooltip__close.fc-tooltip__close--event-message svg")
+    public static WebElement closeEventToolTip;
+
+    public static String eventsList = "h3";
+
     public FCCollegeEventsPage(WebDriver driver) {
         super(driver);
     }

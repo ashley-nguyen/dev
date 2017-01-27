@@ -2,6 +2,7 @@ package stepDefs.Login;
 
 import actions.FamilyConnection.FCCollegeEvents;
 import cucumber.api.PendingException;
+import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import org.openqa.selenium.WebDriver;
@@ -53,6 +54,39 @@ public class Events_StepDef {
         FCCollegeEvents.verifyRecommendedEventsText();
     }
 
+
+    @When("^I click on link Upcoming college events$")
+    public void i_Click_On_Link_UpcomingCollegeEvents() throws Throwable {
+        FCCollegeEvents.clicklinkUpcomingCollegeEvents();
+
+    }
+
+    @When("^I click on button More Options$")
+    public void i_Click_On_Button_MoreOptions() throws Throwable {
+         FCCollegeEvents.clickMoreOptions();
+    }
+
+    @Then("^Filter Options are displayed$")
+    public void filterOptionsAreDisplayed() throws Throwable {
+        FCCollegeEvents.VerifyFindEventsByOptions();
+
+    }
+
+    @When("^I Select College Location within \"([^\"]*)\" and enter zipcode \"([^\"]*)\"$")
+    public void iSelectCollegeLocationWithinAndEnterZipcode(String distance, String zipcode) throws Throwable {
+        FCCollegeEvents.selectDistanceandEnterZipCode(distance, zipcode);
+    }
+
+    @When("^I open show results$")
+    public void iOpenShowResults() throws Throwable {
+        FCCollegeEvents.clickShowResults();
+    }
+
+    @Then("^I see the Filtered Events \"([^\"]*)\"$")
+    public void iSeeTheFilteredEvents(String eventName) throws Throwable {
+        FCCollegeEvents.verifyFilteredEvents(eventName);
+
+    }
 }
 
 
