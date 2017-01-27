@@ -10,5 +10,5 @@ Scenario Outline: Verify Dashboard
   Then I will see data in recent updates
 Examples:
   | account     | user       | password  |
-  | rtd1        | stan.smith | stan01!   |
+  | blueqa1        | frank.district | password   |
 

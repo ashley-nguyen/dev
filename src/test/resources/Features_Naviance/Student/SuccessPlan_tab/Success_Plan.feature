@@ -6,7 +6,7 @@ Feature: Student Success Plan
 
   Background:
     Given when I log in with the following user details:
-      | rtsa | stan.smith | stan01! |
+      | blue1hs | frank.counselor | frank01! |
 
   @addcustomtask
   Scenario Outline: Add custom task
@@ -16,7 +16,7 @@ Feature: Student Success Plan
 
   Examples:
     | student       | taskname    | duedate   |
-    | a103, a103    | New Task 1  | 2017-06-30|
+    | Student1, Transfer    | New Task 1  | 2017-06-30|
 
   @viewtaskdetails
   Scenario Outline: Assign school tasks
@@ -26,9 +26,9 @@ Feature: Student Success Plan
 
   Examples:
     | student       | item                           |
-    | a103, a103    | Add career clusters to my list |
-    | a103, a103    | Add careers to my list         |
-    | a103, a103    | Attach file                    |
+    | Student1, Transfer    | Add career clusters to my list |
+    | Student1, Transfer    | Add careers to my list         |
+    | Student1, Transfer    | Attach file                    |
 
   @viewtaskdetails
   Scenario Outline: Assign school tasks from district
@@ -38,6 +38,6 @@ Feature: Student Success Plan
 
   Examples:
     | student       | item                           |
-    | a103, a103    | Add career clusters to my list |
-    | a103, a103    | Add careers to my list         |
-    | a103, a103    | Attend college visits          |
+    | Student1, Transfer    | Add career clusters to my list |
+    | Student1, Transfer    | Add careers to my list         |
+    | Student1, Transfer    | Attend college visits          |

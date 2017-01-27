@@ -9,8 +9,8 @@ Scenario Outline: Verify DefaultDB
   Then I verify that home page is displayed without errors
 
 Examples:
-  | account     | user       | password  |
-  | rtd1        | stan.smith | stan01!   |
+  | account     | user           | password  |
+  | blueqa1     | frank.district | password  |
 
 
   Scenario Outline: Verify Write DB
@@ -19,5 +19,5 @@ Examples:
     Then I verify the Course Catalog page
 
   Examples:
-    | account     | user       | password  |
-    | rtd1        | stan.smith | stan01!   |
+    | account     | user           | password  |
+    | blueqa1     | frank.district | password  |
