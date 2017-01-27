@@ -175,20 +175,11 @@ public class FCHubsPage extends BaseClass {
     public static WebElement tabCollegesTopBar;
     @FindBy(how = How.CSS, using = "tbody tr:nth-of-type(1) td span")
     public static WebElement firstCollegeVisitsRegisterButton;
-    @FindBy(how = How.CSS, using = "span[ng-click=\"vm.togglePrerequisiteCoursesSort('name')\"]")
-    public static WebElement linkCourseNameHeader;
-    @FindBy(how = How.CSS, using = "span[ng-click=\"vm.togglePrerequisiteCoursesSort('yearsRequired')\"]")
-    public static WebElement linkYearsRequiredHeader;
-    @FindBy(how = How.CSS, using = "span[ng-click=\"vm.togglePrerequisiteCoursesSort('yearsRecommended')\"]")
-    public static WebElement linkYearsRecommendedHeader;
 
 
     public static String URLimThinkingAboutList = "https://connection-int.dev.naviance.com/family-connection" +
             "/colleges/application/consideration";
     public static String incomeDropDownLocator = "select";
-    public static String courseNamesLocator = "tr[ng-repeat=\"course in vm.prerequisiteCourses\"] td:nth-of-type(1)";
-    public static String yearsRequiredLocator = "tr[ng-repeat=\"course in vm.prerequisiteCourses\"] td:nth-of-type(2)";
-    public static String yearsRecommendedLocator = "tr[ng-repeat=\"course in vm.prerequisiteCourses\"] td:nth-of-type(3)";
 
     public FCHubsPage(WebDriver driver) {
         super(driver);
