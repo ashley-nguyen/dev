@@ -23,21 +23,17 @@ Feature:  As a student viewing new Hubs' Student Life tab, I want to see a schoo
   Scenario: The Total Student number in Gender Data is displayed with correct data
     Then The Total Students number should be "25,912" in Gender Data
 
-  Scenario Outline: The percentages of Gender Data are displayed with correct data
-    Then The percentage for "<gender>" is "<value>" in Gender Data
-    Examples:
-    | gender | value                |
-    | Female | 49%                  |
-    | Male   | 51%                  |
+  Scenario: The percentages of Gender Data are displayed with correct data
+    Then The percentage for each gender in Gender Data is as follows:
+    | Female;49% |
+    | Male;51%   |
 
   Scenario: The Total Students number in Age is displayed with correct data
     Then The Total Students number should be "25,912" in Age
 
-  Scenario Outline: The percentages of Age are displayed with correct data
-    Then The percentage for "<ageGroup>" is "<value>" in Age
-    Examples:
-    | ageGroup | value                |
-    | Over 24  | 4%                   |
-    | Under 24 | 96%                  |
+  Scenario: The percentages of Age are displayed with correct data
+    Then The percentage for each age group in Age is as follows:
+    | Over 24;4%   |
+    | Under 24;96% |
 
 

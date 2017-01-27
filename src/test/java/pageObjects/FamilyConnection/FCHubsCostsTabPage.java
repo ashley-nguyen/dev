@@ -1,9 +1,11 @@
 package pageObjects.FamilyConnection;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
+import org.openqa.selenium.support.ui.Select;
 import pageObjects.BaseClass;
 
 /**
@@ -28,7 +30,7 @@ public class FCHubsCostsTabPage extends BaseClass {
     @FindBy(how = How.CSS, using = ".fc-grid__row.costs-tuition-button.fc-button[ng-class=" +
             "\"{'costs-tuition-button--active': vm.showTuition }\"]")
     public static WebElement Tuition;
-    @FindBy(how = How.CSS, using = "li[ng-click=\"vm.displayTuitionAndFees()\"]")
+    @FindBy(how = How.CSS, using = "li[ng-click=\"vm.displayFees()\"]")
     public static WebElement TotalFees;
     @FindBy(how = How.CSS, using = "li[ng-click=\"vm.displayTuitionPerHour()\"]")
     public static WebElement TuitionPerCreditHour;
@@ -38,7 +40,7 @@ public class FCHubsCostsTabPage extends BaseClass {
     public static WebElement TuitionPerCreditHourAverageNavianceCollege;
     @FindBy(how = How.CSS, using = ".costs-tuition-graph__costlabel.costs-tuition-graph__costlabel--lime.ng-binding")
     public static WebElement RoomAndBoardThisCollege;
-    @FindBy(how = How.XPATH, using = ".costs-tuition-graph__costlabel.costs-tuition-graph__costlabel--grey.ng-binding")
+    @FindBy(how = How.CSS, using = ".costs-tuition-graph__costlabel.costs-tuition-graph__costlabel--grey.ng-binding")
     public static WebElement RoomAndBoardAverageNavianceCollege;
     @FindBy(how = How.XPATH, using = "//ul[@class = 'costs-tuition__buttonGroup']/li[3]")
     public static WebElement RoomAndBoard;
@@ -57,6 +59,10 @@ public class FCHubsCostsTabPage extends BaseClass {
     @FindBy(how = How.CSS, using = ".fc-grid__row.fc-grid__row--xs-center.admissions div[ng-if=\"vm.typeOfAid\"] " +
             "div.hub-data-pod__data-age")
     public static WebElement labelTypicalMonthlyLoanPaymentDate;
+
+    public static String incomeDropDownString = "select.costs-selector.ng-pristine.ng-valid.ng-not-empty" +
+            "[ng-selected=\"vm.myProfileCost.cost\"]";
+    public static String aidDropDownString = "select[ng-model=\"vm.typeOfAid\"]";
 
     public FCHubsCostsTabPage(WebDriver driver) { super(driver);    }
 }

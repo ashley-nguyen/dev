@@ -1,10 +1,13 @@
 package pageObjects.FamilyConnection;
 
+import net.serenitybdd.core.annotations.findby.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 import pageObjects.BaseClass;
+
+import java.util.List;
 
 /**
  * Created by jorgemaguina on 5/25/2016.
@@ -24,9 +27,8 @@ public class FCHubsPage extends BaseClass {
     @FindBy(how = How.CSS, using = "div[ng-show=\"vm.introService.isVisible('scattergrams')\"] " +
             "div.hub-tooltip__next.ng-binding")
     public static WebElement linkNextSecondDialog;
-    @FindBy(how = How.CSS, using = ".fc-tooltip.fc-tooltip--below.hub-tooltip.hub-tooltip--feedback " +
-            "div.hub-tooltip__next.ng-binding")
-    public static WebElement linkDoneThirdDialog;
+    @FindBy(how = How.CSS, using = "div[ng-click=\"vm.introService.nextItem('compare')\"]")
+    public static WebElement linkNextThirdDialog;
     @FindBy(how = How.CSS, using = ".masthead__address a")
     public static WebElement linkURLIdentifierModule;
     @FindBy(how = How.CSS, using = ".fc-dropdown__item.masthead-dropdown-menu__item.ng-scope")
@@ -37,7 +39,7 @@ public class FCHubsPage extends BaseClass {
             "vm.expandLearnMore }\"]")
     public static WebElement buttonLearnMore;
     @FindBy(how = How.CSS, using = ".fc-dropdown.fc-dropdown--columns.fc-dropdown--with-header.learn-more-dropdown." +
-            "fc-dropdown--active li:nth-of-type(3) a")
+            "fc-dropdown--active li:nth-of-type(5) a")
     public static WebElement linklearnMoreEvents;
     @FindBy(how = How.CSS, using = ".scroll.right")
     public static WebElement buttonRightArrow;
@@ -77,7 +79,7 @@ public class FCHubsPage extends BaseClass {
     public static WebElement labelOverviewTabDeadlineMonth;
     @FindBy(how = How.CSS, using = ".hub-deadline__day.ng-binding")
     public static WebElement labelOverviewTabDeadlineDay;
-    @FindBy(how = How.CSS, using = ".contacts__mail.ng-binding")
+    @FindBy(how = How.CSS, using = "div.contacts__mail.ng-binding")
     public static WebElement appMailingAddress;
     @FindBy(how = How.CSS, using = ".contacts__admissions.ng-binding")
     public static WebElement contactInfoAdmissions;
@@ -121,9 +123,73 @@ public class FCHubsPage extends BaseClass {
     public static WebElement buttonAddToCollegesImThinkingAboutFull;
     @FindBy(how = How.CSS, using = ".fc-tooltip__content.ng-scope")
     public static WebElement tooltipHeartIcon;
+    @FindBy(how = How.CSS, using = "span[ng-class=\"{true:'scoreLow', false:'score'}[vm.compares.gpa == vm.low]\"]")
+    public static WebElement labelGPAValue;
+    @FindBy(how = How.CSS, using = "span[ng-class=\"{true:'scoreLow', false:'score'}[vm.compares.sat == vm.low]\"]")
+    public static WebElement labelSATValue;
+    @FindBy(how = How.CSS, using = "span[ng-class=\"{true:'scoreLow', false:'score'}[vm.compares.act == vm.low]\"]")
+    public static WebElement labelACTValue;
+    @FindBy(how = How.CSS, using = "div[ng-show=\"vm.otherScores.gpaStatistics.average\"]")
+    public static WebElement labelAvgGPAValue;
+    @FindBy(how = How.CSS, using = "div[ng-show=\"vm.otherScores.satStatistics.average\"]")
+    public static WebElement labelAvgSATValue;
+    @FindBy(how = How.CSS, using = "div[ng-show=\"vm.otherScores.actStatistics.average\"]")
+    public static WebElement labelAvgACTValue;
+    @FindBy(how = How.CSS, using = "span[ng-if=\"vm.compares.overall == vm.aboveAvg\"]")
+    public static WebElement labelOverallAvgConclusionText;
+    @FindBy(how = How.CSS, using = "div[ng-show=\"!(vm.studentAct > 0)\"]")
+    public static WebElement labelACTQuestionMark;
+    @FindBy(how = How.CSS, using = "div[ng-show=\"!(vm.studentScores.concordedSat > 0)\"]")
+    public static WebElement labelSATQuestionMark;
+    @FindBy(how = How.CSS, using = "div.compare__button-container-bottom.fc-grid__row.fc-grid__row--xs-center div")
+    public static WebElement buttonCompareMeWithAllAcceptedApplicants;
+    @FindBy(how = How.CSS, using = "h2.ng-binding span[ng-show=\"vm.compareToggleState == 'college'\"]")
+    public static WebElement labelAllStudents;
+    @FindBy(how = How.CSS, using = "span[ng-show=\"vm.compareToggleState == 'peers'\"]")
+    public static WebElement labelOtherStudentsFromHS;
+    @FindBy(how = How.CSS, using = "div.fc-grid__col--md-9.fc-grid__col--xs-12 div.gauge-container:nth-of-type(1) " +
+            "div.ng-binding:not([ng-show=\"vm.otherScores.gpaStatistics.average\"])")
+    public static WebElement labelScoreQualificationGPA;
+    @FindBy(how = How.CSS, using = "div.fc-grid__col--md-9.fc-grid__col--xs-12 div.gauge-container:nth-of-type(2) " +
+            "div.ng-binding:not([ng-show=\"vm.otherScores.satStatistics.average\"])")
+    public static WebElement labelScoreQualificationSAT;
+    @FindBy(how = How.CSS, using = "div.fc-grid__col--md-9.fc-grid__col--xs-12 div.gauge-container:nth-of-type(3) " +
+            "div.ng-binding:not([ng-show=\"vm.otherScores.actStatistics.average\"])")
+    public static WebElement labelScoreQualificationACT;
+    @FindBy(how = How.CSS, using = "div.fc-grid__col--md-9.fc-grid__col--xs-12 div.gauge-container:nth-of-type(4) " +
+            "div.ng-binding")
+    public static WebElement labelScoreQualificationOverallAvg;
+    @FindBy(how = How.CSS, using = ".compareNotes.fc-grid__row.fc-grid__row--xs-center")
+    public static WebElement labelCompareMeSectionNotes;
+    @FindBy(how = How.CSS, using = "h2.college-comments__header")
+    public static WebElement labelCounselorCommentsTitle;
+    @FindBy(how = How.CSS, using = "h2.college-comments__header")
+    public static WebElement visitRegistrationSuccessMsg;
+    @FindBy(how = How.CSS, using = "div.fc-alert.fc-alert--warning")
+    public static WebElement visitRegistrationCancelMsg;
+    @FindBy(how = How.CSS, using = ".fc-button.fc-button--ghost-light.hub-links-bar__button:nth-of-type(1)")
+    public static WebElement buttonImThinkingAboutStickybar;
+    @FindBy(how = How.CSS, using = "a[ng-click=\"vm.addToList()\"]")
+    public static WebElement buttonAddToCollegesImThinkingAboutPinkBar;
+    @FindBy(how = How.CSS, using = ".fc-main-nav__tab-list li:nth-of-type(3) a")
+    public static WebElement tabCollegesTopBar;
+    @FindBy(how = How.CSS, using = "tbody tr:nth-of-type(1) td span")
+    public static WebElement firstCollegeVisitsRegisterButton;
+    @FindBy(how = How.CSS, using = "span[ng-click=\"vm.togglePrerequisiteCoursesSort('name')\"]")
+    public static WebElement linkCourseNameHeader;
+    @FindBy(how = How.CSS, using = "span[ng-click=\"vm.togglePrerequisiteCoursesSort('yearsRequired')\"]")
+    public static WebElement linkYearsRequiredHeader;
+    @FindBy(how = How.CSS, using = "span[ng-click=\"vm.togglePrerequisiteCoursesSort('yearsRecommended')\"]")
+    public static WebElement linkYearsRecommendedHeader;
+
 
     public static String URLimThinkingAboutList = "https://connection-int.dev.naviance.com/family-connection" +
             "/colleges/application/consideration";
+    public static String incomeDropDownLocator = "select";
+    public static String courseNamesLocator = "tr[ng-repeat=\"course in vm.prerequisiteCourses\"] td:nth-of-type(1)";
+    public static String yearsRequiredLocator = "tr[ng-repeat=\"course in vm.prerequisiteCourses\"] td:nth-of-type(2)";
+    public static String yearsRecommendedLocator = "tr[ng-repeat=\"course in vm.prerequisiteCourses\"] td:nth-of-type(3)";
+
     public FCHubsPage(WebDriver driver) {
         super(driver);
     }

@@ -13,4 +13,4 @@ Feature: Import Students
 
   Examples:
     | account     | user       | password  |
-    | rtsa        | stan.smith | stan01!   |
+    | blue1hs        | frank.counselor | frank01!   |

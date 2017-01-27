@@ -65,6 +65,9 @@ public class Hooks {
             case "int":
                 strBaseURL = "https://connection-int.dev.naviance.com";
                 break;
+            case "prodConnection":
+                strBaseURL = "https://connection.naviance.com";
+                break;
             default:
                 strBaseURL = "https://succeed-internal.naviance.com";
                 break;

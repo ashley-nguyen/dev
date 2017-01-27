@@ -6,7 +6,7 @@ Feature: Student PSAT scores
 
   Background:
     Given when I log in with the following user details:
-      | rtsa | stan.smith | stan01! |
+      | blue1hs | frank.counselor | frank01! |
 
 
   Scenario Outline: Enter PSAT scores
@@ -15,12 +15,12 @@ Feature: Student PSAT scores
 
     Examples:
       | student       | evidenceReading | reading | writing | mathematics_score | math_test | totalscore | month | year | grade | warning                                                                                                             |
-      | A103, A103    | 160             | 38      | 35      | 160               | 35        | 160        | Jan   | 2014 | 11    | none                                                                                                                |
-      | A103, A103    | 999             |         |         |                   |           |            |       |      |       | Out of Range Scores Detected For Evidence Based Reading and Writing Score, please enter a score between 160 and 760 |
-      | A103, A103    |                 | 0       |         |                   |           |            |       |      |       | Out of Range Scores Detected For Reading Test, please enter a score between 8 and 38                                |
-      | A103, A103    |                 |         | 39      |                   |           |            |       |      |       | Out of Range Scores Detected For Writing Test, please enter a score between 8 and 38                                |
-      | A103, A103    |                 |         |         | 5                 |           |            |       |      |       | Out of Range Scores Detected For Mathematics Score, please enter a score between 160 and 760                        |
-      | A103, A103    |                 |         |         |                   | 40        |            |       |      |       | Out of Range Scores Detected For Math Test, please enter a score between 8 and 38                                   |
+      | Student1, Transfer    | 160             | 38      | 35      | 160               | 35        | 160        | Jan   | 2014 | 11    | none                                                                                                                |
+      | Student1, Transfer    | 999             |         |         |                   |           |            |       |      |       | Out of Range Scores Detected For Evidence Based Reading and Writing Score, please enter a score between 160 and 760 |
+      | Student1, Transfer    |                 | 0       |         |                   |           |            |       |      |       | Out of Range Scores Detected For Reading Test, please enter a score between 8 and 38                                |
+      | Student1, Transfer    |                 |         | 39      |                   |           |            |       |      |       | Out of Range Scores Detected For Writing Test, please enter a score between 8 and 38                                |
+      | Student1, Transfer    |                 |         |         | 5                 |           |            |       |      |       | Out of Range Scores Detected For Mathematics Score, please enter a score between 160 and 760                        |
+      | Student1, Transfer    |                 |         |         |                   | 40        |            |       |      |       | Out of Range Scores Detected For Math Test, please enter a score between 8 and 38                                   |
 
   @psatlegacy
   Scenario Outline: Enter PSAT legacy scores
@@ -29,10 +29,10 @@ Feature: Student PSAT scores
 
     Examples:
       | student       | criticalreading | math | writing | totalscore | month | year | grade | warning                                              |
-      | A103, A103    | 80              | 80   | 80      | 160        | Jan   | 2014 | 11    | none                                                 |
-      | A103, A103    | 81              |      |         |            |       |      |       | Please make sure you enter a score between 20 and 80 |
-      | A103, A103    |                 | 19   |         |            |       |      |       | Please make sure you enter a score between 20 and 80 |
-      | A103, A103    |                 |      | 99      |            |       |      |       | Please make sure you enter a score between 20 and 80 |
+      | Student1, Transfer    | 80              | 80   | 80      | 160        | Jan   | 2014 | 11    | none                                                 |
+      | Student1, Transfer    | 81              |      |         |            |       |      |       | Please make sure you enter a score between 20 and 80 |
+      | Student1, Transfer    |                 | 19   |         |            |       |      |       | Please make sure you enter a score between 20 and 80 |
+      | Student1, Transfer    |                 |      | 99      |            |       |      |       | Please make sure you enter a score between 20 and 80 |
 
   @psataddedit @gd8536
   Scenario Outline: Verify that user can be able to add/edit test scores with no problem.
@@ -41,7 +41,7 @@ Feature: Student PSAT scores
 
   Examples:
     | student     |
-    |  a103, a103 |
+    |  Student1, Transfer |
 
   @psataddedit @gd8536
   Scenario Outline: Verify that user can be able to edit test PSAT scores with no problem.
@@ -50,7 +50,7 @@ Feature: Student PSAT scores
 
   Examples:
     | student        | criticalreading | math | writing | totalscore | month | year | grade | warning |
-    | a103, a103     | 80              | 80   | 80      | 160        | Jan   | 2014 | 11    | none    |
+    | Student1, Transfer     | 80              | 80   | 80      | 160        | Jan   | 2014 | 11    | none    |
 
   @psataddedit @gd8536
   Scenario Outline: Verify that user can't be able to edit test PSAT scores and return warning message.
@@ -59,7 +59,7 @@ Feature: Student PSAT scores
 
   Examples:
     | student        | criticalreading | math | writing | totalscore | month | year | grade | warning |
-    | a103, a103     | 80              | 80   | 80      | 160        | Jan   | 2014 | 11    | none    |
-    | a103, a103     | 81              |      |         |            |       |      |       | Please make sure you enter a score between 20 and 80 |
-    | a103, a103     |                 | 19   |         |            |       |      |       | Please make sure you enter a score between 20 and 80 |
-    | a103, a103     |                 |      | 99      |            |       |      |       | Please make sure you enter a score between 20 and 80 |
+    | Student1, Transfer     | 80              | 80   | 80      | 160        | Jan   | 2014 | 11    | none    |
+    | Student1, Transfer     | 81              |      |         |            |       |      |       | Please make sure you enter a score between 20 and 80 |
+    | Student1, Transfer     |                 | 19   |         |            |       |      |       | Please make sure you enter a score between 20 and 80 |
+    | Student1, Transfer     |                 |      | 99      |            |       |      |       | Please make sure you enter a score between 20 and 80 |

@@ -1,5 +1,8 @@
 package actions.FamilyConnection;
 
+import com.gargoylesoftware.htmlunit.ElementNotFoundException;
+import junit.framework.TestCase;
+import org.apache.bcel.generic.FieldGenOrMethodGen;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -51,6 +54,7 @@ public class FCHubs {
     public static void ClickNextOnFirstDialog() {
         driver = Hooks.driver;
         PageFactory.initElements(driver, FCHubsPage.class);
+        new WebDriverWait(Hooks.driver, 20).until(ExpectedConditions.elementToBeClickable(FCHubsPage.linkNextFirstDialog));
         FCHubsPage.linkNextFirstDialog.click();
     }
 
@@ -68,7 +72,7 @@ public class FCHubs {
     public static void VerifyThirdTutorialDialog() {
         driver = Hooks.driver;
         PageFactory.initElements(driver, FCHubsPage.class);
-        assertTrue("The Third Tutorial Dialog is displayed ", FCHubsPage.linkDoneThirdDialog.isDisplayed());
+        assertTrue("The Third Tutorial Dialog is displayed ", FCHubsPage.linkNextThirdDialog.isDisplayed());
     }
 
     public static void VerifyIdentifierModule() {
@@ -111,8 +115,8 @@ public class FCHubs {
 
     public static void ClickLearnMoreButton() {
         driver = Hooks.driver;
-        new WebDriverWait(Hooks.driver, 20).until(ExpectedConditions.elementToBeClickable(FCHubsPage.buttonLearnMore));
         PageFactory.initElements(driver, FCHubsPage.class);
+        new WebDriverWait(Hooks.driver, 20).until(ExpectedConditions.elementToBeClickable(FCHubsPage.buttonLearnMore));
         FCHubsPage.buttonLearnMore.click();
     }
 
@@ -315,50 +319,127 @@ public class FCHubs {
         assertTrue("The displayed degrees are not correct", result);
     }
 
-    public static void VerifyScoreValuesScoreComp(String scoreType, String value) {
+    public static void VerifyScoreValuesScoreComp(List<String> scoreValueList) {
         driver = Hooks.driver;
-        assertTrue("The Student's " +  scoreType + " is not correct", driver.findElement(By.xpath("//center" +
-                "[contains(text(), '" + scoreType + "')]/../div/div[contains(text(), 'You')]" +
-                "/span[contains(text(), '" + value + "')]")).isDisplayed());
+        PageFactory.initElements(driver, FCHubsPage.class);
+        boolean result = true;
+        WebElement valueElement = null;
+        for (String scoreValueElement : scoreValueList) {
+            switch (scoreValueElement.split(";")[0]) {
+                case "GPA" : valueElement = FCHubsPage.labelGPAValue;
+                    break;
+                case "SAT" : valueElement = FCHubsPage.labelSATValue;
+                    break;
+                case "ACT" : valueElement = FCHubsPage.labelACTValue;
+                    break;
+            }
+            new WebDriverWait(driver, 20).until(ExpectedConditions.elementToBeClickable(FCHubsPage.labelGPAValue));
+            if (scoreValueElement.split(";")[1].equals(valueElement.getText().trim())) {
+                result = true;
+            } else {
+                result = false;
+                break;
+            }
+        }
+        assertTrue("The score values are not correct", result);
     }
 
-    public static void VerifyAvgValuesScoreComp(String avgScoreType, String avgValue) {
+    public static void VerifyAvgValuesScoreComp(List<String> avgScoreValueList) {
         driver = Hooks.driver;
-        assertTrue("The average " + avgScoreType  + " is not correct", driver.findElement(By.xpath("//center" +
-                "[contains(text(), '" + avgScoreType +"')]/../div/div[contains(text(), 'Admitted Average')]/span" +
-                "[contains(text(), '" + avgValue + "')]")).isDisplayed());
+        PageFactory.initElements(driver, FCHubsPage.class);
+        boolean result = true;
+        WebElement valueElement = null;
+        for (String scoreValueElement : avgScoreValueList) {
+
+            switch (scoreValueElement.split(";")[0]) {
+                case "GPA" : valueElement = FCHubsPage.labelAvgGPAValue;
+                    break;
+                case "SAT" : valueElement = FCHubsPage.labelAvgSATValue;
+                    break;
+                case "ACT" : valueElement = FCHubsPage.labelAvgACTValue;
+                    break;
+            }
+            System.out.println("UI: " + valueElement.getText());
+            System.out.println("Data: " + scoreValueElement.split(";")[1]);
+            new WebDriverWait(driver, 20).until(ExpectedConditions.elementToBeClickable(FCHubsPage.labelAvgGPAValue));
+            if (valueElement.getText().contains(scoreValueElement.split(";")[1])) {
+                result = true;
+            } else {
+                result = false;
+                break;
+            }
+        }
+        assertTrue("The score values are not correct", result);
     }
 
-    public static void VerifyScoreTextScoreComp(String scoreType, String scoreText) {
+    public static void verifyScoreTextScoreComp(List<String> scoresList) {
         driver = Hooks.driver;
-        assertTrue("The score text is not correct", driver.findElement(By.xpath("//center[contains(text()" +
-                ", '" + scoreType + "')]/../div/div[contains(text(), '" + scoreText + "')]")).isDisplayed());
+        PageFactory.initElements(driver, FCHubsPage.class);
+        boolean result = false;
+        boolean resultForEmptyData = false;
+        WebElement scoreUIElement = null;
+
+        for (String scoreStringElement : scoresList) {
+            switch (scoreStringElement.split(";")[0]) {
+                case "GPA" : scoreUIElement = FCHubsPage.labelScoreQualificationGPA;
+                    break;
+                case "SAT" : scoreUIElement = FCHubsPage.labelScoreQualificationSAT;
+                    break;
+                case "ACT" : scoreUIElement = FCHubsPage.labelScoreQualificationACT;
+                    break;
+                case "OVERALL AVERAGE" : scoreUIElement = FCHubsPage.labelScoreQualificationOverallAvg;
+                    break;
+            }
+            new WebDriverWait(driver, 20).until(ExpectedConditions.elementToBeClickable(scoreUIElement));
+
+            if (scoreStringElement.split(";")[1].equals("empty") && scoreUIElement.getText().equals("")) {
+                resultForEmptyData = true;
+            } else {
+                if (scoreUIElement.getText().equals(scoreStringElement.split(";")[1])) {
+                    result = true;
+                } else {
+                    result = false;
+                    break;
+                }
+            }
+        }
+
+        assertTrue("The score qualifications are not correct", result && resultForEmptyData);
     }
 
     public static void VerifyOverallAverageTextScoreComp(String overallAvgText) {
         driver = Hooks.driver;
-        boolean isPresent = false;
-        WebElement upperText = driver.findElement(By.xpath("//div[@ng-if='vm.diff.overall < vm.good']"));
-        WebElement bottomText = driver.findElement(By.xpath("//div[@ng-if='vm.improves.length > 0' and " +
-                "@class='fc-grid__row fc-grid__row--xs-center ng-scope']/div/span/font"));
-        if(upperText.getText().equals(overallAvgText) || bottomText.getText().equals(overallAvgText)) {
-            isPresent = true;
-        }
-        assertTrue("The Overall Average text is not present", isPresent);
+        PageFactory.initElements(driver, FCHubsPage.class);
+        new WebDriverWait(driver, 20).until(ExpectedConditions.elementToBeClickable
+                (FCHubsPage.labelOverallAvgConclusionText));
+        assertTrue("The Overall Average text is not present", FCHubsPage.labelOverallAvgConclusionText.getText().equals
+                (overallAvgText));
     }
 
     public static void VerifyQuestionMarkScoreComp(String scoreType) {
         driver = Hooks.driver;
-        assertTrue("The score text is not correct", driver.findElement(By.xpath("//center[contains(text(), " +
-                "'" + scoreType + "')]/../div/div/div/div[contains(text(), '?')]")).isDisplayed());
+        PageFactory.initElements(driver, FCHubsPage.class);
+        WebElement dialOrQuestionElement = null;
+        switch (scoreType) {
+            case "ACT" : dialOrQuestionElement = FCHubsPage.labelACTQuestionMark;
+                break;
+            case "SAT" : dialOrQuestionElement = FCHubsPage.labelSATQuestionMark;
+                break;
+        }
+        assertTrue("The score text is not correct", dialOrQuestionElement.isDisplayed());
     }
 
-    public static void VerifyAvgTotalCostInfoTopBar(String income, String avgTotalCost) {
+    public static void VerifyAvgTotalCostInfoTopBar(List<String> incomeList) {
         driver = Hooks.driver;
         PageFactory.initElements(driver, FCHubsPage.class);
-        Select incomeDropDown = new Select(driver.findElement(By.cssSelector("select")));
-        incomeDropDown.selectByVisibleText(income);
-        assertTrue("The Average Total Cost is not correct", FCHubsPage.labelAvgNetPrice.getText().equals(avgTotalCost));
+        boolean result = false;
+        Select incomeDropDown = new Select(driver.findElement(By.cssSelector(FCHubsPage.incomeDropDownLocator)));
+        for (String incomeElement : incomeList) {
+            incomeDropDown.selectByVisibleText(incomeElement.split(";")[0]);
+            result = incomeElement.split(";")[1]
+                    .equals(FCHubsPage.labelAvgNetPrice.getText());
+        }
+        assertTrue("The Average Total Cost is not correct", result);
     }
 
     public static void VerifyGraduationRateInfoTopBar(String graduationRate) {
@@ -508,12 +589,14 @@ public class FCHubs {
     public static void ClickAdmissionsTab() {
         driver = Hooks.driver;
         PageFactory.initElements(driver, FCHubsPage.class);
+        new WebDriverWait(driver, 20).until(ExpectedConditions.elementToBeClickable(FCHubsPage.tabCosts));
         FCHubsPage.tabAdmissions.click();
     }
 
     public static void ClickStudentLifeTab() {
         driver = Hooks.driver;
         PageFactory.initElements(driver, FCHubsPage.class);
+        new WebDriverWait(driver, 20).until(ExpectedConditions.elementToBeClickable(FCHubsPage.tabStudentLife));
         FCHubsPage.tabStudentLife.click();
     }
 
@@ -542,17 +625,21 @@ public class FCHubs {
 
     public static void ClickLinkInOverviewInfoTopBar(String linkText) {
         driver = Hooks.driver;
+
         String cssSelectorPart = "";
         switch (linkText) {
             case "More about Cost & Aid": cssSelectorPart = "costs-link a";
                 break;
             case "More about Learning Environment": cssSelectorPart = "studies-tab-link a";
                 break;
-            case "How does this relate to me?": cssSelectorPart = "admissions-tab-link a";
+            case "Check out Scattergrams to see how this relates to you": cssSelectorPart = "admissions-tab-link " +
+                    "a:not(.ng-hide)";
                 break;
             case "See all deadlines": cssSelectorPart = "deadline-link a";
                 break;
         }
+        new WebDriverWait(driver, 20).until(ExpectedConditions.elementToBeClickable(By.cssSelector
+                (".hub-data-pod__subtext.admissions-" + cssSelectorPart)));
         driver.findElement(By.cssSelector(".hub-data-pod__subtext.admissions-" + cssSelectorPart)).click();
     }
 
@@ -567,8 +654,10 @@ public class FCHubs {
     public static void VerifySectionLabelInAdmissions(String sectionLabel) {
         driver = Hooks.driver;
         PageFactory.initElements(driver, FCHubsAdmissionsTabPage.class);
+        new WebDriverWait(driver, 20).until(ExpectedConditions.elementToBeClickable
+                (FCHubsAdmissionsTabPage.buttonAppReqDeadlines));
         assertTrue("The section " + sectionLabel + " is not displayed",
-                FCHubsAdmissionsTabPage.labelApplicationInformation.getText().equals(sectionLabel));
+                FCHubsAdmissionsTabPage.buttonAppReqDeadlines.isDisplayed());
     }
 
     public static void VerifyDateLabelsInOverviewTopBar(String text) {
@@ -597,8 +686,8 @@ public class FCHubs {
 
     public static void ClickCommunicate() {
         driver = Hooks.driver;
+        PageFactory.initElements(driver, FCHubsPage.class);
         new WebDriverWait(driver, 20).until(ExpectedConditions.elementToBeClickable(FCHubsPage.buttonApplyOnline));
-        PageFactory.initElements(driver,FCHubsPage.class);
         FCHubsPage.buttonCommunicate.click();
     }
 
@@ -695,9 +784,7 @@ public class FCHubs {
     public static void clickWhiteHeartThinkingAboutList() {
         driver = Hooks.driver;
         PageFactory.initElements(driver, FCHubsPage.class);
-        if (FCHubsPage.buttonAddToCollegesImThinkingAbout.getAttribute("class").equals("fc-icon")) {
-            FCHubsPage.buttonAddToCollegesImThinkingAbout.click();
-        }
+        FCHubsPage.buttonAddToCollegesImThinkingAbout.click();
     }
 
     public static void verifyHeartStatusClicked() {
@@ -731,9 +818,11 @@ public class FCHubs {
         driver = Hooks.driver;
         PageFactory.initElements(driver, FCHubsPage.class);
         FCHubsPage.imgLogo.click();
-        if (FCHubsPage.buttonAddToCollegesImThinkingAbout.getAttribute("class").equals("fc-icon masthead__heart--full")) {
-            FCHubsPage.buttonAddToCollegesImThinkingAbout.click();
-        }
+        new WebDriverWait(Hooks.driver, 20).until(ExpectedConditions.elementToBeClickable
+                (FCHubsPage.tabCollegesTopBar));
+        FCHubsPage.buttonAddToCollegesImThinkingAbout.click();
+        new WebDriverWait(Hooks.driver, 20).until(ExpectedConditions.elementToBeClickable
+                (FCHubsPage.buttonAddToCollegesImThinkingAboutPinkBar));
     }
 
     public static void verifyCollegeIsNotInImThinkingAboutList(String college) {
@@ -741,8 +830,12 @@ public class FCHubs {
         PageFactory.initElements(driver, FCHubsPage.class);
         PageFactory.initElements(driver, FCCollegesPage.class);
         boolean result = false;
-        driver.get(FCHubsPage.URLimThinkingAboutList);
-        for (WebElement collegeInList : FCCollegesPage.imThinkingAboutListElements) {
+        if(driver.getCurrentUrl().contains("https://static.naviance.com")) {
+            FCHubsPage.buttonImThinkingAboutStickybar.click();
+        }
+        List<WebElement> imThinkingAboutListElements = driver.findElements
+                (By.cssSelector(FCCollegesPage.imThinkingAboutListElementsString));
+        for (WebElement collegeInList : imThinkingAboutListElements) {
             if (collegeInList.getText().contains(college)) {
                 result = false;
                 break;
@@ -779,24 +872,25 @@ public class FCHubs {
     public static void hoverOverPinkHeart() {
         driver = Hooks.driver;
         PageFactory.initElements(driver, FCHubsPage.class);
-        new WebDriverWait(Hooks.driver, 20).until(ExpectedConditions.elementToBeClickable(FCHubsPage.linkNextFirstDialog));
-        clickWhiteHeartThinkingAboutList();
+        new WebDriverWait(Hooks.driver, 20).until(ExpectedConditions.elementToBeClickable
+                (FCHubsPage.linkNextFirstDialog));
         FCHubsPage.linkNextFirstDialog.click();
-        if (FCHubsPage.buttonAddToCollegesImThinkingAbout.getAttribute("class").equals("fc-icon masthead__heart--full")) {
-            Actions action  = new Actions(driver);
-            action.moveToElement(FCHubsPage.buttonAddToCollegesImThinkingAbout).perform();
-        }
+        FCHubsPage.buttonAddToCollegesImThinkingAboutPinkBar.click();
+        new WebDriverWait(Hooks.driver, 20).until(ExpectedConditions.elementToBeClickable
+                (FCHubsPage.buttonAddToCollegesImThinkingAboutFull));
+        Actions action  = new Actions(driver);
+        action.moveToElement(FCHubsPage.buttonAddToCollegesImThinkingAbout).perform();
     }
 
     public static void clickRegisterInCollegeVisit(String position) {
         driver = Hooks.driver;
-        WebElement registerButton = driver.findElement(By.cssSelector("tbody tr:nth-of-type(" + position + ") td a"));
+        WebElement registerButton = driver.findElement(By.cssSelector("tbody tr:nth-of-type(" + position + ") td span"));
         JavascriptExecutor jse = (JavascriptExecutor)driver;
         ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", registerButton);
         jse.executeScript("scroll(0, 500);");
         new WebDriverWait(Hooks.driver, 20).until(ExpectedConditions.textToBePresentInElementLocated(By.cssSelector
-                ("tbody tr:nth-of-type(" + position + ") td a"), "Register"));
-        registerButton.click();
+                ("tbody tr:nth-of-type(" + position + ") td span"), "Register"));
+        registerButton.sendKeys(Keys.RETURN);
     }
 
     public static void clickDetailsInCollegeVisit(String position) {
@@ -805,6 +899,245 @@ public class FCHubs {
         JavascriptExecutor jse = (JavascriptExecutor)driver;
         ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", registerButton);
         jse.executeScript("scroll(0, 500);");
-        registerButton.click();
+        registerButton.sendKeys(Keys.RETURN);
+    }
+
+    public static void clickCompareMeWithAllAcceptedApplicants() {
+        driver = Hooks.driver;
+        PageFactory.initElements(driver, FCHubsPage.class);
+        JavascriptExecutor jse = (JavascriptExecutor)driver;
+        new WebDriverWait(Hooks.driver, 20).until(ExpectedConditions.elementToBeClickable
+                (FCHubsPage.labelOtherStudentsFromHS));
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);",
+                FCHubsPage.labelCompareMeSectionNotes);
+
+        FCHubsPage.buttonCompareMeWithAllAcceptedApplicants.sendKeys(Keys.RETURN);
+    }
+
+    public static void verifyComparisonAgainstAllStudents() {
+        driver = Hooks.driver;
+        PageFactory.initElements(driver, FCHubsPage.class);
+        assertTrue("Compare me section was not switched to compare against all students",
+                FCHubsPage.labelAllStudents.isDisplayed());
+    }
+
+    public static void verifyComparisonAgainstOtherStudentsFromHS() {
+        driver = Hooks.driver;
+        PageFactory.initElements(driver, FCHubsPage.class);
+        assertTrue("Compare me section was not switched to compare against all students",
+                FCHubsPage.labelOtherStudentsFromHS.isDisplayed());
+    }
+
+    public static void clickCompareMeWithStudentsFromMyHS() {
+        driver = Hooks.driver;
+        PageFactory.initElements(driver, FCHubsPage.class);
+        JavascriptExecutor jse = (JavascriptExecutor)driver;
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);",
+                FCHubsPage.labelCompareMeSectionNotes);
+        new WebDriverWait(Hooks.driver, 20).until(ExpectedConditions.elementToBeClickable
+                (FCHubsPage.labelAllStudents));
+        FCHubsPage.buttonCompareMeWithAllAcceptedApplicants.sendKeys(Keys.RETURN);
+    }
+
+    public static void verifyCounselorComments() {
+        driver = Hooks.driver;
+        PageFactory.initElements(driver, FCHubsPage.class);
+        new WebDriverWait(Hooks.driver, 20).until(ExpectedConditions.elementToBeClickable
+                (FCHubsPage.labelCounselorCommentsTitle));
+        assertTrue("The Counselor Comments are not displayed", FCHubsPage.labelCounselorCommentsTitle.isDisplayed());
+    }
+
+    public static void verifyCollegeVisitConfirmationMessage() {
+        driver = Hooks.driver;
+        PageFactory.initElements(driver, FCHubsPage.class);
+        TestCase.assertTrue("The confirmation message is not displayed",
+                FCHubsPage.visitRegistrationSuccessMsg.isDisplayed());
+    }
+
+    public static void clickRemoveFromList(String position) {
+        driver = Hooks.driver;
+        WebElement registerButton = driver.findElement(By.cssSelector("tbody tr:nth-of-type(" + position + ") td span"));
+        JavascriptExecutor jse = (JavascriptExecutor)driver;
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", registerButton);
+        jse.executeScript("scroll(0, 500);");
+        new WebDriverWait(Hooks.driver, 20).until(ExpectedConditions.textToBePresentInElementLocated(By.cssSelector
+                ("tbody tr:nth-of-type(" + position + ") td span"), "Cancel"));
+        if(registerButton.getText().equals("Cancel")) {
+            registerButton.sendKeys(Keys.RETURN);
+        }
+    }
+
+    public static void verifyCollegeVisitCancellationMessage() {
+        driver = Hooks.driver;
+        PageFactory.initElements(driver, FCHubsPage.class);
+        new WebDriverWait(Hooks.driver, 20).until(ExpectedConditions.elementToBeClickable
+                (FCHubsPage.visitRegistrationCancelMsg));
+        assertTrue("The cancellation message is not displayed", FCHubsPage.visitRegistrationCancelMsg.isDisplayed());
+    }
+
+    public static void clickImThinkingAboutStickyBar() {
+        driver = Hooks.driver;
+        PageFactory.initElements(driver, FCHubsPage.class);
+        new WebDriverWait(Hooks.driver, 20).until(ExpectedConditions.elementToBeClickable
+                (FCHubsPage.buttonImThinkingAboutStickybar));
+        FCHubsPage.buttonImThinkingAboutStickybar.click();
+    }
+
+    public static void verifyRegisterButtonNotPresent() {
+        driver = Hooks.driver;
+        PageFactory.initElements(driver, FCHubsPage.class);
+        boolean result;
+        try {
+            FCHubsPage.firstCollegeVisitsRegisterButton.isDisplayed();
+            result = false;
+        } catch (NoSuchElementException e) {
+            result = true;
+        }
+        assertTrue("The Register button is displayed", result);
+    }
+
+    public static void clickAddToCollegesThinkingAboutPinkButton() {
+        driver = Hooks.driver;
+        PageFactory.initElements(driver, FCHubsPage.class);
+        FCHubsPage.buttonAddToCollegesImThinkingAboutPinkBar.click();
+        new WebDriverWait(Hooks.driver, 20).until(ExpectedConditions.invisibilityOfElementLocated(
+                By.cssSelector("a[ng-click=\"vm.addToList()\"]")));
+    }
+
+    public static void verifyRecommendedCourses(List<String> recommendedCoursesList) {
+        driver = Hooks.driver;
+        PageFactory.initElements(driver, FCHubsPage.class);
+        boolean resultNames = false;
+        boolean resultYearsReq = false;
+        boolean resultYearsRec = false;
+        List<WebElement> courseNamesListUI = driver.findElements(By.cssSelector(FCHubsPage.courseNamesLocator));
+        List<WebElement> yearsRequiredListUI = driver.findElements(By.cssSelector(FCHubsPage.yearsRequiredLocator));
+        List<WebElement> yearsRecommendedListUI = driver.findElements(By.cssSelector(FCHubsPage.yearsRecommendedLocator));
+
+        List<String> courseNamesListData = new ArrayList<>();
+        List<String> yearsRequiredListData = new ArrayList<>();
+        List<String> yearsRecommendedListData = new ArrayList<>();
+
+        for (String recommendedCourseElement : recommendedCoursesList) {
+            courseNamesListData.add(recommendedCourseElement.split(";")[0]);
+            if (recommendedCourseElement.split(";")[1].equals("empty")) {
+                yearsRequiredListData.add("");
+            } else {
+                yearsRequiredListData.add(recommendedCourseElement.split(";")[1]);
+            }
+            if (recommendedCourseElement.split(";")[2].equals("empty")) {
+                yearsRecommendedListData.add("");
+            } else {
+                yearsRecommendedListData.add(recommendedCourseElement.split(";")[2]);
+            }
+        }
+
+
+        for (WebElement courseNameElement : courseNamesListUI) {
+            if (courseNamesListData.contains(courseNameElement.getText())) {
+                resultNames = true;
+            } else {
+                resultNames = false;
+                break;
+            }
+        }
+
+        for (WebElement yearsRequiredElement : yearsRequiredListUI) {
+            if (yearsRequiredListData.contains(yearsRequiredElement.getText())) {
+                resultYearsReq = true;
+            } else {
+                resultYearsReq = false;
+                break;
+            }
+        }
+
+        for (WebElement yearsRecommendedElement : yearsRecommendedListUI) {
+            if (yearsRecommendedListData.contains(yearsRecommendedElement.getText())) {
+                resultYearsRec = true;
+            } else {
+                resultYearsRec = false;
+                break;
+            }
+        }
+        assertTrue("The data in Recommended Events is not correct", resultNames && resultYearsReq && resultYearsRec);
+    }
+
+    public static void clickRecommendedCoursesHeader(String header) {
+        driver = Hooks.driver;
+        PageFactory.initElements(driver, FCHubsPage.class);
+        WebElement headerElement = null;
+        new WebDriverWait(Hooks.driver, 20).until(ExpectedConditions.elementToBeClickable
+                (FCHubsPage.linkYearsRecommendedHeader));
+        switch (header) {
+            case "Course Names" : headerElement = FCHubsPage.linkCourseNameHeader;
+                break;
+            case "Years Required" : headerElement = FCHubsPage.linkYearsRequiredHeader;
+                break;
+            case "Years Recommended" : headerElement = FCHubsPage.linkYearsRecommendedHeader;
+                break;
+        }
+        headerElement.sendKeys(Keys.RETURN);
+        if (header.equals("Years Recommended")) headerElement.sendKeys(Keys.RETURN);
+    }
+
+    public static void verifyDataIsAlphabeticallySorted() {
+        driver = Hooks.driver;
+        PageFactory.initElements(driver, FCHubsPage.class);
+        boolean result = false;
+        List<Character> firstLettersList = new ArrayList<>();
+        List<WebElement> elementsList = driver.findElements(By.cssSelector(FCHubsPage.courseNamesLocator));
+
+        for (WebElement element : elementsList) {
+            System.out.println("Control: " + element.getText());
+            firstLettersList.add(element.getText().charAt(0));
+        }
+
+        for (int i = 0; i < (firstLettersList.size() - 1); i++) {
+            if (firstLettersList.get(i + 1) < firstLettersList.get(i)) {
+                result = false;
+                break;
+            } else {
+                result = true;
+            }
+        }
+
+        assertTrue("The course names are not correctly sorted", result);
+    }
+
+    public static void verifyYearsDataIsSorted(String dataType) {
+        driver = Hooks.driver;
+        PageFactory.initElements(driver, FCHubsPage.class);
+        List<Integer> correctedElementList = new ArrayList<>();
+        boolean result = false;
+        String locator = "";
+
+        switch (dataType) {
+            case "years required" : locator = FCHubsPage.yearsRequiredLocator;
+                break;
+            case "years recommended" : locator = FCHubsPage.yearsRecommendedLocator;
+                break;
+        }
+
+        List<WebElement> elementsList = driver.findElements(By.cssSelector(locator));
+
+        for (WebElement element : elementsList) {
+            if (element.getText().equals("")) {
+                correctedElementList.add(0);
+            } else {
+                correctedElementList.add(Integer.parseInt(element.getText()));
+            }
+        }
+
+        for (int i = 0; i < (correctedElementList.size() - 1); i++) {
+            System.out.println("Num: " + correctedElementList.get(i));
+            if (correctedElementList.get(i + 1) < correctedElementList.get(i)) {
+                result = false;
+                break;
+            } else {
+                result = true;
+            }
+        }
+
+        assertTrue("The data is not correctly sorted", result);
     }
 }

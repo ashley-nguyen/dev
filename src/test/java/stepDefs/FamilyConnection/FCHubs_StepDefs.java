@@ -212,22 +212,6 @@ public class FCHubs_StepDefs {
         FCHubs.VerifyCampusSurroundings(surroundings);
     }
 
-    @Then("^Student's \"([^\"]*)\" should be \"([^\"]*)\" in the Score Comparison module$")
-    public void Students_should_be_in_the_Score_Comparison_Module(String scoreType, String value) throws Throwable {
-        FCHubs.VerifyScoreValuesScoreComp(scoreType, value);
-    }
-
-    @Then("^Average \"([^\"]*)\" should be \"([^\"]*)\" with correct values in the Score Comparison module$")
-    public void Average_should_be_with_correct_values_in_the_Score_Comparison_Module(String avgScoreType,
-                                                                                     String avgValue) throws Throwable {
-        FCHubs.VerifyAvgValuesScoreComp(avgScoreType, avgValue);
-    }
-
-    @Then("^The score text for \"([^\"]*)\" should be \"([^\"]*)\"$")
-    public void The_score_text_for_should_be(String scoreType, String scoreText) throws Throwable {
-        FCHubs.VerifyScoreTextScoreComp(scoreType, scoreText);
-    }
-
     @Then("^The Overall Average text should be \"([^\"]*)\" in the Score Comparison module$")
     public void The_Overall_Average_text_should_be_in_the_Score_Comparison_module(String overallAvgText)
             throws Throwable {
@@ -240,9 +224,9 @@ public class FCHubs_StepDefs {
         FCHubs.VerifyQuestionMarkScoreComp(scoreType);
     }
 
-    @Then("^Average Total Cost should be \"([^\"]*)\" when the income is \"([^\"]*)\"$")
-    public void Average_Total_Cost_should_be_when_the_income_is(String avgTotalCost, String income) throws Throwable {
-        FCHubs.VerifyAvgTotalCostInfoTopBar(income, avgTotalCost);
+    @Then("^Average Total Cost should correspond to the income as follows:$")
+    public void averageTotalCostShouldCorrespondToTheIncomeAsFollows(List<String> incomeList) throws Throwable {
+        FCHubs.VerifyAvgTotalCostInfoTopBar(incomeList);
     }
 
     @Then("^Graduation Rate should be \"([^\"]*)\" with correct data in the Information Top bar$")
@@ -372,7 +356,10 @@ public class FCHubs_StepDefs {
         FCCollegesTab.EnterCollegeToSearch(college);
         FCCollegesTab.ClickGoButton();
         FCCollegesTab.ClickCollegeInCollegeLookup(college);
+        /*The following callings inside this method will be commented as needed. This is because sometimes a toggle
+        * is switched to use the Beta button, and the same with the Authorize button*/
         FCCollegeView.clickBetaButton();
+//        FCCollegeView.clickAuthorizeButton();
     }
     @When("^I open 'Communicate' link \"([^\"]*)\"$")
     public void I_open_Communicate_Link(String link) throws Throwable {
@@ -456,9 +443,9 @@ public class FCHubs_StepDefs {
         FCCollegesTab.removeCollegeFromImThinkingAboutListLegacy(college);
     }
 
-    @Given("^The college is added to the 'I'm thinking about' list$")
-    public void The_college_is_added_to_the_Im_thinking_about_list() throws Throwable {
-        FCHubs.clickWhiteHeartThinkingAboutList();
+    @Given("^The college \"([^\"]*)\" is added to the 'I'm thinking about' list$")
+    public void The_college_is_added_to_the_Im_thinking_about_list(String college) throws Throwable {
+        FCHubs.clickAddToCollegesThinkingAboutPinkButton();
     }
 
     @When("^I take the college out of the 'I'm thinking about' list using the heart icon$")
@@ -494,6 +481,86 @@ public class FCHubs_StepDefs {
     @When("^I open the college visit details in position \"([^\"]*)\"$")
     public void iOpenTheCollegeVisitDetailsInPosition(String position) throws Throwable {
         FCHubs.clickDetailsInCollegeVisit(position);
+    }
+
+    @Then("^Student's score type and value should correspond to the following data in the Score Comparison module:$")
+    public void studentSScoreTypeAndValueShouldCorrespondToTheFollowingDataInTheScoreComparisonModule(List<String> scoreValueList) throws Throwable {
+        FCHubs.VerifyScoreValuesScoreComp(scoreValueList);
+    }
+
+    @Then("^Average score type and value should correspond to the following data in the Score Comparison module$")
+    public void averageScoreTypeAndValueShouldCorrespondToTheFollowingDataInTheScoreComparisonModule(List<String> avgScoreValueList) throws Throwable {
+        FCHubs.VerifyAvgValuesScoreComp(avgScoreValueList);
+    }
+
+    @Then("^The score text for each score type should be as follows:$")
+    public void the_score_text_for_each_score_type_should_be_as_follows(List<String> scoresList) throws Throwable {
+        FCHubs.verifyScoreTextScoreComp(scoresList);
+    }
+
+    @When("^I switch the comparison to be made against all students accepted by the college$")
+    public void I_switch_the_comparison_to_be_made_against_all_students_accepted_by_the_college() throws Throwable {
+        FCHubs.clickCompareMeWithAllAcceptedApplicants();
+    }
+
+    @Then("^I should see the the comparison made against all students accepted by the college$")
+    public void I_should_see_the_the_comparison_made_against_all_students_accepted_by_the_college() throws Throwable {
+        FCHubs.verifyComparisonAgainstAllStudents();
+    }
+
+    @When("^I switch the comparison to be made against other students from the students' school$")
+    public void iSwitchTheComparisonToBeMadeAgainstOtherStudentsFromTheStudentsSchool() throws Throwable {
+        FCHubs.clickCompareMeWithStudentsFromMyHS();
+    }
+
+    @Then("^I should see the the comparison made against other students from the students' school$")
+    public void iShouldSeeTheTheComparisonMadeAgainstOtherStudentsFromTheStudentsSchool() throws Throwable {
+        FCHubs.verifyComparisonAgainstOtherStudentsFromHS();
+    }
+
+    @Then("^I should see the Counselor Comments$")
+    public void I_should_see_the_Counselor_Comments() throws Throwable {
+        FCHubs.verifyCounselorComments();
+    }
+
+    @Then("^I should see a confirmation message$")
+    public void I_should_see_a_confirmation_message() throws Throwable {
+        FCHubs.verifyCollegeVisitConfirmationMessage();
+    }
+
+    @And("^Remove myself from the college visit at position \"([^\"]*)\"$")
+    public void remove_myself_from_the_college_visit(String position) throws Throwable {
+        FCHubs.clickRemoveFromList(position);
+    }
+
+    @Then("^I should see a confirmation message for the cancellation$")
+    public void I_should_see_a_confirmation_message_for_the_cancellation() throws Throwable {
+        FCHubs.verifyCollegeVisitCancellationMessage();
+    }
+
+    @Then("^No Register button should be displayed$")
+    public void no_register_button_should_be_displayed() throws Throwable {
+        FCHubs.verifyRegisterButtonNotPresent();
+    }
+
+    @Then("^I should see the Recommended Courses with the following data:$")
+    public void I_should_see_the_Recommended_Courses_with_the_following_data(List<String> recommendedCoursesList) throws Throwable {
+        FCHubs.verifyRecommendedCourses(recommendedCoursesList);
+    }
+
+    @When("^I sort data using the \"([^\"]*)\" header$")
+    public void I_sort_the_using_the_header(String header) throws Throwable {
+        FCHubs.clickRecommendedCoursesHeader(header);
+    }
+
+    @Then("^The course names are sorted alphabetically$")
+    public void the_are_sorted_alphabetically() throws Throwable {
+        FCHubs.verifyDataIsAlphabeticallySorted();
+    }
+
+    @Then("^The \"([^\"]*)\" are sorted from greatest to least$")
+    public void theAreSortedFromGreatestToLeast(String dataType) throws Throwable {
+        FCHubs.verifyYearsDataIsSorted(dataType);
     }
 }
 

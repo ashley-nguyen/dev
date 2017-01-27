@@ -70,6 +70,8 @@ public class FCHubsStudentLifeTabPage extends BaseClass {
     public static WebElement labelHousingInfoJuniorsOnCampusValue;
     @FindBy(how = How.CSS, using = ".student-life-housing-information__data dl:nth-of-type(6) dd.ng-binding")
     public static WebElement labelHousingInfoSeniorsOnCampusValue;
+    @FindBy(how = How.CSS, using = "li.studies-programs__filter-item.ng-binding.ng-scope.studies-programs__filter-item--active")
+    public static WebElement buttonAllDegreeOfferings;
 
     public FCHubsStudentLifeTabPage(WebDriver driver) {
         super(driver);
