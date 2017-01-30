@@ -121,4 +121,19 @@ public class FCHubsAdmissionsTab_StepDefs {
     public void the_tooltip_should_be_closed() throws Throwable {
         FCHubsAdmissionsTab.verifyScattergramsTooltipClosed();
     }
+
+    @Then("^The data for 'Important Policies' should be similar to the table:$")
+    public void the_data_for_important_policies_should_be_similar_to_the_table(List<String> policies) throws Throwable {
+        FCHubsAdmissionsTab.verifyImportantPolicies(policies);
+    }
+
+    @Then("^The fees for \"([^\"]*)\" should be:$")
+    public void the_fees_for_should_be(String feesType, List<String> feesList) throws Throwable {
+        FCHubsAdmissionsTab.verifyFeesAppInfo(feesType, feesList);
+    }
+
+    @When("^I open the link with text \"([^\"]*)\" in Fees$")
+    public void I_open_the_link_with_text_in_fees(String linkText) throws Throwable {
+        FCHubsAdmissionsTab.clickLinkInFees(linkText);
+    }
 }

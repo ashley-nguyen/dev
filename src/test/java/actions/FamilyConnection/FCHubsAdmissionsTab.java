@@ -387,4 +387,67 @@ public class FCHubsAdmissionsTab {
         }
         assertTrue("The information tooltip is displayed", result);
     }
+
+    public static void verifyImportantPolicies(List<String> policies) {
+        driver = Hooks.driver;
+        PageFactory.initElements(driver, FCHubsAdmissionsTabPage.class);
+        boolean result = false;
+        List<String> policiesValues = new ArrayList<>();
+        List<WebElement> uiList = driver.findElements(By.cssSelector
+                (FCHubsAdmissionsTabPage.importantPoliciesListLocator));
+        for (String dataElement : policies) {
+            policiesValues.add(dataElement.split(";")[1]);
+        }
+
+        for (WebElement uiElement : uiList) {
+            if (policiesValues.contains(uiElement.getText())) {
+                result = true;
+            } else {
+                result = false;
+                break;
+            }
+        }
+
+        assertTrue("The data in Important Policies is not correct", result);
+    }
+
+    public static void verifyFeesAppInfo(String feesType, List<String> feesList) {
+        driver = Hooks.driver;
+        PageFactory.initElements(driver, FCHubsAdmissionsTabPage.class);
+        boolean result = false;
+        List<String> feesValues = new ArrayList<>();
+        String locator = "";
+        switch (feesType) {
+            case "Freshman" : locator = FCHubsAdmissionsTabPage.freshmanFeesListLocator;
+                break;
+            case "Transfer" : locator = FCHubsAdmissionsTabPage.transferFeesListLocator;
+                break;
+            case "International" : locator = FCHubsAdmissionsTabPage.internationalFeesListLocator;
+                break;
+        }
+        for (String feeElement : feesList) {
+            feesValues.add(feeElement.split(";")[1]);
+        }
+        List<WebElement> uiList = driver.findElements(By.cssSelector(locator));
+        for (WebElement uiElement : uiList) {
+            if (feesValues.contains(uiElement.getText())) {
+                result = true;
+            } else {
+                result = false;
+                break;
+            }
+        }
+        assertTrue("The fees for " + feesType + " are not correct", result);
+    }
+
+    public static void clickLinkInFees(String linkText) {
+        driver = Hooks.driver;
+        PageFactory.initElements(driver, FCHubsAdmissionsTabPage.class);
+        new WebDriverWait(Hooks.driver, 20).until(ExpectedConditions.elementToBeClickable
+                (FCHubsAdmissionsTabPage.linkLearnMoreFees));
+        if (FCHubsAdmissionsTabPage.linkLearnMoreFees.getText().equals(linkText))
+            FCHubsAdmissionsTabPage.linkLearnMoreFees.sendKeys(Keys.RETURN);
+        ArrayList<String> tabs = new ArrayList<String> (driver.getWindowHandles());
+        driver.switchTo().window(tabs.get(tabs.size() - 1));
+    }
 }
