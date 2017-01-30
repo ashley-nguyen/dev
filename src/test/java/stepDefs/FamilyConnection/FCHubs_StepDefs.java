@@ -356,7 +356,10 @@ public class FCHubs_StepDefs {
         FCCollegesTab.EnterCollegeToSearch(college);
         FCCollegesTab.ClickGoButton();
         FCCollegesTab.ClickCollegeInCollegeLookup(college);
-//        FCCollegeView.clickBetaButton();
+        /*The following callings inside this method will be commented as needed. This is because sometimes a toggle
+        * is switched to use the Beta button, and the same with the Authorize button*/
+        FCCollegeView.clickBetaButton();
+//        FCCollegeView.clickAuthorizeButton();
     }
     @When("^I open 'Communicate' link \"([^\"]*)\"$")
     public void I_open_Communicate_Link(String link) throws Throwable {

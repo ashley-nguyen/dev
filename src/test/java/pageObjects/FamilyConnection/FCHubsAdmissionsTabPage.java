@@ -40,10 +40,35 @@ public class FCHubsAdmissionsTabPage extends BaseClass {
     public static WebElement buttonAppReqFees;
     @FindBy(how = How.CSS, using = "div[ng-if=\"vm.policies.length > 0\"]")
     public static WebElement sectionImportantPolicies;
+    @FindBy(how = How.CSS, using = "a.truncated-text__expand")
+    public static WebElement linkShowMoreScattergrams;
+    @FindBy(how = How.CSS, using = "div[ng-if=\"vm.isTruncated && vm.isExpanded\"] a")
+    public static WebElement linkShowLessScattergrams;
+    @FindBy(how = How.CSS, using = "span[ng-click=\"vm.togglePrerequisiteCoursesSort('name')\"]")
+    public static WebElement linkCourseNameHeader;
+    @FindBy(how = How.CSS, using = "span[ng-click=\"vm.togglePrerequisiteCoursesSort('yearsRequired')\"]")
+    public static WebElement linkYearsRequiredHeader;
+    @FindBy(how = How.CSS, using = "span[ng-click=\"vm.togglePrerequisiteCoursesSort('yearsRecommended')\"]")
+    public static WebElement linkYearsRecommendedHeader;
+    @FindBy(how = How.CSS, using = "div.fc-grid__col.fc-grid__col--xs-12.scattergrams-legend")
+    public static WebElement keySectionScattergrams;
+    @FindBy(how = How.CSS, using = "div[ng-if=\"vm.isTruncated && !vm.isExpanded\"]")
+    public static WebElement textBoxDescriptionScattergrams;
+    @FindBy(how = How.CSS, using = "div[ng-if=\"vm.isTruncated && vm.isExpanded\"]")
+    public static WebElement textBoxDescriptionScattergramsExpanded;
+    @FindBy(how = How.CSS, using = "img.background-loader__content")
+    public static WebElement imageScattergrams;
+    @FindBy(how = How.CSS, using = "span[title=\"Click to learn more about Scattergrams\"] svg")
+    public static WebElement infoIconScattergrams;
+    @FindBy(how = How.CSS, using = "svg.fc-icon.hubs-info-tooltip__close-icon")
+    public static WebElement buttonXTooltipScattergrams;
 
-    public static List<WebElement> listDeadlines = driver.findElements(By.cssSelector(".admissions-information__" +
-            "deadline-item.ng-scope"));
     public static String listDeadlinesLocator = ".admissions-information__deadline-item.ng-scope";
+    public static String comparingDropDownLocator = "select[ng-if=\"vm.student.scattergramsSettings.allowGpaToggle\"]";
+    public static String vsDropDownLocator = "select[ng-model=\"vm.scattergramTestType\"]";
+    public static String courseNamesLocator = "tr[ng-repeat=\"course in vm.prerequisiteCourses\"] td:nth-of-type(1)";
+    public static String yearsRequiredLocator = "tr[ng-repeat=\"course in vm.prerequisiteCourses\"] td:nth-of-type(2)";
+    public static String yearsRecommendedLocator = "tr[ng-repeat=\"course in vm.prerequisiteCourses\"] td:nth-of-type(3)";
 
     public FCHubsAdmissionsTabPage(WebDriver driver) {
         super(driver);

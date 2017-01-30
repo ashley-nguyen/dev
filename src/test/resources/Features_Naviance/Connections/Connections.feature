@@ -5,7 +5,7 @@ Feature: Connections Errors test
   I want to be able to Check status and view history of emails sent
 
   Background:
-    Given I am logged into Naviance "rtd1" as "stan.smith" with "stan01!"
+    Given I am logged into Naviance "blueqa1" as "frank.district" with "password"
 
   Scenario: Verify Connections E-Mail displayed correctly
     When I enter to Check status and view history of emails sent

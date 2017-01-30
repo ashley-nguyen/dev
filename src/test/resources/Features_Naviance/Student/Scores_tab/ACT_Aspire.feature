@@ -6,7 +6,7 @@ Feature: Student ACT ASPIRE scores
 
   Background:
     Given when I log in with the following user details:
-      | rtsa | stan.smith | stan01! |
+      | blue1hs | frank.counselor | frank01! |
 
   Scenario Outline: Verify Student ACT ASPIRE score ranges per grade
     When I search for <student> using the global search field
@@ -14,10 +14,10 @@ Feature: Student ACT ASPIRE scores
     Then I will see a warning <message>
 
     Examples:
-      | student        | subject | score | grade | message                                                                                             |
-      | A103, A103 | english | 457   | 9     | Some elements are out of the ranges for the selected grade level. Please check: English. |
-      | A103, A103 | english | 399   | 9     | Some elements are out of the ranges for the selected grade level. Please check: English. |
-      | A103, A103 | math    | 461   | 9     | Some elements are out of the ranges for the selected grade level. Please check: Math.    |
-      | A103, A103 | math    | 399   | 9     | Some elements are out of the ranges for the selected grade level. Please check: Math.    |
-      | A103, A103 | science | 450   | 9     | Some elements are out of the ranges for the selected grade level. Please check: Science. |
-      | A103, A103 | science | 399   | 9     | Some elements are out of the ranges for the selected grade level. Please check: Science. |
+      | student            | subject | score | grade | message                                                                                  |
+      | Student1, Transfer | english | 457   | 9     | Some elements are out of the ranges for the selected grade level. Please check: English. |
+      | Student1, Transfer | english | 399   | 9     | Some elements are out of the ranges for the selected grade level. Please check: English. |
+      | Student1, Transfer| math    | 461   | 9     | Some elements are out of the ranges for the selected grade level. Please check: Math.    |
+      | Student1, Transfer | math    | 399   | 9     | Some elements are out of the ranges for the selected grade level. Please check: Math.    |
+      | Student1, Transfer | science | 450   | 9     | Some elements are out of the ranges for the selected grade level. Please check: Science. |
+      | Student1, Transfer | science | 399   | 9     | Some elements are out of the ranges for the selected grade level. Please check: Science. |

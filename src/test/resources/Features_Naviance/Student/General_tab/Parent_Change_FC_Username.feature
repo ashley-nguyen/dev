@@ -9,4 +9,4 @@ Feature: Counselors viewing a student should be able to change the username for 
     Then I search for "A103, A103" using the global search field
   Examples:
     | user           | account | password |
-    | stan.smith     | rtsa    | stan01!  |
+    | frank.counselor     | blue1hs    | frank01!  |

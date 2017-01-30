@@ -1,6 +1,8 @@
 package actions.FamilyConnection;
 
+import com.gargoylesoftware.htmlunit.ElementNotFoundException;
 import junit.framework.TestCase;
+import org.apache.bcel.generic.FieldGenOrMethodGen;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -587,6 +589,7 @@ public class FCHubs {
     public static void ClickAdmissionsTab() {
         driver = Hooks.driver;
         PageFactory.initElements(driver, FCHubsPage.class);
+        new WebDriverWait(driver, 20).until(ExpectedConditions.elementToBeClickable(FCHubsPage.tabCosts));
         FCHubsPage.tabAdmissions.click();
     }
 
@@ -834,7 +837,6 @@ public class FCHubs {
                 (By.cssSelector(FCCollegesPage.imThinkingAboutListElementsString));
         for (WebElement collegeInList : imThinkingAboutListElements) {
             if (collegeInList.getText().contains(college)) {
-                System.out.println("Valor: " + collegeInList.getText());
                 result = false;
                 break;
             } else {
@@ -970,7 +972,7 @@ public class FCHubs {
         PageFactory.initElements(driver, FCHubsPage.class);
         new WebDriverWait(Hooks.driver, 20).until(ExpectedConditions.elementToBeClickable
                 (FCHubsPage.visitRegistrationCancelMsg));
-        assertTrue("The cacncellation message is not displayed", FCHubsPage.visitRegistrationCancelMsg.isDisplayed());
+        assertTrue("The cancellation message is not displayed", FCHubsPage.visitRegistrationCancelMsg.isDisplayed());
     }
 
     public static void clickImThinkingAboutStickyBar() {
