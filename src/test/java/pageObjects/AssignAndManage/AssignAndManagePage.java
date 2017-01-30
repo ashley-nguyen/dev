@@ -12,7 +12,7 @@ import pageObjects.BaseClass;
  */
 public class AssignAndManagePage extends BaseClass {
 
-    @FindBy(how = How.CSS, using = "legend:contains('Manage Student Plans from Advanced Search')")
+    @FindBy(how = How.CSS, using = "legend")
     public static WebElement headingOfPage;
 
     public AssignAndManagePage(WebDriver driver) {

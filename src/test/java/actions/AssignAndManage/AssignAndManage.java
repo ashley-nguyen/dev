@@ -38,6 +38,6 @@ public class AssignAndManage {
 
     public void verifyAssignAndManagePage() throws Exception {
 
-        driverComponents.verifyTextPresent("Manage Student Plans from Advanced Search", AssignAndManagePage.headingOfPage);
+        driverComponents.verifyTextPresent("MANAGE STUDENT PLANS FROM ADVANCED SEARCH", AssignAndManagePage.headingOfPage);
     }
 }
