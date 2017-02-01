@@ -136,4 +136,10 @@ public class FCHubsAdmissionsTab_StepDefs {
     public void I_open_the_link_with_text_in_fees(String linkText) throws Throwable {
         FCHubsAdmissionsTab.clickLinkInFees(linkText);
     }
+
+    @Then("^The applications for the current year should be as follows in Applications from High School:$")
+    public void the_applications_for_the_current_year_should_be_as_follows_in_applications_from_High_School
+            (List<String> applicationsList) throws Throwable {
+        FCHubsAdmissionsTab.verifyApplicationsFromHS(applicationsList);
+    }
 }
