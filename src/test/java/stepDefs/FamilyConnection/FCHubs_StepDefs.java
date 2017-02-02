@@ -542,5 +542,10 @@ public class FCHubs_StepDefs {
     public void no_register_button_should_be_displayed() throws Throwable {
         FCHubs.verifyRegisterButtonNotPresent();
     }
+
+    @Then("^I open the International tab$")
+    public void I_open_the_international_tab() throws Throwable {
+        FCHubs.clickInternationalTab();
+    }
 }
 

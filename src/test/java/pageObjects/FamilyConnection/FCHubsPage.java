@@ -69,6 +69,8 @@ public class FCHubsPage extends BaseClass {
     public static WebElement tabCosts;
     @FindBy(how = How.CSS, using = ".tabs.hubs-top-tabs-bar span:nth-of-type(6)")
     public static WebElement tabProfiles;
+    @FindBy(how = How.CSS, using = ".tabs.hubs-top-tabs-bar span:nth-of-type(7)")
+    public static WebElement tabInternational;
     @FindBy(how = How.CSS, using = "div[ng-if=\"vm.averageNetPrices.length > 0\"] div.hub-data-pod__data-age.ng-binding")
     public static WebElement labelDateAvgNetPrice;
     @FindBy(how = How.CSS, using = "div[ng-if=\"vm.gradRate\"] div.hub-data-pod__data-age.ng-binding")

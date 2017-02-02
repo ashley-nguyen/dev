@@ -1003,4 +1003,12 @@ public class FCHubs {
         new WebDriverWait(Hooks.driver, 20).until(ExpectedConditions.invisibilityOfElementLocated(
                 By.cssSelector("a[ng-click=\"vm.addToList()\"]")));
     }
+
+    public static void clickInternationalTab() {
+        driver = Hooks.driver;
+        PageFactory.initElements(driver, FCHubsPage.class);
+        new WebDriverWait(Hooks.driver, 20).until(ExpectedConditions.elementToBeClickable
+                (FCHubsPage.tabInternational));
+        FCHubsPage.tabInternational.click();
+    }
 }
