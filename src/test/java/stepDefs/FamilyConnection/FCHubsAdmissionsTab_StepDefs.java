@@ -1,8 +1,10 @@
 package stepDefs.FamilyConnection;
 
+import actions.FamilyConnection.FCHubs;
 import actions.FamilyConnection.FCHubsAdmissionsTab;
 import actions.FamilyConnection.FCHubsStudiesTab;
 import cucumber.api.PendingException;
+import cucumber.api.java.en.And;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import org.openqa.selenium.WebDriver;
@@ -53,5 +55,85 @@ public class FCHubsAdmissionsTab_StepDefs {
     @Then("^The deadline with name \"([^\"]*)\" and date \"([^\"]*)\" should be displayed in Application Information$")
     public void the_deadline_with_name_and_date_should_be_displayed_in_Application_Information(String deadlineName, String date) throws Throwable {
         FCHubsAdmissionsTab.VerifyDeadline(deadlineName, date);
+    }
+
+    @Then("^I should see the Recommended Courses with the following data:$")
+    public void I_should_see_the_Recommended_Courses_with_the_following_data(List<String> recommendedCoursesList) throws Throwable {
+        FCHubsAdmissionsTab.verifyRecommendedCourses(recommendedCoursesList);
+    }
+
+    @When("^I sort data using the \"([^\"]*)\" header$")
+    public void I_sort_the_using_the_header(String header) throws Throwable {
+        FCHubsAdmissionsTab.clickRecommendedCoursesHeader(header);
+    }
+
+    @Then("^The course names are sorted alphabetically$")
+    public void the_are_sorted_alphabetically() throws Throwable {
+        FCHubsAdmissionsTab.verifyDataIsAlphabeticallySorted();
+    }
+
+    @Then("^The \"([^\"]*)\" are sorted from greatest to least$")
+    public void theAreSortedFromGreatestToLeast(String dataType) throws Throwable {
+        FCHubsAdmissionsTab.verifyYearsDataIsSorted(dataType);
+    }
+
+    @Then("^The \"([^\"]*)\" drop down should have the options:$")
+    public void the_drop_down_should_have_the_options(String dropDownIdentifier, List<String> dropDownOptions) throws Throwable {
+        FCHubsAdmissionsTab.verifyDropDownOptions(dropDownIdentifier, dropDownOptions);
+    }
+
+    @Then("^The \"([^\"]*)\" should be displayed in Scattergrams$")
+    public void the_should_be_displayed_in_scattergrams(String section) throws Throwable {
+        FCHubsAdmissionsTab.verifyScattergramsSection(section);
+    }
+
+    @When("^I expand the description using 'Show more' in the Scattergrams description$")
+    public void I_expand_the_description_using_show_more_in_the_scattergrams_description() throws Throwable {
+        FCHubsAdmissionsTab.clickShowMoreScattergrams();
+    }
+
+    @Then("^The Scattergrams description should be expanded$")
+    public void the_scattergrams_description_should_be_expanded() throws Throwable {
+        FCHubsAdmissionsTab.verifyExpandedDescriptionScattergrams();
+    }
+
+    @And("^I collapse the desciption using 'Show less' in the Scattergrams description$")
+    public void I_collapse_the_desciption_using_show_less_in_the_scattergrams_description() throws Throwable {
+        FCHubsAdmissionsTab.clickShowLessScattergrams();
+    }
+
+    @When("^I open the information tooltip using the information icon in Scattergrams$")
+    public void I_open_the_information_tooltip_using_the_information_icon_in_scattergrams() throws Throwable {
+        FCHubsAdmissionsTab.clickInfoIconScattergrams();
+    }
+
+    @Then("^An information tooltip should be displayed$")
+    public void an_information_tooltip_should_be_displayed() throws Throwable {
+        FCHubsAdmissionsTab.verifyTooltipScattergrams();
+    }
+
+    @When("^Close the information tooltip using the x$")
+    public void close_the_information_tooltip_using_the_x() throws Throwable {
+        FCHubsAdmissionsTab.clickXTooltipScattergrams();
+    }
+
+    @Then("^The tooltip should be closed$")
+    public void the_tooltip_should_be_closed() throws Throwable {
+        FCHubsAdmissionsTab.verifyScattergramsTooltipClosed();
+    }
+
+    @Then("^The data for 'Important Policies' should be similar to the table:$")
+    public void the_data_for_important_policies_should_be_similar_to_the_table(List<String> policies) throws Throwable {
+        FCHubsAdmissionsTab.verifyImportantPolicies(policies);
+    }
+
+    @Then("^The fees for \"([^\"]*)\" should be:$")
+    public void the_fees_for_should_be(String feesType, List<String> feesList) throws Throwable {
+        FCHubsAdmissionsTab.verifyFeesAppInfo(feesType, feesList);
+    }
+
+    @When("^I open the link with text \"([^\"]*)\" in Fees$")
+    public void I_open_the_link_with_text_in_fees(String linkText) throws Throwable {
+        FCHubsAdmissionsTab.clickLinkInFees(linkText);
     }
 }
