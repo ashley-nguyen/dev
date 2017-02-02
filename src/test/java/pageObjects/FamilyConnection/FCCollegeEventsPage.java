@@ -10,7 +10,7 @@ import pageObjects.BaseClass;
  * Created by mbhangu on 12/13/2016.
  */
 public class FCCollegeEventsPage extends BaseClass {
-    @FindBy(how = How.CSS, using = "h1")
+    @FindBy(how = How.CSS, using = ".fc-grid__col--xs >strong")
     public static WebElement labelCollegeEventsTitle;
 
     @FindBy(how = How.CSS, using = ".fc-fieldset__legend")
@@ -19,10 +19,13 @@ public class FCCollegeEventsPage extends BaseClass {
     @FindBy(how = How.CSS, using = ".fc-button--primary")
     public static WebElement clickSignUpButton;
 
-    @FindBy(how = How.CSS, using = "h2:not([class=\"event-summary__college-name ng-binding\"]):not([class=\"ng-scope\"])")
+    @FindBy(how = How.CSS, using = "[ng-switch-when=\"REGISTERED\"]:not(.event-summary__status) h2:not([ng-if=\"vm.userCanSeeSignup\"])")
     public static WebElement labelConfirmationMessage;
 
-    @FindBy(how = How.CSS, using = ".event-summary__status-column span.fc-button.fc-button--call-to-action.ng-binding")
+    // @FindBy(how = How.CSS, using = ".event-summary__status-column span.fc-button.fc-button--call-to-action.ng-binding")
+    //public static WebElement buttonSignUponCollegeEvents;
+
+    @FindBy(how = How.CSS, using = ".event-summary__title.ng-binding")
     public static WebElement buttonSignUponCollegeEvents;
 
     @FindBy(how = How.CSS, using = ".event-summary__status-column span.fc-button.fc-button--call-to-action.ng-binding")
@@ -46,7 +49,7 @@ public class FCCollegeEventsPage extends BaseClass {
     @FindBy(how = How.CSS, using = "div.search-form__fields.search-form__fields--open div.fc-central-content > strong")
     public static WebElement VerifyFindEventsByOptionsText;
 
-   @FindBy(how = How.CSS, using = "select[ng-change='vm.updateZip()']")
+    @FindBy(how = How.CSS, using = "select[ng-change='vm.updateZip()']")
     public static WebElement selectDistanceandEnterZipCodeValue;
 
     @FindBy(how = How.CSS, using = "[ng-required=\"vm.isZipRequired()\"]")
@@ -63,9 +66,12 @@ public class FCCollegeEventsPage extends BaseClass {
 
     public static String eventsList = "h3";
 
+    @FindBy(how = How.CSS, using = ".fc-main-nav__tab.fc-main-nav__tab--active")
+    public static WebElement oldCollegesTab;
+
     public FCCollegeEventsPage(WebDriver driver) {
         super(driver);
     }
 
-    }
+}
 

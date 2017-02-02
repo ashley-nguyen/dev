@@ -28,8 +28,10 @@ public class FCCollegeEvents {
     public static void verifyCollegeEventsDetails() {
         driver = Hooks.driver;
         PageFactory.initElements(driver, FCCollegeEventsPage.class);
-        assertTrue("The College Events page is Not Displayed ", FCCollegeEventsPage.labelCollegeEventsTitle.isDisplayed());
+        assertTrue("The View/Update button is not displayed ", FCCollegeEventsPage.labelCollegeEventsTitle.isDisplayed());
+
     }
+
 
     public static void verifySignUpHereText(String eventSignup) {
         driver = Hooks.driver;
@@ -41,6 +43,7 @@ public class FCCollegeEvents {
         driver = Hooks.driver;
         PageFactory.initElements(driver, FCCollegeEventsPage.class);
         FCCollegeEventsPage.clickSignUpButton.click();
+
     }
 
     public static void verifyConfirmationMessageEvents(String confirmationMessage) {
@@ -99,7 +102,7 @@ public class FCCollegeEvents {
             FCCollegeEventsPage.closeEventToolTip.isDisplayed();
             FCCollegeEventsPage.closeEventToolTip.click();
 
-            }catch (ElementNotFoundException e){
+        }catch (ElementNotFoundException e){
 
             Select distanceDropDown = new Select(FCCollegeEventsPage.selectDistanceandEnterZipCodeValue);
             distanceDropDown.selectByVisibleText(distance);
@@ -109,8 +112,8 @@ public class FCCollegeEvents {
         Select distanceDropDown = new Select(FCCollegeEventsPage.selectDistanceandEnterZipCodeValue);
         distanceDropDown.selectByVisibleText(distance);
 
-        new WebDriverWait(Hooks.driver, 20).until(ExpectedConditions.elementToBeClickable
-         (FCCollegeEventsPage.eventsTextBoxForZipCode));
+        new WebDriverWait(Hooks.driver, 30).until(ExpectedConditions.elementToBeClickable
+                (FCCollegeEventsPage.eventsTextBoxForZipCode));
         FCCollegeEventsPage.eventsTextBoxForZipCode.sendKeys(Zipcode);
 
     }
@@ -132,11 +135,18 @@ public class FCCollegeEvents {
         {
             System.out.println("Values in the list are :" + arrayOfEvents.get(i).getText());
             if (arrayOfEvents.get(i).getText().equals(eventName)){
-            result = true;
+                result = true;
             }
 
         }
         assertTrue("The Event Name not present or it displays incorrect data", result);
+
+    }
+
+    public static void clickCollegesTabOld() {
+        driver = Hooks.driver;
+        PageFactory.initElements(driver, FCCollegeEventsPage.class);
+        FCCollegeEventsPage.oldCollegesTab.click();
 
     }
 }

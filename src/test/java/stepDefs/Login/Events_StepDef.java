@@ -44,8 +44,8 @@ public class Events_StepDef {
         FCCollegeEvents.clickReturntoAllEventslink();
     }
 
-    @When("^I click on See Recommended Events$")
-    public void I_Click_On_See_RecommendedEvents() throws Throwable {
+    @When("^I See Recommended Events$")
+    public void I_See_RecommendedEvents() throws Throwable {
         FCCollegeEvents.clickRecommendedEventslink();
     }
 
@@ -55,15 +55,15 @@ public class Events_StepDef {
     }
 
 
-    @When("^I click on link Upcoming college events$")
+    @When("^I open link Upcoming college events$")
     public void i_Click_On_Link_UpcomingCollegeEvents() throws Throwable {
         FCCollegeEvents.clicklinkUpcomingCollegeEvents();
 
     }
 
-    @When("^I click on button More Options$")
+    @When("^I open button More Options$")
     public void i_Click_On_Button_MoreOptions() throws Throwable {
-         FCCollegeEvents.clickMoreOptions();
+        FCCollegeEvents.clickMoreOptions();
     }
 
     @Then("^Filter Options are displayed$")
@@ -86,6 +86,11 @@ public class Events_StepDef {
     public void iSeeTheFilteredEvents(String eventName) throws Throwable {
         FCCollegeEvents.verifyFilteredEvents(eventName);
 
+    }
+
+    @When("^I Navigate to oldColleges tab$")
+    public void i_Click_On_Old_CollegesTab() throws Throwable {
+        FCCollegeEvents.clickCollegesTabOld();
     }
 }
 

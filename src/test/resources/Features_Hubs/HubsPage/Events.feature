@@ -6,44 +6,33 @@ Feature:  As a student viewing new Hubs' events screen , I want to see events so
       | rtsa | amandahubs| hubs2016  |
     When I open the HUBS page for "Adelphi"
 
+
   Scenario: User is taken to Events Page when click Recommended Events
     When I open Recommended Events from sticky bar
     Then I should see College Events Details
 
   Scenario: User signup for the Event by selecting event from events details page
     When I open Recommended Events from sticky bar
-    When SignUp for school "Adrian" for Event "Mandeep -Automation Test2"
+    When SignUp for school "Adrian" for Event "ABC Store Event1"
     Then Sign Up Here page displayed for "Adrian" School event
     When I signup for Adrian School Event
     Then Message displayed "You're signed up for this event!"
-
-  Scenario: User signup for event and verify confirmation message
-    Given I open Recommended Events from sticky bar
-    When SignUp for school "Adrian" for Event "Mandeep - Automation Event3"
-    Then Sign Up Here page displayed for "Adrian" School event
-    When I signup for Adrian School Event
-    Then Message displayed "You're signed up for this event!"
-
-  Scenario: User returns from Event Details page and views all college events
-    Given I open Recommended Events from sticky bar
-    When  SignUp for school "Adrian" for Event "Mandeep -Automation Event1"
-    When I signup for Adrian School Event
     When I Return to All Events Page
     Then I should see College Events Details
 
   Scenario: User filter and view Recommended Events only
-     Given I open Recommended Events from sticky bar
-     When I click on See Recommended Events
-     Then Recommended events are displayed on screen
+    Given I open Recommended Events from sticky bar
+    When I See Recommended Events
+    Then Recommended events are displayed on screen
 
   Scenario: User navigate to events screen from legacy by clicking link "Upcoming College Events"
-    When I click on link Upcoming college events
+    When I Navigate to oldColleges tab
+    When I open link Upcoming college events
     Then I should see College Events Details
-
 
   Scenario: User filter test cases based on More Options filter criteria and verify results
     Given I open Recommended Events from sticky bar
-    When I click on button More Options
+    When I open button More Options
     Then Filter Options are displayed
     When I Select College Location within "250 miles" and enter zipcode "45040"
     When I open show results
