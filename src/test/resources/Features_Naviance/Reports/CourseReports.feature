@@ -1,5 +1,5 @@
 @reports @td2 @district @regression
-Feature: Course Reports tests
+Feature: Course Reports tests for Reports Feature
   In order to navigate to Reports
   as a Naviance user
   I want to verify the existance of all the reports under Course Report
