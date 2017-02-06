@@ -40,7 +40,7 @@ public class FCCollegeEventsPage extends BaseClass {
     @FindBy(how = How.CSS, using = ".fc-info-tag.fc-info-tag--recommended.ng-scope")
     public static WebElement verifyRecommendedEventsText;
 
-    @FindBy(how = How.CSS, using = "a[href='https://fc-events-app.naviance.com/college-events-app']")
+    @FindBy(how = How.CSS, using = "a[href='https://qa-fc-events-app.naviance.com/']")
     public static WebElement UpcomingCollegeEvents;
 
     @FindBy(how = How.CSS, using = ".fc-button.fc-button--primary[ng-click=\"vm.toggleForm()\"]")
