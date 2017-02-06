@@ -33,7 +33,7 @@ Feature:  As a student viewing new hubs page, I want to always see the college's
   the heart icon
     When I go over the heart icon when it is white
     Then I should see a tooltip with the text "Add to Colleges I'm Thinking About"
-  @test
+
   Scenario: A tool tip with the text "Remove from Colleges I'm Thinking About" is displayed when the user hover over
   the heart icon
     When I go over the heart icon when it is pink

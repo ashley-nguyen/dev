@@ -177,6 +177,8 @@ public class FCHubsPage extends BaseClass {
     public static WebElement tabCollegesTopBar;
     @FindBy(how = How.CSS, using = "tbody tr:nth-of-type(1) td span")
     public static WebElement firstCollegeVisitsRegisterButton;
+    @FindBy(how = How.CSS, using = "h1.masthead__name.ng-binding")
+    public static WebElement labelCollegeName;
 
 
     public static String URLimThinkingAboutList = "https://connection-int.dev.naviance.com/family-connection" +

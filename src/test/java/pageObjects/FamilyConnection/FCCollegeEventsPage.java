@@ -12,18 +12,16 @@ import pageObjects.BaseClass;
 public class FCCollegeEventsPage extends BaseClass {
     @FindBy(how = How.CSS, using = "h1")
     public static WebElement labelCollegeEventsTitle;
-
     @FindBy(how = How.CSS, using = ".fc-fieldset__legend")
     public static WebElement CollegeEventsDetailsSignUpHere;
-
     @FindBy(how = How.CSS, using = ".fc-button--primary")
     public static WebElement clickSignUpButton;
-
     @FindBy(how = How.CSS, using = "h2:not([class=\"event-summary__college-name ng-binding\"]):not([class=\"ng-scope\"])")
     public static WebElement labelConfirmationMessage;
+
+    public static String eventsListLocator = ".events-list event-summary";
 
     public FCCollegeEventsPage(WebDriver driver) {
         super(driver);
     }
-
 }
