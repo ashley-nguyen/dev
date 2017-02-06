@@ -1,4 +1,4 @@
-package stepDefs.Login;
+package stepDefs.FamilyConnection;
 
 import actions.FamilyConnection.FCCollegeEvents;
 import cucumber.api.PendingException;
@@ -11,7 +11,7 @@ import pageObjects.FamilyConnection.FCCollegeEventsPage;
 /**
  * Created by mbhangu on 12/13/2016.
  */
-public class Events_StepDef {
+public class FCHubsEvents_StepDef {
     public static WebDriver driver;
 
     @Then("^I should see College Events Details$")

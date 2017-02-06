@@ -22,9 +22,6 @@ public class FCCollegeEventsPage extends BaseClass {
     @FindBy(how = How.CSS, using = "[ng-switch-when=\"REGISTERED\"]:not(.event-summary__status) h2:not([ng-if=\"vm.userCanSeeSignup\"])")
     public static WebElement labelConfirmationMessage;
 
-    // @FindBy(how = How.CSS, using = ".event-summary__status-column span.fc-button.fc-button--call-to-action.ng-binding")
-    //public static WebElement buttonSignUponCollegeEvents;
-
     @FindBy(how = How.CSS, using = ".event-summary__title.ng-binding")
     public static WebElement buttonSignUponCollegeEvents;
 
@@ -72,6 +69,5 @@ public class FCCollegeEventsPage extends BaseClass {
     public FCCollegeEventsPage(WebDriver driver) {
         super(driver);
     }
-
 }
 

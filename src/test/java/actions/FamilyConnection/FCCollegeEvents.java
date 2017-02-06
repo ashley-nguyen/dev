@@ -29,9 +29,7 @@ public class FCCollegeEvents {
         driver = Hooks.driver;
         PageFactory.initElements(driver, FCCollegeEventsPage.class);
         assertTrue("The View/Update button is not displayed ", FCCollegeEventsPage.labelCollegeEventsTitle.isDisplayed());
-
     }
-
 
     public static void verifySignUpHereText(String eventSignup) {
         driver = Hooks.driver;
@@ -43,7 +41,6 @@ public class FCCollegeEvents {
         driver = Hooks.driver;
         PageFactory.initElements(driver, FCCollegeEventsPage.class);
         FCCollegeEventsPage.clickSignUpButton.click();
-
     }
 
     public static void verifyConfirmationMessageEvents(String confirmationMessage) {
@@ -86,7 +83,6 @@ public class FCCollegeEvents {
         driver = Hooks.driver;
         PageFactory.initElements(driver, FCCollegeEventsPage.class);
         FCCollegeEventsPage.eventsMoreOptions.click();
-
     }
 
     public static void VerifyFindEventsByOptions() {
@@ -101,7 +97,6 @@ public class FCCollegeEvents {
         try{
             FCCollegeEventsPage.closeEventToolTip.isDisplayed();
             FCCollegeEventsPage.closeEventToolTip.click();
-
         }catch (ElementNotFoundException e){
 
             Select distanceDropDown = new Select(FCCollegeEventsPage.selectDistanceandEnterZipCodeValue);
@@ -111,11 +106,9 @@ public class FCCollegeEvents {
 
         Select distanceDropDown = new Select(FCCollegeEventsPage.selectDistanceandEnterZipCodeValue);
         distanceDropDown.selectByVisibleText(distance);
-
         new WebDriverWait(Hooks.driver, 30).until(ExpectedConditions.elementToBeClickable
-                (FCCollegeEventsPage.eventsTextBoxForZipCode));
+        (FCCollegeEventsPage.eventsTextBoxForZipCode));
         FCCollegeEventsPage.eventsTextBoxForZipCode.sendKeys(Zipcode);
-
     }
 
     public static void clickShowResults() {
@@ -140,13 +133,11 @@ public class FCCollegeEvents {
 
         }
         assertTrue("The Event Name not present or it displays incorrect data", result);
-
     }
 
     public static void clickCollegesTabOld() {
         driver = Hooks.driver;
         PageFactory.initElements(driver, FCCollegeEventsPage.class);
         FCCollegeEventsPage.oldCollegesTab.click();
-
     }
 }
