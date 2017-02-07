@@ -100,7 +100,7 @@ Feature: As a student exploring a college, I want to see a top bar with high-lev
     ]
     """
 
-  Scenario Outline: A tooltip is displayed in Average Net Price after clicking the information icon
+  Scenario Outline: A tooltip is displayed after clicking the information icon
     When I open the information tooltip clicking the information icon in "<section>"
     Then A tooltip should be displayed in "<section>"
     And I open the information tooltip clicking the information icon in "<section>"

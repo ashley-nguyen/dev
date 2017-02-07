@@ -905,7 +905,6 @@ public class FCHubs {
     public static void clickCompareMeWithAllAcceptedApplicants() {
         driver = Hooks.driver;
         PageFactory.initElements(driver, FCHubsPage.class);
-        JavascriptExecutor jse = (JavascriptExecutor)driver;
         new WebDriverWait(Hooks.driver, 20).until(ExpectedConditions.elementToBeClickable
                 (FCHubsPage.labelOtherStudentsFromHS));
         ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);",
@@ -1023,9 +1022,17 @@ public class FCHubs {
                 break;
             case "Acceptance Rate" : infoIcon = FCHubsPage.infoIconAcceptanceRatePrice;
                 break;
+            case "description" : infoIcon = FCHubsPage.infoIconCompareMeDescription;
+                break;
+            case "GPA" : infoIcon = FCHubsPage.infoIconCompareMeGPA;
+                break;
+            case "SAT" : infoIcon = FCHubsPage.infoIconCompareMeSAT;
+                break;
+            case "ACT" : infoIcon = FCHubsPage.infoIconCompareMeACT;
+                break;
         }
         new WebDriverWait(Hooks.driver, 20).until(ExpectedConditions.elementToBeClickable(infoIcon));
-        infoIcon.click();
+        infoIcon.sendKeys(Keys.RETURN);
     }
 
     public static void verifyInfoTooltipInSection(String section) {
@@ -1043,6 +1050,6 @@ public class FCHubs {
         } catch (NoSuchElementException e) {
             result = true;
         }
-        assertTrue("The tooltip was not closed", result);
+        assertTrue("The tooltip in the section: " + section + "was not closed", result);
     }
 }
