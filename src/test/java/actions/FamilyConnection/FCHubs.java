@@ -1003,4 +1003,46 @@ public class FCHubs {
         new WebDriverWait(Hooks.driver, 20).until(ExpectedConditions.invisibilityOfElementLocated(
                 By.cssSelector("a[ng-click=\"vm.addToList()\"]")));
     }
+
+    public static void clickInternationalTab() {
+        driver = Hooks.driver;
+        PageFactory.initElements(driver, FCHubsPage.class);
+        new WebDriverWait(Hooks.driver, 20).until(ExpectedConditions.elementToBeClickable
+                (FCHubsPage.tabInternational));
+        FCHubsPage.tabInternational.click();
+    }
+
+    public static void clickInfoIconInSection(String section) {
+        driver = Hooks.driver;
+        PageFactory.initElements(driver, FCHubsPage.class);
+        WebElement infoIcon = null;
+        switch (section) {
+            case "Average Net Price" : infoIcon = FCHubsPage.infoIconAvgNetPrice;
+                break;
+            case "Graduation Rate" : infoIcon = FCHubsPage.infoIconGradRatePrice;
+                break;
+            case "Acceptance Rate" : infoIcon = FCHubsPage.infoIconAcceptanceRatePrice;
+                break;
+        }
+        new WebDriverWait(Hooks.driver, 20).until(ExpectedConditions.elementToBeClickable(infoIcon));
+        infoIcon.click();
+    }
+
+    public static void verifyInfoTooltipInSection(String section) {
+        driver = Hooks.driver;
+        PageFactory.initElements(driver, FCHubsPage.class);
+        assertTrue("The tooltip is not displayed in the section " + section, FCHubsPage.tooltipCloseIcon.isDisplayed());
+    }
+
+    public static void verifyInfoTooltipInSectionIsClosed(String section) {
+        driver = Hooks.driver;
+        PageFactory.initElements(driver, FCHubsPage.class);
+        boolean result = false;
+        try {
+            FCHubsPage.tooltipCloseIcon.isDisplayed();
+        } catch (NoSuchElementException e) {
+            result = true;
+        }
+        assertTrue("The tooltip was not closed", result);
+    }
 }

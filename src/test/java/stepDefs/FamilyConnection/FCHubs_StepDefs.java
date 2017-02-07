@@ -542,5 +542,25 @@ public class FCHubs_StepDefs {
     public void no_register_button_should_be_displayed() throws Throwable {
         FCHubs.verifyRegisterButtonNotPresent();
     }
+
+    @Then("^I open the International tab$")
+    public void I_open_the_international_tab() throws Throwable {
+        FCHubs.clickInternationalTab();
+    }
+
+    @When("^I open the information tooltip clicking the information icon in \"([^\"]*)\"$")
+    public void I_open_the_information_tooltip_clicking_the_information_icon_in(String section) throws Throwable {
+        FCHubs.clickInfoIconInSection(section);
+    }
+
+    @Then("^A tooltip should be displayed in \"([^\"]*)\"$")
+    public void a_tooltip_should_be_displayed_in(String section) throws Throwable {
+        FCHubs.verifyInfoTooltipInSection(section);
+    }
+
+    @Then("^The tooltip in \"([^\"]*)\" should be closed$")
+    public void theTooltipInShouldBeClosed(String section) throws Throwable {
+        FCHubs.verifyInfoTooltipInSectionIsClosed(section);
+    }
 }
 

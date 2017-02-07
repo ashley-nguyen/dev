@@ -22,7 +22,7 @@ Feature: As a student exploring a college, I want to see a top bar with high-lev
     Then Acceptance Rate should be "83" with correct data in the Information Top bar
 
   Scenario: Priority  is displayed with correct data in the Information Top bar
-    Then The Priority date should be "October" "15" in the Information Top bar
+    Then The Priority date should be "December" "13" in the Information Top bar
 
   Scenario: The user is redirected to Costs Module after clicking "More about Cost & Aid"
     When I open the link "More about Cost & Aid" in the Overview Info Top Bar
@@ -99,3 +99,14 @@ Feature: As a student exploring a college, I want to see a top bar with high-lev
       {"collegeId":"f305d160-7f87-430c-b7ea-c8b5445b0413","name":"Art Academy of Cincinnati"}
     ]
     """
+
+  Scenario Outline: A tooltip is displayed in Average Net Price after clicking the information icon
+    When I open the information tooltip clicking the information icon in "<section>"
+    Then A tooltip should be displayed in "<section>"
+    And I open the information tooltip clicking the information icon in "<section>"
+    Then The tooltip in "<section>" should be closed
+  Examples:
+    | section           |
+    | Average Net Price |
+    | Graduation Rate   |
+    | Acceptance Rate   |

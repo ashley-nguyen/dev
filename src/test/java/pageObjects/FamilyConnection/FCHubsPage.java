@@ -69,6 +69,8 @@ public class FCHubsPage extends BaseClass {
     public static WebElement tabCosts;
     @FindBy(how = How.CSS, using = ".tabs.hubs-top-tabs-bar span:nth-of-type(6)")
     public static WebElement tabProfiles;
+    @FindBy(how = How.CSS, using = ".tabs.hubs-top-tabs-bar span:nth-of-type(7)")
+    public static WebElement tabInternational;
     @FindBy(how = How.CSS, using = "div[ng-if=\"vm.averageNetPrices.length > 0\"] div.hub-data-pod__data-age.ng-binding")
     public static WebElement labelDateAvgNetPrice;
     @FindBy(how = How.CSS, using = "div[ng-if=\"vm.gradRate\"] div.hub-data-pod__data-age.ng-binding")
@@ -175,6 +177,14 @@ public class FCHubsPage extends BaseClass {
     public static WebElement tabCollegesTopBar;
     @FindBy(how = How.CSS, using = "tbody tr:nth-of-type(1) td span")
     public static WebElement firstCollegeVisitsRegisterButton;
+    @FindBy(how = How.CSS, using = "div[ng-if=\"vm.averageNetPrices.length > 0\"] svg")
+    public static WebElement infoIconAvgNetPrice;
+    @FindBy(how = How.CSS, using = "div[ng-if=\"vm.gradRate\"] svg")
+    public static WebElement infoIconGradRatePrice;
+    @FindBy(how = How.CSS, using = "div[ng-if=\"vm.acceptRate\"] svg")
+    public static WebElement infoIconAcceptanceRatePrice;
+    @FindBy(how = How.CSS, using = "svg.fc-icon.hubs-info-tooltip__close-icon")
+    public static WebElement tooltipCloseIcon;
 
 
     public static String URLimThinkingAboutList = "https://connection-int.dev.naviance.com/family-connection" +
