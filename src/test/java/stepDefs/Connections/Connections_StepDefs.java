@@ -87,6 +87,7 @@ public class Connections_StepDefs {
     public void I_add_request_selecting(String item) throws Throwable {
         FCDashboard.ClickCollegesTab();
         Connections.clickOnLettersOfRecommendation();
+//        Thread.sleep(99999999);
         Connections.clickAddRequest();
         Connections.selectTeacher(item);
         Connections.selectOptionForCollege();

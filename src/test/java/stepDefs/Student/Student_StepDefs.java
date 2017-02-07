@@ -106,7 +106,7 @@ public class Student_StepDefs {
     @When("^I access with \"([^\"]*)\" to another member staff$")
     public void I_access_to_another_member_staff(String strStudentID) throws Throwable {
         Student_Search.searchStudent(strStudentID);
-        Student_Search.studentRosterSearch(strStudentID, "id");
+//        Student_Search.studentRosterSearch(strStudentID, "id");
         eDocsGeneral.NavtoEdocsStudentTab();
         eDocsGeneral.ClickOnPrepareLink();
     }

@@ -5,7 +5,7 @@ Feature: View student details
   there are LOR requests from a student before I upload any documents.
 
   Background:
-    Given I am logged into Naviance "rtsa" as "stan.smith" with "stan01!"
+    Given I am logged into Naviance "blue1hs" as "stan.smith" with "stan01!"
     When I configure permissions for teacher
     Then I verify that Confirmation "The permissions for this role have been updated" message is displayed
 
@@ -16,9 +16,9 @@ Feature: View student details
 
   Examples:
     | studentID  | text                         |
-    | a103       | Letter of Recommendation     |
-    | a103       | Common App Teacher Evaluation|
-    | a103       | Written Evaluation           |
+    | 37506999      | Letter of Recommendation     |
+    | 37506999       | Common App Teacher Evaluation|
+    | 37506999       | Written Evaluation           |
 
 
   @edocs @safe @succeed
@@ -28,9 +28,9 @@ Feature: View student details
 
   Examples:
     | studentID  | text                         |
-    | a103       | Letter of Recommendation     |
-    | a103       | Common App Teacher Evaluation|
-    | a103       | Written Evaluation           |
+    | 37506999       | Letter of Recommendation     |
+    | 37506999       | Common App Teacher Evaluation|
+    | 37506999       | Written Evaluation           |
 
   @edocs @safe @succeed
   Scenario Outline: Verify if it possible to see the author of the LOR and the College's due date.
@@ -39,8 +39,8 @@ Feature: View student details
 
   Examples:
     | studentID  | text         |
-    | a103       | Stan Smith   |
-    | a103       | Date         |
+    | 37506999       | Stan Smith   |
+    | 37506999       | Date         |
 
   @edocs @safe @succeed
   Scenario Outline: Verify I cannot take any actions (replace or delete) on another staff member's letter.
@@ -49,8 +49,8 @@ Feature: View student details
 
   Examples:
     | studentID  | text         |
-    | a103       | Replace      |
-    | a103       | Delete       |
+    | Sejas, Alain       | Replace      |
+    | Sejas, Alain       | Delete       |
 
 
   @edocs @safe @succeed
@@ -60,7 +60,7 @@ Feature: View student details
 
   Examples:
     | studentID  | text                     |filename        |
-    | a103       | Letter of Recommendation |ReadMe.txt      |
+    | 37506999       | Letter of Recommendation |ReadMe.txt      |
 
   @edocs @safe @succeed
   Scenario Outline: Verify I get an error message that says my file size it too big.
@@ -69,7 +69,7 @@ Feature: View student details
 
   Examples:
     | studentID  | text                             | filename            |
-    | a101       | Selected file is more than 500KB | FillTooBigPDF.pdf|
+    | 37506999       | Selected file is more than 500KB | FillTooBigPDF.pdf|
 
   @edocs @safe @succeed
   Scenario Outline: Verify I get an error message that lists file types that are not supported.
@@ -78,7 +78,7 @@ Feature: View student details
 
   Examples:
     | studentID  | text                                                                                                   | filename   |
-    | a103       | File type is not supported. Allowed file types: .pdf, .doc, .docx, .png, .jpg, .jpeg, .bmp, .txt, .rtf | index.html |
+    | 37506999       | File type is not supported. Allowed file types: .pdf, .doc, .docx, .png, .jpg, .jpeg, .bmp, .txt, .rtf | index.html |
 
 
   @edocs @safe @succeed
@@ -88,9 +88,9 @@ Feature: View student details
 
   Examples:
     | studentID  | text         | filename        |
-    | a103       | Delete       | ReadMe.txt      |
-    | a103       | Replace      | ReadMe.txt      |
-    | a103       | View         | ReadMe.txt      |
+    | 37506999       | Delete       | ReadMe.txt      |
+    | 37506999       | Replace      | ReadMe.txt      |
+    | 37506999       | View         | ReadMe.txt      |
 
 
   @edocs @safe @succeed
@@ -100,7 +100,7 @@ Feature: View student details
 
   Examples:
     | studentID  | text                     |filename        |
-    | a103       | Letter of Recommendation |ReadMe.txt      |
+    | 37506999       | Letter of Recommendation |ReadMe.txt      |
 
   @edocs @safe @succeed @EDOCS234
   Scenario Outline: Verify Under Application, I want to upload a NACAC fee waiver on behalf of a student to non-common-app colleges via eDocs
@@ -108,8 +108,8 @@ Feature: View student details
     Then I will verify "<type>", "<author>", "<size>", "<action>"
   Examples:
     | studentID  | type                     |filename        | author    | size  | action |
-    | a103       | Other School Report      |ReadMe.txt      |Stan Smith | 14.87 | Replace   |
-    | a103       | NACAC Fee Waiver         |ReadMe.txt      |Stan Smith | 14.87 | Replace   |
+    | 37506999       | Other School Report      |ReadMe.txt      |Stan Smith | 14.87 | Replace   |
+    | 37506999       | NACAC Fee Waiver         |ReadMe.txt      |Stan Smith | 14.87 | Replace   |
 
   @edocs @safe @succeed @EDOCS234
   Scenario Outline: Verify under Application, I want to upload a NACAC fee waiver on behalf of a student to non-common-app colleges via eDocs using Delete action.
@@ -117,7 +117,7 @@ Feature: View student details
     Then I will verify "<type>", "<author>", "<size>", "<action>"
   Examples:
     | studentID  | type                     | author    | size  | action |
-    | a103       | NACAC Fee Waiver      |Stan Smith | 14.87 | Delete   |
+    | 37506999       | NACAC Fee Waiver      |Stan Smith | 14.87 | Delete   |
 
   @edocs @safe @succeed @EDOCS234
   Scenario Outline: Verify under Application, I want to upload a NACAC fee waiver on behalf of a student to non-common-app colleges via eDocs using Replace Action.
@@ -125,8 +125,8 @@ Feature: View student details
     Then I will verify "<type>", "<author>", "<size>", "<action>"
   Examples:
     | studentID  | type                     |filename        | author    | size  | action |
-    | a103       | Other School Report      |ReadMe.txt      |Stan Smith | 14.87 | Replace   |
-    | a103       | NACAC Fee Waiver         |ReadMe.txt      |Stan Smith | 14.87 | Replace   |
+    | 37506999       | Other School Report      |ReadMe.txt      |Stan Smith | 14.87 | Replace   |
+    | 37506999       | NACAC Fee Waiver         |ReadMe.txt      |Stan Smith | 14.87 | Replace   |
 
 
 
@@ -138,7 +138,7 @@ Feature: View student details
 
   Examples:
     | studentID  |filename        | text |message                                                                               |
-    | a103       |Doc21.pdf       | Initial Transcript     |Upload Failed: Initial Transcript - Sorry, transcripts must be no longer than 20 pages|
+    | 37506999       |Doc21.pdf       | Initial Transcript     |Upload Failed: Initial Transcript - Sorry, transcripts must be no longer than 20 pages|
 
   @edocs @safe @succeed
   Scenario Outline: Verify I get an error message that says my file size it too big.
@@ -147,4 +147,4 @@ Feature: View student details
 
   Examples:
     | studentID  | text                             | filename            |
-    | a101       | Selected file is more than 500KB | FillTooBigPDF.pdf|
+    | 37506999       | Selected file is more than 500KB | FillTooBigPDF.pdf|

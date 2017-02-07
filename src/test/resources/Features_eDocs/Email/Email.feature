@@ -5,41 +5,41 @@ Feature: Email Verification
   I can be alerted to create a letter of recommendation for that student.
 
   Scenario: Verify given I am a teacher, when a student creates a LOR for me, then I will receive an email notifiy me of the request.
-    Given I log into family connection "rtsa" as "stan.smith" and "stan01!"
-    When I add request selecting "Sejas, Frank"
+    Given I log into family connection "blue1hs" as "stan.smith" and "stan01!"
+    When I add request selecting "Teacher, Frank"
     Then I will verify the mail was delivered with "New teacher recommendation request" subject
 
-  Scenario: Verify when accessing the LOR email from my mailbox, I should be able to reply directly to the student..
+  Scenario: Verify when accessing the LOR email from my mailbox, I should be able to reply directly to the student.
     Then I can reply email directly with "naviance.test123@gmail.com" and "naviance123" password
 
   Scenario: Verify given I am a teacher, when a student cancels a LOR for me, then I will receive an email notifiy me of the cancellation
-    Given I log into family connection "rtsa" as "stan.smith" and "stan01!"
+    Given I log into family connection "blue1hs" as "stan.smith" and "stan01!"
     When I cancel LOR for me
     Then I will verify the mail was delivered with "Teacher recommendation request cancelled" subject
 
   Scenario: Verify given I am a teacher, when a student creates a LOR for me, then I will receive an email notifiy me of the request.
-    Given I log into family connection "rtsa" as "stan.smith" and "stan01!"
-    When I add request selecting "Sejas, Frank"
+    Given I log into family connection "blue1hs" as "stan.smith" and "stan01!"
+    When I add request selecting "Teacher, Frank"
     Then I will verify the mail was delivered with "New teacher recommendation request" subject
 
   Scenario: Verify given a student has cancelled a LOR for me, when an email is sent to my mailbox and the student's account contains a valid email address, then I can reply directly to the student.
-    Given I log into family connection "rtsa" as "stan.smith" and "stan01!"
+    Given I log into family connection "blue1hs" as "stan.smith" and "stan01!"
     When I cancel LOR for me
     Then I can reply email directly with "naviance.test123@gmail.com" and "naviance123" password
 
 
   Scenario Outline: Given I am a staff member (WITH edit list of teachers permission), when accessing a student's college tab, in the Teacher Recommendation section, then I select a teacher and college to add a request.  The teacher DOES have an LOR request with a status of: Requested, In Progress, or Submitted for the selected college.
-    Given I am logged into Naviance "rtsa" as "stan.smith" with "stan01!"
+    Given I am logged into Naviance "blue1hs" as "stan.smith" with "stan01!"
     When I add a student request with "<student>" and "<teacher>" and "<application>"
     Then I will verify the mail was delivered with "Teacher recommendation can't add request" subject
 
 
   Examples:
     | student       | teacher      | application         |
-    | Sejas, Frank   | Sejas, Frank  | Adelphi University  |
+    | Sejas, Alain    | Teacher, Frank  | Adelphi University  |
 
   Scenario Outline: Given I am a staff member (WITH edit list of teachers permission), when accessing a student's college tab, in the Teacher Recommendation section, then I select a teacher and college to add a request.  The MAX NUMBER OF REQUESTS has been fulfilled for the college.  A LOR is counted when there is a request that exists for the student & college combo in one of the following statuses: Requested, In Progress, or Submitted.
-    Given I am logged into Naviance "rtsa" as "stan.smith" with "stan01!"
+    Given I am logged into Naviance "blue1hs" as "stan.smith" with "stan01!"
     When I add a student request with "<student>" and "<teacher>" and "<application>"
     Then I verify the number of LORs <message> message
     Then I will verify the mail was delivered with "Teacher recommendation can't add request" subject
@@ -47,13 +47,13 @@ Feature: Email Verification
 
   Examples:
     | student       | teacher      | application         | message |
-    | Sejas, Frank  | Sejas, Frank  | Adelphi University  |A letter of recommendation request already exists for the teacher and application selected.|
+    | Sejas, Alain   | Teacher, Frank  | Adelphi University  |A letter of recommendation request already exists for the teacher and application selected.|
 
   Scenario Outline: Given I am a staff member (WITH edit list of teachers permission), when accessing a student's college tab, in the Teacher Recommendation section, then I select a teacher and college to add a request.  The MAX NUMBER OF REQUESTS has been fulfilled for the college.  A LOR is counted when there is a request that exists for the student & college combo in one of the following statuses: Requested, In Progress, or Submitted.
-    Given I am logged into Naviance "rtsa" as "stan.smith" with "stan01!"
+    Given I am logged into Naviance "blue1hs" as "stan.smith" with "stan01!"
     When I add a student request with "<student>" and "<teacher>" and "<application>"
     Then I verify the number of LORs <message> message
 
   Examples:
     | student       | teacher             | application         | message |
-    | a103, a103    | Sejas, Frank        | Adelphi University  |Success! A new letter of recommendation request has been created.|
+    | Sejas, Alain    | Teacher, Frank        | Adelphi University  |Success! A new letter of recommendation request has been created.|
