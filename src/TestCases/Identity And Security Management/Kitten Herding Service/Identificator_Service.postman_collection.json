@@ -1,0 +1,273 @@
+{
+	"variables": [],
+	"info": {
+		"name": "Identificator_Service",
+		"_postman_id": "ed7d0c0c-459f-2589-d6d9-de1a2b46d1fb",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Retrieve student info using UUID",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"var data = JSON.parse(responseBody);",
+							"",
+							"tests[\"Expected status: 200. Actual status code: \"+ responseCode.code] = responseCode.code === 200;",
+							"tests[\"User first and last name is: \"+ data.personalInfo.firstName + \" \" + data.personalInfo.lastName] = responseCode.code;",
+							"tests[\"User role is: \"+ data.legacyId.type] = responseCode.code;",
+							"tests[\"Institution ID is: \"+ data.roles[0].institutionId] = responseCode.code;",
+							"tests[\"Legacy ID is: \"+ data.legacyId.id] = responseCode.code;",
+							"tests[\"PersonUUID is: \"+ data.legacyId.personUuid] = responseCode.code;",
+							"tests[\"Grade Level is: \"+ data.roles[0].supplementalFields.gradeLevel] = responseCode.code;",
+							"tests[\"Highschool Name is: \"+ data.roles[0].supplementalFields.highSchoolName] = responseCode.code;",
+							"tests[\"Navigation Items are: \"+ data.roles[0].supplementalFields.advancedFields.navigationItems] = responseCode.code;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "{{Url}}/person/identity/9ec96720-0803-fc91-9f48-69c1515c8df4",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "bearer {{prodToken}}",
+						"description": ""
+					}
+				],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Retrieve student info with legacyID",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"var data = JSON.parse(responseBody);",
+							"",
+							"tests[\"Expected status: 200. Actual status code: \"+ responseCode.code] = responseCode.code === 200;",
+							"tests[\"User first and last name is: \"+ data[0].personalInfo.firstName + \" \" + data[0].personalInfo.lastName] = responseCode.code;",
+							"tests[\"User role is: \"+ data[0].legacyId.type] = responseCode.code;",
+							"tests[\"Institution ID is: \"+ data[0].roles[0].institutionId] = responseCode.code;",
+							"tests[\"Legacy ID is: \"+ data[0].legacyId.id] = responseCode.code;",
+							"tests[\"PersonUUID is: \"+ data[0].legacyId.personUuid] = responseCode.code;",
+							"tests[\"Grade Level is: \"+ data[0].roles[0].supplementalFields.gradeLevel] = responseCode.code;",
+							"tests[\"Highschool Name is: \"+ data[0].roles[0].supplementalFields.highSchoolName] = responseCode.code;",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "{{Url}}/person/identity?query={\"role\": \"student\", \"legacyId\": \"23952573\"}",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "bearer {{prodToken}}",
+						"description": ""
+					}
+				],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Retrieve staff info using UUID",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"var data = JSON.parse(responseBody);",
+							"",
+							"tests[\"Expected status: 200. Actual status code: \"+ responseCode.code] = responseCode.code === 200;",
+							"tests[\"User first and last name is: \"+ data.personalInfo.firstName + \" \" + data.personalInfo.lastName] = responseCode.code;",
+							"tests[\"User role is: \"+ data.legacyId.type] = responseCode.code;",
+							"tests[\"Legacy ID is: \"+ data.legacyId.id] = responseCode.code;",
+							"tests[\"Person UUID is: \"+ data.legacyId.personUuid] = responseCode.code;",
+							"tests[\"Institution ID is: \"+ data.roles[0].institutionId] = responseCode.code;",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "{{Url}}/person/identity/96386000-edee-a485-16c3-3a2436c2221f",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "bearer {{prodToken}}",
+						"description": ""
+					}
+				],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Retrieve staff info using legacyID",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"var data = JSON.parse(responseBody);",
+							"",
+							"tests[\"Expected status: 200. Actual status code: \"+ responseCode.code] = responseCode.code === 200;",
+							"tests[\"User first and last name is: \"+ data[0].personalInfo.firstName + \" \" + data[0].personalInfo.lastName] = responseCode.code;",
+							"tests[\"User role is: \"+ data[0].legacyId.type] = responseCode.code;",
+							"tests[\"Legacy ID is: \"+ data[0].legacyId.id] = responseCode.code;",
+							"tests[\"Person UUID is: \"+ data[0].legacyId.personUuid] = responseCode.code;",
+							"tests[\"Institution ID is: \"+ data[0].roles[0].institutionId] = responseCode.code;",
+							"",
+							"",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "{{Url}}/person/identity?query={\"role\": \"staff\", \"legacyId\": \"559943\"}",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "bearer {{prodToken}}",
+						"description": ""
+					}
+				],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Retrieve info for collection of users",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"var data = JSON.parse(responseBody);",
+							"",
+							"tests[\"Expected status: 200. Actual status code: \"+ responseCode.code] = responseCode.code === 200;",
+							"tests[\"User first and last name is: \"+ data[0].personalInfo.firstName + \" \" + data[0].personalInfo.lastName] = responseCode.code;",
+							"tests[\"User role is: \"+ data[0].roles[0].roleName] = responseCode.code;",
+							"tests[\"Institution ID is: \"+ data[0].roles[0].institutionId] = responseCode.code;",
+							"tests[\"Highschool Name is: \"+ data[0].roles[0].supplementalFields.highSchoolName] = responseCode.code;",
+							"",
+							"",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "{{Url}}/person/identity/search",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "bearer {{prodToken}}",
+						"description": ""
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": " {\n     \"userIds\":[\n         \"5bb28220-0803-fc91-9f48-69c1515c8df4\", \n         \"9bb28220-0803-fc91-9f48-69c1515c8df4\",\n         \"ea9d1000-edee-a485-16c3-3a2436c2221f\",\n         \"c3012000-0803-fc91-9f48-69c1515c8df4\"\n         ]\n }"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Retrieve parent info using legacyID",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"var data = JSON.parse(responseBody);",
+							"",
+							"tests[\"Expected status: 200. Actual status code: \"+ responseCode.code] = responseCode.code === 200;",
+							"tests[\"User first and last name is: \"+ data[0].personalInfo.firstName + \" \" + data[0].personalInfo.lastName] = responseCode.code;",
+							"tests[\"User role is: \"+ data[0].legacyId.type] = responseCode.code;",
+							"tests[\"Institution ID is: \"+ data[0].roles[0].institutionId] = responseCode.code;",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "{{Url}}/person/identity?query={\"role\": \"parent\", \"legacyId\": \"22829062\"}",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "bearer {{prodToken}}",
+						"description": ""
+					}
+				],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Retrieve parent info using UUID",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"var data = JSON.parse(responseBody);",
+							"",
+							"tests[\"Expected status: 200. Actual status code: \"+ responseCode.code] = responseCode.code === 200;",
+							"tests[\"User first and last name is: \"+ data.personalInfo.firstName + \" \" + data.personalInfo.lastName] = responseCode.code;",
+							"tests[\"User role is: \"+ data.legacyId.type] = responseCode.code;",
+							"tests[\"Institution ID is: \"+ data.roles[0].institutionId] = responseCode.code;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "{{Url}}/person/identity/6c915b9e-64d0-7a1c-1fd0-fea3bc632859",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "bearer {{prodToken}}",
+						"description": ""
+					}
+				],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}

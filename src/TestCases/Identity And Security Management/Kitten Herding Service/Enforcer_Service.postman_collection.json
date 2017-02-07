@@ -1,0 +1,1598 @@
+{
+	"variables": [],
+	"info": {
+		"name": "Enforcer_Service",
+		"_postman_id": "7d5c97f6-6238-5ecc-42d4-da678bb53e2e",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Dev",
+			"description": "",
+			"item": [
+				{
+					"name": "Retrieve product activations for an institution",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var data = JSON.parse(responseBody);",
+									"tests[\"Expected status: 200. Actual status code: \"+ responseCode.code] = responseCode.code === 200;",
+									"tests[\"Product activation ID is: \" + data.productActivations[0].id] = responseCode.code;",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "https://iamauthentication-devsys.naviance.com/enforcer/productactivations/institution/d8b95a4e-aee5-638d-43eb-5b419092bc1d",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{devToken}}",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Retrieve product activations for district",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"",
+									"tests[\"Expected status: 200. Actual status code: \"+ responseCode.code] = responseCode.code === 200;",
+									"",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "https://iamauthentication-devsys.naviance.com/enforcer/productactivations/institution/a48658a3-569b-fca1-c158-dcc385111949",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{devToken}}",
+								"description": ""
+							}
+						],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "NKHS-255 Retrieve ghost permission for a user with client cred token",
+					"request": {
+						"url": "https://iamauthentication-devsys.naviance.com/enforcer/permissions/tenants/d8b95a4e-aee5-638d-43eb-5b419092bc1d/users/aa8b1100-edee-a485-16c3-3a2436c2221f/ghost",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{devToken}}",
+								"description": ""
+							}
+						],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Get Auth code for student",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var jsonObject = responseBody;",
+									"postman.setEnvironmentVariable(\"authCodeStudent\", jsonObject);"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "https://iamoauth-devsys.naviance.com/admin/systest/authorize/student/00c38220-0803-fc91-9f48-69c1515c8df4/client1/group.read",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Basic Y2xpZW50MTpzZWNyZXQ=",
+								"description": ""
+							}
+						],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Exchange Auth to get Oauth token for user",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var data = JSON.parse(responseBody);",
+									"postman.setEnvironmentVariable(\"tokenStudent\", data.access_token);"
+								]
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": {
+								"username": "client1",
+								"password": "secret",
+								"saveHelperData": true,
+								"showPassword": false
+							}
+						},
+						"url": "https://iamoauth-devsys.naviance.com/oauth/token?grant_type=authorization_code&code={{authCodeStudent}}&scope=group.read",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Basic Y2xpZW50MTpzZWNyZXQ=",
+								"description": ""
+							}
+						],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Display student permissions for grade_12",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var data = JSON.parse(responseBody);",
+									"",
+									"tests[\"Expected status: 200. Actual status code: \"+ responseCode.code] = responseCode.code === 200;",
+									"tests[\"Student has permission: \"+ data.permissions.edit_scholarships.permissionAlias] = responseCode.code;",
+									"tests[\"Student has permission: \"+ data.permissions.can_request_recommendations.permissionAlias] = responseCode.code;",
+									"",
+									"tests[\"Student has permission: \"+ data.permissions.active_match_events.permissionAlias] = responseCode.code;",
+									"",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "https://iamauthentication-devsys.naviance.com/enforcer/permissions/tenants/d8b95a4e-aee5-638d-43eb-5b419092bc1d/",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{tokenStudent}}",
+								"description": ""
+							}
+						],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Display specific permission",
+					"request": {
+						"url": "https://iamauthentication-devsys.naviance.com/enforcer/permissions/tenants/d8b95a4e-aee5-638d-43eb-5b419092bc1d/permissions/can_request_recommendations",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{tokenStudent}}",
+								"description": ""
+							}
+						],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Get Auth code for staff user",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var jsonObject = responseBody;",
+									"postman.setEnvironmentVariable(\"authCodeStaff\", jsonObject);"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "https://iamoauth-devsys.naviance.com/admin/systest/authorize/student/aa8b1100-edee-a485-16c3-3a2436c2221f/client1/group.read",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Basic Y2xpZW50MTpzZWNyZXQ=",
+								"description": ""
+							}
+						],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Exchange Auth to get Oauth token for staff user",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var data = JSON.parse(responseBody);",
+									"postman.setEnvironmentVariable(\"tokenStaff\", data.access_token);"
+								]
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": {
+								"username": "client1",
+								"password": "secret",
+								"saveHelperData": true,
+								"showPassword": false
+							}
+						},
+						"url": "https://iamoauth-devsys.naviance.com/oauth/token?grant_type=authorization_code&code={{authCodeStaff}}&scope=group.read",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Basic Y2xpZW50MTpzZWNyZXQ=",
+								"description": ""
+							}
+						],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Display staff permissions",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var data = JSON.parse(responseBody);",
+									"",
+									"tests[\"Expected status: 200. Actual status code: \"+ responseCode.code] = responseCode.code === 200;",
+									"tests[\"Staff has permission: \"+ data.permissions.admin_elementary_school.permissionAlias] = responseCode.code;",
+									"tests[\"Staff has permission: \"+ data.permissions.admin_curriculum_school.permissionAlias] = responseCode.code;",
+									"tests[\"Staff has permission: \"+ data.permissions.admin_test_prep_settings.permissionAlias] = responseCode.code;"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "https://iamauthentication-devsys.naviance.com/enforcer/permissions/tenants/d8b95a4e-aee5-638d-43eb-5b419092bc1d/",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{tokenStaff}}",
+								"description": ""
+							}
+						],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Using Staff token display all permissions",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var data = JSON.parse(responseBody);",
+									"",
+									"tests[\"Expected status: 200. Actual status code: \"+ responseCode.code] = responseCode.code === 200;",
+									"tests[\"Student has permission: \"+ data.permissions.edit_scholarships.permissionAlias] = responseCode.code;",
+									"tests[\"Student has permission: \"+ data.permissions.can_request_recommendations.permissionAlias] = responseCode.code;",
+									"",
+									"tests[\"Student has permission: \"+ data.permissions.active_match_events.permissionAlias] = responseCode.code;"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "https://iamauthentication-devsys.naviance.com/enforcer/permissions/tenants/d8b95a4e-aee5-638d-43eb-5b419092bc1d/students/00c38220-0803-fc91-9f48-69c1515c8df4",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{tokenStaff}}",
+								"description": ""
+							}
+						],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Get Auth code for parent",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var jsonObject = responseBody;",
+									"postman.setEnvironmentVariable(\"authCodeParent\", jsonObject);"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "https://iamoauth-devsys.naviance.com/admin/systest/authorize/student/d32b996f-49ce-30d1-d652-fed41796a5d2/client1/group.read",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Basic Y2xpZW50MTpzZWNyZXQ=",
+								"description": ""
+							}
+						],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Exchange Auth to get Oauth token for parent user",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var data = JSON.parse(responseBody);",
+									"postman.setEnvironmentVariable(\"tokenParent\", data.access_token);"
+								]
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": {
+								"username": "client1",
+								"password": "secret",
+								"saveHelperData": true,
+								"showPassword": false
+							}
+						},
+						"url": "https://iamoauth-devsys.naviance.com/oauth/token?grant_type=authorization_code&code={{authCodeParent}}&scope=group.read",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Basic Y2xpZW50MTpzZWNyZXQ=",
+								"description": ""
+							}
+						],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Display all parent permissions",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var data = JSON.parse(responseBody);",
+									"tests[\"Expected status: 200. Actual status code: \"+ responseCode.code] = responseCode.code === 200;",
+									"tests[\"Parent has permission: \"+ data.permissions.edit_scholarships.permissionAlias] = responseCode.code;",
+									"tests[\"Parent has permission: \"+ data.permissions.can_request_recommendations.permissionAlias] = responseCode.code;",
+									"tests[\"Parent has permission: \"+ data.permissions.active_match_events.permissionAlias] = responseCode.code;",
+									"tests[\"Parent has permission: \"+ data.permissions.student_can_edit_profile.permissionAlias] = responseCode.code;",
+									"tests[\"Parent has permission: \"+ data.permissions.student_can_edit_prospective.permissionAlias] = responseCode.code;",
+									"tests[\"Parent has permission: \"+ data.permissions.can_edit_email.permissionAlias] = responseCode.code;"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "https://iamauthentication-devsys.naviance.com/enforcer/permissions/tenants/d8b95a4e-aee5-638d-43eb-5b419092bc1d/students/00c38220-0803-fc91-9f48-69c1515c8df4",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{tokenParent}}",
+								"description": ""
+							}
+						],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Retrieve Parent permissions using /permissions/tenants/ endpoint",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var data = JSON.parse(responseBody);",
+									"tests[\"Expected status: 200. Actual status code: \"+ responseCode.code] = responseCode.code === 200;",
+									"tests[\"Parent has permission: \"+ data.permissions] = responseCode.code;"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "https://iamauthentication-devsys.naviance.com/enforcer/permissions/tenants/d8b95a4e-aee5-638d-43eb-5b419092bc1d/",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{tokenParent}}",
+								"description": ""
+							}
+						],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Using Parent token display all permissions",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var data = JSON.parse(responseBody);",
+									"tests[\"Expected status: 200. Actual status code: \"+ responseCode.code] = responseCode.code === 200;",
+									"tests[\"Expected status: 200. Actual status code: \"+ responseCode.code] = responseCode.code === 200;",
+									"tests[\"Parent has permission: \"+ data.permissions.edit_scholarships.permissionAlias] = responseCode.code;",
+									"tests[\"Parent has permission: \"+ data.permissions.can_request_recommendations.permissionAlias] = responseCode.code;",
+									"tests[\"Parent has permission: \"+ data.permissions.active_match_events.permissionAlias] = responseCode.code;",
+									"tests[\"Parent has permission: \"+ data.permissions.student_can_edit_profile.permissionAlias] = responseCode.code;",
+									"tests[\"Parent has permission: \"+ data.permissions.student_can_edit_prospective.permissionAlias] = responseCode.code;",
+									"tests[\"Parent has permission: \"+ data.permissions.can_edit_email.permissionAlias] = responseCode.code;"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "https://iamauthentication-devsys.naviance.com/enforcer/permissions/tenants/d8b95a4e-aee5-638d-43eb-5b419092bc1d/students/00c38220-0803-fc91-9f48-69c1515c8df4",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{tokenParent}}",
+								"description": ""
+							}
+						],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Get Auth code for district staff user",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var jsonObject = responseBody;",
+									"postman.setEnvironmentVariable(\"authCodeDistrict\", jsonObject);"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "https://iamauthentication-devsys.naviance.com/oauth/admin/systest/authorize/session/96761100-edee-a485-16c3-3a2436c2221f/b4f281bf-da0d-4d8a-aa5a-866a9f2512d3/client1/group.read",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Basic Y2xpZW50MTpzZWNyZXQ=",
+								"description": ""
+							}
+						],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Exchange Auth to get Oauth token for district staff user",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var data = JSON.parse(responseBody);",
+									"postman.setEnvironmentVariable(\"tokenDistrict\", data.access_token);"
+								]
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": {
+								"username": "client1",
+								"password": "secret",
+								"saveHelperData": true,
+								"showPassword": false
+							}
+						},
+						"url": "https://iamoauth-devsys.naviance.com/oauth/token?grant_type=authorization_code&code={{authCodeDistrict}}&scope=group.read",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Basic Y2xpZW50MTpzZWNyZXQ=",
+								"description": ""
+							}
+						],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Display all permissions associated to a district staff user",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var data = JSON.parse(responseBody);",
+									"",
+									"tests[\"Expected status: 200. Actual status code: \"+ responseCode.code] = responseCode.code === 200;",
+									"tests[\"Staff has permission: \"+ data.permissions.admin_elementary_school.permissionAlias] = responseCode.code;",
+									"tests[\"Staff has permission: \"+ data.permissions.admin_curriculum_school.permissionAlias] = responseCode.code;",
+									"tests[\"Staff has permission: \"+ data.permissions.admin_test_prep_settings.permissionAlias] = responseCode.code;",
+									"tests[\"Staff has permission: \"+ data.permissions.admin_elementary_district.permissionAlias] = responseCode.code;",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "https://iamauthentication-devsys.naviance.com/enforcer/permissions/tenants/a48658a3-569b-fca1-c158-dcc385111949/",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{tokenDistrict}}",
+								"description": ""
+							}
+						],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Production",
+			"description": "",
+			"item": [
+				{
+					"name": "List a product",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var data = JSON.parse(responseBody);",
+									"tests[\"Expected status: 200. Actual status code: \"+ responseCode.code] = responseCode.code === 200;",
+									"tests[\"Name is: \" + data.name] = responseCode.code;",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "https://iam.naviance.com/enforcer/products/1",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "bearer {{prodToken}}",
+								"description": ""
+							}
+						],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "List product activation for institution",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Expected status: 200. Actual status code: \"+ responseCode.code] = responseCode.code === 200;",
+									"",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "https://iam.naviance.com/enforcer/productactivations/institution/be99d6eb-8a73-e384-fdf4-93de33104559",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "bearer {{prodToken}}",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "List product activation for district",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"",
+									"tests[\"Expected status: 200. Actual status code: \"+ responseCode.code] = responseCode.code === 200;",
+									"",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "https://iam.naviance.com/enforcer/productactivations/institution/a48658a3-569b-fca1-c158-dcc385111949",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "bearer {{prodToken}}",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "List specific product activation using id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var data = JSON.parse(responseBody);",
+									"tests[\"Expected status: 200. Actual status code: \"+ responseCode.code] = responseCode.code === 200;",
+									"tests[\"Product activation ID is: \" + data.id] = responseCode.code;",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "https://iam.naviance.com/enforcer/productactivations/134",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "bearer {{prodToken}}",
+								"description": ""
+							}
+						],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Retrieve student permissions",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var data = JSON.parse(responseBody);",
+									"",
+									"tests[\"Expected status: 200. Actual status code: \"+ responseCode.code] = responseCode.code === 200;",
+									"tests[\"Student has permission: \"+ data.permissions.edit_scholarships.permissionAlias] = responseCode.code;",
+									"tests[\"Student has permission: \"+ data.permissions.can_request_recommendations.permissionAlias] = responseCode.code;",
+									"",
+									"tests[\"Student has permission: \"+ data.permissions.active_match_events.permissionAlias] = responseCode.code;",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "https://iam.naviance.com/enforcer/permissions/tenants/9c21a37f-ef3d-9c81-56d6-26ded2948546/",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "bearer 6439e3f0-d8bc-4765-be5d-cd31332745ee",
+								"description": ""
+							}
+						],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Retrieve staff permisisons",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var data = JSON.parse(responseBody);",
+									"",
+									"tests[\"Expected status: 200. Actual status code: \"+ responseCode.code] = responseCode.code === 200;",
+									"tests[\"Staff has permission: \"+ data.permissions.admin_elementary_school.permissionAlias] = responseCode.code;",
+									"tests[\"Staff has permission: \"+ data.permissions.edit_student_documents.permissionAlias] = responseCode.code;",
+									"tests[\"Staff has permission: \"+ data.permissions.admin_test_prep_settings.permissionAlias] = responseCode.code;"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "https://iam.naviance.com/enforcer/permissions/tenants/9c21a37f-ef3d-9c81-56d6-26ded2948546/",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer ba90e53f-1bad-46f8-bbd7-128e7a4e0553",
+								"description": ""
+							}
+						],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Retrieve district staff permissions",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var data = JSON.parse(responseBody);",
+									"",
+									"tests[\"Expected status: 200. Actual status code: \"+ responseCode.code] = responseCode.code === 200;",
+									"",
+									"tests[\"Staff has permission: \"+ data.permissions.admin_test_prep_settings_district.permissionAlias] = responseCode.code;",
+									"tests[\"Staff has permission: \"+ data.permissions.view_student_demographics.permissionAlias] = responseCode.code;",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "https://iam.naviance.com/enforcer/permissions/tenants/a48658a3-569b-fca1-c158-dcc385111949/",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer 293754d2-bbb3-4e47-9669-795df721eaf9",
+								"description": ""
+							}
+						],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Retrieve parent permissions",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var data = JSON.parse(responseBody);",
+									"tests[\"Expected status: 200. Actual status code: \"+ responseCode.code] = responseCode.code === 200;",
+									"tests[\"Expected status: 200. Actual status code: \"+ responseCode.code] = responseCode.code === 200;",
+									"tests[\"Student has permission: \"+ data.permissions.edit_scholarships.permissionAlias] = responseCode.code;",
+									"tests[\"Student has permission: \"+ data.permissions.can_request_recommendations.permissionAlias] = responseCode.code;",
+									"",
+									"tests[\"Student has permission: \"+ data.permissions.active_match_events.permissionAlias] = responseCode.code;",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "https://iam.naviance.com/enforcer/permissions/tenants/9c21a37f-ef3d-9c81-56d6-26ded2948546/students/0d732720-0803-fc91-9f48-69c1515c8df4",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{tokenParent}}",
+								"description": ""
+							}
+						],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "NKHS-255 Retrieve ghost permission for a user with client cred token copy",
+					"request": {
+						"url": "https://iam.naviance.com/enforcer/permissions/tenants/9c21a37f-ef3d-9c81-56d6-26ded2948546/users/96386000-edee-a485-16c3-3a2436c2221f/ghost",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{prodToken}}",
+								"description": ""
+							}
+						],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Using Staff token display all permissions",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var data = JSON.parse(responseBody);",
+									"",
+									"tests[\"Expected status: 200. Actual status code: \"+ responseCode.code] = responseCode.code === 200;",
+									"tests[\"Student has permission: \"+ data.permissions.edit_scholarships.permissionAlias] = responseCode.code;",
+									"tests[\"Student has permission: \"+ data.permissions.can_request_recommendations.permissionAlias] = responseCode.code;",
+									"",
+									"tests[\"Student has permission: \"+ data.permissions.active_match_events.permissionAlias] = responseCode.code;"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "https://iam-qa.naviance.com/enforcer/permissions/tenants/d8b95a4e-aee5-638d-43eb-5b419092bc1d/students/00c38220-0803-fc91-9f48-69c1515c8df4",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{tokenStaff}}",
+								"description": ""
+							}
+						],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Using Parent token display all permissions",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var data = JSON.parse(responseBody);",
+									"tests[\"Expected status: 200. Actual status code: \"+ responseCode.code] = responseCode.code === 200;",
+									"tests[\"Expected status: 200. Actual status code: \"+ responseCode.code] = responseCode.code === 200;",
+									"tests[\"Parent has permission: \"+ data.permissions.edit_scholarships.permissionAlias] = responseCode.code;",
+									"tests[\"Parent has permission: \"+ data.permissions.can_request_recommendations.permissionAlias] = responseCode.code;",
+									"tests[\"Parent has permission: \"+ data.permissions.active_match_events.permissionAlias] = responseCode.code;",
+									"tests[\"Parent has permission: \"+ data.permissions.student_can_edit_profile.permissionAlias] = responseCode.code;",
+									"tests[\"Parent has permission: \"+ data.permissions.student_can_edit_prospective.permissionAlias] = responseCode.code;",
+									"tests[\"Parent has permission: \"+ data.permissions.can_edit_email.permissionAlias] = responseCode.code;"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "https://iam-qa.naviance.com/enforcer/permissions/tenants/d8b95a4e-aee5-638d-43eb-5b419092bc1d/students/00c38220-0803-fc91-9f48-69c1515c8df4",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{tokenParent}}",
+								"description": ""
+							}
+						],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "QA",
+			"description": "",
+			"item": [
+				{
+					"name": "Retrieve a product",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var data = JSON.parse(responseBody);",
+									"tests[\"Expected status: 200. Actual status code: \"+ responseCode.code] = responseCode.code === 200;",
+									"tests[\"Name is: \" + data.name] = responseCode.code;",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "https://iam-qa.naviance.com/enforcer/products/1",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{qaToken}}",
+								"description": ""
+							}
+						],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Retrieve product activations for an institution",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var data = JSON.parse(responseBody);",
+									"tests[\"Expected status: 200. Actual status code: \"+ responseCode.code] = responseCode.code === 200;",
+									"tests[\"Product activation ID is: \" + data.productActivations[0].id] = responseCode.code;",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "https://iam-qa.naviance.com/enforcer/productactivations/institution/d8b95a4e-aee5-638d-43eb-5b419092bc1d",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{qaToken}}",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Retrieve product activations for district",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"",
+									"tests[\"Expected status: 200. Actual status code: \"+ responseCode.code] = responseCode.code === 200;",
+									"",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "https://iam-qa.naviance.com/enforcer/productactivations/institution/a48658a3-569b-fca1-c158-dcc385111949",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{qaToken}}",
+								"description": ""
+							}
+						],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "NKHS-255 Retrieve ghost permission for a user with client cred token",
+					"request": {
+						"url": "https://iam-qa.naviance.com/enforcer/permissions/tenants/d8b95a4e-aee5-638d-43eb-5b419092bc1d/users/aa8b1100-edee-a485-16c3-3a2436c2221f/ghost",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{qaToken}}",
+								"description": ""
+							}
+						],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Get Auth code for student",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var jsonObject = responseBody;",
+									"postman.setEnvironmentVariable(\"authCodeStudent\", jsonObject);"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "https://iamoauth-qa.naviance.com/admin/systest/authorize/student/00c38220-0803-fc91-9f48-69c1515c8df4/backbone/group.read",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Basic Y2xpZW50MTpzZWNyZXQ=",
+								"description": ""
+							}
+						],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Exchange Auth to get Oauth token for user",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var data = JSON.parse(responseBody);",
+									"postman.setEnvironmentVariable(\"tokenStudent\", data.access_token);"
+								]
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": {
+								"username": "backbone",
+								"password": "iam",
+								"saveHelperData": true,
+								"showPassword": false
+							}
+						},
+						"url": "https://iamoauth-qa.naviance.com/oauth/token?grant_type=authorization_code&code={{authCodeStudent}}&scope=group.read",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Basic YmFja2JvbmU6aWFt",
+								"description": ""
+							}
+						],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Display STUDENT permissions for grade_12",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var data = JSON.parse(responseBody);",
+									"",
+									"tests[\"Expected status: 200. Actual status code: \"+ responseCode.code] = responseCode.code === 200;",
+									"tests[\"Student has permission: \"+ data.permissions.edit_scholarships.permissionAlias] = responseCode.code;",
+									"tests[\"Student has permission: \"+ data.permissions.can_request_recommendations.permissionAlias] = responseCode.code;",
+									"tests[\"Student has permission: \"+ data.permissions.active_match_events.permissionAlias] = responseCode.code;"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "https://iam-qa.naviance.com/enforcer/permissions/tenants/d8b95a4e-aee5-638d-43eb-5b419092bc1d/",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{tokenStudent}}",
+								"description": ""
+							}
+						],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Get Auth code for staff user",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var jsonObject = responseBody;",
+									"postman.setEnvironmentVariable(\"authCodeStaff\", jsonObject);"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "https://iamoauth-qa.naviance.com/admin/systest/authorize/student/aa8b1100-edee-a485-16c3-3a2436c2221f/backbone/group.read",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Basic Y2xpZW50MTpzZWNyZXQ=",
+								"description": ""
+							}
+						],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Exchange Auth to get Oauth token for staff user",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var data = JSON.parse(responseBody);",
+									"postman.setEnvironmentVariable(\"tokenStaff\", data.access_token);"
+								]
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": {
+								"username": "backbone",
+								"password": "iam",
+								"saveHelperData": true,
+								"showPassword": false
+							}
+						},
+						"url": "https://iamoauth-qa.naviance.com/oauth/token?grant_type=authorization_code&code={{authCodeStaff}}&scope=group.read",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Basic YmFja2JvbmU6aWFt",
+								"description": ""
+							}
+						],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Display STAFF permissions",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var data = JSON.parse(responseBody);",
+									"",
+									"tests[\"Expected status: 200. Actual status code: \"+ responseCode.code] = responseCode.code === 200;",
+									"tests[\"Staff has permission: \"+ data.permissions.admin_elementary_school.permissionAlias] = responseCode.code;",
+									"tests[\"Staff has permission: \"+ data.permissions.admin_curriculum_school.permissionAlias] = responseCode.code;",
+									"tests[\"Staff has permission: \"+ data.permissions.admin_test_prep_settings.permissionAlias] = responseCode.code;"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "https://iam-qa.naviance.com/enforcer/permissions/tenants/d8b95a4e-aee5-638d-43eb-5b419092bc1d/",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{tokenStaff}}",
+								"description": ""
+							}
+						],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Display specific permission",
+					"request": {
+						"url": "https://iam-qa.naviance.com/enforcer/permissions/tenants/d8b95a4e-aee5-638d-43eb-5b419092bc1d/permissions/edit_scholarships",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{tokenStudent}}",
+								"description": ""
+							}
+						],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Get Auth code for parent",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var jsonObject = responseBody;",
+									"postman.setEnvironmentVariable(\"authCodeParent\", jsonObject);"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "https://iamoauth-qa.naviance.com/admin/systest/authorize/student/d32b996f-49ce-30d1-d652-fed41796a5d2/backbone/product.read",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Basic Y2xpZW50MTpzZWNyZXQ=",
+								"description": ""
+							}
+						],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Exchange Auth to get Oauth token for parent user",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var data = JSON.parse(responseBody);",
+									"postman.setEnvironmentVariable(\"tokenParent\", data.access_token);"
+								]
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": {
+								"username": "backbone",
+								"password": "iam",
+								"saveHelperData": true,
+								"showPassword": false
+							}
+						},
+						"url": "https://iamoauth-qa.naviance.com/oauth/token?grant_type=authorization_code&code={{authCodeParent}}&scope=group.read",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Basic YmFja2JvbmU6aWFt",
+								"description": ""
+							}
+						],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Display all PARENT permissions",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var data = JSON.parse(responseBody);",
+									"",
+									"tests[\"Expected status: 200. Actual status code: \"+ responseCode.code] = responseCode.code === 200;",
+									"tests[\"Student has permission: \"+ data.permissions.edit_scholarships.permissionAlias] = responseCode.code;",
+									"tests[\"Student has permission: \"+ data.permissions.can_request_recommendations.permissionAlias] = responseCode.code;",
+									"tests[\"Student has permission: \"+ data.permissions.active_match_events.permissionAlias] = responseCode.code;"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "https://iam-qa.naviance.com/enforcer/permissions/tenants/d8b95a4e-aee5-638d-43eb-5b419092bc1d/students/00c38220-0803-fc91-9f48-69c1515c8df4",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{tokenParent}}",
+								"description": ""
+							}
+						],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Get Auth code for district staff user",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var jsonObject = responseBody;",
+									"postman.setEnvironmentVariable(\"authCodeDistrict\", jsonObject);"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "https://iamoauth-qa.naviance.com/admin/systest/authorize/session/96761100-edee-a485-16c3-3a2436c2221f/b4f281bf-da0d-4d8a-aa5a-866a9f2512d3/backbone/group.read",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Basic Y2xpZW50MTpzZWNyZXQ=",
+								"description": ""
+							}
+						],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Exchange Auth to get Oauth token for district staff user",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var data = JSON.parse(responseBody);",
+									"postman.setEnvironmentVariable(\"tokenDistrict\", data.access_token);"
+								]
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": {
+								"username": "backbone",
+								"password": "iam",
+								"saveHelperData": true,
+								"showPassword": false
+							}
+						},
+						"url": "https://iamoauth-qa.naviance.com/oauth/token?grant_type=authorization_code&code={{authCodeDistrict}}&scope=group.read&redirect_uri=123",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Basic YmFja2JvbmU6aWFt",
+								"description": ""
+							}
+						],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Display DISTRICT STAFF permissions",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var data = JSON.parse(responseBody);",
+									"",
+									"tests[\"Expected status: 200. Actual status code: \"+ responseCode.code] = responseCode.code === 200;",
+									"tests[\"Staff has permission: \"+ data.permissions.admin_elementary_school.permissionAlias] = responseCode.code;",
+									"tests[\"Staff has permission: \"+ data.permissions.admin_curriculum_school.permissionAlias] = responseCode.code;",
+									"tests[\"Staff has permission: \"+ data.permissions.admin_test_prep_settings.permissionAlias] = responseCode.code;",
+									"tests[\"Staff has permission: \"+ data.permissions.admin_elementary_district.permissionAlias] = responseCode.code;",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "https://iam-qa.naviance.com/enforcer/permissions/tenants/a48658a3-569b-fca1-c158-dcc385111949/",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{tokenDistrict}}",
+								"description": ""
+							}
+						],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Using Staff token display all permissions",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var data = JSON.parse(responseBody);",
+									"",
+									"tests[\"Expected status: 200. Actual status code: \"+ responseCode.code] = responseCode.code === 200;",
+									"tests[\"Student has permission: \"+ data.permissions.edit_scholarships.permissionAlias] = responseCode.code;",
+									"tests[\"Student has permission: \"+ data.permissions.can_request_recommendations.permissionAlias] = responseCode.code;",
+									"",
+									"tests[\"Student has permission: \"+ data.permissions.active_match_events.permissionAlias] = responseCode.code;"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "https://iam-qa.naviance.com/enforcer/permissions/tenants/d8b95a4e-aee5-638d-43eb-5b419092bc1d/students/00c38220-0803-fc91-9f48-69c1515c8df4",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{tokenStaff}}",
+								"description": ""
+							}
+						],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Using Parent token display all permissions",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var data = JSON.parse(responseBody);",
+									"tests[\"Expected status: 200. Actual status code: \"+ responseCode.code] = responseCode.code === 200;",
+									"tests[\"Expected status: 200. Actual status code: \"+ responseCode.code] = responseCode.code === 200;",
+									"tests[\"Parent has permission: \"+ data.permissions.edit_scholarships.permissionAlias] = responseCode.code;",
+									"tests[\"Parent has permission: \"+ data.permissions.can_request_recommendations.permissionAlias] = responseCode.code;",
+									"tests[\"Parent has permission: \"+ data.permissions.active_match_events.permissionAlias] = responseCode.code;",
+									"tests[\"Parent has permission: \"+ data.permissions.student_can_edit_profile.permissionAlias] = responseCode.code;",
+									"tests[\"Parent has permission: \"+ data.permissions.student_can_edit_prospective.permissionAlias] = responseCode.code;",
+									"tests[\"Parent has permission: \"+ data.permissions.can_edit_email.permissionAlias] = responseCode.code;"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "https://iam-qa.naviance.com/enforcer/permissions/tenants/d8b95a4e-aee5-638d-43eb-5b419092bc1d/students/00c38220-0803-fc91-9f48-69c1515c8df4",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{tokenParent}}",
+								"description": ""
+							}
+						],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
