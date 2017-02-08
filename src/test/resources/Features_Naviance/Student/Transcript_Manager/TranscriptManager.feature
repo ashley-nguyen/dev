@@ -10,5 +10,5 @@ Scenario Outline: Verify Application Manager actions
   Then I will see data in Transcript Manager selecting <item>
 Examples:
   | account     | user       | password  | item                       |
-  | rtd1        | stan.smith | stan01!   | class of 2017 (grade 12)   |
+  | blueqa1        | frank.district | password   | class of 2017 (grade 12)   |
 

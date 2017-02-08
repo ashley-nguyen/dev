@@ -3,6 +3,7 @@ package stepDefs.FamilyConnection;
 import actions.FamilyConnection.*;
 import cucumber.api.PendingException;
 import cucumber.api.java.en.And;
+import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import org.openqa.selenium.WebDriver;
@@ -36,7 +37,6 @@ public class FCHubs_StepDefs {
     @And("^I navigate to Second Tutorial$")
     public void I_navigate_to_second_tutorial() throws Throwable {
         FCHubs.ClickNextOnFirstDialog();
-
     }
 
     @Then("^I should see SecondTutorial dialog$")
@@ -66,8 +66,8 @@ public class FCHubs_StepDefs {
         FCHubs.VerifyLogoInIdentifierModule();
     }
 
-    @When("^I click the URL at the side of the logo$")
-    public void I_click_the_URL_at_the_side_of_the_logo() throws Throwable {
+    @When("^I open the URL at the side of the logo$")
+    public void I_open_the_URL_at_the_side_of_the_logo() throws Throwable {
         FCHubs.ClickURLInIdentifierModule();
     }
 
@@ -212,22 +212,6 @@ public class FCHubs_StepDefs {
         FCHubs.VerifyCampusSurroundings(surroundings);
     }
 
-    @Then("^Student's \"([^\"]*)\" should be \"([^\"]*)\" in the Score Comparison module$")
-    public void Students_should_be_in_the_Score_Comparison_Module(String scoreType, String value) throws Throwable {
-        FCHubs.VerifyScoreValuesScoreComp(scoreType, value);
-    }
-
-    @Then("^Average \"([^\"]*)\" should be \"([^\"]*)\" with correct values in the Score Comparison module$")
-    public void Average_should_be_with_correct_values_in_the_Score_Comparison_Module(String avgScoreType,
-                                                                                     String avgValue) throws Throwable {
-        FCHubs.VerifyAvgValuesScoreComp(avgScoreType, avgValue);
-    }
-
-    @Then("^The score text for \"([^\"]*)\" should be \"([^\"]*)\"$")
-    public void The_score_text_for_should_be(String scoreType, String scoreText) throws Throwable {
-        FCHubs.VerifyScoreTextScoreComp(scoreType, scoreText);
-    }
-
     @Then("^The Overall Average text should be \"([^\"]*)\" in the Score Comparison module$")
     public void The_Overall_Average_text_should_be_in_the_Score_Comparison_module(String overallAvgText)
             throws Throwable {
@@ -240,9 +224,9 @@ public class FCHubs_StepDefs {
         FCHubs.VerifyQuestionMarkScoreComp(scoreType);
     }
 
-    @Then("^Average Total Cost should be \"([^\"]*)\" when the income is \"([^\"]*)\"$")
-    public void Average_Total_Cost_should_be_when_the_income_is(String avgTotalCost, String income) throws Throwable {
-        FCHubs.VerifyAvgTotalCostInfoTopBar(income, avgTotalCost);
+    @Then("^Average Total Cost should correspond to the income as follows:$")
+    public void averageTotalCostShouldCorrespondToTheIncomeAsFollows(List<String> incomeList) throws Throwable {
+        FCHubs.VerifyAvgTotalCostInfoTopBar(incomeList);
     }
 
     @Then("^Graduation Rate should be \"([^\"]*)\" with correct data in the Information Top bar$")
@@ -372,7 +356,10 @@ public class FCHubs_StepDefs {
         FCCollegesTab.EnterCollegeToSearch(college);
         FCCollegesTab.ClickGoButton();
         FCCollegesTab.ClickCollegeInCollegeLookup(college);
-//        FCCollegeView.clickBetaButton();
+        /*The following callings inside this method will be commented as needed. This is because sometimes a toggle
+        * is switched to use the Beta button, and the same with the Authorize button*/
+        FCCollegeView.clickBetaButton();
+//        FCCollegeView.clickAuthorizeButton();
     }
     @When("^I open 'Communicate' link \"([^\"]*)\"$")
     public void I_open_Communicate_Link(String link) throws Throwable {
@@ -429,6 +416,151 @@ public class FCHubs_StepDefs {
     @Then("^I should see the 'Looking for Scattergrams' tutorial$")
     public void I_should_see_the_looking_for_Scattergrams_tutorial() throws Throwable {
         FCHubs.VerifySecondTutorialDialog();
+    }
+
+    @When("^I open Recommended Events from sticky bar$")
+    public void I_Open_Recommended_Events_From_Sticky_Bar() throws Throwable {
+        FCHubs.clickRecommendedEvents();
+    }
+
+    @When("^I add the college to the 'I'm thinking about' list using the heart icon$")
+    public void I_add_the_college_to_the_Im_thinking_about_list_using_the_heart_icon() throws Throwable {
+        FCHubs.clickWhiteHeartThinkingAboutList();
+    }
+
+    @Then("^The heart should change its status to indicate that it is clicked$")
+    public void The_heart_should_change_its_status_to_indicate_that_it_is_clicked() throws Throwable {
+        FCHubs.verifyHeartStatusClicked();
+    }
+
+    @Then("^The college \"([^\"]*)\" should be added to the 'I'm thinking about list'$")
+    public void The_college_should_be_aAdded_to_the_Im_thinking_about_list(String college) throws Throwable {
+        FCHubs.verifyCollegeAddedtoImThinkingAboutList(college);
+    }
+
+    @And("^I remove the college \"([^\"]*)\" from the 'I'm thinking about' list in legacy$")
+    public void I_remove_the_college_from_the_Im_thinking_about_list_in_legacy(String college) throws Throwable {
+        FCCollegesTab.removeCollegeFromImThinkingAboutListLegacy(college);
+    }
+
+    @Given("^The college \"([^\"]*)\" is added to the 'I'm thinking about' list$")
+    public void The_college_is_added_to_the_Im_thinking_about_list(String college) throws Throwable {
+        FCHubs.clickAddToCollegesThinkingAboutPinkButton();
+    }
+
+    @When("^I take the college out of the 'I'm thinking about' list using the heart icon$")
+    public void I_take_the_college_out_of_the_Im_thinking_about_list_using_the_heart_icon() throws Throwable {
+        FCHubs.clickPinkHeartThinkingAboutList();
+    }
+
+    @Then("^The college \"([^\"]*)\" should not be present in the 'I'm thinking about' list$")
+    public void The_college_should_not_be_present_in_the_Im_thinking_about_list(String college) throws Throwable {
+        FCHubs.verifyCollegeIsNotInImThinkingAboutList(college);
+    }
+
+    @When("^I go over the heart icon when it is white$")
+    public void I_go_over_the_heart_icon_when_it_is_white() throws Throwable {
+        FCHubs.hoverOverWhiteHeart();
+    }
+
+    @Then("^I should see a tooltip with the text \"([^\"]*)\"$")
+    public void I_should_see_a_tool_tip_with_the_text(String heartTooltipText) throws Throwable {
+        FCHubs.verifyHeartTooltip(heartTooltipText);
+    }
+
+    @When("^I go over the heart icon when it is pink$")
+    public void I_go_over_the_heart_icon_when_it_is_pink() throws Throwable {
+        FCHubs.hoverOverPinkHeart();
+    }
+
+    @When("^I open the college visit in position \"([^\"]*)\"$")
+    public void I_open_the_college_visit_in_position(String position) throws Throwable {
+        FCHubs.clickRegisterInCollegeVisit(position);
+    }
+
+    @When("^I open the college visit details in position \"([^\"]*)\"$")
+    public void iOpenTheCollegeVisitDetailsInPosition(String position) throws Throwable {
+        FCHubs.clickDetailsInCollegeVisit(position);
+    }
+
+    @Then("^Student's score type and value should correspond to the following data in the Score Comparison module:$")
+    public void studentSScoreTypeAndValueShouldCorrespondToTheFollowingDataInTheScoreComparisonModule(List<String> scoreValueList) throws Throwable {
+        FCHubs.VerifyScoreValuesScoreComp(scoreValueList);
+    }
+
+    @Then("^Average score type and value should correspond to the following data in the Score Comparison module$")
+    public void averageScoreTypeAndValueShouldCorrespondToTheFollowingDataInTheScoreComparisonModule(List<String> avgScoreValueList) throws Throwable {
+        FCHubs.VerifyAvgValuesScoreComp(avgScoreValueList);
+    }
+
+    @Then("^The score text for each score type should be as follows:$")
+    public void the_score_text_for_each_score_type_should_be_as_follows(List<String> scoresList) throws Throwable {
+        FCHubs.verifyScoreTextScoreComp(scoresList);
+    }
+
+    @When("^I switch the comparison to be made against all students accepted by the college$")
+    public void I_switch_the_comparison_to_be_made_against_all_students_accepted_by_the_college() throws Throwable {
+        FCHubs.clickCompareMeWithAllAcceptedApplicants();
+    }
+
+    @Then("^I should see the the comparison made against all students accepted by the college$")
+    public void I_should_see_the_the_comparison_made_against_all_students_accepted_by_the_college() throws Throwable {
+        FCHubs.verifyComparisonAgainstAllStudents();
+    }
+
+    @When("^I switch the comparison to be made against other students from the students' school$")
+    public void iSwitchTheComparisonToBeMadeAgainstOtherStudentsFromTheStudentsSchool() throws Throwable {
+        FCHubs.clickCompareMeWithStudentsFromMyHS();
+    }
+
+    @Then("^I should see the the comparison made against other students from the students' school$")
+    public void iShouldSeeTheTheComparisonMadeAgainstOtherStudentsFromTheStudentsSchool() throws Throwable {
+        FCHubs.verifyComparisonAgainstOtherStudentsFromHS();
+    }
+
+    @Then("^I should see the Counselor Comments$")
+    public void I_should_see_the_Counselor_Comments() throws Throwable {
+        FCHubs.verifyCounselorComments();
+    }
+
+    @Then("^I should see a confirmation message$")
+    public void I_should_see_a_confirmation_message() throws Throwable {
+        FCHubs.verifyCollegeVisitConfirmationMessage();
+    }
+
+    @And("^Remove myself from the college visit at position \"([^\"]*)\"$")
+    public void remove_myself_from_the_college_visit(String position) throws Throwable {
+        FCHubs.clickRemoveFromList(position);
+    }
+
+    @Then("^I should see a confirmation message for the cancellation$")
+    public void I_should_see_a_confirmation_message_for_the_cancellation() throws Throwable {
+        FCHubs.verifyCollegeVisitCancellationMessage();
+    }
+
+    @Then("^No Register button should be displayed$")
+    public void no_register_button_should_be_displayed() throws Throwable {
+        FCHubs.verifyRegisterButtonNotPresent();
+    }
+
+    @Then("^I open the International tab$")
+    public void I_open_the_international_tab() throws Throwable {
+        FCHubs.clickInternationalTab();
+    }
+
+    @When("^I open the information tooltip clicking the information icon in \"([^\"]*)\"$")
+    public void I_open_the_information_tooltip_clicking_the_information_icon_in(String section) throws Throwable {
+        FCHubs.clickInfoIconInSection(section);
+    }
+
+    @Then("^A tooltip should be displayed in \"([^\"]*)\"$")
+    public void a_tooltip_should_be_displayed_in(String section) throws Throwable {
+        FCHubs.verifyInfoTooltipInSection(section);
+    }
+
+    @Then("^The tooltip in \"([^\"]*)\" should be closed$")
+    public void theTooltipInShouldBeClosed(String section) throws Throwable {
+        FCHubs.verifyInfoTooltipInSectionIsClosed(section);
     }
 }
 

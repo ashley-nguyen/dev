@@ -5,7 +5,7 @@ Feature: Course tests
   I want to verify that Course Catalog it's being displayed
 
   Background:
-    Given I am logged into Naviance "rtd1" as "stan.smith" with "stan01!"
+    Given I am logged into Naviance "blueqa1" as "frank.district" with "password"
 
   Scenario: Verify Course Catalog
     When I go to the Courses

@@ -6,7 +6,7 @@ Feature: Colleges - Advanced search
 
   Background:
     Given when I log in with the following user details:
-      | rtsa | stan.smith | stan01! |
+      | blue1hs | frank.counselor| frank01! |
 
   @td2 @safe
   Scenario Outline: View Advanced College Search

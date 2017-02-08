@@ -32,6 +32,13 @@ public class loginPage extends BaseClass {
     public static WebElement valid_foot_note_text;
     @FindBy(how = How.CSS, using = ".bs-alert.top-alert.alert-error")
     public static WebElement invalid_foot_note_text;
+    @FindBy(how = How.NAME, using = "child_id")
+    public static WebElement childDropDown;
+    @FindBy(how = How.ID, using = "switchChild")
+    public static WebElement buttonGo;
+
+
+
     public loginPage(WebDriver driver) {
         super(driver);
     }

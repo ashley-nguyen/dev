@@ -98,24 +98,14 @@ public class Connections {
         assertTrue("Error Verification Buttons not found!", verifyAgreeButton);
     }
 
+    // LOR Feature methods
+
     public static void clickOnLettersOfRecommendation() throws InterruptedException {
         driver = Hooks.driver;
         PageFactory.initElements(driver, ConnectionsPage.class);
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.linkText("letters of recommendation")));
         ConnectionsPage.lnkLettersOfRecommendation.click();
-    }
-
-    public static void defaultMessage() throws InterruptedException {
-        driver = Hooks.driver;
-        PageFactory.initElements(driver, ConnectionsPage.class);
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-        new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.className("fc-table")));
-        new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.linkText("Add Request")));
-
-        String dataVerification = ConnectionsPage.textDefaultMessage.getText();
-        assertTrue("Error Verification!", dataVerification.contains("You can request new letters of recommendation and track the most recent status of your requests here."));
-
     }
 
     public static void clickAddRequest() throws InterruptedException {
@@ -133,7 +123,7 @@ public class Connections {
         WebElement selectElement = new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.visibilityOf(ConnectionsPage.divSelectTeacher));
         Select select = new Select(selectElement);
         select.selectByVisibleText(item);
-    }
+    };
 
     public static void selectCollege() throws InterruptedException {
         driver = Hooks.driver;
@@ -145,12 +135,20 @@ public class Connections {
         ConnectionsPage.divSelectCollege.click();
     }
 
-    public static void selectOptionForCollege() throws InterruptedException {
+    public static void selectSpecificCollege() throws InterruptedException {
         driver = Hooks.driver;
         PageFactory.initElements(driver, ConnectionsPage.class);
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-        new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("input[name=applications]")));
-        ConnectionsPage.divSelectOptionCollege.click();
+        new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//input[@name='applications']")));
+        ConnectionsPage.divSpecificCollege.click();
+    };
+
+    public static void selectAllApplications() throws InterruptedException {
+        driver = Hooks.driver;
+        PageFactory.initElements(driver, ConnectionsPage.class);
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//input[@value='all-applications']")));
+        ConnectionsPage.divAllApplications.click();
     }
 
     public static void clickSave() throws InterruptedException {
@@ -162,13 +160,50 @@ public class Connections {
 
     }
 
-    public static void successMessage(String strText) throws InterruptedException {
+    public static void successMessage(String strSuccessMessage) throws InterruptedException {
         driver = Hooks.driver;
         PageFactory.initElements(driver, ConnectionsPage.class);
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.className("ng-binding")));
         new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("button[class='fc-button fc-button--primary']")));
-        assertTrue("The confirmation message is correct", driver.findElement(By.xpath("//span[@class='ng-binding'][contains(text(), '" + strText + "')]")).isDisplayed());
+        new WebDriverWait(Hooks.driver, 30).until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("div[class='fc-alert fc-alert--success fc-alert--margin-top-hug ng-scope']")));
+        assertTrue("The confirmation message is correct", driver.findElement(By.xpath("//span[@class='ng-binding'][contains(text(), '" + strSuccessMessage + "')]")).isDisplayed());
+    }
+
+    public static void duplicateTeacherRequestErrorMessage(String strErrorMessageText) throws InterruptedException {
+        driver = Hooks.driver;
+        PageFactory.initElements(driver, ConnectionsPage.class);
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.className("add-request__duplicate-teacher-message")));
+        String dataVerification = ConnectionsPage.divDuplicateTeacherRequest.getText();
+        assertTrue("Error Verification!", dataVerification.contains(strErrorMessageText));
+    }
+
+    public static void sameStaffErrorMessage(String strErrorMessageText) throws InterruptedException {
+        driver = Hooks.driver;
+        PageFactory.initElements(driver, ConnectionsPage.class);
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.className("add-request__disabled-message")));
+        String dataVerification = ConnectionsPage.divDuplicateSpecificCollegeTeacherRequest.getText();
+        assertTrue("Error Verification!", dataVerification.contains(strErrorMessageText));
+    }
+
+    public static void clickAllApplicationsTooltip() throws InterruptedException {
+        driver = Hooks.driver;
+        PageFactory.initElements(driver, ConnectionsPage.class);
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.className("add-request__info-tooltip-icon")));
+        ConnectionsPage.allApplicationsInfoIcon.click();
+    }
+
+    public static void allApplicationsInfoMessage(String strTooltipTextPart1, String strTooltipTextPart2) throws InterruptedException {
+        driver = Hooks.driver;
+        PageFactory.initElements(driver, ConnectionsPage.class);
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.className("add-request__info-tooltip-content")));
+        String dataVerification = ConnectionsPage.allApplicationsInfoContent.getText();
+        assertTrue("Message Verification!", dataVerification.contains(strTooltipTextPart1));
+        assertTrue("Message Verification!", dataVerification.contains(strTooltipTextPart2));
     }
 
     public static void clickCancel() throws InterruptedException {
@@ -185,24 +220,16 @@ public class Connections {
         PageFactory.initElements(driver, ConnectionsPage.class);
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.className("recommendations-list__cancel-prompt-confirm")));
-
         ConnectionsPage.divConfirmCancelButton.click();
     }
 
-    public static void cancelSuccessMessage(String info1, String info2) throws InterruptedException {
+    public static void cancelSuccessMessage(String strCancelSuccessMessageText) throws InterruptedException {
         driver = Hooks.driver;
         PageFactory.initElements(driver, ConnectionsPage.class);
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-        new WebDriverWait(Hooks.driver, 30).until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("div[class='fc-alert fc-alert--success fc-alert--normal-text']")));
-        new WebDriverWait(Hooks.driver, 30).until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("body > div > div > div > div > recommendations-container > div > div > ng-view > recommendations-list > table > tbody > tr:nth-child(4) > td > div")));
-        String dataVerification = ConnectionsPage.classRecommendationList.getText();
-        assertTrue("LOR request cancelled", dataVerification.contains("cancelled"));
-        String cancelMessage = ConnectionsPage.cancelMessage.getText();
-        assertTrue("LOR cancellation message", cancelMessage.contains(info1));
-        ConnectionsPage.divDisabledCancelIcon.click();
-        String cancelTooltip = ConnectionsPage.cancelToolTipMessage.getText();
-        System.out.print("cancelTooltip" + cancelTooltip);
-        assertTrue("LOR cancellation tooltip", cancelTooltip.contains(info2));
+        new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.className("fc-alert--success")));
+        String dataVerification = Hooks.driver.findElement(By.className("fc-alert--normal-text")).getText();
+        assertTrue("LOR request cancelled", dataVerification.contains(strCancelSuccessMessageText));
     }
 
     public static void submitVerification(String text) throws InterruptedException {
@@ -233,11 +260,23 @@ public class Connections {
         new WebDriverWait(Hooks.driver, 30).until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("div[class='ng-binding ng-scope']")));
         new WebDriverWait(Hooks.driver, 30).until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("div[class='fc-tooltip__content ng-binding']")));
         WebElement submittedTextElement = ConnectionsPage.divSubmittedText;
-        Actions action = new Actions(driver);
-        Actions hoverOverRegistrar = action.moveToElement(submittedTextElement);
-        hoverOverRegistrar.clickAndHold(submittedTextElement).perform();
-        String textVerification = submittedTextElement.getText();
-        assertTrue("Error Verification for Submitted text contents!", textVerification.contains(text));
+        if (text.contains("Date"))
+        {
+            Actions action = new Actions(driver);
+            Actions hoverOverRegistrar = action.moveToElement(submittedTextElement);
+            hoverOverRegistrar.clickAndHold(submittedTextElement).perform();
+            String textVerification = submittedTextElement.getText().substring(0, 30);
+            Boolean dateStringExists = textVerification.matches(".*\\w{3}\\s\\d{2}\\s\\d{4}.*");
+            assertTrue("Error Verification for Submitted text contents!", dateStringExists);
+        }
+        else
+        {
+            Actions action = new Actions(driver);
+            Actions hoverOverRegistrar = action.moveToElement(submittedTextElement);
+            hoverOverRegistrar.clickAndHold(submittedTextElement).perform();
+            String textVerification = submittedTextElement.getText();
+            assertTrue("Error Verification for Submitted text contents!", textVerification.contains(text));
+        }
     }
 
 }

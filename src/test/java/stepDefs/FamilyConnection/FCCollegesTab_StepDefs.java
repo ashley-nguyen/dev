@@ -41,4 +41,9 @@ public class FCCollegesTab_StepDefs {
     public void iShouldSeeTheMessageInTheCollegeLookupPage(String message) throws Throwable {
         FCCollegesTab.VerifyMessageCollegeLookup(message);
     }
+
+    @Then("^I should see the college visit information page$")
+    public void I_should_see_the_college_visit_information_page() throws Throwable {
+        FCCollegesTab.verifyCollegeVisitInfoPage();
+    }
 }

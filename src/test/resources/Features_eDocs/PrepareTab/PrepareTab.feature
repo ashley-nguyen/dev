@@ -112,6 +112,14 @@ Feature: View student details
     | a103       | NACAC Fee Waiver         |ReadMe.txt      |Stan Smith | 14.87 | Replace   |
 
   @edocs @safe @succeed @EDOCS234
+  Scenario Outline: Verify under Application, I want to upload a NACAC fee waiver on behalf of a student to non-common-app colleges via eDocs using Delete action.
+    When I use "<studentID>" and delete document in eDocs
+    Then I will verify "<type>", "<author>", "<size>", "<action>"
+  Examples:
+    | studentID  | type                     | author    | size  | action |
+    | a103       | NACAC Fee Waiver      |Stan Smith | 14.87 | Delete   |
+
+  @edocs @safe @succeed @EDOCS234
   Scenario Outline: Verify under Application, I want to upload a NACAC fee waiver on behalf of a student to non-common-app colleges via eDocs using Replace Action.
     When I use "<studentID>" under application selecting "All Applications" and "Letter of Recommendation" with "<filename>"
     Then I will verify "<type>", "<author>", "<size>", "<action>"
@@ -120,10 +128,23 @@ Feature: View student details
     | a103       | Other School Report      |ReadMe.txt      |Stan Smith | 14.87 | Replace   |
     | a103       | NACAC Fee Waiver         |ReadMe.txt      |Stan Smith | 14.87 | Replace   |
 
-  @edocs @safe @succeed @EDOCS234
-  Scenario Outline: Verify under Application, I want to upload a NACAC fee waiver on behalf of a student to non-common-app colleges via eDocs using Delete action.
-    When I use "<studentID>" and delete document in eDocs
-    Then I will verify "<type>", "<author>", "<size>", "<action>"
+
+
+
+  @edocs @safe @EDOCS12
+  Scenario Outline: Verify prevent uploading/sending multiple student transcripts for a single student due to FERPA violation
+    When I use "<studentID>" under transcript selecting "Initial Transcript" with "<filename>"
+    Then I will verify "<text>" with "<message>" messages for LORs
+
   Examples:
-    | studentID  | type                     | author    | size  | action |
-    | a103       | NACAC Fee Waiver      |Stan Smith | 14.87 | Delete   |
+    | studentID  |filename        | text |message                                                                               |
+    | a103       |Doc21.pdf       | Initial Transcript     |Upload Failed: Initial Transcript - Sorry, transcripts must be no longer than 20 pages|
+
+  @edocs @safe @succeed
+  Scenario Outline: Verify I get an error message that says my file size it too big.
+    When I use "<studentID>" under application selecting "All Applications" and "Letter of Recommendation" with "<filename>"
+    Then I will verify "<text>" file big message
+
+  Examples:
+    | studentID  | text                             | filename            |
+    | a101       | Selected file is more than 500KB | FillTooBigPDF.pdf|

@@ -4,9 +4,13 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import pageObjects.FamilyConnection.FCCollegesPage;
+import pageObjects.FamilyConnection.FCHubsPage;
 import stepDefs.Hooks;
 
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 import static junit.framework.TestCase.assertTrue;
 
@@ -26,6 +30,8 @@ public class FCCollegesTab {
     public static void EnterCollegeToSearch(String searchParameter) {
         driver = Hooks.driver;
         PageFactory.initElements(driver, FCCollegesPage.class);
+        new WebDriverWait(Hooks.driver, 20).until(ExpectedConditions.elementToBeClickable
+                (FCCollegesPage.textAreaSearchCollege));
         FCCollegesPage.textAreaSearchCollege.sendKeys(searchParameter);
     }
 
@@ -62,5 +68,27 @@ public class FCCollegesTab {
             e.printStackTrace();
         }
         assertTrue("The message is not displayed in the College Lookup page", result);
+    }
+
+    public static void removeCollegeFromImThinkingAboutListLegacy(String college) {
+        driver = Hooks.driver;
+        PageFactory.initElements(driver, FCCollegesPage.class);
+        WebElement collegeCheckbox = driver.findElement(By.xpath("//a[contains(text(), '" + college
+                + "')]/ancestor::tr/td[1]"));
+        collegeCheckbox.click();
+        FCCollegesPage.buttonRemoveFromList.click();
+    }
+
+    public static void verifyCollegeVisitInfoPage() {
+        driver = Hooks.driver;
+        PageFactory.initElements(driver, FCCollegesPage.class);
+        assertTrue("The college visit information page is not displayed", FCCollegesPage.titleCollegeVisitInfo
+                .isDisplayed());
+    }
+
+    public static void clickAddToThinkingAboutList() {
+        driver = Hooks.driver;
+        PageFactory.initElements(driver, FCCollegesPage.class);
+        FCCollegesPage.linkAddToImThinkingAboutList.click();
     }
 }

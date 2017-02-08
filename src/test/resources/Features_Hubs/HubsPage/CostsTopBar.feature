@@ -8,23 +8,19 @@ Feature: As a student viewing new Hubs' Costs tab, I want to see a top bar with 
     When I open the HUBS page for "Auburn"
     Then I open the Costs tab
 
-  Scenario Outline: Average Total Cost is displayed with correct data for each income selected in the Costs Top bar
-    Then Average Total Cost should be "<avgTotalCost>" when the income is "<income>" in Costs Top Bar
-    Examples:
-    | income      | avgTotalCost |
-    | $30 - $48K  | 16,272       |
-    | $48 - $75K  | 18,240       |
-    | $75 - $110K | 19,276       |
-    | > $110K     | 20,142       |
-    | $0 - $30K   | 13,191       |
+  Scenario: Average Total Cost is displayed with correct data for each income selected in the Costs Top bar
+    Then Average Total Cost should correspond to the income in Costs Top Bar as follows:
+    | $30 - $48K;16,272  |
+    | $48 - $75K;18,240  |
+    | $75 - $110K;19,276 |
+    | > $110K;20,142     |
+    | $0 - $30K;13,191   |
 
-  Scenario Outline: % Receiving Grant Aid is displayed with correct data for each Type of Aid selected in the Costs top bar
-    Then % Aid should be "<aid>" when the Type of Aid is "<typeOfAid>"
-    Examples:
-    | typeOfAid            | aid |
-    | Grant                | 53  |
-    | Pell Grant           | 17  |
-    | Federal Student Loan | 36  |
+  Scenario: % Receiving Grant Aid is displayed with correct data for each Type of Aid selected in the Costs top bar
+    Then % Aid should correspond to the type of aid as follows:
+    | Grant;53                |
+    | Pell Grant;17           |
+    | Federal Student Loan;36 |
 
   Scenario: Typical Monthly Loan Payment is displayed with correct data in the Costs top bar
     Then Typical Monthly Loan Payment is "224/month" in the Costs top bar

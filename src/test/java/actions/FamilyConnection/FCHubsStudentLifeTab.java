@@ -95,19 +95,22 @@ public class FCHubsStudentLifeTab {
                 FCHubsStudentLifeTabPage.labelTotalStudentsGenderData.getText().equals(totalStudentsGender));
     }
 
-    public static void VerifyGenderPercentage(String gender, String value) {
+    public static void VerifyGenderPercentage(List<String> genderPercentageList) {
         driver = Hooks.driver;
         PageFactory.initElements(driver, FCHubsStudentLifeTabPage.class);
+        boolean result = false;
         WebElement genderPercent = null;
-        switch (gender) {
-            case "Female" : genderPercent = FCHubsStudentLifeTabPage.labelGenderDataPercentFemale;
-                break;
-            case "Male" : genderPercent = FCHubsStudentLifeTabPage.labelGenderDataPercentMale;
-                break;
+        for (String genderPercentageElement : genderPercentageList){
+            switch (genderPercentageElement.split(";")[0]) {
+                case "Female" : genderPercent = FCHubsStudentLifeTabPage.labelGenderDataPercentFemale;
+                    break;
+                case "Male" : genderPercent = FCHubsStudentLifeTabPage.labelGenderDataPercentMale;
+                    break;
+            }
+            result = genderPercentageElement.split(";")[1].equals(genderPercent.getText());
         }
-        String uiPercent = genderPercent.getText();
 
-        assertTrue("The percent for " + gender + " is not correct", uiPercent.equals(value));
+        assertTrue("The percent for the genders is not correct", result);
     }
 
     public static void VerifyTotalStudentsAge(String totalStudentsAge) {
@@ -117,17 +120,22 @@ public class FCHubsStudentLifeTab {
                 FCHubsStudentLifeTabPage.labelTotalStudentsAgeData.getText().equals(totalStudentsAge));
     }
 
-    public static void VerifyAgePercentage(String ageGroup, String value) {
+    public static void VerifyAgePercentage(List<String> agePercentageList) {
         driver = Hooks.driver;
         WebElement agePercent = null;
+        boolean result = false;
         PageFactory.initElements(driver, FCHubsStudentLifeTabPage.class);
-        switch (ageGroup) {
-            case "Under 24" : agePercent = FCHubsStudentLifeTabPage.labelAgeDataUnder24;
-                break;
-            case "Over 24" : agePercent = FCHubsStudentLifeTabPage.labelAgeDataOver24;
-                break;
+        for (String agePercentElement : agePercentageList) {
+            switch (agePercentElement.split(";")[0]) {
+                case "Under 24" : agePercent = FCHubsStudentLifeTabPage.labelAgeDataUnder24;
+                    break;
+                case "Over 24" : agePercent = FCHubsStudentLifeTabPage.labelAgeDataOver24;
+                    break;
+            }
+            result = agePercentElement.split(";")[1].equals(agePercent.getText());
         }
-        assertTrue("The percent for " + ageGroup + " is not correct", agePercent.getText().equals(value));
+
+        assertTrue("The percent for the age groups is not correct", result);
     }
     public static void ClickSectionInStudentOrgServ(String sectionName) {
         driver = Hooks.driver;
@@ -149,7 +157,7 @@ public class FCHubsStudentLifeTab {
         ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", driver.findElement
                 (By.cssSelector(".student-life-housing-information__data.fc-grid__col.fc-grid__col--xs-12" +
                         ".fc-grid__col--sm-7.fc-grid__col--md-6")));
-        sectionElement.click();
+        sectionElement.sendKeys(Keys.RETURN);
     }
 
     public static void VerifyStudentOrganizations(List<String> studentOrgs) {
@@ -185,7 +193,7 @@ public class FCHubsStudentLifeTab {
         ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", driver.findElement
                 (By.cssSelector(".student-life-housing-information__data.fc-grid__col.fc-grid__col--xs-12" +
                         ".fc-grid__col--sm-7.fc-grid__col--md-6")));
-        sectionElement.click();
+        sectionElement.sendKeys(Keys.RETURN);
     }
 
     public static void VerifySportsInAthletics(String gender, List<String> sports) {
@@ -248,5 +256,93 @@ public class FCHubsStudentLifeTab {
         PageFactory.initElements(driver, FCHubsStudentLifeTabPage.class);
         assertTrue("The Housing Information section is displayed",
                 FCHubsStudentLifeTabPage.labelHousingInformation.isDisplayed());
+    }
+
+    public static void verifyFraternitiesAndSororities(List<String> fratAndSorList) {
+        driver = Hooks.driver;
+        PageFactory.initElements(driver, FCHubsStudentLifeTabPage.class);
+        boolean result = false;
+        List<WebElement> uiFratAndSorList = driver.findElements(By.cssSelector(FCHubsStudentLifeTabPage
+                .fraternitiesAndSororitiesLocator));
+        for (int i = 0; i < uiFratAndSorList.size(); i++) {
+            if (uiFratAndSorList.get(i).getText().equals(fratAndSorList.get(i).split(";")[1])) {
+                result = true;
+            } else {
+                result = false;
+                break;
+            }
+        }
+        assertTrue("The number of fraternities and/or sororities is incorrect", result);
+    }
+
+    public static void verifyAvailableServices(List<String> servicesList) {
+        driver = Hooks.driver;
+        PageFactory.initElements(driver, FCHubsStudentLifeTabPage.class);
+        boolean resultBasicServices = false;
+        boolean resultROTCServices = false;
+        List<String> basicServicesList = new ArrayList<>();
+        List<String> ROTCServicesList = new ArrayList<>();
+        for (String serviceElement : servicesList) {
+            if (serviceElement.split(";")[0].equals("basic")) {
+                basicServicesList.add(serviceElement.split(";")[1]);
+            } else if (serviceElement.split(";")[0].equals("ROTC")) {
+                ROTCServicesList.add(serviceElement.split(";")[1]);
+            }
+        }
+        List<WebElement> basicServicesUiList = driver.findElements(By.cssSelector(FCHubsStudentLifeTabPage
+                .basicServicesAvailableLocator));
+        List<WebElement> ROTCServicesUiList = driver.findElements(By.cssSelector(FCHubsStudentLifeTabPage
+                .ROTCServicesAvailableLocator));
+        for (WebElement uiBasicServiceElement : basicServicesUiList) {
+            if (basicServicesList.contains(uiBasicServiceElement.getText().trim())) {
+                resultBasicServices = true;
+            } else {
+                resultBasicServices = false;
+                break;
+            }
+        }
+        for (WebElement uiROTCServiceElement : ROTCServicesUiList) {
+            if (ROTCServicesList.contains(uiROTCServiceElement.getText().trim())) {
+                resultROTCServices = true;
+            } else {
+                resultROTCServices = false;
+                break;
+            }
+        }
+        assertTrue("The services displayed are not correct", resultBasicServices && resultROTCServices);
+    }
+
+    public static void verifyComputingResources(List<String> computingResourcesList) {
+        driver = Hooks.driver;
+        PageFactory.initElements(driver, FCHubsStudentLifeTabPage.class);
+        boolean result = false;
+        List<WebElement> uiComputerLocationList = driver.findElements(By.cssSelector(FCHubsStudentLifeTabPage
+                .computerLocationListLocator));
+        List<WebElement> uiNumberOfPCsList = driver.findElements(By.cssSelector(FCHubsStudentLifeTabPage
+                .numberOfPcsListLocator));
+        List<WebElement> uiNumberOfMacsList = driver.findElements(By.cssSelector(FCHubsStudentLifeTabPage
+                .numberOfMacsListLocator));
+
+        List<String> dataComputerLocationList = new ArrayList<>();
+        List<String> dataNumberOfPcsList = new ArrayList<>();
+        List<String> dataNumberOfMacsList = new ArrayList<>();
+
+        for (int i = 0; i < computingResourcesList.size(); i++) {
+            dataComputerLocationList.add(computingResourcesList.get(i).split(";")[0]);
+            dataNumberOfPcsList.add(computingResourcesList.get(i).split(";")[1]);
+            dataNumberOfMacsList.add(computingResourcesList.get(i).split(";")[2]);
+        }
+
+        for (int i = 0; i < uiComputerLocationList.size(); i++) {
+            if (dataComputerLocationList.contains(uiComputerLocationList.get(i).getText())
+                && dataNumberOfPcsList.contains(uiNumberOfPCsList.get(i).getText())
+                && dataNumberOfMacsList.contains(uiNumberOfMacsList.get(i).getText())) {
+                result = true;
+            } else {
+                result = false;
+                break;
+            }
+        }
+        assertTrue("Data for Computing Resources is incorrect", result);
     }
 }

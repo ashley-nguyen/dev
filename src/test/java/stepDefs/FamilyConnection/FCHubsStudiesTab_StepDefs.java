@@ -72,4 +72,24 @@ public class FCHubsStudiesTab_StepDefs {
     public void eachStudyOptionFromTheFollowingListShouldBe(String status, List<String> studyOptions) throws Throwable {
         FCHubsStudiesTab.VerifyStudyOptions(status, studyOptions);
     }
+
+    @When("^I open the tooltip in Graduation Rate using the information icon$")
+    public void I_open_the_tooltip_in_Graduation_Rate_using_the_information_icon() throws Throwable {
+        FCHubsStudiesTab.clickInfoIconGraduationRate();
+    }
+
+    @Then("^A tooltip should be displayed in Graduation Rate$")
+    public void a_tooltip_should_be_displayed_in_Graduation_Rate() throws Throwable {
+        FCHubsStudiesTab.verifyTooltipGradRate();
+    }
+
+    @And("^I click the close icon in the tooltip$")
+    public void I_click_the_close_icon_in_the_tooltip() throws Throwable {
+        FCHubsStudiesTab.clickCloseIconInTooltip();
+    }
+
+    @Then("^The tooltip in Graduation Rate should be closed$")
+    public void the_tooltip_in_Graduation_Rate_should_be_closed() throws Throwable {
+        FCHubsStudiesTab.verifyTooltipGradRateClosed();
+    }
 }

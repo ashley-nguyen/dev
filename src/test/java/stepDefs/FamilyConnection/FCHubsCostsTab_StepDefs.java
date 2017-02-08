@@ -20,15 +20,15 @@ import java.util.List;
 public class FCHubsCostsTab_StepDefs {
     public static WebDriver driver;
 
-    @Then("^Average Total Cost should be \"([^\"]*)\" when the income is \"([^\"]*)\" in Costs Top Bar$")
-    public void Average_Total_Cost_should_be_when_the_income_is_in_Costs_Top_Bar(String avgTotalCost, String income)
-            throws Throwable {
-        FCHubsCostsTab.VerifyStudentFacultyRatioStudiesCostsTopBar(income, avgTotalCost);
+    @Then("^Average Total Cost should correspond to the income in Costs Top Bar as follows:$")
+    public void average_total_cost_should_correspond_to_the_income_in_costs_top_bar_as_follows
+            (List<String> incomeAvgTotalCostList) throws Throwable {
+        FCHubsCostsTab.VerifyStudentFacultyRatioStudiesCostsTopBar(incomeAvgTotalCostList);
     }
 
-    @Then("^% Aid should be \"([^\"]*)\" when the Type of Aid is \"([^\"]*)\"$")
-    public void Aid_should_be_when_the_Type_Of_Aid_is(String aidPercent, String typeOfAid) throws Throwable {
-        FCHubsCostsTab.VerifyAidPercent(aidPercent, typeOfAid);
+    @Then("^% Aid should correspond to the type of aid as follows:$")
+    public void aid_should_correspond_to_the_type_of_aid_as_follows(List<String> aidList) throws Throwable {
+        FCHubsCostsTab.VerifyAidPercent(aidList);
     }
 
     @Then("^Typical Monthly Loan Payment is \"([^\"]*)\" in the Costs top bar$")

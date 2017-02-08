@@ -37,11 +37,10 @@ public class ConnectionsPage extends BaseClass {
     @FindBy(how = How.LINK_TEXT, using = "Select and Update Optional Features")
     public static WebElement linkFCconfiguration;
 
+    //LOR Feature Page Objects
+
     @FindBy(how = How.LINK_TEXT, using = "letters of recommendation")
     public static WebElement lnkLettersOfRecommendation;
-
-    @FindBy(how = How.CLASS_NAME, using = "ng-binding")
-    public static WebElement textDefaultMessage;
 
     @FindBy(how = How.LINK_TEXT, using = "Add Request")
     public static WebElement addRequestButton;
@@ -49,7 +48,34 @@ public class ConnectionsPage extends BaseClass {
     @FindBy(how = How.CSS, using = "select.fc-select.fc-select--full-bleed.ng-pristine.ng-untouched.ng-valid.ng-empty")
     public static WebElement divSelectTeacher;
 
-    @FindBy(how = How.CSS, using = "input[class='fc-checkbox']")
+    @FindBy(how = How.XPATH, using = "//input[@value='specific-application']")
+    public static WebElement divSpecificCollege;
+
+    @FindBy(how = How.XPATH, using = "//input[@class='fc-checkbox']")
+    public static WebElement divSelectCollege;
+
+    @FindBy(how = How.XPATH, using = "//input[@value='all-applications']")
+    public static WebElement divAllApplications;
+
+    @FindBy(how = How.CLASS_NAME, using = "add-request__duplicate-teacher-message")
+    public static WebElement divDuplicateTeacherRequest;
+
+    @FindBy(how = How.CLASS_NAME, using = "add-request__disabled-message")
+    public static WebElement divDuplicateSpecificCollegeTeacherRequest;
+
+    @FindBy(how = How.CLASS_NAME, using = "add-request__info-tooltip-icon")
+    public static WebElement allApplicationsInfoIcon;
+
+    @FindBy(how = How.CLASS_NAME, using = "add-request__info-tooltip-content")
+    public static WebElement allApplicationsInfoContent;
+
+    @FindBy(how = How.XPATH, using = "//button[@class='fc-button fc-button--primary']")
+    public static WebElement divSaveButton;
+
+    @FindBy(how = How.XPATH, using = "//div[@class='recommendations-list__cancel ng-scope']")
+    public static WebElement divCancelButton;
+
+   /* @FindBy(how = How.CSS, using = "input[class='fc-checkbox']")
     public static WebElement divSelectCollege;
 
     @FindBy(how = How.CSS, using = "input[name=applications]")
@@ -60,7 +86,7 @@ public class ConnectionsPage extends BaseClass {
 
     @FindBy(how = How.CSS, using = "svg[class='fc-icon recommendations-list__cancel--enabled ng-scope']")
     public static WebElement divCancelButton;
-
+*/
     @FindBy(how = How.CLASS_NAME, using = "recommendations-list__cancel-prompt-confirm")
     public static WebElement divConfirmCancelButton;
 
@@ -93,6 +119,7 @@ public class ConnectionsPage extends BaseClass {
 
     @FindBy(how = How.CSS, using = ".fc-tooltip__content")
     public static WebElement cancelToolTipMessage;
+
 
     public ConnectionsPage(WebDriver driver) {
         super(driver);

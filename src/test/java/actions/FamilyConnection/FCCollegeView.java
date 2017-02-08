@@ -39,6 +39,13 @@ public class FCCollegeView {
 
     public static void VerifyHubsPageRibbon() {
         driver = Hooks.driver;
+        PageFactory.initElements(driver, FCCollegeViewPage.class);
         assertFalse("The Hubs Beta Button Ribbon is displayed", FCCollegeViewPage.buttonHubsBeta.isDisplayed());
+    }
+
+    public static void clickAuthorizeButton() {
+        driver = Hooks.driver;
+        PageFactory.initElements(driver, FCCollegeViewPage.class);
+        FCCollegeViewPage.buttonAuthorize.click();
     }
 }

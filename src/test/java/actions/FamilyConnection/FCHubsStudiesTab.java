@@ -45,14 +45,12 @@ public class FCHubsStudiesTab {
     }
 
     public static void VerifyDegreesOfferedStudiesTopBar(List<String> degreesOffered) {
-        boolean result = false;
         driver = Hooks.driver;
-        WebElement degreesList = driver.findElement(By.cssSelector
-                ("div[ng-if=\"vm.profile.friendlyDegrees.length > 0\"]"));
-        List<WebElement> degreeElements = degreesList.findElements(By.cssSelector("div[ng-repeat=" +
-                "\"degree in vm.profile.friendlyDegrees\"]"));
-        for(int i = 0; i < degreesOffered.size(); i++) {
-            if(degreeElements.get(i).getText().equals(degreesOffered.get(i))) {
+        PageFactory.initElements(driver, FCHubsStudiesTabPage.class);
+        boolean result = false;
+        List<WebElement> uiElements = driver.findElements(By.cssSelector(FCHubsStudiesTabPage.listDegreesOffered));
+        for (WebElement uiElement : uiElements) {
+            if (degreesOffered.contains(uiElement.getText())) {
                 result = true;
             } else {
                 result = false;
@@ -129,12 +127,12 @@ public class FCHubsStudiesTab {
 
     public static void ClickProgramInMajorsOfferedList(String program) {
         driver = Hooks.driver;
-        JavascriptExecutor jse = (JavascriptExecutor)driver;
-        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", driver.findElement
-                (By.cssSelector(".studies-popular__header.fc-grid__col.fc-grid__col--xs-12")));
+        PageFactory.initElements(driver, FCHubsStudiesTabPage.class);
+        new WebDriverWait(Hooks.driver, 20).until(ExpectedConditions.elementToBeClickable(FCHubsStudiesTabPage
+                .buttonAllDegreeOfferings));
         WebElement programLink = driver.findElement(By.xpath("//h3[contains(text(), 'Majors Offered at')]" +
                 "/../../div/div/div/ul/li/a[text() = '" + program + "']"));
-        programLink.click();
+        programLink.sendKeys(Keys.RETURN);
         ArrayList<String> tabs = new ArrayList<String> (driver.getWindowHandles());
         driver.switchTo().window(tabs.get(tabs.size() - 1));
     }
@@ -171,11 +169,45 @@ public class FCHubsStudiesTab {
 
     public static void ClickLinkInStudentLifeTopBar(String linkText) {
         driver = Hooks.driver;
-        PageFactory.initElements(driver, FCHubsStudentLifeTabPage.class);
         new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.linkText(linkText)));
         WebElement link = driver.findElement(By.linkText(linkText));
         link.click();
         ArrayList<String> tabs = new ArrayList<String> (driver.getWindowHandles());
         driver.switchTo().window(tabs.get(tabs.size() - 1));
+    }
+
+    public static void clickInfoIconGraduationRate() {
+        driver = Hooks.driver;
+        PageFactory.initElements(driver, FCHubsStudiesTabPage.class);
+        new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.elementToBeClickable
+                (FCHubsStudiesTabPage.infoIconGradRate));
+        FCHubsStudiesTabPage.infoIconGradRate.click();
+    }
+
+    public static void verifyTooltipGradRate() {
+        driver = Hooks.driver;
+        PageFactory.initElements(driver, FCHubsStudiesTabPage.class);
+        assertTrue("The information tooltip in Graduation Rate is not displayed after clicking the information icon",
+                FCHubsStudiesTabPage.infoTooltipCloseIcon.isDisplayed());
+    }
+
+    public static void clickCloseIconInTooltip() {
+        driver = Hooks.driver;
+        PageFactory.initElements(driver, FCHubsStudiesTabPage.class);
+        new WebDriverWait(Hooks.driver, 20).until(ExpectedConditions.elementToBeClickable(FCHubsStudiesTabPage
+                .infoTooltipCloseIcon));
+        FCHubsStudiesTabPage.infoTooltipCloseIcon.click();
+    }
+
+    public static void verifyTooltipGradRateClosed() {
+        driver = Hooks.driver;
+        PageFactory.initElements(driver, FCHubsStudiesTabPage.class);
+        boolean result = false;
+        try {
+            FCHubsStudiesTabPage.infoTooltipCloseIcon.isDisplayed();
+        } catch (NoSuchElementException e) {
+            result = true;
+        }
+        assertTrue("The tooltip was not closed", result);
     }
 }

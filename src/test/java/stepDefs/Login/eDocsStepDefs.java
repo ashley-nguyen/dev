@@ -43,6 +43,18 @@ public class eDocsStepDefs {
         eDocsGeneral.WritePathFile(filename);
     }
 
+    @When("^I use \"([^\"]*)\" under transcript selecting \"(.*)\" with \"([^\"]*)\"$")
+    public void I_use_transcript_under_application_for_letter_recommendation_verifying_text(String strStudentID,  String type, String filename) throws Throwable {
+        Student_Search.studentRosterSearch(strStudentID, "id");
+        eDocsGeneral.NavtoEdocsStudentTab();
+        eDocsGeneral.ClickOnPrepareLink();
+        eDocsGeneral.ClickOnTranscriptAddButton();
+        eDocsGeneral.ClickOnUploadAFileButton();
+        eDocsGeneral.SelectType(type);
+        eDocsGeneral.ClickOnTranscriptBrowseButton();
+        eDocsGeneral.WritePathFile(filename);
+    }
+
 
     @Given("^I expand all under application for the \"([^\"]*)\" in \"([^\"]*)\" with \"([^\"]*)\" and \"([^\"]*)\"$")
     public void I_expand_all_under_application(String strStudentID, String application, String type, String filename) throws Throwable {
@@ -165,6 +177,11 @@ public class eDocsStepDefs {
     @Then("^I will verify \"([^\"]*)\" for LORs$")
     public void I_will_verify_lors(String strtext) throws Throwable {
         eDocsGeneral.verifyLorsText(strtext);
+    }
+
+    @Then("^I will verify \"([^\"]*)\" with \"([^\"]*)\" messages for LORs$")
+    public void I_will_verify_messagelors(String strtext, String strMessage) throws Throwable {
+        eDocsGeneral.verifyLorsMessagesText(strtext, strMessage);
     }
 
     @Then("^I will verify \"([^\"]*)\", \"([^\"]*)\", \"([^\"]*)\", \"([^\"]*)\"$")
