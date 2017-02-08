@@ -45,7 +45,7 @@ public class Hooks {
         String env = System.getProperty("ENV");
 
         if (env == null)
-            env = "prod";
+            env = "int";
         switch (env) {
             case "staging":
                 strBaseURL = "https://succeed-internal.naviance.com";
@@ -63,10 +63,7 @@ public class Hooks {
                 strBaseURL = "https://localhost:8727/groups";
                 break;
             case "int":
-                strBaseURL = "https://connection-int.dev.naviance.com";
-                break;
-            case "prodConnection":
-                strBaseURL = "https://connection.naviance.com";
+                strBaseURL = "https://succeed-int-blue.dev.naviance.com";
                 break;
             default:
                 strBaseURL = "https://succeed-internal.naviance.com";

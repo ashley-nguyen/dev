@@ -12,7 +12,6 @@ Feature: View student details
     Examples:
     |user           | account | password    | studentID  | text                   |
 #    |stan.smith     | rtsa    | stan01!     | a110       | No active applications |
-    |stan.smith     | rtsa    | stan01!     | a103       | Adelphi Univ           |
-    |stan.smith     | rtsa    | stan01!     | a105       | Bowling Green State Univ  |
+    |frank.counselor     | blue1hs    | frank01!     | 37506999       | Adelphi Univ           |
 
 
