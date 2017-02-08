@@ -450,4 +450,64 @@ public class FCHubsAdmissionsTab {
         ArrayList<String> tabs = new ArrayList<String> (driver.getWindowHandles());
         driver.switchTo().window(tabs.get(tabs.size() - 1));
     }
+
+    public static void verifyApplicationsFromHS(List<String> applicationsList) {
+        driver = Hooks.driver;
+        PageFactory.initElements(driver, FCHubsAdmissionsTabPage.class);
+        boolean resultCurrentYear = false;
+        boolean resultPastYear = false;
+        WebElement currentUIElement = null;
+        WebElement pastUIElement = null;
+        List<String> currentYearApplications = new ArrayList<>();
+        List<String> currentYearApplicationsValues = new ArrayList<>();
+        List<String> pastYearApplications = new ArrayList<>();
+        List<String> pastYearApplicationsValues = new ArrayList<>();
+
+        for (String applicationElement : applicationsList) {
+            if (applicationElement.split(";")[0].equals("current")) {
+                currentYearApplications.add(applicationElement);
+                currentYearApplicationsValues.add(applicationElement.split(";")[2]);
+            } else if (applicationElement.split(";")[0].equals("past")) {
+                pastYearApplications.add(applicationElement);
+                pastYearApplicationsValues.add(applicationElement.split(";")[2]);
+            }
+        }
+
+        for (String currentYearApplicationElement : currentYearApplications) {
+            switch (currentYearApplicationElement.split(";")[1]) {
+                case "Total Applicants" : currentUIElement = FCHubsAdmissionsTabPage.totalApplicantsCurrentYear;
+                    break;
+                case "Students Accepted" : currentUIElement = FCHubsAdmissionsTabPage.studentsAcceptedCurrentYear;
+                    break;
+                case "Students Enrolled" : currentUIElement = FCHubsAdmissionsTabPage.studentsEnrolledCurrentYear;
+                    break;
+            }
+            System.out.println("UI Current: "+ currentUIElement.getText());
+            if (currentYearApplicationsValues.contains(currentUIElement.getText().split(" ")[0])) {
+                resultCurrentYear = true;
+            } else {
+                resultCurrentYear = false;
+                break;
+            }
+        }
+
+        for (String pastYearApplicationElement : pastYearApplications) {
+            switch (pastYearApplicationElement.split(";")[1]) {
+                case "Total Applicants" : pastUIElement = FCHubsAdmissionsTabPage.totalApplicantsPastYear;
+                    break;
+                case "Students Accepted" : pastUIElement = FCHubsAdmissionsTabPage.studentsAcceptedPastYear;
+                    break;
+                case "Students Enrolled" : pastUIElement = FCHubsAdmissionsTabPage.studentsEnrolledPastYear;
+                    break;
+            }
+            System.out.println("UI Past: "+ pastUIElement.getText());
+            if (pastYearApplicationsValues.contains(pastUIElement.getText().split(" ")[0])) {
+                resultPastYear = true;
+            } else {
+                resultPastYear = false;
+                break;
+            }
+        }
+        assertTrue("The applications from the High School are not correct", resultCurrentYear && resultPastYear);
+    }
 }

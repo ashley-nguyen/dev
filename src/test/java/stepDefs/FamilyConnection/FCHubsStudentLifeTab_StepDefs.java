@@ -91,4 +91,20 @@ public class FCHubsStudentLifeTab_StepDefs {
     public void I_should_be_redirected_to_Housing_Information_in_Student_Life() throws Throwable {
         FCHubsStudentLifeTab.VerifyHousingInformationLabel();
     }
+
+    @Then("^The quantity of fraternities and sororities in Greek Life tab is as follows:$")
+    public void the_quantity_of_fraternities_and_sororities_in_Greek_Life_tab_is_as_follows(List<String> fratAndSorList) throws Throwable {
+        FCHubsStudentLifeTab.verifyFraternitiesAndSororities(fratAndSorList);
+    }
+
+    @Then("^The available services in Services tab are as follows:$")
+    public void the_available_services_in_services_tab_are_as_follows(List<String> servicesList) throws Throwable {
+        FCHubsStudentLifeTab.verifyAvailableServices(servicesList);
+    }
+
+    @Then("^The location and type of all the computing resources should be displayed in Computing Resources as follows:$")
+    public void location_and_type_of_all_the_computing_resources_should_be_displayed_in_Computing_Resources_as_follows
+            (List<String> computingResourcesList) throws Throwable {
+        FCHubsStudentLifeTab.verifyComputingResources(computingResourcesList);
+    }
 }

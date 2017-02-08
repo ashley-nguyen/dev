@@ -22,3 +22,12 @@ Feature: Purpose: As a student viewing new Hubs' Studies tab, I want to see key 
     | Masters    |
     | Bachelors  |
     | Associates |
+
+  Scenario: A tooltip is displayed in Graduation Rate after clicking the information icon
+    When I open the tooltip in Graduation Rate using the information icon
+    Then A tooltip should be displayed in Graduation Rate
+
+  Scenario: The tooltip in Graduation Rate is closed after clicking the close icon in the tooltip
+    When I open the tooltip in Graduation Rate using the information icon
+    And I click the close icon in the tooltip
+    Then The tooltip in Graduation Rate should be closed
