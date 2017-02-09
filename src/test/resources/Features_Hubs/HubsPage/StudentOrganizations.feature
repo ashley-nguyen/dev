@@ -1,4 +1,4 @@
-@smoketest @nondestructive @hubs @studentorganizations
+@hubs @studentorganizations
 Feature:  As a student viewing new Hubs' Student Life tab, I want to see a school population module to give
   me an idea what sort of community the school is
 
@@ -91,7 +91,7 @@ Feature:  As a student viewing new Hubs' Student Life tab, I want to see a schoo
     | Badminton,empty,empty,empty        |
     | Equestrian,empty,empty,empty       |
     | Ultimate Frisbee,empty,empty,empty |
-
+  @smoke
   Scenario: The correct number of fraternities and sororities is displayed in Greek Life
     When I open the "Greek Life" tab in Student Organizations and Services
     Then The quantity of fraternities and sororities in Greek Life tab is as follows:

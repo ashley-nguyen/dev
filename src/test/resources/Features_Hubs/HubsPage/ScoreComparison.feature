@@ -1,4 +1,4 @@
-@smoketest @nondestructive @hubs @scorecomparison
+@hubs @scorecomparison
 Feature: As a student viewing new Hubs Overview Tab, I want the default score comparison to show other results from
   my high school so that I know how I compare to my immediate peers
 
@@ -6,16 +6,16 @@ Feature: As a student viewing new Hubs Overview Tab, I want the default score co
     Given I log in to Family Connection with the following user details:
       | rtsa       | benhubs | hubs2016  |
     When I open the HUBS page for "Adelphi"
-
+  @smoke
   Scenario: Student's GPA, SAT and ACT are present with correct values in Score Comparison module
     Then Student's score type and value should correspond to the following data in the Score Comparison module:
-    | GPA;4    |
+    | GPA;3.4  |
     | SAT;1270 |
     | ACT;?    |
 
   Scenario: Average GPA, SAT and ACT are present with correct values in Score Comparison module
     Then Average score type and value should correspond to the following data in the Score Comparison module
-    | GPA;4    |
+    | GPA;2.78 |
     | SAT;883  |
     | ACT;29   |
 
@@ -29,7 +29,7 @@ Feature: As a student viewing new Hubs Overview Tab, I want the default score co
 
   Scenario: Overall Average text is present with correct values in Score Comparison module
     Then The Overall Average text should be "Some of your scores are low." in the Score Comparison module
-
+  @smoke
   Scenario: The comparison against all the students is displayed after clicking the button 'Compare me with all
   accepted applicants'
     When I switch the comparison to be made against all students accepted by the college

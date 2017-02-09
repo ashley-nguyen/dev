@@ -1,4 +1,4 @@
-@smoketest @nondestructive @hubs @partnerservices
+@hubs @partnerservices
 Feature:  As a student exploring a college I want to see the school's paid buttons so that I can make use of
   the additional actions and information
 
@@ -6,7 +6,7 @@ Feature:  As a student exploring a college I want to see the school's paid butto
     Given I log in to Family Connection with the following user details:
       | rtsa       | amandahubs | hubs2016  |
     When I open the HUBS page for "Adelphi"
-
+  @smoke
   Scenario: User is taken to correct website after clicking 'Request Info'
     When I open 'Communicate' link "Request Information"
     Then I should see the URL for "http://admissions.adelphi.edu/contact-us/request-info/" open in a new page

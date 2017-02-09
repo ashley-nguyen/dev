@@ -1,4 +1,4 @@
-@smoketest @nondestructive @hubs @studentprofiles
+@hubs @studentprofiles
 Feature: As a student viewing new Hubs, I want to see the student profiles in the Profiles tab
 
   Background:
@@ -6,7 +6,7 @@ Feature: As a student viewing new Hubs, I want to see the student profiles in th
       | rtsa  | benhubs | hubs2016  |
     When I open the HUBS page for "Adelphi"
     And I open the Profiles tab
-
+  @smoke
   Scenario: The Student Profile details are displayed after clicking Read More
     When I expand the Profile with name "Carolina"
     Then I should see the details of the profile

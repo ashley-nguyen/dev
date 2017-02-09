@@ -1,4 +1,4 @@
-@smoketest @nondestructive @hubs @scorecomparison
+@hubs @scorecomparison
 Feature: As a student viewing new Hubs Overview Tab, I want the default score comparison to show other results from
   my high school so that I know how I compare to my immediate peers
 

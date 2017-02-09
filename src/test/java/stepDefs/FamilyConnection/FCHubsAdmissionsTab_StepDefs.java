@@ -142,4 +142,19 @@ public class FCHubsAdmissionsTab_StepDefs {
             (List<String> applicationsList) throws Throwable {
         FCHubsAdmissionsTab.verifyApplicationsFromHS(applicationsList);
     }
+
+    @When("^I open the information tooltip clicking the information icon in Acceptance Rate$")
+    public void I_open_the_information_tooltip_clicking_the_information_icon_in_Acceptance_Rate() throws Throwable {
+        FCHubsAdmissionsTab.clickInfoIconAcceptanceRate();
+    }
+
+    @Then("^A tooltip should be displayed in Acceptance Rate$")
+    public void a_tooltip_should_be_displayed_in_Acceptance_Rate() throws Throwable {
+        FCHubsAdmissionsTab.verifyInfoToolTipAcceptanceRate();
+    }
+
+    @Then("^The tooltip in Acceptance Rate should be closed$")
+    public void the_tooltip_in_Acceptance_Rate_should_be_closed() throws Throwable {
+        FCHubsAdmissionsTab.verifyInfoTooltipAcceptanceRateClosed();
+    }
 }

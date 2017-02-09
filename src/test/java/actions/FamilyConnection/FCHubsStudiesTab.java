@@ -63,10 +63,9 @@ public class FCHubsStudiesTab {
     public static void VerifyTopAreasOfStudy(List<String> areasOfStudy) {
         boolean result = false;
         driver = Hooks.driver;
-        WebElement areasOfStudyList = driver.findElement(By.cssSelector
-                (".fc-grid__row.studies-popular.studies-programs__block"));
-        List<WebElement> areasOfStudyElements = areasOfStudyList.findElements(By.cssSelector
-                ("div:not([ng-if=\"vm.dataAge\"])"));
+        PageFactory.initElements(driver, FCHubsStudiesTabPage.class);
+        List<WebElement> areasOfStudyElements = driver.findElements(By.cssSelector(FCHubsStudiesTabPage
+                .listTopAreasOfStudy));
         for(int i = 0; i < areasOfStudy.size(); i++) {
             if(areasOfStudyElements.get(i).getText().equals(areasOfStudy.get(i))) {
                 result = true;

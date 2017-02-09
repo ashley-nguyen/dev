@@ -1,4 +1,4 @@
-@smoketest @nondestructive @hubs @applicationrequirements
+@hubs @applicationrequirements
 Feature:  As a student viewing new Hubs' Overview tab, I want to see contact information so that I can understand how
   to communicate with the school
 
@@ -37,7 +37,7 @@ Feature:  As a student viewing new Hubs' Overview tab, I want to see contact inf
     When I open "Transfer" in Application Requirements
     Then I should see the "Recommended" requirements in Application Requirements:
     | Campus Visit |
-
+  @smoke
   Scenario: The "Recommended" requirements for "Transfer" are displayed with correct data
     When I open "Transfer" in Application Requirements
     Then I should see the "Optional" requirements in Application Requirements:
