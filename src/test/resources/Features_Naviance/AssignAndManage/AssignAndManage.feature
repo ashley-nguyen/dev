@@ -1,4 +1,4 @@
-@AssignAndManage @Daya
+@AssignAndManage
 Feature: Dashboard tests
   in order to navigate to Naviance School >> Planner >> Assign And Manage ->
   as a Naviance user
@@ -10,5 +10,6 @@ Scenario Outline: Verify Assign And Manage
   Then I will verify Assign and Manage Page
 Examples:
   | account     | user       | password  |
-  | rtd1        | stan.smith | stan01!   |
+  | qaedis1       |  sangeetha.sadmin | password   |
+
 
