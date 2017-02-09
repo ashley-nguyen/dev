@@ -157,4 +157,9 @@ public class FCHubsAdmissionsTab_StepDefs {
     public void the_tooltip_in_Acceptance_Rate_should_be_closed() throws Throwable {
         FCHubsAdmissionsTab.verifyInfoTooltipAcceptanceRateClosed();
     }
+
+    @Then("^I should see a the admissions contact information as follows:$")
+    public void I_should_see_a_the_admissions_contact_information_as_follows(List<String> contactDataList) throws Throwable {
+        FCHubsAdmissionsTab.verifyAdmissionsContactInfo(contactDataList);
+    }
 }

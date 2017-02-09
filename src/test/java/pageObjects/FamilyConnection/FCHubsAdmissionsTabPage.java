@@ -102,6 +102,7 @@ public class FCHubsAdmissionsTabPage extends BaseClass {
             ":nth-of-type(2) div dl dd";
     public static String internationalFeesListLocator = "div.fc-grid__col--xs-12.fc-grid__col--sm-4.admissions-fees" +
             ":nth-of-type(3) div dl dd";
+    public static String admissionsContactInfoList = "div.admissions-information__contact-admission span";
 
     public FCHubsAdmissionsTabPage(WebDriver driver) {
         super(driver);

@@ -538,4 +538,20 @@ public class FCHubsAdmissionsTab {
         }
         assertTrue("The tooltip was not closed", result);
     }
+
+    public static void verifyAdmissionsContactInfo(List<String> contactDataList) {
+        driver = Hooks.driver;
+        PageFactory.initElements(driver, FCHubsAdmissionsTabPage.class);
+        boolean result = false;
+        List<WebElement> uiList = driver.findElements(By.cssSelector(FCHubsAdmissionsTabPage.admissionsContactInfoList));
+        for (WebElement uiElement : uiList) {
+            if (contactDataList.contains(uiElement.getText())) {
+                result = true;
+            } else {
+                result = false;
+                break;
+            }
+        }
+        assertTrue("The admissions contact information is not correct", result);
+    }
 }
