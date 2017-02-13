@@ -2,14 +2,14 @@
 Feature: Course Reports tests for Reports Feature
   In order to navigate to Reports
   as a Naviance user
-  I want to verify the existance of all the reports under Course Reports
+  I want to verify the existance of all the reports under Course Report
 
   Background:
     Given when I log in with the following user details:
       | qaedis1 | sangeetha.sadmin | password |
 
   @Coursereport
-  Scenario Outline: Verify Course Reports
+  Scenario Outline: Verify Course Reports Custom page
     Then I verify course "<CourseReport>" report page
 
     Examples:

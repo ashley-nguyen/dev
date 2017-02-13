@@ -84,13 +84,6 @@ public class Reports_StepDefs {
 
     }
 
-    @Then("^I verify CTE \"(.*)\" report page$")
-    public void i_verify_cte_reports(String CTEReports) throws Throwable {
-        Reports.NavigateToReports();
-        Reports.verifyCTEReporting(CTEReports);
-
-    }
-
 
     @Then("^I verify score report page$")
     public void i_verify_score_report() throws Throwable {
