@@ -1,4 +1,4 @@
-@smoketest @nondestructive @hubs @bottomStickyBar
+@hubs @bottomStickyBar
 Feature: As a student I'd like to have the ability to quickly have access to the "My colleges" functionality so that
   I can quickly and easily go to that area of the product.
 
@@ -18,7 +18,7 @@ Feature: As a student I'd like to have the ability to quickly have access to the
     When I take note of the number in the "I'm Applying To" button
     And I open the "I'm Applying To" list using the corresponding button in the bottom sticky bar
     Then The number of colleges in "I'm Applying To" list should equal the number in the button in the Bottom Sticky Bar
-
+  @smoke
   Scenario: The number of colleges in 'Recommended Events' list equals the number in the corresponding button in
   the Bottom Sticky Bar
     When I take note of the number in the "Recommended Events" button

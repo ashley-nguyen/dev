@@ -1,4 +1,4 @@
-@smoketest @nondestructive @hubs @studiestopbar
+@hubs @studiestopbar
 Feature: Purpose: As a student viewing new Hubs' Studies tab, I want to see key information in a top bar so that I
   can review it at a glance
 
@@ -7,7 +7,7 @@ Feature: Purpose: As a student viewing new Hubs' Studies tab, I want to see key 
       | rtsa  | amandahubs | hubs2016  |
     When I open the HUBS page for "Adrian"
     And I open the Studies tab
-
+  @smoke
   Scenario: The Student Faculty Ratio is displayed with correct data in Studies Top Bar
     Then The Student Faculty Ratio should be "13" data in Studies Top Bar
 

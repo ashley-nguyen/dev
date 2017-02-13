@@ -1,4 +1,4 @@
-@smoketest @nondestructive @hubs @costsuccessinfo
+@hubs @costsuccessinfo
 Feature: As a student exploring a college, I want to see a top bar with high-level cost and success information
   so that I can form a quick opinion about the school
 
@@ -6,7 +6,7 @@ Feature: As a student exploring a college, I want to see a top bar with high-lev
     Given I log in to Family Connection with the following user details:
       | rtsa  | benhubs | hubs2016  |
     When I open the HUBS page for "Auburn"
-
+  @smoke
   Scenario: Average Total Cost is displayed with correct data for each income selected in the Information Top bar
     Then Average Total Cost should correspond to the income as follows:
     | $0 - $30K;13,191   |
@@ -14,7 +14,7 @@ Feature: As a student exploring a college, I want to see a top bar with high-lev
     | $48 - $75K;18,240  |
     | $75 - $110K;19,276 |
     | > $110K;20,142     |
-
+  @smoke
   Scenario: Graduation Rate is displayed with correct data in the Information Top bar
     Then Graduation Rate should be "66" with correct data in the Information Top bar
 
@@ -23,7 +23,7 @@ Feature: As a student exploring a college, I want to see a top bar with high-lev
 
   Scenario: Priority  is displayed with correct data in the Information Top bar
     Then The Priority date should be "December" "13" in the Information Top bar
-
+  @smoke
   Scenario: The user is redirected to Costs Module after clicking "More about Cost & Aid"
     When I open the link "More about Cost & Aid" in the Overview Info Top Bar
     Then I should be redirected to the section "So what's it going to cost?" in Costs
@@ -51,7 +51,7 @@ Feature: As a student exploring a college, I want to see a top bar with high-lev
 
   Scenario: Average Total Cost, Graduation Rate and Acceptance Rate should display the date of the data
     Then The text "from 2016" should be displayed under the sections in Overview Info Top bar
-
+  @smoke
   Scenario: The number of colleges with overlaps in the legacy list should be the same than the number in Overlaps
     Then The number in overlaps should be the same as the number of colleges in the following json:
     """
@@ -100,7 +100,7 @@ Feature: As a student exploring a college, I want to see a top bar with high-lev
     ]
     """
 
-  Scenario Outline: A tooltip is displayed in Average Net Price after clicking the information icon
+  Scenario Outline: A tooltip is displayed after clicking the information icon
     When I open the information tooltip clicking the information icon in "<section>"
     Then A tooltip should be displayed in "<section>"
     And I open the information tooltip clicking the information icon in "<section>"

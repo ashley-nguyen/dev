@@ -63,9 +63,6 @@ public class FCCollegeEventsPage extends BaseClass {
     @FindBy(how = How.CSS, using = ".fc-main-nav__tab.fc-main-nav__tab--active")
     public static WebElement oldCollegesTab;
 
-    @FindBy(how = How.CSS, using = "h2:not([class=\"event-summary__college-name ng-binding\"]):not([class=\"ng-scope\"])")
-    public static WebElement labelConfirmationMessage;
-
     public static String eventsListLocator = ".events-list event-summary";
 
     public FCCollegeEventsPage(WebDriver driver) {

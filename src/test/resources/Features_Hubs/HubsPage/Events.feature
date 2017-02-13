@@ -1,4 +1,4 @@
-@smoketest @nondestructive @hubs @events
+@hubs @events
 Feature:  As a student viewing new Hubs' events screen , I want to see events so that I can register for event
 
   Background:
@@ -10,7 +10,7 @@ Feature:  As a student viewing new Hubs' events screen , I want to see events so
   Scenario: User is taken to Events Page when click Recommended Events
     When I open Recommended Events from sticky bar
     Then I should see College Events Details
-
+  @smoke
   Scenario: User signup for the Event by selecting event from events details page
     When I open Recommended Events from sticky bar
     When SignUp for school "Adrian" for Event "ABC Store Event1"

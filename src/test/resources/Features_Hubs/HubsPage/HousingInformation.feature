@@ -1,4 +1,4 @@
-@smoketest @nondestructive @hubs @housinginformation
+@hubs @housinginformation
 Feature: As a student viewing new Hubs' Student Life tab, I want to see a housing information module so that I know a
   little about what living on campus is like
 
@@ -7,8 +7,7 @@ Feature: As a student viewing new Hubs' Student Life tab, I want to see a housin
       | rtsa       | ikeahubs | hubs2016  |
     When I open the HUBS page for "Adelphi"
     And I open the Student Life tab
-
-
+  @smoke
   Scenario: The Capacity is displayed with correct data
     Then The "Capacity" should be "1,321" in Housing Information
 

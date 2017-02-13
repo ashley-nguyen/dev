@@ -1,4 +1,4 @@
-@smoketest @nondestructive @hubs @studentlifetopbar
+@hubs @studentlifetopbar
 Feature:  As a student viewing new Hubs' Student Life tab, I want to see a top bar with at-a-glance information
   so that I can start to learn about the experience of being a student at the school
 
@@ -7,7 +7,7 @@ Feature:  As a student viewing new Hubs' Student Life tab, I want to see a top b
       | rtsa       | amandahubs | hubs2016  |
     When I open the HUBS page for "Auburn"
     And I open the Student Life tab
-
+  @smoke
   Scenario: The School Size is displayed with correct data
     Then The School Size should be "Very Large"
 

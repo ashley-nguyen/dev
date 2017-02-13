@@ -1,4 +1,4 @@
-@smoketest @nondestructive @hubs @tuitionandfees
+@hubs @tuitionandfees
 Feature: As a student viewing new Hubs' Costs tab, I want to see a top bar with at-a-glance information so that I get
   an idea what the school would cost me
 
@@ -13,7 +13,7 @@ Feature: As a student viewing new Hubs' Costs tab, I want to see a top bar with 
 
   Scenario: Tuition Fees for Out-Of State is displayed with correct values for Tuition and Fees
     Then Out of State Tuition and Fee for ThisCollege "$14,213" and AverageNavianceColleges "$26,974" is displayed
-
+  @smoke
   Scenario:Verify in State Tuition Amount
     When I open Tuition
     Then Display In-State tuition for This College "$1" and AverageNavianceColleges is "$16,456"
@@ -33,7 +33,7 @@ Feature: As a student viewing new Hubs' Costs tab, I want to see a top bar with 
   Scenario: Tuition Per Credit Hour for State
     When I open Tuition Per Credit Hour
     Then Display Tuition Per Credit Hour for ThisCollege is "$1" and AverageNavianceColleges is "$615"
-  @test
+
   Scenario:Room and Board for State
     When I open Room and Board
     Then Display Room and Board Amount for ThisCollege is "$14,210" and AverageNavianceColleges "$8,864"

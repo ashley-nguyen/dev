@@ -289,6 +289,8 @@ public class FCHubsAdmissionsTab {
             case "vs." : dropDownLocator = FCHubsAdmissionsTabPage.vsDropDownLocator;
                 break;
         }
+        new WebDriverWait(Hooks.driver, 20).until(ExpectedConditions.elementToBeClickable(driver.findElement
+                (By.cssSelector(dropDownLocator))));
         Select dropDown = new Select(driver.findElement(By.cssSelector(dropDownLocator)));
         List<WebElement> optionsList = dropDown.getOptions();
         for (WebElement optionUI : optionsList) {
@@ -509,5 +511,47 @@ public class FCHubsAdmissionsTab {
             }
         }
         assertTrue("The applications from the High School are not correct", resultCurrentYear && resultPastYear);
+    }
+
+    public static void clickInfoIconAcceptanceRate() {
+        driver = Hooks.driver;
+        PageFactory.initElements(driver, FCHubsAdmissionsTabPage.class);
+        new WebDriverWait(Hooks.driver, 20).until(ExpectedConditions.elementToBeClickable(FCHubsAdmissionsTabPage
+                .infoIconAcceptanceRate));
+        FCHubsAdmissionsTabPage.infoIconAcceptanceRate.click();
+    }
+
+    public static void verifyInfoToolTipAcceptanceRate() {
+        driver = Hooks.driver;
+        PageFactory.initElements(driver, FCHubsAdmissionsTabPage.class);
+        assertTrue("The tooltip is not displayed", FCHubsAdmissionsTabPage.buttonXTooltipScattergrams.isDisplayed());
+    }
+
+    public static void verifyInfoTooltipAcceptanceRateClosed() {
+        driver = Hooks.driver;
+        PageFactory.initElements(driver, FCHubsAdmissionsTabPage.class);
+        boolean result = false;
+        try {
+            FCHubsAdmissionsTabPage.buttonXTooltipScattergrams.isDisplayed();
+        } catch (NoSuchElementException e) {
+            result = true;
+        }
+        assertTrue("The tooltip was not closed", result);
+    }
+
+    public static void verifyAdmissionsContactInfo(List<String> contactDataList) {
+        driver = Hooks.driver;
+        PageFactory.initElements(driver, FCHubsAdmissionsTabPage.class);
+        boolean result = false;
+        List<WebElement> uiList = driver.findElements(By.cssSelector(FCHubsAdmissionsTabPage.admissionsContactInfoList));
+        for (WebElement uiElement : uiList) {
+            if (contactDataList.contains(uiElement.getText())) {
+                result = true;
+            } else {
+                result = false;
+                break;
+            }
+        }
+        assertTrue("The admissions contact information is not correct", result);
     }
 }

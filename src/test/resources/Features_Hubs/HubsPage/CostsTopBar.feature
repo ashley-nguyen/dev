@@ -1,4 +1,4 @@
-@smoketest @nondestructive @hubs @coststopbar
+@hubs @coststopbar
 Feature: As a student viewing new Hubs' Costs tab, I want to see a top bar with at-a-glance information so that I get
   an idea what the school would cost me
 
@@ -15,7 +15,7 @@ Feature: As a student viewing new Hubs' Costs tab, I want to see a top bar with 
     | $75 - $110K;19,276 |
     | > $110K;20,142     |
     | $0 - $30K;13,191   |
-
+  @smoke
   Scenario: % Receiving Grant Aid is displayed with correct data for each Type of Aid selected in the Costs top bar
     Then % Aid should correspond to the type of aid as follows:
     | Grant;53                |

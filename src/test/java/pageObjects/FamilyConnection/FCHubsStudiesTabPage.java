@@ -44,6 +44,8 @@ public class FCHubsStudiesTabPage extends BaseClass {
 
     public static String listDegreesOffered = "div[ng-if=\"vm.profile.friendlyDegrees.length > 0\"] " +
             "div.hub-data-pod--degree.ng-binding.ng-scope";
+    public static String listTopAreasOfStudy = "div.hubs-section__content.fc-grid__row.studies-popular " +
+            "div[ng-repeat=\"popularArea in vm.popularAreasOfStudy\"] h5";
 
     public FCHubsStudiesTabPage(WebDriver driver) {
         super(driver);

@@ -1,4 +1,4 @@
-@smoketest @nondestructive @hubs @programsofstudyoffered
+@hubs @programsofstudyoffered
 Feature: As a student, I want to see information about the school's programs of study in order to determine if the
   school interests me.
 
@@ -7,7 +7,7 @@ Feature: As a student, I want to see information about the school's programs of 
       | rtsa  | amandahubs | hubs2016  |
     When I open the HUBS page for "Adelphi"
     Then  I open the Studies tab
-
+  @smoke
   Scenario: The programs are filtered when the user searches for a program in the search box
     When I search for a program "Accounting"
     Then The displayed programs should be:

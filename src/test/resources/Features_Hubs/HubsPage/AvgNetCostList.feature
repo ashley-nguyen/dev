@@ -1,4 +1,4 @@
-@smoketest @nondestructive @hubs @averagenetcostlist
+@hubs @averagenetcostlist
 Feature: As a student viewing new Hubs' Costs tab, I want to see average net price so I can understand more about how
   much this college is likely to cost me
 
@@ -7,7 +7,7 @@ Feature: As a student viewing new Hubs' Costs tab, I want to see average net pri
       | rtsa  | benhubs | hubs2016  |
     When I open the HUBS page for "Auburn"
     And I open the Costs tab
-
+  @smoke
   Scenario: Average Net Cost List is displayed with correct data for each income
     Then The following Average Net Cost values should be correct for each income level:
     #use ; to separate the income levels from the values

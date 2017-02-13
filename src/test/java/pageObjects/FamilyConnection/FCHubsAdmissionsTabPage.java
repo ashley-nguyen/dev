@@ -86,9 +86,12 @@ public class FCHubsAdmissionsTabPage extends BaseClass {
             "vm.applicationStats | orderBy:'year':true\"]:nth-of-type(2) div.application-stats__subheader" +
             ".application-stats__subheader--right.fc-grid__col.fc-grid__col--xs-6.ng-binding")
     public static WebElement studentsEnrolledPastYear;
+    @FindBy(how = How.CSS, using = "div.hub-data-pod.fc-grid__col--xs-12.fc-grid__col--sm-6.fc-grid__col--md-3" +
+            ".fc-grid__col--lg-3.ng-scope[ng-if=\"vm.acceptRate\"] svg")
+    public static WebElement infoIconAcceptanceRate;
 
     public static String listDeadlinesLocator = ".admissions-information__deadline-item.ng-scope";
-    public static String comparingDropDownLocator = "select[ng-if=\"vm.student.scattergramsSettings.allowGpaToggle\"]";
+    public static String comparingDropDownLocator = "select[ng-model=\"vm.scattergramGpaType\"]";
     public static String vsDropDownLocator = "select[ng-model=\"vm.scattergramTestType\"]";
     public static String courseNamesLocator = "tr[ng-repeat=\"course in vm.prerequisiteCourses\"] td:nth-of-type(1)";
     public static String yearsRequiredLocator = "tr[ng-repeat=\"course in vm.prerequisiteCourses\"] td:nth-of-type(2)";
@@ -99,6 +102,7 @@ public class FCHubsAdmissionsTabPage extends BaseClass {
             ":nth-of-type(2) div dl dd";
     public static String internationalFeesListLocator = "div.fc-grid__col--xs-12.fc-grid__col--sm-4.admissions-fees" +
             ":nth-of-type(3) div dl dd";
+    public static String admissionsContactInfoList = "div.admissions-information__contact-admission span";
 
     public FCHubsAdmissionsTabPage(WebDriver driver) {
         super(driver);

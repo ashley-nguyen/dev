@@ -1,4 +1,4 @@
-@smoketest @nondestructive @hubs @scattegrams
+@hubs @scattegrams
 Feature: As a student i'd like to see an updated scattergram UI that reflects concordanced work
 
   Background:
@@ -11,7 +11,7 @@ Feature: As a student i'd like to see an updated scattergram UI that reflects co
     Then The "Comparing" drop down should have the options:
     | Unweighted GPA |
     | Weighted GPA   |
-
+  @smoke
   Scenario: The 'vs.' drop down has the options: SAT (1600 Scale), SAT (2400 scale) and ACT (HUBS-854)
     Then The "vs." drop down should have the options:
     | SAT (1600 Scale)              |
