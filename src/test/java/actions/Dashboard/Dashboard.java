@@ -6,6 +6,7 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import pageObjects.Dashboard.DashboardPage;
+import pageObjects.Header.SchoolPageHeader;
 import stepDefs.Hooks;
 
 import java.util.concurrent.TimeUnit;
@@ -36,5 +37,14 @@ public class Dashboard {
         String dataverification = DashboardPage.txtDashboard.getText();
         assertTrue("Error Verification!", !recentUpdates.contains("An error occurred!"));
         assertTrue("Verify Data!", dataverification.contains("Counselor"));
+    }
+
+    /**
+     *  Click on Naviance Home  icon
+    */
+    public static void NavigateToHome(){
+        driver = Hooks.driver;
+        PageFactory.initElements(driver, SchoolPageHeader.class);
+        SchoolPageHeader.lnkHome.click();
     }
 }
