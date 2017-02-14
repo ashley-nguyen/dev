@@ -67,7 +67,10 @@ public class Hooks {
                 break;
             case "prodConnection":
                 strBaseURL = "https://connection.naviance.com";
-                break;
+            case "QAGreen":
+                strBaseURL = "https://succeed-green-int.dev.naviance.com";
+            case "QABlue":
+                strBaseURL = "https://succeed-blue-int.dev.naviance.com";
             default:
                 strBaseURL = "https://succeed-internal.naviance.com";
                 break;
