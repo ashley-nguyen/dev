@@ -44,8 +44,11 @@ public class TestPrepStepDefs {
     }
 
     @When("^I created a new student (.*), (.*), (.*), (.*), (.*), (.*) and NTP group (.*), (.*)$")
-    public void iCreatedANewStudentStudentLastNameStudentFirstNameStudentClassYearStudentGenderStudentFCUserNameStudentFCPasswordAndNTPGroupStudentGroupInstructorName(String studentLastName, String studentFirstName, String studentClassYear, String studentGender, String studentFCUserName, String studentFCPassword, String studentGroup, String instructorName) throws Throwable {
-
+    public void CreateNewStudentAssignStudentGroupAndAssignStudyPrograms(String studentLastName,
+                                                                           String studentFirstName, String studentClassYear,
+                                                                           String studentGender, String studentFCUserName,
+                                                                           String studentFCPassword, String studentGroup,
+                                                                           String instructorName) throws Throwable{
         LinkedHashMap<String, String> studentInfo = new LinkedHashMap<String, String>();
         studentInfo.put("studentFirstName", studentFirstName);
         studentInfo.put("studentLastName", studentLastName);
@@ -83,7 +86,8 @@ public class TestPrepStepDefs {
     }
 
     @Then("^The new NTP group (.*) instructor (.*)is listed on product page$")
-    public void theNewNTPGroupStudentGroupInstructorInstructorNameIsListedOnProductPage(String studentGroup, String instructorName) throws Throwable {
+    public void theNewNTPGroupStudentGroupInstructorInstructorNameIsListedOnProductPage(String studentGroup,
+                                                                                        String instructorName) throws Throwable {
         if (!studentGroup.isEmpty()) {
             TestPrep.VerifyAssignedGroup(studentGroup, instructorName, "SAT Prep");
         }

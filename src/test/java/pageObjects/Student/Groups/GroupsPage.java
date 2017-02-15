@@ -27,9 +27,6 @@ public class GroupsPage extends BaseClass {
             "td > table > tbody > tr > td > table > tbody")
     public static WebElement tblGroupBody;
 
-   /* public static List<WebElement> tblGroups = driver.findElements(By.cssSelector("td.dark_textheader14 > table > " +
-                                     "tbody > tr:nth-child(3) > td > table > tbody > tr > td > table > tbody > tr"));*/
-
     @FindBy(how = How.CLASS_NAME, using = "table-heading")
     public static WebElement titleGroupsPage;
 
