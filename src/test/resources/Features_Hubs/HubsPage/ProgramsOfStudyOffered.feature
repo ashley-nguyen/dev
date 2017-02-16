@@ -87,7 +87,7 @@ Feature: As a student, I want to see information about the school's programs of 
     Then The displayed programs should be:
     | Crisis/Emergency/Disaster Management      |
     | Liberal Arts and Sciences/Liberal Studies |
-
+@test
   Scenario: The colleges offering the program are displayed in college lookup
     When I open "Accounting" in the Majors Offered list
     Then I should see the message "Colleges Offering Accounting" in the College Lookup page

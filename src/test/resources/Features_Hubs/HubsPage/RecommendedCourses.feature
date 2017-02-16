@@ -16,7 +16,7 @@ Feature: As a user, I would like to see the recommended / required courses for a
     | Math;3;3                 |
     | Science;2;3              |
     | Foreign Language;empty;2 |
-
+@test
   Scenario: The course names are sorted alphabetically after clicking Course Names header
     When I sort data using the "Course Names" header
     Then The course names are sorted alphabetically

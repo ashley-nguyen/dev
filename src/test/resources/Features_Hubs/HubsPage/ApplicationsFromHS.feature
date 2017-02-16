@@ -10,10 +10,14 @@ Feature:  As a student viewing new Hubs' Overview tab, I want to see contact inf
   @smoke
   Scenario: The applications in the current year are correct in Applications from High School
     Then The applications for the current year should be as follows in Applications from High School:
-    #Use 'current' to indicate the current year, and 'past' to indicate the past year
-    | current;Total Applicants;6  |
-    | current;Students Accepted;5 |
-    | current;Students Enrolled;1 |
-    | past;Total Applicants;0     |
-    | past;Students Accepted;12   |
-    | past;Students Enrolled;0    |
+    #Use 'current' to indicate the current year, 'past' to indicate the past year and 'beforePast' for the year before
+    #the past year
+    | current;Total Applicants;16     |
+    | current;Students Accepted;4     |
+    | current;Students Enrolled;2     |
+    | past;Total Applicants;15        |
+    | past;Students Accepted;20       |
+    | past;Students Enrolled;4        |
+    | beforePast;Total Applicants;14  |
+    | beforePast;Students Accepted;8  |
+    | beforePast;Students Enrolled;3  |

@@ -458,12 +458,16 @@ public class FCHubsAdmissionsTab {
         PageFactory.initElements(driver, FCHubsAdmissionsTabPage.class);
         boolean resultCurrentYear = false;
         boolean resultPastYear = false;
+        boolean resultBeforePastYear = false;
         WebElement currentUIElement = null;
         WebElement pastUIElement = null;
+        WebElement beforePastUIElement = null;
         List<String> currentYearApplications = new ArrayList<>();
         List<String> currentYearApplicationsValues = new ArrayList<>();
         List<String> pastYearApplications = new ArrayList<>();
         List<String> pastYearApplicationsValues = new ArrayList<>();
+        List<String> beforePastYearApplications = new ArrayList<>();
+        List<String> beforePastYearApplicationsValues = new ArrayList<>();
 
         for (String applicationElement : applicationsList) {
             if (applicationElement.split(";")[0].equals("current")) {
@@ -472,6 +476,9 @@ public class FCHubsAdmissionsTab {
             } else if (applicationElement.split(";")[0].equals("past")) {
                 pastYearApplications.add(applicationElement);
                 pastYearApplicationsValues.add(applicationElement.split(";")[2]);
+            } else if (applicationElement.split(";")[0].equals("beforePast")) {
+                beforePastYearApplications.add(applicationElement);
+                beforePastYearApplicationsValues.add(applicationElement.split(";")[2]);
             }
         }
 
@@ -510,7 +517,26 @@ public class FCHubsAdmissionsTab {
                 break;
             }
         }
-        assertTrue("The applications from the High School are not correct", resultCurrentYear && resultPastYear);
+
+        for (String beforePastYearApplicationElement : beforePastYearApplications) {
+            switch (beforePastYearApplicationElement.split(";")[1]) {
+                case "Total Applicants" : beforePastUIElement = FCHubsAdmissionsTabPage.totalApplicantsBeforePastYear;
+                    break;
+                case "Students Accepted" : beforePastUIElement = FCHubsAdmissionsTabPage.studentsAcceptedBeforePastYear;
+                    break;
+                case "Students Enrolled" : beforePastUIElement = FCHubsAdmissionsTabPage.studentsEnrolledBeforePastYear;
+                    break;
+            }
+            System.out.println("UI BeforePast: "+ beforePastUIElement.getText());
+            if (beforePastYearApplicationsValues.contains(beforePastUIElement.getText().split(" ")[0])) {
+                resultBeforePastYear = true;
+            } else {
+                resultBeforePastYear = false;
+                break;
+            }
+        }
+        assertTrue("The applications from the High School are not correct", resultCurrentYear && resultPastYear &&
+                resultBeforePastYear);
     }
 
     public static void clickInfoIconAcceptanceRate() {

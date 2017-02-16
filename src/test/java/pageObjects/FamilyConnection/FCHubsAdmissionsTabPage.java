@@ -89,6 +89,17 @@ public class FCHubsAdmissionsTabPage extends BaseClass {
     @FindBy(how = How.CSS, using = "div.hub-data-pod.fc-grid__col--xs-12.fc-grid__col--sm-6.fc-grid__col--md-3" +
             ".fc-grid__col--lg-3.ng-scope[ng-if=\"vm.acceptRate\"] svg")
     public static WebElement infoIconAcceptanceRate;
+    @FindBy(how = How.CSS, using = "div[ng-if=\"vm.showApplicationStats\"] div[ng-repeat=\"years in " +
+            "vm.applicationStats | orderBy:'year':true\"]:nth-of-type(3) span.application-stats__total.ng-binding")
+    public static WebElement totalApplicantsBeforePastYear;
+    @FindBy(how = How.CSS, using = "div[ng-if=\"vm.showApplicationStats\"] div[ng-repeat=\"years in " +
+            "vm.applicationStats | orderBy:'year':true\"]:nth-of-type(3) div.application-stats__subheader" +
+            ".application-stats__subheader--left.fc-grid__col.fc-grid__col--xs-6.ng-binding")
+    public static WebElement studentsAcceptedBeforePastYear;
+    @FindBy(how = How.CSS, using = "div[ng-if=\"vm.showApplicationStats\"] div[ng-repeat=\"years in " +
+            "vm.applicationStats | orderBy:'year':true\"]:nth-of-type(3) div.application-stats__subheader" +
+            ".application-stats__subheader--right.fc-grid__col.fc-grid__col--xs-6.ng-binding")
+    public static WebElement studentsEnrolledBeforePastYear;
 
     public static String listDeadlinesLocator = ".admissions-information__deadline-item.ng-scope";
     public static String comparingDropDownLocator = "select[ng-model=\"vm.scattergramGpaType\"]";

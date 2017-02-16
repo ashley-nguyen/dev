@@ -130,7 +130,7 @@ public class FCHubsStudiesTab {
         new WebDriverWait(Hooks.driver, 20).until(ExpectedConditions.elementToBeClickable(FCHubsStudiesTabPage
                 .buttonAllDegreeOfferings));
         WebElement programLink = driver.findElement(By.xpath("//h3[contains(text(), 'Majors Offered at')]" +
-                "/../../div/div/div/ul/li/a[text() = '" + program + "']"));
+                "/../../div/div/div/div/ul/li/a[text() = '" + program + "']"));
         programLink.sendKeys(Keys.RETURN);
         ArrayList<String> tabs = new ArrayList<String> (driver.getWindowHandles());
         driver.switchTo().window(tabs.get(tabs.size() - 1));

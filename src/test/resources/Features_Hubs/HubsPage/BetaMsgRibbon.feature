@@ -19,7 +19,7 @@ Feature: Hubs Beta Feeedback Ribbon
 
   Scenario: The Survey page can be closed without completing it
     Then I should be able to close the survey page
-
+@test
   Scenario: The Beta Ribbon is still displayed after closing the Survey page
     When I close the Survey page
     Then I should see the Feedback Ribbon
