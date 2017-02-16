@@ -18,10 +18,9 @@ Feature: SmokeTest TestPrep
 
     @SmokeTestPrep
     Scenario Outline: Assign Study Programs to a Student Group
-      When I created a new student <StudentLastName>, <StudentFirstName>, <StudentClassYear>, <StudentGender>, <StudentFCUserName>, <StudentFCPassword> and NTP group <StudentGroup>, <InstructorName>
-      Then The new NTP group <StudentGroup> instructor <InstructorName> is listed on product page
+      When I created a new student <StudentLastName>, <StudentFirstName>, <StudentClassYear>, <StudentGender>, <StudentFCUserName>, <StudentFCPassword> and NTP group <StudentGroup>, <InstructorName> and <StudyPrograms>
+      Then The new NTP group <StudentGroup> instructor <InstructorName> and study programs <StudyPrograms> is listed on product page
       Examples:
-        |StudentLastName|StudentFirstName|StudentClassYear|StudentGender|StudentFCUserName|StudentFCPassword|StudentGroup|InstructorName|
-        |autTest        |autWithGroup    |2017            |F            |autTestWithGroup |password         |AUT_NTP_GROUP|Sangeetha Schooladmin|
-        |autTest        |autNoGroup      |2018            |M            |autTestNoGroup   |password         |             |                    |
-
+        |StudentLastName|StudentFirstName|StudentClassYear|StudentGender|StudentFCUserName|StudentFCPassword|StudentGroup|InstructorName|StudyPrograms|
+        |autTest        |autWithGroup    |2017            |F            |autTestWithGroup |password         |AUT_NTP_GROUP|Sangeetha Schooladmin|SAT Prep,ACT Prep|
+        |autTest        |autNoGroup      |2018            |M            |autTestNoGroup   |password         |             |                    |                   |

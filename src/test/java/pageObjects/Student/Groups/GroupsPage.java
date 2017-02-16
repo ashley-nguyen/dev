@@ -36,7 +36,6 @@ public class GroupsPage extends BaseClass {
     @FindBy(how = How.ID, using = "changeClass")
     public static WebElement btnChangeClass;
 
-
     @FindBy(how = How.NAME, using = "list1")
     public static WebElement selStudents;
 
@@ -45,8 +44,6 @@ public class GroupsPage extends BaseClass {
 
     @FindBy(how = How.CSS, using = "input[value=\"Update Membership\"]")
     public static WebElement btnUpdateMembership;
-
-
 
     public GroupsPage(WebDriver driver) {
         super(driver);

@@ -3,12 +3,13 @@ package stepDefs.TestPrep;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Map;
+import java.util.Arrays;
 
 import actions.Dashboard.Dashboard;
 import actions.Students.Groups;
 import actions.TestPrep.TestPrep;
 import actions.Students.AddStudents;
+import cucumber.api.PendingException;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
@@ -43,12 +44,12 @@ public class TestPrepStepDefs {
     public void iHaveCredentials() throws Throwable {
     }
 
-    @When("^I created a new student (.*), (.*), (.*), (.*), (.*), (.*) and NTP group (.*), (.*)$")
+    @When("^I created a new student (.*), (.*), (.*), (.*), (.*), (.*) and NTP group (.*), (.*) and (.*)$")
     public void CreateNewStudentAssignStudentGroupAndAssignStudyPrograms(String studentLastName,
                                                                            String studentFirstName, String studentClassYear,
                                                                            String studentGender, String studentFCUserName,
                                                                            String studentFCPassword, String studentGroup,
-                                                                           String instructorName) throws Throwable{
+                                                                           String instructorName, String studyProgram) throws Throwable{
         LinkedHashMap<String, String> studentInfo = new LinkedHashMap<String, String>();
         studentInfo.put("studentFirstName", studentFirstName);
         studentInfo.put("studentLastName", studentLastName);
@@ -56,7 +57,6 @@ public class TestPrepStepDefs {
         studentInfo.put("studentClassYear", studentClassYear);
         List<String> studentToAssign = new ArrayList<>();
         List<String> studentGroups = new ArrayList<>();
-        List<String> studyPrograms = new ArrayList<>();
         List<String> instructors = new ArrayList<>();
 
         // Navigate to Add Students
@@ -68,8 +68,7 @@ public class TestPrepStepDefs {
         if (!studentGroup.isEmpty())
         {   studentToAssign.add(studentLastName +", "+ studentFirstName);
             studentGroups.add(studentGroup);
-            studyPrograms.add("ACT Prep");
-            studyPrograms.add("SAT Prep");
+            List<String> studyPrograms = Arrays.asList(studyProgram.split("\\s*,\\s*"));
             instructors.add(instructorName);
             // Add Student Group
             Groups.ClickGroupsLink();
@@ -85,11 +84,12 @@ public class TestPrepStepDefs {
         }
     }
 
-    @Then("^The new NTP group (.*) instructor (.*)is listed on product page$")
-    public void theNewNTPGroupStudentGroupInstructorInstructorNameIsListedOnProductPage(String studentGroup,
-                                                                                        String instructorName) throws Throwable {
+    @Then("^The new NTP group (.*) instructor (.*) and study programs (.*) is listed on product page$")
+    public void NewNTPGroupIsListedOnProductPage(String studentGroup, String instructorName, String studyProgram) throws Throwable {
         if (!studentGroup.isEmpty()) {
-            TestPrep.VerifyAssignedGroup(studentGroup, instructorName, "SAT Prep");
+            List<String> studyPrograms = Arrays.asList(studyProgram.split("\\s*,\\s*"));
+            TestPrep.VerifyAssignedGroup(studentGroup, instructorName, studyPrograms.get(0));
         }
     }
+
 }
