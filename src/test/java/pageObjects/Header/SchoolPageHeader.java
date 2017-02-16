@@ -38,6 +38,16 @@ public class SchoolPageHeader extends BaseClass {
     @FindBy(how = How.TAG_NAME, using = "body")
     public static WebElement objBodyText;
 
+    @FindBy(how = How.CSS, using = ".home-link")
+    public static WebElement lnkHome;
+
+    @FindBy(how = How.LINK_TEXT, using = "Add Student")
+    public static WebElement lnkHeaderAddStudent;
+
+    @FindBy(how = How.LINK_TEXT, using = "Groups")
+    public static WebElement lnkHeaderGroups;
+
+
     public SchoolPageHeader(WebDriver driver) {
         super(driver);
     }
