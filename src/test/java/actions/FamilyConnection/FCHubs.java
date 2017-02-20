@@ -640,7 +640,7 @@ public class FCHubs {
         }
         new WebDriverWait(driver, 20).until(ExpectedConditions.elementToBeClickable(By.cssSelector
                 (".hub-data-pod__subtext.admissions-" + cssSelectorPart)));
-        driver.findElement(By.cssSelector(".hub-data-pod__subtext.admissions-" + cssSelectorPart)).click();
+        driver.findElement(By.cssSelector(".hub-data-pod__subtext.admissions-" + cssSelectorPart)).sendKeys(Keys.RETURN);
     }
 
     public static void VerifySectionLabelInCosts(String sectionLabel) {
@@ -784,7 +784,11 @@ public class FCHubs {
     public static void clickWhiteHeartThinkingAboutList() {
         driver = Hooks.driver;
         PageFactory.initElements(driver, FCHubsPage.class);
+        new WebDriverWait(driver, 20).until(ExpectedConditions.elementToBeClickable
+                (FCHubsPage.buttonAddToCollegesImThinkingAbout));
         FCHubsPage.buttonAddToCollegesImThinkingAbout.click();
+        new WebDriverWait(driver, 20).until(ExpectedConditions.elementToBeClickable
+                (FCHubsPage.buttonAddToCollegesImThinkingAboutFull));
     }
 
     public static void verifyHeartStatusClicked() {
@@ -1051,5 +1055,14 @@ public class FCHubs {
             result = true;
         }
         assertTrue("The tooltip in the section: " + section + "was not closed", result);
+    }
+
+    public static void verifyLabelUnderScoreComparison(String label) {
+        driver = Hooks.driver;
+        PageFactory.initElements(driver, FCHubsPage.class);
+        new WebDriverWait(Hooks.driver, 20).until(ExpectedConditions.elementToBeClickable(FCHubsPage
+                .labelDataConversionDetails));
+        assertTrue("The label under Score Comparison is not correct", FCHubsPage.labelDataConversionDetails.getText()
+                .equals(label));
     }
 }

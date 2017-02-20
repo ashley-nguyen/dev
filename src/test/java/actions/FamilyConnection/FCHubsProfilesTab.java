@@ -1,6 +1,7 @@
 package actions.FamilyConnection;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
 import pageObjects.FamilyConnection.FCHubsProfilesTabPage;
@@ -16,7 +17,7 @@ public class FCHubsProfilesTab {
 
     public static void ClickReadMoreInStudentProfile(String profileName) {
         driver = Hooks.driver;
-        driver.findElement(By.xpath("//h4[contains(text(), '" + profileName + "')]/../span")).click();
+        driver.findElement(By.xpath("//h4[contains(text(), '" + profileName + "')]/../span")).sendKeys(Keys.RETURN);
     }
 
     public static void VerifyStudentProfileDetails() {
@@ -28,7 +29,7 @@ public class FCHubsProfilesTab {
     public static void ClickXButtonInProfile() {
         driver = Hooks.driver;
         PageFactory.initElements(driver, FCHubsProfilesTabPage.class);
-        FCHubsProfilesTabPage.buttonCloseInProfile.click();
+        FCHubsProfilesTabPage.buttonCloseInProfile.sendKeys(Keys.RETURN);
     }
 
     public static void VerifyStudentProfileDetailsCollapsed(String profileName) {

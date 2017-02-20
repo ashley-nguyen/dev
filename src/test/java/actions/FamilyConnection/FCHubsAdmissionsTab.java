@@ -328,7 +328,8 @@ public class FCHubsAdmissionsTab {
         new WebDriverWait(Hooks.driver, 20).until(ExpectedConditions.elementToBeClickable
                 (FCHubsAdmissionsTabPage.imageScattergrams));
         ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);",
-                FCHubsAdmissionsTabPage.keySectionScattergrams);
+                FCHubsAdmissionsTabPage.keySectionScattergramsTitle);
+        new WebDriverWait(Hooks.driver, 20).until(ExpectedConditions.visibilityOf(FCHubsAdmissionsTabPage.linkShowMoreScattergrams));
         FCHubsAdmissionsTabPage.linkShowMoreScattergrams.click();
     }
 
@@ -544,7 +545,7 @@ public class FCHubsAdmissionsTab {
         PageFactory.initElements(driver, FCHubsAdmissionsTabPage.class);
         new WebDriverWait(Hooks.driver, 20).until(ExpectedConditions.elementToBeClickable(FCHubsAdmissionsTabPage
                 .infoIconAcceptanceRate));
-        FCHubsAdmissionsTabPage.infoIconAcceptanceRate.click();
+        FCHubsAdmissionsTabPage.infoIconAcceptanceRate.sendKeys(Keys.RETURN);
     }
 
     public static void verifyInfoToolTipAcceptanceRate() {

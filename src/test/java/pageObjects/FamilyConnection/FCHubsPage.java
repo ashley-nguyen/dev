@@ -196,7 +196,8 @@ public class FCHubsPage extends BaseClass {
     @FindBy(how = How.CSS, using = "span[ng-show=\"vm.compareToggleState == 'college' && vm.otherScores.actStatistics" +
             ".low && vm.otherScores.actStatistics.high\"] svg")
     public static WebElement infoIconCompareMeACT;
-
+    @FindBy(how = How.CSS, using = "div.compareNotes.fc-grid__row.fc-grid__row--xs-center")
+    public static WebElement labelDataConversionDetails;
 
     public static String URLimThinkingAboutList = "https://connection-int.dev.naviance.com/family-connection" +
             "/colleges/application/consideration";

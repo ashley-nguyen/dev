@@ -562,5 +562,10 @@ public class FCHubs_StepDefs {
     public void theTooltipInShouldBeClosed(String section) throws Throwable {
         FCHubs.verifyInfoTooltipInSectionIsClosed(section);
     }
+
+    @Then("^I should see the label \"([^\"]*)\" under Score Comparison$")
+    public void I_should_see_the_label_under_score_comparison(String label) throws Throwable {
+        FCHubs.verifyLabelUnderScoreComparison(label);
+    }
 }
 

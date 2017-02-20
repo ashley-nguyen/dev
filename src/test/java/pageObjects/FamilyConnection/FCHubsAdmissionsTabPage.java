@@ -52,6 +52,8 @@ public class FCHubsAdmissionsTabPage extends BaseClass {
     public static WebElement linkYearsRecommendedHeader;
     @FindBy(how = How.CSS, using = "div.fc-grid__col.fc-grid__col--xs-12.scattergrams-legend")
     public static WebElement keySectionScattergrams;
+    @FindBy(how = How.CSS, using = "h4.scattergrams-legend__title")
+    public static WebElement keySectionScattergramsTitle;
     @FindBy(how = How.CSS, using = "div[ng-if=\"vm.isTruncated && !vm.isExpanded\"]")
     public static WebElement textBoxDescriptionScattergrams;
     @FindBy(how = How.CSS, using = "div[ng-if=\"vm.isTruncated && vm.isExpanded\"]")
@@ -100,6 +102,8 @@ public class FCHubsAdmissionsTabPage extends BaseClass {
             "vm.applicationStats | orderBy:'year':true\"]:nth-of-type(3) div.application-stats__subheader" +
             ".application-stats__subheader--right.fc-grid__col.fc-grid__col--xs-6.ng-binding")
     public static WebElement studentsEnrolledBeforePastYear;
+    @FindBy(how = How.CSS, using = "div[ng-if=\"vm.requirementLists.length > 0\"] h2")
+    public static WebElement applicationRequirementsTitle;
 
     public static String listDeadlinesLocator = ".admissions-information__deadline-item.ng-scope";
     public static String comparingDropDownLocator = "select[ng-model=\"vm.scattergramGpaType\"]";

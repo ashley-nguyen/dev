@@ -31,3 +31,10 @@ Feature: Purpose: As a student viewing new Hubs' Studies tab, I want to see key 
     When I open the tooltip in Graduation Rate using the information icon
     And I click the close icon in the tooltip
     Then The tooltip in Graduation Rate should be closed
+
+  Scenario: Each section in the Studies Top Bar has a label that indicates the date of the data
+    Then I should see the date for the data in each section as follows:
+    | Student Faculty Ratio;from 2016 |
+    | Student Retention;from 2016     |
+    | Graduation Rate;from 2016       |
+    | Degrees Offered;from 2014       |

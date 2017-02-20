@@ -170,7 +170,7 @@ public class FCHubsStudiesTab {
         driver = Hooks.driver;
         new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.linkText(linkText)));
         WebElement link = driver.findElement(By.linkText(linkText));
-        link.click();
+        link.sendKeys(Keys.RETURN);
         ArrayList<String> tabs = new ArrayList<String> (driver.getWindowHandles());
         driver.switchTo().window(tabs.get(tabs.size() - 1));
     }
@@ -208,5 +208,38 @@ public class FCHubsStudiesTab {
             result = true;
         }
         assertTrue("The tooltip was not closed", result);
+    }
+
+    public static void verifyDateLabel(String label) {
+        driver = Hooks.driver;
+        PageFactory.initElements(driver, FCHubsStudiesTabPage.class);
+        new WebDriverWait(Hooks.driver, 20).until(ExpectedConditions.elementToBeClickable(FCHubsStudiesTabPage
+                .dateLabelStudyOptions));
+        assertTrue("The label is not correct", FCHubsStudiesTabPage.dateLabelStudyOptions.getText().equals(label));
+    }
+
+    public static void verifyDateLabels(List<String> dateLabelsList) {
+        driver = Hooks.driver;
+        PageFactory.initElements(driver, FCHubsStudiesTabPage.class);
+        WebElement uiElement = null;
+        boolean result = false;
+        for (String dateLabelsElement : dateLabelsList) {
+            switch (dateLabelsElement.split(";")[0]) {
+                case "Student Faculty Ratio" : uiElement = FCHubsStudiesTabPage.dateLabelStudentFacultyRatio;
+                    break;
+                case "Student Retention" : uiElement = FCHubsStudiesTabPage.dateLabelStudentRetention;
+                    break;
+                case "Graduation Rate" : uiElement = FCHubsStudiesTabPage.dateLabelGraduationRate;
+                    break;
+                case "Degrees Offered" : uiElement = FCHubsStudiesTabPage.dateLabelDegreesOffered;
+                    break;
+            }
+            if (uiElement.getText().equals(dateLabelsElement.split(";")[1])) {
+                result = true;
+            } else {
+                result = false;
+            }
+        }
+        assertTrue("The date labels are not correct", result);
     }
 }

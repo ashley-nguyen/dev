@@ -49,3 +49,6 @@ Feature: As a student viewing new Hubs Overview Tab, I want the default score co
     | GPA         |
     | SAT         |
     | ACT         |
+
+  Scenario: A label indicating the score conversion details is displayed under Score Comparison
+    Then I should see the label "* All test scores have been converted to the SAT 1600 point scale, and the ACT 36 point scale." under Score Comparison

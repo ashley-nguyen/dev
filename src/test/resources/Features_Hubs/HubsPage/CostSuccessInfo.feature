@@ -51,8 +51,8 @@ Feature: As a student exploring a college, I want to see a top bar with high-lev
 
   Scenario: Average Total Cost, Graduation Rate and Acceptance Rate should display the date of the data
     Then The text "from 2016" should be displayed under the sections in Overview Info Top bar
-  @smoke @test
-  Scenario: The number of colleges with overlaps in the legacy list should be the same than the number in Overlaps (HUBS-905 - fixed)
+  @smoke
+  Scenario: The number of colleges with overlaps in the legacy list should be the same than the number in Overlaps (HUBS-905)
     Then The number in overlaps should be the same as the number of colleges in the following json:
     """
     [
@@ -75,8 +75,8 @@ Feature: As a student exploring a college, I want to see a top bar with high-lev
       {"collegeId":"f305d160-7f87-430c-b7ea-c8b5445b0413","name":"Art Academy of Cincinnati"}
     ]
     """
-  @test
-  Scenario: The colleges in the list in legacy should be contained in the json list obtained from the overlaps endpoint (HUBS-905 - fixed)
+
+  Scenario: The colleges in the list in legacy should be contained in the json list obtained from the overlaps endpoint (HUBS-905)
     When I open the overlaps list in Legacy Family Connection
     Then The colleges in the legacy list should be contained in the following json:
     """
