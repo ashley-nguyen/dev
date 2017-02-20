@@ -40,7 +40,5 @@ public class ElementaryViewAllLessonPlans {
 
         // Verify Lesson Plans table
         new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.presenceOfElementLocated(locatorElementaryGroupTable));
-
-
     }
 }

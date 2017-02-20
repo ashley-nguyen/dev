@@ -80,7 +80,6 @@ public class ElementaryProductPage {
                 expectedSchoolActivityTitle));
     }
 
-
     /**
      * Verify Elementary Product Page
      */
