@@ -35,9 +35,12 @@ public class FCCollegesPage extends BaseClass {
     public static WebElement buttonRemoveMeFromList;
     @FindBy(how = How.CSS, using = "#main-content h1")
     public static WebElement titleCollegeVisitInfo;
+    @FindBy(how = How.CSS, using = "#main-content p:not([class=\"half center\"]) a:nth-of-type(3)")
+    public static WebElement linkAddToImThinkingAboutList;
 
-    public static List<WebElement> imThinkingAboutListElements = driver.findElements(By.cssSelector(".less-pad" +
-            ".standard.striped td:nth-of-type(2)"));
+    public static String imThinkingAboutListElementsString = ".less-pad.standard.striped tr td:nth-of-type(2) a";
+    public static String imApplyingToListLocator = "table.standard.less-pad.striped.small td:nth-of-type(2) a";
+    public static String collegeVisitsLocator = ".standard.striped td:nth-of-type(2) a";
 
     public FCCollegesPage(WebDriver driver) {
         super(driver);

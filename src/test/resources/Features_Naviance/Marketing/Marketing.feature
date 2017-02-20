@@ -15,7 +15,7 @@ Feature: Marketing tests
 
   Examples:
   | account     | user       | password  |
-  | rtd1        | stan.smith | stan01!   |
+  | blueqa1     | frank.district | password  |
 
   Scenario Outline:  Verify Banner is displayed
     Given I am logged into Naviance "<account>" as "<user>" with "<password>"
@@ -24,4 +24,4 @@ Feature: Marketing tests
 
   Examples:
     | account     | user       | password  |
-    | rtd1        | stan.smith | stan01!   |
+    | blueqa1     | frank.district | password  |

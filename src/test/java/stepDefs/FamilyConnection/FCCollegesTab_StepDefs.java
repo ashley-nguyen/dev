@@ -42,21 +42,6 @@ public class FCCollegesTab_StepDefs {
         FCCollegesTab.VerifyMessageCollegeLookup(message);
     }
 
-    @When("^I sign up to the college visit$")
-    public void I_sign_up_to_the_college_visit() throws Throwable {
-        FCCollegesTab.clickSignUpButton();
-    }
-
-    @Then("^I should see a confirmation message$")
-    public void I_should_see_a_confirmation_message() throws Throwable {
-        FCCollegesTab.verifyCollegeVisitConfirmationMessage();
-    }
-
-    @And("^Remove myself from the college visit$")
-    public void Remove_myself_from_the_college_visit() throws Throwable {
-        FCCollegesTab.clickRemoveFromList();
-    }
-
     @Then("^I should see the college visit information page$")
     public void I_should_see_the_college_visit_information_page() throws Throwable {
         FCCollegesTab.verifyCollegeVisitInfoPage();

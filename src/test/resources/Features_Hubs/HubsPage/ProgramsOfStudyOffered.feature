@@ -1,4 +1,4 @@
-@smoketest @nondestructive @hubs @programsofstudyoffered
+@hubs @programsofstudyoffered
 Feature: As a student, I want to see information about the school's programs of study in order to determine if the
   school interests me.
 
@@ -7,8 +7,7 @@ Feature: As a student, I want to see information about the school's programs of 
       | rtsa  | amandahubs | hubs2016  |
     When I open the HUBS page for "Adelphi"
     Then  I open the Studies tab
-
-
+  @smoke
   Scenario: The programs are filtered when the user searches for a program in the search box
     When I search for a program "Accounting"
     Then The displayed programs should be:
@@ -17,56 +16,66 @@ Feature: As a student, I want to see information about the school's programs of 
   Scenario: The programs for all degrees are displayed when All is selected
     When I open "All" in Majors Offered
     Then The displayed programs should be:
-    # : Will update these values after the IPEDS 2015-2016 run . We will have to manually verify it for general launch
 
-    | French Studies                                  | Biology/Biological Sciences, General                      |
-    | Exercise Physiology                             | Accounting                                                |
-    | Business Administration and Management, General | Business Administration, Management and Operations, Other |
-    | Business, Management, Marketing, and Related Support Services, Other | Business/Commerce, General           |
-    | Fashion Merchandising                           | International Business/Trade/Commerce                     |
-    | Marketing/Marketing Management, General         | Communication and Media Studies, Other                    |
-    | Communication, Journalism, and Related Programs, Other | Journalism                                         |
-    | Mass Communication/Media Studies                | Public Relations/Image Management                         |
-    | Speech Communication and Rhetoric               | Computer and Information Sciences, General                |
-    | Art Teacher Education                           | Biology Teacher Education                                 |
-    | Drama and Dance Teacher Education               | Earth Science Teacher Education                           |
-    | Education, General                              | Elementary Education and Teaching                         |
-    | English/Language Arts Teacher Education         | French Language Teacher Education                         |
-    | German Language Teacher Education               | Health Teacher Education                                  |
-    | History Teacher Education                       | Mathematics Teacher Education                             |
-    | Music Teacher Education                         | Physical Education Teaching and Coaching                  |
-    | Science Teacher Education/General Science Teacher Education | Secondary Education and Teaching              |
-    | Social Science Teacher Education                | Social Studies Teacher Education                          |
-    | Spanish Language Teacher Education              | Creative Writing                                          |
-    | English Language and Literature, General        | English Language and Literature/Letters, Other            |
-    | Rhetoric and Composition                        | Writing, General                                          |
-    | Foreign Languages, Literatures, and Linguistics, Other | French Language and Literature                     |
-    | German Language and Literature                  | Japanese Language and Literature                          |
-    | Spanish Language and Literature                 | Athletic Training/Trainer                                 |
-    | Pre-Medicine/Pre-Medical Studies                | Pre-Pharmacy Studies                                      |
-    | Pre-Veterinary Studies                          | History, General                                          |
-    | Corrections Administration                      | Corrections and Criminal Justice, Other                   |
-    | Criminal Justice/Law Enforcement Administration | Criminal Justice/Police Science                           |
-    | Legal Studies, General                          | Theatre/Theater                                           |
-    | Mathematics, General                            | International/Global Studies                              |
-    | Multi-/Interdisciplinary Studies, General       | Multi-/Interdisciplinary Studies, Other                   |
-    | Environmental Science                           | Environmental Studies                                     |
-    | Health and Physical Education/Fitness, General  | Health and Physical Education/Fitness, Other              |
-    | Kinesiology and Exercise Science                | Sport and Fitness Administration/Management               |
-    | Philosophy                                      | Philosophy and Religious Studies, Other                   |
-    | Religion/Religious Studies                      | Chemistry, General                                        |
-    | Geology/Earth Science, General                  | Physics, General                                          |
-    | Psychology, General                             | Social Work                                               |
-    | Criminology                                     | Economics, General                                        |
-    | Political Science and Government, General       | Sociology                                                 |
-    | Pre-Theology/Pre-Ministerial Studies            | Theology/Theological Studies                              |
-    | Art/Art Studies, General                        | Arts, Entertainment,and Media Management, General         |
-    | Drama and Dramatics/Theatre Arts, General       | Fine and Studio Arts Management                           |
-    | Fine/Studio Arts, General                       | Interior Design                                           |
-    | Music Performance, General                      | Music Theory and Composition                              |
-    | Music, General                                  | Music, Other                                              |
-    | Musical Theatre                                 | Theatre/Theatre Arts Management                           |
-    | Visual and Performing Arts, General             | Visual and Performing Arts, Other                         |
+    | French Studies                                                            | Latin American Studies                                                      |
+    | Developmental/Remedial English                                            | Biochemistry                                                                |
+    | Biology/Biological Sciences, General                                      | Exercise Physiology                                                         |
+    | Neuroscience                                                              | Accounting                                                                  |
+    | Business Administration and Management, General                           | Business, Management, Marketing, and Related Support Services, Other        |
+    | Finance, General                                                          | Human Resources Management and Services, Other                              |
+    | Human Resources Management/Personnel Administration, General              | Logistics, Materials, and Supply Chain Management                           |
+    | Management Science                                                        | Marketing, Other                                                            |
+    | Marketing/Marketing Management, General                                   | Communication and Media Studies, Other                                      |
+    | Communication, Journalism, and Related Programs, Other                    | Computer and Information Sciences, General                                  |
+    | Computer Science                                                          | Information Science/Studies                                                 |
+    | Adult Literacy Tutor/Instructor                                           | Art Teacher Education                                                       |
+    | Bilingual and Multilingual Education                                      | Biology Teacher Education                                                   |
+    | Chemistry Teacher Education                                               | Curriculum and Instruction                                                  |
+    | Early Childhood Education and Teaching                                    | Education, General                                                          |
+    | Education, Other                                                          | Education/Teaching of Indiv. in Early Childhood Special Education Programs  |
+    | Education/Teaching of Individuals in Secondary Special Education Programs | Education/Teaching of Individuals w/ Hearing Impairments Including Deafness |
+    | Educational Leadership and Administration, General                        | Educational, Instructional, and Curriculum Supervision                      |
+    | Elementary Education and Teaching                                         | English/Language Arts Teacher Education                                     |
+    | Health Teacher Education                                                  | Junior High/Intermediate/Middle School Education and Teaching               |
+    | Kindergarten/Preschool Education and Teaching                             | Mathematics Teacher Education                                               |
+    | Music Teacher Education                                                   | Physical Education Teaching and Coaching                                    |
+    | Physics Teacher Education                                                 | Reading Teacher Education                                                   |
+    | Science Teacher Education/General Science Teacher Education               | Secondary Education and Teaching                                            |
+    | Social Science Teacher Education                                          | Social Studies Teacher Education                                            |
+    | Spanish Language Teacher Education                                        | Special Education and Teaching, General                                     |
+    | Teacher Education, Multiple Levels                                        | Teaching English as a Second or Foreign Language/ESL Language Instructor    |
+    | Creative Writing                                                          | English Language and Literature, General                                    |
+    | Foreign Languages and Literatures, General                                | French Language and Literature                                              |
+    | Spanish Language and Literature                                           | Adult Health Nurse/Nursing                                                  |
+    | Audiology/Audiologist and Speech-Language Pathology/Pathologist           | Clinical Nutrition/Nutritionist                                             |
+    | Communication Disorders Sciences and Services, Other                      | Communication Sciences and Disorders, General                               |
+    | Community Health and Preventive Medicine                                  | Health and Medical Administrative Services, Other                           |
+    | Health Services Administration                                            | Medical Informatics                                                         |
+    | Mental Health Counseling/Counselor                                        | Nursing Administration                                                      |
+    | Nursing Education                                                         | Nursing Science                                                             |
+    | Pre-Dentistry Studies                                                     | Pre-Medicine/Pre-Medical Studies                                            |
+    | Public Health, General                                                    | Registered Nursing/Registered Nurse                                         |
+    | Registered/Clinical Nursing and Nursing Administration/Research, Other    | Speech-Language Pathology/Pathologist                                       |
+    | History, General                                                          | Criminal Justice/Law Enforcement Administration                             |
+    | Criminal Justice/Safety Studies                                           | Crisis/Emergency/Disaster Management                                        |
+    | Legal Studies, General                                                    | Music                                                                       |
+    | Theatre/Theater                                                           | Humanities/Humanistic Studies                                               |
+    | Liberal Arts and Sciences/Liberal Studies                                 | Mathematics, General                                                        |
+    | Biological and Physical Sciences                                          | International/Global Studies                                                |
+    | Multi-/Interdisciplinary Studies, Other                                   | Environmental Studies                                                       |
+    | Health and Physical Education/Fitness, General                            | Health and Physical Education/Fitness, Other                                |
+    | Sport and Fitness Administration/Management                               | Philosophy                                                                  |
+    | Chemistry, General                                                        | Physics, General                                                            |
+    | Clinical Psychology                                                       | Psychology, General                                                         |
+    | School Psychology                                                         | Social Work                                                                 |
+    | Anthropology                                                              | Economics, General                                                          |
+    | Political Science and Government, General                                 | Social Sciences, General                                                    |
+    | Sociology                                                                 | Art History, Criticism and Conservation                                     |
+    | Dance, General                                                            | Design and Applied Arts, Other                                              |
+    | Drama and Dramatics/Theatre Arts, General                                 | Dramatic/Theatre Arts and Stagecraft, Other                                 |
+    | Fine Arts and Art Studies, Other                                          | Graphic Design                                                              |
+    | Music, General                                                            | Visual and Performing Arts, General                                         |
+    | Visual and Performing Arts, Other                                         |                                                                             |
 
   Scenario: The programs with a Masters degree offering are displayed
     When I open "Masters" in Majors Offered
@@ -80,5 +89,5 @@ Feature: As a student, I want to see information about the school's programs of 
     | Liberal Arts and Sciences/Liberal Studies |
 
   Scenario: The colleges offering the program are displayed in college lookup
-    When I open "French Studies" in the Majors Offered list
-    Then I should see the message "Colleges Offering French Studies" in the College Lookup page
+    When I open "Accounting" in the Majors Offered list
+    Then I should see the message "Colleges Offering Accounting" in the College Lookup page

@@ -35,7 +35,7 @@ public class Student_StepDefs {
     }
 
     // used in scenario outline
-    @When("^I search for (\\w+, \\w+) using the global search field$")
+    @When("^I search for (.*) using the global search field$")
     public void I_search_for_student_using_the_global_search_field(String student) throws Throwable {
 
         Student_Search.searchStudent(student);

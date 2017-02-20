@@ -11,5 +11,5 @@ Scenario Outline: Verify SMTP was sent
 
 Examples:
   | account     | user       | password  | firstname | lastname      | username       | email             |  role             |
-  | rtd1        | stan.smith | stan01!   | TestName  | Last Name Test| User Name test | fsejasm@gmail.com |  District Analyst |
+  | blueqa1        | frank.district | password   | TestName  | Last Name Test| User Name test | fsejasm@gmail.com |  District Analyst |
 

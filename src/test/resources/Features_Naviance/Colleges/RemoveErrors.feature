@@ -5,7 +5,7 @@ Feature: Colleges Errors test
   I want to be able to add college application
 
   Background:
-    Given I am logged into Naviance "rtd1" as "stan.smith" with "stan01!"
+    Given I am logged into Naviance "blueqa1" as "frank.district" with "password"
 
   Scenario Outline: Verify Prospective Colleges is displayed correctly
     And I enter to School Site
@@ -14,7 +14,7 @@ Feature: Colleges Errors test
 
   Examples:
   | student      |
-  | a103, a103   |
+  | AStudent0, Student-2024-0|
 
   Scenario Outline: Verify Active Applications is displayed correctly
     And I enter to School Site
@@ -23,7 +23,7 @@ Feature: Colleges Errors test
 
   Examples:
    | student      | url                                                       |
-   | a103, a103   | https://succeed.naviance.com/collegesmain/collegepick.php |
+   | AStudent0, Student-2024-0   | https://succeed.naviance.com/collegesmain/collegepick.php |
 
 
   Scenario Outline: Find College test

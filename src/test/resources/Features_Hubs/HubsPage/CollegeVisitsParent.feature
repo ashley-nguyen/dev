@@ -1,4 +1,4 @@
-@smoketest @nondestructive @hubs @collegevisits
+@hubs @collegevisits
 Feature: As a parent, I should be able to see the College Visits my counselor creates for me so that I can make a
   good college decision.
 
@@ -7,7 +7,6 @@ Feature: As a parent, I should be able to see the College Visits my counselor cr
       | rtsa    | dawnrhubs | hubs2016  | Ben Hubs |
     When I open the HUBS page for "Adelphi"
 
-  Scenario: The College Visit page in legacy is displayed after clicking 'Details' in a college visit as a parent
-    When I open the college visit details in position "1"
-    Then I should see the college visit information page
+  Scenario: The Register button is not displayed for parents
+    Then No Register button should be displayed
 

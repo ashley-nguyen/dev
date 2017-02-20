@@ -57,10 +57,30 @@ public class Reports_StepDefs {
         Reports.verifyReports(report);
     }
 
+    @Then("^I verify student \"(.*)\" report page$")
+    public void i_verify_student_reports(String StudentReports) throws Throwable {
+        Reports.NavigateToReports();
+        Reports.verifyStudentReports(StudentReports);
+    }
+
     @Then("^I verify course \"(.*)\" report page$")
     public void i_verify_course_reports(String CourseReport) throws Throwable {
         Reports.NavigateToReports();
         Reports.verifyCourseReporting(CourseReport);
+
+    }
+
+    @Then("^I verify scholarship \"(.*)\" report page$")
+    public void i_verify_scholarship_reports(String ScholarshipReports) throws Throwable {
+        Reports.NavigateToReports();
+        Reports.verifyScholarshipReporting(ScholarshipReports);
+
+    }
+
+    @Then("^I verify career \"(.*)\" report page$")
+    public void i_verify_career_reports(String CareerReports) throws Throwable {
+        Reports.NavigateToReports();
+        Reports.verifyCareerReporting(CareerReports);
 
     }
 

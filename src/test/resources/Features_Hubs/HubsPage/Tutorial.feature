@@ -1,11 +1,11 @@
-@smoketest @nondestructive @hubs @tutorials
+@hubs @tutorials
 Feature: Validate as a student visiting a new hubs page for the first time,
   I see an instructional modal explaining features of new hubs page
 
   Background:
     Given I log in to Family Connection with the following user details:
       | rtsa       | ikeahubs | hubs2016  |
-    When I open the HUBS page for "Adelphi"
+    When I open the HUBS page for "Alma"
 
   Scenario: Tutorial 1 dialog is displayed in Hubs
     Then I should see FirstTutorial dialog

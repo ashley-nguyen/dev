@@ -10,5 +10,5 @@ Scenario Outline: Verify My Account page
   Then I will see data in My Account
 Examples:
   | account     | user       | password  |
-  | rtd1        | stan.smith | stan01!   |
+  | blueqa1        | frank.district | password   |
 

@@ -14,6 +14,8 @@ public class FCCollegeViewPage extends BaseClass {
     public static WebElement buttonHubsBeta;
     @FindBy(how = How.CSS, using = ".hubsBetaBarHide")
     public static WebElement buttonXBetaButtonRibbon;
+    @FindBy(how = How.CSS, using = "input[name=\"authorize\"]")
+    public static WebElement buttonAuthorize;
 
     public FCCollegeViewPage(WebDriver driver) {
         super(driver);
