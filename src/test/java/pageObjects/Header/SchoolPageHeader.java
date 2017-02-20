@@ -33,6 +33,9 @@ public class SchoolPageHeader extends BaseClass {
     public static WebElement lnkNavianceCurriculum;
     @FindBy(how = How.LINK_TEXT, using = "Naviance Test Prep")
     public static WebElement lnkNavianceTestPrep;
+    @FindBy(how = How.LINK_TEXT, using = "Naviance for Elementary School")
+    public static WebElement lnkNavianceElementarySchool;
+
     @FindBy(how = How.CSS, using = "#ui-active-menuitem > span:nth-of-type(1) > strong")
     public static WebElement objStudentName;
     @FindBy(how = How.TAG_NAME, using = "body")
