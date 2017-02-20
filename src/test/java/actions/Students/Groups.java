@@ -92,10 +92,8 @@ public class Groups {
         int row = -1;
 
         List<WebElement> tableData = RefreshObj(locator);
-        System.out.println("table size:-->" + tableData.size());
         for(int index = 0; index < tableData.size(); index++)
         {
-            System.out.println("table row ("+index+") :-->" + tableData.get(index).getText());
             if(tableData.get(index).getText().contains(value))
             {
                 row = index;
