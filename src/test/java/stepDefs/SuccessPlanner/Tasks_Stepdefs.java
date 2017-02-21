@@ -9,20 +9,6 @@ import cucumber.api.java.en.When;
  */
 public class Tasks_Stepdefs {
 
-  /*  AssignAndManage assignAndManage = new AssignAndManage();
-
-    @When("^I go to the Planner Assign And Manage$")
-    public void i_go_to_the_Planner_Assign_And_Manage() throws Throwable {
-        assignAndManage.NavigateToAssignAndManage();
-    }
-
-    @Then("^I will verify Assign and Manage Page$")
-    public void i_will_verify_Assign_and_Manage_Page() throws Throwable {
-        assignAndManage.verifyAssignAndManagePage();
-    }
-
-    */
-
   Tasks tasks = new Tasks();
     @When("^I go to the Planner Tasks$")
     public void i_go_to_the_Planner_Tasks() throws Throwable {

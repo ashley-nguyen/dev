@@ -25,8 +25,7 @@ public class Tasks {
 
     public  void NavigateToTasks() throws Exception {
 
-        //driverComponents.clickElement(webDriverComponentsPage.School);
-        driverComponents.hoverAndClick(webDriverComponentsPage.Planner, webDriverComponentsPage.Tasks);
+       driverComponents.hoverAndClick(webDriverComponentsPage.Planner, webDriverComponentsPage.Tasks);
 
     }
 
