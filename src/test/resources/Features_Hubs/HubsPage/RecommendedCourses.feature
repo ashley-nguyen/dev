@@ -1,4 +1,4 @@
-@smoketest @nondestructive @hubs @recommendedcourses
+@hubs @recommendedcourses
 Feature: As a user, I would like to see the recommended / required courses for a college so that I can be sure to take
   them in high school so that I can improve my chance of acceptance.
 
@@ -7,7 +7,7 @@ Feature: As a user, I would like to see the recommended / required courses for a
       | rtsa  | benhubs | hubs2016  |
     When I open the HUBS page for "Auburn"
     Then I open the Admissions tab
-
+  @smoke
   Scenario: Recommended Courses displayed data is correct
     Then I should see the Recommended Courses with the following data:
     #use 'empty' for the missing data

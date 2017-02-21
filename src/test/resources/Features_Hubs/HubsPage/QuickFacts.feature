@@ -1,4 +1,4 @@
-@smoketest @nondestructive @hubs @quickfacts
+@hubs @quickfacts
 Feature:  As a student viewing new Hubs' Overview tab, I want to see contact information so that I can understand how
   to communicate with the school
 

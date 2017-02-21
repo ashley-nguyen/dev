@@ -1,4 +1,4 @@
-@smoketest @nondestructive @hubs @betamsgribbon
+@hubs @betamsgribbon
 Feature: Hubs Beta Feeedback Ribbon
   Verify that as a student viewing a college's new hub page, I see a clear reminder that I'm trying a beta version
 
@@ -7,7 +7,7 @@ Feature: Hubs Beta Feeedback Ribbon
       | rtsa       | amandahubs | hubs2016  |
     When I open the HUBS page for "Auburn"
     And I open the Survey Page
-
+  @smoke
   Scenario: Survey page can be closed after clicking 'Done'
     When I fill the survey with the following data:
     # The following number are 1 for 'Awful'  and 7 for 'Excellent'

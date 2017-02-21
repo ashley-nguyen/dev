@@ -12,13 +12,10 @@ import pageObjects.BaseClass;
 public class FCCollegeEventsPage extends BaseClass {
     @FindBy(how = How.CSS, using = ".fc-grid__col--xs >strong")
     public static WebElement labelCollegeEventsTitle;
-
     @FindBy(how = How.CSS, using = ".fc-fieldset__legend")
     public static WebElement CollegeEventsDetailsSignUpHere;
-
     @FindBy(how = How.CSS, using = ".fc-button--primary")
     public static WebElement clickSignUpButton;
-
     @FindBy(how = How.CSS, using = "[ng-switch-when=\"REGISTERED\"]:not(.event-summary__status) h2:not([ng-if=\"vm.userCanSeeSignup\"])")
     public static WebElement labelConfirmationMessage;
 
@@ -65,6 +62,8 @@ public class FCCollegeEventsPage extends BaseClass {
 
     @FindBy(how = How.CSS, using = ".fc-main-nav__tab.fc-main-nav__tab--active")
     public static WebElement oldCollegesTab;
+
+    public static String eventsListLocator = ".events-list event-summary";
 
     public FCCollegeEventsPage(WebDriver driver) {
         super(driver);

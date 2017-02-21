@@ -1,4 +1,4 @@
-@smoketest @nondestructive @hubs @tutorials
+@hubs @tutorials
 Feature: Validate as a student visiting a new hubs page for the first time,
   I see an instructional modal explaining features of new hubs page
 

@@ -905,7 +905,6 @@ public class FCHubs {
     public static void clickCompareMeWithAllAcceptedApplicants() {
         driver = Hooks.driver;
         PageFactory.initElements(driver, FCHubsPage.class);
-        JavascriptExecutor jse = (JavascriptExecutor)driver;
         new WebDriverWait(Hooks.driver, 20).until(ExpectedConditions.elementToBeClickable
                 (FCHubsPage.labelOtherStudentsFromHS));
         ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);",
@@ -1002,5 +1001,55 @@ public class FCHubs {
         FCHubsPage.buttonAddToCollegesImThinkingAboutPinkBar.click();
         new WebDriverWait(Hooks.driver, 20).until(ExpectedConditions.invisibilityOfElementLocated(
                 By.cssSelector("a[ng-click=\"vm.addToList()\"]")));
+    }
+
+    public static void clickInternationalTab() {
+        driver = Hooks.driver;
+        PageFactory.initElements(driver, FCHubsPage.class);
+        new WebDriverWait(Hooks.driver, 20).until(ExpectedConditions.elementToBeClickable
+                (FCHubsPage.tabInternational));
+        FCHubsPage.tabInternational.click();
+    }
+
+    public static void clickInfoIconInSection(String section) {
+        driver = Hooks.driver;
+        PageFactory.initElements(driver, FCHubsPage.class);
+        WebElement infoIcon = null;
+        switch (section) {
+            case "Average Net Price" : infoIcon = FCHubsPage.infoIconAvgNetPrice;
+                break;
+            case "Graduation Rate" : infoIcon = FCHubsPage.infoIconGradRatePrice;
+                break;
+            case "Acceptance Rate" : infoIcon = FCHubsPage.infoIconAcceptanceRatePrice;
+                break;
+            case "description" : infoIcon = FCHubsPage.infoIconCompareMeDescription;
+                break;
+            case "GPA" : infoIcon = FCHubsPage.infoIconCompareMeGPA;
+                break;
+            case "SAT" : infoIcon = FCHubsPage.infoIconCompareMeSAT;
+                break;
+            case "ACT" : infoIcon = FCHubsPage.infoIconCompareMeACT;
+                break;
+        }
+        new WebDriverWait(Hooks.driver, 20).until(ExpectedConditions.elementToBeClickable(infoIcon));
+        infoIcon.sendKeys(Keys.RETURN);
+    }
+
+    public static void verifyInfoTooltipInSection(String section) {
+        driver = Hooks.driver;
+        PageFactory.initElements(driver, FCHubsPage.class);
+        assertTrue("The tooltip is not displayed in the section " + section, FCHubsPage.tooltipCloseIcon.isDisplayed());
+    }
+
+    public static void verifyInfoTooltipInSectionIsClosed(String section) {
+        driver = Hooks.driver;
+        PageFactory.initElements(driver, FCHubsPage.class);
+        boolean result = false;
+        try {
+            FCHubsPage.tooltipCloseIcon.isDisplayed();
+        } catch (NoSuchElementException e) {
+            result = true;
+        }
+        assertTrue("The tooltip in the section: " + section + "was not closed", result);
     }
 }

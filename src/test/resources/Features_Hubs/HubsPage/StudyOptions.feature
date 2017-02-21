@@ -1,4 +1,4 @@
-@smoketest @nondestructive @hubs @studyoptions
+@hubs @studyoptions
 Feature:  As a student viewing new Hubs' Overview tab, I want to see contact information so that I can understand how
   to communicate with the school
 
@@ -7,7 +7,7 @@ Feature:  As a student viewing new Hubs' Overview tab, I want to see contact inf
       | rtsa       | amandahubs | hubs2016  |
     When I open the HUBS page for "Auburn"
     And I open the Studies tab
-
+  @smoke
   Scenario: The Study Options are displayed with correct values
     Then Each Study Option from the following list should be "available"
     | Cooperative Education Programs |

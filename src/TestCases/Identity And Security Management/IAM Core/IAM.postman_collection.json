@@ -1,0 +1,5411 @@
+{
+	"variables": [],
+	"info": {
+		"name": "Backbone - Naviance IAM Core copy",
+		"_postman_id": "7a23c809-abad-c17f-c3d2-93991d1909b9",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Create tenant, user, role and product",
+			"description": "",
+			"item": [
+				{
+					"name": "Create a tenant",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Expected status: 201. Actual status code: \"+ responseCode.code] = responseCode.code === 201;"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{Url}}/iamcore/tenants",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"uuid\": \"123e4567-e89b-12d3-a456-426655441111\", \n    \"tenantId\": \"Naviance\", \n    \"referenceId\": \"naviance.com\",\n    \"active\": true\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Create duplicate tenant",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Expected status: 409. Actual status code: \"+ responseCode.code] = responseCode.code === 409;",
+									"",
+									"var jsonData = JSON.parse(responseBody);",
+									"tests[\"Error Message: \" + jsonData.description] = responseBody.has(\"Tenant creation failed. The tenant already exists.\");"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{Url}}/iamcore/tenants",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"uuid\": \"123e4567-e89b-12d3-a456-426655441111\", \n    \"tenantId\": \"Naviance\", \n    \"referenceId\": \"naviance.com\",\n    \"active\": true\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Create tenant with > 36 characters",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Expected status: 400. Actual status code: \"+ responseCode.code] = responseCode.code === 400;",
+									"",
+									"var jsonData = JSON.parse(responseBody);",
+									"tests[\"Error Message: \" + jsonData.description] = responseBody.has(\"The uuid cannot be longer than 36 characters.\");"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{Url}}/iamcore/tenants",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"uuid\": \"uuid-that-longer-than-36-uuid-that-longer-than-36-uuid-that-longer-than-36-uuid-that-longer-than-36\", \n    \"tenantId\": \"Naviance\", \n    \"referenceId\": \"naviance.com\",\n    \"active\": true\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Create tenant without UUID",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Expected status: 400. Actual status code: \"+ responseCode.code] = responseCode.code === 400;",
+									"",
+									"var jsonData = JSON.parse(responseBody);",
+									"tests[\"Error Message: \" + jsonData.description] = responseBody.has(\"The required 'uuid' field is missing.\");"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{Url}}/iamcore/tenants",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"tenantId\": \"Naviance\", \n    \"referenceId\": \"naviance.com\",\n    \"active\": true\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Create tenant without tenantId",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Expected status: 400. Actual status code: \"+ responseCode.code] = responseCode.code === 400;",
+									"",
+									"var jsonData = JSON.parse(responseBody);",
+									"tests[\"Error Message: \" + jsonData.description] = responseBody.has(\"The required 'tenantId' field is missing.\");"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{Url}}/iamcore/tenants",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"uuid\": \"123e4567-e89b-12d3-a456-426655441111\", \n    \"referenceId\": \"naviance.com\",\n    \"active\": true\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Create tenant without referenceId",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Expected status: 400. Actual status code: \"+ responseCode.code] = responseCode.code === 400;",
+									"",
+									"var jsonData = JSON.parse(responseBody);",
+									"tests[\"Error Message: \" + jsonData.description] = responseBody.has(\"The required 'reference id' field is missing.\");"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{Url}}/iamcore/tenants",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"uuid\": \"123e4567-e89b-12d3-a456-426655441111\", \n    \"tenantId\": \"Naviance\", \n    \"active\": true\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Create tenant without active field",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Expected status: 400. Actual status code: \"+ responseCode.code] = responseCode.code === 400;",
+									"",
+									"var jsonData = JSON.parse(responseBody);",
+									"tests[\"Error Message: \" + jsonData.description] = responseBody.has(\"The required 'active' field is missing.\");"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{Url}}/iamcore/tenants",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"uuid\": \"123e4567-e89b-12d3-a456-426655441111\", \n    \"tenantId\": \"Naviance\", \n    \"referenceId\": \"naviance.com\"\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Create a user",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Expected status: 201. Actual status code: \"+ responseCode.code] = responseCode.code === 201;"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{Url}}/iamcore/users/",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"uuid\": \"1\",\n  \"email\": \"navssotest@gmail.com\",\n  \"active\": true\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Create duplicate user",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Expected status: 409. Actual status code: \"+ responseCode.code] = responseCode.code === 409;",
+									"",
+									"var jsonData = JSON.parse(responseBody);",
+									"tests[\"Error Message: \" + jsonData.description] = responseBody.has(\"User creation failed. The user already exists.\");"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{Url}}/iamcore/users/",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"uuid\": \"1\",\n  \"email\": \"navssotest@gmail.com\",\n  \"active\": true\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Create a tenant with existing referenceId",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Expected status: 409. Actual status code: \"+ responseCode.code] = responseCode.code === 409;",
+									"",
+									"var jsonData = JSON.parse(responseBody);",
+									"tests[\"Error Message: \" + jsonData.description] = responseBody.has(\"The reference id already exists.\");"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{Url}}/iamcore/tenants",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"uuid\": \"123e4567-e89b-12d3-a456-426655442222\", \n    \"tenantId\": \"Valley\", \n    \"referenceId\": \"naviance.com\",\n    \"active\": true\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Create user with existing emailId",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Expected status: 409. Actual status code: \"+ responseCode.code] = responseCode.code === 409;",
+									"",
+									"var jsonData = JSON.parse(responseBody);",
+									"tests[\"Error Message: \" + jsonData.description] = responseBody.has(\"The email address already exists.\");"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{Url}}/iamcore/users/",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"uuid\": \"2\",\n  \"email\": \"navssotest@gmail.com\",\n  \"active\": true\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Create user with > 36 characters",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Expected status: 400. Actual status code: \"+ responseCode.code] = responseCode.code === 400;",
+									"",
+									"var jsonData = JSON.parse(responseBody);",
+									"tests[\"Error Message: \" + jsonData.description] = responseBody.has(\"The uuid cannot be longer than 36 characters.\");"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{Url}}/iamcore/users/",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"uuid\": \"uuid-that-longer-than-36-uuid-that-longer-than-36-uuid-that-longer-than-36-uuid-that-longer-than-36\",\n  \"email\": \"navssotest@gmail.com\",\n  \"active\": true\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Create user without UUID",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Expected status: 400. Actual status code: \"+ responseCode.code] = responseCode.code === 400;",
+									"",
+									"var jsonData = JSON.parse(responseBody);",
+									"tests[\"Error Message: \" + jsonData.description] = responseBody.has(\"The required 'uuid' field is missing.\");"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{Url}}/iamcore/users/",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"email\": \"navssotest@gmail.com\",\n  \"active\": true\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Create user without email field",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Expected status: 400. Actual status code: \"+ responseCode.code] = responseCode.code === 400;",
+									"",
+									"var jsonData = JSON.parse(responseBody);",
+									"tests[\"Error Message: \" + jsonData.description] = responseBody.has(\"The required 'email' field is missing.\");"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{Url}}/iamcore/users/",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"uuid\": \"1\",\n  \"active\": true\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Create user without active field",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Expected status: 400. Actual status code: \"+ responseCode.code] = responseCode.code === 400;",
+									"",
+									"var jsonData = JSON.parse(responseBody);",
+									"tests[\"Error Message: \" + jsonData.description] = responseBody.has(\"The required 'active' field is missing.\");"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{Url}}/iamcore/users/",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"uuid\": \"1\",\n  \"email\": \"navssotest@gmail.com\"\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Create a product",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Expected status: 201. Actual status code: \"+ responseCode.code] = responseCode.code === 201;"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{Url}}/iamcore/products",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"productId\": \"1\",\n  \"active\":true\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Create duplicate product",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Expected status: 409. Actual status code: \"+ responseCode.code] = responseCode.code === 409;",
+									"",
+									"var jsonData = JSON.parse(responseBody);",
+									"tests[\"Error Message: \" + jsonData.description] = responseBody.has(\"Product creation failed. The product already exists.\");"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{Url}}/iamcore/products",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"productId\": \"1\",\n  \"active\":true\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Create product with > 36 characters",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Expected status: 400. Actual status code: \"+ responseCode.code] = responseCode.code === 400;",
+									"",
+									"var jsonData = JSON.parse(responseBody);",
+									"tests[\"Error Message: \" + jsonData.description] = responseBody.has(\"The productId cannot be longer than 36 characters.\");"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{Url}}/iamcore/products",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"productId\": \"product-id-that-longer-than-36-product-id-that-longer-than-36-product-id-that-longer-than-36-product-id-that-longer-than-36\",\n  \"active\":true\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Create product without productId",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Expected status: 400. Actual status code: \"+ responseCode.code] = responseCode.code === 400;",
+									"",
+									"var jsonData = JSON.parse(responseBody);",
+									"tests[\"Error Message: \" + jsonData.description] = responseBody.has(\"The productId is missing.\");"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{Url}}/iamcore/products",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"active\":true\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Create product without active field",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Expected status: 400. Actual status code: \"+ responseCode.code] = responseCode.code === 400;",
+									"",
+									"var jsonData = JSON.parse(responseBody);",
+									"tests[\"Error Message: \" + jsonData.description] = responseBody.has(\"The required 'active' field is missing.\");"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{Url}}/iamcore/products",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"productId\": \"1\"\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Create a role",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Expected status: 201. Actual status code: \"+ responseCode.code] = responseCode.code === 201;"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{Url}}/iamcore/tenants/Naviance/roles",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"roleName\":\"Teacher\", \n    \"tenantId\":\"Naviance\"\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Create duplicate role",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Expected status: 409. Actual status code: \"+ responseCode.code] = responseCode.code === 409;"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{Url}}/iamcore/tenants/Naviance/roles",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"roleName\":\"Teacher\", \n    \"tenantId\":\"Naviance\"\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Create role with > 30 characters",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Expected status: 400. Actual status code: \"+ responseCode.code] = responseCode.code === 400;",
+									"",
+									"var jsonData = JSON.parse(responseBody);",
+									"tests[\"Error Message: \" + jsonData.description] = responseBody.has(\"The roleName cannot be longer than 30 characters.\");"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{Url}}/iamcore/tenants/Naviance/roles",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"roleName\":\"roleName-longer-than-30-characters-roleName-longer-than-30-characters\", \n    \"tenantId\":\"Naviance\"\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Create role without roleName",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Expected status: 400. Actual status code: \"+ responseCode.code] = responseCode.code === 400;",
+									"",
+									"var jsonData = JSON.parse(responseBody);",
+									"tests[\"Error Message: \" + jsonData.description] = responseBody.has(\"The required 'roleName' field is missing.\");"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{Url}}/iamcore/tenants/Naviance/roles",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"tenantId\":\"Naviance\"\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Create role without tenantId",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Expected status: 400. Actual status code: \"+ responseCode.code] = responseCode.code === 400;",
+									"",
+									"var jsonData = JSON.parse(responseBody);",
+									"tests[\"Error Message: \" + jsonData.description] = responseBody.has(\"The required 'tenantId' field is missing.\");"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{Url}}/iamcore/tenants/Naviance/roles",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"roleName\":\"Teacher\"\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Create role with non existent tenant",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Expected status: 404. Actual status code: \"+ responseCode.code] = responseCode.code === 404;",
+									"",
+									"var jsonData = JSON.parse(responseBody);",
+									"tests[\"Error Message: \" + jsonData.description] = responseBody.has(\"The tenant does not exist.\");"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{Url}}/iamcore/tenants/some-tenantId/roles",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"roleName\":\"Teacher\", \n    \"tenantId\":\"some-tenantId\"\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Create role with mismactched tenantId",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Expected status: 409. Actual status code: \"+ responseCode.code] = responseCode.code === 409;",
+									"",
+									"var jsonData = JSON.parse(responseBody);",
+									"tests[\"Error Message: \" + jsonData.description] = responseBody.has(\"The provided tenant id from url does not match with the one in command.\");"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{Url}}/iamcore/tenants/Naviance/roles",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"roleName\":\"Teacher\", \n    \"tenantId\":\"some-tenantId\"\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Identity Resource",
+			"description": "",
+			"item": [
+				{
+					"name": "Create identity",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Expected status: 201. Actual status code: \"+ responseCode.code] = responseCode.code === 201;",
+									"",
+									"var Location = postman.getResponseHeader(\"Location\");",
+									"tests[\"Response has Location header: \"+ Location] = postman.getResponseHeader(\"Location\");",
+									"postman.setEnvironmentVariable(\"Location\", Location);"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{Url}}/iamcore/users/1/identities",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"userUuid\": \"1\", \n    \"referenceId\": \"sys.test@domain.com\", \n    \"type\":\"GOOGLE\", \n    \"tenantId\":\"Naviance\", \n    \"active\": true \n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Create duplicate identity",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Expected status: 409. Actual status code: \"+ responseCode.code] = responseCode.code === 409;",
+									"",
+									"var jsonData = JSON.parse(responseBody);",
+									"tests[\"Error Message: \" + jsonData.description] = responseBody.has(\"Identity creation failed. The identity already exists.\");"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{Url}}/iamcore/users/1/identities",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"userUuid\": \"1\", \n    \"referenceId\": \"sys.test@domain.com\", \n    \"type\":\"GOOGLE\", \n    \"tenantId\":\"Naviance\", \n    \"active\": true \n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Create identity without UUID",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Expected status: 400. Actual status code: \"+ responseCode.code] = responseCode.code === 400;",
+									"",
+									"var jsonData = JSON.parse(responseBody);",
+									"tests[\"Error Message: \" + jsonData.description] = responseBody.has(\"The required 'uuid' field is missing.\");"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{Url}}/iamcore/users/1/identities",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"referenceId\": \"sys.test@domain.com\", \n    \"type\":\"GOOGLE\", \n    \"tenantId\":\"Naviance\", \n    \"active\": true \n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Create identity without referenceId",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Expected status: 400. Actual status code: \"+ responseCode.code] = responseCode.code === 400;",
+									"",
+									"var jsonData = JSON.parse(responseBody);",
+									"tests[\"Error Message: \" + jsonData.description] = responseBody.has(\"The reference id is missing.\");"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{Url}}/iamcore/users/1/identities",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"userUuid\": \"1\", \n    \"type\":\"GOOGLE\", \n    \"tenantId\":\"Naviance\", \n    \"active\": true \n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Create identity without type field",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Expected status: 400. Actual status code: \"+ responseCode.code] = responseCode.code === 400;",
+									"",
+									"var jsonData = JSON.parse(responseBody);",
+									"tests[\"Error Message: \" + jsonData.description] = responseBody.has(\"The type is missing.\");"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{Url}}/iamcore/users/1/identities",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"userUuid\": \"1\", \n    \"referenceId\": \"sys.test@domain.com\", \n    \"tenantId\":\"Naviance\", \n    \"active\": true \n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Create identity without tenantId",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Expected status: 400. Actual status code: \"+ responseCode.code] = responseCode.code === 400;",
+									"",
+									"var jsonData = JSON.parse(responseBody);",
+									"tests[\"Error Message: \" + jsonData.description] = responseBody.has(\"The required 'tenantId' field is missing.\");"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{Url}}/iamcore/users/1/identities",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"userUuid\": \"1\", \n    \"referenceId\": \"sys.test@domain.com\", \n    \"type\":\"GOOGLE\", \n    \"active\": true \n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Create identity without active field",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Expected status: 400. Actual status code: \"+ responseCode.code] = responseCode.code === 400;",
+									"",
+									"var jsonData = JSON.parse(responseBody);",
+									"tests[\"Error Message: \" + jsonData.description] = responseBody.has(\"The required 'active' field is missing.\");"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{Url}}/iamcore/users/1/identities",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"userUuid\": \"1\", \n    \"referenceId\": \"sys.test@domain.com\", \n    \"type\":\"GOOGLE\", \n    \"tenantId\":\"Naviance\" \n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Create identity with non exsitent user",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Expected status: 404. Actual status code: \"+ responseCode.code] = responseCode.code === 404;",
+									"",
+									"var jsonData = JSON.parse(responseBody);",
+									"tests[\"Error Message: \" + jsonData.description] = responseBody.has(\"The user does not exist.\");"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{Url}}/iamcore/users/some-user/identities",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"userUuid\": \"some-user\", \n    \"referenceId\": \"sys.test@domain.com\", \n    \"type\":\"GOOGLE\", \n    \"tenantId\":\"Naviance\", \n    \"active\": true \n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Create identity with unsupported 'type'",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Expected status: 400. Actual status code: \"+ responseCode.code] = responseCode.code === 400;",
+									"",
+									"var jsonData = JSON.parse(responseBody);",
+									"tests[\"Error Message: \" + jsonData.description] = responseBody.has(\"The identity type is not supported.\");"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{Url}}/iamcore/users/1/identities",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"userUuid\": \"1\", \n    \"referenceId\": \"sys.test@domain.com\", \n    \"type\":\"some-type\", \n    \"tenantId\":\"Naviance\", \n    \"active\": true \n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Create identity with non exsitent tenant",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Expected status: 404. Actual status code: \"+ responseCode.code] = responseCode.code === 404;",
+									"",
+									"var jsonData = JSON.parse(responseBody);",
+									"tests[\"Error Message: \" + jsonData.description] = responseBody.has(\"The tenant does not exist.\");"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{Url}}/iamcore/users/1/identities",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"userUuid\": \"1\", \n    \"referenceId\": \"sys.test@domain.com\", \n    \"type\":\"GOOGLE\", \n    \"tenantId\":\"some-tenant\", \n    \"active\": true \n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Create identity with mismatched user",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Expected status: 409. Actual status code: \"+ responseCode.code] = responseCode.code === 409;",
+									"",
+									"var jsonData = JSON.parse(responseBody);",
+									"tests[\"Error Message: \" + jsonData.description] = responseBody.has(\"The provided user uuid does not match with the one in command.\");"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{Url}}/iamcore/users/1/identities",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"userUuid\": \"some-user\", \n    \"referenceId\": \"sys.test@domain.com\", \n    \"type\":\"GOOGLE\", \n    \"tenantId\":\"Naviance\", \n    \"active\": true \n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Retrieve identity using identityId",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Expected status: 200. Actual status code: \"+ responseCode.code] = responseCode.code === 200;",
+									"",
+									"var jsonData = JSON.parse(responseBody);",
+									"tests[\"userUuid is: \" + jsonData.userUuid] = responseBody;",
+									"tests[\"referenceId is: \" + jsonData.referenceId] = responseBody;",
+									"tests[\"referenceId is: \" + jsonData.referenceId] = responseBody;",
+									"tests[\"tenantId is: \" + jsonData.tenantId] = responseBody;",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{Location}}",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": [
+						{
+							"id": "39016f76-d08d-4f82-91f6-62c6655d26a5",
+							"name": "qw",
+							"originalRequest": {
+								"url": "{{Location}}",
+								"method": "GET",
+								"header": [],
+								"body": {}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"_postman_previewtype": "text",
+							"header": [
+								{
+									"name": "Access-Control-Allow-Headers",
+									"key": "Access-Control-Allow-Headers",
+									"value": "x-requested-with, authorization, content-type",
+									"description": "Used in response to a preflight request to indicate which HTTP headers can be used when making the actual request."
+								},
+								{
+									"name": "Access-Control-Allow-Methods",
+									"key": "Access-Control-Allow-Methods",
+									"value": "POST, GET, OPTIONS, DELETE",
+									"description": "Specifies the method or methods allowed when accessing the resource. This is used in response to a preflight request."
+								},
+								{
+									"name": "Access-Control-Allow-Origin",
+									"key": "Access-Control-Allow-Origin",
+									"value": "*",
+									"description": "Specifies a URI that may access the resource. For requests without credentials, the server may specify '*' as a wildcard, thereby allowing any origin to access the resource."
+								},
+								{
+									"name": "Access-Control-Max-Age",
+									"key": "Access-Control-Max-Age",
+									"value": "3600",
+									"description": "Indicates how long the results of a preflight request can be cached in seconds."
+								},
+								{
+									"name": "Connection",
+									"key": "Connection",
+									"value": "keep-alive",
+									"description": "Options that are desired for the connection"
+								},
+								{
+									"name": "Content-Length",
+									"key": "Content-Length",
+									"value": "381",
+									"description": "The length of the response body in octets (8-bit bytes)"
+								},
+								{
+									"name": "Content-Type",
+									"key": "Content-Type",
+									"value": "application/hal+json; charset=UTF-8",
+									"description": "The mime type of this content"
+								},
+								{
+									"name": "Date",
+									"key": "Date",
+									"value": "Wed, 21 Dec 2016 17:42:37 GMT, Wed, 21 Dec 2016 17:42:37 GMT",
+									"description": "The date and time that the message was sent"
+								},
+								{
+									"name": "Server",
+									"key": "Server",
+									"value": "Jetty(9.2.14.v20151106)",
+									"description": "A name for the server"
+								},
+								{
+									"name": "X-Application-Context",
+									"key": "X-Application-Context",
+									"value": "gatekeeper:7510, NavianceIamCoreService:oauth2,sysTest:8741",
+									"description": "Custom header"
+								}
+							],
+							"cookie": [
+								{
+									"expires": "Thu Dec 14 2017 13:10:13 GMT-0500 (EST)",
+									"hostOnly": false,
+									"httpOnly": true,
+									"domain": ".naviance.com",
+									"path": "/",
+									"secure": false,
+									"session": false,
+									"value": "1481660518",
+									"key": "nvnc_last_visit"
+								},
+								{
+									"expires": "Thu Dec 14 2017 13:32:56 GMT-0500 (EST)",
+									"hostOnly": false,
+									"httpOnly": true,
+									"domain": ".naviance.com",
+									"path": "/",
+									"secure": false,
+									"session": false,
+									"value": "1481740376",
+									"key": "nvnc_last_activity"
+								},
+								{
+									"expires": "Invalid Date",
+									"hostOnly": false,
+									"httpOnly": true,
+									"domain": ".naviance.com",
+									"path": "/",
+									"secure": false,
+									"session": true,
+									"value": "b5da00574b290cbdfbde27a51ec98136",
+									"key": "sess"
+								},
+								{
+									"expires": "Invalid Date",
+									"hostOnly": false,
+									"httpOnly": false,
+									"domain": ".naviance.com",
+									"path": "/",
+									"secure": false,
+									"session": true,
+									"value": "c2eea5eb-5103-477f-a76a-9938bbe24b4e",
+									"key": "SESSION"
+								},
+								{
+									"expires": "Fri Dec 21 2018 09:44:53 GMT-0500 (EST)",
+									"hostOnly": false,
+									"httpOnly": false,
+									"domain": ".naviance.com",
+									"path": "/",
+									"secure": false,
+									"session": false,
+									"value": "GA1.2.1973232973.1481639247",
+									"key": "_ga"
+								}
+							],
+							"responseTime": 41,
+							"body": "{\"userUuid\":\"1\",\"referenceId\":\"sys.test@domain.com\",\"type\":\"GOOGLE\",\"active\":true,\"tenantId\":\"Naviance\",\"createdTime\":\"2016-12-20T21:23:38Z[UTC]\",\"updatedTime\":\"2016-12-20T21:23:38Z[UTC]\",\"_links\":{\"self\":{\"href\":\"{{Url}}:443/iamcore/users/1/identities/98\"},\"User\":{\"href\":\"{{Url}}:443/iamcore/users/1\"}}}"
+						}
+					]
+				},
+				{
+					"name": "Retrieve identities using referenceId and Type",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var data = JSON.parse(responseBody);",
+									"tests[\"Expected status: 200. Actual status code: \"+ responseCode.code] = responseCode.code === 200;",
+									"tests[\"userUuid: \"+ data.identities[0].userUuid + \", referenceId : \"+ data.identities[0].referenceId + \", type: \"+ data.identities[0].type + \", active: \"+ data.identities[0].active + \", tenantId: \" + data.identities[0].tenantId] = responseCode.code;",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{Url}}/iamcore/identities?refId=sys.test@domain.com&type=GOOGLE",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Product Event Resource",
+			"description": "",
+			"item": [
+				{
+					"name": "Retrieve product events",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var data = JSON.parse(responseBody);",
+									"tests[\"Expected status: 200. Actual status code: \"+ responseCode.code] = responseCode.code === 200;",
+									"tests[\"Default page size is: \"+ data.page.size] = data.page.size === 10;"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{Url}}/iamcore/product-events",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Product event stream with type, entityId and eventTime",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var data = JSON.parse(responseBody);",
+									"tests[\"Expected status: 200. Actual status code: \"+ responseCode.code] = responseCode.code === 200;",
+									"tests[\"Product ID is: \"+ data._embedded.productEventRepresentationList[0].productId] = data._embedded.productEventRepresentationList[0].productId === \"1\";",
+									"tests[\"Type is: \"+ data._embedded.productEventRepresentationList[0].type] = data._embedded.productEventRepresentationList[0].type === \"CREATE\";"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{Url}}/iamcore/product-events?page=0&limit=20&query={\"type\":\"create\", \"entityId\":\"1\", \"eventTime\":{\"ge\":\"2016-06-20T10:02:21-04:00\"}}",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Product event stream with type and entityId",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var data = JSON.parse(responseBody);",
+									"tests[\"Expected status: 200. Actual status code: \"+ responseCode.code] = responseCode.code === 200;",
+									"tests[\"Product ID is: \"+ data._embedded.productEventRepresentationList[0].productId] = data._embedded.productEventRepresentationList[0].productId === \"1\";",
+									"tests[\"Type is: \"+ data._embedded.productEventRepresentationList[0].type] = data._embedded.productEventRepresentationList[0].type === \"CREATE\";"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{Url}}/iamcore/product-events?page=0&limit=10&query={\"type\":\"create\", \"entityId\":\"1\"}",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Product event stream with type and eventTime",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var data = JSON.parse(responseBody);",
+									"tests[\"Expected status: 200. Actual status code: \"+ responseCode.code] = responseCode.code === 200;",
+									"tests[\"Type is: \"+ data._embedded.productEventRepresentationList[0].type] = data._embedded.productEventRepresentationList[0].type === \"CREATE\";"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{Url}}/iamcore/product-events?page=0&limit=10&query={\"type\":\"create\", \"eventTime\":{\"ge\":\"2016-06-20T10:02:21-04:00\"}}",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Product event stream with entityId and eventTime",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var data = JSON.parse(responseBody);",
+									"tests[\"Expected status: 200. Actual status code: \"+ responseCode.code] = responseCode.code === 200;",
+									"tests[\"Product ID is: \"+ data._embedded.productEventRepresentationList[0].productId] = data._embedded.productEventRepresentationList[0].productId === \"1\";",
+									"tests[\"Type is: \"+ data._embedded.productEventRepresentationList[0].type] = data._embedded.productEventRepresentationList[0].type === \"CREATE\";"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{Url}}/iamcore/product-events?page=0&limit=10&query={\"entityId\":\"1\", \"eventTime\":{\"ge\":\"2016-06-20T10:02:21-04:00\"}} ",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Product event stream with invalid query criteria",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var data = JSON.parse(responseBody);",
+									"tests[\"Expected status: 400. Actual status code: \"+ responseCode.code] = responseCode.code === 400;",
+									"tests[\"Error message: \"+ data.description] = responseBody.has(\"Invalid query criteria. Only type, entityId and eventTime are currently supported in query.\");"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{Url}}/iamcore/product-events?page=0&limit=10&query={\"invalid-field\":\"whatever\"} ",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Product Resource",
+			"description": "",
+			"item": [
+				{
+					"name": "Retrieve a specific product",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var data = JSON.parse(responseBody);",
+									"tests[\"Expected status: 200. Actual status code: \"+ responseCode.code] = responseCode.code === 200;",
+									"tests[\"productId: \"+ data.productId] = data.productId === \"1\";",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{Url}}/iamcore/products/1",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Retrieve non existent product",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var data = JSON.parse(responseBody);",
+									"tests[\"Expected status: 404. Actual status code: \"+ responseCode.code] = responseCode.code === 404;",
+									"tests[\"Error message: \"+ data.description] = responseBody.has(\"The product does not exist.\");",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{Url}}/iamcore/products/invalid_product",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Retrieve collection of products ",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var data = JSON.parse(responseBody);",
+									"tests[\"Expected status: 200. Actual status code: \"+ responseCode.code] = responseCode.code === 200;",
+									"tests[\"productId: \"+ data._embedded.productRepresentationList[0].productId + \", active : \"+ data._embedded.productRepresentationList[0].active ] = responseCode.code;",
+									"tests[\"Default page size is: \"+ data.page.size] = data.page.size === 10;",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{Url}}/iamcore/products",
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"productId\": 11\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Update a product",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Expected status: 202. Actual status code: \"+ responseCode.code] = responseCode.code === 202;"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{Url}}/iamcore/products/1",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"productId\": \"1\",\n  \"active\":false\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Update a product without productId",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Expected status: 400. Actual status code: \"+ responseCode.code] = responseCode.code === 400;",
+									"",
+									"var jsonData = JSON.parse(responseBody);",
+									"tests[\"Error Message: \" + jsonData.description] = jsonData.description === \"The productId is missing.\";"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{Url}}/iamcore/products/1",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"active\":false\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Update a non existent product",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Expected status: 404. Actual status code: \"+ responseCode.code] = responseCode.code === 404;",
+									"",
+									"var jsonData = JSON.parse(responseBody);",
+									"tests[\"Error Message: \" + jsonData.description] = jsonData.description === \"The product does not exist.\";"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{Url}}/iamcore/products/invalid_product_id",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"productId\": \"invalid_product_id\",\n  \"active\":false\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Update product without active field",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Expected status: 400. Actual status code: \"+ responseCode.code] = responseCode.code === 400;",
+									"",
+									"var jsonData = JSON.parse(responseBody);",
+									"tests[\"Error Message: \" + jsonData.description] = jsonData.description === \"The required 'active' field is missing.\";"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{Url}}/iamcore/products/1",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"productId\": \"1\"\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Update product with mismatched productId",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Expected status: 409. Actual status code: \"+ responseCode.code] = responseCode.code === 409;",
+									"",
+									"var jsonData = JSON.parse(responseBody);",
+									"tests[\"Error Message: \" + jsonData.description] = jsonData.description === \"The product ID specified in the url does not match with the one in the command body.\";"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{Url}}/iamcore/products/1",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"productId\": \"invalid_product\",\n  \"active\":false\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Update product with empty body",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Expected status: 400. Actual status code: \"+ responseCode.code] = responseCode.code === 400;",
+									"",
+									"var jsonData = JSON.parse(responseBody);",
+									"tests[\"Error Message: \" + jsonData.description] = jsonData.description === \"The command body can not be empty.\";"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{Url}}/iamcore/products/1",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Create product permission",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Expected status: 201. Actual status code: \"+ responseCode.code] = responseCode.code === 201;"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{Url}}/iamcore/products/1/permissions",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"productId\":\"1\", \n    \"permissionName\": \"add student\", \n    \"permissionAlias\": \"add student\"\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Create duplicate product permission",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Expected status: 409. Actual status code: \"+ responseCode.code] = responseCode.code === 409;",
+									"",
+									"var jsonData = JSON.parse(responseBody);",
+									"tests[\"Error Message: \" + jsonData.description] = responseBody.has(\"Permission creation failed. The permission already exists.\");"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{Url}}/iamcore/products/1/permissions",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"productId\":\"1\", \n    \"permissionName\": \"add student\", \n    \"permissionAlias\": \"add student\"\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Create product permission with mismatched productId",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Expected status: 409. Actual status code: \"+ responseCode.code] = responseCode.code === 409;",
+									"",
+									"var jsonData = JSON.parse(responseBody);",
+									"tests[\"Error Message: \" + jsonData.description] = responseBody.has(\"The product ID specified in the url does not match with the one in the command body.\");"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{Url}}/iamcore/products/1/permissions",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"productId\":\"some_product\", \n    \"permissionName\": \"add student\", \n    \"permissionAlias\": \"add student\"\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Create permission for a non existent poroduct",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Expected status: 404. Actual status code: \"+ responseCode.code] = responseCode.code === 404;",
+									"",
+									"var jsonData = JSON.parse(responseBody);",
+									"tests[\"Error Message: \" + jsonData.description] = responseBody.has(\"The product does not exist.\");"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{Url}}/iamcore/products/some_product/permissions",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"productId\":\"some_product\", \n    \"permissionName\": \"add student\", \n    \"permissionAlias\": \"add student\"\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Retrieve all permissions associated to a product",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var data = JSON.parse(responseBody);",
+									"tests[\"Expected status: 200. Actual status code: \"+ responseCode.code] = responseCode.code === 200;",
+									"tests[\"productId: \"+ data._embedded.permissionRepresentationList[0].productId + \", permissionName : \"+ data._embedded.permissionRepresentationList[0].permissionName + \", permissionAlias : \"+ data._embedded.permissionRepresentationList[0].permissionAlias] = responseCode.code;"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{Url}}/iamcore/products/1/permissions/",
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"productId\":\"1\", \n    \"permissionName\": \"edit\", \n    \"permissionAlias\": \"edit student\"\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Retrieve all permissions for a non existent product",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Expected status: 404. Actual status code: \"+ responseCode.code] = responseCode.code === 404;",
+									"",
+									"var jsonData = JSON.parse(responseBody);",
+									"tests[\"Error Message: \" + jsonData.description] = jsonData.description === \"The product does not exist.\";"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{Url}}/iamcore/products/some_product/permissions/",
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"productId\":\"1\", \n    \"permissionName\": \"edit\", \n    \"permissionAlias\": \"edit student\"\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Retrieve specific product permission",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var data = JSON.parse(responseBody);",
+									"tests[\"Expected status: 200. Actual status code: \"+ responseCode.code] = responseCode.code === 200;",
+									"tests[\"productId: \"+ data.productId + \", active : \"+ data.permissionName + \", permissionAlias : \"+ data.permissionAlias] = responseCode.code;"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{Url}}/iamcore/products/1/permissions/add%20student",
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"productId\":\"1\", \n    \"permissionName\": \"edit\", \n    \"permissionAlias\": \"edit student\"\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Retrieve non existent product permission",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Expected status: 404. Actual status code: \"+ responseCode.code] = responseCode.code === 404;",
+									"",
+									"var jsonData = JSON.parse(responseBody);",
+									"tests[\"Error Message: \" + jsonData.description] = jsonData.description === \"The permission does not exist.\";"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{Url}}/iamcore/products/1/permissions/invalid_permission",
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"productId\":\"1\", \n    \"permissionName\": \"edit\", \n    \"permissionAlias\": \"edit student\"\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Update product permission",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Expected status: 202. Actual status code: \"+ responseCode.code] = responseCode.code === 202;"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{Url}}/iamcore/products/1/permissions/add student",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"productId\":\"1\", \n    \"permissionName\": \"add student\", \n    \"permissionAlias\": \"add student\"\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Update non existent product permission",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Expected status: 404. Actual status code: \"+ responseCode.code] = responseCode.code === 404;",
+									"",
+									"var jsonData = JSON.parse(responseBody);",
+									"tests[\"Error Message: \" + jsonData.description] = jsonData.description === \"The permission does not exist.\";"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{Url}}/iamcore/products/1/permissions/some_alias",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"productId\":\"1\", \n    \"permissionName\": \"add student\", \n    \"permissionAlias\": \"some_alias\"\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Update product permission with mismatched permission_alias",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Expected status: 409. Actual status code: \"+ responseCode.code] = responseCode.code === 409;",
+									"",
+									"var jsonData = JSON.parse(responseBody);",
+									"tests[\"Error Message: \" + jsonData.description] = jsonData.description === \"The permission alias specified in the url does not match with the one in the command body.\";"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{Url}}/iamcore/products/1/permissions/some_alias",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"productId\":\"1\", \n    \"permissionName\": \"add student\", \n    \"permissionAlias\": \"add student\"\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Role Event Resource",
+			"description": "",
+			"item": [
+				{
+					"name": "Retrieve role events",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var data = JSON.parse(responseBody);",
+									"tests[\"Expected status: 200. Actual status code: \"+ responseCode.code] = responseCode.code === 200;",
+									"tests[\"Default page size is: \"+ data.page.size] = data.page.size === 10;"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{Url}}/iamcore/role-events",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Retrieve role events with query criteria",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var data = JSON.parse(responseBody);",
+									"tests[\"Expected status: 200. Actual status code: \"+ responseCode.code] = responseCode.code === 200;",
+									"tests[\"Type is: \"+ data._embedded.roleEventRepresentationList[0].type] = data._embedded.roleEventRepresentationList[0].type === \"CREATE\";"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{Url}}/iamcore/role-events?page=0&limit=10&query={\"type\":\"create\"}",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Retrieve role event stream with invalid criteria",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var data = JSON.parse(responseBody);",
+									"tests[\"Expected status: 400. Actual status code: \"+ responseCode.code] = responseCode.code === 400;",
+									"tests[\"Error message: \"+ data.description] = responseBody.has(\"Invalid query criteria. Only type, entityId and eventTime are currently supported in query.\");"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{Url}}/iamcore/role-events?page=0&limit=2&query={\"invalid_criteria\":\"create\"}",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Role Resource",
+			"description": "",
+			"item": [
+				{
+					"name": "Retrieve specific role",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var data = JSON.parse(responseBody);",
+									"tests[\"Expected status: 200. Actual status code: \"+ responseCode.code] = responseCode.code === 200;",
+									"tests[\"roleName: \"+ data.roleName + \", tenantId : \"+ data.tenantId] = responseCode.code;"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{Url}}/iamcore/tenants/Naviance/roles/Teacher",
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"roleName\":\"Teacher\", \n    \"tenantId\":\"Naviance\"\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Retrieve a non existen role",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var data = JSON.parse(responseBody);",
+									"tests[\"Expected status: 404. Actual status code: \"+ responseCode.code] = responseCode.code === 404;",
+									"tests[\"Error message: \"+ data.description] = responseBody.has(\"The role does not exist.\");"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{Url}}/iamcore/tenants/Naviance/roles/some_role",
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"roleName\":\"Teacher\", \n    \"tenantId\":\"Naviance\"\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Retrieve a role for non existent tenant",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var data = JSON.parse(responseBody);",
+									"tests[\"Expected status: 404. Actual status code: \"+ responseCode.code] = responseCode.code === 404;",
+									"tests[\"Error message: \"+ data.description] = responseBody.has(\"The tenant does not exist.\");"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{Url}}/iamcore/tenants/some_tenant/roles/Teacher",
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"roleName\":\"Teacher\", \n    \"tenantId\":\"Naviance\"\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Retrieve all roles for a tenant",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var data = JSON.parse(responseBody);",
+									"tests[\"Expected status: 200. Actual status code: \"+ responseCode.code] = responseCode.code === 200;",
+									"tests[\"roleName: \"+ data._embedded.roleRepresentationList[0].roleName + \", tenantId : \"+ data._embedded.roleRepresentationList[0].tenantId] = responseCode.code;"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{Url}}/iamcore/tenants/Naviance/roles/",
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"roleName\":\"Teacher\", \n    \"tenantId\":\"Naviance\"\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Retrieve all roles for anon existent tenant",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var data = JSON.parse(responseBody);",
+									"tests[\"Expected status: 404. Actual status code: \"+ responseCode.code] = responseCode.code === 404;",
+									"tests[\"Error message: \"+ data.description] = responseBody.has(\"The tenant does not exist.\");"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{Url}}/iamcore/tenants/some_tenant/roles/",
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"roleName\":\"Teacher\", \n    \"tenantId\":\"Naviance\"\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Associate product permission to a role",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Expected status: 201. Actual status code: \"+ responseCode.code] = responseCode.code === 201;"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{Url}}/iamcore/tenants/Naviance/roles/Teacher/permissions",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"tenantId\": \"Naviance\",\n  \"roleName\": \"Teacher\",\n  \"productId\": \"1\",\n  \"permissionAlias\": \"add student\"\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Create duplicate role permission",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var data = JSON.parse(responseBody);",
+									"tests[\"Expected status: 409. Actual status code: \"+ responseCode.code] = responseCode.code === 409;",
+									"tests[\"Error message: \"+ data.description] = responseBody.has(\"Role permission creation failed. The role permission relation already exists.\");"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{Url}}/iamcore/tenants/Naviance/roles/Teacher/permissions",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"tenantId\": \"Naviance\",\n  \"roleName\": \"Teacher\",\n  \"productId\": \"1\",\n  \"permissionAlias\": \"add student\"\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Create role permission with mismatched tenant",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var data = JSON.parse(responseBody);",
+									"tests[\"Expected status: 409. Actual status code: \"+ responseCode.code] = responseCode.code === 409;",
+									"tests[\"Error message: \"+ data.description] = responseBody.has(\"The provided tenant id from url does not match with the one in command.\");"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{Url}}/iamcore/tenants/some_tenant/roles/Teacher/permissions",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"tenantId\": \"Naviance\",\n  \"roleName\": \"Teacher\",\n  \"productId\": \"1\",\n  \"permissionAlias\": \"add student\"\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Create role permission with mismatched roleName",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var data = JSON.parse(responseBody);",
+									"tests[\"Expected status: 409. Actual status code: \"+ responseCode.code] = responseCode.code === 409;",
+									"tests[\"Error message: \"+ data.description] = responseBody.has(\"The role name specified in the url does not match with the one in command.\");"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{Url}}/iamcore/tenants/Naviance/roles/some_role/permissions",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"tenantId\": \"Naviance\",\n  \"roleName\": \"Teacher\",\n  \"productId\": \"1\",\n  \"permissionAlias\": \"add student\"\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Create role permission with non existent role",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var data = JSON.parse(responseBody);",
+									"tests[\"Expected status: 404. Actual status code: \"+ responseCode.code] = responseCode.code === 404;",
+									"tests[\"Error message: \"+ data.description] = responseBody.has(\"The role does not exist.\");"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{Url}}/iamcore/tenants/Naviance/roles/some_role/permissions",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"tenantId\": \"Naviance\",\n  \"roleName\": \"some_role\",\n  \"productId\": \"1\",\n  \"permissionAlias\": \"add student\"\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Create role permission with non existent permission",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var data = JSON.parse(responseBody);",
+									"tests[\"Expected status: 404. Actual status code: \"+ responseCode.code] = responseCode.code === 404;",
+									"tests[\"Error message: \"+ data.description] = responseBody.has(\"The permission does not exist.\");"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{Url}}/iamcore/tenants/Naviance/roles/Teacher/permissions",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"tenantId\": \"Naviance\",\n  \"roleName\": \"Teacher\",\n  \"productId\": \"1\",\n  \"permissionAlias\": \"nonexistent_permission\"\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Create role permission with empty body",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var data = JSON.parse(responseBody);",
+									"tests[\"Expected status: 400. Actual status code: \"+ responseCode.code] = responseCode.code === 400;",
+									"tests[\"Error message: \"+ data.description] = responseBody.has(\"The command body can not be empty.\");"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{Url}}/iamcore/tenants/Naviance/roles/Teacher/permissions",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Retrieve permissions associated with a role",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var data = JSON.parse(responseBody);",
+									"tests[\"Expected status: 200. Actual status code: \"+ responseCode.code] = responseCode.code === 200;",
+									"tests[\"tenantId: \"+ data._embedded.rolePermissionRepresentationList[0].tenantId + \", roleName : \"+ data._embedded.rolePermissionRepresentationList[0].roleName + \", productId : \"+ data._embedded.rolePermissionRepresentationList[0].productId + \", permissionAlias : \"+ data._embedded.rolePermissionRepresentationList[0].permissionAlias] = responseCode.code;"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{Url}}/iamcore/tenants/Naviance/roles/Teacher/permissions",
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"tenantId\": \"Naviance\",\n  \"roleName\": \"Teacher\",\n  \"productId\": \"1\",\n  \"permissionAlias\": \"edit student\"\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Retrieve permissions for a non existent role",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var data = JSON.parse(responseBody);",
+									"tests[\"Expected status: 404. Actual status code: \"+ responseCode.code] = responseCode.code === 404;",
+									"tests[\"Error message: \"+ data.description] = responseBody.has(\"The role does not exist.\");"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{Url}}/iamcore/tenants/Naviance/roles/some_role/permissions",
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"tenantId\": \"Naviance\",\n  \"roleName\": \"Teacher\",\n  \"productId\": \"1\",\n  \"permissionAlias\": \"edit student\"\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Retrieve a role permission",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var data = JSON.parse(responseBody);",
+									"tests[\"Expected status: 200. Actual status code: \"+ responseCode.code] = responseCode.code === 200;",
+									"tests[\"tenantId: \"+ data.tenantId + \", roleName : \"+ data.roleName + \", productId : \"+ data.productId + \", permissionAlias : \"+ data.permissionAlias] = responseCode.code;"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{Url}}/iamcore/tenants/Naviance/roles/Teacher/products/1/permissions/add student",
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"tenantId\": \"Naviance\",\n  \"roleName\": \"Teacher\",\n  \"productId\": \"1\",\n  \"permissionAlias\": \"edit student\"\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Retrieve a role permission with non existent permission",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var data = JSON.parse(responseBody);",
+									"tests[\"Expected status: 404. Actual status code: \"+ responseCode.code] = responseCode.code === 404;",
+									"tests[\"Error message: \"+ data.description] = responseBody.has(\"The permission does not exist.\");"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{Url}}/iamcore/tenants/Naviance/roles/Teacher/products/1/permissions/some_permission",
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"tenantId\": \"Naviance\",\n  \"roleName\": \"Teacher\",\n  \"productId\": \"1\",\n  \"permissionAlias\": \"edit student\"\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Tenant Event Resource",
+			"description": "",
+			"item": [
+				{
+					"name": "Tenant event stream",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var data = JSON.parse(responseBody);",
+									"tests[\"Expected status: 200. Actual status code: \"+ responseCode.code] = responseCode.code === 200;",
+									"tests[\"Default page size is: \"+ data.page.size] = data.page.size === 10;"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{Url}}/iamcore/tenant-events",
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"productId\": \"1\",\n  \"active\":true\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Tenant event stream with type, entityId and eventTime",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var data = JSON.parse(responseBody);",
+									"tests[\"Expected status: 200. Actual status code: \"+ responseCode.code] = responseCode.code === 200;",
+									"tests[\"Tenant ID is: \"+ data._embedded.tenantEventRepresentationList[0].tenantId] = data._embedded.tenantEventRepresentationList[0].tenantId === \"Naviance\";",
+									"tests[\"Type is: \"+ data._embedded.tenantEventRepresentationList[0].type] = data._embedded.tenantEventRepresentationList[0].type === \"CREATE\";"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{Url}}/iamcore/tenant-events?page=0&limit=10&query={\"type\":\"create\", \"entityId\":\"Naviance\", \"eventTime\":{\"ge\":\"2016-06-20T10:02:21-04:00\"}}",
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"productId\": \"1\",\n  \"active\":true\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Tenant event stream with type and entityId",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var data = JSON.parse(responseBody);",
+									"tests[\"Expected status: 200. Actual status code: \"+ responseCode.code] = responseCode.code === 200;",
+									"tests[\"Tenant ID is: \"+ data._embedded.tenantEventRepresentationList[0].tenantId] = data._embedded.tenantEventRepresentationList[0].tenantId === \"Naviance\";",
+									"tests[\"Type is: \"+ data._embedded.tenantEventRepresentationList[0].type] = data._embedded.tenantEventRepresentationList[0].type === \"CREATE\";"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{Url}}/iamcore/tenant-events?page=0&limit=10&query={\"type\":\"create\", \"entityId\":\"Naviance\"} ",
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"productId\": \"1\",\n  \"active\":true\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Tenant event stream with type and eventTime",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var data = JSON.parse(responseBody);",
+									"tests[\"Expected status: 200. Actual status code: \"+ responseCode.code] = responseCode.code === 200;",
+									"tests[\"Type is: \"+ data._embedded.tenantEventRepresentationList[0].type] = data._embedded.tenantEventRepresentationList[0].type === \"CREATE\";"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{Url}}/iamcore/tenant-events?page=0&limit=10&query={\"type\":\"create\", \"eventTime\":{\"ge\":\"2016-06-20T10:02:21-04:00\"}} ",
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"productId\": \"1\",\n  \"active\":true\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Tenant event stream with entityId and eventTime",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var data = JSON.parse(responseBody);",
+									"tests[\"Expected status: 200. Actual status code: \"+ responseCode.code] = responseCode.code === 200;",
+									"tests[\"Tenant ID is: \"+ data._embedded.tenantEventRepresentationList[0].tenantId] = data._embedded.tenantEventRepresentationList[0].tenantId === \"Naviance\";",
+									"tests[\"Type is: \"+ data._embedded.tenantEventRepresentationList[0].type] = data._embedded.tenantEventRepresentationList[0].type === \"CREATE\";"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{Url}}/iamcore/tenant-events?page=0&limit=10&query={\"entityId\":\"Naviance\", \"eventTime\":{\"ge\":\"2016-06-20T10:02:21-04:00\"}}",
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"productId\": \"1\",\n  \"active\":true\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Tenant event stream with invalid query criteria",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var data = JSON.parse(responseBody);",
+									"tests[\"Expected status: 400. Actual status code: \"+ responseCode.code] = responseCode.code === 400;",
+									"tests[\"Error message: \"+ data.description] = responseBody.has(\"Invalid query criteria. Only type, entityId and eventTime are currently supported in query.\");"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{Url}}/iamcore/tenant-events?page=0&limit=10&query={\"invalid-field\":\"whatever\"}",
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"productId\": \"1\",\n  \"active\":true\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Tenant Resource",
+			"description": "",
+			"item": [
+				{
+					"name": "Create second tenant",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Expected status: 201. Actual status code: \"+ responseCode.code] = responseCode.code === 201;"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{Url}}/iamcore/tenants",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"uuid\": \"123e4567-e89b-12d3-a456-426655442222\", \n    \"tenantId\": \"Valley\",\n    \"referenceId\": \"valley.com\",\n    \"active\": true\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Retrieve all tenants",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var data = JSON.parse(responseBody);",
+									"tests[\"Expected status: 200. Actual status code: \"+ responseCode.code] = responseCode.code === 200;",
+									"tests[\"uuid: \"+ data._embedded.tenantRepresentationList[0].uuid + \", tenantId : \"+ data._embedded.tenantRepresentationList[0].tenantId + \", active : \"+ data._embedded.tenantRepresentationList[0].active] = responseCode.code;",
+									"tests[\"Default page size is: \" + data.page.size] = data.page.size === 10;"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{Url}}/iamcore/tenants",
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"uuid\": \"123e4567-e89b-12d3-a456-426655441111\", \n    \"tenantId\": \"Naviance\", \n    \"active\": true\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Retrieve a tenant with tenant ID",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var data = JSON.parse(responseBody);",
+									"tests[\"Expected status: 200. Actual status code: \"+ responseCode.code] = responseCode.code === 200;",
+									"tests[\"uuid: \"+ data.tenant.uuid + \", tenantId : \"+ data.tenant.tenantId + \", active : \"+ data.tenant.active] = responseCode.code;"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{Url}}/iamcore/tenants/Naviance",
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"uuid\": \"123e4567-e89b-12d3-a456-426655441111\", \n    \"tenantId\": \"Naviance\", \n    \"active\": true\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Retrieve a non existent tenant",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var data = JSON.parse(responseBody);",
+									"tests[\"Expected status: 404. Actual status code: \"+ responseCode.code] = responseCode.code === 404;",
+									"tests[\"Error message: \"+ data.description] = responseBody.has(\"The tenant does not exist.\");"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{Url}}/iamcore/tenants/some_tenant",
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"uuid\": \"123e4567-e89b-12d3-a456-426655441111\", \n    \"tenantId\": \"Naviance\", \n    \"active\": true\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Retrieve tenant with reference ID",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var data = JSON.parse(responseBody);",
+									"tests[\"Expected status: 200. Actual status code: \"+ responseCode.code] = responseCode.code === 200;",
+									"tests[\"uuid: \"+ data.uuid + \", tenantId : \"+ data.tenantId + \", active : \"+ data.active] = responseCode.code;"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{Url}}/iamcore/tenants?referenceId=naviance.com",
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"uuid\": \"123e4567-e89b-12d3-a456-426655441111\", \n    \"tenantId\": \"Naviance\", \n    \"active\": true\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Retrieve tenant with non existent reference ID",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var data = JSON.parse(responseBody);",
+									"tests[\"Expected status: 404. Actual status code: \"+ responseCode.code] = responseCode.code === 404;",
+									"tests[\"Error message: \"+ data.description] = responseBody.has(\"The tenant does not exist.\");"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{Url}}/iamcore/tenants?referenceId=some_id",
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"uuid\": \"123e4567-e89b-12d3-a456-426655441111\", \n    \"tenantId\": \"Naviance\", \n    \"active\": true\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Update a tenant",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Expected status: 202. Actual status code: \"+ responseCode.code] = responseCode.code === 202;"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{Url}}/iamcore/tenants/Naviance",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"uuid\": \"123e4567-e89b-12d3-a456-426655441111\", \n    \"tenantId\": \"Naviance\",\n    \"referenceId\": \"naviance.com\",\n    \"active\": false\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Update a tenant with mismatched tenantId",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var data = JSON.parse(responseBody);",
+									"tests[\"Expected status: 409. Actual status code: \"+ responseCode.code] = responseCode.code === 409;",
+									"tests[\"Error message: \"+ data.description] = responseBody.has(\"The tenant id from command does not match with the record.\");"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{Url}}/iamcore/tenants/Naviance",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"uuid\": \"123e4567-e89b-12d3-a456-426655441111\", \n    \"tenantId\": \"some_tenant\",\n    \"referenceId\": \"naviance.com\",\n    \"active\": false\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Update non existent tenant",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var data = JSON.parse(responseBody);",
+									"tests[\"Expected status: 404. Actual status code: \"+ responseCode.code] = responseCode.code === 404;",
+									"tests[\"Error message: \"+ data.description] = responseBody.has(\"The tenant does not exist.\");"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{Url}}/iamcore/tenants/some_tenant",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"uuid\": \"123e4567-e89b-12d3-a456-426655441111\", \n    \"tenantId\": \"some_tenant\",\n    \"referenceId\": \"naviance.com\",\n    \"active\": false\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Update tenant without UUID",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var data = JSON.parse(responseBody);",
+									"tests[\"Expected status: 400. Actual status code: \"+ responseCode.code] = responseCode.code === 400;",
+									"tests[\"Error message: \"+ data.description] = responseBody.has(\"The required 'uuid' field is missing.\");"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{Url}}/iamcore/tenants/Naviance",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"tenantId\": \"Naviance\",\n    \"referenceId\": \"naviance.com\",\n    \"active\": false\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Update tenant without tenantId",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var data = JSON.parse(responseBody);",
+									"tests[\"Expected status: 400. Actual status code: \"+ responseCode.code] = responseCode.code === 400;",
+									"tests[\"Error message: \"+ data.description] = responseBody.has(\"The required 'tenantId' field is missing.\");"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{Url}}/iamcore/tenants/Naviance",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"uuid\": \"123e4567-e89b-12d3-a456-426655441111\", \n    \"referenceId\": \"naviance.com\",\n    \"active\": false\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Update tenant without referenceId",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var data = JSON.parse(responseBody);",
+									"tests[\"Expected status: 400. Actual status code: \"+ responseCode.code] = responseCode.code === 400;",
+									"tests[\"Error message: \"+ data.description] = responseBody.has(\"The required 'reference id' field is missing.\");"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{Url}}/iamcore/tenants/Naviance",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"uuid\": \"123e4567-e89b-12d3-a456-426655441111\", \n    \"tenantId\": \"Naviance\",\n    \"active\": false\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Update tenant without active field",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var data = JSON.parse(responseBody);",
+									"tests[\"Expected status: 400. Actual status code: \"+ responseCode.code] = responseCode.code === 400;",
+									"tests[\"Error message: \"+ data.description] = responseBody.has(\"The required 'active' field is missing.\");"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{Url}}/iamcore/tenants/Naviance",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"uuid\": \"123e4567-e89b-12d3-a456-426655441111\", \n    \"tenantId\": \"Naviance\",\n    \"referenceId\": \"naviance.com\"\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Update tenant with empty body",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var data = JSON.parse(responseBody);",
+									"tests[\"Expected status: 400. Actual status code: \"+ responseCode.code] = responseCode.code === 400;",
+									"tests[\"Error message: \"+ data.description] = responseBody.has(\"The command body can not be empty.\");"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{Url}}/iamcore/tenants/Naviance",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Create subtenant",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Expected status: 201. Actual status code: \"+ responseCode.code] = responseCode.code === 201;"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{Url}}/iamcore/tenants/Naviance/sub-tenants/",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"subtenantId\": \"Valley\"\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Create duplicate subtenant",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var data = JSON.parse(responseBody);",
+									"tests[\"Expected status: 409. Actual status code: \"+ responseCode.code] = responseCode.code === 409;",
+									"tests[\"Error message: \"+ data.description] = responseBody.has(\"The child tenant is already associated as a subtenant of the parent tenant.\");"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{Url}}/iamcore/tenants/Naviance/sub-tenants/",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"subtenantId\": \"Valley\"\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Create subtenant with non existent child tenant",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var data = JSON.parse(responseBody);",
+									"tests[\"Expected status: 400. Actual status code: \"+ responseCode.code] = responseCode.code === 400;",
+									"tests[\"Error message: \"+ data.description] = responseBody.has(\"The child tenant does not exist.\");"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{Url}}/iamcore/tenants/Naviance/sub-tenants/",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"subtenantId\": \"some_tenant\"\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Create subtenant with non existent parent tenant",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var data = JSON.parse(responseBody);",
+									"tests[\"Expected status: 404. Actual status code: \"+ responseCode.code] = responseCode.code === 404;",
+									"tests[\"Error message: \"+ data.description] = responseBody.has(\"The parent tenant does not exist.\");"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{Url}}/iamcore/tenants/some_tenant/sub-tenants/",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"subtenantId\": \"Valley\"\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Retrieve subtenants for a parent",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var data = JSON.parse(responseBody);",
+									"tests[\"Expected status: 200. Actual status code: \"+ responseCode.code] = responseCode.code === 200;",
+									"tests[\"parentTenantId: \"+ data._embedded.subtenantRepresentationList[0].parentTenantId + \", subtenantId : \"+ data._embedded.subtenantRepresentationList[0].subtenantId] = responseCode.code;"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{Url}}/iamcore/tenants/Naviance/sub-tenants",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Retrieve subtenants for a non existent parent",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var data = JSON.parse(responseBody);",
+									"tests[\"Expected status: 404. Actual status code: \"+ responseCode.code] = responseCode.code === 404;",
+									"tests[\"Error message: \"+ data.description] = responseBody.has(\"The parent tenant does not exist.\");"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{Url}}/iamcore/tenants/some_tenant/sub-tenants",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Retrieve a subtenant",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var data = JSON.parse(responseBody);",
+									"tests[\"Expected status: 200. Actual status code: \"+ responseCode.code] = responseCode.code === 200;",
+									"tests[\"parentTenantId: \"+ data.parentTenantId + \", subtenantId : \"+ data.subtenantId] = responseCode.code;"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{Url}}/iamcore/tenants/Naviance/sub-tenants/Valley",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Retrieve a non existent subtenant",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var data = JSON.parse(responseBody);",
+									"tests[\"Expected status: 404. Actual status code: \"+ responseCode.code] = responseCode.code === 404;",
+									"tests[\"Error message: \"+ data.description] = responseBody.has(\"The child tenant does not exist.\");"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{Url}}/iamcore/tenants/Naviance/sub-tenants/some_tenant",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Delete a subtenant",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Expected status: 204. Actual status code: \"+ responseCode.code] = responseCode.code === 204;"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{Url}}/iamcore/tenants/Naviance/sub-tenants/Valley",
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Delete second tenant",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Expected status: 204. Actual status code: \"+ responseCode.code] = responseCode.code === 204;"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{Url}}/iamcore/tenants/Valley",
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Create product activation",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Expected status: 201. Actual status code: \"+ responseCode.code] = responseCode.code === 201;"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{Url}}/iamcore/tenants/Naviance/product-activations",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"productId\":\"1\", \n    \"tenantId\": \"Naviance\", \n    \"active\":true\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Create duplicate product activation",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var data = JSON.parse(responseBody);",
+									"tests[\"Expected status: 409. Actual status code: \"+ responseCode.code] = responseCode.code === 409;",
+									"tests[\"Error message: \"+ data.description] = responseBody.has(\"Product activation creation failed. The product activation already exists.\");"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{Url}}/iamcore/tenants/Naviance/product-activations",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"productId\":\"1\", \n    \"tenantId\": \"Naviance\", \n    \"active\":true\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Create product activation with mismatched tenantId",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var data = JSON.parse(responseBody);",
+									"tests[\"Expected status: 409. Actual status code: \"+ responseCode.code] = responseCode.code === 409;",
+									"tests[\"Error message: \"+ data.description] = responseBody.has(\"The provided tenant id from url does not match with the one in command.\");"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{Url}}/iamcore/tenants/Naviance/product-activations",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"productId\":\"1\", \n    \"tenantId\": \"some_tenant\", \n    \"active\":true\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Create product activation with non existent tenantId",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var data = JSON.parse(responseBody);",
+									"tests[\"Expected status: 404. Actual status code: \"+ responseCode.code] = responseCode.code === 404;",
+									"tests[\"Error message: \"+ data.description] = responseBody.has(\"The tenant does not exist.\");"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{Url}}/iamcore/tenants/some_tenant/product-activations",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"productId\":\"1\", \n    \"tenantId\": \"some_tenant\", \n    \"active\":true\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Create product activation with non existent productId",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var data = JSON.parse(responseBody);",
+									"tests[\"Expected status: 404. Actual status code: \"+ responseCode.code] = responseCode.code === 404;",
+									"tests[\"Error message: \"+ data.description] = responseBody.has(\"The product does not exist.\");"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{Url}}/iamcore/tenants/Naviance/product-activations",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"productId\":\"some_product\", \n    \"tenantId\": \"Naviance\", \n    \"active\":true\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Create product activation with empty body",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var data = JSON.parse(responseBody);",
+									"tests[\"Expected status: 400. Actual status code: \"+ responseCode.code] = responseCode.code === 400;",
+									"tests[\"Error message: \"+ data.description] = responseBody.has(\"The command body can not be empty.\");"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{Url}}/iamcore/tenants/Naviance/product-activations",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Retrieve all product activations",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var data = JSON.parse(responseBody);",
+									"tests[\"Expected status: 200. Actual status code: \"+ responseCode.code] = responseCode.code === 200;",
+									"tests[\"Default page size is: \"+ data.page.size] = data.page.size === 10;"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{Url}}/iamcore/tenants/Naviance/product-activations",
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"productId\":\"21\", \n    \"tenantId\": \"team\", \n    \"active\":true\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Retrieve specific product activation",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var data = JSON.parse(responseBody);",
+									"tests[\"Expected status: 200. Actual status code: \"+ responseCode.code] = responseCode.code === 200;",
+									"tests[\"tenantId: \"+ data.tenantId + \", productId : \"+ data.productId + \", active : \"+ data.active] = responseCode.code;"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{Url}}/iamcore/tenants/Naviance/product-activations/1",
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"productId\":\"21\", \n    \"tenantId\": \"team\", \n    \"active\":true\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Retrieve non existent product activation",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var data = JSON.parse(responseBody);",
+									"tests[\"Expected status: 404. Actual status code: \"+ responseCode.code] = responseCode.code === 404;",
+									"tests[\"Error message: \"+ data.description] = responseBody.has(\"The product activation does not exist.\");"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{Url}}/iamcore/tenants/Naviance/product-activations/some_product",
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"productId\":\"21\", \n    \"tenantId\": \"team\", \n    \"active\":true\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Create a tenant user",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Expected status: 201. Actual status code: \"+ responseCode.code] = responseCode.code === 201;"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{Url}}/iamcore/tenants/Naviance/users",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"userUuid\":\"1\", \n    \"tenantId\": \"Naviance\", \n    \"active\":true\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Create duplicate tenant user",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var data = JSON.parse(responseBody);",
+									"tests[\"Expected status: 409. Actual status code: \"+ responseCode.code] = responseCode.code === 409;",
+									"tests[\"Error message: \"+ data.description] = responseBody.has(\"exception.tenantUserAlreadyExists.default\");"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{Url}}/iamcore/tenants/Naviance/users",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"userUuid\":\"1\", \n    \"tenantId\": \"Naviance\", \n    \"active\":true\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Create tenant user with mismatched tenantId",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var data = JSON.parse(responseBody);",
+									"tests[\"Expected status: 409. Actual status code: \"+ responseCode.code] = responseCode.code === 409;",
+									"tests[\"Error message: \"+ data.description] = responseBody.has(\"The provided tenant id from url does not match with the one in command.\");"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{Url}}/iamcore/tenants/some_tenant/users",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"userUuid\":\"1\", \n    \"tenantId\": \"Naviance\", \n    \"active\":true\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Create tenant user for non existent tenant",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var data = JSON.parse(responseBody);",
+									"tests[\"Expected status: 404. Actual status code: \"+ responseCode.code] = responseCode.code === 404;",
+									"tests[\"Error message: \"+ data.description] = responseBody.has(\"The tenant does not exist.\");"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{Url}}/iamcore/tenants/some_tenant/users",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"userUuid\":\"1\", \n    \"tenantId\": \"some_tenant\", \n    \"active\":true\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Create tenant user with non existent user",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var data = JSON.parse(responseBody);",
+									"tests[\"Expected status: 404. Actual status code: \"+ responseCode.code] = responseCode.code === 404;",
+									"tests[\"Error message: \"+ data.description] = responseBody.has(\"The user does not exist.\");"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{Url}}/iamcore/tenants/Naviance/users",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"userUuid\":\"some_user\", \n    \"tenantId\": \"Naviance\", \n    \"active\":true\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Create tenant user without userId",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var data = JSON.parse(responseBody);",
+									"tests[\"Expected status: 400. Actual status code: \"+ responseCode.code] = responseCode.code === 400;",
+									"tests[\"Error message: \"+ data.description] = responseBody.has(\"The required 'uuid' field is missing.\");"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{Url}}/iamcore/tenants/Naviance/users",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"tenantId\": \"Naviance\", \n    \"active\":true\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Create tenant user without tenantId",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var data = JSON.parse(responseBody);",
+									"tests[\"Expected status: 400. Actual status code: \"+ responseCode.code] = responseCode.code === 400;",
+									"tests[\"Error message: \"+ data.description] = responseBody.has(\"The required 'tenantId' field is missing.\");"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{Url}}/iamcore/tenants/Naviance/users",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"userUuid\":\"1\", \n    \"active\":true\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Create tenant user without active field",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var data = JSON.parse(responseBody);",
+									"tests[\"Expected status: 400. Actual status code: \"+ responseCode.code] = responseCode.code === 400;",
+									"tests[\"Error message: \"+ data.description] = responseBody.has(\"The required 'active' field is missing.\");"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{Url}}/iamcore/tenants/Naviance/users",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"userUuid\":\"1\", \n    \"tenantId\": \"Naviance\"\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Retrieve all users at tenant",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var data = JSON.parse(responseBody);",
+									"tests[\"Expected status: 200. Actual status code: \"+ responseCode.code] = responseCode.code === 200;",
+									"tests[\"tenantId: \"+ data._embedded.tenantUserRepresentationList[0].tenantId + \", userUuid : \"+ data._embedded.tenantUserRepresentationList[0].userUuid + \", active : \"+ data._embedded.tenantUserRepresentationList[0].active] = responseCode.code;"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{Url}}/iamcore/tenants/Naviance/users",
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"userUuid\":\"1\", \n    \"tenantId\": \"Naviance\", \n    \"active\":true\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Retrieve all users for non existent tenant",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var data = JSON.parse(responseBody);",
+									"tests[\"Expected status: 404. Actual status code: \"+ responseCode.code] = responseCode.code === 404;",
+									"tests[\"Error message: \"+ data.description] = responseBody.has(\"The tenant does not exist.\");"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{Url}}/iamcore/tenants/some_tenant/users",
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"userUuid\":\"1\", \n    \"tenantId\": \"Naviance\", \n    \"active\":true\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Retrieve a user at tenant",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var data = JSON.parse(responseBody);",
+									"tests[\"Expected status: 200. Actual status code: \"+ responseCode.code] = responseCode.code === 200;",
+									"tests[\"tenantId: \"+ data.tenantId + \", userUuid : \"+ data.userUuid + \", active : \"+ data.active] = responseCode.code;"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{Url}}/iamcore/tenants/Naviance/users/1",
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"userUuid\":\"1\", \n    \"tenantId\": \"Naviance\", \n    \"active\":true\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Retrieve a non existent tenant user",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var data = JSON.parse(responseBody);",
+									"tests[\"Expected status: 404. Actual status code: \"+ responseCode.code] = responseCode.code === 404;",
+									"tests[\"Error message: \"+ data.description] = responseBody.has(\"The tenant user relation does not exist.\");"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{Url}}/iamcore/tenants/Naviance/users/some_user",
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"userUuid\":\"1\", \n    \"tenantId\": \"Naviance\", \n    \"active\":true\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Update tenant user",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Expected status: 202. Actual status code: \"+ responseCode.code] = responseCode.code === 202;"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{Url}}/iamcore/tenants/Naviance/users/1",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"userUuid\":\"1\", \n    \"tenantId\": \"Naviance\", \n    \"active\":false\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Update tenant user for non existent user",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var data = JSON.parse(responseBody);",
+									"tests[\"Expected status: 404. Actual status code: \"+ responseCode.code] = responseCode.code === 404;",
+									"tests[\"Error message: \"+ data.description] = responseBody.has(\"The tenant user relation does not exist.\");"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{Url}}/iamcore/tenants/Naviance/users/some_user",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"userUuid\":\"some_user\", \n    \"tenantId\": \"Naviance\", \n    \"active\":false\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Update tenant user for non existent tenant",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var data = JSON.parse(responseBody);",
+									"tests[\"Expected status: 404. Actual status code: \"+ responseCode.code] = responseCode.code === 404;",
+									"tests[\"Error message: \"+ data.description] = responseBody.has(\"The tenant user relation does not exist.\");"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{Url}}/iamcore/tenants/some_tenant/users/1",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"userUuid\":\"1\", \n    \"tenantId\": \"some_tenant\", \n    \"active\":false\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "User Event Resource",
+			"description": "",
+			"item": [
+				{
+					"name": "Event stream for users",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var data = JSON.parse(responseBody);",
+									"tests[\"Expected status: 200. Actual status code: \"+ responseCode.code] = responseCode.code === 200;",
+									"tests[\"Default page size is: \"+ data.page.size] = data.page.size === 10;"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{Url}}/iamcore/user-events",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "User event stream with type, entityId and eventTime",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var data = JSON.parse(responseBody);",
+									"tests[\"Expected status: 200. Actual status code: \"+ responseCode.code] = responseCode.code === 200;",
+									"tests[\"User ID is: \"+ data._embedded.userEventRepresentationList[0].userUuid] = data._embedded.userEventRepresentationList[0].userUuid === \"123e4567-e89b-12d3-a456-426655441111\";",
+									"tests[\"Type is: \"+ data._embedded.userEventRepresentationList[0].type] = data._embedded.userEventRepresentationList[0].type === \"CREATE\";"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{Url}}/iamcore/user-events?page=0&limit=10&query={\"type\":\"create\", \"entityId\":\"123e4567-e89b-12d3-a456-426655441111\", \"eventTime\":{\"ge\":\"2016-06-20T10:02:21-04:00\"}}",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "User event stream with type and entityId",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var data = JSON.parse(responseBody);",
+									"tests[\"Expected status: 200. Actual status code: \"+ responseCode.code] = responseCode.code === 200;",
+									"tests[\"User ID is: \"+ data._embedded.userEventRepresentationList[0].userUuid] = data._embedded.userEventRepresentationList[0].userUuid === \"123e4567-e89b-12d3-a456-426655441111\";",
+									"tests[\"Type is: \"+ data._embedded.userEventRepresentationList[0].type] = data._embedded.userEventRepresentationList[0].type === \"CREATE\";"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{Url}}/iamcore/user-events?page=0&limit=10&query={\"type\":\"create\", \"entityId\":\"123e4567-e89b-12d3-a456-426655441111\"} ",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "User event stream with type and eventTime",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var data = JSON.parse(responseBody);",
+									"tests[\"Expected status: 200. Actual status code: \"+ responseCode.code] = responseCode.code === 200;",
+									"tests[\"Type is: \"+ data._embedded.userEventRepresentationList[0].type] = data._embedded.userEventRepresentationList[0].type === \"CREATE\";"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{Url}}/iamcore/user-events?page=0&limit=10&query={\"type\":\"create\", \"eventTime\":{\"ge\":\"2016-06-20T10:02:21-04:00\"}}",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "User event stream with entityId and eventTime",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var data = JSON.parse(responseBody);",
+									"tests[\"Expected status: 200. Actual status code: \"+ responseCode.code] = responseCode.code === 200;",
+									"tests[\"User ID is: \"+ data._embedded.userEventRepresentationList[0].userUuid] = data._embedded.userEventRepresentationList[0].userUuid === \"123e4567-e89b-12d3-a456-426655441111\";",
+									"tests[\"Type is: \"+ data._embedded.userEventRepresentationList[0].type] = data._embedded.userEventRepresentationList[0].type === \"CREATE\";"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{Url}}/iamcore/user-events?page=0&limit=10&query={\"entityId\":\"123e4567-e89b-12d3-a456-426655441111\", \"eventTime\":{\"ge\":\"2016-06-20T10:02:21-04:00\"}} ",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "User event stream with invalid query criteria",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var data = JSON.parse(responseBody);",
+									"tests[\"Expected status: 400. Actual status code: \"+ responseCode.code] = responseCode.code === 400;",
+									"tests[\"Error message: \"+ data.description] = responseBody.has(\"Invalid query criteria. Only type, entityId and eventTime are currently supported in query.\");"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{Url}}/iamcore/user-events?page=0&limit=10&query={\"invalid-field\":\"whatever\"}",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "User Resource",
+			"description": "",
+			"item": [
+				{
+					"name": "Retrieve a user",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var data = JSON.parse(responseBody);",
+									"tests[\"Expected status: 200. Actual status code: \"+ responseCode.code] = responseCode.code === 200;",
+									"tests[\"uuid: \"+ data.uuid + \", active : \"+ data.active] = responseCode.code;"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{Url}}/iamcore/users/1",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Retrieve a non existent user",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var data = JSON.parse(responseBody);",
+									"tests[\"Expected status: 404. Actual status code: \"+ responseCode.code] = responseCode.code === 404;",
+									"tests[\"Error message: \"+ data.description] = responseBody.has(\"The user does not exist.\");"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{Url}}/iamcore/users/some_user",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Retrieve user by email ID",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var data = JSON.parse(responseBody);",
+									"tests[\"Expected status: 200. Actual status code: \"+ responseCode.code] = responseCode.code === 200;",
+									"tests[\"uuid: \"+ data.uuid + \", active : \"+ data.active] = responseCode.code;"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{Url}}/iamcore/users?email=navssotest@gmail.com",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Retrieve all users",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var data = JSON.parse(responseBody);",
+									"tests[\"Expected status: 200. Actual status code: \"+ responseCode.code] = responseCode.code === 200;",
+									"tests[\"uuid: \"+ data._embedded.userRepresentationList[0].uuid + \", active : \"+ data._embedded.userRepresentationList[0].active] = responseCode.code;",
+									"tests[\"Default page size is: \" + data.page.size] = data.page.size === 10;"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{Url}}/iamcore/users",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Update a user",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Expected status: 202. Actual status code: \"+ responseCode.code] = responseCode.code === 202;"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{Url}}/iamcore/users/1",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"uuid\": \"1\",\n  \"email\": \"navssotest@gmail.com\",\n  \"active\": false\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Update user with mismatched user",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var data = JSON.parse(responseBody);",
+									"tests[\"Expected status: 409. Actual status code: \"+ responseCode.code] = responseCode.code === 409;",
+									"tests[\"Error message: \"+ data.description] = responseBody.has(\"The provided user uuid does not match with the one in command.\");"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{Url}}/iamcore/users/some_user",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"uuid\": \"1\",\n  \"email\": \"navssotest@gmail.com\",\n  \"active\": false\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Update non existent user",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var data = JSON.parse(responseBody);",
+									"tests[\"Expected status: 404. Actual status code: \"+ responseCode.code] = responseCode.code === 404;",
+									"tests[\"Error message: \"+ data.description] = responseBody.has(\"The user does not exist.\");"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{Url}}/iamcore/users/some_user",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"uuid\": \"some_user\",\n  \"email\": \"navssotest@gmail.com\",\n  \"active\": false\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Update user without uuid",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var data = JSON.parse(responseBody);",
+									"tests[\"Expected status: 400. Actual status code: \"+ responseCode.code] = responseCode.code === 400;",
+									"tests[\"Error message: \"+ data.description] = responseBody.has(\"The required 'uuid' field is missing.\");"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{Url}}/iamcore/users/1",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"email\": \"navssotest@gmail.com\",\n  \"active\": false\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Update user without email",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var data = JSON.parse(responseBody);",
+									"tests[\"Expected status: 400. Actual status code: \"+ responseCode.code] = responseCode.code === 400;",
+									"tests[\"Error message: \"+ data.description] = responseBody.has(\"The required 'email' field is missing.\");"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{Url}}/iamcore/users/1",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"uuid\": \"1\",\n  \"active\": false\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Associate user with a role",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Expected status: 201. Actual status code: \"+ responseCode.code] = responseCode.code === 201;"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{Url}}/iamcore/users/1/roles",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"userUuid\": \"1\",\n    \"tenantId\": \"Naviance\",\n    \"roleName\":\"Teacher\"\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Create duplicate user role",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Expected status: 409. Actual status code: \"+ responseCode.code] = responseCode.code === 409;"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{Url}}/iamcore/users/1/roles",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"userUuid\": \"1\",\n    \"tenantId\": \"Naviance\",\n    \"roleName\":\"Teacher\"\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Create user role with mismatched userId",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var data = JSON.parse(responseBody);",
+									"tests[\"Expected status: 409. Actual status code: \"+ responseCode.code] = responseCode.code === 409;",
+									"tests[\"Error message: \"+ data.description] = responseBody.has(\"The provided user uuid does not match with the one in command.\");"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{Url}}/iamcore/users/some_user/roles",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"userUuid\": \"1\",\n    \"tenantId\": \"Naviance\",\n    \"roleName\":\"Teacher\"\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Create user role with non existent user",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var data = JSON.parse(responseBody);",
+									"tests[\"Expected status: 404. Actual status code: \"+ responseCode.code] = responseCode.code === 404;",
+									"tests[\"Error message: \"+ data.description] = responseBody.has(\"The user does not exist.\");"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{Url}}/iamcore/users/some_user/roles",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"userUuid\": \"some_user\",\n    \"tenantId\": \"Naviance\",\n    \"roleName\":\"Teacher\"\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Create user role with non existent role",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var data = JSON.parse(responseBody);",
+									"tests[\"Expected status: 404. Actual status code: \"+ responseCode.code] = responseCode.code === 404;",
+									"tests[\"Error message: \"+ data.description] = responseBody.has(\"The role does not exist.\");"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{Url}}/iamcore/users/1/roles",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"userUuid\": \"1\",\n    \"tenantId\": \"Naviance\",\n    \"roleName\":\"some_role\"\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Retrieve all roles for a user",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var data = JSON.parse(responseBody);",
+									"tests[\"Expected status: 200. Actual status code: \"+ responseCode.code] = responseCode.code === 200;",
+									"tests[\"userUuid: \"+ data._embedded.userRoleRepresentationList[0].userUuid + \", tenantId : \"+ data._embedded.userRoleRepresentationList[0].tenantId + \", roleName : \"+ data._embedded.userRoleRepresentationList[0].roleName] = responseCode.code;"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{Url}}/iamcore/users/1/roles",
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Retrieve a user role",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var data = JSON.parse(responseBody);",
+									"tests[\"Expected status: 200. Actual status code: \"+ responseCode.code] = responseCode.code === 200;",
+									"tests[\"userUuid: \"+ data.userUuid + \", tenantId : \"+ data.tenantId + \", roleName : \"+ data.roleName] = responseCode.code;"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{Url}}/iamcore/users/1/tenants/Naviance/roles/Teacher",
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Retrieve a non existent user role",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var data = JSON.parse(responseBody);",
+									"tests[\"Expected status: 404. Actual status code: \"+ responseCode.code] = responseCode.code === 404;",
+									"tests[\"Error message: \"+ data.description] = responseBody.has(\"The user role relation does not exist.\");"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{Url}}/iamcore/users/some_user/tenants/Naviance/roles/Teacher",
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Retrieve user role with  non existent role",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var data = JSON.parse(responseBody);",
+									"tests[\"Expected status: 404. Actual status code: \"+ responseCode.code] = responseCode.code === 404;",
+									"tests[\"Error message: \"+ data.description] = responseBody.has(\"The role does not exist.\");"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{Url}}/iamcore/users/1/tenants/Naviance/roles/some_role",
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Retrieve tenants associated with a user",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var data = JSON.parse(responseBody);",
+									"tests[\"Expected status: 200. Actual status code: \"+ responseCode.code] = responseCode.code === 200;",
+									"tests[\"uuid: \"+ data.tenants[0].uuid + \", tenantId : \"+ data.tenants[0].tenantId + \", active : \"+ data.tenants[0].active] = responseCode.code;"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{Url}}/iamcore/users/1/tenants",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Delete a user role",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Expected status: 204. Actual status code: \"+ responseCode.code] = responseCode.code === 204;"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{Url}}/iamcore/users/1/tenants/Naviance/roles/Teacher",
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Delete a non exsitent user role",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var data = JSON.parse(responseBody);",
+									"tests[\"Expected status: 404. Actual status code: \"+ responseCode.code] = responseCode.code === 404;",
+									"tests[\"Error message: \"+ data.description] = responseBody.has(\"The user role relation does not exist.\");"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{Url}}/iamcore/users/1/tenants/Naviance/roles/Teacher",
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Z-Delete tenant, user, role and product",
+			"description": "",
+			"item": [
+				{
+					"name": "Delete a user at tenant",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Expected status: 204. Actual status code: \"+ responseCode.code] = responseCode.code === 204;"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{Url}}/iamcore/tenants/Naviance/users/1",
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Delete product permission",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Expected status: 204. Actual status code: \"+ responseCode.code] = responseCode.code === 204;"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{Url}}/iamcore/products/1/permissions/add%20student",
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Delete a role permission",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Expected status: 204. Actual status code: \"+ responseCode.code] = responseCode.code === 204;"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{Url}}/iamcore/tenants/Naviance/roles/Teacher/products/1/permissions/add student",
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"tenantId\": \"Naviance\",\n  \"roleName\": \"Teacher\",\n  \"productId\": \"1\",\n  \"permissionAlias\": \"edit student\"\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Delete user",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Expected status: 204. Actual status code: \"+ responseCode.code] = responseCode.code === 204;"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{Url}}/iamcore/users/1",
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Delete a product",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Expected status: 204. Actual status code: \"+ responseCode.code] = responseCode.code === 204;"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{Url}}/iamcore/products/1",
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Delete a role",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Expected status: 204. Actual status code: \"+ responseCode.code] = responseCode.code === 204;"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{Url}}/iamcore/tenants/Naviance/roles/Teacher",
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Delete a tenant",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Expected status: 204. Actual status code: \"+ responseCode.code] = responseCode.code === 204;"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{Url}}/iamcore/tenants/Naviance",
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

@@ -1,10 +1,10 @@
-@smoketest @nondestructive @hubs @webtour
+@hubs @webtour
 Feature:  As a student exploring a college I want to see paid webtour to understand how the school positions itself
 
   Background:
     Given I log in to Family Connection with the following user details:
       | rtsa       | amandahubs | hubs2016  |
-    
+
     When I open the HUBS page for "Adelphi"
 
   Scenario: User is able to scroll content using arrows
@@ -26,7 +26,7 @@ Feature:  As a student exploring a college I want to see paid webtour to underst
     #When I click the Web Tour element at position "14"
     #And I click a link with the text "College of Agriculture" in the content of the modal dialog
     #Then I should see the URL for "http://agriculture.auburn.edu/" open in a new page
-
+  @smoke
   Scenario: Web Tour modal closes after clicking the 'x'
     When I open the Web Tour element at position "3"
     And I close the modal dialog with the 'x' button

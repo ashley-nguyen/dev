@@ -289,6 +289,8 @@ public class FCHubsAdmissionsTab {
             case "vs." : dropDownLocator = FCHubsAdmissionsTabPage.vsDropDownLocator;
                 break;
         }
+        new WebDriverWait(Hooks.driver, 20).until(ExpectedConditions.elementToBeClickable(driver.findElement
+                (By.cssSelector(dropDownLocator))));
         Select dropDown = new Select(driver.findElement(By.cssSelector(dropDownLocator)));
         List<WebElement> optionsList = dropDown.getOptions();
         for (WebElement optionUI : optionsList) {
@@ -449,5 +451,107 @@ public class FCHubsAdmissionsTab {
             FCHubsAdmissionsTabPage.linkLearnMoreFees.sendKeys(Keys.RETURN);
         ArrayList<String> tabs = new ArrayList<String> (driver.getWindowHandles());
         driver.switchTo().window(tabs.get(tabs.size() - 1));
+    }
+
+    public static void verifyApplicationsFromHS(List<String> applicationsList) {
+        driver = Hooks.driver;
+        PageFactory.initElements(driver, FCHubsAdmissionsTabPage.class);
+        boolean resultCurrentYear = false;
+        boolean resultPastYear = false;
+        WebElement currentUIElement = null;
+        WebElement pastUIElement = null;
+        List<String> currentYearApplications = new ArrayList<>();
+        List<String> currentYearApplicationsValues = new ArrayList<>();
+        List<String> pastYearApplications = new ArrayList<>();
+        List<String> pastYearApplicationsValues = new ArrayList<>();
+
+        for (String applicationElement : applicationsList) {
+            if (applicationElement.split(";")[0].equals("current")) {
+                currentYearApplications.add(applicationElement);
+                currentYearApplicationsValues.add(applicationElement.split(";")[2]);
+            } else if (applicationElement.split(";")[0].equals("past")) {
+                pastYearApplications.add(applicationElement);
+                pastYearApplicationsValues.add(applicationElement.split(";")[2]);
+            }
+        }
+
+        for (String currentYearApplicationElement : currentYearApplications) {
+            switch (currentYearApplicationElement.split(";")[1]) {
+                case "Total Applicants" : currentUIElement = FCHubsAdmissionsTabPage.totalApplicantsCurrentYear;
+                    break;
+                case "Students Accepted" : currentUIElement = FCHubsAdmissionsTabPage.studentsAcceptedCurrentYear;
+                    break;
+                case "Students Enrolled" : currentUIElement = FCHubsAdmissionsTabPage.studentsEnrolledCurrentYear;
+                    break;
+            }
+            System.out.println("UI Current: "+ currentUIElement.getText());
+            if (currentYearApplicationsValues.contains(currentUIElement.getText().split(" ")[0])) {
+                resultCurrentYear = true;
+            } else {
+                resultCurrentYear = false;
+                break;
+            }
+        }
+
+        for (String pastYearApplicationElement : pastYearApplications) {
+            switch (pastYearApplicationElement.split(";")[1]) {
+                case "Total Applicants" : pastUIElement = FCHubsAdmissionsTabPage.totalApplicantsPastYear;
+                    break;
+                case "Students Accepted" : pastUIElement = FCHubsAdmissionsTabPage.studentsAcceptedPastYear;
+                    break;
+                case "Students Enrolled" : pastUIElement = FCHubsAdmissionsTabPage.studentsEnrolledPastYear;
+                    break;
+            }
+            System.out.println("UI Past: "+ pastUIElement.getText());
+            if (pastYearApplicationsValues.contains(pastUIElement.getText().split(" ")[0])) {
+                resultPastYear = true;
+            } else {
+                resultPastYear = false;
+                break;
+            }
+        }
+        assertTrue("The applications from the High School are not correct", resultCurrentYear && resultPastYear);
+    }
+
+    public static void clickInfoIconAcceptanceRate() {
+        driver = Hooks.driver;
+        PageFactory.initElements(driver, FCHubsAdmissionsTabPage.class);
+        new WebDriverWait(Hooks.driver, 20).until(ExpectedConditions.elementToBeClickable(FCHubsAdmissionsTabPage
+                .infoIconAcceptanceRate));
+        FCHubsAdmissionsTabPage.infoIconAcceptanceRate.click();
+    }
+
+    public static void verifyInfoToolTipAcceptanceRate() {
+        driver = Hooks.driver;
+        PageFactory.initElements(driver, FCHubsAdmissionsTabPage.class);
+        assertTrue("The tooltip is not displayed", FCHubsAdmissionsTabPage.buttonXTooltipScattergrams.isDisplayed());
+    }
+
+    public static void verifyInfoTooltipAcceptanceRateClosed() {
+        driver = Hooks.driver;
+        PageFactory.initElements(driver, FCHubsAdmissionsTabPage.class);
+        boolean result = false;
+        try {
+            FCHubsAdmissionsTabPage.buttonXTooltipScattergrams.isDisplayed();
+        } catch (NoSuchElementException e) {
+            result = true;
+        }
+        assertTrue("The tooltip was not closed", result);
+    }
+
+    public static void verifyAdmissionsContactInfo(List<String> contactDataList) {
+        driver = Hooks.driver;
+        PageFactory.initElements(driver, FCHubsAdmissionsTabPage.class);
+        boolean result = false;
+        List<WebElement> uiList = driver.findElements(By.cssSelector(FCHubsAdmissionsTabPage.admissionsContactInfoList));
+        for (WebElement uiElement : uiList) {
+            if (contactDataList.contains(uiElement.getText())) {
+                result = true;
+            } else {
+                result = false;
+                break;
+            }
+        }
+        assertTrue("The admissions contact information is not correct", result);
     }
 }

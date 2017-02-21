@@ -33,9 +33,19 @@ public class FCHubsStudiesTabPage extends BaseClass {
     public static WebElement buttonMajorsOfferedCertificate;
     @FindBy(how = How.CSS, using = ".studies-programs__filter li:nth-of-type(7)")
     public static WebElement buttonMajorsOfferedGradCertificate;
+    @FindBy(how = How.CSS, using = "li.studies-programs__filter-item.ng-binding.ng-scope.studies-programs__filter-item" +
+            "--active")
+    public static WebElement buttonAllDegreeOfferings;
+    @FindBy(how = How.CSS, using = "div[ng-class=\"{'hub-data-pod--with-data-age': vm.dataAgePerItem}\"]" +
+            "[ng-if=\"vm.gradRate\"] svg")
+    public static WebElement infoIconGradRate;
+    @FindBy(how = How.CSS, using = "svg.fc-icon.hubs-info-tooltip__close-icon")
+    public static WebElement infoTooltipCloseIcon;
 
     public static String listDegreesOffered = "div[ng-if=\"vm.profile.friendlyDegrees.length > 0\"] " +
             "div.hub-data-pod--degree.ng-binding.ng-scope";
+    public static String listTopAreasOfStudy = "div.hubs-section__content.fc-grid__row.studies-popular " +
+            "div[ng-repeat=\"popularArea in vm.popularAreasOfStudy\"] h5";
 
     public FCHubsStudiesTabPage(WebDriver driver) {
         super(driver);

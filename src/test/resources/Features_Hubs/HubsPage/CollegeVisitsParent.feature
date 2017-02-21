@@ -1,4 +1,4 @@
-@smoketest @nondestructive @hubs @collegevisits
+@hubs @collegevisits
 Feature: As a parent, I should be able to see the College Visits my counselor creates for me so that I can make a
   good college decision.
 

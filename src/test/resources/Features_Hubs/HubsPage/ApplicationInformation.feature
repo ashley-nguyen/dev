@@ -1,4 +1,4 @@
-@smoketest @nondestructive @hubs @applicationinformation
+@hubs @applicationinformation
 Feature:  As a student viewing new Hubs' Overview tab, I want to see contact information so that I can understand how
   to communicate with the school
 
@@ -14,7 +14,7 @@ Feature:  As a student viewing new Hubs' Overview tab, I want to see contact inf
     Examples:
     | name                           | date   |
     | Early Action Deadline          | Dec 1  |
-
+  @smoke
   Scenario: Correct data is displayed for 'Important Policies' in 'Application Information'
     When I open "Important Policies" in Application Information
     Then The data for 'Important Policies' should be similar to the table:

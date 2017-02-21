@@ -1,0 +1,726 @@
+{
+	"variables": [],
+	"info": {
+		"name": "Authentication_Service",
+		"_postman_id": "66b9641b-543b-6ee8-e873-217c436e3092",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Student session using UUID",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"var data = JSON.parse(responseBody);",
+							"postman.setEnvironmentVariable(\"sessionID\", data.id);",
+							"",
+							"tests[\"Expected status: 201. Actual status code: \"+ responseCode.code] = responseCode.code === 201;",
+							"tests[\"Session ID is: \"+ data.id] = responseCode.code === 201;",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "{{Url}}/auth/sessions",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{devToken}}",
+						"description": ""
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"userId\" : \"5bb28220-0803-fc91-9f48-69c1515c8df4\"}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Student session using legacy ID",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"var data = JSON.parse(responseBody);",
+							"",
+							"tests[\"Expected status: 201. Actual status code: \"+ responseCode.code] = responseCode.code === 201;",
+							"tests[\"Session ID is: \"+ data.id] = responseCode.code === 201;",
+							"",
+							"tests[\"Response time is: \" +responseTime ] = responseTime;",
+							"",
+							"",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "{{Url}}/auth/sessions",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{devToken}}",
+						"description": ""
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"role\" : \"student\", \"legacyId\" : \"36187065\"}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Staff session using legacy ID",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"var data = JSON.parse(responseBody);",
+							"",
+							"tests[\"Expected status: 201. Actual status code: \"+ responseCode.code] = responseCode.code === 201;",
+							"tests[\"Session ID is: \"+ data.id] = responseCode.code === 201;",
+							"",
+							"tests[\"Response time is: \" +responseTime ] = responseTime;",
+							"",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "{{Url}}/auth/sessions",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{devToken}}",
+						"description": ""
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"role\" : \"staff\", \"legacyId\" : \"1161386\"}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Parent session using UUID",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"var data = JSON.parse(responseBody);",
+							"postman.setEnvironmentVariable(\"sessionID\", data.id);",
+							"",
+							"tests[\"Expected status: 201. Actual status code: \"+ responseCode.code] = responseCode.code === 201;",
+							"tests[\"Session ID is: \"+ data.id] = responseCode.code === 201;",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "{{Url}}/auth/sessions",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{devToken}}",
+						"description": ""
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"userId\" : \"737552a8-3d18-ab5a-55da-fed41792a60e\"}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Parent session using legacy ID",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"var data = JSON.parse(responseBody);",
+							"",
+							"tests[\"Expected status: 201. Actual status code: \"+ responseCode.code] = responseCode.code === 201;",
+							"tests[\"Session ID is: \"+ data.id] = responseCode.code === 201;",
+							"",
+							"",
+							"",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "{{Url}}/auth/sessions",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{devToken}}",
+						"description": ""
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"role\" : \"parent\", \"legacyId\" : \"19659265\"}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Parent-Student session",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"var data = JSON.parse(responseBody);",
+							"",
+							"tests[\"Expected status: 201. Actual status code: \"+ responseCode.code] = responseCode.code === 201;",
+							"tests[\"Session ID is: \"+ data.id] = responseCode.code === 201;",
+							"",
+							"",
+							"",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "{{Url}}/auth/sessions/parent",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{devToken}}",
+						"description": ""
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"sessionId\": \"{{sessionID}}\",\n  \"studentId\": \"6ae58220-0803-fc91-9f48-69c1515c8df4\"\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Retrieve Parent-Student session",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"",
+							"",
+							"tests[\"Expected status: 200. Actual status code: \"+ responseCode.code] = responseCode.code === 200;",
+							"",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "{{Url}}/auth/sessions/parent/{{sessionID}}",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{devToken}}",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Parent-Student session",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"",
+							"",
+							"tests[\"Expected status: 200. Actual status code: \"+ responseCode.code] = responseCode.code === 200;",
+							"",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "{{Url}}/auth/sessions/parent/{{sessionID}}",
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{devToken}}",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Retrieve session info",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"var data = JSON.parse(responseBody);",
+							"",
+							"tests[\"Expected status: 200. Actual status code: \"+ responseCode.code] = responseCode.code === 200;",
+							"tests[\"Session ID is: \"+ data.id] = responseCode.code === 200;",
+							"",
+							"tests[\"Response time is: \" +responseTime ] = responseTime;",
+							"",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "{{Url}}/auth/sessions/{{sessionID}}",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{devToken}}",
+						"description": ""
+					}
+				],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Session delete",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Expected status: 200. Actual status code: \"+ responseCode.code] = responseCode.code === 200;",
+							"",
+							"tests[\"Response time is: \" +responseTime ] = responseTime;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "{{Url}}/auth/sessions/{{sessionID}}",
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{devToken}}",
+						"description": ""
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "GHOSTING-Staff session with ghosting permission",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"var data = JSON.parse(responseBody);",
+							"postman.setEnvironmentVariable(\"sessionID\", data.id);",
+							"",
+							"tests[\"Expected status: 201. Actual status code: \"+ responseCode.code] = responseCode.code === 201;",
+							"tests[\"Session ID is: \"+ data.id] = responseCode.code === 201;",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "{{Url}}/auth/sessions",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{devToken}}",
+						"description": ""
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"userId\" : \"aa8b1100-edee-a485-16c3-3a2436c2221f\"}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Info for a session with no ghost session",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"var data = JSON.parse(responseBody);",
+							"",
+							"tests[\"Expected status: 200. Actual status code: \"+ responseCode.code] = responseCode.code === 200;",
+							"tests[\"Session ID is: \"+ data.id] = responseCode.code;",
+							"tests[\"User ID is: \"+ data.userId] = responseCode.code;",
+							"tests[\"Ghost user ID is: \"+ data.ghostedUser] = responseBody.has(\"null\");",
+							"",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "{{Url}}/auth/sessions/ghost/{{sessionID}}",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{devToken}}",
+						"description": ""
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Initiate a ghost session",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"var data = JSON.parse(responseBody);",
+							"tests[\"Expected status: 201. Actual status code: \"+ responseCode.code] = responseCode.code === 201;",
+							"tests[\"Ghost session ID is: \"+ data.id] = responseCode.code;",
+							"tests[\"staff user ID is: \"+ data.userId] = responseCode.code;",
+							"tests[\"Student user ID is: \"+ data.ghostedUser.id] = responseCode.code;",
+							"tests[\"Student user name is: \"+ data.ghostedUser.personalInfo.firstName + \" \" + data.ghostedUser.personalInfo.lastName] = responseCode.code;",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "{{Url}}/auth/sessions/ghost",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{devToken}}",
+						"description": ""
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"sessionId\":\"{{sessionID}}\", \n    \"ghostedUserId\" : \"82c38220-0803-fc91-9f48-69c1515c8df4\", \n    \"ghostedUserInstitutionId\" : \"d8b95a4e-aee5-638d-43eb-5b419092bc1d\", \n    \"ghostedUserRole\" : \"student\"\n    \n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Retrieve ghost session info",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"var data = JSON.parse(responseBody);",
+							"tests[\"Expected status: 200. Actual status code: \"+ responseCode.code] = responseCode.code === 200;",
+							"tests[\"Ghost session ID is: \"+ data.id] = responseCode.code;",
+							"tests[\"staff user ID is: \"+ data.userId] = responseCode.code;",
+							"tests[\"Ghost user ID is: \"+ data.ghostedUser.id] = responseCode.code;",
+							"tests[\"Ghost student user name is: \"+ data.ghostedUser.personalInfo.firstName + \" \" + data.ghostedUser.personalInfo.lastName] = responseCode.code;",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "{{Url}}/auth/sessions/ghost/{{sessionID}}",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{devToken}}",
+						"description": ""
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Terminate a ghost session",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Expected status: 200. Actual status code: \"+ responseCode.code] = responseCode.code === 200;",
+							"",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "{{Url}}/auth/sessions/ghost/{{sessionID}}",
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{devToken}}",
+						"description": ""
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Retrieve deleted ghost session info",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"var data = JSON.parse(responseBody);",
+							"",
+							"tests[\"Expected status: 200. Actual status code: \"+ responseCode.code] = responseCode.code === 200;",
+							"tests[\"Session ID is: \"+ data.id] = responseCode.code;",
+							"tests[\"User ID is: \"+ data.userId] = responseCode.code;",
+							"tests[\"Ghost user ID is: \"+ data.ghostedUser] = responseBody.has(\"null\");",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "{{Url}}/auth/sessions/ghost/{{sessionID}}",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{devToken}}",
+						"description": ""
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Session delete",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Expected status: 200. Actual status code: \"+ responseCode.code] = responseCode.code === 200;",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "{{Url}}/auth/sessions/{{sessionID}}",
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{devToken}}",
+						"description": ""
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Retrieve ghost session info after session deletion",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Expected status: 404. Actual status code: \"+ responseCode.code] = responseCode.code === 404;",
+							"",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "{{Url}}/auth/sessions/ghost/{{sessionID}}",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{devToken}}",
+						"description": ""
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}

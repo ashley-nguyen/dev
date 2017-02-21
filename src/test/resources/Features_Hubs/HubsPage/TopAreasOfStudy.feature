@@ -1,4 +1,4 @@
-@smoketest @nondestructive @hubs @topareasofstudy
+@hubs @topareasofstudy
 Feature: As a student, I want to see the popular majors for that school so I can make a more informed decision
 
   Background:
@@ -6,7 +6,7 @@ Feature: As a student, I want to see the popular majors for that school so I can
       | rtsa  | amandahubs | hubs2016  |
     When I open the HUBS page for "Adrian"
     Then I open the Studies tab
-
+  @smoke
   Scenario: The Top Areas of Study are displayed with correct values
     Then The Top Areas of Study should be displayed with the following values:
     | Business, Management, Marketing, and Related Support Services |

@@ -92,7 +92,10 @@ public class FCSurvey {
         ArrayList<String> tabs = new ArrayList<String> (driver.getWindowHandles());
         driver.switchTo().window(tabs.get(tabs.size() - 1));
         driver.close();
-        driver.switchTo().window(tabs.get(0));
+        //Use this when the beta button in legacy is disabled
+        //driver.switchTo().window(tabs.get(0));
+        //Use this when the beta button in legacy is enabled
+        driver.switchTo().window(tabs.get(1));
         assertTrue("It is not possible to close Survey Page", driver.findElement(By.xpath
                 ("//div[@class='hub-beta-bar']")).isDisplayed());
     }

@@ -1,4 +1,4 @@
-@smoketest @nondestructive @hubs @studentorganizations
+@hubs @studentorganizations
 Feature:  As a student viewing new Hubs' Student Life tab, I want to see a school population module to give
   me an idea what sort of community the school is
 
@@ -91,6 +91,38 @@ Feature:  As a student viewing new Hubs' Student Life tab, I want to see a schoo
     | Badminton,empty,empty,empty        |
     | Equestrian,empty,empty,empty       |
     | Ultimate Frisbee,empty,empty,empty |
+  @smoke
+  Scenario: The correct number of fraternities and sororities is displayed in Greek Life
+    When I open the "Greek Life" tab in Student Organizations and Services
+    Then The quantity of fraternities and sororities in Greek Life tab is as follows:
+    | Fraternities;7 |
+    | Sororities;10  |
+
+  Scenario: All the available services are displayed in Services
+    When I open the "Services" tab in Student Organizations and Services
+    Then The available services in Services tab are as follows:
+    #Use 'basic' or 'ROTC' to indicate the service type
+    | basic;Assistance for Hearing Impaired  |
+    | basic;Assistance for Mobility Impaired |
+    | basic;Assistance for Visually Impaired |
+    | basic;Day Care Services                |
+    | basic;ESL (English as Second Language) |
+    | basic;Health Services Available        |
+    | basic;Library Facilities               |
+    | basic;Veteran                          |
+    | ROTC;Airforce                          |
+    | ROTC;Army                              |
+    | ROTC;Serviceperson Opportunity College |
+
+  Scenario: The location and type of all the computing resources are displayed in Computing Resources
+    When I open the "Computing Resources" tab in Student Organizations and Services
+    Then The location and type of all the computing resources should be displayed in Computing Resources as follows:
+    | Computer Centers;93;1   |
+    | Library;15;2            |
+    | Other;0;0               |
+    | Department Labs;727;108 |
+    | Residence;15;0          |
+    | Student Centers;135;10  |
 
 
 
