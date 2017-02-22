@@ -123,7 +123,9 @@ public class Hooks {
          }
         System.out.println("Opening Browser...." + browser);
         driver.manage().deleteAllCookies();
-        driver.get(strBaseURL);
+        if(!env.equals("int")) {
+            driver.get(strBaseURL);
+        }
         driver.manage().window().maximize();
     }
 

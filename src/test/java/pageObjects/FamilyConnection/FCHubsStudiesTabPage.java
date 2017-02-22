@@ -53,6 +53,11 @@ public class FCHubsStudiesTabPage extends BaseClass {
     @FindBy(how = How.CSS, using = "div[ng-if=\"vm.profile.friendlyDegrees.length > 0\"] " +
             "div[ng-if=\"vm.dataAgePerItem\"]")
     public static WebElement dateLabelDegreesOffered;
+    @FindBy(how = How.CSS, using = "div.hubs-section__content.fc-grid__row.studies-popular div[ng-if=\"vm.dataAge\"]")
+    public static WebElement dateLabelTopAreasOfStudy;
+    @FindBy(how = How.CSS, using = "div.studies-programs.hubs-section.fc-grid__row.fc-grid__row--xs-center" +
+            ".ng-scope div.studies-programs__content + div")
+    public static WebElement dateLabelMajorsOffered;
 
     public static String listDegreesOffered = "div[ng-if=\"vm.profile.friendlyDegrees.length > 0\"] " +
             "div.hub-data-pod--degree.ng-binding.ng-scope";

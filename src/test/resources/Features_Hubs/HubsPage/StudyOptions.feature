@@ -33,4 +33,4 @@ Feature:  As a student viewing new Hubs' Overview tab, I want to see contact inf
     | Weekend Evening Programs         |
 
   Scenario: A label indicating the year of the data is displayed under Study Options
-    Then I should see the label "Latest available data from 2016" under Study Options
+    Then I should see the label "Latest available data from 2016" under "Study Options"

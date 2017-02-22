@@ -210,12 +210,21 @@ public class FCHubsStudiesTab {
         assertTrue("The tooltip was not closed", result);
     }
 
-    public static void verifyDateLabel(String label) {
+    public static void verifyDateLabel(String label, String section) {
         driver = Hooks.driver;
         PageFactory.initElements(driver, FCHubsStudiesTabPage.class);
-        new WebDriverWait(Hooks.driver, 20).until(ExpectedConditions.elementToBeClickable(FCHubsStudiesTabPage
-                .dateLabelStudyOptions));
-        assertTrue("The label is not correct", FCHubsStudiesTabPage.dateLabelStudyOptions.getText().equals(label));
+        WebElement uiElement = null;
+        switch (section) {
+            case "Study Options" : uiElement = FCHubsStudiesTabPage.dateLabelStudyOptions;
+                break;
+            case "Top Areas of Study" : uiElement = FCHubsStudiesTabPage.dateLabelTopAreasOfStudy;
+                break;
+            case "Majors Offered" : uiElement = FCHubsStudiesTabPage.dateLabelMajorsOffered;
+                break;
+        }
+//        new WebDriverWait(Hooks.driver, 20).until(ExpectedConditions.elementToBeClickable(uiElement));
+        System.out.println("UI: " + uiElement.getText());
+        assertTrue("The label is not correct", uiElement.getText().equals(label));
     }
 
     public static void verifyDateLabels(List<String> dateLabelsList) {

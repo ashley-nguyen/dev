@@ -1065,4 +1065,13 @@ public class FCHubs {
         assertTrue("The label under Score Comparison is not correct", FCHubsPage.labelDataConversionDetails.getText()
                 .equals(label));
     }
+
+    public static void verifyCeebCodeQuickFacts(String ceebCodeValue) {
+        driver = Hooks.driver;
+        PageFactory.initElements(driver, FCHubsPage.class);
+        new WebDriverWait(Hooks.driver, 20).until(ExpectedConditions.elementToBeClickable(FCHubsPage
+                .ceebCodeQuickFacts));
+        assertTrue("The CEEB code is not displayed in Quick Facts", FCHubsPage.ceebCodeQuickFacts.getText()
+                .equals(ceebCodeValue));
+    }
 }

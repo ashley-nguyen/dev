@@ -198,6 +198,8 @@ public class FCHubsPage extends BaseClass {
     public static WebElement infoIconCompareMeACT;
     @FindBy(how = How.CSS, using = "div.compareNotes.fc-grid__row.fc-grid__row--xs-center")
     public static WebElement labelDataConversionDetails;
+    @FindBy(how = How.CSS, using = "div[ng-show=\"vm.college.codes.CEEB\"] div.ng-binding")
+    public static WebElement ceebCodeQuickFacts;
 
     public static String URLimThinkingAboutList = "https://connection-int.dev.naviance.com/family-connection" +
             "/colleges/application/consideration";
