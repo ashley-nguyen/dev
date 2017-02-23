@@ -44,7 +44,7 @@ public class TestPrepStepDefs {
     public void iHaveCredentials() throws Throwable {
     }
 
-    @When("^I created a new student (.*), (.*), (.*), (.*), (.*), (.*) and NTP group (.*), (.*) and (.*)$")
+    @When("^I created a new student (.*), (.*), (.*), (.*), (.*), (.*) and NTP group (.*) with (.*) and (.*)$")
     public void CreateNewStudentAssignStudentGroupAndAssignStudyPrograms(String studentLastName,
                                                                            String studentFirstName, String studentClassYear,
                                                                            String studentGender, String studentFCUserName,
@@ -56,8 +56,6 @@ public class TestPrepStepDefs {
         studentInfo.put("studentGender", studentGender);
         studentInfo.put("studentClassYear", studentClassYear);
         List<String> studentToAssign = new ArrayList<>();
-        List<String> studentGroups = new ArrayList<>();
-        List<String> instructors = new ArrayList<>();
 
         // Navigate to Add Students
         AddStudents.ClickAddStudentsLink();
@@ -67,20 +65,21 @@ public class TestPrepStepDefs {
 
         if (!studentGroup.isEmpty())
         {   studentToAssign.add(studentLastName +", "+ studentFirstName);
-            studentGroups.add(studentGroup);
-            List<String> studyPrograms = Arrays.asList(studyProgram.split("\\s*,\\s*"));
-            instructors.add(instructorName);
+
             // Add Student Group
             Groups.ClickGroupsLink();
             Groups.AddStudentGroup(studentGroup, studentGroup);
+
             // Assign Students to the Group
             Groups.AssignStudentsToAGroup(studentToAssign, studentGroup, studentClassYear);
+
             // Navigate to Test Prep
             Dashboard.NavigateToHome();
             TestPrep.clickTestPrepLink();
             TestPrep.skipWalkThroughPage();
+
             // Assign Study Programs
-            TestPrep.AssignStudyPrograms(studyPrograms, instructors, studentGroups);
+            TestPrep.AssignStudyPrograms(studyProgram, instructorName, studentGroup);
         }
     }
 
