@@ -19,19 +19,19 @@ public class FCHubsStudiesTabPage extends BaseClass {
     @FindBy(how = How.CSS, using = "div[ng-class=\"{'hub-data-pod--with-data-age': vm.dataAgePerItem}\"]" +
             "[ng-if=\"vm.gradRate\"] div.hub-data-pod--studies.ng-binding")
     public static WebElement labelGradRate;
-    @FindBy(how = How.CSS, using = ".studies-programs__filter li:nth-of-type(1)")
+    @FindBy(how = How.XPATH, using = "//li[contains(text(), 'All')]")
     public static WebElement buttonMajorsOfferedAll;
     @FindBy(how = How.CSS, using = ".studies-programs__filter li:nth-of-type(2)")
     public static WebElement buttonMajorsOfferedAssociates;
-    @FindBy(how = How.CSS, using = ".studies-programs__filter li:nth-of-type(3)")
+    @FindBy(how = How.XPATH, using = "//ul[@class = 'studies-programs__filter-list']/li[contains(text(), 'Bachelors')]")
     public static WebElement buttonMajorsOfferedBachelors;
-    @FindBy(how = How.CSS, using = ".studies-programs__filter li:nth-of-type(4)")
+    @FindBy(how = How.XPATH, using = "//ul[@class = 'studies-programs__filter-list']/li[contains(text(), 'Masters')]")
     public static WebElement buttonMajorsOfferedMasters;
-    @FindBy(how = How.CSS, using = ".studies-programs__filter li:nth-of-type(5)")
+    @FindBy(how = How.XPATH, using = "//ul[@class = 'studies-programs__filter-list']/li[contains(text(), 'Doctoral')]")
     public static WebElement buttonMajorsOfferedDoctoral;
     @FindBy(how = How.CSS, using = ".studies-programs__filter li:nth-of-type(6)")
     public static WebElement buttonMajorsOfferedCertificate;
-    @FindBy(how = How.CSS, using = ".studies-programs__filter li:nth-of-type(7)")
+    @FindBy(how = How.XPATH, using = "//ul[@class = 'studies-programs__filter-list']/li[contains(text(), 'Graduate Certificate')]")
     public static WebElement buttonMajorsOfferedGradCertificate;
     @FindBy(how = How.CSS, using = "li.studies-programs__filter-item.ng-binding.ng-scope.studies-programs__filter-item" +
             "--active")

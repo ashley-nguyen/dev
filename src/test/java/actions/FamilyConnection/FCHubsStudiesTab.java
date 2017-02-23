@@ -121,7 +121,7 @@ public class FCHubsStudiesTab {
         JavascriptExecutor jse = (JavascriptExecutor)driver;
         ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", driver.findElement
                 (By.cssSelector(".studies-popular__header.fc-grid__col.fc-grid__col--xs-12")));
-        majorsOfferedDegree.click();
+        majorsOfferedDegree.sendKeys(Keys.RETURN);
     }
 
     public static void ClickProgramInMajorsOfferedList(String program) {

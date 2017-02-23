@@ -581,4 +581,35 @@ public class FCHubsAdmissionsTab {
         }
         assertTrue("The admissions contact information is not correct", result);
     }
+
+    public static void selectOptionInDropDownScattegrams(String option, String dropdown) {
+        driver = Hooks.driver;
+        PageFactory.initElements(driver, FCHubsAdmissionsTabPage.class);
+        String locator = "";
+        switch (dropdown) {
+            case "first" : locator = FCHubsAdmissionsTabPage.comparingDropDownLocator;
+                break;
+            case "second" : locator = FCHubsAdmissionsTabPage.vsDropDownLocator;
+                break;
+        }
+        Select scattergramsDropDown = new Select(driver.findElement(By.cssSelector(locator)));
+        scattergramsDropDown.selectByVisibleText(option);
+    }
+
+    public static void clickInfoIconScattergramsPSAT() {
+        driver = Hooks.driver;
+        PageFactory.initElements(driver, FCHubsAdmissionsTabPage.class);
+        new WebDriverWait(Hooks.driver, 20).until(ExpectedConditions.elementToBeClickable
+                (FCHubsAdmissionsTabPage.scattergramsPSATInfoIcon));
+        FCHubsAdmissionsTabPage.scattergramsPSATInfoIcon.sendKeys(Keys.RETURN);
+    }
+
+    public static void verifyPSATTooltip() {
+        driver = Hooks.driver;
+        PageFactory.initElements(driver, FCHubsAdmissionsTabPage.class);
+        new WebDriverWait(Hooks.driver, 20).until(ExpectedConditions.elementToBeClickable
+                (FCHubsAdmissionsTabPage.buttonXTooltipScattergrams));
+        assertTrue("The tooltip in PSAT/SAT is not displayed", FCHubsAdmissionsTabPage
+                .buttonXTooltipScattergrams.isDisplayed());
+    }
 }
