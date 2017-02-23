@@ -41,6 +41,8 @@ public class FCCollegesPage extends BaseClass {
     public static String imThinkingAboutListElementsString = ".less-pad.standard.striped tr td:nth-of-type(2) a";
     public static String imApplyingToListLocator = "table.standard.less-pad.striped.small td:nth-of-type(2) a";
     public static String collegeVisitsLocator = ".standard.striped td:nth-of-type(2) a";
+    public static String partialSearchCollegeIntURL = "https://connection-int.dev.naviance.com/family-connection" +
+            "/colleges/lookup?collegename=";
 
     public FCCollegesPage(WebDriver driver) {
         super(driver);

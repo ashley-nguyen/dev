@@ -138,6 +138,8 @@ public class FCCollegeEvents {
     public static void clickCollegesTabOld() {
         driver = Hooks.driver;
         PageFactory.initElements(driver, FCCollegeEventsPage.class);
+        new WebDriverWait(Hooks.driver, 20).until(ExpectedConditions.elementToBeClickable
+                (FCCollegeEventsPage.oldCollegesTab));
         FCCollegeEventsPage.oldCollegesTab.click();
     }
 }

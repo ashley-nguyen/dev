@@ -14,3 +14,6 @@ Feature: As a student, I want to see the popular majors for that school so I can
     | Biological and Biomedical Sciences                            |
     | Education                                                     |
     | Parks, Recreation, Leisure, and Fitness Studies               |
+
+  Scenario: The date text is displayed under Top Areas of Study
+    Then The text "Latest available data from 2014" should be displayed under "Top Areas of Study"

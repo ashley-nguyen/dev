@@ -52,6 +52,7 @@ public class FCHubsBottomStickyBar {
             case "Upcoming Visits" : buttonElement = FCHubsBottomStickyBarPage.buttonNumberUpcomingVisits;
                 break;
         }
+        new WebDriverWait(Hooks.driver, 20).until(ExpectedConditions.elementToBeClickable(buttonElement));
         buttonElement.click();
     }
 

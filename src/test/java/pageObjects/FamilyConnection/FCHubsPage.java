@@ -125,17 +125,18 @@ public class FCHubsPage extends BaseClass {
     public static WebElement buttonAddToCollegesImThinkingAboutFull;
     @FindBy(how = How.CSS, using = ".fc-tooltip__content.ng-scope")
     public static WebElement tooltipHeartIcon;
-    @FindBy(how = How.CSS, using = "span[ng-class=\"{true:'scoreLow', false:'score'}[vm.compares.gpa == vm.low]\"]")
+    @FindBy(how = How.CSS, using = "div.bottom.bottom--gpa div:nth-of-type(2) span")
     public static WebElement labelGPAValue;
-    @FindBy(how = How.CSS, using = "span[ng-class=\"{true:'scoreLow', false:'score'}[vm.compares.sat == vm.low]\"]")
+    @FindBy(how = How.CSS, using = "div[ng-show=\"vm.showCompareSat === true\"] span.ng-binding.score")
     public static WebElement labelSATValue;
-    @FindBy(how = How.CSS, using = "span[ng-class=\"{true:'scoreLow', false:'score'}[vm.compares.act == vm.low]\"]")
+    @FindBy(how = How.CSS, using = "div[ng-show=\"vm.showCompareAct === true\"] span.ng-binding.score")
     public static WebElement labelACTValue;
-    @FindBy(how = How.CSS, using = "div[ng-show=\"vm.otherScores.gpaStatistics.average\"]")
+    @FindBy(how = How.CSS, using = "div[ng-show=\"vm.gpaAvg\"] span:not(.ng-hide)")
     public static WebElement labelAvgGPAValue;
-    @FindBy(how = How.CSS, using = "div[ng-show=\"vm.otherScores.satStatistics.average\"]")
+    @FindBy(how = How.CSS, using = "div[ng-show=\"vm.showCompareSat === true\"] div.bottom div:nth-of-type(3)")
     public static WebElement labelAvgSATValue;
-    @FindBy(how = How.CSS, using = "div[ng-show=\"vm.otherScores.actStatistics.average\"]")
+    @FindBy(how = How.CSS, using = "div[ng-show=\"vm.showCompareAct === true\"] div.bottom:nth-of-type(2) " +
+            "div:nth-of-type(3)")
     public static WebElement labelAvgACTValue;
     @FindBy(how = How.CSS, using = "div.gauge-container.fc-grid__col--md-2.fc-grid__col--sm-2.fc-grid__col--xs-6:nth-" +
             "of-type(4) div.ng-binding + span")
@@ -188,16 +189,17 @@ public class FCHubsPage extends BaseClass {
     public static WebElement tooltipCloseIcon;
     @FindBy(how = How.CSS, using = "span.compare__description--tooltip-flex svg")
     public static WebElement infoIconCompareMeDescription;
-    @FindBy(how = How.CSS, using = "span[ng-show=\"vm.compareToggleState == 'college' && vm.otherScores.gpaStatistics" +
-            ".low && vm.otherScores.gpaStatistics.high\"] svg")
+    @FindBy(how = How.CSS, using = "div.bottom.bottom--gpa span.range.ng-binding svg")
     public static WebElement infoIconCompareMeGPA;
-    @FindBy(how = How.CSS, using = "span[ng-show=\"vm.compareToggleState == 'college' && vm.otherScores.satStatistics" +
-            ".low && vm.otherScores.satStatistics.high\"] svg")
+    @FindBy(how = How.CSS, using = "span[ng-show=\"vm.compareToggleState == 'college' && vm.gpaLo && vm.gpaHi\"] svg")
     public static WebElement infoIconCompareMeSAT;
     @FindBy(how = How.CSS, using = "span[ng-show=\"vm.compareToggleState == 'college' && vm.otherScores.actStatistics" +
             ".low && vm.otherScores.actStatistics.high\"] svg")
     public static WebElement infoIconCompareMeACT;
-
+    @FindBy(how = How.CSS, using = "div.compareNotes.fc-grid__row.fc-grid__row--xs-center")
+    public static WebElement labelDataConversionDetails;
+    @FindBy(how = How.CSS, using = "div[ng-show=\"vm.college.codes.CEEB\"] div.ng-binding")
+    public static WebElement ceebCodeQuickFacts;
 
     public static String URLimThinkingAboutList = "https://connection-int.dev.naviance.com/family-connection" +
             "/colleges/application/consideration";

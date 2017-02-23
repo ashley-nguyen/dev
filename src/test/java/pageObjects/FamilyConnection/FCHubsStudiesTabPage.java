@@ -41,6 +41,23 @@ public class FCHubsStudiesTabPage extends BaseClass {
     public static WebElement infoIconGradRate;
     @FindBy(how = How.CSS, using = "svg.fc-icon.hubs-info-tooltip__close-icon")
     public static WebElement infoTooltipCloseIcon;
+    @FindBy(how = How.CSS, using = "div.data-age-row.data-age-row--twilight.ng-binding.ng-scope")
+    public static WebElement dateLabelStudyOptions;
+    @FindBy(how = How.CSS, using = "div[ng-if=\"vm.studentFacultyRatio\"] div:nth-of-type(4)")
+    public static WebElement dateLabelStudentFacultyRatio;
+    @FindBy(how = How.CSS, using = "div[ng-if=\"vm.studentRetention\"] div:nth-of-type(4)")
+    public static WebElement dateLabelStudentRetention;
+    @FindBy(how = How.CSS, using = "div[ng-if=\"vm.hubsTabs.getActive() === 'Studies'\"] div.studies-overview" +
+            ".fc-grid__row.fc-grid__row--xs-center div[ng-if=\"vm.gradRate\"] div[ng-if=\"vm.dataAgePerItem\"]")
+    public static WebElement dateLabelGraduationRate;
+    @FindBy(how = How.CSS, using = "div[ng-if=\"vm.profile.friendlyDegrees.length > 0\"] " +
+            "div[ng-if=\"vm.dataAgePerItem\"]")
+    public static WebElement dateLabelDegreesOffered;
+    @FindBy(how = How.CSS, using = "div.hubs-section__content.fc-grid__row.studies-popular div[ng-if=\"vm.dataAge\"]")
+    public static WebElement dateLabelTopAreasOfStudy;
+    @FindBy(how = How.CSS, using = "div.studies-programs.hubs-section.fc-grid__row.fc-grid__row--xs-center" +
+            ".ng-scope div.studies-programs__content + div")
+    public static WebElement dateLabelMajorsOffered;
 
     public static String listDegreesOffered = "div[ng-if=\"vm.profile.friendlyDegrees.length > 0\"] " +
             "div.hub-data-pod--degree.ng-binding.ng-scope";

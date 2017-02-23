@@ -6,12 +6,15 @@ Feature:  As a student viewing new Hubs' Overview tab, I want to see contact inf
     Given I log in to Family Connection with the following user details:
       | rtsa       | amandahubs | hubs2016  |
     When I open the HUBS page for "Alma"
-
+  @smoke
   Scenario: Website is displayed in Quick Facts with a correct value
     Then Website should be "alma.edu" in Quick Facts
 
   Scenario: The School Type is displayed in Quick Facts with correct data
     Then School Type is "Private / 4 Year" in Quick Facts
+  @smoke
+  Scenario: The Ceeb Code is displayed in Quick Facts with correct data
+    Then CEEB Code is "1010" in Quick Facts
 
   Scenario: Undergraduate Enrollment is displayed in Quick Facts with correct data
     Then Undergraduate Enrollment is "1,396" in Quick Facts

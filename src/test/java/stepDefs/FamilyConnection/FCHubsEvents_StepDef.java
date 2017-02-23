@@ -88,7 +88,7 @@ public class FCHubsEvents_StepDef {
 
     }
 
-    @When("^I Navigate to oldColleges tab$")
+    @When("^I Navigate to old Colleges tab$")
     public void i_Click_On_Old_CollegesTab() throws Throwable {
         FCCollegeEvents.clickCollegesTabOld();
     }

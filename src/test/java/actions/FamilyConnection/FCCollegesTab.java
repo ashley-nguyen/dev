@@ -91,4 +91,10 @@ public class FCCollegesTab {
         PageFactory.initElements(driver, FCCollegesPage.class);
         FCCollegesPage.linkAddToImThinkingAboutList.click();
     }
+
+    public static void goToSearchCollegeWithURL(String college) {
+        driver = Hooks.driver;
+        PageFactory.initElements(driver, FCCollegesPage.class);
+        driver.get(FCCollegesPage.partialSearchCollegeIntURL + college);
+    }
 }

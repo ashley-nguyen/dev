@@ -105,7 +105,7 @@ public class FCSurvey {
         ArrayList<String> tabs = new ArrayList<String> (driver.getWindowHandles());
         driver.switchTo().window(tabs.get(tabs.size() - 1));
         driver.close();
-        driver.switchTo().window(tabs.get(0));
+        driver.switchTo().window(tabs.get(1));
     }
 
     public static void clickCloseSurveypreview() {
