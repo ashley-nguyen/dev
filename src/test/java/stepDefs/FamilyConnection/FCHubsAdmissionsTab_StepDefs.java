@@ -162,4 +162,19 @@ public class FCHubsAdmissionsTab_StepDefs {
     public void I_should_see_a_the_admissions_contact_information_as_follows(List<String> contactDataList) throws Throwable {
         FCHubsAdmissionsTab.verifyAdmissionsContactInfo(contactDataList);
     }
+
+    @When("^I select \"([^\"]*)\" in the \"([^\"]*)\" dropdown in Scattergrams$")
+    public void I_select_in_the_dropdown_in_scattergrams(String option, String dropdown) throws Throwable {
+        FCHubsAdmissionsTab.selectOptionInDropDownScattegrams(option, dropdown);
+    }
+
+    @And("^I open the tooltip with the information icon in PSAT/SAT$")
+    public void I_open_the_tooltip_with_the_information_icon_in_PSAT_SAT() throws Throwable {
+        FCHubsAdmissionsTab.clickInfoIconScattergramsPSAT();
+    }
+
+    @Then("^I should see the PSAT/SAT tooltip displayed$")
+    public void I_should_see_the_PSAT_SAT_tooltip_displayed() throws Throwable {
+        FCHubsAdmissionsTab.verifyPSATTooltip();
+    }
 }

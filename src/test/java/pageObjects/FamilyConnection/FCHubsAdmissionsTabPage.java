@@ -104,6 +104,8 @@ public class FCHubsAdmissionsTabPage extends BaseClass {
     public static WebElement studentsEnrolledBeforePastYear;
     @FindBy(how = How.CSS, using = "div[ng-if=\"vm.requirementLists.length > 0\"] h2")
     public static WebElement applicationRequirementsTitle;
+    @FindBy(how = How.CSS, using = "span.psat__html-tooltip svg")
+    public static WebElement scattergramsPSATInfoIcon;
 
     public static String listDeadlinesLocator = ".admissions-information__deadline-item.ng-scope";
     public static String comparingDropDownLocator = "select[ng-model=\"vm.scattergramGpaType\"]";
