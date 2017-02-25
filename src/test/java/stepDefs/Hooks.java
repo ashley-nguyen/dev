@@ -43,9 +43,9 @@ public class Hooks {
         dc.setCapability(CapabilityType.UNEXPECTED_ALERT_BEHAVIOUR, UnexpectedAlertBehaviour.IGNORE);
         //dc.setJavascriptEnabled(true);
         String env = System.getProperty("ENV");
-        
+
         if (env == null)
-            env = "prod";
+            env = "QABlue";
         switch (env) {
             case "staging":
                 strBaseURL = "https://succeed-internal.naviance.com";
@@ -67,10 +67,13 @@ public class Hooks {
                 break;
             case "prodConnection":
                 strBaseURL = "https://connection.naviance.com";
+                break;
             case "QAGreen":
                 strBaseURL = "https://succeed-green-int.dev.naviance.com";
+                break;
             case "QABlue":
                 strBaseURL = "https://succeed-blue-int.dev.naviance.com";
+                break;
             default:
                 strBaseURL = "https://succeed-internal.naviance.com";
                 break;

@@ -162,7 +162,7 @@ public class TestPrep {
         int iSize = elementCount.size();
         for(int i = 0; i < iSize ; i++){
             String option = elementCount.get(i).getText();
-            if(value.contains(option))
+            if(option.contains(value))
             {
                 elementCount.get(i).click();
                 break;
