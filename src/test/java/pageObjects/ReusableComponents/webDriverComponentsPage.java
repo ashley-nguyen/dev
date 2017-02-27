@@ -16,6 +16,8 @@ public class webDriverComponentsPage extends BaseClass {
     public static WebElement Planner;
     @FindBy(how = How.XPATH, using = "//ul[@class ='dropdown active']/li/a[text() = 'assign and manage']")
     public static WebElement AssignAndManage;
+    @FindBy(how = How.XPATH, using = "//ul[@class ='dropdown active']/li/a[text() = 'tasks']")
+    public static WebElement Tasks;
 
 
     public webDriverComponentsPage(WebDriver driver) {
