@@ -28,9 +28,9 @@ public class DataImport_StepDefs {
         DataImport.ClickOnChooseFileButton();
     }
 
-    @When("^I write the file name to import students$")
-    public void i_write_the_file_name_to_import_students() throws Throwable {
-        DataImport.WriteFileNameToImportStudent();
+    @When("^I write the file name \"(.*)\" to import students$")
+    public void i_write_the_file_name_to_import_students(String filename) throws Throwable {
+        DataImport.WriteFileNameToImportStudent(filename);
     }
 
 

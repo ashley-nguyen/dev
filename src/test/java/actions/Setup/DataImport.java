@@ -18,7 +18,7 @@ import java.util.concurrent.TimeUnit;
 public class DataImport {
 
     public static WebDriver driver;
-    private static String CHROME_STUDENT_FILE_IMPORT = "/Files/studentExportTest.csv";
+    private static String CHROME_STUDENT_FILE_IMPORT = "/Files/";
 
     public static void NavigateToDataImport() {
         driver = Hooks.driver;
@@ -41,13 +41,11 @@ public class DataImport {
         SetupPage.btnChooseFile.click();
     }
 
-    public static void WriteFileNameToImportStudent() throws InterruptedException, AWTException {
+    public static void WriteFileNameToImportStudent(String filename) throws InterruptedException, AWTException {
         driver = Hooks.driver;
         PageFactory.initElements(driver, SetupPage.class);
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-        File filePathStudentImport = new File(Hooks.class.getResource(CHROME_STUDENT_FILE_IMPORT).getFile());
-        System.out.println("File path" + filePathStudentImport);
-       //
+        File filePathStudentImport = new File(Hooks.class.getResource(CHROME_STUDENT_FILE_IMPORT + filename).getFile());
         driver.switchTo().activeElement().sendKeys(filePathStudentImport.toString());
         driver.switchTo().activeElement();
         new WebDriverWait(Hooks.driver, 30).until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("input[name=uploadFile]")));
