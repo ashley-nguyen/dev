@@ -110,9 +110,9 @@ Feature:  As a student viewing new Hubs' Student Life tab, I want to see a schoo
     | basic;Health Services Available        |
     | basic;Library Facilities               |
     | basic;Veteran                          |
-    | ROTC;Airforce                          |
-    | ROTC;Army                              |
     | ROTC;Serviceperson Opportunity College |
+    | ROTC;Army                              |
+    | ROTC;Airforce                          |
 
   Scenario: The location and type of all the computing resources are displayed in Computing Resources
     When I open the "Computing Resources" tab in Student Organizations and Services

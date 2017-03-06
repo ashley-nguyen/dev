@@ -62,8 +62,14 @@ public class FCHubsAdmissionsTabPage extends BaseClass {
     public static WebElement imageScattergrams;
     @FindBy(how = How.CSS, using = "span[title=\"Click to learn more about Scattergrams\"] svg")
     public static WebElement infoIconScattergrams;
-    @FindBy(how = How.CSS, using = "svg.fc-icon.hubs-info-tooltip__close-icon")
+    @FindBy(how = How.CSS, using = "span[title=\"Click to learn more about Scattergrams\"] + span svg")
     public static WebElement buttonXTooltipScattergrams;
+    @FindBy(how = How.CSS, using = "span[title=\"Click to learn more about Scattergrams\"] + span")
+    public static WebElement tooltipContainerScattergrams;
+    @FindBy(how = How.CSS, using = "span[title=\"Click to learn more about Acceptance Rate\"] + span svg")
+    public static WebElement buttonXTooltipAceptanceRate;
+    @FindBy(how = How.CSS, using = "span[title=\"Click to learn more about Acceptance Rate\"] + span")
+    public static WebElement tooltipContainerAcceptanceRate;
     @FindBy(how = How.CSS, using = "div[ng-if=\"vm.informationTabs.getActive() == 'fees'\"] a")
     public static WebElement linkLearnMoreFees;
     @FindBy(how = How.CSS, using = "div[ng-if=\"vm.showApplicationStats\"] div[ng-repeat=\"years in " +
@@ -104,7 +110,8 @@ public class FCHubsAdmissionsTabPage extends BaseClass {
     public static WebElement studentsEnrolledBeforePastYear;
     @FindBy(how = How.CSS, using = "div[ng-if=\"vm.requirementLists.length > 0\"] h2")
     public static WebElement applicationRequirementsTitle;
-    @FindBy(how = How.CSS, using = "span.psat__html-tooltip svg")
+    @FindBy(how = How.CSS, using = "span[ng-show=\"vm.subPsat && vm.scattergramTestType == '1'\"] " +
+            "svg[ng-click=\"vm.toggleTooltip($event)\"]")
     public static WebElement scattergramsPSATInfoIcon;
 
     public static String listDeadlinesLocator = ".admissions-information__deadline-item.ng-scope";

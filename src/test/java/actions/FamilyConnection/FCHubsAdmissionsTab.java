@@ -382,11 +382,11 @@ public class FCHubsAdmissionsTab {
     public static void verifyScattergramsTooltipClosed() {
         driver = Hooks.driver;
         PageFactory.initElements(driver, FCHubsAdmissionsTabPage.class);
-        boolean result = false;
-        try {
-            FCHubsAdmissionsTabPage.buttonXTooltipScattergrams.isDisplayed();
-        } catch (NoSuchElementException e) {
+        boolean result;
+        if (FCHubsAdmissionsTabPage.tooltipContainerScattergrams.getAttribute("class").contains("ng-hide")) {
             result = true;
+        } else {
+            result = false;
         }
         assertTrue("The information tooltip is displayed", result);
     }
@@ -551,16 +551,14 @@ public class FCHubsAdmissionsTab {
     public static void verifyInfoToolTipAcceptanceRate() {
         driver = Hooks.driver;
         PageFactory.initElements(driver, FCHubsAdmissionsTabPage.class);
-        assertTrue("The tooltip is not displayed", FCHubsAdmissionsTabPage.buttonXTooltipScattergrams.isDisplayed());
+        assertTrue("The tooltip is not displayed", FCHubsAdmissionsTabPage.buttonXTooltipAceptanceRate.isDisplayed());
     }
 
     public static void verifyInfoTooltipAcceptanceRateClosed() {
         driver = Hooks.driver;
         PageFactory.initElements(driver, FCHubsAdmissionsTabPage.class);
         boolean result = false;
-        try {
-            FCHubsAdmissionsTabPage.buttonXTooltipScattergrams.isDisplayed();
-        } catch (NoSuchElementException e) {
+        if (FCHubsAdmissionsTabPage.tooltipContainerAcceptanceRate.getAttribute("class").contains("ng-hide")) {
             result = true;
         }
         assertTrue("The tooltip was not closed", result);

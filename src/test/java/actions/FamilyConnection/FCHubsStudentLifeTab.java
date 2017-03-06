@@ -163,10 +163,10 @@ public class FCHubsStudentLifeTab {
 
     public static void VerifyStudentOrganizations(List<String> studentOrgs) {
         driver = Hooks.driver;
+        PageFactory.initElements(driver, FCHubsStudentLifeTabPage.class);
         boolean result = false;
-        WebElement uiStudentOrgs = driver.findElement(By.cssSelector(".fc-grid__row.fc-grid__row--xs-start" +
-                ".student-life__organizations"));
-        List<WebElement> elementList = uiStudentOrgs.findElements(By.cssSelector("div:not(.ng-hide)"));
+        List<WebElement> elementList = driver.findElements(By.cssSelector(FCHubsStudentLifeTabPage
+                .orgAvailableListLocator));
         for(int i = 0; i < studentOrgs.size(); i++) {
             if(elementList.get(i).getText().equals(studentOrgs.get(i))) {
                 result = true;
@@ -266,6 +266,7 @@ public class FCHubsStudentLifeTab {
         List<WebElement> uiFratAndSorList = driver.findElements(By.cssSelector(FCHubsStudentLifeTabPage
                 .fraternitiesAndSororitiesLocator));
         for (int i = 0; i < uiFratAndSorList.size(); i++) {
+            System.out.println("UI values: " + uiFratAndSorList.get(i));
             if (uiFratAndSorList.get(i).getText().equals(fratAndSorList.get(i).split(";")[1])) {
                 result = true;
             } else {
@@ -295,6 +296,7 @@ public class FCHubsStudentLifeTab {
         List<WebElement> ROTCServicesUiList = driver.findElements(By.cssSelector(FCHubsStudentLifeTabPage
                 .ROTCServicesAvailableLocator));
         for (WebElement uiBasicServiceElement : basicServicesUiList) {
+            System.out.println("Basic Services UI: " + uiBasicServiceElement.getText());
             if (basicServicesList.contains(uiBasicServiceElement.getText().trim())) {
                 resultBasicServices = true;
             } else {
@@ -303,6 +305,7 @@ public class FCHubsStudentLifeTab {
             }
         }
         for (WebElement uiROTCServiceElement : ROTCServicesUiList) {
+            System.out.println("ROTC Services UI: " + uiROTCServiceElement.getText());
             if (ROTCServicesList.contains(uiROTCServiceElement.getText().trim())) {
                 resultROTCServices = true;
             } else {

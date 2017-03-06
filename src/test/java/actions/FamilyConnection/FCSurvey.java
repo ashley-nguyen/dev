@@ -89,6 +89,7 @@ public class FCSurvey {
 
     public static void VerifyCloseSurveyPage() {
         driver = Hooks.driver;
+        PageFactory.initElements(driver, FCHubsPage.class);
         ArrayList<String> tabs = new ArrayList<String> (driver.getWindowHandles());
         driver.switchTo().window(tabs.get(tabs.size() - 1));
         driver.close();
@@ -96,8 +97,7 @@ public class FCSurvey {
         //driver.switchTo().window(tabs.get(0));
         //Use this when the beta button in legacy is enabled
         driver.switchTo().window(tabs.get(1));
-        assertTrue("It is not possible to close Survey Page", driver.findElement(By.xpath
-                ("//div[@class='hub-beta-bar']")).isDisplayed());
+        assertTrue("It is not possible to close Survey Page", FCHubsPage.buttonFeedback.isDisplayed());
     }
 
     public static void CloseSurveyPage() {

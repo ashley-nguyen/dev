@@ -19,13 +19,12 @@ public class FCHubsCostsTabPage extends BaseClass {
     public static WebElement labelTypicalMonthlyLoanPayment;
     @FindBy(how = How.CSS, using = ".costs-tuition-graph__costlabel.costs-tuition-graph__costlabel--lime.ng-binding")
     public static WebElement InStateTuitionandFeeforThisCollege;
-    @FindBy(how = How.CSS, using = "div.fc-grid__col.fc-grid__col--xs-12.costs-tuition-graph.ng-scope div:nth-child(2) " +
-            "div.costs-tuition-graph__bar__top span")
+    @FindBy(how = How.CSS, using = "div[ng-style=\"{'height': vm.getPercentTopInState(true)}\"] span")
     public static WebElement InStateTuitionFeesForAverageNavianceColleges;
     @FindBy(how = How.CSS, using = ".costs-tuition-graph__costlabel.costs-tuition-graph__costlabel--sky.ng-binding")
     public static WebElement OutofStateInStateTuitionFeesForThisCollege;
-    @FindBy(how = How.CSS, using = "div.fc-grid__col.fc-grid__col--xs-12.costs-tuition-graph.ng-scope " +
-            "div:nth-child(4) div.costs-tuition-graph__bar__top span")
+    @FindBy(how = How.CSS, using = "div.fc-grid__col.costs-tuition-graph__column.costs-tuition-graph__column-inset" +
+            ".costs-tuition-graph__bar.ng-scope span")
     public static WebElement OutofStateInStateTuitionFeesForAverageNavianceColleges;
     @FindBy(how = How.CSS, using = ".fc-grid__row.costs-tuition-button.fc-button[ng-class=" +
             "\"{'costs-tuition-button--active': vm.showTuition }\"]")
@@ -42,7 +41,7 @@ public class FCHubsCostsTabPage extends BaseClass {
     public static WebElement RoomAndBoardThisCollege;
     @FindBy(how = How.CSS, using = ".costs-tuition-graph__costlabel.costs-tuition-graph__costlabel--grey.ng-binding")
     public static WebElement RoomAndBoardAverageNavianceCollege;
-    @FindBy(how = How.XPATH, using = "//ul[@class = 'costs-tuition__buttonGroup']/li[3]")
+    @FindBy(how = How.CSS, using = "li[ng-click=\"vm.displayRoomAndBoard()\"]")
     public static WebElement RoomAndBoard;
     @FindBy(how = How.CSS, using = ".fc-grid__row.fc-grid__row--xs-center.admissions div[ng-if=\"vm.averageNetPrices." +
             "length > 0\"] div.hub-data-pod--money.hub-data-pod--overview.ng-binding")

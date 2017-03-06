@@ -52,11 +52,11 @@ public class FCHubsStudentLifeTabPage extends BaseClass {
     public static WebElement buttonOrgAndServServices;
     @FindBy(how = How.CSS, using = ".fc-tabs__labels span:nth-of-type(5)")
     public static WebElement buttonOrgAndServCompResources;
-    @FindBy(how = How.CSS, using = ".student-life__athletics__nav-buttons span:nth-of-type(1)")
+    @FindBy(how = How.CSS, using = "div.athletics__nav-buttons span:nth-of-type(1)")
     public static WebElement buttonAthleticsMen;
-    @FindBy(how = How.CSS, using = ".student-life__athletics__nav-buttons span:nth-of-type(2)")
+    @FindBy(how = How.CSS, using = "div.athletics__nav-buttons span:nth-of-type(2)")
     public static WebElement buttonAthleticsWomen;
-    @FindBy(how = How.CSS, using = ".student-life__athletics__nav-buttons span:nth-of-type(3)")
+    @FindBy(how = How.CSS, using = "div.athletics__nav-buttons span:nth-of-type(3)")
     public static WebElement buttonAthleticsCoEd;
     @FindBy(how = How.CSS, using = ".student-life-housing-information__data dl:nth-of-type(1) dd.ng-binding")
     public static WebElement labelHousingInfoCapacityValue;
@@ -71,9 +71,9 @@ public class FCHubsStudentLifeTabPage extends BaseClass {
     @FindBy(how = How.CSS, using = ".student-life-housing-information__data dl:nth-of-type(6) dd.ng-binding")
     public static WebElement labelHousingInfoSeniorsOnCampusValue;
 
-    public static String fraternitiesAndSororitiesLocator = ".student-life-greek-life__value.ng-binding";
-    public static String basicServicesAvailableLocator = "div.fc-grid__row.fc-grid__row--xs-start.student-life" +
-            "__services div:not([aria-hidden=\"true\"])";
+    public static String fraternitiesAndSororitiesLocator = "div.greek-life dd";
+    public static String basicServicesAvailableLocator = "div.fc-grid__col.fc-grid__col--xs-12.fc-grid__col--sm-6" +
+            ".services__item.ng-binding.ng-scope:not([aria-hidden=\"true\"])";
     public static String ROTCServicesAvailableLocator = "div[ng-show=\"vm.hasRotc()\"] div:not([aria-hidden=\"true\"])";
     public static String computerLocationListLocator = "tr.fc-table__row.ng-scope td:nth-of-type(1)" +
             ":not([data-header=\"Date\"])";
@@ -81,6 +81,8 @@ public class FCHubsStudentLifeTabPage extends BaseClass {
             ":not([data-header=\"Time\"])";
     public static String numberOfMacsListLocator = "tr.fc-table__row.ng-scope td:nth-of-type(3)" +
             ":not([data-header=\"Location\"])";
+    public static String orgAvailableListLocator = "div.fc-grid__col.fc-grid__col--xs-12.fc-grid__col--sm-6." +
+            "organizations__item.ng-binding.ng-scope:not([aria-hidden=\"true\"])";
 
     public FCHubsStudentLifeTabPage(WebDriver driver) {
         super(driver);

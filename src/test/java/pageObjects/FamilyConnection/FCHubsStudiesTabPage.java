@@ -41,6 +41,8 @@ public class FCHubsStudiesTabPage extends BaseClass {
     public static WebElement infoIconGradRate;
     @FindBy(how = How.CSS, using = "svg.fc-icon.hubs-info-tooltip__close-icon")
     public static WebElement infoTooltipCloseIcon;
+    @FindBy(how = How.CSS, using = "span.hubs-info-tooltip-container")
+    public static WebElement tooltipGradRateContainer;
     @FindBy(how = How.CSS, using = "div.data-age-row.data-age-row--twilight.ng-binding.ng-scope")
     public static WebElement dateLabelStudyOptions;
     @FindBy(how = How.CSS, using = "div[ng-if=\"vm.studentFacultyRatio\"] div:nth-of-type(4)")
@@ -58,6 +60,8 @@ public class FCHubsStudiesTabPage extends BaseClass {
     @FindBy(how = How.CSS, using = "div.studies-programs.hubs-section.fc-grid__row.fc-grid__row--xs-center" +
             ".ng-scope div.studies-programs__content + div")
     public static WebElement dateLabelMajorsOffered;
+    @FindBy(how = How.CSS, using = "div[ng-if=\"vm.getSchoolSize()\"] +div +div a")
+    public static WebElement getDirectionsLinkDistanceFromHS;
 
     public static String listDegreesOffered = "div[ng-if=\"vm.profile.friendlyDegrees.length > 0\"] " +
             "div.hub-data-pod--degree.ng-binding.ng-scope";

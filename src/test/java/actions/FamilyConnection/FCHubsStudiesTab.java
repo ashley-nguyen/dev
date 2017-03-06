@@ -168,9 +168,10 @@ public class FCHubsStudiesTab {
 
     public static void ClickLinkInStudentLifeTopBar(String linkText) {
         driver = Hooks.driver;
-        new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.linkText(linkText)));
-        WebElement link = driver.findElement(By.linkText(linkText));
-        link.sendKeys(Keys.RETURN);
+        PageFactory.initElements(driver, FCHubsStudiesTabPage.class);
+        new WebDriverWait(Hooks.driver, 20).until(ExpectedConditions.elementToBeClickable
+                (FCHubsStudiesTabPage.getDirectionsLinkDistanceFromHS));
+        FCHubsStudiesTabPage.getDirectionsLinkDistanceFromHS.sendKeys(Keys.RETURN);
         ArrayList<String> tabs = new ArrayList<String> (driver.getWindowHandles());
         driver.switchTo().window(tabs.get(tabs.size() - 1));
     }
@@ -201,11 +202,11 @@ public class FCHubsStudiesTab {
     public static void verifyTooltipGradRateClosed() {
         driver = Hooks.driver;
         PageFactory.initElements(driver, FCHubsStudiesTabPage.class);
-        boolean result = false;
-        try {
-            FCHubsStudiesTabPage.infoTooltipCloseIcon.isDisplayed();
-        } catch (NoSuchElementException e) {
+        boolean result;
+        if (FCHubsStudiesTabPage.tooltipGradRateContainer.getAttribute("class").contains("ng-hide")) {
             result = true;
+        } else {
+            result = false;
         }
         assertTrue("The tooltip was not closed", result);
     }

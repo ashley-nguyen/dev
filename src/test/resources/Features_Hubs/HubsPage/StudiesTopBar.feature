@@ -19,9 +19,12 @@ Feature: Purpose: As a student viewing new Hubs' Studies tab, I want to see key 
 
   Scenario: The Degrees offered is displayed with correct data in Studies Top Bar
     Then The Degrees offered are displayed with correct data in Studies Top bar:
-    | Masters    |
-    | Bachelors  |
-    | Associates |
+    | Graduate Certification |
+    | Certification          |
+    | Associates             |
+    | Bachelors              |
+    | Doctorate              |
+    | Masters                |
 
   Scenario: A tooltip is displayed in Graduation Rate after clicking the information icon
     When I open the tooltip in Graduation Rate using the information icon
