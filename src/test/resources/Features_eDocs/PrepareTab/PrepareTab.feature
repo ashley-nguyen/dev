@@ -5,7 +5,7 @@ Feature: View student details
   there are LOR requests from a student before I upload any documents.
 
   Background:
-    Given I am logged into Naviance "blue1hs" as "stan.smith" with "stan01!"
+    Given I am logged into Naviance "blue1hs" as "jandell.counselor" with "password"
     When I configure permissions for teacher
     Then I verify that Confirmation "The permissions for this role have been updated" message is displayed
 
