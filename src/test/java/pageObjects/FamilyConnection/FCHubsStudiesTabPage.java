@@ -62,6 +62,8 @@ public class FCHubsStudiesTabPage extends BaseClass {
     public static WebElement dateLabelMajorsOffered;
     @FindBy(how = How.CSS, using = "div[ng-if=\"vm.getSchoolSize()\"] +div +div a")
     public static WebElement getDirectionsLinkDistanceFromHS;
+    @FindBy(how = How.CSS, using = "div[ng-if=\"vm.profile.demographics.percentLiveOnCampus > 0\"] a")
+    public static WebElement learnMoreAboutHousingLinkPercentOfStuLivingInCampus;
 
     public static String listDegreesOffered = "div[ng-if=\"vm.profile.friendlyDegrees.length > 0\"] " +
             "div.hub-data-pod--degree.ng-binding.ng-scope";

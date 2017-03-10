@@ -95,6 +95,13 @@ public class FCCollegesTab {
     public static void goToSearchCollegeWithURL(String college) {
         driver = Hooks.driver;
         PageFactory.initElements(driver, FCCollegesPage.class);
-        driver.get(FCCollegesPage.partialSearchCollegeIntURL + college);
+        String partialURL = "";
+        String env = System.getProperty("ENV");
+        if (env.equals("int")) {
+            partialURL = FCCollegesPage.partialSearchCollegeIntURLInt;
+        } else if (env.equals("prodConnection")) {
+            partialURL = FCCollegesPage.partialSearchCollegeIntURLProd;
+        }
+        driver.get(partialURL + college);
     }
 }

@@ -40,6 +40,7 @@ public class FCHubs {
     public static void ClickFeedbackButton() {
         driver = Hooks.driver;
         PageFactory.initElements(driver, FCHubsPage.class);
+        FCHubsPage.linkNextFirstDialog.click();
         new WebDriverWait(Hooks.driver, 20).until(ExpectedConditions.elementToBeClickable(FCHubsPage.buttonFeedback));
         FCHubsPage.buttonFeedback.click();
     }
@@ -680,7 +681,7 @@ public class FCHubs {
     public static void clickLearnMoreOverlaps() {
         driver = Hooks.driver;
         PageFactory.initElements(driver, FCHubsPage.class);
-        FCHubsPage.buttonOverlapsLearnMore.click();
+        FCHubsPage.buttonOverlapsLearnMore.sendKeys(Keys.RETURN);
     }
 
     public static void verifyJsonContainsColleges(String jsonText) {
@@ -1003,7 +1004,7 @@ public class FCHubs {
     public static void verifyInfoTooltipInSection(String section) {
         driver = Hooks.driver;
         PageFactory.initElements(driver, FCHubsPage.class);
-        boolean result;
+        boolean result = false;
         WebElement tooltipElement = null;
         switch (section) {
             case "Converted GPA" : tooltipElement = FCHubsPage.tooltipContainerConvertedGPA;
@@ -1016,19 +1017,30 @@ public class FCHubs {
                 break;
             case "ACT" : tooltipElement = FCHubsPage.tooltipContainerACT;
                 break;
+            case "Average Net Price" : tooltipElement = FCHubsPage.tooltipContainerAvgNetPrice;
+                break;
+            case "Graduation Rate" : tooltipElement = FCHubsPage.tooltipContainerGradRate;
+                break;
+            case "Acceptance Rate" : tooltipElement = FCHubsPage.tooltipContainerAcceptanceRate;
+                break;
         }
-        if (!tooltipElement.getAttribute("class").contains("ng-hide")) {
-            result = true;
-        } else {
-            result = false;
+        if (System.getProperty("ENV").equals("int")) {
+            if (!tooltipElement.getAttribute("class").contains("ng-hide")) {
+                result = true;
+            } else {
+                result = false;
+            }
+        } else if (System.getProperty("ENV").equals("prodConnection")) {
+            result = tooltipElement.isDisplayed();
         }
+
         assertTrue("The tooltip is not displayed in the section " + section, result);
     }
 
     public static void verifyInfoTooltipInSectionIsClosed(String section) {
         driver = Hooks.driver;
         PageFactory.initElements(driver, FCHubsPage.class);
-        boolean result;
+        boolean result = false;
         WebElement tooltipContainerElement = null;
         switch (section) {
             case "Average Net Price" : tooltipContainerElement = FCHubsPage.tooltipContainerAvgNetPrice;
@@ -1048,12 +1060,22 @@ public class FCHubs {
             case "ACT" : tooltipContainerElement = FCHubsPage.tooltipContainerACT;
                 break;
         }
-        if (tooltipContainerElement.getAttribute("class").contains("ng-hide")) {
-            result = true;
-        } else {
-            result = false;
+        if (System.getProperty("ENV").equals("int")) {
+            if (tooltipContainerElement.getAttribute("class").contains("ng-hide")) {
+                result = true;
+            } else {
+                result = false;
+            }
+            System.out.println("Attribute: " + FCHubsPage.tooltipContainerAvgNetPrice.getAttribute("class"));
+        } else if (System.getProperty("ENV").equals("prodConnection")) {
+            try {
+                tooltipContainerElement.isDisplayed();
+                result = false;
+            } catch (NoSuchElementException e) {
+                result = true;
+            }
         }
-        System.out.println("Attribute: " + FCHubsPage.tooltipContainerAvgNetPrice.getAttribute("class"));
+
         System.out.println("Result: " + result);
         assertTrue("The tooltip in the section: " + section + " was not closed", result);
     }

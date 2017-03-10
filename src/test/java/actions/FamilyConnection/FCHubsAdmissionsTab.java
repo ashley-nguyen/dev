@@ -9,6 +9,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import pageObjects.FamilyConnection.FCHubsAdmissionsTabPage;
 import pageObjects.FamilyConnection.FCHubsPage;
 import pageObjects.FamilyConnection.FCHubsStudiesTabPage;
+import reusableComponents.WebdriverComponents;
 import stepDefs.Hooks;
 
 import java.util.ArrayList;
@@ -21,6 +22,7 @@ import static org.junit.Assert.assertTrue;
  */
 public class FCHubsAdmissionsTab {
     public static WebDriver driver;
+    static WebdriverComponents navigation = new WebdriverComponents();
 
     public static void VerifyRegularDeadlineDecision(String decisionDeadline) {
         driver = Hooks.driver;
@@ -323,14 +325,22 @@ public class FCHubsAdmissionsTab {
     public static void clickShowMoreScattergrams() {
         driver = Hooks.driver;
         PageFactory.initElements(driver, FCHubsAdmissionsTabPage.class);
+        PageFactory.initElements(driver, FCHubsPage.class);
         new WebDriverWait(Hooks.driver, 20).until(ExpectedConditions.elementToBeClickable
                 (FCHubsAdmissionsTabPage.linkShowMoreScattergrams));
         new WebDriverWait(Hooks.driver, 20).until(ExpectedConditions.elementToBeClickable
                 (FCHubsAdmissionsTabPage.imageScattergrams));
         ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);",
                 FCHubsAdmissionsTabPage.keySectionScattergramsTitle);
-        new WebDriverWait(Hooks.driver, 20).until(ExpectedConditions.visibilityOf(FCHubsAdmissionsTabPage.linkShowMoreScattergrams));
-        FCHubsAdmissionsTabPage.linkShowMoreScattergrams.click();
+        try {
+            FCHubsAdmissionsTabPage.linkShowMoreScattergrams.click();
+        } catch (WebDriverException e) {
+            for (int i = 0; i < 6; i++) {
+                FCHubsPage.buttonRecommendedEvents.sendKeys(Keys.ARROW_UP);
+            }
+            FCHubsAdmissionsTabPage.linkShowMoreScattergrams.click();
+        }
+
     }
 
     public static void verifyExpandedDescriptionScattergrams() {
@@ -351,7 +361,14 @@ public class FCHubsAdmissionsTab {
                 (FCHubsAdmissionsTabPage.imageScattergrams));
         ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);",
                 FCHubsAdmissionsTabPage.keySectionScattergrams);
-        FCHubsAdmissionsTabPage.linkShowLessScattergrams.click();
+        try {
+            FCHubsAdmissionsTabPage.linkShowLessScattergrams.click();
+        } catch (WebDriverException e) {
+            for (int i = 0; i < 6; i++) {
+                FCHubsPage.buttonRecommendedEvents.sendKeys(Keys.ARROW_UP);
+            }
+            FCHubsAdmissionsTabPage.linkShowLessScattergrams.click();
+        }
     }
 
     public static void clickInfoIconScattergrams() {
@@ -372,11 +389,28 @@ public class FCHubsAdmissionsTab {
     public static void clickXTooltipScattergrams() {
         driver = Hooks.driver;
         PageFactory.initElements(driver, FCHubsAdmissionsTabPage.class);
+        PageFactory.initElements(driver, FCHubsPage.class);
         new WebDriverWait(Hooks.driver, 20).until(ExpectedConditions.elementToBeClickable
                 (FCHubsAdmissionsTabPage.imageScattergrams));
         ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);",
-                FCHubsAdmissionsTabPage.labelMonthRegDecisionDeadline);
-        FCHubsAdmissionsTabPage.buttonXTooltipScattergrams.click();
+                FCHubsAdmissionsTabPage.buttonXTooltipScattergrams);
+        try {
+            FCHubsAdmissionsTabPage.buttonXTooltipScattergrams.click();
+        } catch (WebDriverException e) {
+            try {
+                for (int i = 0; i < 3; i++) {
+                    FCHubsPage.buttonRecommendedEvents.sendKeys(Keys.ARROW_UP);
+                }
+                FCHubsAdmissionsTabPage.buttonXTooltipScattergrams.click();
+            } catch (WebDriverException ex){
+                for (int i = 0; i < 3; i++) {
+                    FCHubsPage.buttonRecommendedEvents.sendKeys(Keys.ARROW_UP);
+                    FCHubsPage.buttonRecommendedEvents.sendKeys(Keys.ARROW_DOWN);
+                }
+                FCHubsAdmissionsTabPage.buttonXTooltipScattergrams.click();
+            }
+
+        }
     }
 
     public static void verifyScattergramsTooltipClosed() {
@@ -558,9 +592,14 @@ public class FCHubsAdmissionsTab {
         driver = Hooks.driver;
         PageFactory.initElements(driver, FCHubsAdmissionsTabPage.class);
         boolean result = false;
-        if (FCHubsAdmissionsTabPage.tooltipContainerAcceptanceRate.getAttribute("class").contains("ng-hide")) {
-            result = true;
+        if (System.getProperty("ENV").equals("int")) {
+            if (FCHubsAdmissionsTabPage.tooltipContainerAcceptanceRate.getAttribute("class").contains("ng-hide")) {
+                result = true;
+            }
+        } else if (System.getProperty("ENV").equals("prodConnection")) {
+            result = navigation.verifyElementNotPresent(FCHubsAdmissionsTabPage.tooltipContainerAcceptanceRate);
         }
+
         assertTrue("The tooltip was not closed", result);
     }
 
@@ -570,6 +609,7 @@ public class FCHubsAdmissionsTab {
         boolean result = false;
         List<WebElement> uiList = driver.findElements(By.cssSelector(FCHubsAdmissionsTabPage.admissionsContactInfoList));
         for (WebElement uiElement : uiList) {
+            System.out.println("UI: " + uiElement.getText());
             if (contactDataList.contains(uiElement.getText())) {
                 result = true;
             } else {

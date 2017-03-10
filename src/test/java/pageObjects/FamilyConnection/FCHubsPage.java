@@ -197,7 +197,7 @@ public class FCHubsPage extends BaseClass {
     public static WebElement tooltipContainerAvgNetPrice;
     @FindBy(how = How.CSS, using = "span[title=\"Click to learn more about Graduation Rate\"] + span")
     public static WebElement tooltipContainerGradRate;
-    @FindBy(how = How.CSS, using = "span[title=\"Click to learn more about Graduation Rate\"] + span")
+    @FindBy(how = How.CSS, using = "span[title=\"Click to learn more about Acceptance Rate\"] + span")
     public static WebElement tooltipContainerAcceptanceRate;
     @FindBy(how = How.CSS, using = "span[ng-if=\"vm.clicktext\"]")
     public static WebElement infoIconCompareMeDescription;

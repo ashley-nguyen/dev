@@ -18,6 +18,8 @@ public class FCSurveyPage extends BaseClass {
     public static WebElement buttonNext;
     @FindBy(how = How.CSS, using = "div.survey-submit-actions.center-text.clearfix button:nth-of-type(2)")
     public static WebElement buttonNext2;
+    @FindBy(how = How.CSS, using = "h4.question-title-container")
+    public static WebElement firstTextBox;
 
     public FCSurveyPage(WebDriver driver) {
         super(driver);

@@ -169,11 +169,21 @@ public class FCHubsStudiesTab {
     public static void ClickLinkInStudentLifeTopBar(String linkText) {
         driver = Hooks.driver;
         PageFactory.initElements(driver, FCHubsStudiesTabPage.class);
-        new WebDriverWait(Hooks.driver, 20).until(ExpectedConditions.elementToBeClickable
-                (FCHubsStudiesTabPage.getDirectionsLinkDistanceFromHS));
-        FCHubsStudiesTabPage.getDirectionsLinkDistanceFromHS.sendKeys(Keys.RETURN);
-        ArrayList<String> tabs = new ArrayList<String> (driver.getWindowHandles());
-        driver.switchTo().window(tabs.get(tabs.size() - 1));
+        WebElement linkElement = null;
+        switch (linkText) {
+            case "Learn More About Housing" : linkElement = FCHubsStudiesTabPage.learnMoreAboutHousingLinkPercentOfStuLivingInCampus;
+                new WebDriverWait(Hooks.driver, 20).until(ExpectedConditions.elementToBeClickable
+                        (linkElement));
+                linkElement.sendKeys(Keys.RETURN);
+                break;
+            case "Get Directions" : linkElement = FCHubsStudiesTabPage.getDirectionsLinkDistanceFromHS;
+                new WebDriverWait(Hooks.driver, 20).until(ExpectedConditions.elementToBeClickable
+                        (linkElement));
+                linkElement.sendKeys(Keys.RETURN);
+                ArrayList<String> tabs = new ArrayList<> (driver.getWindowHandles());
+                driver.switchTo().window(tabs.get(tabs.size() - 1));
+                break;
+        }
     }
 
     public static void clickInfoIconGraduationRate() {
@@ -194,9 +204,17 @@ public class FCHubsStudiesTab {
     public static void clickCloseIconInTooltip() {
         driver = Hooks.driver;
         PageFactory.initElements(driver, FCHubsStudiesTabPage.class);
+        PageFactory.initElements(driver, FCHubsPage.class);
         new WebDriverWait(Hooks.driver, 20).until(ExpectedConditions.elementToBeClickable(FCHubsStudiesTabPage
                 .infoTooltipCloseIcon));
-        FCHubsStudiesTabPage.infoTooltipCloseIcon.click();
+        try {
+            FCHubsStudiesTabPage.infoTooltipCloseIcon.click();
+        } catch (WebDriverException e) {
+            for (int i = 0; i < 5; i++) {
+                FCHubsPage.buttonRecommendedEvents.sendKeys(Keys.ARROW_DOWN);
+            }
+            FCHubsStudiesTabPage.infoTooltipCloseIcon.click();
+        }
     }
 
     public static void verifyTooltipGradRateClosed() {
