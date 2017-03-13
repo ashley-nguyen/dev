@@ -85,4 +85,18 @@ public class ElementaryAssignALessonSequence {
         // TODO: Verify the success message once it is developed
     }
 
+    /**
+     * Verify that the group is displayed in the search field of Assign a Lesson Sequence page
+     * @param groupName Groups Name, i.e "Group1, Group2, Group3"
+     */
+    public static void verifyGroupIsDisplayedInTheSearchField(String groupName)
+    {   driver = Hooks.driver;
+        PageFactory.initElements(driver, AssignLessonSequencePage.class);
+        List<String> group = Arrays.asList(groupName.split("\\s*,\\s*"));
+        // Enter Group(s)
+        WebElement groupElement = AssignLessonSequencePage.txtAssignGroupName;
+        TagEditorComponent.selectOptionTagEditor(groupElement, group);
+
+    }
+
 }
