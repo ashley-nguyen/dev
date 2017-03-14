@@ -7,6 +7,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import stepDefs.Hooks;
 
+import static org.junit.Assert.assertTrue;
 import java.util.List;
 
 /**
@@ -29,7 +30,11 @@ public class TagEditorComponent {
         for(String option : options) {
             element.click();
             element.sendKeys(option);
-            new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.elementToBeClickable(By.linkText(option))).click();
+            try {
+                new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.elementToBeClickable(By.linkText(option))).click();
+            }catch (Exception e){
+                assertTrue("Unable to find the element '" + option + "'", false);
+            }
         }
     }
 }

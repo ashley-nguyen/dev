@@ -31,7 +31,7 @@ public class AssignAndManage {
 
     public  void NavigateToAssignAndManage() throws Exception {
 
-        driverComponents.clickElement(webDriverComponentsPage.School);
+       // driverComponents.clickElement(webDriverComponentsPage.School);
         driverComponents.hoverAndClick(webDriverComponentsPage.Planner, webDriverComponentsPage.AssignAndManage);
 
     }

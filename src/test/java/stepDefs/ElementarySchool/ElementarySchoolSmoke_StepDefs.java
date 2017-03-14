@@ -90,4 +90,24 @@ public class ElementarySchoolSmoke_StepDefs {
 
     }
 
+    @When("^I navigate to Naviance Elementary School and delete (.*) group, (.*) and (.*) from product page$")
+    public void iNavigateToNavianceElementarySchoolAndDeleteGroupFromProductPage(String studentGroup, String lessonSequence,
+                                                                                 String instructorName) throws Throwable {
+        // Navigate to Elementary School
+        ElementaryProductPage.clickElementarySchoolLink();
+
+        // Filter product page by instructor name and lesson sequence
+        ElementaryProductPage.filterElementaryProductPage(instructorName, lessonSequence);
+
+        // Delete the group
+        ElementaryProductPage.deleteElementaryGroup(studentGroup, lessonSequence);
+    }
+
+    @Then("^The group should not be displayed anymore in the product page (.*) and reappear in the Assign page$")
+    public void theGroupShouldNotBeDisplayedAnymoreInTheProductPageAndReappearInTheAssignPage(String studentGroup) throws Throwable {
+        ElementaryProductPage.verifyGroupIsNotDisplayedInProductPage(studentGroup);
+        ElementaryProductPage.clickAssignALessonSequenceLink();
+        ElementaryAssignALessonSequence.verifyGroupIsDisplayedInTheSearchField( studentGroup);
+
+    }
 }
