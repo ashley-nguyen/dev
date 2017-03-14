@@ -40,5 +40,3 @@ Feature:  As a student viewing new Hubs' Student Life tab, I want to see a top b
   Scenario: The URL contains "Student_Life#housing-information"
     When I open the "Learn More About Housing" link in Student Life top bar
     Then The URL should contain "Student_Life#housing-information"
-
-

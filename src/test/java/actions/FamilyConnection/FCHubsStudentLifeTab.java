@@ -249,7 +249,8 @@ public class FCHubsStudentLifeTab {
             case "Seniors" : housingInfoElement = FCHubsStudentLifeTabPage.labelHousingInfoSeniorsOnCampusValue;
                 break;
         }
-        assertTrue("The Housing Information Value for" + hiLabel + "is not correct", housingInfoElement.getText().equals(hiValue));
+        assertTrue("The Housing Information Value for" + hiLabel + "is not correct",
+                housingInfoElement.getText().trim().equals(hiValue));
     }
 
     public static void VerifyHousingInformationLabel() {

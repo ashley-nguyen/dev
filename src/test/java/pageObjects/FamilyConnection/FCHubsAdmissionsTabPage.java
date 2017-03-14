@@ -62,8 +62,7 @@ public class FCHubsAdmissionsTabPage extends BaseClass {
     public static WebElement imageScattergrams;
     @FindBy(how = How.CSS, using = "span[title=\"Click to learn more about Scattergrams\"] svg")
     public static WebElement infoIconScattergrams;
-    @FindBy(how = How.CSS, using = "span[title=\"Click to learn more about You vs Students at your school’s SAT\"] " +
-            "+ span svg")
+    @FindBy(how = How.CSS, using = "span[title=\"Click to learn more about Scattergrams\"] + span svg")
     public static WebElement buttonXTooltipScattergrams;
     @FindBy(how = How.CSS, using = "span[title=\"Click to learn more about Scattergrams\"] + span")
     public static WebElement tooltipContainerScattergrams;
@@ -114,6 +113,8 @@ public class FCHubsAdmissionsTabPage extends BaseClass {
     @FindBy(how = How.CSS, using = "span[ng-show=\"vm.subPsat && vm.scattergramTestType == '1'\"] " +
             "svg[ng-click=\"vm.toggleTooltip($event)\"]")
     public static WebElement scattergramsPSATInfoIcon;
+    @FindBy(how = How.CSS, using = "span[title=\"Click to learn more about You vs Students at your school’s SAT\"] + span svg")
+    public static WebElement buttonXTooltipScattergramsPSAT;
 
     public static String listDeadlinesLocator = ".admissions-information__deadline-item.ng-scope";
     public static String comparingDropDownLocator = "select[ng-model=\"vm.scattergramGpaType\"]";

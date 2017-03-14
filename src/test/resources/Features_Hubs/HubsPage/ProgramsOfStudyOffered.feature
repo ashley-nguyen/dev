@@ -61,6 +61,3 @@ Feature: As a student, I want to see information about the school's programs of 
   Scenario: The colleges offering the program are displayed in college lookup
     When I open "Accounting" in the Majors Offered list
     Then I should see the message "Colleges Offering Accounting" in the College Lookup page
-
-  Scenario: The date text is displayed under Majors Offered
-    Then The text "Latest available data from 2014" should be displayed under "Majors Offered"

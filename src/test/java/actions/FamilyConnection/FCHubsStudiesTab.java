@@ -66,12 +66,11 @@ public class FCHubsStudiesTab {
         PageFactory.initElements(driver, FCHubsStudiesTabPage.class);
         List<WebElement> areasOfStudyElements = driver.findElements(By.cssSelector(FCHubsStudiesTabPage
                 .listTopAreasOfStudy));
-        for(int i = 0; i < areasOfStudy.size(); i++) {
-            if(areasOfStudyElements.get(i).getText().equals(areasOfStudy.get(i))) {
+        for (WebElement uiElement : areasOfStudyElements) {
+            if (areasOfStudy.contains(uiElement.getText())) {
                 result = true;
             } else {
                 result = false;
-                break;
             }
         }
         assertTrue("The Top Areas of Study are not correct", result);

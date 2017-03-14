@@ -765,7 +765,12 @@ public class FCHubs {
         driver = Hooks.driver;
         PageFactory.initElements(driver, FCHubsPage.class);
         boolean result = false;
-        driver.get(FCHubsPage.URLimThinkingAboutList);
+        if (System.getProperty("ENV").equals("int")) {
+            driver.get(FCHubsPage.URLimThinkingAboutListInt);
+        } else if (System.getProperty("ENV").equals("prodConnection")) {
+            driver.get(FCHubsPage.URLimThinkingAboutListProd);
+        }
+
         List<WebElement> imThinkingAboutListElements = driver.findElements(By.cssSelector(".less-pad.standard.striped " +
                 "td:nth-of-type(2)"));
         for (WebElement collegeInList : imThinkingAboutListElements) {

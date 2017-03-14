@@ -646,8 +646,8 @@ public class FCHubsAdmissionsTab {
         driver = Hooks.driver;
         PageFactory.initElements(driver, FCHubsAdmissionsTabPage.class);
         new WebDriverWait(Hooks.driver, 20).until(ExpectedConditions.elementToBeClickable
-                (FCHubsAdmissionsTabPage.buttonXTooltipScattergrams));
+                (FCHubsAdmissionsTabPage.buttonXTooltipScattergramsPSAT));
         assertTrue("The tooltip in PSAT/SAT is not displayed", FCHubsAdmissionsTabPage
-                .buttonXTooltipScattergrams.isDisplayed());
+                .buttonXTooltipScattergramsPSAT.isDisplayed());
     }
 }

@@ -12,6 +12,7 @@ Feature:  As a student viewing new Hubs' Overview tab, I want to see contact inf
     | Website;alma.edu                                |
     | School Type;Private / 4 Year                    |
     | CEEB Code;1010                                  |
+    | ACT Code;1958                                   |
     | Undergraduate Enrollment;1,396                  |
     | Student-to-Faculty Ratio;12 to 1                |
     | Religious Affiliation;Presbyterian Church (USA) |

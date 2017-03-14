@@ -120,9 +120,9 @@ public class FCHubsPage extends BaseClass {
     public static WebElement buttonOverlapsLearnMore;
     @FindBy(how = How.CSS, using = "a[ng-if=\"vm.hubsEventsCollegesLink\"]")
     public static WebElement buttonRecommendedEvents;
-    @FindBy(how = How.CSS, using = "div.masthead__heart.ng-scope svg")
+    @FindBy(how = How.CSS, using = "div[ng-click=\"vm.toggleInCollegeList()\"] svg")
     public static WebElement buttonAddToCollegesImThinkingAbout;
-    @FindBy(how = How.CSS, using = "svg[class=\"fc-icon masthead__heart--full\"]")
+    @FindBy(how = How.CSS, using = "div[ng-click=\"vm.toggleInCollegeList()\"] svg.fc-icon.masthead__heart--full")
     public static WebElement buttonAddToCollegesImThinkingAboutFull;
     @FindBy(how = How.CSS, using = ".fc-tooltip__content.ng-scope")
     public static WebElement tooltipHeartIcon;
@@ -225,8 +225,10 @@ public class FCHubsPage extends BaseClass {
     @FindBy(how = How.CSS, using = "div[ng-show=\"vm.college.codes.CEEB\"] div.ng-binding")
     public static WebElement ceebCodeQuickFacts;
 
-    public static String URLimThinkingAboutList = "https://connection-int.dev.naviance.com/family-connection" +
+    public static String URLimThinkingAboutListInt = "https://connection-int.dev.naviance.com/family-connection" +
             "/colleges/application/consideration";
+    public static String URLimThinkingAboutListProd = "https://connection.naviance.com/family-connection/colleges" +
+            "/application/consideration/";
     public static String incomeDropDownLocator = "select";
     public static String quickFactsListLocator = "div.summary-profile__body.fc-grid__col.fc-grid__col--xs-12" +
             ".fc-grid__col--md-6 div.fc-grid__row.fc-grid__row--md-end.quick-facts-row:not([aria-hidden=\"true\"])" +
