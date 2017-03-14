@@ -20,9 +20,9 @@ import stepDefs.Hooks;
  */
 public class ElementaryAssignALessonSequence {
     public static WebDriver driver;
-    public static String sequenceFilter = "Select...,Grade K Lessons,Grade 1 Lessons,Grade 2 Lessons,Grade 3 Lessons," +
+    public static String sequenceFilter = "Select from sequence list,Grade K Lessons,Grade 1 Lessons,Grade 2 Lessons,Grade 3 Lessons," +
             "Grade 4 Lessons,Grade 5 Lessons";
-    public static By locatorSequenceDropdown = By.cssSelector("select.ns-select");
+
 
     /**
      * Verify Assign a Lesson Sequence Page
@@ -34,7 +34,7 @@ public class ElementaryAssignALessonSequence {
 
         // Verify and Select Sequence
         WebElement elementSequence = ElementaryPage.selLessonSequence;
-        new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.presenceOfElementLocated(locatorSequenceDropdown));
+        new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.presenceOfElementLocated(AssignLessonSequencePage.locatorSequenceDropdown));
         ElementaryProductPage.verifyElementaryFilterValues(elementSequence, sequenceFilter);
         TestPrep.FilterTestPrep(elementSequence, "Grade K Lessons");
 
@@ -64,7 +64,11 @@ public class ElementaryAssignALessonSequence {
         String expectedElemProductPageTitle = "Naviance for Elementary School";
 
         PageFactory.initElements(driver, AssignLessonSequencePage.class);
-        new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.presenceOfElementLocated(locatorSequenceDropdown));
+        new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.presenceOfElementLocated(AssignLessonSequencePage.locatorSequenceDropdown));
+
+        // Enter Group(s)
+        WebElement groupElement = AssignLessonSequencePage.txtAssignGroupName;
+        TagEditorComponent.selectOptionTagEditor(groupElement, groups);
 
         // Select sequence
         TestPrep.FilterTestPrep(AssignLessonSequencePage.selLessonSequence, sequence);
@@ -72,17 +76,27 @@ public class ElementaryAssignALessonSequence {
         // Enter Instructor(s)
         WebElement instructorElement = AssignLessonSequencePage.txtAssignInstructor;
         TagEditorComponent.selectOptionTagEditor(instructorElement, instructors);
-
-        // Enter Group(s)
-        WebElement groupElement = AssignLessonSequencePage.txtAssignGroupName;
-        TagEditorComponent.selectOptionTagEditor(groupElement, groups);
-
+        
         // Click on Save
         new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.elementToBeClickable(AssignLessonSequencePage.btnAssignSave)).click();
         new WebDriverWait(Hooks.driver, 20).until(ExpectedConditions.textToBePresentInElement(ElementaryPage.titleElementaryProductPage,
                 expectedElemProductPageTitle));
 
         // TODO: Verify the success message once it is developed
+    }
+
+    /**
+     * Verify that the group is displayed in the search field of Assign a Lesson Sequence page
+     * @param groupName Groups Name, i.e "Group1, Group2, Group3"
+     */
+    public static void verifyGroupIsDisplayedInTheSearchField(String groupName)
+    {   driver = Hooks.driver;
+        PageFactory.initElements(driver, AssignLessonSequencePage.class);
+        List<String> group = Arrays.asList(groupName.split("\\s*,\\s*"));
+        // Enter Group(s)
+        WebElement groupElement = AssignLessonSequencePage.txtAssignGroupName;
+        TagEditorComponent.selectOptionTagEditor(groupElement, group);
+
     }
 
 }
