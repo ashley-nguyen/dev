@@ -129,6 +129,7 @@ public class Hooks {
         if(!env.equals("int") && !env.equals("prodConnection")) {
             driver.get(strBaseURL);
         }
+        driver.manage().window().setSize(new Dimension(1920, 760));
         driver.manage().window().maximize();
     }
 
