@@ -282,16 +282,29 @@ public class FCHubs {
         boolean result = true;
         WebElement valueElement = null;
         for (String scoreValueElement : scoreValueList) {
-            switch (scoreValueElement.split(";")[0]) {
-                case "GPA" : valueElement = FCHubsPage.labelGPAValue;
-                    break;
-                case "SAT" : valueElement = FCHubsPage.labelSATValue;
-                    break;
-                case "ACT" : valueElement = FCHubsPage.labelACTValue;
-                    break;
+            if (System.getProperty("ENV").equals("int")) {
+                switch (scoreValueElement.split(";")[0]) {
+                    case "GPA" : valueElement = FCHubsPage.labelGPAValue;
+                        break;
+                    case "SAT" : valueElement = FCHubsPage.labelSATValueInt;
+                        break;
+                    case "ACT" : valueElement = FCHubsPage.labelACTValue;
+                        break;
+                }
+            } else if (System.getProperty("ENV").equals("prodConnection")) {
+                switch (scoreValueElement.split(";")[0]) {
+                    case "GPA" : valueElement = FCHubsPage.labelGPAValue;
+                        break;
+                    case "SAT" : valueElement = FCHubsPage.labelSATValueProd;
+                        break;
+                    case "ACT" : valueElement = FCHubsPage.labelACTValue;
+                        break;
+                }
             }
+
+
             System.out.println("UI values: " + valueElement.getText());
-            new WebDriverWait(driver, 20).until(ExpectedConditions.elementToBeClickable(FCHubsPage.labelGPAValue));
+            new WebDriverWait(driver, 20).until(ExpectedConditions.elementToBeClickable(valueElement));
             if (scoreValueElement.split(";")[1].equals(valueElement.getText().trim())) {
                 result = true;
             } else {
@@ -784,7 +797,10 @@ public class FCHubs {
     public static void clickPinkHeartThinkingAboutList() {
         driver = Hooks.driver;
         PageFactory.initElements(driver, FCHubsPage.class);
-        FCHubsPage.imgLogo.click();
+        FCHubsPage.labelCity.click();
+        if (FCHubsPage.buttonAddToCollegesImThinkingAboutFull.isDisplayed()) {
+
+        }
         new WebDriverWait(Hooks.driver, 20).until(ExpectedConditions.elementToBeClickable
                 (FCHubsPage.tabCollegesTopBar));
         FCHubsPage.buttonAddToCollegesImThinkingAbout.click();

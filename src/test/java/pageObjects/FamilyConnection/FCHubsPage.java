@@ -15,6 +15,8 @@ import java.util.List;
 public class FCHubsPage extends BaseClass {
     @FindBy(how = How.CSS, using = ".masthead__logo-image")
     public static WebElement imgLogo;
+    @FindBy(how = How.CSS, using = "span[ng-if=\"vm.college.address.city\"]")
+    public static WebElement labelCity;
     @FindBy(how = How.CSS, using = ".fc-button.hub-beta-bar__survey-button")
     public static WebElement buttonFeedback;
     @FindBy(how = How.CSS, using = ".tabs.hubs-top-tabs-bar")
@@ -39,7 +41,7 @@ public class FCHubsPage extends BaseClass {
             "vm.expandLearnMore }\"]")
     public static WebElement buttonLearnMore;
     @FindBy(how = How.CSS, using = ".fc-dropdown.fc-dropdown--columns.fc-dropdown--with-header.learn-more-dropdown." +
-            "fc-dropdown--active li:nth-of-type(5) a")
+            "fc-dropdown--active li:nth-of-type(6) a")
     public static WebElement linklearnMoreEvents;
     @FindBy(how = How.CSS, using = ".scroll.right")
     public static WebElement buttonRightArrow;
@@ -129,7 +131,9 @@ public class FCHubsPage extends BaseClass {
     @FindBy(how = How.CSS, using = "div[ng-show=\"vm.showCompareGpa === true\"] div.bottom div:nth-of-type(2) span")
     public static WebElement labelGPAValue;
     @FindBy(how = How.CSS, using = "div[ng-show=\"vm.showCompareSat === true\"] span.ng-binding.score")
-    public static WebElement labelSATValue;
+    public static WebElement labelSATValueInt;
+    @FindBy(how = How.CSS, using = "div[ng-show=\"vm.showCompareSat === true\"] span[ng-show=\"!vm.subbedPsat\"] +span")
+    public static WebElement labelSATValueProd;
     @FindBy(how = How.CSS, using = "div[ng-show=\"vm.showCompareAct === true\"] span.ng-binding.score")
     public static WebElement labelACTValue;
     @FindBy(how = How.CSS, using = "div[ng-show=\"vm.gpaAvg\"] span:not(.ng-hide)")

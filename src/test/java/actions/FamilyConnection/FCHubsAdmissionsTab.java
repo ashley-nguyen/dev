@@ -326,19 +326,23 @@ public class FCHubsAdmissionsTab {
         driver = Hooks.driver;
         PageFactory.initElements(driver, FCHubsAdmissionsTabPage.class);
         PageFactory.initElements(driver, FCHubsPage.class);
-        new WebDriverWait(Hooks.driver, 20).until(ExpectedConditions.elementToBeClickable
-                (FCHubsAdmissionsTabPage.linkShowMoreScattergrams));
+        WebElement intElement = null;
         new WebDriverWait(Hooks.driver, 20).until(ExpectedConditions.elementToBeClickable
                 (FCHubsAdmissionsTabPage.imageScattergrams));
         ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);",
                 FCHubsAdmissionsTabPage.keySectionScattergramsTitle);
+        if (System.getProperty("ENV").equals("int")) {
+            intElement = FCHubsAdmissionsTabPage.linkShowMoreScattergramsInt;
+        } else if (System.getProperty("ENV").equals("prodConnection")) {
+            intElement = FCHubsAdmissionsTabPage.linkShowMoreScattergramsProd;
+        }
         try {
-            FCHubsAdmissionsTabPage.linkShowMoreScattergrams.click();
+            intElement.click();
         } catch (WebDriverException e) {
             for (int i = 0; i < 6; i++) {
                 FCHubsPage.buttonRecommendedEvents.sendKeys(Keys.ARROW_UP);
             }
-            FCHubsAdmissionsTabPage.linkShowMoreScattergrams.click();
+            intElement.click();
         }
 
     }
@@ -356,8 +360,6 @@ public class FCHubsAdmissionsTab {
         driver = Hooks.driver;
         PageFactory.initElements(driver, FCHubsAdmissionsTabPage.class);
         new WebDriverWait(Hooks.driver, 20).until(ExpectedConditions.elementToBeClickable
-                (FCHubsAdmissionsTabPage.linkShowMoreScattergrams));
-        new WebDriverWait(Hooks.driver, 20).until(ExpectedConditions.elementToBeClickable
                 (FCHubsAdmissionsTabPage.imageScattergrams));
         ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);",
                 FCHubsAdmissionsTabPage.keySectionScattergrams);
@@ -374,8 +376,14 @@ public class FCHubsAdmissionsTab {
     public static void clickInfoIconScattergrams() {
         driver = Hooks.driver;
         PageFactory.initElements(driver, FCHubsAdmissionsTabPage.class);
-        new WebDriverWait(Hooks.driver, 20).until(ExpectedConditions.elementToBeClickable
-                (FCHubsAdmissionsTabPage.linkShowMoreScattergrams));
+        if (System.getProperty("ENV").equals("int")) {
+            new WebDriverWait(Hooks.driver, 20).until(ExpectedConditions.elementToBeClickable
+                    (FCHubsAdmissionsTabPage.linkShowMoreScattergramsInt));
+        } else if (System.getProperty("ENV").equals("prodConnection")) {
+            new WebDriverWait(Hooks.driver, 20).until(ExpectedConditions.elementToBeClickable
+                    (FCHubsAdmissionsTabPage.linkShowMoreScattergramsProd));
+        }
+
         FCHubsAdmissionsTabPage.infoIconScattergrams.sendKeys(Keys.RETURN);
     }
 
@@ -392,36 +400,41 @@ public class FCHubsAdmissionsTab {
         PageFactory.initElements(driver, FCHubsPage.class);
         new WebDriverWait(Hooks.driver, 20).until(ExpectedConditions.elementToBeClickable
                 (FCHubsAdmissionsTabPage.imageScattergrams));
+        new WebDriverWait(Hooks.driver, 20).until(ExpectedConditions.elementToBeClickable
+                (FCHubsAdmissionsTabPage.totalApplicantsCurrentYear));
         ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);",
                 FCHubsAdmissionsTabPage.buttonXTooltipScattergrams);
-        try {
-            FCHubsAdmissionsTabPage.buttonXTooltipScattergrams.click();
-        } catch (WebDriverException e) {
+        boolean isInvisible = true;
+        while (isInvisible) {
             try {
-                for (int i = 0; i < 3; i++) {
-                    FCHubsPage.buttonRecommendedEvents.sendKeys(Keys.ARROW_UP);
-                }
                 FCHubsAdmissionsTabPage.buttonXTooltipScattergrams.click();
-            } catch (WebDriverException ex){
-                for (int i = 0; i < 3; i++) {
-                    FCHubsPage.buttonRecommendedEvents.sendKeys(Keys.ARROW_UP);
-                    FCHubsPage.buttonRecommendedEvents.sendKeys(Keys.ARROW_DOWN);
-                }
-                FCHubsAdmissionsTabPage.buttonXTooltipScattergrams.click();
+                isInvisible = false;
+            } catch (WebDriverException e) {
+                isInvisible = true;
+                FCHubsPage.buttonRecommendedEvents.sendKeys(Keys.ARROW_UP);
             }
-
         }
     }
 
     public static void verifyScattergramsTooltipClosed() {
         driver = Hooks.driver;
         PageFactory.initElements(driver, FCHubsAdmissionsTabPage.class);
-        boolean result;
-        if (FCHubsAdmissionsTabPage.tooltipContainerScattergrams.getAttribute("class").contains("ng-hide")) {
-            result = true;
-        } else {
-            result = false;
+        boolean result = false;
+        if (System.getProperty("ENV").equals("int")) {
+            if (FCHubsAdmissionsTabPage.tooltipContainerScattergrams.getAttribute("class").contains("ng-hide")) {
+                result = true;
+            } else {
+                result = false;
+            }
+        } else if (System.getProperty("ENV").equals("prodConnection")) {
+            try {
+                FCHubsAdmissionsTabPage.tooltipContainerScattergrams.isDisplayed();
+                result = false;
+            } catch (NoSuchElementException e) {
+                result = true;
+            }
         }
+
         assertTrue("The information tooltip is displayed", result);
     }
 
@@ -637,17 +650,28 @@ public class FCHubsAdmissionsTab {
     public static void clickInfoIconScattergramsPSAT() {
         driver = Hooks.driver;
         PageFactory.initElements(driver, FCHubsAdmissionsTabPage.class);
+        WebElement iconElement = null;
+        if (System.getProperty("ENV").equals("int")) {
+            iconElement = FCHubsAdmissionsTabPage.scattergramsPSATInfoIconInt;
+        } else if (System.getProperty("ENV").equals("prodConnection")) {
+            iconElement = FCHubsAdmissionsTabPage.scattergramsPSATInfoIconProd;
+        }
         new WebDriverWait(Hooks.driver, 20).until(ExpectedConditions.elementToBeClickable
-                (FCHubsAdmissionsTabPage.scattergramsPSATInfoIcon));
-        FCHubsAdmissionsTabPage.scattergramsPSATInfoIcon.sendKeys(Keys.RETURN);
+                (iconElement));
+        iconElement.sendKeys(Keys.RETURN);
     }
 
     public static void verifyPSATTooltip() {
         driver = Hooks.driver;
         PageFactory.initElements(driver, FCHubsAdmissionsTabPage.class);
+        WebElement xButtonElement = null;
+        if (System.getProperty("ENV").equals("int")) {
+            xButtonElement = FCHubsAdmissionsTabPage.buttonXTooltipScattergramsPSATInt;
+        } else if (System.getProperty("ENV").equals("prodConnection")) {
+            xButtonElement = FCHubsAdmissionsTabPage.buttonXTooltipScattergramsPSATProd;
+        }
         new WebDriverWait(Hooks.driver, 20).until(ExpectedConditions.elementToBeClickable
-                (FCHubsAdmissionsTabPage.buttonXTooltipScattergramsPSAT));
-        assertTrue("The tooltip in PSAT/SAT is not displayed", FCHubsAdmissionsTabPage
-                .buttonXTooltipScattergramsPSAT.isDisplayed());
+                (xButtonElement));
+        assertTrue("The tooltip in PSAT/SAT is not displayed", xButtonElement.isDisplayed());
     }
 }
