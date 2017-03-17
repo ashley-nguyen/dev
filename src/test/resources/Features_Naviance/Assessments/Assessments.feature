@@ -11,4 +11,4 @@ Feature: Assessments
 
   Examples:
     | user           | account | password | student      |
-    | frank.counselor    | blue1hs    | frank01!  | Student1, Transfer   |
+    | stan.smith    | blue1hs    | stan01!  | Student1, Transfer   |
