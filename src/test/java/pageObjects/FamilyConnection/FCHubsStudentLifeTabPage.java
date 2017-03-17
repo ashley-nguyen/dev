@@ -32,10 +32,10 @@ public class FCHubsStudentLifeTabPage extends BaseClass {
     public static WebElement labelPercentOfStudentsLivingOnCampus;
     @FindBy(how = How.CSS, using = ".student-body-gender-chart.fc-grid__col--lg-6.fc-grid__col--xs-12 " +
             "div.student-body-legend--snugged div:nth-of-type(1) div.student-body-legend__key-stats")
-    public static WebElement labelGenderDataPercentMale;
+    public static WebElement labelGenderDataPercentFemale;
     @FindBy(how = How.CSS, using = ".student-body-gender-chart.fc-grid__col--lg-6.fc-grid__col--xs-12 " +
             "div.student-body-legend--snugged div:nth-of-type(2) div.student-body-legend__key-stats")
-    public static WebElement labelGenderDataPercentFemale;
+    public static WebElement labelGenderDataPercentMale;
     @FindBy(how = How.CSS, using = ".student-body-chart.student-body-age-chart.fc-grid__col--lg-6.fc-grid__col--xs-12 " +
             "div:nth-of-type(3) div.student-body-legend__key.ng-scope:nth-of-type(1) div.student-body-legend__key-stats")
     public static WebElement labelAgeDataUnder24;

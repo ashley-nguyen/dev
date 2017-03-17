@@ -193,10 +193,14 @@ public class FCHubsPage extends BaseClass {
     @FindBy(how = How.CSS, using = "svg.fc-icon.hubs-info-tooltip__close-icon")
     public static WebElement tooltipCloseIcon;
     @FindBy(how = How.CSS, using = "tooltip-info[clicktext=\"middle 50%\"] span[ng-show=\"vm.isVisible\"]")
-    public static WebElement tooltipContainer50Percent;
+    public static WebElement tooltipContainer50PercentInt;
+    @FindBy(how = How.CSS, using = "span.compare__description--underdash + span span.fc-tooltip.hubs-info-tooltip.ng-scope")
+    public static WebElement tooltipContainer50PercentProd;
     @FindBy(how = How.CSS, using = "span[ng-show=\"vm.compareToggleState == 'college' && vm.gpaLo && vm.gpaHi\"] " +
             "span.hubs-info-tooltip-container")
-    public static WebElement tooltipContainerNationalRange;
+    public static WebElement tooltipContainerNationalRangeInt;
+    @FindBy(how = How.CSS, using = "div.bottom.bottom--gpa span.fc-tooltip.hubs-info-tooltip.ng-scope")
+    public static WebElement tooltipContainerNationalRangeProd;
     @FindBy(how = How.CSS, using = "span[title=\"Click to learn more about Average Net price\"] + span")
     public static WebElement tooltipContainerAvgNetPrice;
     @FindBy(how = How.CSS, using = "span[title=\"Click to learn more about Graduation Rate\"] + span")
@@ -204,28 +208,45 @@ public class FCHubsPage extends BaseClass {
     @FindBy(how = How.CSS, using = "span[title=\"Click to learn more about Acceptance Rate\"] + span")
     public static WebElement tooltipContainerAcceptanceRate;
     @FindBy(how = How.CSS, using = "span[ng-if=\"vm.clicktext\"]")
-    public static WebElement infoIconCompareMeDescription;
+    public static WebElement infoIconCompareMeDescriptionInt;
+    @FindBy(how = How.CSS, using = "span.compare__description--underdash + span svg")
+    public static WebElement infoIconCompareMeDescriptionProd;
     @FindBy(how = How.CSS, using = "span[title=\"Click to learn more about How your GPA is converted\"] svg")
     public static WebElement infoIconCompareMeConvertedGPA;
     @FindBy(how = How.CSS, using = "span[title=\"Click to learn more about How your GPA is converted\"] + span")
     public static WebElement tooltipContainerConvertedGPA;
     @FindBy(how = How.CSS, using = "div[ng-show=\"vm.showCompareSat === true\"] span.range.ng-binding tooltip-info " +
             "span.hubs-info-tooltip-container")
-    public static WebElement tooltipContainerSAT;
+    public static WebElement tooltipContainerSATInt;
+    @FindBy(how = How.CSS, using = "div[ng-show=\"vm.showCompareSat === true\"] span.fc-tooltip.hubs-info-tooltip.ng-scope")
+    public static WebElement tooltipContainerSATProd;
     @FindBy(how = How.CSS, using = "div[ng-show=\"vm.showCompareAct === true\"] span.range.ng-binding " +
             "span.hubs-info-tooltip-container")
-    public static WebElement tooltipContainerACT;
+    public static WebElement tooltipContainerACTInt;
+    @FindBy(how = How.CSS, using = "div[ng-show=\"vm.showCompareAct === true\"] span.fc-tooltip.hubs-info-tooltip.ng-scope")
+    public static WebElement tooltipContainerACTProd;
     @FindBy(how = How.CSS, using = "span[ng-show=\"vm.compareToggleState == 'college' && vm.gpaLo && vm.gpaHi\"] " +
             "span.hubs-info-tooltip-clickable svg")
-    public static WebElement infoIconCompareMeNationalRange;
+    public static WebElement infoIconCompareMeNationalRangeInt;
+    @FindBy(how = How.CSS, using = "div[ng-show=\"vm.showCompareGpa === true\"] span[title=\"Click to learn more " +
+            "about Middle 50% Range\"] svg")
+    public static WebElement infoIconCompareMeNationalRangeProd;
     @FindBy(how = How.CSS, using = "div[ng-show=\"vm.showCompareSat === true\"] span.range.ng-binding " +
             "span.hubs-info-tooltip-clickable svg")
-    public static WebElement infoIconCompareMeSAT;
+    public static WebElement infoIconCompareMeSATInt;
+    @FindBy(how = How.CSS, using = "div[ng-show=\"vm.showCompareSat === true\"] span[title=\"Click to learn more " +
+            "about Middle 50% Range\"] svg")
+    public static WebElement infoIconCompareMeSATProd;
     @FindBy(how = How.CSS, using = "div[ng-show=\"vm.showCompareAct === true\"] span.range.ng-binding " +
             "span.hubs-info-tooltip-clickable svg")
-    public static WebElement infoIconCompareMeACT;
+    public static WebElement infoIconCompareMeACTInt;
+    @FindBy(how = How.CSS, using = "div[ng-show=\"vm.showCompareAct === true\"] span[title=\"Click to learn more " +
+            "about Middle 50% Range\"] svg")
+    public static WebElement infoIconCompareMeACTProd;
     @FindBy(how = How.CSS, using = "div.compare-notes.fc-grid__row.fc-grid__row--xs-center")
-    public static WebElement labelDataConversionDetails;
+    public static WebElement labelDataConversionDetailsInt;
+    @FindBy(how = How.CSS, using = "div.compareNotes.fc-grid__row.fc-grid__row--xs-center")
+    public static WebElement labelDataConversionDetailsProd;
     @FindBy(how = How.CSS, using = "div[ng-show=\"vm.college.codes.CEEB\"] div.ng-binding")
     public static WebElement ceebCodeQuickFacts;
 

@@ -320,8 +320,8 @@ public class FCHubs {
         PageFactory.initElements(driver, FCHubsPage.class);
         boolean result = true;
         WebElement valueElement = null;
+        String comparisonString = "";
         for (String scoreValueElement : avgScoreValueList) {
-
             switch (scoreValueElement.split(";")[0]) {
                 case "GPA" : valueElement = FCHubsPage.labelAvgGPAValue;
                     break;
@@ -333,7 +333,12 @@ public class FCHubs {
             System.out.println("UI: " + valueElement.getText());
             System.out.println("Data: " + scoreValueElement.split(";")[1]);
             new WebDriverWait(driver, 20).until(ExpectedConditions.elementToBeClickable(FCHubsPage.labelAvgGPAValue));
-            if (valueElement.getText().contains(scoreValueElement.split(";")[1])) {
+            if (scoreValueElement.split(";")[1].equals("empty")) {
+                comparisonString = "";
+            } else {
+                comparisonString = scoreValueElement.split(";")[1];
+            }
+            if (valueElement.getText().contains(comparisonString)) {
                 result = true;
             } else {
                 result = false;
@@ -1000,24 +1005,48 @@ public class FCHubs {
         driver = Hooks.driver;
         PageFactory.initElements(driver, FCHubsPage.class);
         WebElement infoIcon = null;
-        switch (section) {
-            case "Average Net Price" : infoIcon = FCHubsPage.infoIconAvgNetPrice;
-                break;
-            case "Graduation Rate" : infoIcon = FCHubsPage.infoIconGradRatePrice;
-                break;
-            case "Acceptance Rate" : infoIcon = FCHubsPage.infoIconAcceptanceRatePrice;
-                break;
-            case "description" : infoIcon = FCHubsPage.infoIconCompareMeDescription;
-                break;
-            case "Converted GPA" : infoIcon = FCHubsPage.infoIconCompareMeConvertedGPA;
-                break;
-            case "SAT" : infoIcon = FCHubsPage.infoIconCompareMeSAT;
-                break;
-            case "ACT" : infoIcon = FCHubsPage.infoIconCompareMeACT;
-                break;
-            case "National Range" : infoIcon = FCHubsPage.infoIconCompareMeNationalRange;
-                break;
+        if (System.getProperty("ENV").equals("int")) {
+            switch (section) {
+                case "Average Net Price" : infoIcon = FCHubsPage.infoIconAvgNetPrice;
+                    break;
+                case "Graduation Rate" : infoIcon = FCHubsPage.infoIconGradRatePrice;
+                    break;
+                case "Acceptance Rate" : infoIcon = FCHubsPage.infoIconAcceptanceRatePrice;
+                    break;
+                case "description" : infoIcon = FCHubsPage.infoIconCompareMeDescriptionInt;
+                    break;
+                case "Converted GPA" : infoIcon = FCHubsPage.infoIconCompareMeConvertedGPA;
+                    break;
+                case "SAT" : infoIcon = FCHubsPage.infoIconCompareMeSATInt;
+                    break;
+                case "ACT" : infoIcon = FCHubsPage.infoIconCompareMeACTInt;
+                    break;
+                case "National Range" : infoIcon = FCHubsPage.infoIconCompareMeNationalRangeInt;
+                    break;
+            }
+        } else if (System.getProperty("ENV").equals("prodConnection")) {
+            switch (section) {
+                case "Average Net Price" : infoIcon = FCHubsPage.infoIconAvgNetPrice;
+                    break;
+                case "Graduation Rate" : infoIcon = FCHubsPage.infoIconGradRatePrice;
+                    break;
+                case "Acceptance Rate" : infoIcon = FCHubsPage.infoIconAcceptanceRatePrice;
+                    break;
+                case "description" : infoIcon = FCHubsPage.infoIconCompareMeDescriptionProd;
+                    break;
+                case "Converted GPA" : infoIcon = FCHubsPage.infoIconCompareMeConvertedGPA;
+                    break;
+                case "SAT" : infoIcon = FCHubsPage.infoIconCompareMeSATProd;
+                    break;
+                case "ACT" : infoIcon = FCHubsPage.infoIconCompareMeACTProd;
+                    break;
+                case "National Range" : infoIcon = FCHubsPage.infoIconCompareMeNationalRangeProd;
+                    break;
+            }
         }
+
+
+
         new WebDriverWait(Hooks.driver, 20).until(ExpectedConditions.elementToBeClickable(infoIcon));
         infoIcon.sendKeys(Keys.RETURN);
     }
@@ -1027,31 +1056,49 @@ public class FCHubs {
         PageFactory.initElements(driver, FCHubsPage.class);
         boolean result = false;
         WebElement tooltipElement = null;
-        switch (section) {
-            case "Converted GPA" : tooltipElement = FCHubsPage.tooltipContainerConvertedGPA;
-                break;
-            case "description" : tooltipElement = FCHubsPage.tooltipContainer50Percent;
-                break;
-            case "National Range" : tooltipElement = FCHubsPage.tooltipContainerNationalRange;
-                break;
-            case "SAT" : tooltipElement = FCHubsPage.tooltipContainerSAT;
-                break;
-            case "ACT" : tooltipElement = FCHubsPage.tooltipContainerACT;
-                break;
-            case "Average Net Price" : tooltipElement = FCHubsPage.tooltipContainerAvgNetPrice;
-                break;
-            case "Graduation Rate" : tooltipElement = FCHubsPage.tooltipContainerGradRate;
-                break;
-            case "Acceptance Rate" : tooltipElement = FCHubsPage.tooltipContainerAcceptanceRate;
-                break;
-        }
         if (System.getProperty("ENV").equals("int")) {
+            switch (section) {
+                case "Converted GPA" : tooltipElement = FCHubsPage.tooltipContainerConvertedGPA;
+                    break;
+                case "description" : tooltipElement = FCHubsPage.tooltipContainer50PercentInt;
+                    break;
+                case "National Range" : tooltipElement = FCHubsPage.tooltipContainerNationalRangeInt;
+                    break;
+                case "SAT" : tooltipElement = FCHubsPage.tooltipContainerSATInt;
+                    break;
+                case "ACT" : tooltipElement = FCHubsPage.tooltipContainerACTInt;
+                    break;
+                case "Average Net Price" : tooltipElement = FCHubsPage.tooltipContainerAvgNetPrice;
+                    break;
+                case "Graduation Rate" : tooltipElement = FCHubsPage.tooltipContainerGradRate;
+                    break;
+                case "Acceptance Rate" : tooltipElement = FCHubsPage.tooltipContainerAcceptanceRate;
+                    break;
+            }
             if (!tooltipElement.getAttribute("class").contains("ng-hide")) {
                 result = true;
             } else {
                 result = false;
             }
         } else if (System.getProperty("ENV").equals("prodConnection")) {
+            switch (section) {
+                case "Converted GPA" : tooltipElement = FCHubsPage.tooltipContainerConvertedGPA;
+                    break;
+                case "description" : tooltipElement = FCHubsPage.tooltipContainer50PercentProd;
+                    break;
+                case "National Range" : tooltipElement = FCHubsPage.tooltipContainerNationalRangeProd;
+                    break;
+                case "SAT" : tooltipElement = FCHubsPage.tooltipContainerSATProd;
+                    break;
+                case "ACT" : tooltipElement = FCHubsPage.tooltipContainerACTProd;
+                    break;
+                case "Average Net Price" : tooltipElement = FCHubsPage.tooltipContainerAvgNetPrice;
+                    break;
+                case "Graduation Rate" : tooltipElement = FCHubsPage.tooltipContainerGradRate;
+                    break;
+                case "Acceptance Rate" : tooltipElement = FCHubsPage.tooltipContainerAcceptanceRate;
+                    break;
+            }
             result = tooltipElement.isDisplayed();
         }
 
@@ -1063,25 +1110,26 @@ public class FCHubs {
         PageFactory.initElements(driver, FCHubsPage.class);
         boolean result = false;
         WebElement tooltipContainerElement = null;
-        switch (section) {
-            case "Average Net Price" : tooltipContainerElement = FCHubsPage.tooltipContainerAvgNetPrice;
-                break;
-            case "Graduation Rate" : tooltipContainerElement = FCHubsPage.tooltipContainerGradRate;
-                break;
-            case "Acceptance Rate" : tooltipContainerElement = FCHubsPage.tooltipContainerAcceptanceRate;
-                break;
-            case "description" : tooltipContainerElement = FCHubsPage.tooltipContainer50Percent;
-                break;
-            case "Converted GPA" : tooltipContainerElement = FCHubsPage.tooltipContainerConvertedGPA;
-                break;
-            case "National Range" : tooltipContainerElement = FCHubsPage.tooltipContainerNationalRange;
-                break;
-            case "SAT" : tooltipContainerElement = FCHubsPage.tooltipContainerSAT;
-                break;
-            case "ACT" : tooltipContainerElement = FCHubsPage.tooltipContainerACT;
-                break;
-        }
         if (System.getProperty("ENV").equals("int")) {
+            switch (section) {
+                case "Average Net Price" : tooltipContainerElement = FCHubsPage.tooltipContainerAvgNetPrice;
+                    break;
+                case "Graduation Rate" : tooltipContainerElement = FCHubsPage.tooltipContainerGradRate;
+                    break;
+                case "Acceptance Rate" : tooltipContainerElement = FCHubsPage.tooltipContainerAcceptanceRate;
+                    break;
+                case "description" : tooltipContainerElement = FCHubsPage.tooltipContainer50PercentInt;
+                    break;
+                case "Converted GPA" : tooltipContainerElement = FCHubsPage.tooltipContainerConvertedGPA;
+                    break;
+                case "National Range" : tooltipContainerElement = FCHubsPage.tooltipContainerNationalRangeInt;
+                    break;
+                case "SAT" : tooltipContainerElement = FCHubsPage.tooltipContainerSATInt;
+                    break;
+                case "ACT" : tooltipContainerElement = FCHubsPage.tooltipContainerACTInt;
+                    break;
+            }
+
             if (tooltipContainerElement.getAttribute("class").contains("ng-hide")) {
                 result = true;
             } else {
@@ -1089,6 +1137,24 @@ public class FCHubs {
             }
             System.out.println("Attribute: " + FCHubsPage.tooltipContainerAvgNetPrice.getAttribute("class"));
         } else if (System.getProperty("ENV").equals("prodConnection")) {
+            switch (section) {
+                case "Average Net Price" : tooltipContainerElement = FCHubsPage.tooltipContainerAvgNetPrice;
+                    break;
+                case "Graduation Rate" : tooltipContainerElement = FCHubsPage.tooltipContainerGradRate;
+                    break;
+                case "Acceptance Rate" : tooltipContainerElement = FCHubsPage.tooltipContainerAcceptanceRate;
+                    break;
+                case "description" : tooltipContainerElement = FCHubsPage.tooltipContainer50PercentProd;
+                    break;
+                case "Converted GPA" : tooltipContainerElement = FCHubsPage.tooltipContainerConvertedGPA;
+                    break;
+                case "National Range" : tooltipContainerElement = FCHubsPage.tooltipContainerNationalRangeProd;
+                    break;
+                case "SAT" : tooltipContainerElement = FCHubsPage.tooltipContainerSATProd;
+                    break;
+                case "ACT" : tooltipContainerElement = FCHubsPage.tooltipContainerACTProd;
+                    break;
+            }
             try {
                 tooltipContainerElement.isDisplayed();
                 result = false;
@@ -1104,10 +1170,14 @@ public class FCHubs {
     public static void verifyLabelUnderScoreComparison(String label) {
         driver = Hooks.driver;
         PageFactory.initElements(driver, FCHubsPage.class);
-        new WebDriverWait(Hooks.driver, 20).until(ExpectedConditions.elementToBeClickable(FCHubsPage
-                .labelDataConversionDetails));
-        assertTrue("The label under Score Comparison is not correct", FCHubsPage.labelDataConversionDetails.getText()
-                .equals(label));
+        WebElement labelElement = null;
+        if (System.getProperty("ENV").equals("int")) {
+            labelElement = FCHubsPage.labelDataConversionDetailsInt;
+        } else if (System.getProperty("ENV").equals("prodConnection")) {
+            labelElement = FCHubsPage.labelDataConversionDetailsProd;
+        }
+        new WebDriverWait(Hooks.driver, 20).until(ExpectedConditions.elementToBeClickable(labelElement));
+        assertTrue("The label under Score Comparison is not correct", labelElement.getText().equals(label));
     }
 
     public static void verifyCeebCodeQuickFacts(String ceebCodeValue) {

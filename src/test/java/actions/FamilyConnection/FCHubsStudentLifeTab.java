@@ -73,7 +73,6 @@ public class FCHubsStudentLifeTab {
     public static void VerifyEthnicGroupPercentage(List<String> ethnicGroupsPercent) {
         driver = Hooks.driver;
         boolean result = false;
-
         for(int i = 0; i < ethnicGroupsPercent.size(); i++) {
             String[] percentElement = ethnicGroupsPercent.get(i).split(",");
             WebElement uiElement = driver.findElement(By.cssSelector(".fc-grid__col--xs-12.fc-grid__col--lg-6." +
@@ -108,6 +107,7 @@ public class FCHubsStudentLifeTab {
                 case "Male" : genderPercent = FCHubsStudentLifeTabPage.labelGenderDataPercentMale;
                     break;
             }
+            System.out.println("UI: " + genderPercent.getText());
             result = genderPercentageElement.split(";")[1].equals(genderPercent.getText());
         }
 
