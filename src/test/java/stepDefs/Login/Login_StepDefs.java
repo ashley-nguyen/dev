@@ -1,7 +1,6 @@
 package stepDefs.Login;
 
 import actions.Login.Login;
-import cucumber.api.PendingException;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
@@ -17,7 +16,7 @@ public class Login_StepDefs {
     @When("^I complete the fields on the login page for a district user$")
     public void i_complete_the_fields_on_the_login_page_for_a_district_user() throws Throwable {
 
-        Login.DoLogin("qadistrict", "jtester", "jtester01!");
+        Login.DoLogin("blueqa1", "frank.district", "password");
 
 
     }
@@ -25,14 +24,14 @@ public class Login_StepDefs {
     @When("^I complete the fields on the login page for a school user$")
     public void i_complete_the_fields_on_the_login_page_for_a_school_user() throws Throwable {
 
-        Login.DoLogin("etcs", "cathycounselor", "testtest");
+        Login.DoLogin("blue1hs", "stan.smith", "stan01!");
 
     }
 
     @When("^I complete the fields on the login page for an invalid school user$")
     public void I_complete_the_fields_on_the_login_page_for_an_invalid_school_user() throws Throwable {
 
-        Login.DoLogin("etcs", "abc123", "testtest");
+        Login.DoLogin("blue1hs", "stan.smith", "stan00!");
 
     }
 
