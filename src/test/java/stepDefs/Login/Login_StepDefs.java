@@ -52,7 +52,7 @@ public class Login_StepDefs {
 
     @Given("^I am logged into naviance as an admin user$")
     public void I_am_logged_into_naviance_as_an_admin_user() throws Throwable {
-        Login.DoLogin("etcs", "sallysupport", "sallysupport01!");
+        Login.DoLogin("blue1hs", "stan.smith", "stan01!");
     }
 
 

@@ -11,14 +11,14 @@ Feature: Student
 
     Examples:
       | user           | account | password | student      | data                  |
-      | cathycounselor | etcs    | testtest | Banks, Dante | 952-1532 Sodales Road |
+      | stan.smith | blue1hs    | stan01! | Student1, Transfer | 952-1532 Sodales Road |
 
 
 # THIS TEST VERIFES TD-16 FOR CONFIG PRAMETER MIGRATION (TD-2)
 # IF THE STUDENT RECORD DISPLAYS THEN THE PARAM IS WORKING
   Scenario Outline: Parent has student at same school (can link)
     Given when I log in with the following user details:
-      | etdh | jcounselor | jcounselor01! |
+      | blue1hs | stan.smith | stan01! |
     When I search for "jbrady001" using "id" the student roster search
     Then their student <data> will be displayed
 

@@ -13,4 +13,4 @@ Feature: Import Students
 
   Examples:
     | account     | user            | password   | file                  |
-    | blue1hs     | frank.counselor | frank01!   | ImportStudentData.csv |
+    | blue1hs     | stan.smith | stan01!   | ImportStudentData.csv |
