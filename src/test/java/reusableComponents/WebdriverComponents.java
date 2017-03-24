@@ -46,15 +46,16 @@ public class WebdriverComponents {
     }
 
     /**
-     * Method to click element within within 10 sec
+     * Method to click element within within 60 sec
      *
      * @param element
      */
     public void clickElement(WebElement element) {
 
-        if (waitForElementPresent(10, element)) {
+        if (waitForElementPresent(60, element)) {
 
             element.click();
+
         }
     }
 

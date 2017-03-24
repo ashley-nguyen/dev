@@ -121,7 +121,7 @@ public class FCHubsStudiesTab {
         JavascriptExecutor jse = (JavascriptExecutor)driver;
         ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", driver.findElement
                 (By.cssSelector(".studies-popular__header.fc-grid__col.fc-grid__col--xs-12")));
-        majorsOfferedDegree.click();
+        majorsOfferedDegree.sendKeys(Keys.RETURN);
     }
 
     public static void ClickProgramInMajorsOfferedList(String program) {
@@ -130,7 +130,7 @@ public class FCHubsStudiesTab {
         new WebDriverWait(Hooks.driver, 20).until(ExpectedConditions.elementToBeClickable(FCHubsStudiesTabPage
                 .buttonAllDegreeOfferings));
         WebElement programLink = driver.findElement(By.xpath("//h3[contains(text(), 'Majors Offered at')]" +
-                "/../../div/div/div/ul/li/a[text() = '" + program + "']"));
+                "/../../div/div/div/div/ul/li/a[text() = '" + program + "']"));
         programLink.sendKeys(Keys.RETURN);
         ArrayList<String> tabs = new ArrayList<String> (driver.getWindowHandles());
         driver.switchTo().window(tabs.get(tabs.size() - 1));
@@ -170,7 +170,7 @@ public class FCHubsStudiesTab {
         driver = Hooks.driver;
         new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.linkText(linkText)));
         WebElement link = driver.findElement(By.linkText(linkText));
-        link.click();
+        link.sendKeys(Keys.RETURN);
         ArrayList<String> tabs = new ArrayList<String> (driver.getWindowHandles());
         driver.switchTo().window(tabs.get(tabs.size() - 1));
     }
@@ -208,5 +208,47 @@ public class FCHubsStudiesTab {
             result = true;
         }
         assertTrue("The tooltip was not closed", result);
+    }
+
+    public static void verifyDateLabel(String label, String section) {
+        driver = Hooks.driver;
+        PageFactory.initElements(driver, FCHubsStudiesTabPage.class);
+        WebElement uiElement = null;
+        switch (section) {
+            case "Study Options" : uiElement = FCHubsStudiesTabPage.dateLabelStudyOptions;
+                break;
+            case "Top Areas of Study" : uiElement = FCHubsStudiesTabPage.dateLabelTopAreasOfStudy;
+                break;
+            case "Majors Offered" : uiElement = FCHubsStudiesTabPage.dateLabelMajorsOffered;
+                break;
+        }
+//        new WebDriverWait(Hooks.driver, 20).until(ExpectedConditions.elementToBeClickable(uiElement));
+        System.out.println("UI: " + uiElement.getText());
+        assertTrue("The label is not correct", uiElement.getText().equals(label));
+    }
+
+    public static void verifyDateLabels(List<String> dateLabelsList) {
+        driver = Hooks.driver;
+        PageFactory.initElements(driver, FCHubsStudiesTabPage.class);
+        WebElement uiElement = null;
+        boolean result = false;
+        for (String dateLabelsElement : dateLabelsList) {
+            switch (dateLabelsElement.split(";")[0]) {
+                case "Student Faculty Ratio" : uiElement = FCHubsStudiesTabPage.dateLabelStudentFacultyRatio;
+                    break;
+                case "Student Retention" : uiElement = FCHubsStudiesTabPage.dateLabelStudentRetention;
+                    break;
+                case "Graduation Rate" : uiElement = FCHubsStudiesTabPage.dateLabelGraduationRate;
+                    break;
+                case "Degrees Offered" : uiElement = FCHubsStudiesTabPage.dateLabelDegreesOffered;
+                    break;
+            }
+            if (uiElement.getText().equals(dateLabelsElement.split(";")[1])) {
+                result = true;
+            } else {
+                result = false;
+            }
+        }
+        assertTrue("The date labels are not correct", result);
     }
 }

@@ -12,4 +12,4 @@ Feature: Student ACT legacy scores
 
     Examples:
       | student        | english | math | reading | science | writing_sub | comb_eng_wri | composite | date     | grade |
-      | A103, A103 | 25      | 33   | 29      | 28      | 9           | 30           | 29        | Oct 2014 | 11    |
+      | Student1, Transfer | 25      | 33   | 29      | 28      | 9           | 30           | 29        | Oct 2014 | 11    |

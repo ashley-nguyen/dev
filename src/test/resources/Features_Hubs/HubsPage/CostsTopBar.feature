@@ -22,7 +22,7 @@ Feature: As a student viewing new Hubs' Costs tab, I want to see a top bar with 
     | Pell Grant;17           |
     | Federal Student Loan;36 |
 
-  Scenario: Typical Monthly Loan Payment is displayed with correct data in the Costs top bar
+  Scenario: Typical Monthly Loan Payment is displayed with correct data in the Costs top bar (HUBS-924 - fixed)
     Then Typical Monthly Loan Payment is "224/month" in the Costs top bar
 
   Scenario: Average Total Cost and % Receiving Grant Aid should display the date of the data

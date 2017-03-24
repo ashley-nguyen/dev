@@ -5,12 +5,12 @@ Feature: Import Students
   I want to be able to request import students
 
   @school
-  Scenario Outline: Requests Teacher Recommendations
+  Scenario Outline: Requests Import Students
     Given I am logged into Naviance "<account>" as "<user>" with "<password>"
     When I go to Data Import
-    Then I write the file name to import students
+    Then I write the file name "<file>" to import students
 
 
   Examples:
-    | account     | user       | password  |
-    | blue1hs        | frank.counselor | frank01!   |
+    | account     | user            | password   | file                  |
+    | blue1hs     | stan.smith | stan01!   | ImportStudentData.csv |

@@ -5,7 +5,7 @@ Feature: Student Send details
   to non-common-app colleges via eDocs
 
   Background:
-    Given I am logged into Naviance "rtsa" as "stan.smith" with "stan01!"
+    Given I am logged into Naviance "blue1hs" as "frank.counselor" with "frank01!"
     When I configure permissions for teacher
     Then I verify that Confirmation "The permissions for this role have been updated" message is displayed
 
@@ -16,7 +16,7 @@ Feature: Student Send details
 
   Examples:
     | studentID  | text                     |filename        |
-    | a103       | Letter of Recommendation |ReadMe.txt      |
+    | 37506999       | Letter of Recommendation |ReadMe.txt      |
 
   @edocs @safe @succeed @EDOCS234
   Scenario Outline: Verify under Send page, the NACAC Fee Waiver will be listed as an available document to send to Electronic, Mail Only or Coalition App colleges.
@@ -24,7 +24,7 @@ Feature: Student Send details
     Then I will verify "<type>" available document
   Examples:
     | studentID  | type                     |
-    | a103       | School Report            |
+    | 37506999       | School Report            |
 #    | a103       | NACAC Fee Waiver         |
 
   @edocs @safe @succeed @EDOCS234
@@ -33,7 +33,7 @@ Feature: Student Send details
     Then I will verify "<information>" information and "<action>" action
   Examples:
     | studentID  | information    | action |
-    | a103       | Stan Smith     |  View  |
+    | 37506999       | Stan Smith     |  View  |
 #    | a103       | NACAC Fee Waiver | Replace   |
 
   @edocs @safe @succeed @EDOCS234
@@ -42,5 +42,5 @@ Feature: Student Send details
     Then I will verify "<information>" information and "<action>" action
   Examples:
     | studentID  | type                     |filename        | information    | action |
-    | a103       | Other School Report      |ReadMe.txt      |Stan Smith      | Replace   |
+    | 37506999       | Other School Report      |ReadMe.txt      |Stan Smith      | Replace   |
 #    | a103       | NACAC Fee Waiver         |ReadMe.txt      |Stan Smith      | Replace   |

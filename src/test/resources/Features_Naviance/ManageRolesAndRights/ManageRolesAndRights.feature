@@ -12,4 +12,4 @@ Feature: Manage Roles and Rights
 
   Examples:
     | account     | user       | password  | message                                        |
-    | blue1hs        | frank.counselor | frank01!   | The permissions for this role have been updated|
+    | blue1hs        | automation.admin | password   | The permissions for this role have been updated|

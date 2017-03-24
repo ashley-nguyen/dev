@@ -52,6 +52,8 @@ public class FCHubsAdmissionsTabPage extends BaseClass {
     public static WebElement linkYearsRecommendedHeader;
     @FindBy(how = How.CSS, using = "div.fc-grid__col.fc-grid__col--xs-12.scattergrams-legend")
     public static WebElement keySectionScattergrams;
+    @FindBy(how = How.CSS, using = "h4.scattergrams-legend__title")
+    public static WebElement keySectionScattergramsTitle;
     @FindBy(how = How.CSS, using = "div[ng-if=\"vm.isTruncated && !vm.isExpanded\"]")
     public static WebElement textBoxDescriptionScattergrams;
     @FindBy(how = How.CSS, using = "div[ng-if=\"vm.isTruncated && vm.isExpanded\"]")
@@ -89,6 +91,21 @@ public class FCHubsAdmissionsTabPage extends BaseClass {
     @FindBy(how = How.CSS, using = "div.hub-data-pod.fc-grid__col--xs-12.fc-grid__col--sm-6.fc-grid__col--md-3" +
             ".fc-grid__col--lg-3.ng-scope[ng-if=\"vm.acceptRate\"] svg")
     public static WebElement infoIconAcceptanceRate;
+    @FindBy(how = How.CSS, using = "div[ng-if=\"vm.showApplicationStats\"] div[ng-repeat=\"years in " +
+            "vm.applicationStats | orderBy:'year':true\"]:nth-of-type(3) span.application-stats__total.ng-binding")
+    public static WebElement totalApplicantsBeforePastYear;
+    @FindBy(how = How.CSS, using = "div[ng-if=\"vm.showApplicationStats\"] div[ng-repeat=\"years in " +
+            "vm.applicationStats | orderBy:'year':true\"]:nth-of-type(3) div.application-stats__subheader" +
+            ".application-stats__subheader--left.fc-grid__col.fc-grid__col--xs-6.ng-binding")
+    public static WebElement studentsAcceptedBeforePastYear;
+    @FindBy(how = How.CSS, using = "div[ng-if=\"vm.showApplicationStats\"] div[ng-repeat=\"years in " +
+            "vm.applicationStats | orderBy:'year':true\"]:nth-of-type(3) div.application-stats__subheader" +
+            ".application-stats__subheader--right.fc-grid__col.fc-grid__col--xs-6.ng-binding")
+    public static WebElement studentsEnrolledBeforePastYear;
+    @FindBy(how = How.CSS, using = "div[ng-if=\"vm.requirementLists.length > 0\"] h2")
+    public static WebElement applicationRequirementsTitle;
+    @FindBy(how = How.CSS, using = "span.psat__html-tooltip svg")
+    public static WebElement scattergramsPSATInfoIcon;
 
     public static String listDeadlinesLocator = ".admissions-information__deadline-item.ng-scope";
     public static String comparingDropDownLocator = "select[ng-model=\"vm.scattergramGpaType\"]";

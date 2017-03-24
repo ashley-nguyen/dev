@@ -7,6 +7,7 @@ import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import org.openqa.selenium.WebDriver;
+import reusableComponents.WebdriverComponents;
 
 import java.util.List;
 
@@ -352,9 +353,7 @@ public class FCHubs_StepDefs {
 
     @When("^I open the HUBS page for \"([^\"]*)\"$")
     public void I_open_the_HUBS_page_for(String college) throws Throwable {
-        FCDashboard.ClickCollegesTab();
-        FCCollegesTab.EnterCollegeToSearch(college);
-        FCCollegesTab.ClickGoButton();
+        FCCollegesTab.goToSearchCollegeWithURL(college);
         FCCollegesTab.ClickCollegeInCollegeLookup(college);
         /*The following callings inside this method will be commented as needed. This is because sometimes a toggle
         * is switched to use the Beta button, and the same with the Authorize button*/
@@ -561,6 +560,16 @@ public class FCHubs_StepDefs {
     @Then("^The tooltip in \"([^\"]*)\" should be closed$")
     public void theTooltipInShouldBeClosed(String section) throws Throwable {
         FCHubs.verifyInfoTooltipInSectionIsClosed(section);
+    }
+
+    @Then("^I should see the label \"([^\"]*)\" under Score Comparison$")
+    public void I_should_see_the_label_under_score_comparison(String label) throws Throwable {
+        FCHubs.verifyLabelUnderScoreComparison(label);
+    }
+
+    @Then("^CEEB Code is \"([^\"]*)\" in Quick Facts$")
+    public void ceeb_code_is_in_Quick_Facts(String ceebCodeValue) throws Throwable {
+        FCHubs.verifyCeebCodeQuickFacts(ceebCodeValue);
     }
 }
 

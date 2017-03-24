@@ -26,7 +26,7 @@ Feature:  As a student viewing new Hubs' events screen , I want to see events so
     Then Recommended events are displayed on screen
 
   Scenario: User navigate to events screen from legacy by clicking link "Upcoming College Events"
-    When I Navigate to oldColleges tab
+    When I Navigate to old Colleges tab
     When I open link Upcoming college events
     Then I should see College Events Details
 

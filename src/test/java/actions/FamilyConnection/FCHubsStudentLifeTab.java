@@ -59,6 +59,7 @@ public class FCHubsStudentLifeTab {
                 sectionElement = FCHubsStudentLifeTabPage.labelPercentOfStudentsLivingOnCampus;
                 break;
         }
+        new WebDriverWait(driver, 20).until(ExpectedConditions.elementToBeClickable(sectionElement));
         assertTrue("The " + sectionName + " value is incorrect", sectionElement.getText().equals(value));
     }
 
