@@ -73,7 +73,6 @@ public class ElementaryViewAllLessonPlans {
                 expectedGrade = expectedLessonsData.get(j).get(2);
                 expectedTheme = expectedLessonsData.get(j).get(3);
                 expectedDuration = expectedLessonsData.get(j).get(4);
-
                     if (expectedTitle.compareTo(title) == 0)
                     {
                         flag = true;

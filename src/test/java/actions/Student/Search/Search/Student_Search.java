@@ -59,7 +59,8 @@ public class Student_Search {
                 StudentRosterPage.btnStudentIDSearch.click();
                 break;
             case "name":
-
+                StudentRosterPage.txtStudentLastName.sendKeys(strStudent);
+                StudentRosterPage.btnStudentNameSearch.click();
                 break;
 
             case "email":

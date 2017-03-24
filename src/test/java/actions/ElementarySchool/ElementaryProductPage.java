@@ -237,7 +237,7 @@ public class ElementaryProductPage {
     public static void deleteElementaryGroup(String groupName, String sequence)
     {
         int rowIndex = TableComponent.getRowIndexByValue(ElementaryPage.locatorElementaryGroupTable, groupName);
-        assertTrue("The group '"+ groupName +"' is present in Elementary groups table", rowIndex > -1);
+        assertTrue("The group '"+ groupName +"' is Not present in Elementary groups table", rowIndex > -1);
 
         // Click on delete icon
         WebElement deleteIconElem = TableComponent.getCellElement(ElementaryPage.tblElementaryTBodyGroups, rowIndex, 2);

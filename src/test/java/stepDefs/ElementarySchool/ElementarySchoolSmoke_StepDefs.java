@@ -2,9 +2,13 @@ package stepDefs.ElementarySchool;
 
 import actions.Dashboard.Dashboard;
 import actions.ElementarySchool.*;
+import actions.Student.Search.Search.Student_Search;
 import actions.Students.AddStudents;
+import actions.Students.DeleteStudent;
 import actions.Students.Groups;
 import cucumber.api.PendingException;
+import cucumber.api.java.After;
+import cucumber.api.java.en.And;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 
@@ -17,6 +21,13 @@ import java.util.List;
  * Created by sahara.navia on 2/16/17.
  */
 public class ElementarySchoolSmoke_StepDefs {
+
+    // Get Student Name to share with another scenario
+    public static String getStudentName() {
+        return studentName;
+    }
+
+    private static String studentName;
 
     @When("^I navigate to Naviance Elementary School$")
     public void iNavigateToNavianceElementarySchool() throws Throwable
@@ -35,20 +46,23 @@ public class ElementarySchoolSmoke_StepDefs {
         ElementarySchoolActivity.verifySchoolActivityPage();
 
     }
-    @When("^I created a new student (.*), (.*), (.*), (.*), (.*), (.*) and Elementary group (.*), (.*) and (.*)$")
+    @When("^I created a new student (.*), (.*), (.*), (.*), (.*), (.*), (.*) and Elementary group (.*), (.*) and (.*)$")
     public void CreateNewStudentAssignStudentGroupAndAssignLessonSequence(String studentLastName,
                                                                           String studentFirstName, String studentClassYear,
-                                                                          String studentGender, String studentFCUserName,
-                                                                          String studentFCPassword, String studentGroup,
-                                                                          String lessonSequence, String instructorName) throws Throwable{
+                                                                          String studentGender, String studentId,
+                                                                          String studentFCUserName, String studentFCPassword,
+                                                                          String studentGroup, String lessonSequence,
+                                                                          String instructorName) throws Throwable{
 
         LinkedHashMap<String, String> studentInfo = new LinkedHashMap<String, String>();
         studentInfo.put("studentFirstName", studentFirstName);
         studentInfo.put("studentLastName", studentLastName);
         studentInfo.put("studentGender", studentGender);
+        studentInfo.put("studentId", studentId);
         studentInfo.put("studentClassYear", studentClassYear);
         List<String> studentToAssign = new ArrayList<>();
         studentToAssign.add(studentLastName +", "+ studentFirstName);
+        studentName = studentLastName +", "+ studentFirstName;
 
         // Navigate to Add Students
         AddStudents.ClickAddStudentsLink();
@@ -109,5 +123,24 @@ public class ElementarySchoolSmoke_StepDefs {
         ElementaryProductPage.clickAssignALessonSequenceLink();
         ElementaryAssignALessonSequence.verifyGroupIsDisplayedInTheSearchField( studentGroup);
 
+        // Delete Student Group
+        Groups.ClickGroupsLink();
+        Groups.deleteStudentGroup(studentGroup);
+
+        // Delete Student
+        String studentName = getStudentName();
+        DeleteStudent.deleteStudent(studentName, "name");
+    }
+
+    @And("^The student (.*), (.*), (.*), (.*) is displayed on Students tab$")
+    public void theStudentIsDisplayedOnStudentsTab(String studentLastName, String studentFirstName, String studentClassYear,
+                                                   String studentId) throws Throwable {
+        String studentName = studentLastName +", "+ studentFirstName;
+
+        // Verify the Students tab in group detail page
+        ElementaryGroupDetail.verifyStudentsTableElementaryGroupDetail();
+
+        // Verify Students displayed on the table
+        ElementaryGroupDetail.verifyStudentsDisplayedOnStudentsTab(studentName, studentClassYear, studentId);
     }
 }

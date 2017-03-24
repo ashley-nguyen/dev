@@ -87,10 +87,11 @@ public class TableComponent {
     {
         List<String> rowValues = new ArrayList<String>();
         List<WebElement> tableData = refreshTableObj(locator);
-
         for(int index = 0; index < tableData.size(); index++)
         {
-            rowValues.add(tableData.get(index).getText());
+            if(!tableData.get(index).getText().isEmpty()) {
+                rowValues.add(tableData.get(index).getText());
+            }
         }
         return rowValues;
     }
