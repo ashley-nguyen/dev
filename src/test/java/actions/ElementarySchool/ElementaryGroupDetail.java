@@ -1,6 +1,5 @@
 package actions.ElementarySchool;
 
-import org.apache.commons.exec.util.StringUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -8,7 +7,6 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import pageObjects.ElementarySchool.ElementaryGroupDetailPage;
-import pageObjects.ElementarySchool.ElementaryPage;
 import reusableComponents.TableComponent;
 import stepDefs.Hooks;
 
@@ -16,7 +14,6 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Calendar;
-import java.util.Objects;
 
 import static org.junit.Assert.assertTrue;
 
@@ -126,8 +123,7 @@ public class ElementaryGroupDetail {
      */
     public static void verifyStudentsTableElementaryGroupDetail()
     {
-        String columns = "Students, Student ID, Class/Grade";
-        List<String> expectedTableColumns = Arrays.asList(columns.split("\\s*,\\s*"));
+        List<String> expectedTableColumns = getStudentsColumnLabels();
         clickOnElementaryGroupDetailTab("Students");
 
         // Verify columns on the Students table
@@ -150,13 +146,9 @@ public class ElementaryGroupDetail {
         switch (filterBy) {
             case "studentName":
                 element = ElementaryGroupDetailPage.txtFilterByStudentName;
-                //element.click();
-                //element.sendKeys(value);
                 break;
             case "studentID":
                 element = ElementaryGroupDetailPage.txtFilterByStudentName;
-                //element.click();
-                //element.sendKeys(value);
                 break;
             default: element = null;
                 assertTrue("'"+ filterBy + "' is Not a valid filter option", false);
@@ -222,6 +214,48 @@ public class ElementaryGroupDetail {
         String actualStudentGrade = studentGradeCellElement.getText();
         String expectedStudentGrade = getStudentClassGrade(studentClassYear);
         assertTrue("The Student Class/Grade of '" + studentName + "' is incorrect on Students tab", expectedStudentGrade.compareTo(actualStudentGrade) == 0);
+    }
+
+    /**
+     * Get the list of column labels of Students table
+     * @return
+     */
+    public static List<String> getStudentsColumnLabels()
+    {
+        String columns = "Students, Student ID, Class/Grade";
+        List<String> expectedTableColumns = Arrays.asList(columns.split("\\s*,\\s*"));
+        return expectedTableColumns;
+
+    }
+
+    /**
+     * Verify students table is not present when the group does not have members
+     */
+    public static void verifyStudentsTableForEmptyElementaryGroup()
+    {
+        List<String> expectedTableColumns = getStudentsColumnLabels();
+        clickOnElementaryGroupDetailTab("Students");
+
+        try {
+            // Students filter fields, columns, paginator should not be displayed for empty group
+            Boolean isTableHeadPresent = new WebDriverWait(driver, 20).until(ExpectedConditions.invisibilityOfElementLocated(ElementaryGroupDetailPage.locatorStudentsTableHead));
+            Boolean isTablePresent = new WebDriverWait(driver, 20).until(ExpectedConditions.invisibilityOfElementLocated(ElementaryGroupDetailPage.locatorStudentsTable));
+            Boolean isTablePaginatorPresent = new WebDriverWait(driver, 20).until(ExpectedConditions.invisibilityOfElementLocated(ElementaryGroupDetailPage.locatorStudentsPaginator));
+            assertTrue("The Students table is present in Elementary groups detail page", isTableHeadPresent &&
+                    isTablePresent && isTablePaginatorPresent);
+        }catch (Exception e){
+            assertTrue("The Students table is present in Elementary groups detail page, the group is not empty.", false);
+        }
+    }
+
+    /**
+     * Verify Student message when group does not have members
+     * @param message Message
+     */
+    public static void verifyStudentsMessageForEmptyGroup(List<String> message)
+    {
+        String actualMessage = ElementaryGroupDetailPage.lblEmptyGroupMessage.getText();
+        assertTrue("The warning message for empty group is not correct.", actualMessage.compareTo(message.get(0)) == 0);
     }
 
 }

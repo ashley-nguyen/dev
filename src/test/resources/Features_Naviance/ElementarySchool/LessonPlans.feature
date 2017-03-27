@@ -76,7 +76,7 @@ Feature: Naviance Elementary School
     Then The lesson plans should be similar to the table:
       |Title                            |Objective                                                                                                                                      |Grade|Theme              |Duration     |
       |A Guide to Your Dream Career     |Understand how classes in middle school, high school, and post-secondary education relate to different careers.                                |5    |School and Courses |55-60 minutes|
-      |Explore Your Limitless Options   |Understand that change is a part of growth and interests, beliefs, attitudes, and dreams can change.                                           |5    |Career Exploration |50-55 minutes|
+      |Explore Your Limitless Options   |Understand that dreams can change and that change in interests, beliefs, and attitudes is a part of growth.                                    |5    |Career Exploration |50-55 minutes|
       |The Magic Formula                |Understand why certain colleges might be a good fit for people based on their goals, strengths, interests, attitudes, values, and beliefs.     |5    |College Exploration|50-55 minutes|
       |The Value of Going to College    |Understand that going to college will impact income later in life and may open up new possibilities in the future.                             |5    |Affordability      |55-60 minutes|
       |Where Will You Go to College?    |Understand why certain colleges might be a better fit for students based on their learning styles.                                             |5    |College Exploration|55-60 minutes|

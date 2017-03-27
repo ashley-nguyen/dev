@@ -33,8 +33,12 @@ public class ElementaryGroupDetailPage extends BaseClass{
     @FindBy(how = How.CSS, using = "table.ns-table > tbody")
     public static WebElement tblStudentsTBody;
 
+    @FindBy(how = How.CSS, using = ".ns-alert--warning")
+    public static WebElement lblEmptyGroupMessage;
+
     public static By locatorStudentsTableHead = By.cssSelector("table.ns-table > thead> tr> th");
     public static By locatorStudentsTable = By.cssSelector("table.ns-table > tbody > tr");
+    public static By locatorStudentsPaginator = By.cssSelector("students__paginator");
 
     public ElementaryGroupDetailPage(WebDriver driver) {
         super(driver);

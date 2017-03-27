@@ -11,6 +11,7 @@ import cucumber.api.java.After;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
+import pageObjects.Header.SchoolPageHeader;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -64,15 +65,25 @@ public class ElementarySchoolSmoke_StepDefs {
         studentToAssign.add(studentLastName +", "+ studentFirstName);
         studentName = studentLastName +", "+ studentFirstName;
 
-        // Navigate to Add Students
-        AddStudents.ClickAddStudentsLink();
+        if(!Student_Search.doesStudentExist(studentName, "name"))
+        {
+            // Verify if the student was already added
+            SchoolPageHeader.lnkHeaderStudents.click();
 
-        // Add New Students
-        AddStudents.AddStudents(studentInfo);
-        AddStudents.RegisterStudentToFamilyConnection(studentFCUserName, studentFCPassword);
+
+            // Navigate to Add Students
+            AddStudents.ClickAddStudentsLink();
+
+            // Add New Students
+            AddStudents.AddStudents(studentInfo);
+            AddStudents.RegisterStudentToFamilyConnection(studentFCUserName, studentFCPassword);
+        }
 
         // Add Student Group
         Groups.ClickGroupsLink();
+        if(Groups.doesStudentGroupExist(studentGroup)) {
+            Groups.deleteStudentGroup(studentGroup);
+        }
         Groups.AddStudentGroup(studentGroup, studentGroup);
 
         // Assign Students to the Group

@@ -1,21 +1,20 @@
 package actions.ElementarySchool;
 
-import java.util.Arrays;
-import java.util.List;
 import actions.TestPrep.TestPrep;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.openqa.selenium.support.ui.ExpectedCondition;
 import pageObjects.ElementarySchool.AssignLessonSequencePage;
 import pageObjects.ElementarySchool.ElementaryPage;
-import pageObjects.TestPrep.AssignStudyProgramsPage;
 import reusableComponents.TagEditorComponent;
 import stepDefs.Hooks;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.concurrent.TimeUnit;
 
@@ -109,7 +108,7 @@ public class ElementaryAssignALessonSequence {
      * @param element Group element
      * @param value Group Name
      */
-    public static void waitForGroupToBeVisible( WebElement element, String value) {
+    public static void waitForGroupToBeVisible ( final WebElement element, final String value) {
         driver = Hooks.driver;
         WebDriverWait wait = new WebDriverWait(driver, 300);
         wait.withTimeout(5, TimeUnit.MINUTES);

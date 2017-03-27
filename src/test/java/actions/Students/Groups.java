@@ -215,4 +215,16 @@ public class Groups {
         assertTrue("Group '"+ groupCode +"' is displayed in Student Group page.", groupIndex == -1);
     }
 
+    /**
+     * Check if the Student group already exists in Naviance
+     * @param groupCode Group code value
+     * @return True if the group already exists, false otherwise
+     */
+    public static Boolean doesStudentGroupExist(String groupCode)
+    {
+        int rowIndex = GetRowIndexByValue(GroupsPage.locatorStudentGroupTbl, groupCode);
+        Boolean flag = (rowIndex > -1) ? true : false;
+        return flag;
+    }
+
 }
