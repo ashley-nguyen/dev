@@ -17,6 +17,9 @@ public class AddStudentsPage extends BaseClass {
     @FindBy(how = How.NAME, using = "first_name")
     public static WebElement txtFirstName;
 
+    @FindBy(how = How.NAME, using = "hs_student_id")
+    public static WebElement txtStudentId;
+
     @FindBy(how = How.NAME, using = "class_year")
     public static WebElement selClassYear;
 

@@ -59,7 +59,8 @@ public class Student_Search {
                 StudentRosterPage.btnStudentIDSearch.click();
                 break;
             case "name":
-
+                StudentRosterPage.txtStudentLastName.sendKeys(strStudent);
+                StudentRosterPage.btnStudentNameSearch.click();
                 break;
 
             case "email":
@@ -78,6 +79,26 @@ public class Student_Search {
         new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.tagName("body")));
         String bodyText = SchoolPageHeader.objBodyText.getText();
         assertTrue("Text not found!  "+strData, bodyText.contains(strData));
+    }
+
+
+    /**
+     * Check if the student already exists in Naviance
+     * @param strStudent  Student information, i.e student name, student id
+     * @param strSearchBy Value to search the student, i.e name, id
+     * @return True if the student already exists, false otherwise
+     * @throws Throwable
+     */
+    public static Boolean doesStudentExist(String strStudent, String strSearchBy)throws Throwable
+    {
+        try {
+            studentRosterSearch(strStudent, strSearchBy);
+            return true;
+
+        }catch(Exception e)
+        {
+            return false;
+        }
     }
 
 }

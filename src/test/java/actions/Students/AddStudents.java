@@ -76,6 +76,10 @@ public class AddStudents {
                 case "studentGender":
                     SelectGender(fieldValue);
                     break;
+                case "studentId":
+                    AddStudentsPage.txtStudentId.click();
+                    AddStudentsPage.txtStudentId.sendKeys(fieldValue);
+                    break;
             }
 
         }

@@ -1,19 +1,22 @@
 package actions.ElementarySchool;
 
-import java.util.Arrays;
-import java.util.List;
 import actions.TestPrep.TestPrep;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import pageObjects.ElementarySchool.AssignLessonSequencePage;
 import pageObjects.ElementarySchool.ElementaryPage;
-import pageObjects.TestPrep.AssignStudyProgramsPage;
 import reusableComponents.TagEditorComponent;
 import stepDefs.Hooks;
+
+import java.util.Arrays;
+import java.util.List;
+import java.util.NoSuchElementException;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Created by sahara.navia on 2/17/17.
@@ -68,6 +71,7 @@ public class ElementaryAssignALessonSequence {
 
         // Enter Group(s)
         WebElement groupElement = AssignLessonSequencePage.txtAssignGroupName;
+        waitForGroupToBeVisible(groupElement, groups.get(0));
         TagEditorComponent.selectOptionTagEditor(groupElement, groups);
 
         // Select sequence
@@ -97,6 +101,39 @@ public class ElementaryAssignALessonSequence {
         WebElement groupElement = AssignLessonSequencePage.txtAssignGroupName;
         TagEditorComponent.selectOptionTagEditor(groupElement, group);
 
+    }
+
+    /**
+     * Waiting 5 minutes for a group to show up on Search field, checking for its presence once every 30 seconds
+     * @param element Group element
+     * @param value Group Name
+     */
+    public static void waitForGroupToBeVisible ( final WebElement element, final String value) {
+        driver = Hooks.driver;
+        WebDriverWait wait = new WebDriverWait(driver, 300);
+        wait.withTimeout(5, TimeUnit.MINUTES);
+        wait.pollingEvery(30, TimeUnit.SECONDS);
+        wait.ignoring(NoSuchElementException.class);
+        wait.until(new ExpectedCondition<Boolean>(){
+            public Boolean apply(WebDriver driver) {
+                driver.navigate().refresh();
+                new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.textToBePresentInElement(ElementaryPage.titleElementaryProductPage,
+                                  "Assign a Lesson Sequence"));
+                element.click();
+                element.clear();
+                element.sendKeys(value);
+                WebElement groupElemt = driver.findElement(By.linkText(value));
+                if(groupElemt==null) {
+                    return false;
+                }
+                else
+                {
+                    element.click();
+                    element.clear();
+                    return true;
+                }
+            }
+        });
     }
 
 }

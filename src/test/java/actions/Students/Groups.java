@@ -23,9 +23,6 @@ import stepDefs.Hooks;
 public class Groups {
     public static WebDriver driver;
 
-    public static String tblGroup = "td.dark_textheader14 > table > tbody > tr:nth-child(3) > " +
-            "td > table > tbody > tr > td > table > tbody > tr";
-
     /**
      * Click on Groups link.
      */
@@ -73,9 +70,7 @@ public class Groups {
         String title = GroupsPage.titleGroupsPage.getText();
         assertTrue("'Student Group' page is opened", title.contains("Student Groups"));
 
-        By locatorTlbGroup = By.cssSelector(tblGroup);
-
-        int row = GetRowIndexByValue(locatorTlbGroup, groupName);
+        int row = GetRowIndexByValue(GroupsPage.locatorStudentGroupTbl, groupName);
         assertTrue("New group '"+ groupName +"' was created correctly", row > -1);
     }
 
@@ -169,9 +164,8 @@ public class Groups {
     public static void ClickEditMembers(String groupName)
     {
         driver = Hooks.driver;
-        By locatorGroupTable = By.cssSelector(tblGroup);
 
-        int rowIndex = GetRowIndexByValue(locatorGroupTable, groupName);
+        int rowIndex = GetRowIndexByValue(GroupsPage.locatorStudentGroupTbl, groupName);
         assertTrue("New group '"+ groupName +"' was found in the Group list", rowIndex > -1);
 
         WebElement element = GetGroupCellElement(rowIndex, 3);
@@ -195,6 +189,42 @@ public class Groups {
         WebElement groupElement = GroupsPage.tblGroupBody.findElement(By.cssSelector("tr:nth-child(" + (rowIndex + 1)
                                   + ") > td:nth-child("+ columnIndex +")"));
         return groupElement;
+    }
+
+    /**
+     * Delete Student Group
+     * @param groupCode Group code
+     */
+    public static void deleteStudentGroup(String groupCode) throws InterruptedException
+    {
+        int rowIndex = GetRowIndexByValue(GroupsPage.locatorStudentGroupTbl, groupCode);
+        assertTrue("Group '"+ groupCode +"' is Not displayed in Student Group page.", rowIndex > -1);
+
+        WebElement element = GetGroupCellElement(rowIndex, 3);
+        element.findElement(GroupsPage.locatorDeleteGroupLink).click();
+
+        // Click on Delete Group
+        new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.elementToBeClickable(GroupsPage.btnDeleteGroup)).click();
+
+        // Verify Group name
+        new WebDriverWait(Hooks.driver, 20).until(ExpectedConditions.textToBePresentInElement(GroupsPage.titleGroupsPage,
+                          "Student Groups"));
+
+        // Verify Group is not displayed on the Student Group table
+        int groupIndex = GetRowIndexByValue(GroupsPage.locatorStudentGroupTbl, groupCode);
+        assertTrue("Group '"+ groupCode +"' is displayed in Student Group page.", groupIndex == -1);
+    }
+
+    /**
+     * Check if the Student group already exists in Naviance
+     * @param groupCode Group code value
+     * @return True if the group already exists, false otherwise
+     */
+    public static Boolean doesStudentGroupExist(String groupCode)
+    {
+        int rowIndex = GetRowIndexByValue(GroupsPage.locatorStudentGroupTbl, groupCode);
+        Boolean flag = (rowIndex > -1) ? true : false;
+        return flag;
     }
 
 }

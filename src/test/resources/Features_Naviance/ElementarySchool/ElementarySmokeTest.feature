@@ -12,11 +12,12 @@ Feature: SmokeTest Naviance Elementary School 
 
   @ElementarySmokeTest
   Scenario Outline: Assign Lesson Sequence to a Student Group
-    When I created a new student <StudentLastName>, <StudentFirstName>, <StudentClassYear>, <StudentGender>, <StudentFCUserName>, <StudentFCPassword> and Elementary group <StudentGroup>, <LessonSequence> and <InstructorName>
+    When I created a new student <StudentLastName>, <StudentFirstName>, <StudentClassYear>, <StudentGender>, <StudentId>, <StudentFCUserName>, <StudentFCPassword> and Elementary group <StudentGroup>, <LessonSequence> and <InstructorName>
     Then The new ELEM group <StudentGroup> instructor <InstructorName> and lesson sequence <LessonSequence> is listed on product page
+    And The student <StudentLastName>, <StudentFirstName>, <StudentClassYear>, <StudentId> is displayed on Students tab
     Examples:
-      |StudentLastName|StudentFirstName|StudentClassYear|StudentGender|StudentFCUserName|StudentFCPassword|StudentGroup  |InstructorName  |LessonSequence |
-      |autTest        |autElemStudent  |2017            |F            |autElemStudent   |password         |AUT_ELEM_GROUP|Automation Admin|Grade K Lessons|
+      |StudentLastName|StudentFirstName|StudentClassYear|StudentGender|StudentId     |StudentFCUserName|StudentFCPassword|StudentGroup  |InstructorName  |LessonSequence |
+      |autTest        |autElemStudent  |2029            |F            |autTestID-123 |autElemStudent   |password         |AUT_ELEM_GROUP|Automation Admin|Grade K Lessons|
 
 
   # This scenario depends on 'Assign Lesson Sequence to a Student Group'
