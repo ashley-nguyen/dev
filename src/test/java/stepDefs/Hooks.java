@@ -45,7 +45,7 @@ public class Hooks {
         String env = System.getProperty("ENV");
 
         if (env == null)
-            env = "QABlue";
+            env = "prod";
         switch (env) {
             case "staging":
                 strBaseURL = "https://succeed-internal.naviance.com";

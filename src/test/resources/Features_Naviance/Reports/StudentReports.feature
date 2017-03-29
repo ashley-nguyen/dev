@@ -6,7 +6,7 @@ Feature: Student Reports tests
 
   Background:
     Given when I log in with the following user details:
-      | qaedis1 | sangeetha.sadmin | password |
+      | bernathigh | sangeetha.munuswamy | password |
 
   @Studentreports
   Scenario Outline: Verify Students Reports Custom page
