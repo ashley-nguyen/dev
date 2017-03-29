@@ -10,4 +10,4 @@ Feature: Dashboard tests
     Then I will verify Tasks Page
     Examples:
       | account     | user       | password  |
-      | qaedis1     |  sangeetha.sadmin | password   |
+      | bernathigh | sangeetha.munuswamy | password |
