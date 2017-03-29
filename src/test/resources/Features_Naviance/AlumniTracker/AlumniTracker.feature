@@ -10,4 +10,4 @@ Feature: AlumniTracker tests
     Then the Alumni Tracker page is showed successfully
   Examples:
     | account     | user       | password  | school   |
-    | blueqa1        | frank.district | password   | Int QA Elementary School 1 |
+    | blue1hs        | stan.smith | stan01!   | Int QA Elementary School 1 |

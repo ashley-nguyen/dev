@@ -72,12 +72,12 @@ public class AlumniTracker {
         driver = Hooks.driver;
         PageFactory.initElements(driver, AlumniTrackerPage.class);
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-        if(School.contains("School A"))
+        if(School.contains("City"))
         {
             AlumniTrackerPage.lnkSelectedSchoolA.click();
         }
 
-        if(School.contains("School E"))
+        if(School.contains("City high school"))
         {
             AlumniTrackerPage.lnkSelectedSchoolE.click();
         }

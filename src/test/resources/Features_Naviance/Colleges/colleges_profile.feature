@@ -6,7 +6,7 @@ Feature: Colleges - College Profile
 
   Background:
     Given when I log in with the following user details:
-      | blue1hs | frank.counselor| frank01! |
+      | blue1hs | stan.smith | stan01! |
 
   @Colleges @safe
   Scenario Outline: View College Profile

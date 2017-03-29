@@ -15,9 +15,14 @@ public class StudentRosterPage extends BaseClass {
     @FindBy(how = How.NAME, using = "student_id")
     public static WebElement txtStudentID;
 
+    @FindBy(how = How.NAME, using = "lastname")
+    public static WebElement txtStudentLastName;
 
     @FindBy(how = How.NAME, using = "idSearch")
     public static WebElement btnStudentIDSearch;
+
+    @FindBy(how = How.NAME, using = "nameSearch")
+    public static WebElement btnStudentNameSearch;
 
     public StudentRosterPage(WebDriver driver) {
         super(driver);

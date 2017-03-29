@@ -79,6 +79,24 @@ public class TableComponent {
     }
 
     /**
+     * Return the Row values
+     * @param locator The locator of the table, i.e By.Id(Id) or By.cssSelector(table.ns-table > tbody > tr)
+     * @return rowValues, List of Row Values.
+     */
+    public static List<String> getRowValues(By  locator)
+    {
+        List<String> rowValues = new ArrayList<String>();
+        List<WebElement> tableData = refreshTableObj(locator);
+        for(int index = 0; index < tableData.size(); index++)
+        {
+            if(!tableData.get(index).getText().isEmpty()) {
+                rowValues.add(tableData.get(index).getText());
+            }
+        }
+        return rowValues;
+    }
+
+    /**
      * Refresh the object when it was removed from the DOM.
      * @param locator The locator of the object, i.e By.Id(Id) or By.cssSelector(table.ns-table > tbody > tr)
      * @return WebElement of the object

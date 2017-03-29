@@ -11,4 +11,4 @@ Feature: Student AP Scores
 
     Examples:
       | student      | testtype    | score | year | grade |
-      | Banks, Dante | Art History | 4     | 2015 | 12    |
+      | Student1, Transfer | Art History | 4     | 2015 | 12    |
