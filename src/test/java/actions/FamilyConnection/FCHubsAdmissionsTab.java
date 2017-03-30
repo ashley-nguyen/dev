@@ -606,9 +606,7 @@ public class FCHubsAdmissionsTab {
         PageFactory.initElements(driver, FCHubsAdmissionsTabPage.class);
         boolean result = false;
         if (System.getProperty("ENV").equals("int")) {
-            if (FCHubsAdmissionsTabPage.tooltipContainerAcceptanceRate.getAttribute("class").contains("ng-hide")) {
-                result = true;
-            }
+            result = FCHubsAdmissionsTabPage.tooltipContainerAcceptanceRateHidden.isEnabled();
         } else if (System.getProperty("ENV").equals("prodConnection")) {
             result = navigation.verifyElementNotPresent(FCHubsAdmissionsTabPage.tooltipContainerAcceptanceRate);
         }

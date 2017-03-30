@@ -86,6 +86,8 @@ public class FCHubsStudiesTab {
         boolean result = false;
         driver = Hooks.driver;
         for(int i = 0; i < programs.size(); i++) {
+            System.out.println(driver.findElement(By.xpath("//div[@class='studies-programs__content']/div/ul/li/a" +
+                    "[contains(text(), '" + programs.get(i) + "')]")).getText());
             if(driver.findElement(By.xpath("//div[@class='studies-programs__content']/div/ul/li/a" +
                     "[contains(text(), '" + programs.get(i) + "')]")).isDisplayed()) {
                 result = true;
@@ -117,9 +119,7 @@ public class FCHubsStudiesTab {
             case "Graduate Certificate" : majorsOfferedDegree = FCHubsStudiesTabPage.buttonMajorsOfferedGradCertificate;
                 break;
         }
-        JavascriptExecutor jse = (JavascriptExecutor)driver;
-        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", driver.findElement
-                (By.cssSelector(".studies-popular__header.fc-grid__col.fc-grid__col--xs-12")));
+        new WebDriverWait(Hooks.driver, 20).until(ExpectedConditions.elementToBeClickable(majorsOfferedDegree));
         majorsOfferedDegree.sendKeys(Keys.RETURN);
     }
 
@@ -219,12 +219,24 @@ public class FCHubsStudiesTab {
     public static void verifyTooltipGradRateClosed() {
         driver = Hooks.driver;
         PageFactory.initElements(driver, FCHubsStudiesTabPage.class);
-        boolean result;
-        if (FCHubsStudiesTabPage.tooltipGradRateContainer.getAttribute("class").contains("ng-hide")) {
-            result = true;
-        } else {
-            result = false;
+        boolean result = true;
+        WebElement gradRateTooltip = null;
+        if (System.getProperty("ENV").equals("int")) {
+            gradRateTooltip = FCHubsStudiesTabPage.tooltipGradRateContainerInt;
+            if (gradRateTooltip.getAttribute("class").contains("ng-hide")) {
+                result = true;
+            } else {
+                result = false;
+            }
+        } else if (System.getProperty("ENV").equals("prodConnection")) {
+            try {
+                FCHubsStudiesTabPage.tooltipGradRateContainerProd.isDisplayed();
+                result = false;
+            } catch (NoSuchElementException e) {
+                result = true;
+            }
         }
+
         assertTrue("The tooltip was not closed", result);
     }
 

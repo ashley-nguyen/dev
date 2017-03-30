@@ -109,6 +109,7 @@ public class FCHubsBottomStickyBar {
         if (tempVariable.equals("")) {
             tempVariable = "0";
         }
+
         System.out.println("UI: " + tempVariable);
         System.out.println("Data: " + listSize);
         assertTrue("The number of elements in the list is not the same than the number in the sticky bar button",

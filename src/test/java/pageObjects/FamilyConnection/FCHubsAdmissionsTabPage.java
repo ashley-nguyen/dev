@@ -72,6 +72,8 @@ public class FCHubsAdmissionsTabPage extends BaseClass {
     public static WebElement buttonXTooltipAceptanceRate;
     @FindBy(how = How.CSS, using = "span[title=\"Click to learn more about Acceptance Rate\"] + span")
     public static WebElement tooltipContainerAcceptanceRate;
+    @FindBy(how = How.CSS, using = "span[title=\"Click to learn more about Acceptance Rate\"] + span.ng-hide")
+    public static WebElement tooltipContainerAcceptanceRateHidden;
     @FindBy(how = How.CSS, using = "div[ng-if=\"vm.informationTabs.getActive() == 'fees'\"] a")
     public static WebElement linkLearnMoreFees;
     @FindBy(how = How.CSS, using = "div[ng-if=\"vm.showApplicationStats\"] div[ng-repeat=\"years in " +

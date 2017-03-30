@@ -42,7 +42,9 @@ public class FCHubsStudiesTabPage extends BaseClass {
     @FindBy(how = How.CSS, using = "svg.fc-icon.hubs-info-tooltip__close-icon")
     public static WebElement infoTooltipCloseIcon;
     @FindBy(how = How.CSS, using = "span.hubs-info-tooltip-container")
-    public static WebElement tooltipGradRateContainer;
+    public static WebElement tooltipGradRateContainerInt;
+    @FindBy(how = How.CSS, using = "span.fc-tooltip.hubs-info-tooltip.ng-scope")
+    public static WebElement tooltipGradRateContainerProd;
     @FindBy(how = How.CSS, using = "div.data-age-row.data-age-row--twilight.ng-binding.ng-scope")
     public static WebElement dateLabelStudyOptions;
     @FindBy(how = How.CSS, using = "div[ng-if=\"vm.studentFacultyRatio\"] div:nth-of-type(4)")

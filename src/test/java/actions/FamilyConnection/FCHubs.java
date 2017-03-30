@@ -40,7 +40,13 @@ public class FCHubs {
     public static void ClickFeedbackButton() {
         driver = Hooks.driver;
         PageFactory.initElements(driver, FCHubsPage.class);
-        FCHubsPage.linkNextFirstDialog.click();
+        try {
+            new WebDriverWait(Hooks.driver, 20).until(ExpectedConditions.elementToBeClickable
+                    (FCHubsPage.linkNextFirstDialog));
+            FCHubsPage.linkNextFirstDialog.click();
+        } catch (ElementNotVisibleException e) {
+            System.out.println("The first tutorial dialog was not displayed");
+        }
         new WebDriverWait(Hooks.driver, 20).until(ExpectedConditions.elementToBeClickable(FCHubsPage.buttonFeedback));
         FCHubsPage.buttonFeedback.click();
     }
@@ -559,6 +565,7 @@ public class FCHubs {
     public static void ClickStudiesTab() {
         driver = Hooks.driver;
         PageFactory.initElements(driver, FCHubsPage.class);
+        new WebDriverWait(driver, 20).until(ExpectedConditions.elementToBeClickable(FCHubsPage.tabStudies));
         FCHubsPage.tabStudies.click();
         }
 

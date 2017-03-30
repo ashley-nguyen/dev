@@ -98,20 +98,46 @@ public class FCHubsStudentLifeTab {
     public static void VerifyGenderPercentage(List<String> genderPercentageList) {
         driver = Hooks.driver;
         PageFactory.initElements(driver, FCHubsStudentLifeTabPage.class);
-        boolean result = false;
-        WebElement genderPercent = null;
-        for (String genderPercentageElement : genderPercentageList){
-            switch (genderPercentageElement.split(";")[0]) {
-                case "Female" : genderPercent = FCHubsStudentLifeTabPage.labelGenderDataPercentFemale;
-                    break;
-                case "Male" : genderPercent = FCHubsStudentLifeTabPage.labelGenderDataPercentMale;
-                    break;
+        boolean resultFemale = false;
+        boolean resultMale = false;
+        String femaleData = "";
+        String maleData = "";
+
+        for (String genderDataElement : genderPercentageList) {
+            if (genderDataElement.split(";")[0].equals("Female")) {
+                femaleData = genderDataElement;
+            } else if (genderDataElement.split(";")[0].equals("Male")) {
+                maleData = genderDataElement;
             }
-            System.out.println("UI: " + genderPercent.getText());
-            result = genderPercentageElement.split(";")[1].equals(genderPercent.getText());
         }
 
-        assertTrue("The percent for the genders is not correct", result);
+        List<WebElement> leftContainerElements = driver.findElements(By.cssSelector(FCHubsStudentLifeTabPage
+                .leftGenderContainer));
+
+        if (leftContainerElements.get(0).getText().equals("Female")) {
+            if (leftContainerElements.get(1).getText().equals(femaleData.split(";")[1])) {
+                resultFemale = true;
+            }
+        } else if (leftContainerElements.get(0).getText().equals("Male")) {
+            if (leftContainerElements.get(1).getText().equals(maleData.split(";")[1])) {
+                resultMale = true;
+            }
+        }
+
+        List<WebElement> rightContainerElements = driver.findElements(By.cssSelector(FCHubsStudentLifeTabPage
+                .rightGenderContainer));
+
+        if (rightContainerElements.get(0).getText().equals("Female")) {
+            if (rightContainerElements.get(1).getText().equals(femaleData.split(";")[1])) {
+                resultFemale = true;
+            }
+        } else if (rightContainerElements.get(0).getText().equals("Male")) {
+            if (rightContainerElements.get(1).getText().equals(maleData.split(";")[1])) {
+                resultMale = true;
+            }
+        }
+
+        assertTrue("The gender data is not correct", resultFemale && resultMale);
     }
 
     public static void VerifyTotalStudentsAge(String totalStudentsAge) {
@@ -165,9 +191,16 @@ public class FCHubsStudentLifeTab {
         driver = Hooks.driver;
         PageFactory.initElements(driver, FCHubsStudentLifeTabPage.class);
         boolean result = false;
-        List<WebElement> elementList = driver.findElements(By.cssSelector(FCHubsStudentLifeTabPage
-                .orgAvailableListLocator));
+        String locator = "";
+        if (System.getProperty("ENV").equals("int")) {
+            locator = FCHubsStudentLifeTabPage.orgAvailableListLocatorInt;
+        } else if (System.getProperty("ENV").equals("prodConnection")) {
+            locator = FCHubsStudentLifeTabPage.orgAvailableListLocatorProd;
+        }
+        List<WebElement> elementList = driver.findElements(By.cssSelector(locator));
         for(int i = 0; i < studentOrgs.size(); i++) {
+            System.out.println("UI :" + elementList.get(i).getText());
+            System.out.println("Data: " + studentOrgs.get(i));
             if(elementList.get(i).getText().equals(studentOrgs.get(i))) {
                 result = true;
             } else {
@@ -182,14 +215,26 @@ public class FCHubsStudentLifeTab {
         driver = Hooks.driver;
         PageFactory.initElements(driver, FCHubsStudentLifeTabPage.class);
         WebElement sectionElement = null;
-        switch (sectionName) {
-            case "Men" : sectionElement = FCHubsStudentLifeTabPage.buttonAthleticsMen;
-                break;
-            case "Women" : sectionElement = FCHubsStudentLifeTabPage.buttonAthleticsWomen;
-                break;
-            case "Co-Ed" : sectionElement = FCHubsStudentLifeTabPage.buttonAthleticsCoEd;
-                break;
+        if (System.getProperty("ENV").equals("int")) {
+            switch (sectionName) {
+                case "Men" : sectionElement = FCHubsStudentLifeTabPage.buttonAthleticsMenInt;
+                    break;
+                case "Women" : sectionElement = FCHubsStudentLifeTabPage.buttonAthleticsWomenInt;
+                    break;
+                case "Co-Ed" : sectionElement = FCHubsStudentLifeTabPage.buttonAthleticsCoEdInt;
+                    break;
+            }
+        } else if (System.getProperty("ENV").equals("prodConnection")) {
+            switch (sectionName) {
+                case "Men" : sectionElement = FCHubsStudentLifeTabPage.buttonAthleticsMenProd;
+                    break;
+                case "Women" : sectionElement = FCHubsStudentLifeTabPage.buttonAthleticsWomenProd;
+                    break;
+                case "Co-Ed" : sectionElement = FCHubsStudentLifeTabPage.buttonAthleticsCoEdProd;
+                    break;
+            }
         }
+
         JavascriptExecutor jse = (JavascriptExecutor)driver;
         ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", driver.findElement
                 (By.cssSelector(".student-life-housing-information__data.fc-grid__col.fc-grid__col--xs-12" +
@@ -249,6 +294,7 @@ public class FCHubsStudentLifeTab {
             case "Seniors" : housingInfoElement = FCHubsStudentLifeTabPage.labelHousingInfoSeniorsOnCampusValue;
                 break;
         }
+        new WebDriverWait(Hooks.driver, 20).until(ExpectedConditions.elementToBeClickable(housingInfoElement));
         assertTrue("The Housing Information Value for" + hiLabel + "is not correct",
                 housingInfoElement.getText().trim().equals(hiValue));
     }
@@ -264,8 +310,12 @@ public class FCHubsStudentLifeTab {
         driver = Hooks.driver;
         PageFactory.initElements(driver, FCHubsStudentLifeTabPage.class);
         boolean result = false;
-        List<WebElement> uiFratAndSorList = driver.findElements(By.cssSelector(FCHubsStudentLifeTabPage
-                .fraternitiesAndSororitiesLocator));
+        List<WebElement> uiFratAndSorList = new ArrayList<>();
+        if (System.getProperty("ENV").equals("int")) {
+            uiFratAndSorList = driver.findElements(By.cssSelector(FCHubsStudentLifeTabPage.fraternitiesAndSororitiesLocatorInt));
+        } else if (System.getProperty("ENV").equals("prodConnection")) {
+            uiFratAndSorList = driver.findElements(By.cssSelector(FCHubsStudentLifeTabPage.fraternitiesAndSororitiesLocatorProd));
+        }
         for (int i = 0; i < uiFratAndSorList.size(); i++) {
             System.out.println("UI values: " + uiFratAndSorList.get(i));
             if (uiFratAndSorList.get(i).getText().equals(fratAndSorList.get(i).split(";")[1])) {
@@ -285,6 +335,9 @@ public class FCHubsStudentLifeTab {
         boolean resultROTCServices = false;
         List<String> basicServicesList = new ArrayList<>();
         List<String> ROTCServicesList = new ArrayList<>();
+        List<WebElement> basicServicesUiList = new ArrayList<>();
+        List<WebElement> ROTCServicesUiList = new ArrayList<>();
+
         for (String serviceElement : servicesList) {
             if (serviceElement.split(";")[0].equals("basic")) {
                 basicServicesList.add(serviceElement.split(";")[1]);
@@ -292,10 +345,18 @@ public class FCHubsStudentLifeTab {
                 ROTCServicesList.add(serviceElement.split(";")[1]);
             }
         }
-        List<WebElement> basicServicesUiList = driver.findElements(By.cssSelector(FCHubsStudentLifeTabPage
-                .basicServicesAvailableLocator));
-        List<WebElement> ROTCServicesUiList = driver.findElements(By.cssSelector(FCHubsStudentLifeTabPage
-                .ROTCServicesAvailableLocator));
+        if (System.getProperty("ENV").equals("int")) {
+            basicServicesUiList = driver.findElements(By.cssSelector(FCHubsStudentLifeTabPage
+                    .basicServicesAvailableLocatorInt));
+            ROTCServicesUiList = driver.findElements(By.cssSelector(FCHubsStudentLifeTabPage
+                    .ROTCServicesAvailableLocatorInt));
+        } else if (System.getProperty("ENV").equals("prodConnection")) {
+            basicServicesUiList = driver.findElements(By.cssSelector(FCHubsStudentLifeTabPage
+                    .basicServicesAvailableLocatorProd));
+            ROTCServicesUiList = driver.findElements(By.cssSelector(FCHubsStudentLifeTabPage
+                    .ROTCServicesAvailableLocatorProd));
+        }
+
         for (WebElement uiBasicServiceElement : basicServicesUiList) {
             System.out.println("Basic Services UI: " + uiBasicServiceElement.getText());
             if (basicServicesList.contains(uiBasicServiceElement.getText().trim())) {
