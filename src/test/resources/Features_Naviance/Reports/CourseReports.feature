@@ -6,7 +6,7 @@ Feature: Course Reports tests for Reports Feature
 
   Background:
     Given when I log in with the following user details:
-      | qaedis1 | sangeetha.sadmin | password |
+      | bernathigh | sangeetha.munuswamy | password |
 
   @Coursereport
   Scenario Outline: Verify Course Reports Custom page

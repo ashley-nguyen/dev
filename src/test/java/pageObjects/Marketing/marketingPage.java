@@ -17,7 +17,7 @@ public class marketingPage extends BaseClass {
     public static WebElement Image;
     @FindBy(how = How.CSS, using = "img[src*=navmarketplace_badge.png]")
     public static WebElement ImageContents;
-    @FindBy(how = How.CSS, using = "img[src*='upgraded-by-hobsons.jpg']")
+    @FindBy(how = How.CSS, using = "img[src*='nsi_2017.jpg']")
     public static WebElement imgVerification;
     @FindBy(how = How.CSS, using = "img[src*='navmarketplace_badge.png']")
     public static WebElement bannerVerification;

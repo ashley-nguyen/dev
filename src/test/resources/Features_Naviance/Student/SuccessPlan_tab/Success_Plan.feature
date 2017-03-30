@@ -6,7 +6,7 @@ Feature: Student Success Plan
 
   Background:
     Given when I log in with the following user details:
-      | blue1hs | frank.counselor | frank01! |
+      | blue1hs | stan.smith | stan01! |
 
   @addcustomtask
   Scenario Outline: Add custom task

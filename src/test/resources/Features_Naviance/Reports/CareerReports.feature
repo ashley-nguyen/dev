@@ -6,7 +6,7 @@ Feature: Career Reports tests
 
   Background:
     Given when I log in with the following user details:
-      | qaedis1 | sangeetha.sadmin | password |
+      | bernathigh | sangeetha.munuswamy | password |
 
   @Coursereport
   Scenario Outline: Verify career Reports Custom page
