@@ -108,11 +108,13 @@ public class eDocsGeneral {
         JavascriptExecutor js = (JavascriptExecutor)driver;
         js.executeScript("window.scrollTo(0,Math.max(document.documentElement.scrollHeight,document.body.scrollHeight,document.documentElement.clientHeight));");
         eDocsTabPage.btnDelete.click();
+        eDocsTabPage.btnDeleteDocument.click();
     }
 
     public static void ClickOnDeleteDocumentButton() throws Throwable {
         driver = Hooks.driver;
         PageFactory.initElements(driver, eDocsTabPage.class);
+        Thread.sleep(3000);
         eDocsTabPage.btnDeleteDocument.click();
     }
 

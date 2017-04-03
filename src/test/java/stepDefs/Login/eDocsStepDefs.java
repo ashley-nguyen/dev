@@ -23,7 +23,7 @@ public class eDocsStepDefs {
         eDocsGeneral.NavtoEdocsStudentTab();
         eDocsGeneral.ClickOnPrepareLink();
         eDocsGeneral.ClickOnDeleteButton();
-        eDocsGeneral.ClickOnDeleteDocumentButton();
+//        eDocsGeneral.ClickOnDeleteDocumentButton();
     }
 
     @When("^I use \"([^\"]*)\" under application selecting \"(.*)\" and \"(.*)\" with \"([^\"]*)\"$")
@@ -32,6 +32,23 @@ public class eDocsStepDefs {
         eDocsGeneral.NavtoEdocsStudentTab();
         eDocsGeneral.ClickOnPrepareLink();
         eDocsGeneral.ClickOnAddButton();
+        if (filename == "FillTooBigPDF.pdf")
+        {
+            eDocsGeneral.ClickOnUploadAFileButton();
+        }
+        eDocsGeneral.ClickOnUploadAFileButton();
+        eDocsGeneral.SelectApplication(application);
+        eDocsGeneral.SelectType(type);
+        eDocsGeneral.ClickOnBrowseButton();
+        eDocsGeneral.WritePathFile(filename);
+    }
+
+    @When("^I use \"([^\"]*)\" under application for counselor documents selecting \"(.*)\" and \"(.*)\" with \"([^\"]*)\"$")
+    public void I_use_student_under_application_for_counselor_documents_verifying_text(String strStudentID,  String application, String type, String filename) throws Throwable {
+        Student_Search.studentRosterSearch(strStudentID, "id");
+        eDocsGeneral.NavtoEdocsStudentTab();
+        eDocsGeneral.ClickOnPrepareLink();
+        eDocsGeneral.ClickOnAddCounselorButton();
         if (filename == "FillTooBigPDF.pdf")
         {
             eDocsGeneral.ClickOnUploadAFileButton();
