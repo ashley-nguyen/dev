@@ -83,8 +83,10 @@ public class College {
         PageFactory.initElements(driver, SchoolPageHeader.class);
         Actions action = new Actions(driver);
         new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.linkText("Colleges")));
+        Thread.sleep(3000);
         action.moveToElement(SchoolPageHeader.lnkColleges).build().perform();
         Thread.sleep(3000);
+        new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.linkText("Find Colleges")));
         SchoolPageHeader.lnkFindColleges.click();
         new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.linkText("A")));
         SchoolPageHeader.lnkA.click();
