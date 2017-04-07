@@ -11,10 +11,12 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.safari.SafariDriver;
 //import com.heliumhq.API;
 import java.net.MalformedURLException;
 import java.io.File;
+import java.net.URL;
 
 //import org.openqa.selenium.phantomjs.PhantomJSDriver;
 //import org.openqa.selenium.phantomjs.PhantomJSDriverService;
@@ -23,7 +25,7 @@ import java.io.File;
 //import org.openqa.selenium.phantomjs.PhantomJSDriverService;
 
 public class Hooks {
-    public static WebDriver driver;
+    public static RemoteWebDriver driver;
     public static String strBaseURL;
 
     private static String CHROME_MAC_DRIVER = "/drivers/chrome/chromedriver";
@@ -43,9 +45,10 @@ public class Hooks {
         dc.setCapability(CapabilityType.UNEXPECTED_ALERT_BEHAVIOUR, UnexpectedAlertBehaviour.IGNORE);
         //dc.setJavascriptEnabled(true);
         String env = System.getProperty("ENV");
+        String gridUrl = "https://turbo-seleniumgrid.hesos.net/wd/hub";
 
         if (env == null)
-            env = "prod";
+            env = "QABlue";
         switch (env) {
             case "staging":
                 strBaseURL = "https://succeed-internal.naviance.com";
@@ -63,7 +66,7 @@ public class Hooks {
                 strBaseURL = "https://localhost:8727/groups";
                 break;
             case "int":
-                strBaseURL = "https://connection-int.dev.naviance.com";
+                strBaseURL = "https://succeed-int-blue.dev.naviance.com";
                 break;
             case "prodConnection":
                 strBaseURL = "https://connection.naviance.com";
@@ -116,9 +119,12 @@ public class Hooks {
 
 
         } else if (browser.equals("ie")) {
-
             driver = new InternetExplorerDriver(dc);
 
+        } else if (browser.equals("gridChrome")) {
+            dc.setBrowserName("chrome");
+            dc.setPlatform(Platform.LINUX);
+            driver = new RemoteWebDriver(new URL(gridUrl), dc);
 
         } else if (browser.equals("safari")) {
             driver = new SafariDriver(dc);

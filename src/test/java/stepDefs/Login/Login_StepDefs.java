@@ -16,7 +16,7 @@ public class Login_StepDefs {
     @When("^I complete the fields on the login page for a district user$")
     public void i_complete_the_fields_on_the_login_page_for_a_district_user() throws Throwable {
 
-        Login.DoLogin("blueqa1", "frank.district", "password");
+        Login.DoLogin("blueqa1", "stan.smith", "stan01!");
 
 
     }
