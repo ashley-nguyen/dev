@@ -4,7 +4,7 @@ Feature: As a student viewing new Hubs' Costs tab, I want to see a top bar with 
 
   Background:
     Given I log in to Family Connection with the following user details:
-      | rtsa  | benhubs | hubs2016  |
+      | rtsa  | benhubs | Hobsons!23  |
     When I open the HUBS page for "Adelphi"
     And I open the Costs tab
 

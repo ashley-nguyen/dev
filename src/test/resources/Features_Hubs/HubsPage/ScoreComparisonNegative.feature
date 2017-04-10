@@ -4,7 +4,7 @@ Feature: As a student viewing new Hubs Overview Tab, I want the default score co
 
   Background:
     Given I log in to Family Connection with the following user details:
-      | rtsa  | benhubs | hubs2016  |
+      | rtsa  | benhubs | Hobsons!23  |
     When I open the HUBS page for "Adelphi"
 
   Scenario: A question mark is displayed in the dials that don't have Student's data

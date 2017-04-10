@@ -3,7 +3,7 @@ Feature:  As a student viewing new Hubs' events screen , I want to see events so
 
   Background:
     Given I log in to Family Connection with the following user details:
-      | rtsa | amandahubs| hubs2016  |
+      | rtsa | amandahubs| Hobsons!23  |
     When I open the HUBS page for "Adelphi"
 
 
@@ -25,8 +25,7 @@ Feature:  As a student viewing new Hubs' events screen , I want to see events so
     When I See Recommended Events
     Then Recommended events are displayed on screen
 
-  Scenario: User navigate to events screen from legacy by clicking link "Upcoming College Events" (This does not work in
-  small screens because the Colleges tab disappears in small screens)
+  Scenario: User navigate to events screen from legacy by clicking link "Upcoming College Events"
     When I Navigate to old Colleges tab
     When I open link Upcoming college events
     Then I should see College Events Details

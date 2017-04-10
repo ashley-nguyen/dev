@@ -4,7 +4,7 @@ Feature:  As a student viewing new hubs page, I want to always see the college's
 
   Background:
     Given I log in to Family Connection with the following user details:
-      | rtsa       | benhubs | hubs2016  |
+      | rtsa       | benhubs | Hobsons!23  |
     When I open the HUBS page for "Albion"
 
   Scenario: Identifier module is present in Hubs

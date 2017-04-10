@@ -4,7 +4,7 @@ Feature: As a user, I would like to see the recommended / required courses for a
 
   Background:
     Given I log in to Family Connection with the following user details:
-      | rtsa  | benhubs | hubs2016  |
+      | rtsa  | benhubs | Hobsons!23  |
     When I open the HUBS page for "Auburn"
     Then I open the Admissions tab
   @smoke

@@ -4,7 +4,7 @@ Feature: As a student exploring a college, I want to see a top bar with high-lev
 
   Background:
     Given I log in to Family Connection with the following user details:
-      | rtsa  | benhubs | hubs2016  |
+      | rtsa  | benhubs | Hobsons!23  |
     When I open the HUBS page for "Auburn"
   @smoke
   Scenario: Average Total Cost is displayed with correct data for each income selected in the Information Top bar

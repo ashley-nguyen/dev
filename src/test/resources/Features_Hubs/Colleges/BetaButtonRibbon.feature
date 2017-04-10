@@ -1,5 +1,5 @@
 @smoketest @nondestructive @hubs
-Feature: Hubs Beta Button Ribbon (HUBS-12)
+Feature: Hubs Beta Button Ribbon (HUBS-12 - Fixed)
   Verify that as a student viewing a college's profile page,
   I am able to click a "beta" button so that I can try out the new hub page
 

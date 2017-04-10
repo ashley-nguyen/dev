@@ -4,7 +4,7 @@ Feature: As a student viewing new Hubs Overview Tab, I want the default score co
 
   Background:
     Given I log in to Family Connection with the following user details:
-      | rtsa       | benhubs | hubs2016  |
+      | rtsa       | benhubs | Hobsons!23  |
     When I open the HUBS page for "Adelphi"
   @smoke
   Scenario: Student's GPA, SAT and ACT are present with correct values in Score Comparison module

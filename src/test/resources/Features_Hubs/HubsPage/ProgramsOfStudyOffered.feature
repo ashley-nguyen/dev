@@ -4,7 +4,7 @@ Feature: As a student, I want to see information about the school's programs of 
 
   Background:
     Given I log in to Family Connection with the following user details:
-      | rtsa  | benhubs | hubs2016  |
+      | rtsa  | benhubs | Hobsons!23  |
     When I open the HUBS page for "Montevallo"
     Then  I open the Studies tab
   @smoke

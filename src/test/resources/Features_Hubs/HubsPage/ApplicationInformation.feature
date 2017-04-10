@@ -4,7 +4,7 @@ Feature:  As a student viewing new Hubs' Overview tab, I want to see contact inf
 
   Background:
     Given I log in to Family Connection with the following user details:
-      | rtsa       | amandahubs | hubs2016  |
+      | rtsa       | amandahubs | Hobsons!23  |
     When I open the HUBS page for "Adelphi"
     And I open the Admissions tab
 

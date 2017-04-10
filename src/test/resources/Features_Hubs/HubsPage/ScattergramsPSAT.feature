@@ -3,7 +3,7 @@ Feature: As a student i'd like to see an updated scattergram UI that reflects co
 
   Background:
     Given I log in to Family Connection with the following user details:
-      | rtsa  | allenhubs | hubs2016  |
+      | rtsa  | allenhubs | Hobsons!23  |
     When I open the HUBS page for "Auburn"
     Then I open the Admissions tab
   @smoke

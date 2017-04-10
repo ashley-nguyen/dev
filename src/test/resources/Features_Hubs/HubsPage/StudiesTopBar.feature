@@ -4,7 +4,7 @@ Feature: Purpose: As a student viewing new Hubs' Studies tab, I want to see key 
 
   Background:
     Given I log in to Family Connection with the following user details:
-      | rtsa  | amandahubs | hubs2016  |
+      | rtsa  | amandahubs | Hobsons!23  |
     When I open the HUBS page for "Adrian"
     And I open the Studies tab
   @smoke
