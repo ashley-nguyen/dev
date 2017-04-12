@@ -4,7 +4,7 @@ Feature:  As a student viewing new Hubs' Student Life tab, I want to see a schoo
 
   Background:
     Given I log in to Family Connection with the following user details:
-      | rtsa       | amandahubs | hubs2016  |
+      | rtsa       | amandahubs | Hobsons!23  |
     When I open the HUBS page for "Adelphi"
     And I open the Student Life tab
 
@@ -110,9 +110,9 @@ Feature:  As a student viewing new Hubs' Student Life tab, I want to see a schoo
     | basic;Health Services Available        |
     | basic;Library Facilities               |
     | basic;Veteran                          |
-    | ROTC;Airforce                          |
-    | ROTC;Army                              |
     | ROTC;Serviceperson Opportunity College |
+    | ROTC;Army                              |
+    | ROTC;Airforce                          |
 
   Scenario: The location and type of all the computing resources are displayed in Computing Resources
     When I open the "Computing Resources" tab in Student Organizations and Services

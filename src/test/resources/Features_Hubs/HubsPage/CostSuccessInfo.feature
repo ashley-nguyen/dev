@@ -4,7 +4,7 @@ Feature: As a student exploring a college, I want to see a top bar with high-lev
 
   Background:
     Given I log in to Family Connection with the following user details:
-      | rtsa  | benhubs | hubs2016  |
+      | rtsa  | benhubs | Hobsons!23  |
     When I open the HUBS page for "Auburn"
   @smoke
   Scenario: Average Total Cost is displayed with correct data for each income selected in the Information Top bar
@@ -16,7 +16,7 @@ Feature: As a student exploring a college, I want to see a top bar with high-lev
     | > $110K;20,142     |
   @smoke
   Scenario: Graduation Rate is displayed with correct data in the Information Top bar
-    Then Graduation Rate should be "66" with correct data in the Information Top bar
+    Then Graduation Rate should be "71" with correct data in the Information Top bar
 
   Scenario: Acceptance Rate  is displayed with correct data
     Then Acceptance Rate should be "83" with correct data in the Information Top bar

@@ -3,7 +3,7 @@ Feature: As a student, I want to see the popular majors for that school so I can
 
   Background:
     Given I log in to Family Connection with the following user details:
-      | rtsa  | amandahubs | hubs2016  |
+      | rtsa  | amandahubs | Hobsons!23  |
     When I open the HUBS page for "Adrian"
     Then I open the Studies tab
   @smoke
@@ -14,6 +14,3 @@ Feature: As a student, I want to see the popular majors for that school so I can
     | Biological and Biomedical Sciences                            |
     | Education                                                     |
     | Parks, Recreation, Leisure, and Fitness Studies               |
-
-  Scenario: The date text is displayed under Top Areas of Study
-    Then The text "Latest available data from 2014" should be displayed under "Top Areas of Study"

@@ -37,12 +37,18 @@ public class FCCollegesPage extends BaseClass {
     public static WebElement titleCollegeVisitInfo;
     @FindBy(how = How.CSS, using = "#main-content p:not([class=\"half center\"]) a:nth-of-type(3)")
     public static WebElement linkAddToImThinkingAboutList;
+    @FindBy(how = How.CSS, using = "tr.odd")
+    public static WebElement labelNoVisitsScheduled;
+    @FindBy(how = How.CSS, using = "table.standard.less-pad.striped.small td:nth-of-type(2) a:nth-of-type(2)")
+    public static WebElement labelNoCollegesImApplyingTo;
 
     public static String imThinkingAboutListElementsString = ".less-pad.standard.striped tr td:nth-of-type(2) a";
     public static String imApplyingToListLocator = "table.standard.less-pad.striped.small td:nth-of-type(2) a";
     public static String collegeVisitsLocator = ".standard.striped td:nth-of-type(2) a";
-    public static String partialSearchCollegeIntURL = "https://connection-int.dev.naviance.com/family-connection" +
+    public static String partialSearchCollegeIntURLInt = "https://connection-int.dev.naviance.com/family-connection" +
             "/colleges/lookup?collegename=";
+    public static String partialSearchCollegeIntURLProd = "https://connection.naviance.com/family-connection/colleges" +
+            "/lookup?collegename=";
 
     public FCCollegesPage(WebDriver driver) {
         super(driver);

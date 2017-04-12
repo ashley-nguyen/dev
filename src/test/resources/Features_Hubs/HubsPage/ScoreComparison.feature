@@ -4,7 +4,7 @@ Feature: As a student viewing new Hubs Overview Tab, I want the default score co
 
   Background:
     Given I log in to Family Connection with the following user details:
-      | rtsa       | benhubs | hubs2016  |
+      | rtsa       | benhubs | Hobsons!23  |
     When I open the HUBS page for "Adelphi"
   @smoke
   Scenario: Student's GPA, SAT and ACT are present with correct values in Score Comparison module
@@ -15,8 +15,8 @@ Feature: As a student viewing new Hubs Overview Tab, I want the default score co
 
   Scenario: Average GPA, SAT and ACT are present with correct values in Score Comparison module
     Then Average score type and value should correspond to the following data in the Score Comparison module
-    | GPA;2.78 |
-    | SAT;1125 |
+    | GPA;2.74 |
+    | SAT;1200 |
     | ACT;29   |
 
   Scenario: The score text is displayed with correct values under each dial
@@ -44,11 +44,12 @@ Feature: As a student viewing new Hubs Overview Tab, I want the default score co
     And I open the information tooltip clicking the information icon in "<section>"
     Then The tooltip in "<section>" should be closed
     Examples:
-    | section     |
-    | description |
-    | GPA         |
-    | SAT         |
-    | ACT         |
+    | section        |
+    | description    |
+    | Converted GPA  |
+    | National Range |
+    | SAT            |
+    | ACT            |
 
   Scenario: A label indicating the score conversion details is displayed under Score Comparison
     Then I should see the label "* All test scores have been converted to the SAT 1600 point scale, and the ACT 36 point scale." under Score Comparison

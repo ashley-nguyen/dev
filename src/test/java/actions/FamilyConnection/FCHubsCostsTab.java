@@ -159,8 +159,14 @@ public class FCHubsCostsTab {
         boolean TuitionPerCreditHour_AverageNavianceCollege = false;
         boolean TuitionPerCreditHour = false;
 
-        if (FCHubsCostsTabPage.TuitionPerCreditHourThisCollege.getText().equals(creditperhourThisCollege)) {
-            TuitionPerCreditHour_ThisCollege = true;
+        if (FCHubsCostsTabPage.TuitionPerCreditHourThisCollege.getText().equals("")) {
+            if (creditperhourThisCollege.equals("empty")) {
+                TuitionPerCreditHour_ThisCollege = true;
+            }
+        } else {
+            if (FCHubsCostsTabPage.TuitionPerCreditHourThisCollege.getText().equals(creditperhourThisCollege)) {
+                TuitionPerCreditHour_ThisCollege = true;
+            }
         }
 
         if (FCHubsCostsTabPage.TuitionPerCreditHourAverageNavianceCollege.getText()
@@ -206,6 +212,7 @@ public class FCHubsCostsTab {
     public static void ClickTotalFees() {
         driver = Hooks.driver;
         PageFactory.initElements(driver, FCHubsCostsTabPage.class);
+        new WebDriverWait(Hooks.driver, 20).until(ExpectedConditions.elementToBeClickable(FCHubsCostsTabPage.TotalFees));
         FCHubsCostsTabPage.TotalFees.sendKeys(Keys.RETURN);
     }
 

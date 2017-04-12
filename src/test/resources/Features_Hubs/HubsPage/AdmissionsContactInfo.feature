@@ -3,7 +3,7 @@ Feature: As a student, I want to see the admissions contact information
 
   Background:
     Given I log in to Family Connection with the following user details:
-      | rtsa  | benhubs | hubs2016  |
+      | rtsa  | benhubs | Hobsons!23  |
     When I open the HUBS page for "Auburn"
     And I open the Admissions tab
 

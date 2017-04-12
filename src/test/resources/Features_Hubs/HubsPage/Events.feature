@@ -3,7 +3,7 @@ Feature:  As a student viewing new Hubs' events screen , I want to see events so
 
   Background:
     Given I log in to Family Connection with the following user details:
-      | rtsa | amandahubs| hubs2016  |
+      | rtsa | amandahubs| Hobsons!23  |
     When I open the HUBS page for "Adelphi"
 
 

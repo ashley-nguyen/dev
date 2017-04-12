@@ -1,9 +1,10 @@
 @hubs @studentprofiles
-Feature: As a student viewing new Hubs, I want to see the student profiles in the Profiles tab
+Feature: As a student viewing new Hubs, I want to see the student profiles in the Profiles tab (currently there are no
+  colleges with profiles)
 
   Background:
     Given I log in to Family Connection with the following user details:
-      | rtsa  | benhubs | hubs2016  |
+      | rtsa  | benhubs | Hobsons!23  |
     When I open the HUBS page for "Adelphi"
     And I open the Profiles tab
   @smoke

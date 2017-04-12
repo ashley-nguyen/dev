@@ -4,7 +4,7 @@ Feature: As a student viewing new Hubs' Student Life tab, I want to see a housin
 
   Background:
     Given I log in to Family Connection with the following user details:
-      | rtsa       | ikeahubs | hubs2016  |
+      | rtsa       | ikeahubs | Hobsons!23  |
     When I open the HUBS page for "Adelphi"
     And I open the Student Life tab
   @smoke

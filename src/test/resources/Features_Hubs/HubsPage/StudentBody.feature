@@ -4,7 +4,7 @@ Feature:  As a student viewing new Hubs' Student Life tab, I want to see a schoo
 
   Background:
     Given I log in to Family Connection with the following user details:
-      | rtsa       | amandahubs | hubs2016  |
+      | rtsa       | amandahubs | Hobsons!23  |
     When I open the HUBS page for "Auburn"
     And I open the Student Life tab
   @smoke
@@ -14,7 +14,7 @@ Feature:  As a student viewing new Hubs' Student Life tab, I want to see a schoo
   Scenario: The percentages for each ethnicity group are displayed with correct data
     Then The percentage for each Ethnic Group in Ethnicity Data is contained in the following table
       | White / Caucasian,81%       |
-      | Black / African American,7% |
+      | Black / African American,8% |
       | Asian,2%                    |
       | Hispanic / Latino,2%        |
       | Ethnicity Unknown,1%        |

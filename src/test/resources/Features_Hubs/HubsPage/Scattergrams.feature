@@ -3,7 +3,7 @@ Feature: As a student i'd like to see an updated scattergram UI that reflects co
 
   Background:
     Given I log in to Family Connection with the following user details:
-      | rtsa  | benhubs | hubs2016  |
+      | rtsa  | benhubs | Hobsons!23  |
     When I open the HUBS page for "Auburn"
     Then I open the Admissions tab
 
@@ -12,7 +12,7 @@ Feature: As a student i'd like to see an updated scattergram UI that reflects co
     | Unweighted GPA |
     | Weighted GPA   |
   @smoke
-  Scenario: The 'vs.' drop down has the options: SAT (1600 Scale), SAT (2400 scale) and ACT (HUBS-854)
+  Scenario: The 'vs.' drop down has the options: SAT (1600 Scale), SAT (2400 scale) and ACT (HUBS-854 - Fixed)
     Then The "vs." drop down should have the options:
     | SAT (1600 Scale)              |
     | SAT (2400 Scale with Writing) |

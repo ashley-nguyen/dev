@@ -18,6 +18,14 @@ public class FCHubsBottomStickyBarPage extends BaseClass {
     public static WebElement buttonNumberRecommendedEvents;
     @FindBy(how = How.CSS, using = "a.fc-button.fc-button--ghost-light.hub-links-bar__button:nth-of-type(4) span")
     public static WebElement buttonNumberUpcomingVisits;
+    @FindBy(how = How.CSS, using = "a.fc-button.fc-button--ghost-light.hub-links-bar__button:nth-of-type(1)")
+    public static WebElement buttonImThinkingAbout;
+    @FindBy(how = How.CSS, using = "a.fc-button.fc-button--ghost-light.hub-links-bar__button:nth-of-type(2)")
+    public static WebElement buttonImApplyingTo;
+    @FindBy(how = How.CSS, using = "a.fc-button.fc-button--ghost-light.hub-links-bar__button:nth-of-type(3)")
+    public static WebElement buttonRecommendedEvents;
+    @FindBy(how = How.CSS, using = "a.fc-button.fc-button--ghost-light.hub-links-bar__button:nth-of-type(4)")
+    public static WebElement buttonUpcomingVisits;
     @FindBy(how = How.CSS, using = "div.hub-links-bar__search-container input:nth-of-type(2)")
     public static WebElement searchForACollegeTextBox;
     @FindBy(how = How.CSS, using = "div.hub-links-bar__search-container input:nth-of-type(1)")

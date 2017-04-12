@@ -29,7 +29,7 @@ public class FCSurvey {
     public static void FillSurvey(String overallDesign, String howUsefulInfo, String highSchool, String grade) {
         driver = Hooks.driver;
         PageFactory.initElements(driver, FCSurveyPage.class);
-        int highSchoolYesNo = 0;
+        int highSchoolYesNo;
         int gradeNumber = 0;
         ArrayList<String> windows = new ArrayList<String> (driver.getWindowHandles());
         driver.switchTo().window(windows.get(windows.size() - 1));
@@ -42,6 +42,7 @@ public class FCSurvey {
                 ".question-matrix-row-last td:nth-of-type(" + overallDesign + ") div input"));
         overallDesignElement.click();
 
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", FCSurveyPage.firstTextBox);
 
         WebElement howUsefulInfoElement = driver.findElement(By.cssSelector("div[data-qnumber=\"2\"] tr.question-matrix-row-even" +
                 ".question-matrix-row-last td:nth-of-type(" + howUsefulInfo + ") div input"));
@@ -89,15 +90,15 @@ public class FCSurvey {
 
     public static void VerifyCloseSurveyPage() {
         driver = Hooks.driver;
+        PageFactory.initElements(driver, FCHubsPage.class);
         ArrayList<String> tabs = new ArrayList<String> (driver.getWindowHandles());
         driver.switchTo().window(tabs.get(tabs.size() - 1));
         driver.close();
         //Use this when the beta button in legacy is disabled
         //driver.switchTo().window(tabs.get(0));
         //Use this when the beta button in legacy is enabled
-        driver.switchTo().window(tabs.get(1));
-        assertTrue("It is not possible to close Survey Page", driver.findElement(By.xpath
-                ("//div[@class='hub-beta-bar']")).isDisplayed());
+        driver.switchTo().window(tabs.get(0));
+        assertTrue("It is not possible to close Survey Page", FCHubsPage.buttonFeedback.isDisplayed());
     }
 
     public static void CloseSurveyPage() {
@@ -105,7 +106,8 @@ public class FCSurvey {
         ArrayList<String> tabs = new ArrayList<String> (driver.getWindowHandles());
         driver.switchTo().window(tabs.get(tabs.size() - 1));
         driver.close();
-        driver.switchTo().window(tabs.get(1));
+        //driver.switchTo().window(tabs.get(1));
+        driver.switchTo().window(tabs.get(0));
     }
 
     public static void clickCloseSurveypreview() {

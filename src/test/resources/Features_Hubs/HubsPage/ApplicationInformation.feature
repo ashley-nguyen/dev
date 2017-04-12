@@ -4,11 +4,11 @@ Feature:  As a student viewing new Hubs' Overview tab, I want to see contact inf
 
   Background:
     Given I log in to Family Connection with the following user details:
-      | rtsa       | amandahubs | hubs2016  |
+      | rtsa       | amandahubs | Hobsons!23  |
     When I open the HUBS page for "Adelphi"
     And I open the Admissions tab
 
-  Scenario Outline: The "Required" requirements for "Freshman" are displayed with correct data
+  Scenario Outline: The deadlines are displayed with correct data in Application Information
     When I open "Deadlines" in Application Information
     Then The deadline with name "<name>" and date "<date>" should be displayed in Application Information
     Examples:

@@ -132,9 +132,10 @@ public class Hooks {
          }
         System.out.println("Opening Browser...." + browser);
         driver.manage().deleteAllCookies();
-        if(!env.equals("int")) {
+        if(!env.equals("int") && !env.equals("prodConnection")) {
             driver.get(strBaseURL);
         }
+        driver.manage().window().setSize(new Dimension(1920, 760));
         driver.manage().window().maximize();
     }
 

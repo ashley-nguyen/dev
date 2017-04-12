@@ -104,9 +104,11 @@ public class Login {
 
         loginPage.fc_signin_button.click();
 
-        Select childDropDown = new Select(loginPage.childDropDown);
-        childDropDown.selectByVisibleText(strStudentName);
-        loginPage.buttonGo.click();
+        if (!strStudentName.equals("singleStudent")) {
+            Select childDropDown = new Select(loginPage.childDropDown);
+            childDropDown.selectByVisibleText(strStudentName);
+            loginPage.buttonGo.click();
+        }
 
         new WebDriverWait(Hooks.driver, 20).until(ExpectedConditions.elementToBeClickable(By.linkText("log out")));
     }

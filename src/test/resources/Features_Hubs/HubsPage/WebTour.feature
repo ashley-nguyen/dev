@@ -1,9 +1,10 @@
 @hubs @webtour
-Feature:  As a student exploring a college I want to see paid webtour to understand how the school positions itself
+Feature:  As a student exploring a college I want to see paid webtour to understand how the school positions itself (No
+  college has webtour currently)
 
   Background:
     Given I log in to Family Connection with the following user details:
-      | rtsa       | amandahubs | hubs2016  |
+      | rtsa       | amandahubs | Hobsons!23  |
 
     When I open the HUBS page for "Adelphi"
 

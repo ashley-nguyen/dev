@@ -4,7 +4,7 @@ Feature:  As a student viewing new Hubs' Overview tab, I want to see contact inf
 
   Background:
     Given I log in to Family Connection with the following user details:
-      | rtsa       | amandahubs | hubs2016  |
+      | rtsa       | amandahubs | Hobsons!23  |
     When I open the HUBS page for "Auburn"
     And I open the Studies tab
   @smoke
@@ -31,6 +31,3 @@ Feature:  As a student viewing new Hubs' Overview tab, I want to see contact inf
     | Study Abroad Non Credit          |
     | Weekend College                  |
     | Weekend Evening Programs         |
-
-  Scenario: A label indicating the year of the data is displayed under Study Options
-    Then I should see the label "Latest available data from 2016" under "Study Options"

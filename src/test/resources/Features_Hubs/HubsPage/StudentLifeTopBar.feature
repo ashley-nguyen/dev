@@ -4,7 +4,7 @@ Feature:  As a student viewing new Hubs' Student Life tab, I want to see a top b
 
   Background:
     Given I log in to Family Connection with the following user details:
-      | rtsa       | amandahubs | hubs2016  |
+      | rtsa       | amandahubs | Hobsons!23  |
     When I open the HUBS page for "Auburn"
     And I open the Student Life tab
   @smoke
@@ -40,5 +40,3 @@ Feature:  As a student viewing new Hubs' Student Life tab, I want to see a top b
   Scenario: The URL contains "Student_Life#housing-information"
     When I open the "Learn More About Housing" link in Student Life top bar
     Then The URL should contain "Student_Life#housing-information"
-
-

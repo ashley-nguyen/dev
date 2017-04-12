@@ -4,7 +4,7 @@ Feature: As a student I'd like to have the ability to quickly have access to the
 
   Background:
     Given I log in to Family Connection with the following user details:
-      | rtsa  | allenhubs | hubs2016  |
+      | rtsa  | benhubs | Hobsons!23  |
     When I open the HUBS page for "Albion"
 
   Scenario: The number of colleges in 'I'm thinking about' list equals the number in the corresponding button in
@@ -25,8 +25,8 @@ Feature: As a student I'd like to have the ability to quickly have access to the
     And I open the "Recommended Events" list using the corresponding button in the bottom sticky bar
     Then The number of colleges in "Recommended Events" list should equal the number in the button in the Bottom Sticky Bar
 
-  Scenario: The number of colleges in 'Recommended Events' list equals the number in the corresponding button in
-  the Bottom Sticky Bar (HUBS-883)
+  Scenario: The number of colleges in 'Upcoming Visits' list equals the number in the corresponding button in
+  the Bottom Sticky Bar (HUBS-883-fixed)
     When I take note of the number in the "Upcoming Visits" button
     And I open the "Upcoming Visits" list using the corresponding button in the bottom sticky bar
     Then The number of colleges in "Upcoming Visits" list should equal the number in the button in the Bottom Sticky Bar

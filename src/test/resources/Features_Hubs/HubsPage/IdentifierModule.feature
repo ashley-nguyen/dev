@@ -4,7 +4,7 @@ Feature:  As a student viewing new hubs page, I want to always see the college's
 
   Background:
     Given I log in to Family Connection with the following user details:
-      | rtsa       | benhubs | hubs2016  |
+      | rtsa       | benhubs | Hobsons!23  |
     When I open the HUBS page for "Albion"
 
   Scenario: Identifier module is present in Hubs
@@ -24,7 +24,7 @@ Feature:  As a student viewing new hubs page, I want to always see the college's
     And I remove the college "Albion" from the 'I'm thinking about' list in legacy
     Then The college "Albion" should not be present in the 'I'm thinking about' list
   @smoke
-  Scenario: The college is taken out of the 'I'm thinking about' list after clicking the heart when it is pink
+  Scenario: The college is taken out of the 'I'm thinking about' list after clicking the heart when it is pink (HUBS-969)
     Given The college "Albion" is added to the 'I'm thinking about' list
     When I take the college out of the 'I'm thinking about' list using the heart icon
     Then The college "Albion" should not be present in the 'I'm thinking about' list
@@ -35,7 +35,7 @@ Feature:  As a student viewing new hubs page, I want to always see the college's
     Then I should see a tooltip with the text "Add to Colleges I'm Thinking About"
 
   Scenario: A tool tip with the text "Remove from Colleges I'm Thinking About" is displayed when the user hover over
-  the heart icon
+  the heart icon (HUBS-969)
     When I go over the heart icon when it is pink
     Then I should see a tooltip with the text "Remove from Colleges I'm Thinking About"
     And I take the college out of the 'I'm thinking about' list using the heart icon
