@@ -39,6 +39,9 @@ public class eDocsTabPage extends BaseClass  {
         @FindBy(how = How.CSS, using = "#contents > div:nth-of-type(2) > div:nth-of-type(2) > div")
         public static WebElement txtContentsVerification;
 
+        @FindBy(how = How.CSS, using = "#contents > div:nth-child(3) > div.ng-scope > div > div:nth-child(1) > table > tbody > tr:nth-child(3)")
+        public static WebElement txtLORRequest;
+
         @FindBy(how = How.CSS, using = "#contents > div:nth-of-type(2) > div:nth-of-type(2) > div > div:nth-of-type(1) > table")
         public static WebElement txtTableVerification;
 
@@ -50,6 +53,15 @@ public class eDocsTabPage extends BaseClass  {
 
         @FindBy(how = How.XPATH, using = "//button[contains(@class,'btn btn-upload-toggle span12 btn-primary') or contains(@class,'btn btn-upload-toggle span12')]")
         public static WebElement btnUploadAFile;
+
+        @FindBy(how = How.XPATH, using = "//button[contains(@class,'btn btn-small ng-scope')]")
+        public static WebElement btnUploadFile;
+
+        @FindBy(how = How.XPATH, using = "//button[contains(@class,'btn btn-small ng-scope')]")
+        public static WebElement btnUploadRequest;
+
+        @FindBy(how = How.XPATH, using = "//button[contains(@class,'btn btn-upload-toggle span12 btn-primary') or contains(@class,'btn btn-small ng-scope')]")
+        public static WebElement btnUpload;
 
         @FindBy(how = How.CSS, using = "select[name=application_id_select]")
         public static WebElement selApplication;

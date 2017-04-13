@@ -7,23 +7,23 @@ Feature: Colleges Errors test
   Background:
     Given I am logged into Naviance "blueqa1" as "frank.district" with "password"
 
-  Scenario Outline: Verify Prospective Colleges is displayed correctly
-    And I enter to School Site
-    When I search for <student> using the global search field
-    Then I should not see errors in prospective college
-
-  Examples:
-  | student      |
-  | AStudent0, Student-2024-0|
-
-  Scenario Outline: Verify Active Applications is displayed correctly
-    And I enter to School Site
-    When I search for <student> using the global search field
-    Then I should not see errors in college pick using "<url>"
-
-  Examples:
-   | student      | url                                                       |
-   | AStudent0, Student-2024-0   | https://succeed.naviance.com/collegesmain/collegepick.php |
+#  Scenario Outline: Verify Prospective Colleges is displayed correctly
+#    And I enter to School Site
+#    When I search for <student> using the global search field
+#    Then I should not see errors in prospective college
+#
+#  Examples:
+#  | student      |
+#  | AStudent0, Student-2024-0|
+#
+#  Scenario Outline: Verify Active Applications is displayed correctly
+#    And I enter to School Site
+#    When I search for <student> using the global search field
+#    Then I should not see errors in college pick using "<url>"
+#
+#  Examples:
+#   | student      | url                                                       |
+#   | AStudent0, Student-2024-0   | https://succeed.naviance.com/collegesmain/collegepick.php |
 
 
   Scenario Outline: Find College test

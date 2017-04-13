@@ -5,7 +5,7 @@ Feature: View student details
   there are LOR requests from a student before I upload any documents.
 
   Background:
-    Given I am logged into Naviance "blue1hs" as "jandell.counselor" with "password"
+    Given I am logged into Naviance "blue1hs" as "stan.smith" with "stan01!"
     When I configure permissions for teacher
     Then I verify that Confirmation "The permissions for this role have been updated" message is displayed
 
@@ -105,19 +105,19 @@ Feature: View student details
   @edocs @safe @succeed @EDOCS234
   Scenario Outline: Verify Under Application, I want to upload a NACAC fee waiver on behalf of a student to non-common-app colleges via eDocs
     When I use "<studentID>" under application for counselor documents selecting "All Applications" and "<type>" with "<filename>"
-    Then I will verify "<type>", "<author>", "<size>", "<action>"
+    Then I will verify "<type>", "<author>", "<size>", "<action>", "<date>"
   Examples:
-    | studentID  | type                     |filename        | author    | size  | action |
-    | 37506999       | Other School Report      |ReadMe.txt      |Stan Smith | 14.87 | Replace   |
-    | 37506999       | NACAC Fee Waiver         |ReadMe.txt      |Stan Smith | 14.87 | Replace   |
+    | studentID  | type                     |filename        | author    | size  | action | date |
+    | 37506999       | Other School Report      |ReadMe.txt      |Stan Smith | 14.87 | Replace   | true |
+    | 37506999       | NACAC Fee Waiver         |ReadMe.txt      |Stan Smith | 14.87 | Replace   | true |
 
   @edocs @safe @succeed @EDOCS234
   Scenario Outline: Verify under Application, I want to upload a NACAC fee waiver on behalf of a student to non-common-app colleges via eDocs using Delete action.
     When I use "<studentID>" and delete document in eDocs
-    Then I will verify "<type>", "<author>", "<size>", "<action>"
+    Then I will verify "<type>", "<author>", "<size>", "<action>", "<date>"
   Examples:
-    | studentID  | type                     | author    | size  | action |
-    | 37506999       | NACAC Fee Waiver      |Stan Smith | 14.87 | Delete   |
+    | studentID  | type                     | author    | size  | action | date |
+    | 37506999       | NACAC Fee Waiver      |Stan Smith | 14.87 | Delete   | true |
 
   @edocs @safe @EDOCS12
   Scenario Outline: Verify prevent uploading/sending multiple student transcripts for a single student due to FERPA violation
@@ -136,3 +136,40 @@ Feature: View student details
   Examples:
     | studentID  | text                             | filename            |
     | 37506999       | Selected file is more than 500KB | FillTooBigPDF.pdf|
+
+  @edocs319
+  Scenario Outline: As a staff member, I would like to upload a LOR via eDocs in response to an All Applications request from a student
+    When I go to "<studentID>" in Prepare tab
+    Then I see a "<data>" for LOR request for All Applications
+
+  Examples:
+  |studentID | data         |
+  | 12345678 | (Requested) Letter of Recommendation       |
+  | 12345678 | Jandell Teacher       |
+
+  @edocs319
+  Scenario Outline: As a staff member, I would like to upload a LOR via eDocs in response to an All Applications request from a student
+    When I go to "<studentID>" in Prepare tab
+    And I click on Upload button selecting "All Applications" and "<type>" with "<filename>"
+    Then I see a "<data>" for LOR request for All Applications
+    Then I will verify "<type>", "<author>", "<size>", "<action>", "<date>"
+    When I use "<studentID>" and delete document in eDocs
+
+  Examples:
+    |studentID | data                                       | type                     |filename        | author    | size  | action | date |
+    | 12345678 | (Requested) Letter of Recommendation       |Letter of Recommendation          | ReadMe.txt      |Stan Smith | 14.87 | View   | true |
+    | 12345678 | (Requested) Letter of Recommendation       |Letter of Recommendation          | ReadMe.txt      |Stan Smith | 14.87 | Replace   | true |
+    | 12345678 | (Requested) Letter of Recommendation       |Letter of Recommendation          | ReadMe.txt      |Stan Smith | 14.87 | Delete   | true |
+
+
+  @edocs319
+  Scenario Outline: As a staff member, I would like to upload a LOR via eDocs in response to an All Applications request from a student
+    When I go to "<studentID>" in Prepare tab
+    And I click on Upload button selecting "All Applications" and "<type>" with "<filename>"
+    Then I see a "<data>" for LOR request for All Applications
+    When I use "<studentID>" and delete document in eDocs
+    Then I will verify "<type>", "<author>", "<size>", "<action>", "<date>"
+
+  Examples:
+    |studentID | data                                       | type                     |filename        | author    | size  | action | date |
+    | 12345678 | (Requested) Letter of Recommendation       |Letter of Recommendation          | ReadMe.txt      |Stan Smith | 14.87 | Upload   | false |
