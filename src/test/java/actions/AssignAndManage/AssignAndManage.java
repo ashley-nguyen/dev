@@ -7,7 +7,7 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import pageObjects.AssignAndManage.AssignAndManagePage;
-import pageObjects.ReusableComponents.webDriverComponentsPage;
+import pageObjects.ReusableComponents.ReusableComponentsPage;
 import reusableComponents.WebdriverComponents;
 import stepDefs.Hooks;
 
@@ -26,13 +26,13 @@ public class AssignAndManage {
         this.driver = Hooks.driver;
         this.driverComponents = new WebdriverComponents();
         PageFactory.initElements(driver, AssignAndManagePage.class);
-        PageFactory.initElements(driver, webDriverComponentsPage.class);
+        PageFactory.initElements(driver, ReusableComponentsPage.class);
     }
 
     public  void NavigateToAssignAndManage() throws Exception {
 
-       // driverComponents.clickElement(webDriverComponentsPage.School);
-        driverComponents.hoverAndClick(webDriverComponentsPage.Planner, webDriverComponentsPage.AssignAndManage);
+       // driverComponents.clickElement(ReusableComponentsPage.School);
+        driverComponents.hoverAndClick(ReusableComponentsPage.Planner, ReusableComponentsPage.AssignAndManage);
 
     }
 
