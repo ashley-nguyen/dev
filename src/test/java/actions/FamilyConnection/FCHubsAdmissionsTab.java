@@ -331,7 +331,7 @@ public class FCHubsAdmissionsTab {
                 (FCHubsAdmissionsTabPage.imageScattergrams));
         ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);",
                 FCHubsAdmissionsTabPage.keySectionScattergramsTitle);
-        if (System.getProperty("ENV").equals("int")) {
+        if (System.getProperty("ENV").equals("intHUBS")) {
             intElement = FCHubsAdmissionsTabPage.linkShowMoreScattergramsInt;
         } else if (System.getProperty("ENV").equals("prodConnection")) {
             intElement = FCHubsAdmissionsTabPage.linkShowMoreScattergramsProd;
@@ -376,7 +376,7 @@ public class FCHubsAdmissionsTab {
     public static void clickInfoIconScattergrams() {
         driver = Hooks.driver;
         PageFactory.initElements(driver, FCHubsAdmissionsTabPage.class);
-        if (System.getProperty("ENV").equals("int")) {
+        if (System.getProperty("ENV").equals("intHUBS")) {
             new WebDriverWait(Hooks.driver, 20).until(ExpectedConditions.elementToBeClickable
                     (FCHubsAdmissionsTabPage.linkShowMoreScattergramsInt));
         } else if (System.getProperty("ENV").equals("prodConnection")) {
@@ -420,7 +420,7 @@ public class FCHubsAdmissionsTab {
         driver = Hooks.driver;
         PageFactory.initElements(driver, FCHubsAdmissionsTabPage.class);
         boolean result = false;
-        if (System.getProperty("ENV").equals("int")) {
+        if (System.getProperty("ENV").equals("intHUBS")) {
             if (FCHubsAdmissionsTabPage.tooltipContainerScattergrams.getAttribute("class").contains("ng-hide")) {
                 result = true;
             } else {
@@ -605,7 +605,7 @@ public class FCHubsAdmissionsTab {
         driver = Hooks.driver;
         PageFactory.initElements(driver, FCHubsAdmissionsTabPage.class);
         boolean result = false;
-        if (System.getProperty("ENV").equals("int")) {
+        if (System.getProperty("ENV").equals("intHUBS")) {
             result = FCHubsAdmissionsTabPage.tooltipContainerAcceptanceRateHidden.isEnabled();
         } else if (System.getProperty("ENV").equals("prodConnection")) {
             result = navigation.verifyElementNotPresent(FCHubsAdmissionsTabPage.tooltipContainerAcceptanceRate);
@@ -649,7 +649,7 @@ public class FCHubsAdmissionsTab {
         driver = Hooks.driver;
         PageFactory.initElements(driver, FCHubsAdmissionsTabPage.class);
         WebElement iconElement = null;
-        if (System.getProperty("ENV").equals("int")) {
+        if (System.getProperty("ENV").equals("intHUBS")) {
             iconElement = FCHubsAdmissionsTabPage.scattergramsPSATInfoIconInt;
         } else if (System.getProperty("ENV").equals("prodConnection")) {
             iconElement = FCHubsAdmissionsTabPage.scattergramsPSATInfoIconProd;
@@ -663,7 +663,7 @@ public class FCHubsAdmissionsTab {
         driver = Hooks.driver;
         PageFactory.initElements(driver, FCHubsAdmissionsTabPage.class);
         WebElement xButtonElement = null;
-        if (System.getProperty("ENV").equals("int")) {
+        if (System.getProperty("ENV").equals("intHUBS")) {
             xButtonElement = FCHubsAdmissionsTabPage.buttonXTooltipScattergramsPSATInt;
         } else if (System.getProperty("ENV").equals("prodConnection")) {
             xButtonElement = FCHubsAdmissionsTabPage.buttonXTooltipScattergramsPSATProd;

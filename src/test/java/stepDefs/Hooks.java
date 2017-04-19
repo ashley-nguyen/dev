@@ -77,6 +77,9 @@ public class Hooks {
             case "QABlue":
                 strBaseURL = "https://succeed-blue-int.dev.naviance.com";
                 break;
+            case "intHUBS":
+                strBaseURL = "https://connection-int.dev.naviance.com";
+                break;
             default:
                 strBaseURL = "https://succeed-internal.naviance.com";
                 break;
@@ -132,7 +135,7 @@ public class Hooks {
          }
         System.out.println("Opening Browser...." + browser);
         driver.manage().deleteAllCookies();
-        if(!env.equals("int") && !env.equals("prodConnection")) {
+        if(!env.equals("intHUBS") && !env.equals("prodConnection")) {
             driver.get(strBaseURL);
         }
         driver.manage().window().setSize(new Dimension(1920, 760));

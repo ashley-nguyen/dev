@@ -268,17 +268,20 @@ public class FCHubs {
 
     public static void VerifyDegreesOfferedQuickFacts(List<String> degrees) {
         driver = Hooks.driver;
+        PageFactory.initElements(driver, FCHubsPage.class);
         boolean result = false;
-        for (int i = 1; i == degrees.size(); i++) {
-            WebElement degreeElement = driver.findElement(By.cssSelector("li.ng-binding.ng-scope:nth-of-type" +
-                    "(" + i + ")"));
-            if (degreeElement.getText().equals(degrees.get( i - 1))) {
+        new WebDriverWait(driver, 20).until(ExpectedConditions.elementToBeClickable(By.cssSelector
+                (FCHubsPage.degreesOfferedListLocator)));
+        List<WebElement> uiDegreesOfferedList = driver.findElements(By.cssSelector(FCHubsPage.degreesOfferedListLocator));
+        for (WebElement degreeElement : uiDegreesOfferedList) {
+            if (degrees.contains(degreeElement.getText())) {
                 result = true;
             } else {
                 result = false;
                 break;
             }
         }
+
         assertTrue("The displayed degrees are not correct", result);
     }
 
@@ -288,7 +291,7 @@ public class FCHubs {
         boolean result = true;
         WebElement valueElement = null;
         for (String scoreValueElement : scoreValueList) {
-            if (System.getProperty("ENV").equals("int")) {
+            if (System.getProperty("ENV").equals("intHUBS")) {
                 switch (scoreValueElement.split(";")[0]) {
                     case "GPA" : valueElement = FCHubsPage.labelGPAValue;
                         break;
@@ -338,7 +341,7 @@ public class FCHubs {
             }
             System.out.println("UI: " + valueElement.getText());
             System.out.println("Data: " + scoreValueElement.split(";")[1]);
-            new WebDriverWait(driver, 20).until(ExpectedConditions.elementToBeClickable(FCHubsPage.labelAvgGPAValue));
+            new WebDriverWait(driver, 20).until(ExpectedConditions.elementToBeClickable(valueElement));
             if (scoreValueElement.split(";")[1].equals("empty")) {
                 comparisonString = "";
             } else {
@@ -790,7 +793,7 @@ public class FCHubs {
         driver = Hooks.driver;
         PageFactory.initElements(driver, FCHubsPage.class);
         boolean result = false;
-        if (System.getProperty("ENV").equals("int")) {
+        if (System.getProperty("ENV").equals("intHUBS")) {
             driver.get(FCHubsPage.URLimThinkingAboutListInt);
         } else if (System.getProperty("ENV").equals("prodConnection")) {
             driver.get(FCHubsPage.URLimThinkingAboutListProd);
@@ -1004,7 +1007,7 @@ public class FCHubs {
         driver = Hooks.driver;
         PageFactory.initElements(driver, FCHubsPage.class);
         new WebDriverWait(Hooks.driver, 20).until(ExpectedConditions.elementToBeClickable
-                (FCHubsPage.tabInternational));
+                (FCHubsPage.buttonAddToCollegesImThinkingAboutPinkBar));
         FCHubsPage.tabInternational.click();
     }
 
@@ -1012,7 +1015,7 @@ public class FCHubs {
         driver = Hooks.driver;
         PageFactory.initElements(driver, FCHubsPage.class);
         WebElement infoIcon = null;
-        if (System.getProperty("ENV").equals("int")) {
+        if (System.getProperty("ENV").equals("intHUBS")) {
             switch (section) {
                 case "Average Net Price" : infoIcon = FCHubsPage.infoIconAvgNetPrice;
                     break;
@@ -1063,7 +1066,7 @@ public class FCHubs {
         PageFactory.initElements(driver, FCHubsPage.class);
         boolean result = false;
         WebElement tooltipElement = null;
-        if (System.getProperty("ENV").equals("int")) {
+        if (System.getProperty("ENV").equals("intHUBS")) {
             switch (section) {
                 case "Converted GPA" : tooltipElement = FCHubsPage.tooltipContainerConvertedGPA;
                     break;
@@ -1117,7 +1120,7 @@ public class FCHubs {
         PageFactory.initElements(driver, FCHubsPage.class);
         boolean result = false;
         WebElement tooltipContainerElement = null;
-        if (System.getProperty("ENV").equals("int")) {
+        if (System.getProperty("ENV").equals("intHUBS")) {
             switch (section) {
                 case "Average Net Price" : tooltipContainerElement = FCHubsPage.tooltipContainerAvgNetPrice;
                     break;
@@ -1178,7 +1181,7 @@ public class FCHubs {
         driver = Hooks.driver;
         PageFactory.initElements(driver, FCHubsPage.class);
         WebElement labelElement = null;
-        if (System.getProperty("ENV").equals("int")) {
+        if (System.getProperty("ENV").equals("intHUBS")) {
             labelElement = FCHubsPage.labelDataConversionDetailsInt;
         } else if (System.getProperty("ENV").equals("prodConnection")) {
             labelElement = FCHubsPage.labelDataConversionDetailsProd;

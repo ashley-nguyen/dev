@@ -97,7 +97,7 @@ public class FCCollegesTab {
         PageFactory.initElements(driver, FCCollegesPage.class);
         String partialURL = "";
         String env = System.getProperty("ENV");
-        if (env.equals("int")) {
+        if (env.equals("intHUBS")) {
             partialURL = FCCollegesPage.partialSearchCollegeIntURLInt;
         } else if (env.equals("prodConnection")) {
             partialURL = FCCollegesPage.partialSearchCollegeIntURLProd;

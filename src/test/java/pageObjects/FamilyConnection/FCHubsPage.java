@@ -67,7 +67,7 @@ public class FCHubsPage extends BaseClass {
     public static WebElement tabAdmissions;
     @FindBy(how = How.CSS, using = ".tabs.hubs-top-tabs-bar span:nth-of-type(3)")
     public static WebElement tabStudentLife;
-    @FindBy(how = How.CSS, using = ".tabs.hubs-top-tabs-bar span:nth-of-type(5)")
+    @FindBy(how = How.XPATH, using = "//span[text() = 'Costs']")
     public static WebElement tabCosts;
     @FindBy(how = How.CSS, using = ".tabs.hubs-top-tabs-bar span:nth-of-type(6)")
     public static WebElement tabProfiles;
@@ -182,7 +182,7 @@ public class FCHubsPage extends BaseClass {
     public static WebElement buttonAddToCollegesImThinkingAboutPinkBar;
     @FindBy(how = How.CSS, using = ".fc-main-nav__tab-list li:nth-of-type(3) a")
     public static WebElement tabCollegesTopBar;
-    @FindBy(how = How.CSS, using = "tbody tr:nth-of-type(1) td span")
+    @FindBy(how = How.CSS, using = "tbody tr:nth-of-type(1) td span[role=\"button\"]")
     public static WebElement firstCollegeVisitsRegisterButton;
     @FindBy(how = How.CSS, using = "div[ng-if=\"vm.averageNetPrices.length > 0\"] svg")
     public static WebElement infoIconAvgNetPrice;
@@ -258,6 +258,7 @@ public class FCHubsPage extends BaseClass {
     public static String quickFactsListLocator = "div.summary-profile__body.fc-grid__col.fc-grid__col--xs-12" +
             ".fc-grid__col--md-6 div.fc-grid__row.fc-grid__row--md-end.quick-facts-row:not([aria-hidden=\"true\"])" +
             " div:nth-of-type(2)";
+    public static String degreesOfferedListLocator = "li.ng-binding.ng-scope";
 
     public FCHubsPage(WebDriver driver) {
         super(driver);
