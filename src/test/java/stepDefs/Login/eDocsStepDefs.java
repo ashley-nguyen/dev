@@ -43,6 +43,13 @@ public class eDocsStepDefs {
         eDocsGeneral.WritePathFile(filename);
     }
 
+    @When("^I go to \"([^\"]*)\" in Prepare tab$")
+    public void I_go_to_Prepare_tab(String strStudentID) throws Throwable {
+        Student_Search.studentRosterSearch(strStudentID, "id");
+        eDocsGeneral.NavtoEdocsStudentTab();
+        eDocsGeneral.ClickOnPrepareLink();
+    }
+
     @When("^I use \"([^\"]*)\" under application for counselor documents selecting \"(.*)\" and \"(.*)\" with \"([^\"]*)\"$")
     public void I_use_student_under_application_for_counselor_documents_verifying_text(String strStudentID,  String application, String type, String filename) throws Throwable {
         Student_Search.studentRosterSearch(strStudentID, "id");
@@ -166,6 +173,12 @@ public class eDocsStepDefs {
         eDocsGeneral.ClickOnUploadAFileButton();
     }
 
+    @Then("I click on Upload button selecting \"([^\"]*)\" and \"([^\"]*)\" with \"([^\"]*)\"")
+    public void I_click_on_Upload_button(String application, String type, String filename) throws Throwable {
+        eDocsGeneral.ClickOnUploadButton(application, type, filename);
+    }
+
+
     @Then("I select \"([^\"]*)\" from Application")
     public void I_select_application(String application) throws Throwable {
         eDocsGeneral.SelectApplication(application);
@@ -201,9 +214,9 @@ public class eDocsStepDefs {
         eDocsGeneral.verifyLorsMessagesText(strtext, strMessage);
     }
 
-    @Then("^I will verify \"([^\"]*)\", \"([^\"]*)\", \"([^\"]*)\", \"([^\"]*)\"$")
-    public void I_will_verify_fields_for_lors(String type, String author, String size, String action) throws Throwable {
-        eDocsGeneral.verifyLorsFieldsText(type, author, size, action);
+    @Then("^I will verify \"([^\"]*)\", \"([^\"]*)\", \"([^\"]*)\", \"([^\"]*)\", \"([^\"]*)\"$")
+    public void I_will_verify_fields_for_lors(String type, String author, String size, String action, String date) throws Throwable {
+        eDocsGeneral.verifyLorsFieldsText(type, author, size, action, date);
     }
 
     @Then("^I will verify \"([^\"]*)\" available document$")
@@ -219,6 +232,11 @@ public class eDocsStepDefs {
     @Then("^I will verify \"([^\"]*)\" in buttons for LORs$")
     public void I_will_verify_text_for_buttons(String strtext) throws Throwable {
         eDocsGeneral.verifyButtons(strtext);
+    }
+
+    @Then("^I see a \"([^\"]*)\" for LOR request for All Applications$")
+    public void I_see_LOR_request_for_All_Applications(String strtext) throws Throwable {
+        eDocsGeneral.verifyDataLORRequest(strtext);
     }
 
     @Then("^I will verify \"([^\"]*)\" file big message$")

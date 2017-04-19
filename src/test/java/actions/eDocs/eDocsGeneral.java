@@ -105,8 +105,6 @@ public class eDocsGeneral {
         driver = Hooks.driver;
         PageFactory.initElements(driver, eDocsTabPage.class);
         new WebDriverWait(Hooks.driver, 30).until(ExpectedConditions.visibilityOf(Hooks.driver.findElement(By.cssSelector("button[title=Delete]"))));
-        JavascriptExecutor js = (JavascriptExecutor)driver;
-        js.executeScript("window.scrollTo(0,Math.max(document.documentElement.scrollHeight,document.body.scrollHeight,document.documentElement.clientHeight));");
         eDocsTabPage.btnDelete.click();
         eDocsTabPage.btnDeleteDocument.click();
     }
@@ -114,7 +112,7 @@ public class eDocsGeneral {
     public static void ClickOnDeleteDocumentButton() throws Throwable {
         driver = Hooks.driver;
         PageFactory.initElements(driver, eDocsTabPage.class);
-        Thread.sleep(3000);
+        Thread.sleep(2900);
         eDocsTabPage.btnDeleteDocument.click();
     }
 
@@ -124,6 +122,35 @@ public class eDocsGeneral {
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         new WebDriverWait(Hooks.driver, 30).until(ExpectedConditions.visibilityOf(Hooks.driver.findElement(By.xpath("//button[contains(@class,'btn btn-upload-toggle span12 btn-primary') or contains(@class,'btn btn-upload-toggle span12')]"))));
         eDocsTabPage.btnUploadAFile.click();
+    }
+
+    public static void ClickOnUploadFileButton() throws Throwable {
+        driver = Hooks.driver;
+        PageFactory.initElements(driver, eDocsTabPage.class);
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        new WebDriverWait(Hooks.driver, 30).until(ExpectedConditions.visibilityOf(Hooks.driver.findElement(By.xpath("//button[contains(@class,'btn btn-small ng-scope')]"))));
+        eDocsTabPage.btnUploadFile.click();
+         driver.navigate().refresh();
+        driver.navigate().refresh();
+        driver.navigate().refresh();
+        driver.navigate().refresh();
+        new WebDriverWait(Hooks.driver, 60).until(ExpectedConditions.visibilityOf(Hooks.driver.findElement(By.xpath("//button[contains(@title,'Delete')]"))));
+    }
+
+    public static void ClickOnUploadButton(String application, String type, String filename) throws Throwable {
+        driver = Hooks.driver;
+        PageFactory.initElements(driver, eDocsTabPage.class);
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        new WebDriverWait(Hooks.driver, 30).until(ExpectedConditions.visibilityOf(Hooks.driver.findElement(By.xpath("//button[contains(@class,'btn btn-small ng-scope')]"))));
+        eDocsTabPage.btnUploadRequest.click();
+        eDocsGeneral.ClickOnUploadAFileButton();
+        eDocsGeneral.SelectApplication(application);
+        eDocsGeneral.SelectType(type);
+        eDocsGeneral.ClickOnBrowseButton();
+        eDocsGeneral.WritePathFile(filename);
+        eDocsGeneral.ClickOnUploadFileButton();
+
+        new WebDriverWait(Hooks.driver, 30).until(ExpectedConditions.visibilityOf(Hooks.driver.findElement(By.xpath("//button[contains(@class,'btn btn-small ng-scope')]"))));
     }
 
     public static void SelectApplication(String application) throws Throwable {
@@ -206,6 +233,8 @@ public class eDocsGeneral {
         new WebDriverWait(Hooks.driver, 30).until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("div[class='form-checklist condensed ng-scope']")));
         new WebDriverWait(Hooks.driver, 30).until(ExpectedConditions.visibilityOf(Hooks.driver.findElement(By.cssSelector("#contents > div:nth-child(3) > div.ng-scope > ng-include > div > div:nth-child(2) > div.checklist-header.ng-binding"))));
         new WebDriverWait(Hooks.driver, 30).until(ExpectedConditions.visibilityOf(Hooks.driver.findElement(By.cssSelector("#contents > div:nth-child(3) > div.ng-scope > div > div:nth-child(1) > table > tbody > tr:nth-child(1) > td:nth-child(1)"))));
+        new WebDriverWait(Hooks.driver, 30).until(ExpectedConditions.visibilityOf(Hooks.driver.findElement(By.cssSelector("#contents > div:nth-child(3) > div.ng-scope > div > div:nth-child(3) > table > tbody > tr > td > div"))));
+
         String bodyText = eDocsTabPage.txtBody.getText();
         assertTrue("Text not found! "+strData, bodyText.contains(strData));
             JavascriptExecutor js = (JavascriptExecutor)driver;
@@ -216,21 +245,31 @@ public class eDocsGeneral {
 
     }
 
-    public static void verifyLorsFieldsText (String type, String author, String size, String action) throws Throwable {
+    public static void verifyLorsFieldsText (String type, String author, String size, String action, String viewDate) throws Throwable {
 
         Date date = new Date( );
         SimpleDateFormat ft =
                 new SimpleDateFormat ("MM/dd/yyyy");
 
+        new WebDriverWait(Hooks.driver, 30).until(ExpectedConditions.visibilityOf(Hooks.driver.findElement(By.xpath("//button[contains(@class,'btn btn-small ng-scope')]"))));
         new WebDriverWait(Hooks.driver, 30).until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("div[class='form-checklist condensed ng-scope']")));
         new WebDriverWait(Hooks.driver, 30).until(ExpectedConditions.visibilityOf(Hooks.driver.findElement(By.className("ng-scope"))));
+        driver.navigate().refresh();
+        driver.navigate().refresh();
+        driver.navigate().refresh();
+        driver.navigate().refresh();
+        Thread.sleep(9000);
+
         String bodyText = eDocsTabPage.txtBody.getText();
         assertTrue("Text Type not found! "+ type, bodyText.contains(type));
         assertTrue("Text Author not found! "+ author, bodyText.contains(author));
-        assertTrue("Text Date not found! "+ ft.format(date), bodyText.contains(ft.format(date)));
-        assertTrue("Text Size not found! "+ size, bodyText.contains(size));
+        if (viewDate == "true"){
+            assertTrue("Text Date not found! "+ ft.format(date), bodyText.contains(ft.format(date)));
+            assertTrue("Text Size not found! "+ size, bodyText.contains(size));
+        }
+
         assertTrue("Text Action not found! "+ action, bodyText.contains(action));
-        if(type.contains("Replace") || type.contains("Delete") ){
+        if(type.contains("Replace") || type.contains("Delete") || type.contains("Upload")  ){
             new WebDriverWait(Hooks.driver, 30).until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("#contents > div:nth-of-type(2) > div:nth-of-type(2) > div > div:nth-of-type(1) > table")));
             String verifyReplaceText = eDocsTabPage.txtTableVerification.getText();
             assertTrue("Text not found! "+ type, !verifyReplaceText.contains(type));
@@ -262,6 +301,47 @@ public class eDocsGeneral {
         }
     }
 
+    public static void verifyDataLORRequest (String strRequestData) throws Throwable {
+        Date date = new Date( );
+        SimpleDateFormat ft =
+                new SimpleDateFormat ("MM/dd/yyyy");
+
+        new WebDriverWait(Hooks.driver, 30).until(ExpectedConditions.visibilityOf(Hooks.driver.findElement(By.className("ng-scope"))));
+        if(strRequestData.contains("Requested") ){
+            new WebDriverWait(Hooks.driver, 30).until(ExpectedConditions.presenceOfElementLocated(By.className("ng-scope")));
+            String verifyReplaceText = eDocsTabPage.txtLORRequest.getText();
+            //Verify Requests for letter recommendation
+            assertTrue("Text not found! " + strRequestData, verifyReplaceText.contains(strRequestData));
+        }
+
+        //Verify Author
+        try{
+            By byXpath = By.xpath("//*[contains(text()," + "\"" + strRequestData + "\" )]");
+            WebElement myDynamicElement = (new WebDriverWait(driver, 6000))
+                    .until(ExpectedConditions.presenceOfElementLocated(byXpath));
+
+        } catch (NoSuchElementException e) {
+            throw new AssertionFailedError("Author not exists !!!!!");
+        } catch (WebDriverException e) {
+            throw new AssertionFailedError("Author not exists !!!!!");
+        }
+
+        //Verify blank Date
+        String bodyText = Hooks.driver.findElement(By.tagName("tbody")).getText();
+        assertTrue("Text Date found! "+ ft.format(date), bodyText.contains(" "));
+
+        //Verify blank Size
+        assertTrue("Text Size found! "+ ft.format(date), bodyText.contains(" "));
+
+        //Verify button Upload
+        new WebDriverWait(Hooks.driver, 30).until(ExpectedConditions.visibilityOf(Hooks.driver.findElement(By.cssSelector("button[class='btn btn-small ng-scope']"))));
+
+        driver = Hooks.driver;
+        PageFactory.initElements(driver, eDocsTabPage.class);
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+
+        assertTrue("Button upload not found! ", eDocsTabPage.btnUpload.isEnabled());
+    }
 
     public static void verifyFileBigMessage (String strMessage) throws Throwable {
         try{

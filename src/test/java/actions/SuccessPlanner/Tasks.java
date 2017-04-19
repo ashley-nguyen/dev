@@ -3,7 +3,7 @@ package actions.SuccessPlanner;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
 import pageObjects.AssignAndManage.AssignAndManagePage;
-import pageObjects.ReusableComponents.webDriverComponentsPage;
+import pageObjects.ReusableComponents.ReusableComponentsPage;
 import pageObjects.SuccessPlanner.TasksPage;
 import reusableComponents.WebdriverComponents;
 import stepDefs.Hooks;
@@ -20,12 +20,12 @@ public class Tasks {
         this.driver = Hooks.driver;
         this.driverComponents = new WebdriverComponents();
         PageFactory.initElements(driver, TasksPage.class);
-        PageFactory.initElements(driver, webDriverComponentsPage.class);
+        PageFactory.initElements(driver, ReusableComponentsPage.class);
     }
 
     public  void NavigateToTasks() throws Exception {
 
-       driverComponents.hoverAndClick(webDriverComponentsPage.Planner, webDriverComponentsPage.Tasks);
+       driverComponents.hoverAndClick(ReusableComponentsPage.Planner, ReusableComponentsPage.Tasks);
 
     }
 
