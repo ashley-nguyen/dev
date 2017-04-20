@@ -1,8 +1,10 @@
 package stepDefs.Colleges;
 
+import actions.Colleges.Visits;
 import cucumber.api.DataTable;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
+import pageObjects.Colleges.VisitsPage;
 
 import java.util.HashMap;
 import java.util.List;
@@ -13,23 +15,27 @@ import java.util.Map;
  */
 public class Visits_StepDefs {
 
+    Visits visits = new Visits();
+
     @When("^I click on \"(.*?)\" link in Visit page$")
-    public void i_click_on_link_in_Visit_page(String arg1) throws Throwable {
-        // Write code here that turns the phrase above into concrete actions
+    public void i_click_on_link_in_Visit_page(String link) throws Throwable {
+
+        visits.clickOnAddVisitLink();
+
     }
 
-    @When("^I enter  details into the fields as below and I click on \"(.*?)\" button :$")
-    public void i_enter_details_into_the_fields_as_below_and_I_click_on_button(String arg1, DataTable arg2) throws Throwable {
-        // Write code here that turns the phrase above into concrete actions
-        // For automatic transformation, change DataTable to one of
-        // List<YourType>, List<List<E>>, List<Map<K,V>> or Map<K,V>.
-        // E,K,V must be a scalar (String, Integer, Date, enum etc)
+    @When("^I enter the following details and click on \"(.*?)\" button :$")
+    public void i_enter_the_following_details_and_click_on_button(String btn, DataTable table) throws Throwable {
+
+        visits.enterVisitDetails(table);
+        visits.addVisit(); // should we pass btn text as String ?
+
     }
 
     @Then("^I should see a new entry in the Scheduled College Visits list with below details:$")
     public void i_should_see_a_new_entry_in_the_Scheduled_College_Visits_list_with_below_details(DataTable arg1) throws Throwable {
-        System.out.println(arg1);
-        List<Map<String,String>> data = arg1.asMaps(String.class,String.class);
+        //System.out.println(arg1);
+        //List<Map<String,String>> data = arg1.asMaps(String.class,String.class);
 
     }
 

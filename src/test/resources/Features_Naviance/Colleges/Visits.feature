@@ -20,13 +20,13 @@ Feature: Type-casted year input to in  test
   Scenario: Verify Add new Visit
 
     When I click on "add new visit" link in Visit page
-    And I enter  details into the fields as below and I click on "Add Visit" button :
-      |College| Date       | Time | Representative   | Location | Registrations | comments   |
-      |Adelphi University | 04/12/2018 | 8 am | AutomationAdmin1 | boston   | 24   | attend plz |
+    And I enter the following details and click on "Add Visit" button :
+      |College            | Date       | Time | Representative   | Location | Registrations | comments   |
+      |Adelphi University | 04/12/2018 | 8 am | AutomationAdmin1 | boston   | 24            | attend plz |
 
     Then I should see a new entry in the Scheduled College Visits list with below details:
-      |College| Date       | Time |  Representative   | Location | Registrations | comments   | RegistrationStatus|
-      |Adelphi University |Thu April 12, 2018| 8:00 AM | AutomationAdmin1 | boston   | (24 max)   | attend plz | Open |
+      |College            | Date             | Time    |  Representative  | Location | Registrations | comments   | RegistrationStatus|
+      |Adelphi University |Thu April 12, 2018| 8:00 AM | AutomationAdmin1 | boston   | (24 max)      | attend plz | Open              |
 
   @MAT-Visits-TC-13
   Scenario Outline: Verify Edit Visit
