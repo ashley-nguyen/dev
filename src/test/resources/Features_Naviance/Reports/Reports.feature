@@ -6,7 +6,7 @@ Feature: Reports tests
 
   Background:
     Given when I log in with the following user details:
-      | bernathigh | sangeetha.munuswamy | password |
+      | blue1hs | stan.smith | stan01! |
   @Studentreport
   Scenario Outline: Verify Students Reports Custom page
     Then I verify "<report>" report page
