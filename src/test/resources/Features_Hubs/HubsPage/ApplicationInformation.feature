@@ -4,11 +4,11 @@ Feature:  As a student viewing new Hubs' Overview tab, I want to see contact inf
 
   Background:
     Given I log in to Family Connection with the following user details:
-      | rtsa       | amandahubs | hubs2016  |
+      | rtsa       | amandahubs | Hobsons!23  |
     When I open the HUBS page for "Adelphi"
     And I open the Admissions tab
 
-  Scenario Outline: The "Required" requirements for "Freshman" are displayed with correct data
+  Scenario Outline: The deadlines are displayed with correct data in Application Information
     When I open "Deadlines" in Application Information
     Then The deadline with name "<name>" and date "<date>" should be displayed in Application Information
     Examples:
@@ -39,8 +39,8 @@ Feature:  As a student viewing new Hubs' Overview tab, I want to see contact inf
   Scenario: The displayed fees for 'Freshman' are correct
     When I open "Fees" in Application Information
     Then The fees for "International" should be:
-      | Application Fee;$40 |
-      | Deposit;$250        |
+      | Application Fee;$380 |
+      | Deposit;$280         |
 
   Scenario: The official page for the college is displayed after clicking the link below fees
     When I open "Fees" in Application Information

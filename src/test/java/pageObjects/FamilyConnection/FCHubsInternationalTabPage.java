@@ -17,6 +17,11 @@ public class FCHubsInternationalTabPage extends BaseClass {
             "'application-info-deadlines')\"]")
     public static WebElement linkSeeAllDeadlines;
 
+    @FindBy(how = How.CSS, using = ".profile__close.ng-scope")
+    public static WebElement intstudentProfilecloselink;
+    @FindBy(how = How.CSS, using = "div[ng-repeat=\"profile in vm.studentProfiles\"] h4")
+    public static WebElement internationalheaderToLocateProfile;
+
     public static String intFeesIntTopbarLocator = "span.hub-data-pod--international.hub-data-pod--international--" +
             "left.hub-data-pod--international--money.ng-binding.ng-scope";
     public static String intTestReqIntTopBarLocator = "span.hub-data-pod--international__req.hub-data-pod--" +
@@ -26,16 +31,7 @@ public class FCHubsInternationalTabPage extends BaseClass {
     public static String intQualificationsLocator = "div[ng-show=\"vm.hasQualifications\"] div.international__" +
             "qualifications--row:not([aria-hidden=\"true\"]) div.international__qualifications--right";
     public static String intTestScoresRowsLocator = "div[ng-repeat=\"score in vm.scores\"]";
-
-    @FindBy(how = How.CSS, using = ".profile__close.ng-scope")
-    public static WebElement intstudentProfilecloselink;
-
-    @FindBy(how = How.CSS, using = "div[ng-repeat=\"profile in vm.studentProfiles\"] h4")
-    public static WebElement internationalheaderToLocateProfile;
-
     public FCHubsInternationalTabPage(WebDriver driver) {
         super(driver);
     }
 }
-
-

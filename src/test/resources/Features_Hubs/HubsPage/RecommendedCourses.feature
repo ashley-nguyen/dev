@@ -4,18 +4,18 @@ Feature: As a user, I would like to see the recommended / required courses for a
 
   Background:
     Given I log in to Family Connection with the following user details:
-      | rtsa  | benhubs | hubs2016  |
-    When I open the HUBS page for "Auburn"
+      | rtsa  | benhubs | Hobsons!23  |
+    When I open the HUBS page for "Alcorn"
     Then I open the Admissions tab
   @smoke
   Scenario: Recommended Courses displayed data is correct
     Then I should see the Recommended Courses with the following data:
     #use 'empty' for the missing data
-    | English;4;4              |
-    | Social Studies;3;4       |
-    | Math;3;3                 |
-    | Science;2;3              |
-    | Foreign Language;empty;2 |
+    | English;4;empty          |
+    | Math;3;empty             |
+    | Science;3;empty          |
+    | Foreign Language;1;empty |
+    | History;3;empty          |
 
   Scenario: The course names are sorted alphabetically after clicking Course Names header
     When I sort data using the "Course Names" header

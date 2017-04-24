@@ -14,7 +14,7 @@ Feature: Teacher Recommendation
     Then I can view request for Teacher Recommendation
   Examples:
     | school   | request                  | item                        |
-    | School A | class of 2016            | All recommendation requests |
+    | City high school | class of 2016            | All recommendation requests |
 
   @settings
   Scenario Outline: Settings Teacher Recommendations
@@ -23,7 +23,7 @@ Feature: Teacher Recommendation
 
   Examples:
     | school   |
-    | School A |
+    | City high school |
 
 #  @summary
 #  Scenario Outline: Summary Teacher Recommendations

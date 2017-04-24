@@ -4,19 +4,19 @@ Feature: As a student exploring a college, I want to see a top bar with high-lev
 
   Background:
     Given I log in to Family Connection with the following user details:
-      | rtsa  | benhubs | hubs2016  |
+      | rtsa  | benhubs | Hobsons!23  |
     When I open the HUBS page for "Auburn"
   @smoke
   Scenario: Average Total Cost is displayed with correct data for each income selected in the Information Top bar
     Then Average Total Cost should correspond to the income as follows:
-    | $0 - $30K;13,191   |
-    | $30 - $48K;16,272  |
-    | $48 - $75K;18,240  |
-    | $75 - $110K;19,276 |
-    | > $110K;20,142     |
+    | $0 - $30K;3,191   |
+    | $30 - $48K;6,272  |
+    | $48 - $75K;8,240  |
+    | $75 - $110K;9,276 |
+    | > $110K;10,142    |
   @smoke
   Scenario: Graduation Rate is displayed with correct data in the Information Top bar
-    Then Graduation Rate should be "66" with correct data in the Information Top bar
+    Then Graduation Rate should be "75" with correct data in the Information Top bar
 
   Scenario: Acceptance Rate  is displayed with correct data
     Then Acceptance Rate should be "83" with correct data in the Information Top bar
@@ -52,7 +52,7 @@ Feature: As a student exploring a college, I want to see a top bar with high-lev
   Scenario: Average Total Cost, Graduation Rate and Acceptance Rate should display the date of the data
     Then The text "from 2016" should be displayed under the sections in Overview Info Top bar
   @smoke
-  Scenario: The number of colleges with overlaps in the legacy list should be the same than the number in Overlaps
+  Scenario: The number of colleges with overlaps in the legacy list should be the same than the number in Overlaps (HUBS-905)
     Then The number in overlaps should be the same as the number of colleges in the following json:
     """
     [
@@ -75,7 +75,8 @@ Feature: As a student exploring a college, I want to see a top bar with high-lev
       {"collegeId":"f305d160-7f87-430c-b7ea-c8b5445b0413","name":"Art Academy of Cincinnati"}
     ]
     """
-  Scenario: The colleges in the list in legacy should be contained in the json list obtained from the overlaps endpoint
+
+  Scenario: The colleges in the list in legacy should be contained in the json list obtained from the overlaps endpoint (HUBS-905)
     When I open the overlaps list in Legacy Family Connection
     Then The colleges in the legacy list should be contained in the following json:
     """

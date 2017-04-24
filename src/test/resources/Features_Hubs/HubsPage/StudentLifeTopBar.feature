@@ -4,30 +4,30 @@ Feature:  As a student viewing new Hubs' Student Life tab, I want to see a top b
 
   Background:
     Given I log in to Family Connection with the following user details:
-      | rtsa       | amandahubs | hubs2016  |
-    When I open the HUBS page for "Auburn"
+      | rtsa       | amandahubs | Hobsons!23  |
+    When I open the HUBS page for "American University"
     And I open the Student Life tab
   @smoke
   Scenario: The School Size is displayed with correct data
-    Then The School Size should be "Very Large"
+    Then The School Size should be "Large"
 
   Scenario: The Undergraduate Students number in School Size is displayed with correct data
-    Then The "Undergraduate Students" number is "20,629" in School Size
+    Then The "Undergraduate Students" number is "7,706" in School Size
 
   Scenario: The Graduate Students number in School Size is displayed with correct data
-    Then The "Graduate Students" number is "5,283" in School Size
+    Then The "Graduate Students" number is "5,355" in School Size
 
   Scenario: The Total Students number in School Size is displayed with correct data
-    Then The "Total Students" number is "25,912" in School Size
+    Then The "Total Students" number is "13,061" in School Size
 
   Scenario: The Nearest City is displayed with correct data
-    Then The "NEAREST CITY" should be "Auburn" in Student Life Top Bar
+    Then The "NEAREST CITY" should be "Washington, D.C." in Student Life Top Bar
 
   Scenario: The Distance From Your Highschool is displayed with correct data
-    Then The "DISTANCE FROM YOUR HIGH SCHOOL" should be "677 miles" in Student Life Top Bar
+    Then The "DISTANCE FROM YOUR HIGH SCHOOL" should be "1200 miles" in Student Life Top Bar
 
   Scenario: The Percent Of Students Living On Campus is displayed with correct data
-    Then The "PERCENT OF STUDENTS LIVING ON CAMPUS" should be "21" in Student Life Top Bar
+    Then The "PERCENT OF STUDENTS LIVING ON CAMPUS" should be "55" in Student Life Top Bar
 
   Scenario: Google Maps is opened in a new window when the user clicks the 'Get Directions' link in Student Life Top bar
     When I open the "Get Directions" link in Student Life top bar
@@ -40,5 +40,3 @@ Feature:  As a student viewing new Hubs' Student Life tab, I want to see a top b
   Scenario: The URL contains "Student_Life#housing-information"
     When I open the "Learn More About Housing" link in Student Life top bar
     Then The URL should contain "Student_Life#housing-information"
-
-

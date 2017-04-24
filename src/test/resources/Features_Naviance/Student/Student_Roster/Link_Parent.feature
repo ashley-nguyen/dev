@@ -8,7 +8,7 @@ Feature: School employee can link a student to existing parents from the same di
 #  @database:unlink-jan
   Scenario: Parent has student at same school (can link)
     Given when I log in with the following user details:
-      | etdh | jcounselor | jcounselor01! |
+      | blue1hs | stan.smith | stan01! |
     When I link to "jbrady001" with "id" to "Mike Brady"
     Then I will verify that "Mike Brady" with "United States" were linked
 

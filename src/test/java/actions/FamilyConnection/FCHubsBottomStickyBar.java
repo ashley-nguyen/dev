@@ -1,6 +1,7 @@
 package actions.FamilyConnection;
 
 import org.openqa.selenium.*;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -8,9 +9,10 @@ import pageObjects.FamilyConnection.FCCollegeEventsPage;
 import pageObjects.FamilyConnection.FCCollegesPage;
 import pageObjects.FamilyConnection.FCHubsBottomStickyBarPage;
 import pageObjects.FamilyConnection.FCHubsPage;
+import reusableComponents.WebdriverComponents;
 import stepDefs.Hooks;
 
-import java.util.List;
+import java.util.*;
 
 import static org.junit.Assert.assertTrue;
 
@@ -20,10 +22,12 @@ import static org.junit.Assert.assertTrue;
 public class FCHubsBottomStickyBar {
     public static WebDriver driver;
     private static String tempVariable;
+    private static WebdriverComponents navigation = new WebdriverComponents();
 
     public static void saveValueFromButtonStickyBar(String buttonLabel) {
         driver = Hooks.driver;
         PageFactory.initElements(driver, FCHubsBottomStickyBarPage.class);
+        PageFactory.initElements(driver, FCHubsPage.class);
         WebElement buttonElement = null;
         switch (buttonLabel) {
             case "I'm Thinking About" : buttonElement = FCHubsBottomStickyBarPage.buttonNumberImThinkingAbout;
@@ -35,7 +39,15 @@ public class FCHubsBottomStickyBar {
             case "Upcoming Visits" : buttonElement = FCHubsBottomStickyBarPage.buttonNumberUpcomingVisits;
                 break;
         }
-        tempVariable = buttonElement.getText();
+
+        new WebDriverWait(Hooks.driver, 20).until(ExpectedConditions.elementToBeClickable
+                (FCHubsPage.buttonCompareMeWithAllAcceptedApplicants));
+        if (buttonElement.getText().equals("")) {
+            tempVariable = "0";
+        } else {
+            tempVariable = buttonElement.getText();
+        }
+
     }
 
     public static void clickStickyBarButton(String buttonName) {
@@ -43,15 +55,16 @@ public class FCHubsBottomStickyBar {
         PageFactory.initElements(driver, FCHubsBottomStickyBarPage.class);
         WebElement buttonElement = null;
         switch (buttonName) {
-            case "I'm Thinking About" : buttonElement = FCHubsBottomStickyBarPage.buttonNumberImThinkingAbout;
+            case "I'm Thinking About" : buttonElement = FCHubsBottomStickyBarPage.buttonImThinkingAbout;
                 break;
-            case "I'm Applying To" : buttonElement = FCHubsBottomStickyBarPage.buttonNumberImApplyingTo;
+            case "I'm Applying To" : buttonElement = FCHubsBottomStickyBarPage.buttonImApplyingTo;
                 break;
-            case "Recommended Events" : buttonElement = FCHubsBottomStickyBarPage.buttonNumberRecommendedEvents;
+            case "Recommended Events" : buttonElement = FCHubsBottomStickyBarPage.buttonRecommendedEvents;
                 break;
-            case "Upcoming Visits" : buttonElement = FCHubsBottomStickyBarPage.buttonNumberUpcomingVisits;
+            case "Upcoming Visits" : buttonElement = FCHubsBottomStickyBarPage.buttonUpcomingVisits;
                 break;
         }
+        new WebDriverWait(Hooks.driver, 20).until(ExpectedConditions.elementToBeClickable(buttonElement));
         buttonElement.click();
     }
 
@@ -59,19 +72,47 @@ public class FCHubsBottomStickyBar {
         driver = Hooks.driver;
         PageFactory.initElements(driver, FCCollegesPage.class);
         PageFactory.initElements(driver, FCCollegeEventsPage.class);
-        String listLocator = "";
+        int listSize = 0;
+        List<WebElement> list = new ArrayList<WebElement>();
+        String listLocator;
         switch (listName) {
             case "I'm Thinking About" : listLocator = FCCollegesPage.imThinkingAboutListElementsString;
+                list = driver.findElements(By.cssSelector(listLocator));
+                listSize = list.size();
                 break;
             case "I'm Applying To" : listLocator = FCCollegesPage.imApplyingToListLocator;
+                try {
+                    if (FCCollegesPage.labelNoCollegesImApplyingTo.getText().equals("+ add colleges to this list")) {
+                        listSize = 0;
+                    }
+                } catch (NoSuchElementException e) {
+                    list = driver.findElements(By.cssSelector(listLocator));
+                    listSize = list.size();
+                }
                 break;
             case "Recommended Events" : listLocator = FCCollegeEventsPage.eventsListLocator;
+                new WebDriverWait(Hooks.driver, 20).until(ExpectedConditions.elementToBeClickable
+                        (FCCollegeEventsPage.recommendedEvents));
+                list = driver.findElements(By.cssSelector(listLocator));
+                listSize = list.size();
                 break;
             case "Upcoming Visits" : listLocator = FCCollegesPage.collegeVisitsLocator;
+                if (FCCollegesPage.labelNoVisitsScheduled.getText().equals("No visits scheduled.")) {
+                    listSize = 0;
+                } else {
+                    list = driver.findElements(By.cssSelector(listLocator));
+                    listSize = list.size();
+                }
                 break;
         }
-        List<WebElement> list = driver.findElements(By.cssSelector(listLocator));
+
+        if (tempVariable.equals("")) {
+            tempVariable = "0";
+        }
+
+        System.out.println("UI: " + tempVariable);
+        System.out.println("Data: " + listSize);
         assertTrue("The number of elements in the list is not the same than the number in the sticky bar button",
-                list.size() == Integer.parseInt(tempVariable));
+                listSize == Integer.parseInt(tempVariable));
     }
 }

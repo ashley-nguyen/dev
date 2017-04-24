@@ -4,48 +4,41 @@ Feature:  As a student viewing new Hubs' Overview tab, I want to see contact inf
 
   Background:
     Given I log in to Family Connection with the following user details:
-      | rtsa       | amandahubs | hubs2016  |
-    When I open the HUBS page for "Auburn"
+      | rtsa       | amandahubs | Hobsons!23  |
+    When I open the HUBS page for "Montevallo"
     And I open the Admissions tab
 
   Scenario: The "Required" requirements for "Freshman" are displayed with correct data
     When I open "Freshman" in Application Requirements
     Then I should see the "Required" requirements in Application Requirements:
-    | ACT                  |
-    | College Prep Program |
-    | Essay                |
-    | GPA                  |
-    | SAT                  |
-    | School Record        |
-    | Test Scores          |
+    | ACT           |
+    | GPA           |
+    | SAT           |
+    | School Record |
+    | Test Scores   |
 
   Scenario: The "Recommended" requirements for "Freshman" are displayed with correct data
     When I open "Freshman" in Application Requirements
     Then I should see the "Recommended" requirements in Application Requirements:
-    | Campus Visit    |
-    | Class Rank      |
-    | Recommendations |
+    | Campus Visit         |
+    | Class Rank           |
+    | College Prep Program |
+    | Interview            |
 
   Scenario: The "Optional" requirements for "Freshman" are displayed with correct data
     When I open "Freshman" in Application Requirements
     Then I should see the "Optional" requirements in Application Requirements:
-    | Interview                     |
-    | SAT Subject                   |
+    | Recommendations               |
     | Talent / Ability / Competency |
-
+  @smoke
   Scenario: The "Required" requirements for "Transfer" are displayed with correct data
     When I open "Transfer" in Application Requirements
     Then I should see the "Recommended" requirements in Application Requirements:
     | Campus Visit |
-  @smoke
-  Scenario: The "Recommended" requirements for "Transfer" are displayed with correct data
-    When I open "Transfer" in Application Requirements
-    Then I should see the "Optional" requirements in Application Requirements:
-    | Interview |
+    | Interview    |
 
   Scenario: The "Required" requirements for "International" are displayed with correct data
     When I open "International" in Application Requirements
     Then I should see the "Required" requirements in Application Requirements:
-    | Ability to Finance |
-    | SAT                |
-    | TOEFL              |
+    | IELTS |
+    | TOEFL |

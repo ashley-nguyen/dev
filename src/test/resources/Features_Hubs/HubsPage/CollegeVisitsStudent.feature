@@ -4,7 +4,7 @@ Feature: As a student, I should be able to see the College Visits my counselor c
 
   Background:
     Given I log in to Family Connection with the following user details:
-      | rtsa       | benhubs | hubs2016  |
+      | rtsa       | benhubs | Hobsons!23  |
     When I open the HUBS page for "Adelphi"
   @smoke
   Scenario: I'm able to register to a visit

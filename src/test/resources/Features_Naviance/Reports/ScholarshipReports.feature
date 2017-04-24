@@ -6,7 +6,7 @@ Feature: Scholarship Reports tests
 
   Background:
     Given when I log in with the following user details:
-      | qaedis1 | sangeetha.sadmin | password |
+      | blue1hs | stan.smith  | stan01! |
 
   @Coursereport
   Scenario Outline: Verify Course Reports Custom page

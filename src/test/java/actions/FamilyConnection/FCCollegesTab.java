@@ -91,4 +91,17 @@ public class FCCollegesTab {
         PageFactory.initElements(driver, FCCollegesPage.class);
         FCCollegesPage.linkAddToImThinkingAboutList.click();
     }
+
+    public static void goToSearchCollegeWithURL(String college) {
+        driver = Hooks.driver;
+        PageFactory.initElements(driver, FCCollegesPage.class);
+        String partialURL = "";
+        String env = System.getProperty("ENV");
+        if (env.equals("intHUBS")) {
+            partialURL = FCCollegesPage.partialSearchCollegeIntURLInt;
+        } else if (env.equals("prodConnection")) {
+            partialURL = FCCollegesPage.partialSearchCollegeIntURLProd;
+        }
+        driver.get(partialURL + college);
+    }
 }

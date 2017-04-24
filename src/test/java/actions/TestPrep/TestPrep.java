@@ -1,6 +1,7 @@
 package actions.TestPrep;
 
 import java.util.List;
+import java.util.Arrays;
 
 import actions.Students.Groups;
 import org.openqa.selenium.By;
@@ -14,6 +15,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import pageObjects.Header.SchoolPageHeader;
 import pageObjects.TestPrep.AssignStudyProgramsPage;
 import pageObjects.TestPrep.TestPrepPage;
+import reusableComponents.TagEditorComponent;
 import stepDefs.Hooks;
 
 import java.util.concurrent.TimeUnit;
@@ -78,12 +80,16 @@ public class TestPrep {
      * Assign study Program(s) to a Student Group
      * <p>
      *     This method selects Study Program, instructor and Student Group
-     * @param studyPrograms The Study Program(s) list, i.e ACT Prep, SAT Prep
+     * @param studyProgram The Study Program(s) list, i.e 'ACT Prep, SAT Prep'
+     * @param instructorName The Study Program(s) list, i.e 'Sarita Moscoso, Nicolas Moscoso'
      * @param groupName The Student group name, this is an existing Student Group
      */
-    public static void AssignStudyPrograms(List<String> studyPrograms,  List<String> instructorName, List<String> groupName)
+    public static void AssignStudyPrograms(String studyProgram, String instructorName, String groupName)
     {
-        int groupCount = groupName.size();
+        List<String> groupsName = Arrays.asList(groupName.split("\\s*,\\s*"));
+        List<String> studyPrograms = Arrays.asList(studyProgram.split("\\s*,\\s*"));
+        List<String> instructors = Arrays.asList(instructorName.split("\\s*,\\s*"));
+        int groupCount = groupsName.size();
         new WebDriverWait(Hooks.driver, 20).until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(tblTestPrepHeader)));
 
         ClickOnAssignStudyPrograms();
@@ -92,15 +98,15 @@ public class TestPrep {
 
         // Enter Study Program(s)
         WebElement studyProgramElement = AssignStudyProgramsPage.txtStudyProgramsToAssign;
-        SelectAssignStudyProgramsFields(studyProgramElement, studyPrograms);
+        TagEditorComponent.selectOptionTagEditor(studyProgramElement, studyPrograms);
 
         // Enter Instructor(s)
         WebElement instructorElement = AssignStudyProgramsPage.txtInstructorsToAssign;
-        SelectAssignStudyProgramsFields(instructorElement, instructorName);
+        TagEditorComponent.selectOptionTagEditor(instructorElement, instructors);
 
         // Enter Group(s)
         WebElement groupElement = AssignStudyProgramsPage.txtGroupsToAssign;
-        SelectAssignStudyProgramsFields(groupElement, groupName);
+        TagEditorComponent.selectOptionTagEditor(groupElement, groupsName);
 
         // Click on Save
         new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.elementToBeClickable(AssignStudyProgramsPage.btnSave)).click();
@@ -110,21 +116,6 @@ public class TestPrep {
         String msgManyAssignedGroups = groupCount + " student groups have been successfully assigned study programs";
         String successMessage = (groupCount == 1) ? msgNewAssignedGroup : msgManyAssignedGroups;
         assertTrue("The new groups was assigned to a Study Program." , (message.getText()).contains(successMessage));
-    }
-
-    /**
-     * Enter and select the options to assign a new Study Programs.
-     * @param element The WebElement of the field, where the value will be selected
-     * @param options The option to select in the field, i.e Assign study programs, instructors, groups
-     */
-    public static void SelectAssignStudyProgramsFields(WebElement element, List<String> options)
-    {
-        driver = Hooks.driver;
-        for(String option : options) {
-            element.click();
-            element.sendKeys(option);
-            new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.elementToBeClickable(By.linkText(option))).click();
-        }
     }
 
     /**
@@ -171,7 +162,7 @@ public class TestPrep {
         int iSize = elementCount.size();
         for(int i = 0; i < iSize ; i++){
             String option = elementCount.get(i).getText();
-            if(value.contains(option))
+            if(option.contains(value))
             {
                 elementCount.get(i).click();
                 break;

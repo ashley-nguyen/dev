@@ -40,6 +40,13 @@ public class FCHubs {
     public static void ClickFeedbackButton() {
         driver = Hooks.driver;
         PageFactory.initElements(driver, FCHubsPage.class);
+        try {
+            new WebDriverWait(Hooks.driver, 20).until(ExpectedConditions.elementToBeClickable
+                    (FCHubsPage.linkNextFirstDialog));
+            FCHubsPage.linkNextFirstDialog.click();
+        } catch (ElementNotVisibleException e) {
+            System.out.println("The first tutorial dialog was not displayed");
+        }
         new WebDriverWait(Hooks.driver, 20).until(ExpectedConditions.elementToBeClickable(FCHubsPage.buttonFeedback));
         FCHubsPage.buttonFeedback.click();
     }
@@ -259,63 +266,22 @@ public class FCHubs {
         assertTrue("Email data is not correct", FCHubsPage.contactInfoAdmissions.getText().contains(email));
     }
 
-    public static void VerifyWebsiteQuickFacts(String webSite) {
-        driver = Hooks.driver;
-        PageFactory.initElements(driver, FCHubsPage.class);
-        assertTrue("Website data is not correct", FCHubsPage.quickFactsWebsite.getText().equals(webSite));
-    }
-
-    public static void VerifySchoolTypeQuickFacts(String schoolType) {
-        driver = Hooks.driver;
-        PageFactory.initElements(driver, FCHubsPage.class);
-        new WebDriverWait(driver, 20).until(ExpectedConditions.elementToBeClickable(FCHubsPage.quickFactsSchoolType));
-        assertTrue("School Type data is not correct", FCHubsPage.quickFactsSchoolType.getText().equals(schoolType));
-    }
-
-    public static void VerifyUndergraduateEnrollmentQuickFacts(String undergraduateEnrollment) {
-        driver = Hooks.driver;
-        PageFactory.initElements(driver, FCHubsPage.class);
-        new WebDriverWait(driver, 20).until(ExpectedConditions.elementToBeClickable(FCHubsPage.quickFactsUndergradEnroll));
-        assertTrue("Undergraduate Enrollment data is not correct",
-                FCHubsPage.quickFactsUndergradEnroll.getText().equals(undergraduateEnrollment));
-    }
-
-    public static void VerifyStudentToFacultyRatioQuickFacts(String studentFacultyRatio) {
-        driver = Hooks.driver;
-        PageFactory.initElements(driver, FCHubsPage.class);
-        new WebDriverWait(driver, 20).until(ExpectedConditions.elementToBeClickable(FCHubsPage.quickFactsStudentFacultyRatio));
-        assertTrue("Student-to-Faculty ratio data is not correct",
-                FCHubsPage.quickFactsStudentFacultyRatio.getText().equals(studentFacultyRatio));
-    }
-
-    public static void VerifyReligiousAffiliationQuickFacts(String religion) {
-        driver = Hooks.driver;
-        PageFactory.initElements(driver, FCHubsPage.class);
-        assertTrue("Student-to-Faculty ratio data is not correct",
-                FCHubsPage.quickFactsReligion.getText().equals(religion));
-    }
-
-    public static void VerifyCampusSurroundings(String surroundings) {
-        driver = Hooks.driver;
-        PageFactory.initElements(driver, FCHubsPage.class);
-        new WebDriverWait(driver, 20).until(ExpectedConditions.elementToBeClickable(FCHubsPage.quickFactsCampusSurr));
-        assertTrue("Campus Surroundings data is not correct",
-                FCHubsPage.quickFactsCampusSurr.getText().equals(surroundings));
-    }
-
     public static void VerifyDegreesOfferedQuickFacts(List<String> degrees) {
         driver = Hooks.driver;
+        PageFactory.initElements(driver, FCHubsPage.class);
         boolean result = false;
-        for (int i = 1; i == degrees.size(); i++) {
-            WebElement degreeElement = driver.findElement(By.cssSelector("li.ng-binding.ng-scope:nth-of-type" +
-                    "(" + i + ")"));
-            if (degreeElement.getText().equals(degrees.get( i - 1))) {
+        new WebDriverWait(driver, 20).until(ExpectedConditions.elementToBeClickable(By.cssSelector
+                (FCHubsPage.degreesOfferedListLocator)));
+        List<WebElement> uiDegreesOfferedList = driver.findElements(By.cssSelector(FCHubsPage.degreesOfferedListLocator));
+        for (WebElement degreeElement : uiDegreesOfferedList) {
+            if (degrees.contains(degreeElement.getText())) {
                 result = true;
             } else {
                 result = false;
                 break;
             }
         }
+
         assertTrue("The displayed degrees are not correct", result);
     }
 
@@ -325,15 +291,29 @@ public class FCHubs {
         boolean result = true;
         WebElement valueElement = null;
         for (String scoreValueElement : scoreValueList) {
-            switch (scoreValueElement.split(";")[0]) {
-                case "GPA" : valueElement = FCHubsPage.labelGPAValue;
-                    break;
-                case "SAT" : valueElement = FCHubsPage.labelSATValue;
-                    break;
-                case "ACT" : valueElement = FCHubsPage.labelACTValue;
-                    break;
+            if (System.getProperty("ENV").equals("intHUBS")) {
+                switch (scoreValueElement.split(";")[0]) {
+                    case "GPA" : valueElement = FCHubsPage.labelGPAValue;
+                        break;
+                    case "SAT" : valueElement = FCHubsPage.labelSATValueInt;
+                        break;
+                    case "ACT" : valueElement = FCHubsPage.labelACTValue;
+                        break;
+                }
+            } else if (System.getProperty("ENV").equals("prodConnection")) {
+                switch (scoreValueElement.split(";")[0]) {
+                    case "GPA" : valueElement = FCHubsPage.labelGPAValue;
+                        break;
+                    case "SAT" : valueElement = FCHubsPage.labelSATValueProd;
+                        break;
+                    case "ACT" : valueElement = FCHubsPage.labelACTValue;
+                        break;
+                }
             }
-            new WebDriverWait(driver, 20).until(ExpectedConditions.elementToBeClickable(FCHubsPage.labelGPAValue));
+
+
+            System.out.println("UI values: " + valueElement.getText());
+            new WebDriverWait(driver, 20).until(ExpectedConditions.elementToBeClickable(valueElement));
             if (scoreValueElement.split(";")[1].equals(valueElement.getText().trim())) {
                 result = true;
             } else {
@@ -349,8 +329,8 @@ public class FCHubs {
         PageFactory.initElements(driver, FCHubsPage.class);
         boolean result = true;
         WebElement valueElement = null;
+        String comparisonString = "";
         for (String scoreValueElement : avgScoreValueList) {
-
             switch (scoreValueElement.split(";")[0]) {
                 case "GPA" : valueElement = FCHubsPage.labelAvgGPAValue;
                     break;
@@ -361,8 +341,13 @@ public class FCHubs {
             }
             System.out.println("UI: " + valueElement.getText());
             System.out.println("Data: " + scoreValueElement.split(";")[1]);
-            new WebDriverWait(driver, 20).until(ExpectedConditions.elementToBeClickable(FCHubsPage.labelAvgGPAValue));
-            if (valueElement.getText().contains(scoreValueElement.split(";")[1])) {
+            new WebDriverWait(driver, 20).until(ExpectedConditions.elementToBeClickable(valueElement));
+            if (scoreValueElement.split(";")[1].equals("empty")) {
+                comparisonString = "";
+            } else {
+                comparisonString = scoreValueElement.split(";")[1];
+            }
+            if (valueElement.getText().contains(comparisonString)) {
                 result = true;
             } else {
                 result = false;
@@ -583,6 +568,7 @@ public class FCHubs {
     public static void ClickStudiesTab() {
         driver = Hooks.driver;
         PageFactory.initElements(driver, FCHubsPage.class);
+        new WebDriverWait(driver, 20).until(ExpectedConditions.elementToBeClickable(FCHubsPage.tabStudies));
         FCHubsPage.tabStudies.click();
         }
 
@@ -640,7 +626,7 @@ public class FCHubs {
         }
         new WebDriverWait(driver, 20).until(ExpectedConditions.elementToBeClickable(By.cssSelector
                 (".hub-data-pod__subtext.admissions-" + cssSelectorPart)));
-        driver.findElement(By.cssSelector(".hub-data-pod__subtext.admissions-" + cssSelectorPart)).click();
+        driver.findElement(By.cssSelector(".hub-data-pod__subtext.admissions-" + cssSelectorPart)).sendKeys(Keys.RETURN);
     }
 
     public static void VerifySectionLabelInCosts(String sectionLabel) {
@@ -687,8 +673,8 @@ public class FCHubs {
     public static void ClickCommunicate() {
         driver = Hooks.driver;
         PageFactory.initElements(driver, FCHubsPage.class);
-        new WebDriverWait(driver, 20).until(ExpectedConditions.elementToBeClickable(FCHubsPage.buttonApplyOnline));
-        FCHubsPage.buttonCommunicate.click();
+        new WebDriverWait(driver, 20).until(ExpectedConditions.elementToBeClickable(FCHubsPage.topButtonCommunicate));
+        FCHubsPage.topButtonCommunicate.click();
     }
 
     public static void Requestinformationlink(String link) {
@@ -723,7 +709,7 @@ public class FCHubs {
     public static void clickLearnMoreOverlaps() {
         driver = Hooks.driver;
         PageFactory.initElements(driver, FCHubsPage.class);
-        FCHubsPage.buttonOverlapsLearnMore.click();
+        FCHubsPage.buttonOverlapsLearnMore.sendKeys(Keys.RETURN);
     }
 
     public static void verifyJsonContainsColleges(String jsonText) {
@@ -784,7 +770,11 @@ public class FCHubs {
     public static void clickWhiteHeartThinkingAboutList() {
         driver = Hooks.driver;
         PageFactory.initElements(driver, FCHubsPage.class);
+        new WebDriverWait(driver, 20).until(ExpectedConditions.elementToBeClickable
+                (FCHubsPage.buttonAddToCollegesImThinkingAbout));
         FCHubsPage.buttonAddToCollegesImThinkingAbout.click();
+        new WebDriverWait(driver, 20).until(ExpectedConditions.elementToBeClickable
+                (FCHubsPage.buttonAddToCollegesImThinkingAboutFull));
     }
 
     public static void verifyHeartStatusClicked() {
@@ -803,7 +793,12 @@ public class FCHubs {
         driver = Hooks.driver;
         PageFactory.initElements(driver, FCHubsPage.class);
         boolean result = false;
-        driver.get(FCHubsPage.URLimThinkingAboutList);
+        if (System.getProperty("ENV").equals("intHUBS")) {
+            driver.get(FCHubsPage.URLimThinkingAboutListInt);
+        } else if (System.getProperty("ENV").equals("prodConnection")) {
+            driver.get(FCHubsPage.URLimThinkingAboutListProd);
+        }
+
         List<WebElement> imThinkingAboutListElements = driver.findElements(By.cssSelector(".less-pad.standard.striped " +
                 "td:nth-of-type(2)"));
         for (WebElement collegeInList : imThinkingAboutListElements) {
@@ -817,7 +812,10 @@ public class FCHubs {
     public static void clickPinkHeartThinkingAboutList() {
         driver = Hooks.driver;
         PageFactory.initElements(driver, FCHubsPage.class);
-        FCHubsPage.imgLogo.click();
+        FCHubsPage.labelCity.click();
+        if (FCHubsPage.buttonAddToCollegesImThinkingAboutFull.isDisplayed()) {
+
+        }
         new WebDriverWait(Hooks.driver, 20).until(ExpectedConditions.elementToBeClickable
                 (FCHubsPage.tabCollegesTopBar));
         FCHubsPage.buttonAddToCollegesImThinkingAbout.click();
@@ -905,8 +903,8 @@ public class FCHubs {
     public static void clickCompareMeWithAllAcceptedApplicants() {
         driver = Hooks.driver;
         PageFactory.initElements(driver, FCHubsPage.class);
-        new WebDriverWait(Hooks.driver, 20).until(ExpectedConditions.elementToBeClickable
-                (FCHubsPage.labelOtherStudentsFromHS));
+        new WebDriverWait(Hooks.driver, 30).until(ExpectedConditions.attributeContains
+                (FCHubsPage.labelOtherStudentsFromHS, "aria-hidden", "false"));
         ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);",
                 FCHubsPage.labelCompareMeSectionNotes);
 
@@ -998,6 +996,8 @@ public class FCHubs {
     public static void clickAddToCollegesThinkingAboutPinkButton() {
         driver = Hooks.driver;
         PageFactory.initElements(driver, FCHubsPage.class);
+        new WebDriverWait(Hooks.driver, 20).until(ExpectedConditions.elementToBeClickable
+                (FCHubsPage.buttonAddToCollegesImThinkingAboutPinkBar));
         FCHubsPage.buttonAddToCollegesImThinkingAboutPinkBar.click();
         new WebDriverWait(Hooks.driver, 20).until(ExpectedConditions.invisibilityOfElementLocated(
                 By.cssSelector("a[ng-click=\"vm.addToList()\"]")));
@@ -1007,7 +1007,7 @@ public class FCHubs {
         driver = Hooks.driver;
         PageFactory.initElements(driver, FCHubsPage.class);
         new WebDriverWait(Hooks.driver, 20).until(ExpectedConditions.elementToBeClickable
-                (FCHubsPage.tabInternational));
+                (FCHubsPage.buttonAddToCollegesImThinkingAboutPinkBar));
         FCHubsPage.tabInternational.click();
     }
 
@@ -1015,22 +1015,48 @@ public class FCHubs {
         driver = Hooks.driver;
         PageFactory.initElements(driver, FCHubsPage.class);
         WebElement infoIcon = null;
-        switch (section) {
-            case "Average Net Price" : infoIcon = FCHubsPage.infoIconAvgNetPrice;
-                break;
-            case "Graduation Rate" : infoIcon = FCHubsPage.infoIconGradRatePrice;
-                break;
-            case "Acceptance Rate" : infoIcon = FCHubsPage.infoIconAcceptanceRatePrice;
-                break;
-            case "description" : infoIcon = FCHubsPage.infoIconCompareMeDescription;
-                break;
-            case "GPA" : infoIcon = FCHubsPage.infoIconCompareMeGPA;
-                break;
-            case "SAT" : infoIcon = FCHubsPage.infoIconCompareMeSAT;
-                break;
-            case "ACT" : infoIcon = FCHubsPage.infoIconCompareMeACT;
-                break;
+        if (System.getProperty("ENV").equals("intHUBS")) {
+            switch (section) {
+                case "Average Net Price" : infoIcon = FCHubsPage.infoIconAvgNetPrice;
+                    break;
+                case "Graduation Rate" : infoIcon = FCHubsPage.infoIconGradRatePrice;
+                    break;
+                case "Acceptance Rate" : infoIcon = FCHubsPage.infoIconAcceptanceRatePrice;
+                    break;
+                case "description" : infoIcon = FCHubsPage.infoIconCompareMeDescriptionInt;
+                    break;
+                case "Converted GPA" : infoIcon = FCHubsPage.infoIconCompareMeConvertedGPA;
+                    break;
+                case "SAT" : infoIcon = FCHubsPage.infoIconCompareMeSATInt;
+                    break;
+                case "ACT" : infoIcon = FCHubsPage.infoIconCompareMeACTInt;
+                    break;
+                case "National Range" : infoIcon = FCHubsPage.infoIconCompareMeNationalRangeInt;
+                    break;
+            }
+        } else if (System.getProperty("ENV").equals("prodConnection")) {
+            switch (section) {
+                case "Average Net Price" : infoIcon = FCHubsPage.infoIconAvgNetPrice;
+                    break;
+                case "Graduation Rate" : infoIcon = FCHubsPage.infoIconGradRatePrice;
+                    break;
+                case "Acceptance Rate" : infoIcon = FCHubsPage.infoIconAcceptanceRatePrice;
+                    break;
+                case "description" : infoIcon = FCHubsPage.infoIconCompareMeDescriptionProd;
+                    break;
+                case "Converted GPA" : infoIcon = FCHubsPage.infoIconCompareMeConvertedGPA;
+                    break;
+                case "SAT" : infoIcon = FCHubsPage.infoIconCompareMeSATProd;
+                    break;
+                case "ACT" : infoIcon = FCHubsPage.infoIconCompareMeACTProd;
+                    break;
+                case "National Range" : infoIcon = FCHubsPage.infoIconCompareMeNationalRangeProd;
+                    break;
+            }
         }
+
+
+
         new WebDriverWait(Hooks.driver, 20).until(ExpectedConditions.elementToBeClickable(infoIcon));
         infoIcon.sendKeys(Keys.RETURN);
     }
@@ -1038,18 +1064,156 @@ public class FCHubs {
     public static void verifyInfoTooltipInSection(String section) {
         driver = Hooks.driver;
         PageFactory.initElements(driver, FCHubsPage.class);
-        assertTrue("The tooltip is not displayed in the section " + section, FCHubsPage.tooltipCloseIcon.isDisplayed());
+        boolean result = false;
+        WebElement tooltipElement = null;
+        if (System.getProperty("ENV").equals("intHUBS")) {
+            switch (section) {
+                case "Converted GPA" : tooltipElement = FCHubsPage.tooltipContainerConvertedGPA;
+                    break;
+                case "description" : tooltipElement = FCHubsPage.tooltipContainer50PercentInt;
+                    break;
+                case "National Range" : tooltipElement = FCHubsPage.tooltipContainerNationalRangeInt;
+                    break;
+                case "SAT" : tooltipElement = FCHubsPage.tooltipContainerSATInt;
+                    break;
+                case "ACT" : tooltipElement = FCHubsPage.tooltipContainerACTInt;
+                    break;
+                case "Average Net Price" : tooltipElement = FCHubsPage.tooltipContainerAvgNetPrice;
+                    break;
+                case "Graduation Rate" : tooltipElement = FCHubsPage.tooltipContainerGradRate;
+                    break;
+                case "Acceptance Rate" : tooltipElement = FCHubsPage.tooltipContainerAcceptanceRate;
+                    break;
+            }
+            if (!tooltipElement.getAttribute("class").contains("ng-hide")) {
+                result = true;
+            } else {
+                result = false;
+            }
+        } else if (System.getProperty("ENV").equals("prodConnection")) {
+            switch (section) {
+                case "Converted GPA" : tooltipElement = FCHubsPage.tooltipContainerConvertedGPA;
+                    break;
+                case "description" : tooltipElement = FCHubsPage.tooltipContainer50PercentProd;
+                    break;
+                case "National Range" : tooltipElement = FCHubsPage.tooltipContainerNationalRangeProd;
+                    break;
+                case "SAT" : tooltipElement = FCHubsPage.tooltipContainerSATProd;
+                    break;
+                case "ACT" : tooltipElement = FCHubsPage.tooltipContainerACTProd;
+                    break;
+                case "Average Net Price" : tooltipElement = FCHubsPage.tooltipContainerAvgNetPrice;
+                    break;
+                case "Graduation Rate" : tooltipElement = FCHubsPage.tooltipContainerGradRate;
+                    break;
+                case "Acceptance Rate" : tooltipElement = FCHubsPage.tooltipContainerAcceptanceRate;
+                    break;
+            }
+            result = tooltipElement.isDisplayed();
+        }
+
+        assertTrue("The tooltip is not displayed in the section " + section, result);
     }
 
     public static void verifyInfoTooltipInSectionIsClosed(String section) {
         driver = Hooks.driver;
         PageFactory.initElements(driver, FCHubsPage.class);
         boolean result = false;
-        try {
-            FCHubsPage.tooltipCloseIcon.isDisplayed();
-        } catch (NoSuchElementException e) {
-            result = true;
+        WebElement tooltipContainerElement = null;
+        if (System.getProperty("ENV").equals("intHUBS")) {
+            switch (section) {
+                case "Average Net Price" : tooltipContainerElement = FCHubsPage.tooltipContainerAvgNetPrice;
+                    break;
+                case "Graduation Rate" : tooltipContainerElement = FCHubsPage.tooltipContainerGradRate;
+                    break;
+                case "Acceptance Rate" : tooltipContainerElement = FCHubsPage.tooltipContainerAcceptanceRate;
+                    break;
+                case "description" : tooltipContainerElement = FCHubsPage.tooltipContainer50PercentInt;
+                    break;
+                case "Converted GPA" : tooltipContainerElement = FCHubsPage.tooltipContainerConvertedGPA;
+                    break;
+                case "National Range" : tooltipContainerElement = FCHubsPage.tooltipContainerNationalRangeInt;
+                    break;
+                case "SAT" : tooltipContainerElement = FCHubsPage.tooltipContainerSATInt;
+                    break;
+                case "ACT" : tooltipContainerElement = FCHubsPage.tooltipContainerACTInt;
+                    break;
+            }
+
+            if (tooltipContainerElement.getAttribute("class").contains("ng-hide")) {
+                result = true;
+            } else {
+                result = false;
+            }
+            System.out.println("Attribute: " + FCHubsPage.tooltipContainerAvgNetPrice.getAttribute("class"));
+        } else if (System.getProperty("ENV").equals("prodConnection")) {
+            switch (section) {
+                case "Average Net Price" : tooltipContainerElement = FCHubsPage.tooltipContainerAvgNetPrice;
+                    break;
+                case "Graduation Rate" : tooltipContainerElement = FCHubsPage.tooltipContainerGradRate;
+                    break;
+                case "Acceptance Rate" : tooltipContainerElement = FCHubsPage.tooltipContainerAcceptanceRate;
+                    break;
+                case "description" : tooltipContainerElement = FCHubsPage.tooltipContainer50PercentProd;
+                    break;
+                case "Converted GPA" : tooltipContainerElement = FCHubsPage.tooltipContainerConvertedGPA;
+                    break;
+                case "National Range" : tooltipContainerElement = FCHubsPage.tooltipContainerNationalRangeProd;
+                    break;
+                case "SAT" : tooltipContainerElement = FCHubsPage.tooltipContainerSATProd;
+                    break;
+                case "ACT" : tooltipContainerElement = FCHubsPage.tooltipContainerACTProd;
+                    break;
+            }
+            try {
+                tooltipContainerElement.isDisplayed();
+                result = false;
+            } catch (NoSuchElementException e) {
+                result = true;
+            }
         }
-        assertTrue("The tooltip in the section: " + section + "was not closed", result);
+
+        System.out.println("Result: " + result);
+        assertTrue("The tooltip in the section: " + section + " was not closed", result);
+    }
+
+    public static void verifyLabelUnderScoreComparison(String label) {
+        driver = Hooks.driver;
+        PageFactory.initElements(driver, FCHubsPage.class);
+        WebElement labelElement = null;
+        if (System.getProperty("ENV").equals("intHUBS")) {
+            labelElement = FCHubsPage.labelDataConversionDetailsInt;
+        } else if (System.getProperty("ENV").equals("prodConnection")) {
+            labelElement = FCHubsPage.labelDataConversionDetailsProd;
+        }
+        new WebDriverWait(Hooks.driver, 20).until(ExpectedConditions.elementToBeClickable(labelElement));
+        assertTrue("The label under Score Comparison is not correct", labelElement.getText().equals(label));
+    }
+
+    public static void verifyCeebCodeQuickFacts(String ceebCodeValue) {
+        driver = Hooks.driver;
+        PageFactory.initElements(driver, FCHubsPage.class);
+        new WebDriverWait(Hooks.driver, 20).until(ExpectedConditions.elementToBeClickable(FCHubsPage
+                .ceebCodeQuickFacts));
+        assertTrue("The CEEB code is not displayed in Quick Facts", FCHubsPage.ceebCodeQuickFacts.getText()
+                .equals(ceebCodeValue));
+    }
+
+    public static void verifyQuickFacts(List<String> quickFactsList) {
+        driver = Hooks.driver;
+        PageFactory.initElements(driver, FCHubsPage.class);
+        boolean result = false;
+        List<WebElement> quickFactsUIList = driver.findElements(By.cssSelector(FCHubsPage.quickFactsListLocator));
+        for (int i = 0; i < quickFactsList.size(); i++) {
+            System.out.println("UI: " + quickFactsUIList.get(i).getText());
+            System.out.println("Data: " + quickFactsList.get(i).split(";")[1]);
+            if (quickFactsUIList.get(i).getText().equals(quickFactsList.get(i).split(";")[1])) {
+                result = true;
+            } else {
+                result = false;
+                break;
+            }
+        }
+        assertTrue("The data in QuickFacts is not correct", result);
     }
 }

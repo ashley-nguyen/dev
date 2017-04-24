@@ -1,5 +1,6 @@
 package pageObjects.Student.Groups;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -44,6 +45,14 @@ public class GroupsPage extends BaseClass {
 
     @FindBy(how = How.CSS, using = "input[value=\"Update Membership\"]")
     public static WebElement btnUpdateMembership;
+
+    @FindBy(how = How.CSS, using = "input[name=\"deleteGroup\"]")
+    public static WebElement btnDeleteGroup;
+
+
+    public static By locatorDeleteGroupLink = By.linkText("delete");
+    public static By locatorStudentGroupTbl = By.cssSelector("td.dark_textheader14 > table > tbody > tr:nth-child(3) > " +
+            "td > table > tbody > tr > td > table > tbody > tr");
 
     public GroupsPage(WebDriver driver) {
         super(driver);

@@ -6,7 +6,7 @@ Feature: Student ACT ASPIRE scores
 
   Background:
     Given when I log in with the following user details:
-      | blue1hs | frank.counselor | frank01! |
+      | blue1hs | stan.smith | stan01! |
 
   Scenario Outline: Verify Student ACT ASPIRE score ranges per grade
     When I search for <student> using the global search field

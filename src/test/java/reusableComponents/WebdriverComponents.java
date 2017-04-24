@@ -1,6 +1,7 @@
 package reusableComponents;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -46,15 +47,16 @@ public class WebdriverComponents {
     }
 
     /**
-     * Method to click element within within 10 sec
+     * Method to click element within within 60 sec
      *
      * @param element
      */
     public void clickElement(WebElement element) {
 
-        if (waitForElementPresent(10, element)) {
+        if (waitForElementPresent(60, element)) {
 
             element.click();
+
         }
     }
 
@@ -140,4 +142,20 @@ public class WebdriverComponents {
         }
     }
 
+    /**
+     * Method to Verify That an Element is not Present
+     *
+     * @param Element The element that should not be present
+     * @throws Exception
+     */
+    public boolean verifyElementNotPresent(WebElement Element) {
+        boolean result;
+        try {
+            Element.isDisplayed();
+            result = false;
+        } catch (NoSuchElementException e) {
+            result = true;
+        }
+        return result;
+    }
 }

@@ -91,7 +91,6 @@ public class Connections {
         PageFactory.initElements(driver, Connections.class);
         new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("#activematch_events_on-9")));
         ConnectionsPage.activeMatchEvents.click();
-        ConnectionsPage.activeMatchEvents.click();
         driver = Hooks.driver;
         PageFactory.initElements(driver, Connections.class);
         Boolean verifyAgreeButton = ConnectionsPage.agreeButton.isDisplayed();

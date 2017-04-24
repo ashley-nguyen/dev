@@ -10,5 +10,5 @@ Scenario Outline: Verify Application Manager actions
   Then I will see data in Journal Dashboard
 Examples:
   | account     | user       | password  |
-  | blueqa1        | frank.district | stan01!   |
+  | blueqa1        | frank.district | password   |
 

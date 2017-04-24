@@ -92,4 +92,19 @@ public class FCHubsStudiesTab_StepDefs {
     public void the_tooltip_in_Graduation_Rate_should_be_closed() throws Throwable {
         FCHubsStudiesTab.verifyTooltipGradRateClosed();
     }
+
+    @Then("^I should see the label \"([^\"]*)\" under \"([^\"]*)\"$")
+    public void I_should_see_the_label_under_Study_Options(String label, String section) throws Throwable {
+        FCHubsStudiesTab.verifyDateLabel(label, section);
+    }
+
+    @Then("^I should see the date for the data in each section as follows:$")
+    public void I_should_see_the_date_for_the_data_in_each_section_as_follows(List<String> dateLabelsList) throws Throwable {
+        FCHubsStudiesTab.verifyDateLabels(dateLabelsList);
+    }
+
+    @Then("^The text \"([^\"]*)\" should be displayed under \"([^\"]*)\"$")
+    public void the_text_should_be_displayed_under_Top_Areas_of_Study(String label, String section) throws Throwable {
+        FCHubsStudiesTab.verifyDateLabel(label, section);
+    }
 }

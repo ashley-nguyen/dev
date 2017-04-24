@@ -4,7 +4,7 @@ Feature: Hubs Beta Feeedback Ribbon
 
   Background:
     Given I log in to Family Connection with the following user details:
-      | rtsa       | amandahubs | hubs2016  |
+      | rtsa       | amandahubs | Hobsons!23  |
     When I open the HUBS page for "Auburn"
     And I open the Survey Page
   @smoke

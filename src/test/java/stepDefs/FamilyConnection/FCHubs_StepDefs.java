@@ -7,6 +7,7 @@ import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import org.openqa.selenium.WebDriver;
+import reusableComponents.WebdriverComponents;
 
 import java.util.List;
 
@@ -182,36 +183,6 @@ public class FCHubs_StepDefs {
         FCHubs.VerifyEmailAdmissions(email);
     }
 
-    @Then("^Website should be \"([^\"]*)\" in Quick Facts$")
-    public void Website_should_be_in_quick_facts(String webSite) throws Throwable {
-        FCHubs.VerifyWebsiteQuickFacts(webSite);
-    }
-
-    @Then("^School Type is \"([^\"]*)\" in Quick Facts$")
-    public void School_Type_is_in_Quick_Facts(String schoolType) throws Throwable {
-        FCHubs.VerifySchoolTypeQuickFacts(schoolType);
-    }
-
-    @Then("^Undergraduate Enrollment is \"([^\"]*)\" in Quick Facts$")
-    public void Undergraduate_Enrollment_is_in_Quick_Facts(String undergraduateEnrollment) throws Throwable {
-        FCHubs.VerifyUndergraduateEnrollmentQuickFacts(undergraduateEnrollment);
-    }
-
-    @Then("^Student-to-faculty ratio is \"([^\"]*)\" in Quick Facts$")
-    public void StudentToFaculty_ratio_is_in_Quick_Facts(String studentFacultyRatio) throws Throwable {
-        FCHubs.VerifyStudentToFacultyRatioQuickFacts(studentFacultyRatio);
-    }
-
-    @Then("^Religious Affiliation is \"([^\"]*)\" in Quick Facts$")
-    public void Religious_Affiliation_is_in_Quick_Facts(String religion) throws Throwable {
-        FCHubs.VerifyReligiousAffiliationQuickFacts(religion);
-    }
-
-    @Then("^Campus Surroundings is \"([^\"]*)\" in Quick Facts$")
-    public void Campus_Surroundings_is_in_Quick_Facts(String surroundings) throws Throwable {
-        FCHubs.VerifyCampusSurroundings(surroundings);
-    }
-
     @Then("^The Overall Average text should be \"([^\"]*)\" in the Score Comparison module$")
     public void The_Overall_Average_text_should_be_in_the_Score_Comparison_module(String overallAvgText)
             throws Throwable {
@@ -352,13 +323,11 @@ public class FCHubs_StepDefs {
 
     @When("^I open the HUBS page for \"([^\"]*)\"$")
     public void I_open_the_HUBS_page_for(String college) throws Throwable {
-        FCDashboard.ClickCollegesTab();
-        FCCollegesTab.EnterCollegeToSearch(college);
-        FCCollegesTab.ClickGoButton();
+        FCCollegesTab.goToSearchCollegeWithURL(college);
         FCCollegesTab.ClickCollegeInCollegeLookup(college);
         /*The following callings inside this method will be commented as needed. This is because sometimes a toggle
         * is switched to use the Beta button, and the same with the Authorize button*/
-        FCCollegeView.clickBetaButton();
+//        FCCollegeView.clickBetaButton();
 //        FCCollegeView.clickAuthorizeButton();
     }
     @When("^I open 'Communicate' link \"([^\"]*)\"$")
@@ -561,6 +530,16 @@ public class FCHubs_StepDefs {
     @Then("^The tooltip in \"([^\"]*)\" should be closed$")
     public void theTooltipInShouldBeClosed(String section) throws Throwable {
         FCHubs.verifyInfoTooltipInSectionIsClosed(section);
+    }
+
+    @Then("^I should see the label \"([^\"]*)\" under Score Comparison$")
+    public void I_should_see_the_label_under_score_comparison(String label) throws Throwable {
+        FCHubs.verifyLabelUnderScoreComparison(label);
+    }
+
+    @Then("^Data in Quick Facts should be as follows:$")
+    public void data_in_quick_facts_should_be_as_follows(List<String> quickFactsList) throws Throwable {
+        FCHubs.verifyQuickFacts(quickFactsList);
     }
 }
 

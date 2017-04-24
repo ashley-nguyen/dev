@@ -36,7 +36,7 @@ public class Marketing {
 
         //Driver for iframe section can't be mapped for now
         driver  = Hooks.driver.switchTo().frame(0);
-        new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("img[src*='upgraded-by-hobsons.jpg']")));
+        new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("img[src*='nsi_2017.jpg']")));
         Boolean imageVerification = marketingPage.imgVerification.isDisplayed();
         assertTrue("Verify image exists!", imageVerification);
     }

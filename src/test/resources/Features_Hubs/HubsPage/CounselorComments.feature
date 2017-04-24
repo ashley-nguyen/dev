@@ -3,7 +3,7 @@ Feature:  As a student I want to be able to see the Counselor Comments for Stude
 
   Background:
     Given I log in to Family Connection with the following user details:
-      | rtsa  | benhubs | hubs2016  |
+      | rtsa  | benhubs | Hobsons!23  |
     When I open the HUBS page for "Adelphi"
   @smoke
   Scenario: The counselor comments are displayed in the Overview tab
