@@ -4,6 +4,7 @@ import org.openqa.selenium.*;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import pageObjects.FamilyConnection.FCCollegeEventsPage;
 import pageObjects.FamilyConnection.FCCollegesPage;
@@ -92,7 +93,7 @@ public class FCHubsBottomStickyBar {
                 break;
             case "Recommended Events" : listLocator = FCCollegeEventsPage.eventsListLocator;
                 new WebDriverWait(Hooks.driver, 20).until(ExpectedConditions.elementToBeClickable
-                        (FCCollegeEventsPage.recommendedEvents));
+                        (FCCollegeEventsPage.firstEventRecommendedLabel));
                 list = driver.findElements(By.cssSelector(listLocator));
                 listSize = list.size();
                 break;

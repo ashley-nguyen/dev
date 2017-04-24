@@ -45,7 +45,7 @@ public class FCHubsPage extends BaseClass {
     public static WebElement linklearnMoreEvents;
     @FindBy(how = How.CSS, using = ".scroll.right")
     public static WebElement buttonRightArrow;
-    @FindBy(how = How.CSS, using = ".webtourLightboxClose")
+    @FindBy(how = How.CSS, using = ".webtour-lightbox__close")
     public static WebElement buttonX;
     @FindBy(how = How.XPATH, using = "//input[@id='subject']")
     public static WebElement textBoxSubjectField;
@@ -114,7 +114,7 @@ public class FCHubsPage extends BaseClass {
     @FindBy(how = How.CSS, using = "div.product-links.fc-grid__row.fc-grid__row--xs-middle.fc-grid__row" +
             "--xs-center.fc-grid__row--md-end communicate")
     public static WebElement topButtonCommunicate;
-    @FindBy(how = How.ID, using = "hubsWebtourImage17")
+    @FindBy(how = How.ID, using = "hubswebtour-image17")
     public static WebElement webTourLastImage;
     @FindBy(how = How.CSS, using = ".hub-data-pod--overview.hub-data-pod--number.ng-binding")
     public static WebElement labelOverlapsNumber;
@@ -192,10 +192,8 @@ public class FCHubsPage extends BaseClass {
     public static WebElement infoIconAcceptanceRatePrice;
     @FindBy(how = How.CSS, using = "svg.fc-icon.hubs-info-tooltip__close-icon")
     public static WebElement tooltipCloseIcon;
-    @FindBy(how = How.CSS, using = "tooltip-info[clicktext=\"middle 50%\"] span[ng-show=\"vm.isVisible\"]")
-    public static WebElement tooltipContainer50PercentInt;
-    @FindBy(how = How.CSS, using = "span.compare__description--underdash + span span.fc-tooltip.hubs-info-tooltip.ng-scope")
-    public static WebElement tooltipContainer50PercentProd;
+    @FindBy(how = How.CSS, using = "div.compare__description:not(.ng-binding) span.hubs-info-tooltip-container")
+    public static WebElement tooltipContainer50Percent;
     @FindBy(how = How.CSS, using = "span[ng-show=\"vm.compareToggleState == 'college' && vm.gpaLo && vm.gpaHi\"] " +
             "span.hubs-info-tooltip-container")
     public static WebElement tooltipContainerNationalRangeInt;
@@ -208,23 +206,17 @@ public class FCHubsPage extends BaseClass {
     @FindBy(how = How.CSS, using = "span[title=\"Click to learn more about Acceptance Rate\"] + span")
     public static WebElement tooltipContainerAcceptanceRate;
     @FindBy(how = How.CSS, using = "span[ng-if=\"vm.clicktext\"]")
-    public static WebElement infoIconCompareMeDescriptionInt;
-    @FindBy(how = How.CSS, using = "span.compare__description--underdash + span svg")
-    public static WebElement infoIconCompareMeDescriptionProd;
+    public static WebElement infoIconCompareMeDescription;
     @FindBy(how = How.CSS, using = "span[title=\"Click to learn more about How your GPA is converted\"] svg")
     public static WebElement infoIconCompareMeConvertedGPA;
     @FindBy(how = How.CSS, using = "span[title=\"Click to learn more about How your GPA is converted\"] + span")
     public static WebElement tooltipContainerConvertedGPA;
     @FindBy(how = How.CSS, using = "div[ng-show=\"vm.showCompareSat === true\"] span.range.ng-binding tooltip-info " +
             "span.hubs-info-tooltip-container")
-    public static WebElement tooltipContainerSATInt;
-    @FindBy(how = How.CSS, using = "div[ng-show=\"vm.showCompareSat === true\"] span.fc-tooltip.hubs-info-tooltip.ng-scope")
-    public static WebElement tooltipContainerSATProd;
+    public static WebElement tooltipContainerSAT;
     @FindBy(how = How.CSS, using = "div[ng-show=\"vm.showCompareAct === true\"] span.range.ng-binding " +
             "span.hubs-info-tooltip-container")
-    public static WebElement tooltipContainerACTInt;
-    @FindBy(how = How.CSS, using = "div[ng-show=\"vm.showCompareAct === true\"] span.fc-tooltip.hubs-info-tooltip.ng-scope")
-    public static WebElement tooltipContainerACTProd;
+    public static WebElement tooltipContainerACT;
     @FindBy(how = How.CSS, using = "span[ng-show=\"vm.compareToggleState == 'college' && vm.gpaLo && vm.gpaHi\"] " +
             "span.hubs-info-tooltip-clickable svg")
     public static WebElement infoIconCompareMeNationalRangeInt;
@@ -244,9 +236,7 @@ public class FCHubsPage extends BaseClass {
             "about Middle 50% Range\"] svg")
     public static WebElement infoIconCompareMeACTProd;
     @FindBy(how = How.CSS, using = "div.compare-notes.fc-grid__row.fc-grid__row--xs-center")
-    public static WebElement labelDataConversionDetailsInt;
-    @FindBy(how = How.CSS, using = "div.compareNotes.fc-grid__row.fc-grid__row--xs-center")
-    public static WebElement labelDataConversionDetailsProd;
+    public static WebElement labelDataConversionDetails;
     @FindBy(how = How.CSS, using = "div[ng-show=\"vm.college.codes.CEEB\"] div.ng-binding")
     public static WebElement ceebCodeQuickFacts;
 
@@ -255,9 +245,12 @@ public class FCHubsPage extends BaseClass {
     public static String URLimThinkingAboutListProd = "https://connection.naviance.com/family-connection/colleges" +
             "/application/consideration/";
     public static String incomeDropDownLocator = "select";
-    public static String quickFactsListLocator = "div.summary-profile__body.fc-grid__col.fc-grid__col--xs-12" +
+    public static String quickFactsListLocatorInt = "div.summary-profile__body.fc-grid__col.fc-grid__col--xs-12" +
             ".fc-grid__col--md-6 div.fc-grid__row.fc-grid__row--md-end.quick-facts-row:not([aria-hidden=\"true\"])" +
             " div:nth-of-type(2)";
+    public static String quickFactsListLocatorProd = "div.summary-profile__body.fc-grid__col.fc-grid__col--xs-12" +
+            ".fc-grid__col--md-8-offset-2 div.fc-grid__row.fc-grid__row--md-end.quick-facts-row:not" +
+            "([aria-hidden=\"true\"]) div.summary__data";
     public static String degreesOfferedListLocator = "li.ng-binding.ng-scope";
 
     public FCHubsPage(WebDriver driver) {

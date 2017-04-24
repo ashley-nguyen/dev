@@ -53,17 +53,11 @@ public class FCHubsStudentLifeTabPage extends BaseClass {
     @FindBy(how = How.CSS, using = ".fc-tabs__labels span:nth-of-type(5)")
     public static WebElement buttonOrgAndServCompResources;
     @FindBy(how = How.CSS, using = "div.athletics__nav-buttons span:nth-of-type(1)")
-    public static WebElement buttonAthleticsMenInt;
+    public static WebElement buttonAthleticsMen;
     @FindBy(how = How.CSS, using = "div.athletics__nav-buttons span:nth-of-type(2)")
-    public static WebElement buttonAthleticsWomenInt;
+    public static WebElement buttonAthleticsWomen;
     @FindBy(how = How.CSS, using = "div.athletics__nav-buttons span:nth-of-type(3)")
-    public static WebElement buttonAthleticsCoEdInt;
-    @FindBy(how = How.CSS, using = "div.student-life__athletics__nav-buttons span:nth-of-type(1)")
-    public static WebElement buttonAthleticsMenProd;
-    @FindBy(how = How.CSS, using = "div.student-life__athletics__nav-buttons span:nth-of-type(2)")
-    public static WebElement buttonAthleticsWomenProd;
-    @FindBy(how = How.CSS, using = "div.student-life__athletics__nav-buttons span:nth-of-type(3)")
-    public static WebElement buttonAthleticsCoEdProd;
+    public static WebElement buttonAthleticsCoEd;
     @FindBy(how = How.CSS, using = ".student-life-housing-information__data dl:nth-of-type(1) dd.ng-binding")
     public static WebElement labelHousingInfoCapacityValue;
     @FindBy(how = How.CSS, using = ".student-life-housing-information__data dl:nth-of-type(2) dd.ng-binding")
@@ -77,26 +71,18 @@ public class FCHubsStudentLifeTabPage extends BaseClass {
     @FindBy(how = How.CSS, using = ".student-life-housing-information__data dl:nth-of-type(6) dd.ng-binding")
     public static WebElement labelHousingInfoSeniorsOnCampusValue;
 
-    public static String fraternitiesAndSororitiesLocatorInt = "div.greek-life dd";
-    public static String fraternitiesAndSororitiesLocatorProd = "div.student-life-greek-life dl dd";
-    public static String basicServicesAvailableLocatorInt = "div.fc-grid__col.fc-grid__col--xs-12.fc-grid__col--sm-6" +
+    public static String fraternitiesAndSororitiesLocator = "div.greek-life dd";
+    public static String basicServicesAvailableLocator = "div.fc-grid__col.fc-grid__col--xs-12.fc-grid__col--sm-6" +
             ".services__item.ng-binding.ng-scope:not([aria-hidden=\"true\"])";
-    public static String basicServicesAvailableLocatorProd = "div.fc-grid__row.fc-grid__row--xs-start.student-life__" +
-            "services div";
-    public static String ROTCServicesAvailableLocatorInt = "div[ng-show=\"vm.hasRotc()\"] div:not([aria-hidden=\"true\"])";
-    public static String ROTCServicesAvailableLocatorProd = "div.fc-grid__row.fc-grid__row--xs-start.student-life__" +
-            "rotc.student-life__rotc__header div:not([aria-hidden=\"true\"])";
+    public static String ROTCServicesAvailableLocator = "div[ng-show=\"vm.hasRotc()\"] div:not([aria-hidden=\"true\"])";
     public static String computerLocationListLocator = "tr.fc-table__row.ng-scope td:nth-of-type(1)" +
             ":not([data-header=\"Date\"])";
     public static String numberOfPcsListLocator = "tr.fc-table__row.ng-scope td:nth-of-type(2)" +
             ":not([data-header=\"Time\"])";
     public static String numberOfMacsListLocator = "tr.fc-table__row.ng-scope td:nth-of-type(3)" +
             ":not([data-header=\"Location\"])";
-    public static String orgAvailableListLocatorInt = "div.fc-grid__col.fc-grid__col--xs-12.fc-grid__col--sm-6." +
+    public static String orgAvailableListLocator = "div.fc-grid__col.fc-grid__col--xs-12.fc-grid__col--sm-6." +
             "organizations__item.ng-binding.ng-scope:not([aria-hidden=\"true\"])";
-    public static String orgAvailableListLocatorProd = "div.fc-grid__row.fc-grid__row--xs-start.student-life__" +
-            "organizations div.fc-grid__col.fc-grid__col--xs-12.fc-grid__col--sm-6.student-life__organizations__" +
-            "item.ng-binding.ng-scope:not(.ng-hide)";
     public static String leftGenderContainer = "div.student-body-gender-chart.fc-grid__col--lg-6.fc-grid__col--xs-12" +
             " div.student-body-legend.student-body-legend--snugged div[ng-repeat=\"data in vm.genderData\"]" +
             ":nth-of-type(1) div.ng-binding";
