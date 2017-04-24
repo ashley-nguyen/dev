@@ -39,8 +39,8 @@ Feature:  As a student viewing new Hubs' Overview tab, I want to see contact inf
   Scenario: The displayed fees for 'Freshman' are correct
     When I open "Fees" in Application Information
     Then The fees for "International" should be:
-      | Application Fee;$40 |
-      | Deposit;$250        |
+      | Application Fee;$380 |
+      | Deposit;$280         |
 
   Scenario: The official page for the college is displayed after clicking the link below fees
     When I open "Fees" in Application Information

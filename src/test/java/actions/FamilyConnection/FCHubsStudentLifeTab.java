@@ -192,7 +192,7 @@ public class FCHubsStudentLifeTab {
         PageFactory.initElements(driver, FCHubsStudentLifeTabPage.class);
         boolean result = false;
         String locator = "";
-        if (System.getProperty("ENV").equals("int")) {
+        if (System.getProperty("ENV").equals("intHUBS")) {
             locator = FCHubsStudentLifeTabPage.orgAvailableListLocatorInt;
         } else if (System.getProperty("ENV").equals("prodConnection")) {
             locator = FCHubsStudentLifeTabPage.orgAvailableListLocatorProd;
@@ -215,7 +215,7 @@ public class FCHubsStudentLifeTab {
         driver = Hooks.driver;
         PageFactory.initElements(driver, FCHubsStudentLifeTabPage.class);
         WebElement sectionElement = null;
-        if (System.getProperty("ENV").equals("int")) {
+        if (System.getProperty("ENV").equals("intHUBS")) {
             switch (sectionName) {
                 case "Men" : sectionElement = FCHubsStudentLifeTabPage.buttonAthleticsMenInt;
                     break;
@@ -311,7 +311,7 @@ public class FCHubsStudentLifeTab {
         PageFactory.initElements(driver, FCHubsStudentLifeTabPage.class);
         boolean result = false;
         List<WebElement> uiFratAndSorList = new ArrayList<>();
-        if (System.getProperty("ENV").equals("int")) {
+        if (System.getProperty("ENV").equals("intHUBS")) {
             uiFratAndSorList = driver.findElements(By.cssSelector(FCHubsStudentLifeTabPage.fraternitiesAndSororitiesLocatorInt));
         } else if (System.getProperty("ENV").equals("prodConnection")) {
             uiFratAndSorList = driver.findElements(By.cssSelector(FCHubsStudentLifeTabPage.fraternitiesAndSororitiesLocatorProd));
@@ -345,7 +345,7 @@ public class FCHubsStudentLifeTab {
                 ROTCServicesList.add(serviceElement.split(";")[1]);
             }
         }
-        if (System.getProperty("ENV").equals("int")) {
+        if (System.getProperty("ENV").equals("intHUBS")) {
             basicServicesUiList = driver.findElements(By.cssSelector(FCHubsStudentLifeTabPage
                     .basicServicesAvailableLocatorInt));
             ROTCServicesUiList = driver.findElements(By.cssSelector(FCHubsStudentLifeTabPage

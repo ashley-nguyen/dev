@@ -17,7 +17,7 @@ Feature:  As a student viewing new hubs page, I want to always see the college's
     When I open the URL at the side of the logo
     Then I should see the URL for "http://www.albion.edu/" open in a new page
   @smoke
-  Scenario: The college is added to the 'I'm thinking about' list after clicking the heart when it is white
+  Scenario: The college is added to the 'I'm thinking about' list after clicking the heart when it is white (HUBS-969)
     When I add the college to the 'I'm thinking about' list using the heart icon
     Then The heart should change its status to indicate that it is clicked
     Then The college "Albion" should be added to the 'I'm thinking about list'

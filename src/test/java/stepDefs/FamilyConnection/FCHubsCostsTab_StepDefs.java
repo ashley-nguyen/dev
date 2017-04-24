@@ -54,8 +54,7 @@ public class FCHubsCostsTab_StepDefs {
         FCHubsCostsTab.VerifyInStateTuitionAndFees(thisCollege,averageNavianceColleges);
     }
 
-    @Then("^Out of State Tuition and Fee for ThisCollege \"([^\"]*)\" and AverageNavianceColleges \"([^\"]*)\" " +
-            "is displayed$")
+    @Then("^Out of State Tuition and Fee for ThisCollege \"([^\"]*)\" and AverageNavianceColleges \"([^\"]*)\" is displayed$")
     public void outOfState_TuitionAndFee_For_ThisCollegeis_And_AverageNavianceColleges_Is_Displayed
             (String outStateThisCollege, String outStateAverageNavianceCollege) throws Throwable {
         FCHubsCostsTab.VerifyOutStateTuitionAndFees(outStateThisCollege,outStateAverageNavianceCollege);

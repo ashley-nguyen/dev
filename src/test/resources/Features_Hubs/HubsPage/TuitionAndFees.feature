@@ -9,34 +9,34 @@ Feature: As a student viewing new Hubs' Costs tab, I want to see a top bar with 
     And I open the Costs tab
 
   Scenario: Tuition Fees for In-State is displayed with correct values for Tuition and Fees
-    Then Tuition and Fee for this college is "$14,210" And AverageNavianceColleges is "$25,002"  displayed
+    Then Tuition and Fee for this college is "$14,210" And AverageNavianceColleges is "$9,388"  displayed
 
   Scenario: Tuition Fees for Out-Of State is displayed with correct values for Tuition and Fees
-    Then Out of State Tuition and Fee for ThisCollege "$14,210" and AverageNavianceColleges "$27,426" is displayed
+    Then Out of State Tuition and Fee for ThisCollege "$14,210" and AverageNavianceColleges "$11,156" is displayed
   @smoke
   Scenario:Verify in State Tuition Amount
     When I open Tuition
-    Then Display In-State tuition for This College "$0" and AverageNavianceColleges is "$16,452"
+    Then Display In-State tuition for This College "$0" and AverageNavianceColleges is "$6,424"
 
   Scenario:  Verify  Out Of State Tuition amount
     When I open Tuition
-    Then Display Out of state tuition for ThisCollege "$0" and AverageNavianceColleges is "$18,831"
+    Then Display Out of state tuition for ThisCollege "$0" and AverageNavianceColleges is "$8,153"
 
   Scenario: Total Fees for In-State
     When I open Total Fees
-    Then Display In state Total Fee for ThisCollege is "$14,210" and AverageNavianceColleges is "$8,550"
+    Then Display In state Total Fee for ThisCollege is "$14,210" and AverageNavianceColleges is "$2,964"
 
   Scenario: Total Fees for Out-Of State
     When I open Total Fees
-    Then Display Out of State Total Fees for ThisCollege is "$14,210" and AverageNavianceColleges is "$8,595"
+    Then Display Out of State Total Fees for ThisCollege is "$14,210" and AverageNavianceColleges is "$3,003"
 
   Scenario: Tuition Per Credit Hour for State
     When I open Tuition Per Credit Hour
-    Then Display Tuition Per Credit Hour for ThisCollege is "empty" and AverageNavianceColleges is "$616"
+    Then Display Tuition Per Credit Hour for ThisCollege is "empty" and AverageNavianceColleges is "$199"
 
   Scenario:Room and Board for State
     When I open Room and Board
-    Then Display Room and Board Amount for ThisCollege is "$14,210" and AverageNavianceColleges "$9,505"
+    Then Display Room and Board Amount for ThisCollege is "$14,210" and AverageNavianceColleges "$5,789"
 
 
 

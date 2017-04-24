@@ -22,10 +22,15 @@ public class FCHubsCostsTabPage extends BaseClass {
     @FindBy(how = How.CSS, using = "div[ng-style=\"{'height': vm.getPercentTopInState(true)}\"] span")
     public static WebElement InStateTuitionFeesForAverageNavianceColleges;
     @FindBy(how = How.CSS, using = ".costs-tuition-graph__costlabel.costs-tuition-graph__costlabel--sky.ng-binding")
-    public static WebElement OutofStateInStateTuitionFeesForThisCollege;
+    public static WebElement OutofStateInStateTuitionFeesForThisCollegeInt;
     @FindBy(how = How.CSS, using = "div.fc-grid__col.costs-tuition-graph__column.costs-tuition-graph__column-inset" +
             ".costs-tuition-graph__bar.ng-scope span")
-    public static WebElement OutofStateInStateTuitionFeesForAverageNavianceColleges;
+    public static WebElement OutofStateInStateTuitionFeesForAverageNavianceCollegesInt;
+    @FindBy(how = How.CSS, using = ".costs-tuition-graph__costlabel.costs-tuition-graph__costlabel--sky.ng-binding")
+    public static WebElement OutofStateInStateTuitionFeesForThisCollegeProd;
+    @FindBy(how = How.CSS, using = "div.fc-grid__col.costs-tuition-graph_column.costs-tuition-graph_column-inset" +
+            ".costs-tuition-graph__bar.ng-scope[ng-if=\"vm.displayOutOfStateData()\"] span")
+    public static WebElement OutofStateInStateTuitionFeesForAverageNavianceCollegesProd;
     @FindBy(how = How.CSS, using = ".fc-grid__row.costs-tuition-button.fc-button[ng-class=" +
             "\"{'costs-tuition-button--active': vm.showTuition }\"]")
     public static WebElement Tuition;

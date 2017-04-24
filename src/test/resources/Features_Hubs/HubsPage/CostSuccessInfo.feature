@@ -9,14 +9,14 @@ Feature: As a student exploring a college, I want to see a top bar with high-lev
   @smoke
   Scenario: Average Total Cost is displayed with correct data for each income selected in the Information Top bar
     Then Average Total Cost should correspond to the income as follows:
-    | $0 - $30K;13,191   |
-    | $30 - $48K;16,272  |
-    | $48 - $75K;18,240  |
-    | $75 - $110K;19,276 |
-    | > $110K;20,142     |
+    | $0 - $30K;3,191   |
+    | $30 - $48K;6,272  |
+    | $48 - $75K;8,240  |
+    | $75 - $110K;9,276 |
+    | > $110K;10,142    |
   @smoke
   Scenario: Graduation Rate is displayed with correct data in the Information Top bar
-    Then Graduation Rate should be "71" with correct data in the Information Top bar
+    Then Graduation Rate should be "75" with correct data in the Information Top bar
 
   Scenario: Acceptance Rate  is displayed with correct data
     Then Acceptance Rate should be "83" with correct data in the Information Top bar

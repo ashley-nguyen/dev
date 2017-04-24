@@ -134,12 +134,22 @@ public class FCHubsCostsTab {
         boolean tuitionAndFeesOutStateValueThisCollege = false;
         boolean tuitionAndFeesOutStateValueAverageNavianceCollege = false;
         boolean outStateTuitionaAndFees = false;
+        WebElement thisCollegeElement = null;
+        WebElement averageElement = null;
 
-        if (FCHubsCostsTabPage.OutofStateInStateTuitionFeesForThisCollege.getText().equals(outStateThisCollege)) {
+        if (System.getProperty("ENV").equals("intHUBS")) {
+            thisCollegeElement = FCHubsCostsTabPage.OutofStateInStateTuitionFeesForThisCollegeInt;
+            averageElement = FCHubsCostsTabPage.OutofStateInStateTuitionFeesForAverageNavianceCollegesInt;
+        } else if (System.getProperty("ENV").equals("prodConnection")) {
+            thisCollegeElement = FCHubsCostsTabPage.OutofStateInStateTuitionFeesForThisCollegeProd;
+            averageElement = FCHubsCostsTabPage.OutofStateInStateTuitionFeesForAverageNavianceCollegesProd;
+        }
+
+        if (thisCollegeElement.getText().equals(outStateThisCollege)) {
             tuitionAndFeesOutStateValueThisCollege = true;
         }
 
-        if (FCHubsCostsTabPage.OutofStateInStateTuitionFeesForAverageNavianceColleges.getText()
+        if (averageElement.getText()
                 .equals(outStateAverageNavianceCollege)) {
             tuitionAndFeesOutStateValueAverageNavianceCollege = true;
         }
