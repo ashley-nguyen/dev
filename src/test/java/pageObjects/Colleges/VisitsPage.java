@@ -65,36 +65,31 @@ public class VisitsPage extends BaseClass {
     @FindBy(how = How.ID, using = "registration_cutoff_days")
     public static WebElement deadlineDays;
 
-    /*@FindBy(how = How.CSS, using = "input[value='Cancel']")
-    public static WebElement btnCancelAddVisit;
-
-    @FindBy(how = How.CSS, using = "input[value='Add Visit']")
-    public static WebElement btnAddVisit;
-
-    @FindBy(how = How.CSS, using = "input[value='Add Visit and Send Email Notification']")
-    public static WebElement btnAddVisitAndEmail;*/
-
     @FindBy(how = How.CSS, using = ".bg2 table")
     public static WebElement tableVisits;
+
+    @FindBy(how = How.CSS, using = ".bg2 table>tbody")
+    public static WebElement tableBodyVisits;
 
     @FindBy(how = How.LINK_TEXT, using = "schedule visit ")
     public static WebElement lnkScheduleVisit;
 
-    /*@FindBy(how = How.CSS, using = "input[value='Update Visit']")
-    public static WebElement btnUpdateVisit;
-
-    @FindBy(how = How.CSS, using = "input[value='Update Visit and Send Email Notification']")
-    public static WebElement btnUpdateVisitAndEmail;
-*/
     @FindBy(how = How.LINK_TEXT, using = "Cancel")
     public static WebElement btnCancelDeleteVisit;
 
     @FindBy(how = How.ID, using = "deleteVisit2")
     public static WebElement btnDeleteVisit;
 
+    @FindBy(how = How.CLASS_NAME, using = "bg2")
+    public static WebElement visitTable;
+  
     public static By tableRowVisits = By.cssSelector(".bg2 table tr");
 
+    @FindBy(how = How.CSS, using = "tr:nth-child(2) > td:nth-child(7)>a:nth-child(3)")
+    public static WebElement firstRowDel;
 
+    @FindBy(how = How.CSS, using = "tr:nth-of-type(2)>td[class=category11]")
+    public static WebElement firstRowCollegelink;
 
 
 

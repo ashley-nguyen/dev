@@ -47,5 +47,5 @@ Feature: Type-casted year input to in  test
   @MAT-Visits-TC-16
   Scenario: Verify Delete Visit
 
-    When I click on "delete" link of First visit from the list and I Click on "Confirm" button
+    When I click on delete link of First visit from the list and I Click on confirm button
     Then I should no longer see that entry in the Scheduled College Visits list
