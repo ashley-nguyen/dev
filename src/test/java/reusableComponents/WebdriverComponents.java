@@ -1,5 +1,6 @@
 package reusableComponents;
 
+import net.serenitybdd.core.pages.WebElementFacadeImpl;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
@@ -160,4 +161,22 @@ public class WebdriverComponents {
         }
         return result;
     }
+
+    /**
+     * Method to Verify That an Element is not Present
+     *
+     * @param Element The element that should not be present
+     * @throws Exception
+     */
+    public boolean verifyElementPresent(WebElement Element) {
+        boolean result;
+        try {
+            Element.isDisplayed();
+            result = true;
+        } catch (NoSuchElementException e) {
+            result = false;
+        }
+        return result;
+    }
+
 }

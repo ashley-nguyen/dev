@@ -82,6 +82,9 @@ public class VisitsPage extends BaseClass {
     @FindBy(how = How.CSS, using = ".bg2 table")
     public static WebElement tableVisits;
 
+    @FindBy(how = How.CSS, using = ".bg2 table>tbody")
+    public static WebElement tableBodyVisits;
+
     //access above table for visit details and view, edit, delete links
 
     @FindBy(how = How.LINK_TEXT, using = "schedule visit ")
@@ -118,8 +121,14 @@ public class VisitsPage extends BaseClass {
     @FindBy(how = How.ID, using = "deleteVisit2")
     public static WebElement btnDeleteVisit;
 
+    @FindBy(how = How.CLASS_NAME, using = "bg2")
+    public static WebElement visitTable;
 
+    @FindBy(how = How.CSS, using = "tr:nth-child(2) > td:nth-child(7)>a:nth-child(3)")
+    public static WebElement firstRowDel;
 
+    @FindBy(how = How.CSS, using = "tr:nth-of-type(2)>td[class=category11]")
+    public static WebElement firstRowCollegelink;
 
 
 

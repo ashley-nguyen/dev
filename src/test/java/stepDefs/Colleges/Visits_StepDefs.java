@@ -53,23 +53,24 @@ public class Visits_StepDefs {
 
     }
 
-    @Then("^I must see all the scheduled vists along with details like Representative, Date, Time, Registrations and Registrarion Status$")public void i_must_see_all_the_scheduled_vists_along_with_details_like_Representative_Date_Time_Registrations_and_Registrarion_Status() throws Throwable {
-
+    @Then("^I must see all the scheduled vists along with details like Representative, Date, Time, Registrations and Registrarion Status$")
+    public void i_must_see_all_the_scheduled_vists_along_with_details_like_Representative_Date_Time_Registrations_and_Registrarion_Status() throws Throwable {
+        visits.viewHeadingOfVisitTable();
     }
 
     @Then("^I also see view, edit and delete links on each visit$")
     public void i_also_see_view_edit_and_delete_links_on_each_visit() throws Throwable {
-
+        visits.verifyViewEditupdateLinkPresent();
     }
 
     @When("^I click on \"(.*?)\" link of First visit from the list and I Click on \"(.*?)\" button$")
     public void i_click_on_link_of_First_visit_from_the_list_and_I_Click_on_button(String arg1, String arg2) throws Throwable {
-
+        visits.clickOnDelLinkOfFirstVisit();
     }
 
     @Then("^I should no longer see that entry in the Scheduled College Visits list$")
     public void i_should_no_longer_see_that_entry_in_the_Scheduled_College_Visits_list() throws Throwable {
-
+        visits.verifyDeletedVisitNotPresent();
     }
 
 }
