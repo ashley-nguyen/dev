@@ -1,5 +1,6 @@
 package pageObjects.Colleges;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -20,6 +21,9 @@ public class VisitsPage extends BaseClass {
     @FindBy(how = How.LINK_TEXT, using = "add new visit")
     public static WebElement lnkAddVisit;
 
+    @FindBy(how = How.NAME, using = "college")
+    public static WebElement textCollege;
+
     @FindBy(how = How.LINK_TEXT, using = "college picker")
     public static WebElement lnkCollegePicker;
 
@@ -28,17 +32,8 @@ public class VisitsPage extends BaseClass {
     public static WebElement searchCollege;
 
     //From College Picker Window
-    @FindBy(how = How.NAME, using = "namesearch")
+    @FindBy(how = How.NAME, using = "nameSearch")
     public static WebElement btnGoSearchCollege;
-
-    //need custom methods for findby with linktext/anylocator
-
-    @FindBy(how = How.CLASS_NAME, using = "ui-datepicker-trigger")
-    public static WebElement imgCalendar;
-
-    //need calendar handling custom methods
-
-    //OR
 
     @FindBy(how = How.ID, using = "date")
     public static WebElement textDate;
@@ -70,50 +65,14 @@ public class VisitsPage extends BaseClass {
     @FindBy(how = How.ID, using = "registration_cutoff_days")
     public static WebElement deadlineDays;
 
-    @FindBy(how = How.CSS, using = "input[value=Cancel]")
-    public static WebElement btnCancelAddVisit;
-
-    @FindBy(how = How.CSS, using = "input[value=Add Visit]")
-    public static WebElement btnAddVisit;
-
-    @FindBy(how = How.CSS, using = "input[value=Add Visit and Send Email Notification]")
-    public static WebElement btnAddVisitAndEmail;
-
     @FindBy(how = How.CSS, using = ".bg2 table")
     public static WebElement tableVisits;
 
     @FindBy(how = How.CSS, using = ".bg2 table>tbody")
     public static WebElement tableBodyVisits;
 
-    //access above table for visit details and view, edit, delete links
-
     @FindBy(how = How.LINK_TEXT, using = "schedule visit ")
     public static WebElement lnkScheduleVisit;
-
-    //visit view ?
-
-    /**
-     *
-     * Try using same elements for edit visit page as used in add visit page
-     */
-
-   /* @FindBy(how = How.ID, using = "college")
-    public static WebElement editCollege;
-
-    @FindBy(how = How.ID, using = "date")
-    public static WebElement editDate;
-
-    @FindBy(how = How.NAME, using = "time_hour")
-    public static WebElement editHour;
-
-    @FindBy(how = How.NAME, using = "time_minute")
-    public static WebElement editMinute;*/
-
-    @FindBy(how = How.CSS, using = "input[value=Update Visit]")
-    public static WebElement btnUpdateVisit;
-
-    @FindBy(how = How.CSS, using = "input[value=Update Visit and Send Email Notification]")
-    public static WebElement btnUpdateVisitAndEmail;
 
     @FindBy(how = How.LINK_TEXT, using = "Cancel")
     public static WebElement btnCancelDeleteVisit;
@@ -123,6 +82,8 @@ public class VisitsPage extends BaseClass {
 
     @FindBy(how = How.CLASS_NAME, using = "bg2")
     public static WebElement visitTable;
+  
+    public static By tableRowVisits = By.cssSelector(".bg2 table tr");
 
     @FindBy(how = How.CSS, using = "tr:nth-child(2) > td:nth-child(7)>a:nth-child(3)")
     public static WebElement firstRowDel;

@@ -1,7 +1,9 @@
 package stepDefs.Colleges;
 
+import actions.Colleges.College;
 import actions.Colleges.Visits;
 import cucumber.api.DataTable;
+import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import pageObjects.Colleges.VisitsPage;
@@ -17,6 +19,12 @@ public class Visits_StepDefs {
 
     Visits visits = new Visits();
 
+    @Given("^I go to Visits Page$")
+    public void i_go_to_Visits_Page() throws Throwable {
+        College.ClickOnSchoolSiteLink();
+        visits.goToVisits();
+    }
+
     @When("^I click on \"(.*?)\" link in Visit page$")
     public void i_click_on_link_in_Visit_page(String link) throws Throwable {
 
@@ -24,32 +32,45 @@ public class Visits_StepDefs {
 
     }
 
-    @When("^I enter the following details and click on \"(.*?)\" button :$")
-    public void i_enter_the_following_details_and_click_on_button(String btn, DataTable table) throws Throwable {
+    @When("^I enter the following details :$")
+    public void i_enter_the_following_details(DataTable table) throws Throwable {
 
-        visits.enterVisitDetails(table);
-        visits.addVisit(); // should we pass btn text as String ?
+       visits.enterVisitDetails(table);
+
+    }
+
+
+    @When("^I click on \"(.*?)\" button$")
+    public void i_click_on_button(String text) throws Throwable {
+
+        visits.clickButton(text);
 
     }
 
     @Then("^I should see a new entry in the Scheduled College Visits list with below details:$")
-    public void i_should_see_a_new_entry_in_the_Scheduled_College_Visits_list_with_below_details(DataTable arg1) throws Throwable {
-        //System.out.println(arg1);
-        //List<Map<String,String>> data = arg1.asMaps(String.class,String.class);
+    public void i_should_see_a_new_entry_in_the_Scheduled_College_Visits_list_with_below_details(DataTable table) throws Throwable {
+        visits.verifyAddedVisit(table);
 
     }
 
-    @When("^I click on \"(.*?)\" link of First college visit from the list$")
-    public void i_click_on_link_of_First_college_visit_from_the_list(String arg1) throws Throwable {
+    @When("^I click on \"(.*?)\" link of first visit from the list$")
+    public void i_click_on_link_of_first_visit_from_the_list(String action) throws Throwable {
+
+        visits.clickOnVisitActionByIndex(action, 1);
 
     }
 
-    @When("^I update \"(.*?)\", \"(.*?)\" ,\"(.*?)\" and I Click on \"(.*?)\" button$")
-    public void i_update_and_I_Click_on_button(String arg1, String arg2, String arg3, String arg4) throws Throwable {
+    @When("^I update the following fields with new values:$")
+    public void i_update_the_following_fields_with_new_values(DataTable table) throws Throwable {
+
+        visits.updateVisitDetails(table);
 
     }
-    @Then("^I see the updated details \"(.*?)\", \"(.*?)\", \"(.*?)\" on the Scheduled College Visits list$")
-    public void i_see_the_updated_details_on_the_Scheduled_College_Visits_list(String arg1, String arg2, String arg3) throws Throwable {
+
+    @Then("^I see the updated details as below in first visit from the list:$")
+    public void i_see_the_updated_details_as_below_in_first_visit_from_the_list(DataTable table) throws Throwable {
+
+        visits.verifyUpdatedVisit(table, 1);
 
     }
 
