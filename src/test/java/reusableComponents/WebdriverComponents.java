@@ -160,4 +160,31 @@ public class WebdriverComponents {
         }
         return result;
     }
+
+    /**
+     * returns a WebElement having the link text as provided
+     * @param text the linktext of the element
+     * @return WebElement
+     * @throws Exception
+     */
+    public WebElement getElementByLinkText(String text) throws Exception {
+
+        WebElement element = driver.findElement(By.linkText(text));
+        return  element;
+
+    }
+
+    /**
+     * Returns a WebElement of Input type with the text provided(Eg: an element with css=input[value='Cancel'])
+     * @param text text on the input tag
+     * @return WebElement
+     * @throws Exception
+     */
+    public WebElement getInputElementByValue(String text) throws Exception {
+
+        String cssSelectorValue = "input[value='"+text+"']";
+        WebElement element = driver.findElement(By.cssSelector(cssSelectorValue));
+        return  element;
+
+    }
 }
