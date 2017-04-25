@@ -118,7 +118,7 @@ public class WebdriverComponents {
         try {
 
             String textFromPage = Element.getText();
-            assertTrue("Verify '" +text+ "' Data!", textFromPage.contains(text));
+            assertTrue("Verified '" +text+ "' Data!", textFromPage.contains(text));
 
         } catch (Exception ex) {
 
@@ -205,4 +205,14 @@ public class WebdriverComponents {
         return  element;
 
     }
+
+
+    public void clearAndSendText(WebElement element, String text) throws Exception {
+        if (waitForElementPresent(60, element)) {
+            element.clear();
+            element.sendKeys(text);
+        }
+    }
+
+
 }

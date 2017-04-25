@@ -2,28 +2,20 @@ package actions.Colleges;
 
 import cucumber.api.DataTable;
 import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
-import org.openqa.selenium.support.ui.WebDriverWait;
-import pageObjects.Colleges.CollegePage;
 import pageObjects.Colleges.VisitsPage;
 import pageObjects.Header.SchoolPageHeader;
 import pageObjects.ReusableComponents.ReusableComponentsPage;
 import reusableComponents.TableComponent;
 import reusableComponents.WebdriverComponents;
 import stepDefs.Hooks;
-import java.util.Collection;
 import java.util.List;
 import java.util.Map;
-import java.util.concurrent.TimeUnit;
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.assertFalse;
 
 /**
  * Created by Dayasagar on 18 April 2017
@@ -32,6 +24,7 @@ public class Visits {
 
     WebDriver driver;
     WebdriverComponents driverComponents;
+    String firstCollege = "";
 
     public Visits(){
         this.driver = Hooks.driver;
@@ -48,7 +41,7 @@ public class Visits {
 
         Actions action = new Actions(driver);
         action.moveToElement(SchoolPageHeader.lnkColleges).build().perform();
-        SchoolPageHeader.lnkCollegeVisits.click();
+        driverComponents.clickElement(SchoolPageHeader.lnkCollegeVisits);
 
     }
 
@@ -138,35 +131,40 @@ public class Visits {
      * "Registration Status" These elements are in heading
      * @throws Exception
      */
-    public void viewHeadingOfVisitTable() throws Exception {
+    public void viewHeadingOfVisitTable(List<String> headings) throws Exception {
 
     //verify table is Present
     driverComponents.verifyElementPresent(VisitsPage.visitTable);
 
     //Verify All the Heading Element in Table
-        String[] list = {"College" , "Representative", "Date", "Time" , "Registrations", "Registration Status"};
-            for(int i=0; i<list.length;i++){
+            for(int i=0; i<headings.size() ;i++){
                 WebElement headingRowElement = driver.findElement(By.cssSelector("tr:nth-of-type(1)>td[class=category11]:nth-of-type("+(i+1)+")"));
-                driverComponents.verifyTextPresent(list[i], headingRowElement);
+                driverComponents.verifyTextPresent(headings.get(i), headingRowElement);
             }
     }
 
     /**
      * Verify Is Table is Present and "College" , "Representative", "Date", "Time" , "Registrations",
-     * "Registration Status" These elements are in heading
+     * "Registration Status" These elements are in heading and Verify View Edit and update Link are enabled.
      * @throws Exception
      */
-    public void verifyViewEditupdateLinkPresent() throws Exception {
+    public void verifyViewEditupdateLinkPresent(List<String> links) throws Exception {
 
         //verify table is Present
         driverComponents.verifyElementPresent(VisitsPage.visitTable);
-        //MATWIP  need to add element as in visit page
-        List<WebElement> numberOfColleges = driver.findElements(By.cssSelector("table[class=bg2]>tbody>tr>td>table>tbody>tr"));
+        //Get the number of rows
+        List<WebElement> numberOfColleges = driver.findElements(VisitsPage.tableRowVisits);
         int numberOfRows = numberOfColleges.size();
 
+        //use number of rows and verify each row has view edit and delete
         for( int i =1;i<numberOfRows; i++) {
         WebElement element = TableComponent.getCellElement(VisitsPage.tableBodyVisits,i,7);
         driverComponents.verifyTextPresent("view |  edit |  delete", element);
+        //to chek if element is enabled
+            for (int j=0 ; j< 2 ;j++) {
+                element.findElement(By.linkText(links.get(j))).isEnabled();
+            }
+
         }
 
     }
@@ -191,31 +189,31 @@ public class Visits {
     /**
      * Click on delete on first visit
      */
-    public String clickOnDelLinkOfFirstVisit()
+    public void clickOnDelLinkOfFirstVisit()
     {
+        //Save first college name as class variable
+        firstCollege = VisitsPage.firstRowCollegelink.getText();
         try {
-            WebElement element = VisitsPage.firstRowDel;
-            driverComponents.clickElement(element);
+            clickOnVisitActionByIndex("delete", 1);
             driverComponents.clickElement(VisitsPage.btnDeleteVisit);
 
         } catch (Exception ex) {
             System.out.println("Exception occured during Deleting the First Visit");
         }
-        return VisitsPage.firstRowCollegelink.getText();
+
     }
 
     /**
      * Verify Deleted Visit Should Not Present
      */
-    public void verifyDeletedVisitNotPresent()
-    {
+    public void verifyDeletedVisitNotPresent() {
         try {
-            String Text = clickOnDelLinkOfFirstVisit();
-            driverComponents.verifyTextNotPresent(Text, VisitsPage.firstRowCollegelink);
+            driverComponents.verifyTextNotPresent(firstCollege, VisitsPage.firstRowCollegelink);
 
         } catch (Exception ex) {
             System.out.println("Exception occured While Verifying the Deleted Visit was present");
         }
+    }
       
     /**
      * clicks on the required action of a visit based on the row index provided
@@ -227,7 +225,7 @@ public class Visits {
 
         WebElement mainElement = TableComponent.getCellElement(VisitsPage.tableVisits,index,7);
         WebElement requiredAction = mainElement.findElement(By.xpath("a[text()='"+action+"']"));
-        requiredAction.click();
+        driverComponents.clickElement(requiredAction);
     }
 
     /**
@@ -241,11 +239,9 @@ public class Visits {
         DataTable transposedTable = table.transpose();
         Map<String, String> m = transposedTable.asMap(String.class, String.class);
 
-        VisitsPage.maxAttendees.clear();
-        VisitsPage.maxAttendees.sendKeys(m.get("Registrations"));
+        driverComponents.clearAndSendText(VisitsPage.maxAttendees,m.get("Registrations"));
+        driverComponents.clearAndSendText(VisitsPage.maxAttendees,m.get("Representative"));
 
-        VisitsPage.representative.clear();
-        VisitsPage.representative.sendKeys(m.get("Representative"));
         //we can add more fields here as needed
 
     }
