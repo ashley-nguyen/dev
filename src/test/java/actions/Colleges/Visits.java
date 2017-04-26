@@ -163,7 +163,7 @@ public class Visits {
         for( int i =1;i<numberOfRows; i++) {
         WebElement element = TableComponent.getCellElement(VisitsPage.tableBodyVisits,i,7);
         driverComponents.verifyTextPresent("view |  edit |  delete", element);
-        //to chek if element is enabled
+        //to check if element is enabled
             for (int j=0 ; j< 2 ;j++) {
                 element.findElement(By.linkText(links.get(j))).isEnabled();
             }
