@@ -29,8 +29,8 @@ public class WebdriverComponents {
     }
 
     /**
-     * Method to check element is present within specific time
-     *
+     * Method to check  if element is present within specified time
+     * @param timeout
      * @param element
      * @return
      */
@@ -88,7 +88,7 @@ public class WebdriverComponents {
     }
 
     /**
-     * Method to hover on specified flyout and click on element in Flyout
+     * Method to hover on specified flyout
      *
      * @param Element where you want to hover
      * @throws Exception
@@ -118,7 +118,7 @@ public class WebdriverComponents {
         try {
 
             String textFromPage = Element.getText();
-            assertTrue("Verify '" +text+ "' Data!", textFromPage.contains(text));
+            assertTrue("Verified '" +text+ "' Data!", textFromPage.contains(text));
 
         } catch (Exception ex) {
 
@@ -137,7 +137,7 @@ public class WebdriverComponents {
         try {
 
             String textFromPage = Element.getText();
-            assertTrue("Verify '" +text+ "' Data!", !textFromPage.contains(text));
+            assertTrue("Verified '" +text+ "' Data not present", !textFromPage.contains(text));
 
         } catch (Exception ex) {
 
@@ -163,7 +163,7 @@ public class WebdriverComponents {
     }
 
     /**
-     * Method to Verify That an Element is not Present
+     * Method to Verify That an Element is Present
      *
      * @param Element The element that should not be present
      * @throws Exception
@@ -205,4 +205,14 @@ public class WebdriverComponents {
         return  element;
 
     }
+
+
+    public void clearAndSendText(WebElement element, String text) throws Exception {
+        if (waitForElementPresent(60, element)) {
+            element.clear();
+            element.sendKeys(text);
+        }
+    }
+
+
 }
