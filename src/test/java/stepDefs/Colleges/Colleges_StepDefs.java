@@ -48,7 +48,7 @@ public class Colleges_StepDefs {
 
     @When("^I go to view past visits$")
     public void i_go_to_view_past_visits() throws Throwable {
-        College.ClickOnSchoolSiteLink();
+        //College.ClickOnSchoolSiteLink();
         College.ClickOnViewPastVisitsLink();
     }
 

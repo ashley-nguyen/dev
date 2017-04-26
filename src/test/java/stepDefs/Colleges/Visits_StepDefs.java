@@ -75,24 +75,24 @@ public class Visits_StepDefs {
     }
 
 
-    @Then("^I must see College visit tables with below headings$")
-    public void i_must_see_College_visit_tables_with_below_headings( List<String> headings) throws Throwable {
+    @Then("^I must see College visit tables with below headers$")
+    public void i_must_see_College_visit_tables_with_below_headers( List<String> headers) throws Throwable {
 
-        visits.viewHeadingOfVisitTable(headings);
+        visits.verifyHeadersOfVisitTable(headers);
 
     }
 
     @Then("^I also see below links for all colleges enabled:$")
     public void i_also_see_view_edit_and_delete_links_on_each_visit(List<String> links) throws Throwable {
 
-        visits.verifyViewEditupdateLinkPresent(links);
+        visits.verifyViewEditDeleteLinkPresent(links);
 
     }
 
-    @When("^I click on delete link of First visit from the list and I Click on confirm button$")
-    public void i_click_on_delete_link_of_First_visit_from_the_list_and_I_Click_on_confirm_button() throws Throwable {
+    @When("^I click on delete link of First visit from the list$")
+    public void i_click_on_delete_link_of_First_visit_from_the_list() throws Throwable {
 
-        visits.clickOnDelLinkOfFirstVisit();
+        visits.deleteCollegeVisitByRow(1);
 
     }
 
