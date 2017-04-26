@@ -147,7 +147,7 @@ public class Visits {
     }
 
     /**
-     * Verify Is Table is Present and "College" , "Representative", "Date", "Time" , "Registrations",
+     * Verify if Table is Present and "College" , "Representative", "Date", "Time" , "Registrations",
      * "Registration Status" These elements are in heading and Verify View Edit and update Link are enabled.
      * @throws Exception
      */

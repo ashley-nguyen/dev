@@ -206,7 +206,12 @@ public class WebdriverComponents {
 
     }
 
-
+    /**
+     * clears the text box and keys in the text sent
+     * @param element element to be cleared and sent text to
+     * @param text the text to be sent
+     * @throws Exception
+     */
     public void clearAndSendText(WebElement element, String text) throws Exception {
         if (waitForElementPresent(60, element)) {
             element.clear();
