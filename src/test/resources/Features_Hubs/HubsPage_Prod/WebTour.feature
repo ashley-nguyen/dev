@@ -4,9 +4,9 @@ Feature:  As a student exploring a college I want to see paid webtour to underst
 
   Background:
     Given I log in to Family Connection with the following user details:
-      | rtsa       | amandahubs | Hobsons!23  |
+      | naviance | amandahubs | Hobsons!23  |
 
-    When I open the HUBS page for "The University of Arizona"
+    When I open the HUBS page for "Adelphi"
 
   Scenario: User is able to scroll content using arrows
     When I go to the right "7" times
