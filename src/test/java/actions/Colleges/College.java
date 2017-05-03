@@ -167,10 +167,6 @@ public class College {
     public static void ClickOnViewPastVisitsLink() {
         driver = Hooks.driver;
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-        PageFactory.initElements(driver, SchoolPageHeader.class);
-        Actions action = new Actions(driver);
-        action.moveToElement(SchoolPageHeader.lnkColleges).build().perform();
-        SchoolPageHeader.lnkCollegeVisits.click();
         new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.linkText("view past visits")));
         PageFactory.initElements(driver, CollegePage.class);
         CollegePage.lnkviewPastVisits.click();

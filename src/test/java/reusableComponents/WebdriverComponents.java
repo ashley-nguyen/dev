@@ -1,5 +1,6 @@
 package reusableComponents;
 
+import net.serenitybdd.core.pages.WebElementFacadeImpl;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
@@ -14,6 +15,8 @@ import java.util.concurrent.TimeUnit;
 
 import static org.junit.Assert.assertTrue;
 
+
+
 /**
  * Created by Dayasagar on 24 Jan 2017
  */
@@ -26,8 +29,8 @@ public class WebdriverComponents {
     }
 
     /**
-     * Method to check element is present within specific time
-     *
+     * Method to check  if element is present within specified time
+     * @param timeout
      * @param element
      * @return
      */
@@ -85,7 +88,7 @@ public class WebdriverComponents {
     }
 
     /**
-     * Method to hover on specified flyout and click on element in Flyout
+     * Method to hover on specified flyout
      *
      * @param Element where you want to hover
      * @throws Exception
@@ -115,7 +118,7 @@ public class WebdriverComponents {
         try {
 
             String textFromPage = Element.getText();
-            assertTrue("Verify '" +text+ "' Data!", textFromPage.contains(text));
+            assertTrue("Verified '" +text+ "' Data!", textFromPage.contains(text));
 
         } catch (Exception ex) {
 
@@ -134,7 +137,7 @@ public class WebdriverComponents {
         try {
 
             String textFromPage = Element.getText();
-            assertTrue("Verify '" +text+ "' Data!", !textFromPage.contains(text));
+            assertTrue("Verified '" +text+ "' Data not present", !textFromPage.contains(text));
 
         } catch (Exception ex) {
 
@@ -158,4 +161,63 @@ public class WebdriverComponents {
         }
         return result;
     }
+
+    /**
+     * Method to Verify That an Element is Present
+     *
+     * @param Element The element that should not be present
+     * @throws Exception
+     */
+    public boolean verifyElementPresent(WebElement Element) {
+        boolean result;
+        try {
+            Element.isDisplayed();
+            result = true;
+        } catch (NoSuchElementException e) {
+            result = false;
+        }
+        return result;
+    }
+
+    /**
+     * returns a WebElement having the link text as provided
+     * @param text the linktext of the element
+     * @return WebElement
+     * @throws Exception
+     */
+    public WebElement getElementByLinkText(String text) throws Exception {
+
+        WebElement element = driver.findElement(By.linkText(text));
+        return  element;
+
+    }
+
+    /**
+     * Returns a WebElement of Input type with the text provided(Eg: an element with css=input[value='Cancel'])
+     * @param text text on the input tag
+     * @return WebElement
+     * @throws Exception
+     */
+    public WebElement getInputElementByValue(String text) throws Exception {
+
+        String cssSelectorValue = "input[value='"+text+"']";
+        WebElement element = driver.findElement(By.cssSelector(cssSelectorValue));
+        return  element;
+
+    }
+
+    /**
+     * clears the text box and keys in the text sent
+     * @param element element to be cleared and sent text to
+     * @param text the text to be sent
+     * @throws Exception
+     */
+    public void clearAndSendText(WebElement element, String text) throws Exception {
+        if (waitForElementPresent(60, element)) {
+            element.clear();
+            element.sendKeys(text);
+        }
+    }
+
+
 }
