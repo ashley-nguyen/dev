@@ -4,20 +4,19 @@ Feature:  As a student exploring a college I want to see paid webtour to underst
 
   Background:
     Given I log in to Family Connection with the following user details:
-      | rtsa       | amandahubs | Hobsons!23  |
-
-    When I open the HUBS page for "The University of Arizona"
+      | hubsintl | samstudent | Hobsons!23  |
+    When I open the HUBS page for "Robert Morris University (PA)"
 
   Scenario: User is able to scroll content using arrows
-    When I go to the right "7" times
-    Then I should see the Web Tour element at position "7"
-    # we do not have Video for Adelphi , commenting it for now
-    #Scenario: Play button is present on thumbnail
-    # Then I should see a Play button in the YouTube video thumbnail
-    # Need to add Kaltura images for Adelphi
-    #Scenario: Kaltura image opens in modal after being clicked
-    # When I click the Web Tour element at position "5"
-    #Then I should see an image in a modal dialog
+    When I go to the right "3" times
+    Then I should see the Web Tour element at position "5"
+
+  Scenario: Play button is present on thumbnail
+    Then I should see a Play button in the YouTube video thumbnail at position "4"
+
+  Scenario: Kaltura image opens in modal after being clicked
+    When I open the Web Tour element at position "1"
+    Then I should see an image in a modal dialog
 
     #Scenario: Kaltura image opens in modal and content displays below
     # When I click the Web Tour element at position "3"

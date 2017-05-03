@@ -66,6 +66,12 @@ public class FCHubsStudiesTabPage extends BaseClass {
     public static WebElement getDirectionsLinkDistanceFromHS;
     @FindBy(how = How.CSS, using = "div[ng-if=\"vm.profile.demographics.percentLiveOnCampus > 0\"] a")
     public static WebElement learnMoreAboutHousingLinkPercentOfStuLivingInCampus;
+    @FindBy(how = How.CSS, using = "div[ng-if=\"vm.profile.friendlyDegrees.length > 0\"] div.hub-data-pod__heading")
+    public static WebElement degreesOfferedHeader;
+    @FindBy(how = How.CSS, using = "div.hubs-section__content.fc-grid__row.studies-popular")
+    public static WebElement topAreasOfStudyContainer;
+    @FindBy(how = How.CSS, using = "div.study-option.fc-grid__row.fc-grid__row--xs-center.fc-grid__row--md-start")
+    public static WebElement studyOptionsContainer;
 
     public static String listDegreesOffered = "div[ng-if=\"vm.profile.friendlyDegrees.length > 0\"] " +
             "div.hub-data-pod--degree.ng-binding.ng-scope";
