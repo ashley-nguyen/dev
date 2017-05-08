@@ -3,7 +3,7 @@ Feature: SmokeTest Naviance Elementary School 
          as a Naviance user   I want to login to Naviance Elementary School
 
   Background:
-    Given I am logged into Naviance "blue1hs" as "automation.admin" with "password"
+    Given I am logged into Naviance "blue2es" as "automation.admin" with "password"
 
   @ElementarySmokeTest
   Scenario: Navigation through Elementary School Links
