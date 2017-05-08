@@ -11,7 +11,7 @@ import org.junit.runner.RunWith;
 @RunWith(Cucumber.class)
 @CucumberOptions(strict = false,
                 glue = "stepDefs",
-                features = "src/test/resources/Features_Naviance",
+                features = "src/test/resources/Features_Naviance/Curriculum/*.feature",
                 format = { "pretty",
                                 "html:target/site/cucumber-pretty",
                                 "json:target/cucumber.json" })
