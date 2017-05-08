@@ -5,8 +5,8 @@ Feature:  As a student exploring a college I want to see the school's paid butto
 
   Background:
     Given I log in to Family Connection with the following user details:
-      | rtsa       | amandahubs | Hobsons!23  |
-    When I open the HUBS page for "The Culinary Institute of America"
+      | naviance | amandahubs | Hobsons!23 |
+    When I open the HUBS page for "Adelphi"
   @smoke
   Scenario: User is taken to correct website after clicking 'Request Info'
     When I open 'Communicate' link "Request Information"

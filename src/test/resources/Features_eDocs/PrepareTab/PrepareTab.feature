@@ -173,3 +173,17 @@ Feature: View student details
   Examples:
     |studentID | data                                       | type                     |filename        | author    | size  | action | date |
     | 12345678 | (Requested) Letter of Recommendation       |Letter of Recommendation          | ReadMe.txt      |Stan Smith | 14.87 | Upload   | false |
+
+
+  @edocs @navcore653
+  Scenario Outline: As a staff member, I would like to upload a LOR via eDocs in response to a specific college LOR request from a student
+    When I go to "<studentID>" in Prepare tab
+    And I click on Upload button selecting "Adelphi Univ" and "<type>" with "<filename>"
+    Then I see a "<data>" for LOR request for All Applications
+    When I use "<studentID>" and delete document in eDocs
+    Then I will verify "<type>", "<author>", "<size>", "<action>", "<date>"
+
+  Examples:
+    |studentID  |data  |type  |filename  |author  |size |action |date |
+    |12345678 | (Requested) Letter of Recommendation |Letter of Recommendation  |ReadMe.txt  |Stan Smith |14.87 |Upload | false|
+

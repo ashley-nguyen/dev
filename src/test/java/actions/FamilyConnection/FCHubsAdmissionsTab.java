@@ -427,11 +427,10 @@ public class FCHubsAdmissionsTab {
                 result = false;
             }
         } else if (System.getProperty("ENV").equals("prodConnection")) {
-            try {
-                FCHubsAdmissionsTabPage.tooltipContainerScattergrams.isDisplayed();
-                result = false;
-            } catch (NoSuchElementException e) {
+            if (FCHubsAdmissionsTabPage.tooltipContainerScattergrams.getAttribute("class").contains("ng-hide")) {
                 result = true;
+            } else {
+                result = false;
             }
         }
 
@@ -608,7 +607,9 @@ public class FCHubsAdmissionsTab {
         if (System.getProperty("ENV").equals("intHUBS")) {
             result = FCHubsAdmissionsTabPage.tooltipContainerAcceptanceRateHidden.isEnabled();
         } else if (System.getProperty("ENV").equals("prodConnection")) {
-            result = navigation.verifyElementNotPresent(FCHubsAdmissionsTabPage.tooltipContainerAcceptanceRate);
+            if (FCHubsAdmissionsTabPage.tooltipContainerAcceptanceRate.getAttribute("aria-hidden").equals("true")) {
+                result = true;
+            }
         }
 
         assertTrue("The tooltip was not closed", result);
@@ -663,11 +664,7 @@ public class FCHubsAdmissionsTab {
         driver = Hooks.driver;
         PageFactory.initElements(driver, FCHubsAdmissionsTabPage.class);
         WebElement xButtonElement = null;
-        if (System.getProperty("ENV").equals("intHUBS")) {
-            xButtonElement = FCHubsAdmissionsTabPage.buttonXTooltipScattergramsPSATInt;
-        } else if (System.getProperty("ENV").equals("prodConnection")) {
-            xButtonElement = FCHubsAdmissionsTabPage.buttonXTooltipScattergramsPSATProd;
-        }
+        xButtonElement = FCHubsAdmissionsTabPage.buttonXTooltipScattergramsPSAT;
         new WebDriverWait(Hooks.driver, 20).until(ExpectedConditions.elementToBeClickable
                 (xButtonElement));
         assertTrue("The tooltip in PSAT/SAT is not displayed", xButtonElement.isDisplayed());

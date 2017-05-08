@@ -62,6 +62,8 @@ public class FCCollegeEventsPage extends BaseClass {
 
     @FindBy(how = How.CSS, using = ".fc-main-nav__tab.fc-main-nav__tab--active")
     public static WebElement oldCollegesTab;
+    @FindBy(how = How.CSS, using = "div.events-list event-summary:nth-of-type(1) label")
+    public static WebElement firstEventRecommendedLabel;
 
     public static String eventsListLocator = ".events-list event-summary";
 

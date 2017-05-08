@@ -135,18 +135,23 @@ public class FCHubsCostsTab {
         boolean tuitionAndFeesOutStateValueAverageNavianceCollege = false;
         boolean outStateTuitionaAndFees = false;
         WebElement thisCollegeElement = null;
-        WebElement averageElement = null;
+        WebElement averageElement;
+
+        averageElement = FCHubsCostsTabPage.OutofStateInStateTuitionFeesForAverageNavianceColleges;
 
         if (System.getProperty("ENV").equals("intHUBS")) {
             thisCollegeElement = FCHubsCostsTabPage.OutofStateInStateTuitionFeesForThisCollegeInt;
-            averageElement = FCHubsCostsTabPage.OutofStateInStateTuitionFeesForAverageNavianceCollegesInt;
         } else if (System.getProperty("ENV").equals("prodConnection")) {
             thisCollegeElement = FCHubsCostsTabPage.OutofStateInStateTuitionFeesForThisCollegeProd;
-            averageElement = FCHubsCostsTabPage.OutofStateInStateTuitionFeesForAverageNavianceCollegesProd;
         }
-
-        if (thisCollegeElement.getText().equals(outStateThisCollege)) {
-            tuitionAndFeesOutStateValueThisCollege = true;
+        if (thisCollegeElement.getText().equals("")) {
+            if (outStateThisCollege.equals("0")) {
+                tuitionAndFeesOutStateValueThisCollege = true;
+            }
+        } else {
+            if (thisCollegeElement.getText().equals(outStateThisCollege)) {
+                tuitionAndFeesOutStateValueThisCollege = true;
+            }
         }
 
         if (averageElement.getText()
@@ -170,7 +175,7 @@ public class FCHubsCostsTab {
         boolean TuitionPerCreditHour = false;
 
         if (FCHubsCostsTabPage.TuitionPerCreditHourThisCollege.getText().equals("")) {
-            if (creditperhourThisCollege.equals("empty")) {
+            if (creditperhourThisCollege.equals("$0")) {
                 TuitionPerCreditHour_ThisCollege = true;
             }
         } else {

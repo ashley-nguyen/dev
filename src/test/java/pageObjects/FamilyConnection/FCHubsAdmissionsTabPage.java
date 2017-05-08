@@ -120,9 +120,7 @@ public class FCHubsAdmissionsTabPage extends BaseClass {
     @FindBy(how = How.CSS, using = "span[ng-show=\"vm.subPsat && vm.scattergramTestType == '1'\"] svg")
     public static WebElement scattergramsPSATInfoIconProd;
     @FindBy(how = How.CSS, using = "span[title=\"Click to learn more about You vs Students at your school’s SAT\"] + span svg")
-    public static WebElement buttonXTooltipScattergramsPSATInt;
-    @FindBy(how = How.CSS, using = "span[title=\"Click to learn more about \"] + span svg")
-    public static WebElement buttonXTooltipScattergramsPSATProd;
+    public static WebElement buttonXTooltipScattergramsPSAT;
 
     public static String listDeadlinesLocator = ".admissions-information__deadline-item.ng-scope";
     public static String comparingDropDownLocator = "select[ng-model=\"vm.scattergramGpaType\"]";

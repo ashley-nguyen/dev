@@ -21,7 +21,7 @@ Feature: As an International HS student, I need the ability to see International
       | IELTS;OPTIONAL |
       | SAT;OPTIONAL   |
       | ACT;OPTIONAL   |
-  
+
   Scenario: The International Applications data is correct in the International Top Bar
     Then The International Applications should be the following in International Top bar:
       | RECEIVED;333 |
