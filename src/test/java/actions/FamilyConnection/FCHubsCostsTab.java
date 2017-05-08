@@ -175,7 +175,7 @@ public class FCHubsCostsTab {
         boolean TuitionPerCreditHour = false;
 
         if (FCHubsCostsTabPage.TuitionPerCreditHourThisCollege.getText().equals("")) {
-            if (creditperhourThisCollege.equals("$0")) {
+            if (creditperhourThisCollege.equals("empty")) {
                 TuitionPerCreditHour_ThisCollege = true;
             }
         } else {
