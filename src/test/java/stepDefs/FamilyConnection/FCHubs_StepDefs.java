@@ -93,14 +93,14 @@ public class FCHubs_StepDefs {
         FCHubs.ClickRightArrow(numberOfTimes);
     }
 
-    @Then("^I should see the last Web Tour element$")
-    public void I_should_see_the_last_web_tour_element() throws Throwable {
-        FCHubs.VerifyVisibilityOfLastWebTourElement();
+    @Then("^I should see the Web Tour element at position \"([^\"]*)\"$")
+    public void I_ShouldSeeTheWebTourElementAtPosition(String position) throws Throwable {
+        FCHubs.verifyVisibilityOfElementAtPosition(position);
     }
 
-    @Then("^I should see a Play button in the YouTube video thumbnail$")
-    public void I_should_see_a_play_button_in_the_youtube_video_thumbnail() throws Throwable {
-        FCHubs.VerifyVisibilityOfPlayButton();
+    @Then("^I should see a Play button in the YouTube video thumbnail at position \"([^\"]*)\"$")
+    public void iShouldSeeAPlayButtonInTheYouTubeVideoThumbnailAtPosition(String position) throws Throwable {
+        FCHubs.verifyVisibilityOfPlayButtonAtPosition(position);
     }
 
     @When("^I open the Web Tour element at position \"([^\"]*)\"$")

@@ -146,17 +146,17 @@ public class FCHubs {
         }
     }
 
-    public static void VerifyVisibilityOfLastWebTourElement() {
+    public static void verifyVisibilityOfElementAtPosition(String position) {
         driver = Hooks.driver;
         PageFactory.initElements(driver, FCHubsPage.class);
         assertTrue("Last element of Web Tour is not visible", driver.findElement
-                (By.id("hubswebtour-image7")).isDisplayed());
+                (By.id("hubswebtour-image" + position)).isDisplayed());
     }
 
-    public static void VerifyVisibilityOfPlayButton() {
+    public static void verifyVisibilityOfPlayButtonAtPosition(String position) {
         driver = Hooks.driver;
         assertTrue("Play button in Youtube video is not visible", driver.findElement(By.xpath
-                ("//span[@id='webtourElement17']/div/*[name()='svg']")).isDisplayed());
+                ("//span[@id='webtourElement" + position + "']/div/*[name()='svg']")).isDisplayed());
     }
 
     public static void ClickWebTourElementAtPosition(int elementPosition) {
@@ -252,6 +252,7 @@ public class FCHubs {
     public static void VerifyFaxAdmissions(String fax) {
         driver = Hooks.driver;
         PageFactory.initElements(driver, FCHubsPage.class);
+        new WebDriverWait(driver, 20).until(ExpectedConditions.elementToBeClickable(FCHubsPage.contactInfoAdmissions));
         assertTrue("Fax data is not correct", FCHubsPage.contactInfoAdmissions.getText().contains(fax));
     }
 

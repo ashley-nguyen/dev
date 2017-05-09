@@ -252,7 +252,6 @@ public class FCHubsStudiesTab {
             case "Majors Offered" : uiElement = FCHubsStudiesTabPage.dateLabelMajorsOffered;
                 break;
         }
-//        new WebDriverWait(Hooks.driver, 20).until(ExpectedConditions.elementToBeClickable(uiElement));
         System.out.println("UI: " + uiElement.getText());
         assertTrue("The label is not correct", uiElement.getText().equals(label));
     }
