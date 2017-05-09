@@ -4,7 +4,7 @@ Feature: Elementary Group Detail page tests
   So that I will be able to see any change on group membership
 
   Background:
-    Given I am logged into Naviance "blue1hs" as "automation.admin" with "password"
+    Given I am logged into Naviance "blue2es" as "automation.admin" with "password"
 
   @ElementaryGroupDetailPage
   Scenario: Review message when empty group is assigned to Elementary
