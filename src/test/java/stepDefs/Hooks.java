@@ -48,8 +48,11 @@ public class Hooks {
         String gridUrl = "https://turbo-seleniumgrid.hesos.net/wd/hub";
 
         if (env == null)
-            env = "QABlue";
+            env = "local";
         switch (env) {
+            case "local":
+                strBaseURL = "https://localhost";
+                break;
             case "staging":
                 strBaseURL = "https://succeed-internal.naviance.com";
                 break;
