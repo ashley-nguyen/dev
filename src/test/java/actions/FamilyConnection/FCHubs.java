@@ -130,9 +130,10 @@ public class FCHubs {
     public static void ClickLearnMoreEventsLink(String link) {
         driver = Hooks.driver;
         PageFactory.initElements(driver, FCHubsPage.class);
-        if (FCHubsPage.linklearnMoreEvents.getText().contains(link)) {
-            FCHubsPage.linklearnMoreEvents.click();
-        }
+//        if (FCHubsPage.linklearnMoreEvents.getText().contains(link)) {
+//            FCHubsPage.linklearnMoreEvents.click();
+//        }
+        driver.findElement(By.linkText(link)).click();
         ArrayList<String> tabs = new ArrayList<String> (driver.getWindowHandles());
         driver.switchTo().window(tabs.get(tabs.size() - 1));
     }

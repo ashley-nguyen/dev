@@ -5,7 +5,7 @@ Feature: As a student I'd like to have the ability to quickly have access to the
   Background:
     Given I log in to Family Connection with the following user details:
       | rtsa  | benhubs | Hobsons!23  |
-    When I open the HUBS page for "Albion"
+    When I open the HUBS page for "Adrian"
 
   Scenario: The number of colleges in 'I'm thinking about' list equals the number in the corresponding button in
   the Bottom Sticky Bar

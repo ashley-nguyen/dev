@@ -10,15 +10,15 @@ Feature:  As a student exploring a college I want to see the school's paid butto
   @smoke
   Scenario: User is taken to correct website after clicking 'Request Info'
     When I open 'Communicate' link "Request Information"
-    Then I should see the URL for "http://admissions.adelphi.edu/contact-us/request-info/" open in a new page
+    Then I should see the URL for "http://qa.collegeview.com/school/placementTracker.jsp?placementId=107889&siteId=4" open in a new page
 
   Scenario: User is taken to correct website after clicking 'Apply Online'
     When I open the Apply Online button
-    Then I should see the URL for "http://admissions.adelphi.edu/contact-us/apply-now/" open in a new page
+    Then I should see the URL for "http://qa.collegeview.com/schools/the-culinary-institute-of-america/onl/na?siteId=4" open in a new page
 
   Scenario: User is taken to correct website after clicking a link from the list in 'Learn More'
-    When I open the 'Learn More' link "Events"
-    Then I should see the URL for "http://admissions.adelphi.edu/events/" open in a new page
+    When I open the 'Learn More' link "Scholarships"
+    Then I should see the URL for "http://qa.collegeview.com/schools/the-culinary-institute-of-america/wl/scholarships?siteId=4" open in a new page
 
 
 
