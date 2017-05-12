@@ -14,7 +14,7 @@ import stepDefs.Hooks;
 import java.util.concurrent.TimeUnit;
 
 import static org.junit.Assert.assertTrue;
-
+import static org.junit.Assert.fail;
 
 
 /**
@@ -24,12 +24,13 @@ public class WebdriverComponents {
     public int waitTime = 30;
     WebDriver driver;
 
-    public WebdriverComponents(){
+    public WebdriverComponents() {
         this.driver = Hooks.driver;
     }
 
     /**
      * Method to check  if element is present within specified time
+     *
      * @param timeout
      * @param element
      * @return
@@ -118,7 +119,7 @@ public class WebdriverComponents {
         try {
 
             String textFromPage = Element.getText();
-            assertTrue("Verified '" +text+ "' Data!", textFromPage.contains(text));
+            assertTrue("Verified '" + text + "' Data!", textFromPage.contains(text));
 
         } catch (Exception ex) {
 
@@ -137,7 +138,7 @@ public class WebdriverComponents {
         try {
 
             String textFromPage = Element.getText();
-            assertTrue("Verified '" +text+ "' Data not present", !textFromPage.contains(text));
+            assertTrue("Verified '" + text + "' Data not present", !textFromPage.contains(text));
 
         } catch (Exception ex) {
 
@@ -178,6 +179,46 @@ public class WebdriverComponents {
         }
         return result;
     }
+
+    /**
+     * asserts if the link with the text provided is not present
+     * @param text text of the link in question
+     */
+    public void assertLinkNotPresent(String text) {
+        try {
+            driver.findElement(By.linkText(text));
+            fail("The \"" + text + "\" link is present");
+        } catch (NoSuchElementException ex) {
+            /* If the link is not present, then verification is successful */
+        }
+    }
+
+    /**
+     * asserts if the element is not present
+     * @param element WebElement
+     */
+    public void assertElementNotPresent(WebElement element) {
+        try {
+            element.isDisplayed();
+            fail("The element with text \"" + element.getText() + "\"   is present!");
+        } catch (NoSuchElementException ex) {
+            /* If the element is not present, then verification is successful */
+        }
+    }
+
+    /**
+     * asserts if the element is  present
+     * @param element WebElement
+     */
+    public void assertElementPresent(WebElement element) {
+        try {
+            element.isDisplayed();
+        } catch (NoSuchElementException ex) {
+            fail("The element is not present!");
+        }
+    }
+
+
 
     /**
      * returns a WebElement having the link text as provided

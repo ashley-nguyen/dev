@@ -21,7 +21,7 @@ public class Visits_StepDefs {
 
     @Given("^I go to Visits Page$")
     public void i_go_to_Visits_Page() throws Throwable {
-        College.ClickOnSchoolSiteLink();
+        //College.ClickOnSchoolSiteLink();
         visits.goToVisits();
     }
 
@@ -100,6 +100,32 @@ public class Visits_StepDefs {
     public void i_should_no_longer_see_Deleted_entry_in_the_Scheduled_College_Visits_list() throws Throwable {
 
         visits.verifyDeletedVisitNotPresent();
+
+    }
+
+    @When("^the external college visits are enabled$")
+    public void the_external_college_visits_are_enabled() throws Throwable {
+        //dummy step until integration
+    }
+
+    @Then("^all the links pertaining to visits management should be disabled$")
+    public void all_the_links_pertaining_to_visits_management_should_be_disabled() throws Throwable {
+
+        visits.verifyVisitsManagementLinksDisabled();
+        visits.verifyEditDeleteLinkNotPresent();
+        visits.verifyEditVisitLinkNotPresent();
+
+    }
+
+    @When("^I am a \"(?:RepVisits|Non RepVisits)\" user$")
+    public void i_am_a_user(String userType) throws Throwable {
+        //dummy step until integration
+    }
+
+
+    @Then("^I see the message \"(.*?)\"$")
+    public void i_see_the_message(String message) throws Throwable {
+
 
     }
 }

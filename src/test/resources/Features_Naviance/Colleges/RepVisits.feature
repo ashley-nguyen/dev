@@ -1,5 +1,5 @@
-@visits
-Feature: College Visits
+@repvisits
+Feature: RepVisits
   As a Naviance User
   I want to be able to verify all aspects of College Visits
 
@@ -53,6 +53,20 @@ Feature: College Visits
     Then I should no longer see Deleted entry in the Scheduled College Visits list
 
 
-  @MAT-147 @MAT-147-TC-01
-  Scenrio: Verify disabling of management of visits when external college visits is enabled
-    Given I ha
+  @MAT-147 @MAT-147-TC-01 @wip-integration
+  Scenario: Verify disabling of management of visits when external college visits are enabled
+    When the external college visits are enabled
+    Then all the links pertaining to visits management should be disabled
+
+
+  @MAT-107 @wip-integration
+  Scenario: Verify Non RepVisits users are shown a sign up reminder message
+    When I am a "Non RepVisits" user
+    Then I see the message "Use RepVisits to manage your college visits. Click on the Counselor Community icon to learn more."
+
+
+
+  @MAT-107 @wip-integration
+  Scenario: Verify RepVisits users are shown a use RepVisits reminder message
+    When I am a "RepVisits" user
+    Then I see the message "Manage your College Visits in RepVisits"
