@@ -282,7 +282,7 @@ public class Visits {
      * schedule visit and visit settings links
      * @throws Exception
      */
-    public void verifyVisitsManagementLinksDisabled() throws Exception {
+    public void verifyVisitsManagementLinksNotVisible() throws Exception {
 
         driverComponents.assertElementNotPresent(VisitsPage.lnkAddVisit);
         driverComponents.assertElementNotPresent(VisitsPage.lnkColleges);

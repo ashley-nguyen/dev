@@ -21,6 +21,7 @@ public class Visits_StepDefs {
 
     @Given("^I go to Visits Page$")
     public void i_go_to_Visits_Page() throws Throwable {
+        //wip, to be changed on integration
         //College.ClickOnSchoolSiteLink();
         visits.goToVisits();
     }
@@ -112,7 +113,7 @@ public class Visits_StepDefs {
     @Then("^all the links pertaining to visits management should be disabled$")
     public void all_the_links_pertaining_to_visits_management_should_be_disabled() throws Throwable {
 
-        visits.verifyVisitsManagementLinksDisabled();
+        visits.verifyVisitsManagementLinksNotVisible();
         visits.verifyEditDeleteLinkNotPresent();
         visits.verifyEditVisitLinkNotPresent();
 
