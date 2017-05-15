@@ -106,6 +106,7 @@ public class Visits_StepDefs {
     @When("^the external college visits are enabled$")
     public void the_external_college_visits_are_enabled() throws Throwable {
         //dummy step until integration
+        //currently handled by change in DB
     }
 
     @Then("^all the links pertaining to visits management should be disabled$")
@@ -117,14 +118,18 @@ public class Visits_StepDefs {
 
     }
 
-    @When("^I am a \"(?:RepVisits|Non RepVisits)\" user$")
+    @When("^I am a \"(RepVisits|Non RepVisits)\" user$")
     public void i_am_a_user(String userType) throws Throwable {
+        System.out.println(userType);
         //dummy step until integration
+        //currently handled by change in DB
     }
 
 
     @Then("^I see the message \"(.*?)\"$")
     public void i_see_the_message(String message) throws Throwable {
+
+        visits.verifyRepVisitsMessage(message);
 
 
     }

@@ -42,6 +42,9 @@ public class Visits {
      */
     public void goToVisits() {
 
+
+        //wip
+        //workaround until login redirection in localhost starts working again
         driver.get("https://localhost/main/dashboards/dashboard.php");
 
         Actions action = new Actions(driver);
@@ -303,6 +306,12 @@ public class Visits {
 
         clickOnVisitActionByIndex("view",1);
         driverComponents.verifyElementNotPresent(VisitsPage.lnkEditVisit);
+
+    }
+
+    public void verifyRepVisitsMessage(String message) throws Exception {
+
+        assertEquals(message,VisitsPage.msgRepVisits.getText());
 
     }
 }
