@@ -101,8 +101,6 @@ public class VisitsPage extends BaseClass {
 
 
 
-
-
     public VisitsPage(WebDriver driver) {
         super(driver);
     }
