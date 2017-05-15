@@ -105,7 +105,7 @@ public class Visits_StepDefs {
 
     @When("^the external college visits are enabled$")
     public void the_external_college_visits_are_enabled() throws Throwable {
-        //dummy step until integration
+        //wip , dummy step until integration
         //currently handled by change in DB
     }
 
@@ -121,7 +121,7 @@ public class Visits_StepDefs {
     @When("^I am a \"(RepVisits|Non RepVisits)\" user$")
     public void i_am_a_user(String userType) throws Throwable {
         System.out.println(userType);
-        //dummy step until integration
+        //wip , dummy step until integration
         //currently handled by change in DB
     }
 

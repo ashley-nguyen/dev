@@ -277,6 +277,11 @@ public class Visits {
 
     }
 
+    /**
+     * verifies all the major links on Visits Page intended to manage visits are disabled: add new visit,
+     * schedule visit and visit settings links
+     * @throws Exception
+     */
     public void verifyVisitsManagementLinksDisabled() throws Exception {
 
         driverComponents.assertElementNotPresent(VisitsPage.lnkAddVisit);
@@ -284,6 +289,10 @@ public class Visits {
         driverComponents.assertElementNotPresent(VisitsPage.lnkVisitSettings);
     }
 
+    /**
+     * verifies the edit and delete links for all visits in the table are not present
+     * @throws Exception
+     */
     public void verifyEditDeleteLinkNotPresent() throws Exception {
 
         //verify table is Present
@@ -302,6 +311,10 @@ public class Visits {
 
     }
 
+    /**
+     * verifies the edit link on the view visit page is not present
+     * @throws Exception
+     */
     public void verifyEditVisitLinkNotPresent() throws Exception {
 
         clickOnVisitActionByIndex("view",1);
@@ -309,6 +322,11 @@ public class Visits {
 
     }
 
+    /**
+     * verifies the message appearing on Visits Page related to RepVisits
+     * @param message
+     * @throws Exception
+     */
     public void verifyRepVisitsMessage(String message) throws Exception {
 
         assertEquals(message,VisitsPage.msgRepVisits.getText());
