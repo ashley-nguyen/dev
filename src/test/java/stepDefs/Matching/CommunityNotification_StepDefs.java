@@ -18,7 +18,7 @@ public class CommunityNotification_StepDefs {
 
     @When("^There are no changes in Community$")
     public void there_are_no_changes_in_Community() throws Throwable {
-    //wip_intigration
+    //wip_integration
     }
 
     @Then("^I should not See a red dot overlaying on top of Profile icon in Realtime\\.$")
@@ -28,7 +28,7 @@ public class CommunityNotification_StepDefs {
 
     @When("^There are any changes in Community$")
     public void there_are_any_changes_in_Community() throws Throwable {
-    //wip_intigration
+    //wip_integration
     }
 
     @Then("^I See a red dot overlaying on top of Profile icon in Realtime\\.$")
