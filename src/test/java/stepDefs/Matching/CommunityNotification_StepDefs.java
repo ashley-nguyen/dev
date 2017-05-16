@@ -1,9 +1,7 @@
 package stepDefs.Matching;
 
-import actions.Colleges.College;
 import actions.Colleges.Visits;
-import cucumber.api.DataTable;
-import cucumber.api.java.en.Given;
+import actions.Matching.CommunityNotification;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 
@@ -14,25 +12,26 @@ import java.util.List;
  */
 public class CommunityNotification_StepDefs {
 
+    CommunityNotification comNotify = new CommunityNotification();
     Visits visits = new Visits();
 
-    @When("^There are no changes in Community$")
+    @When("^There are no new activities in Community$")
     public void there_are_no_changes_in_Community() throws Throwable {
     //wip_intigration
     }
 
-    @Then("^I should not See a red dot overlaying on top of Profile icon in Realtime\\.$")
+    @Then("^I should not See a red dot overlaying on top of Community icon in Realtime\\.$")
     public void i_should_not_See_a_red_dot_overlaying_on_top_of_Profile_icon_in_Realtime() throws Throwable {
-        visits.verifyCommunityNotificationIcon("present");
+        comNotify.verifyCommunityNotificationIcon("present");
     }
 
-    @When("^There are any changes in Community$")
+    @When("^There are any new activities in Community$")
     public void there_are_any_changes_in_Community() throws Throwable {
     //wip_intigration
     }
 
-    @Then("^I See a red dot overlaying on top of Profile icon in Realtime\\.$")
+    @Then("^I See a red dot overlaying on top of Community icon in Realtime\\.$")
     public void i_See_a_red_dot_overlaying_on_top_of_Profile_icon_in_Realtime() throws Throwable {
-        visits.verifyCommunityNotificationIcon("notPresent");
+        comNotify.verifyCommunityNotificationIcon("notPresent");
     }
 }

@@ -9,11 +9,11 @@ Feature: Community Notifications
 
   @MAT-83-TC-01, @wip-integration
   Scenario: Verify Notification when there are changes in Community.
-    When There are no changes in Community
-    Then I should not See a red dot overlaying on top of Profile icon in Realtime.
+    When There are no new activities in Community
+    Then I should not See a red dot overlaying on top of Community icon in Realtime.
 
 
   @MAT-83-TC-02, @wip-integration
   Scenario: Verify Notification when there are changes in Community.
-    When There are any changes in Community
-    Then I See a red dot overlaying on top of Profile icon in Realtime.
+    When There are any new activities in Community
+    Then I See a red dot overlaying on top of Community icon in Realtime.
