@@ -2,6 +2,7 @@ package stepDefs.FamilyConnection;
 
 import actions.FamilyConnection.FCHubsInternationalTab;
 import cucumber.api.PendingException;
+import cucumber.api.java.en.And;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import org.openqa.selenium.WebDriver;
@@ -47,5 +48,21 @@ public class FCHubsInternationalTab_StepDefs {
     @Then("^I should see each international test score with a corresponding value:$")
     public void I_should_see_each_international_test_score_with_a_corresponding_value(List<String> testScoresList) throws Throwable {
         FCHubsInternationalTab.verifyTestScores(testScoresList);
+    }
+
+    @Then("^I should see the details of the International profile$")
+    public void i_Should_See_The_Details_Of_The_International_Profile() throws Throwable {
+        FCHubsInternationalTab.verifyInternationalStudentProfileDetails();
+    }
+
+    @And("^I close the International profile$")
+    public void i_Close_The_International_Profile() throws Throwable {
+        FCHubsInternationalTab.ClickXonInternationalProfile();
+    }
+
+    @Then("^The International profile with name \"([^\"]*)\" should be collapsed$")
+    public void the_International_Profile_With_Name_Should_Be_Collapsed(String internationalProfileName) throws Throwable {
+        FCHubsInternationalTab.verifyInternationalStudentProfileDetailsCollapsed(internationalProfileName);
+
     }
 }

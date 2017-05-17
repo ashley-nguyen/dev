@@ -1,12 +1,10 @@
 package actions.FamilyConnection;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import pageObjects.FamilyConnection.FCHubsBottomStickyBarPage;
 import pageObjects.FamilyConnection.FCHubsInternationalTabPage;
 import stepDefs.Hooks;
 
@@ -146,5 +144,28 @@ public class FCHubsInternationalTab {
             if (!result) break;
         }
         assertTrue("The test scores are not correct", result);
+    }
+
+    public static void verifyInternationalStudentProfileDetails() {
+        driver = Hooks.driver;
+        PageFactory.initElements(driver, FCHubsInternationalTabPage.class);
+        assertTrue("The profile details are not displayed", FCHubsInternationalTabPage.intstudentProfilecloselink.isDisplayed());
+
+    }
+
+    public static void ClickXonInternationalProfile() {
+        driver = Hooks.driver;
+        PageFactory.initElements(driver, FCHubsInternationalTabPage.class);
+        new WebDriverWait(Hooks.driver, 30).until(ExpectedConditions.elementToBeClickable
+                (FCHubsInternationalTabPage.intstudentProfilecloselink));
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);",
+                FCHubsInternationalTabPage.internationalheaderToLocateProfile);
+        FCHubsInternationalTabPage.intstudentProfilecloselink.sendKeys(Keys.RETURN);
+    }
+
+    public static void verifyInternationalStudentProfileDetailsCollapsed(String InternationalprofileName) {
+        driver = Hooks.driver;
+        assertTrue("The profile was not collapsed", driver.findElement(By.xpath("//h4[contains(text(), '" +
+                InternationalprofileName + "')]/../span")).isDisplayed());
     }
 }
