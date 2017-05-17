@@ -4,6 +4,7 @@ import org.openqa.selenium.*;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import pageObjects.FamilyConnection.FCHubsBottomStickyBarPage;
 import pageObjects.FamilyConnection.FCHubsInternationalTabPage;
 import stepDefs.Hooks;
 
@@ -144,11 +145,6 @@ public class FCHubsInternationalTab {
         }
         assertTrue("The test scores are not correct", result);
     }
-
-    public static void clickInternationalStudentProfileDetails(String intstudentProfile) {
-            driver = Hooks.driver;
-            driver.findElement(By.xpath("//h4[contains(text(), '" + intstudentProfile + "')]/../span")).click();
-        }
 
     public static void verifyInternationalStudentProfileDetails() {
         driver = Hooks.driver;

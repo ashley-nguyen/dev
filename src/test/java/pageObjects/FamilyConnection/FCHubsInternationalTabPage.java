@@ -21,7 +21,8 @@ public class FCHubsInternationalTabPage extends BaseClass {
     public static WebElement intstudentProfilecloselink;
     @FindBy(how = How.CSS, using = "div[ng-repeat=\"profile in vm.studentProfiles\"] h4")
     public static WebElement internationalheaderToLocateProfile;
-
+    @FindBy(how = How.CSS, using = "div[class=\"hub-links-bar__links\"]")
+    public static WebElement linkBar;
     public static String intFeesIntTopbarLocator = "span.hub-data-pod--international.hub-data-pod--international--" +
             "left.hub-data-pod--international--money.ng-binding.ng-scope";
     public static String intTestReqIntTopBarLocator = "span.hub-data-pod--international__req.hub-data-pod--" +

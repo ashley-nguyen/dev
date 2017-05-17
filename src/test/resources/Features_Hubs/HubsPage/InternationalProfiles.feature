@@ -8,20 +8,17 @@ Feature: As a student viewing new Hubs, I want to see the student profiles in th
     And I open the International tab
 
   Scenario: The Student Profile details are displayed after clicking Read More
-    When I expand the International Profile with name "ANI"
+    When I expand the Profile with name "ANI"
     Then I should see the details of the International profile
 
-
   Scenario: Student Profiles are collapsed after clicking the x button
-    When I expand the International Profile with name "ANI"
+    When I expand the Profile with name "ANI"
     And I close the International profile
     Then The International profile with name "ANI" should be collapsed
 
-
   Scenario: The Parent Profile details are displayed after clicking Read More
-    When I expand the International Profile with name "FacultyProfile1"
+    When I expand the Profile with name "FacultyProfile1"
     And I should see the details of the International profile
-
 
   Scenario: The Parent Profile details are collapsed after clicking the x button
     When I expand the Profile with name "FacultyProfile1"

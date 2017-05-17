@@ -50,11 +50,6 @@ public class FCHubsInternationalTab_StepDefs {
         FCHubsInternationalTab.verifyTestScores(testScoresList);
     }
 
-    @When("^I expand the International Profile with name \"([^\"]*)\"$")
-    public void i_Expand_The_International_Profile_With_Name(String intstudentProfile) throws Throwable {
-        FCHubsInternationalTab.clickInternationalStudentProfileDetails(intstudentProfile);
-    }
-
     @Then("^I should see the details of the International profile$")
     public void i_Should_See_The_Details_Of_The_International_Profile() throws Throwable {
         FCHubsInternationalTab.verifyInternationalStudentProfileDetails();
