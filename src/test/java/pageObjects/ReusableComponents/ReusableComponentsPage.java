@@ -23,7 +23,7 @@ public class ReusableComponentsPage extends BaseClass {
     @FindBy(how = How.XPATH, using = "//ul[@class ='dropdown active']/li/a[text() = 'tasks']")
     public static WebElement Tasks;
 
-    @FindBy(how = How.CSS, using = "")//WIP //daya
+    @FindBy(how = How.CLASS_NAME, using = "con-users-count")//WIPIntegration //daya //Integration
     public static WebElement communityNotification;
 
 
