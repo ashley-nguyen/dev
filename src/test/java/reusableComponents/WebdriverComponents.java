@@ -14,7 +14,7 @@ import stepDefs.Hooks;
 import java.util.concurrent.TimeUnit;
 
 import static org.junit.Assert.assertTrue;
-
+import static org.junit.Assert.fail;
 
 
 /**
@@ -24,12 +24,13 @@ public class WebdriverComponents {
     public int waitTime = 30;
     WebDriver driver;
 
-    public WebdriverComponents(){
+    public WebdriverComponents() {
         this.driver = Hooks.driver;
     }
 
     /**
      * Method to check  if element is present within specified time
+     *
      * @param timeout
      * @param element
      * @return
@@ -54,7 +55,7 @@ public class WebdriverComponents {
      *
      * @param element
      */
-    public void clickElement(WebElement element) {
+    public void clickElement(WebElement element)  {
 
         if (waitForElementPresent(60, element)) {
 
@@ -90,15 +91,15 @@ public class WebdriverComponents {
     /**
      * Method to hover on specified flyout
      *
-     * @param Element where you want to hover
+     * @param element where you want to hover
      * @throws Exception
      */
-    public void hover(WebElement Element) throws Exception {
+    public void hover(WebElement element) throws Exception {
 
         try {
 
             Actions action = new Actions(driver);
-            action.moveToElement(Element);
+            action.moveToElement(element);
             action.perform();
 
         } catch (Exception ex) {
@@ -113,16 +114,18 @@ public class WebdriverComponents {
      * @param text Text which u need to verify if it is present
      * @throws Exception
      */
-    public void verifyTextPresent(String text, WebElement Element) throws Exception {
+    public void verifyTextPresent(String text, WebElement element) throws Exception {
 
         try {
 
-            String textFromPage = Element.getText();
-            assertTrue("Verified '" +text+ "' Data!", textFromPage.contains(text));
+            String textFromElement = element.getText();
+            assertTrue(" '" + text + "' is not present!", textFromElement.contains(text));
 
         } catch (Exception ex) {
-
-            System.out.println("Exception occured during assertion");
+            if (ex.getClass().toString().contains("NoSuchElementException"))
+                System.out.println("\nException occured in finding element");
+            else
+                System.out.println("\nException occured during assertion of text presence");
         }
     }
 
@@ -130,31 +133,34 @@ public class WebdriverComponents {
      * Method to Verify Text Not Present
      *
      * @param text Text which u need to verify if text not present
+     * @param element
      * @throws Exception
      */
-    public void verifyTextNotPresent(String text, WebElement Element) throws Exception {
+    public void verifyTextNotPresent(String text, WebElement element) throws Exception {
 
         try {
 
-            String textFromPage = Element.getText();
-            assertTrue("Verified '" +text+ "' Data not present", !textFromPage.contains(text));
+            String textFromElement = element.getText();
+            assertTrue("'"+text + " 'is  present!", !textFromElement.contains(text));
 
         } catch (Exception ex) {
-
-            System.out.println("Exception occured during assertion");
+            if (ex.getClass().toString().contains("NoSuchElementException"))
+                System.out.println("\nException occured in finding element");
+            else
+                System.out.println("\nException occured during assertion of text not present");
         }
     }
 
     /**
      * Method to Verify That an Element is not Present
      *
-     * @param Element The element that should not be present
+     * @param element The element that should not be present
      * @throws Exception
      */
-    public boolean verifyElementNotPresent(WebElement Element) {
+    public boolean verifyElementNotPresent(WebElement element) {
         boolean result;
         try {
-            Element.isDisplayed();
+            element.isDisplayed();
             result = false;
         } catch (NoSuchElementException e) {
             result = true;
@@ -165,19 +171,59 @@ public class WebdriverComponents {
     /**
      * Method to Verify That an Element is Present
      *
-     * @param Element The element that should not be present
+     * @param element The element that should not be present
      * @throws Exception
      */
-    public boolean verifyElementPresent(WebElement Element) {
+    public boolean verifyElementPresent(WebElement element) {
         boolean result;
         try {
-            Element.isDisplayed();
+            element.isDisplayed();
             result = true;
         } catch (NoSuchElementException e) {
             result = false;
         }
         return result;
     }
+
+    /**
+     * asserts if the link with the text provided is not present
+     * @param text text of the link in question
+     */
+    public void assertLinkNotPresent(String text) {
+        try {
+            driver.findElement(By.linkText(text));
+            fail("The \"" + text + "\" link is present");
+        } catch (NoSuchElementException ex) {
+            /* If the link is not present, then verification is successful */
+        }
+    }
+
+    /**
+     * asserts if the element is not present
+     * @param element WebElement
+     */
+    public void assertElementNotPresent(WebElement element) {
+        try {
+            element.isDisplayed();
+            fail("The element with text \"" + element.getText() + "\"   is present!");
+        } catch (NoSuchElementException ex) {
+            /* If the element is not present, then verification is successful */
+        }
+    }
+
+    /**
+     * asserts if the element is  present
+     * @param element WebElement
+     */
+    public void assertElementPresent(WebElement element) {
+        try {
+            element.isDisplayed();
+        } catch (NoSuchElementException ex) {
+            fail("The element is not present!");
+        }
+    }
+
+
 
     /**
      * returns a WebElement having the link text as provided

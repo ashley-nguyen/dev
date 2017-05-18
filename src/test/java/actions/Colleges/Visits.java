@@ -16,6 +16,7 @@ import stepDefs.Hooks;
 import java.util.List;
 import java.util.Map;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 /**
@@ -40,6 +41,11 @@ public class Visits {
      * Navigate to College Visits page
      */
     public void goToVisits() {
+
+
+        //wip
+        //workaround until login redirection in localhost starts working again
+        driver.get("https://localhost/main/dashboards/dashboard.php");
 
         Actions action = new Actions(driver);
         action.moveToElement(SchoolPageHeader.lnkColleges).build().perform();
@@ -172,6 +178,8 @@ public class Visits {
 
     }
 
+    //WIP
+    //write a common method to check view,edit,delete links
 
     /**
      * Click and Verify link is Edit, View, and Update present
@@ -266,6 +274,62 @@ public class Visits {
         assertEquals(TableComponent.getCellElement(VisitsPage.tableVisits,rowIndex, 2).getText(),m.get("Representative"));
         assertEquals(TableComponent.getCellElement(VisitsPage.tableVisits,rowIndex, 5).getText(),m.get("Registrations"));
         //can add more fields with logic as in verifyAddedVisit method
+
+    }
+
+    /**
+     * verifies all the major links on Visits Page intended to manage visits are disabled: add new visit,
+     * schedule visit and visit settings links
+     * @throws Exception
+     */
+    public void verifyVisitsManagementLinksNotVisible() throws Exception {
+
+        driverComponents.assertElementNotPresent(VisitsPage.lnkAddVisit);
+        driverComponents.assertElementNotPresent(VisitsPage.lnkColleges);
+        driverComponents.assertElementNotPresent(VisitsPage.lnkVisitSettings);
+    }
+
+    /**
+     * verifies the edit and delete links for all visits in the table are not present
+     * @throws Exception
+     */
+    public void verifyEditDeleteLinkNotPresent() throws Exception {
+
+        //verify table is Present
+        driverComponents.verifyElementPresent(VisitsPage.visitTable);
+        //Get the number of rows
+        List<WebElement> numberOfColleges = driver.findElements(VisitsPage.tableRowVisits);
+        int numberOfRows = numberOfColleges.size();
+
+        //use number of rows and verify each row has view only and not edit and delete
+        for( int i =1;i<numberOfRows; i++) {
+            WebElement element = TableComponent.getCellElement(VisitsPage.tableBodyVisits,i,7);
+            assertTrue(element.findElement(By.linkText("view")).isEnabled());
+        }
+        driverComponents.assertLinkNotPresent("edit");
+        driverComponents.assertLinkNotPresent("delete");
+
+    }
+
+    /**
+     * verifies the edit link on the view visit page is not present
+     * @throws Exception
+     */
+    public void verifyEditVisitLinkNotPresent() throws Exception {
+
+        clickOnVisitActionByIndex("view",1);
+        driverComponents.verifyElementNotPresent(VisitsPage.lnkEditVisit);
+
+    }
+
+    /**
+     * verifies the message appearing on Visits Page related to RepVisits
+     * @param message
+     * @throws Exception
+     */
+    public void verifyRepVisitsMessage(String message) throws Exception {
+
+        assertEquals(message,VisitsPage.msgRepVisits.getText());
 
     }
 }

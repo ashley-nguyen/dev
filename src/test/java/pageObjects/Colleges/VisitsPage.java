@@ -71,8 +71,14 @@ public class VisitsPage extends BaseClass {
     @FindBy(how = How.CSS, using = ".bg2 table>tbody")
     public static WebElement tableBodyVisits;
 
-    @FindBy(how = How.LINK_TEXT, using = "schedule visit ")
+    @FindBy(how = How.LINK_TEXT, using = "schedule visit")
     public static WebElement lnkScheduleVisit;
+
+    @FindBy(how = How.LINK_TEXT, using = "visit settings")
+    public static WebElement lnkVisitSettings;
+
+    @FindBy(how = How.LINK_TEXT, using = "edit visit")
+    public static WebElement lnkEditVisit;
 
     @FindBy(how = How.LINK_TEXT, using = "Cancel")
     public static WebElement btnCancelDeleteVisit;
@@ -82,9 +88,12 @@ public class VisitsPage extends BaseClass {
 
     @FindBy(how = How.CLASS_NAME, using = "bg2")
     public static WebElement visitTable;
-  
+
     @FindBy(how = How.CSS, using = "tr:nth-of-type(2)>td[class=category11]")
     public static WebElement firstRowCollegelink;
+
+    @FindBy(how = How.CSS, using = "td.message-wrapper")
+    public static WebElement msgRepVisits;
 
     public static By tableRowVisits = By.cssSelector(".bg2 table tr");
 
