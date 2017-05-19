@@ -62,11 +62,11 @@ Feature: RepVisits
   @MAT-107 @wip-integration
   Scenario: Verify Non RepVisits users are shown a sign up reminder message
     When I am a "Non RepVisits" user
-    Then I see the message "Use RepVisits to manage your college visits. Click on the Counselor Community icon to learn more."
+    Then I see the message "Consider using RepVisits, located in the Counselor Community, to schedule visits."
 
 
 
   @MAT-107 @wip-integration
   Scenario: Verify RepVisits users are shown a use RepVisits reminder message
     When I am a "RepVisits" user
-    Then I see the message "Manage your College Visits in RepVisits"
+    Then I see the message "Manage your College Visits in RepVisits."

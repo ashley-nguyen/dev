@@ -92,7 +92,7 @@ public class VisitsPage extends BaseClass {
     @FindBy(how = How.CSS, using = "tr:nth-of-type(2)>td[class=category11]")
     public static WebElement firstRowCollegelink;
 
-    @FindBy(how = How.CSS, using = "td.message-wrapper")
+    @FindBy(how = How.CSS, using = "div.message-wrapper")
     public static WebElement msgRepVisits;
 
     public static By tableRowVisits = By.cssSelector(".bg2 table tr");
