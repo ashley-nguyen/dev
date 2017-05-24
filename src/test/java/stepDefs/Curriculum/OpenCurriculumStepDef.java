@@ -10,15 +10,12 @@ import cucumber.api.java.en.When;
 public class OpenCurriculumStepDef {
 
 
-    OpenCurriculum openCurriculumactions;
-
-
     @When("^I am on Naviance Home Page$")
     public void i_am_on_Naviance_Home_Page() throws Throwable {
 
         //throw new PendingException();
-
-        openCurriculumactions.is_the_home_page();
+        System.out.println("Start Test");
+        OpenCurriculum.is_the_home_page();
     }
 
 
@@ -26,8 +23,8 @@ public class OpenCurriculumStepDef {
     public void i_should_navigate_to_Curriculum_page() throws Throwable {
 
 
-        openCurriculumactions.navigate_to_curriculum();
-        openCurriculumactions.check_header_content();
+        OpenCurriculum.navigate_to_curriculum();
+        OpenCurriculum.check_header_content();
 
 
     }
