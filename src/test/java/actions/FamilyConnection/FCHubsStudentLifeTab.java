@@ -46,7 +46,7 @@ public class FCHubsStudentLifeTab {
         driver = Hooks.driver;
         WebElement sectionElement = null;
         PageFactory.initElements(driver, FCHubsStudentLifeTabPage.class);
-        new WebDriverWait(driver, 20).until(ExpectedConditions.elementToBeClickable(By.id("js-fc-user-nav__student-name")));
+        new WebDriverWait(driver, 40).until(ExpectedConditions.elementToBeClickable(By.id("js-fc-user-nav__student-name")));
         switch (sectionName) {
             case "SCHOOL SIZE" : sectionElement = FCHubsStudentLifeTabPage.labelSchoolSizeOverview;
                 break;
@@ -59,7 +59,7 @@ public class FCHubsStudentLifeTab {
                 sectionElement = FCHubsStudentLifeTabPage.labelPercentOfStudentsLivingOnCampus;
                 break;
         }
-        new WebDriverWait(driver, 20).until(ExpectedConditions.elementToBeClickable(sectionElement));
+        new WebDriverWait(driver, 40).until(ExpectedConditions.elementToBeClickable(sectionElement));
         assertTrue("The " + sectionName + " value is incorrect", sectionElement.getText().equals(value));
     }
 

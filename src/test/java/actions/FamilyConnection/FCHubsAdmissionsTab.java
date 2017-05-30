@@ -291,8 +291,7 @@ public class FCHubsAdmissionsTab {
             case "vs." : dropDownLocator = FCHubsAdmissionsTabPage.vsDropDownLocator;
                 break;
         }
-        new WebDriverWait(Hooks.driver, 20).until(ExpectedConditions.elementToBeClickable(driver.findElement
-                (By.cssSelector(dropDownLocator))));
+        new WebDriverWait(Hooks.driver, 40).until(ExpectedConditions.elementToBeClickable(FCHubsAdmissionsTabPage.imageScattergrams));
         Select dropDown = new Select(driver.findElement(By.cssSelector(dropDownLocator)));
         List<WebElement> optionsList = dropDown.getOptions();
         for (WebElement optionUI : optionsList) {
@@ -330,7 +329,7 @@ public class FCHubsAdmissionsTab {
         new WebDriverWait(Hooks.driver, 20).until(ExpectedConditions.elementToBeClickable
                 (FCHubsAdmissionsTabPage.imageScattergrams));
         ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);",
-                FCHubsAdmissionsTabPage.keySectionScattergramsTitle);
+                FCHubsAdmissionsTabPage.keySectionScattergrams);
         if (System.getProperty("ENV").equals("intHUBS")) {
             intElement = FCHubsAdmissionsTabPage.linkShowMoreScattergramsInt;
         } else if (System.getProperty("ENV").equals("prodConnection")) {
@@ -665,7 +664,7 @@ public class FCHubsAdmissionsTab {
         PageFactory.initElements(driver, FCHubsAdmissionsTabPage.class);
         WebElement xButtonElement = null;
         xButtonElement = FCHubsAdmissionsTabPage.buttonXTooltipScattergramsPSAT;
-        new WebDriverWait(Hooks.driver, 20).until(ExpectedConditions.elementToBeClickable
+        new WebDriverWait(Hooks.driver, 40).until(ExpectedConditions.elementToBeClickable
                 (xButtonElement));
         assertTrue("The tooltip in PSAT/SAT is not displayed", xButtonElement.isDisplayed());
     }

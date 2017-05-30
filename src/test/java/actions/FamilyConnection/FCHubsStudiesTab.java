@@ -119,7 +119,7 @@ public class FCHubsStudiesTab {
             case "Graduate Certificate" : majorsOfferedDegree = FCHubsStudiesTabPage.buttonMajorsOfferedGradCertificate;
                 break;
         }
-        new WebDriverWait(Hooks.driver, 20).until(ExpectedConditions.elementToBeClickable(majorsOfferedDegree));
+        new WebDriverWait(Hooks.driver, 40).until(ExpectedConditions.elementToBeClickable(majorsOfferedDegree));
         majorsOfferedDegree.sendKeys(Keys.RETURN);
     }
 
@@ -188,7 +188,7 @@ public class FCHubsStudiesTab {
     public static void clickInfoIconGraduationRate() {
         driver = Hooks.driver;
         PageFactory.initElements(driver, FCHubsStudiesTabPage.class);
-        new WebDriverWait(Hooks.driver, 10).until(ExpectedConditions.elementToBeClickable
+        new WebDriverWait(Hooks.driver, 40).until(ExpectedConditions.elementToBeClickable
                 (FCHubsStudiesTabPage.infoIconGradRate));
         FCHubsStudiesTabPage.infoIconGradRate.click();
     }

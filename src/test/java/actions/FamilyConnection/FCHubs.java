@@ -241,6 +241,7 @@ public class FCHubs {
     public static void VerifyZipAddressAppMailingAdd(String zipAddress) {
         driver = Hooks.driver;
         PageFactory.initElements(driver, FCHubsPage.class);
+        System.out.println(FCHubsPage.appMailingAddress.getText());
         assertTrue("Address data is not correct", FCHubsPage.appMailingAddress.getText().contains(zipAddress));
     }
 
@@ -260,6 +261,8 @@ public class FCHubs {
     public static void VerifyFinantialAidNumberAdmissions(String phoneNumber) {
         driver = Hooks.driver;
         PageFactory.initElements(driver, FCHubsPage.class);
+        new WebDriverWait(driver, 20).until(ExpectedConditions.elementToBeClickable(FCHubsPage.contactInfoAdmissions));
+        System.out.println(FCHubsPage.contactInfoAdmissions.getText());
         assertTrue("Financial Aid number data is not correct", FCHubsPage.contactInfoAdmissions.getText().contains(phoneNumber));
     }
 
@@ -367,6 +370,8 @@ public class FCHubs {
         boolean resultForEmptyData = false;
         WebElement scoreUIElement = null;
 
+        new WebDriverWait(driver, 40).until(ExpectedConditions.elementToBeClickable(FCHubsPage.buttonApplyOnline));
+
         for (String scoreStringElement : scoresList) {
             switch (scoreStringElement.split(";")[0]) {
                 case "GPA" : scoreUIElement = FCHubsPage.labelScoreQualificationGPA;
@@ -378,7 +383,7 @@ public class FCHubs {
                 case "OVERALL AVERAGE" : scoreUIElement = FCHubsPage.labelScoreQualificationOverallAvg;
                     break;
             }
-            new WebDriverWait(driver, 20).until(ExpectedConditions.elementToBeClickable(scoreUIElement));
+            new WebDriverWait(driver, 40).until(ExpectedConditions.elementToBeClickable(scoreUIElement));
 
             if (scoreStringElement.split(";")[1].equals("empty") && scoreUIElement.getText().equals("")) {
                 resultForEmptyData = true;
@@ -399,7 +404,7 @@ public class FCHubs {
         driver = Hooks.driver;
         PageFactory.initElements(driver, FCHubsPage.class);
         new WebDriverWait(driver, 20).until(ExpectedConditions.elementToBeClickable
-                (FCHubsPage.labelOverallAvgConclusionText));
+                (FCHubsPage.buttonApplyOnline));
         assertTrue("The Overall Average text is not present", FCHubsPage.labelOverallAvgConclusionText.getText().equals
                 (overallAvgText));
     }
@@ -571,7 +576,7 @@ public class FCHubs {
     public static void ClickStudiesTab() {
         driver = Hooks.driver;
         PageFactory.initElements(driver, FCHubsPage.class);
-        new WebDriverWait(driver, 20).until(ExpectedConditions.elementToBeClickable(FCHubsPage.tabStudies));
+        new WebDriverWait(driver, 20).until(ExpectedConditions.elementToBeClickable(FCHubsPage.tabCollegesTopBar));
         FCHubsPage.tabStudies.click();
         }
 
@@ -585,7 +590,7 @@ public class FCHubs {
     public static void ClickStudentLifeTab() {
         driver = Hooks.driver;
         PageFactory.initElements(driver, FCHubsPage.class);
-        new WebDriverWait(driver, 20).until(ExpectedConditions.elementToBeClickable(FCHubsPage.tabStudentLife));
+        new WebDriverWait(driver, 20).until(ExpectedConditions.elementToBeClickable(FCHubsPage.buttonRecommendedEvents));
         FCHubsPage.tabStudentLife.click();
     }
 
@@ -676,14 +681,14 @@ public class FCHubs {
     public static void ClickCommunicate() {
         driver = Hooks.driver;
         PageFactory.initElements(driver, FCHubsPage.class);
-        new WebDriverWait(driver, 20).until(ExpectedConditions.elementToBeClickable(FCHubsPage.topButtonCommunicate));
+        new WebDriverWait(driver, 40).until(ExpectedConditions.elementToBeClickable(FCHubsPage.buttonApplyOnline));
         FCHubsPage.topButtonCommunicate.click();
     }
 
     public static void Requestinformationlink(String link) {
         driver = Hooks.driver;
         PageFactory.initElements(driver, FCHubsPage.class);
-        new WebDriverWait(driver, 20).until(ExpectedConditions.elementToBeClickable(FCHubsPage.buttonRequestInfo));
+        new WebDriverWait(driver, 40).until(ExpectedConditions.textToBePresentInElement(FCHubsPage.buttonRequestInfo, link));
         FCHubsPage.buttonRequestInfo.click();
         ArrayList<String> tabs = new ArrayList<String> (driver.getWindowHandles());
         driver.switchTo().window(tabs.get(tabs.size() - 1));

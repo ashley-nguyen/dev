@@ -52,15 +52,15 @@ public class FCHubsAdmissionsTabPage extends BaseClass {
     public static WebElement linkYearsRequiredHeader;
     @FindBy(how = How.CSS, using = "span[ng-click=\"vm.togglePrerequisiteCoursesSort('yearsRecommended')\"]")
     public static WebElement linkYearsRecommendedHeader;
-    @FindBy(how = How.CSS, using = "div.fc-grid__col.fc-grid__col--xs-12.scattergrams-legend")
+    @FindBy(how = How.CSS, using = "div.scattergram__legend.hub-multi-column-row.fc-grid__row.fc-grid__row--xs-center")
     public static WebElement keySectionScattergrams;
     @FindBy(how = How.CSS, using = "h4.scattergrams-legend__title")
     public static WebElement keySectionScattergramsTitle;
-    @FindBy(how = How.CSS, using = "div[ng-if=\"vm.student.scattergramsSettings.graphDisclaimer\"] span")
+    @FindBy(how = How.CSS, using = "span[ng-bind-html=\"::vm.truncatedText\"]")
     public static WebElement textBoxDescriptionScattergrams;
     @FindBy(how = How.CSS, using = "div[ng-if=\"vm.isTruncated && vm.isExpanded\"]")
     public static WebElement textBoxDescriptionScattergramsExpanded;
-    @FindBy(how = How.CSS, using = "img.background-loader__content")
+    @FindBy(how = How.CSS, using = "#greyBack")
     public static WebElement imageScattergrams;
     @FindBy(how = How.CSS, using = "span[title=\"Click to learn more about Scattergrams\"] svg")
     public static WebElement infoIconScattergrams;
@@ -114,8 +114,7 @@ public class FCHubsAdmissionsTabPage extends BaseClass {
     public static WebElement studentsEnrolledBeforePastYear;
     @FindBy(how = How.CSS, using = "div[ng-if=\"vm.requirementLists.length > 0\"] h2")
     public static WebElement applicationRequirementsTitle;
-    @FindBy(how = How.CSS, using = "span[ng-show=\"vm.subPsat && vm.scattergramTestType == '1'\"] " +
-            "svg[ng-click=\"vm.toggleTooltip($event)\"]")
+    @FindBy(how = How.CSS, using = "span[ng-show=\"vm.subPsat && vm.testType === 'SAT_1600'\"] svg[ng-click=\"vm.toggleTooltip($event)\"]")
     public static WebElement scattergramsPSATInfoIconInt;
     @FindBy(how = How.CSS, using = "span[ng-show=\"vm.subPsat && vm.scattergramTestType == '1'\"] svg")
     public static WebElement scattergramsPSATInfoIconProd;
@@ -123,8 +122,8 @@ public class FCHubsAdmissionsTabPage extends BaseClass {
     public static WebElement buttonXTooltipScattergramsPSAT;
 
     public static String listDeadlinesLocator = ".admissions-information__deadline-item.ng-scope";
-    public static String comparingDropDownLocator = "select[ng-model=\"vm.scattergramGpaType\"]";
-    public static String vsDropDownLocator = "select[ng-model=\"vm.scattergramTestType\"]";
+    public static String comparingDropDownLocator = "div.scattergrams__select.scattergrams__select--gpa.fc-grid__col select";
+    public static String vsDropDownLocator = "div.scattergrams__select.scattergrams__select--test.fc-grid__col select";
     public static String courseNamesLocator = "tr[ng-repeat=\"course in vm.prerequisiteCourses\"] td:nth-of-type(1)";
     public static String yearsRequiredLocator = "tr[ng-repeat=\"course in vm.prerequisiteCourses\"] td:nth-of-type(2)";
     public static String yearsRecommendedLocator = "tr[ng-repeat=\"course in vm.prerequisiteCourses\"] td:nth-of-type(3)";

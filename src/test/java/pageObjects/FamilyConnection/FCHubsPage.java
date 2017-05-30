@@ -33,7 +33,8 @@ public class FCHubsPage extends BaseClass {
     public static WebElement linkNextThirdDialog;
     @FindBy(how = How.CSS, using = ".masthead__address a")
     public static WebElement linkURLIdentifierModule;
-    @FindBy(how = How.CSS, using = ".fc-dropdown__item.masthead-dropdown-menu__item.ng-scope")
+    @FindBy(how = How.CSS, using = "div.product-links.fc-grid__row.fc-grid__row--xs-middle.fc-grid__row--xs-center." +
+            "fc-grid__row--md-end communicate li[ng-if=\"vm.requestInfo\"]")
     public static WebElement buttonRequestInfo;
     @FindBy(how = How.CSS, using = ".apply-online.fc-button.ng-scope")
     public static WebElement buttonApplyOnline;
@@ -61,17 +62,17 @@ public class FCHubsPage extends BaseClass {
     public static WebElement buttonXOnFirstTutorial;
     @FindBy(how = How.XPATH, using ="//span[contains(text(),'Tell us what you think!')]/../span[@role='button']")
     public static WebElement buttonXOnSecondTutorial;
-    @FindBy(how = How.CSS, using = ".tabs.hubs-top-tabs-bar span:nth-of-type(2)")
+    @FindBy(how = How.XPATH, using = "//span[text() = 'Studies']")
     public static WebElement tabStudies;
-    @FindBy(how = How.CSS, using = ".tabs.hubs-top-tabs-bar span:nth-of-type(4)")
+    @FindBy(how = How.XPATH, using = "//span[text() = 'Admissions']")
     public static WebElement tabAdmissions;
-    @FindBy(how = How.CSS, using = ".tabs.hubs-top-tabs-bar span:nth-of-type(3)")
+    @FindBy(how = How.XPATH, using = "//span[text() = 'Student Life']")
     public static WebElement tabStudentLife;
     @FindBy(how = How.XPATH, using = "//span[text() = 'Costs']")
     public static WebElement tabCosts;
-    @FindBy(how = How.CSS, using = ".tabs.hubs-top-tabs-bar span:nth-of-type(6)")
+    @FindBy(how = How.CSS, using = "//span[text() = 'Profiles']")
     public static WebElement tabProfiles;
-    @FindBy(how = How.CSS, using = ".tabs.hubs-top-tabs-bar span:nth-of-type(7)")
+    @FindBy(how = How.CSS, using = "//span[text() = 'International']")
     public static WebElement tabInternational;
     @FindBy(how = How.CSS, using = "div[ng-if=\"vm.averageNetPrices.length > 0\"] div.hub-data-pod__data-age.ng-binding")
     public static WebElement labelDateAvgNetPrice;

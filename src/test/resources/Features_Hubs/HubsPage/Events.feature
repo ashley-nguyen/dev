@@ -4,7 +4,7 @@ Feature:  As a student viewing new Hubs' events screen , I want to see events so
   Background:
     Given I log in to Family Connection with the following user details:
       | rtsa | amandahubs| Hobsons!23  |
-    When I open the HUBS page for "Adelphi"
+    When I open the HUBS page for "Adrian"
 
 
   Scenario: User is taken to Events Page when click Recommended Events
@@ -13,7 +13,7 @@ Feature:  As a student viewing new Hubs' events screen , I want to see events so
   @smoke
   Scenario: User signup for the Event by selecting event from events details page
     When I open Recommended Events from sticky bar
-    When SignUp for school "Adrian" for Event "ABC Store Event1"
+    When SignUp for school "Adrian" for Event "HUBS Regression Test Event"
     Then Sign Up Here page displayed for "Adrian" School event
     When I signup for Adrian School Event
     Then Message displayed "You're signed up for this event!"

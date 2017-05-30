@@ -21,22 +21,22 @@ Feature:  As a student viewing new Hubs' Overview tab, I want to see contact inf
     | Admission Policy;Competitive |
     | Notification Policy;Rolling  |
     | Early Decision;Unknown       |
-    | Wait List;Unknown            |
+    | Wait List;Yes                |
     | Registration Policy;No       |
 
   Scenario: The displayed fees for 'Freshman' are correct
     When I open "Fees" in Application Information
     Then The fees for "Freshman" should be:
-    | Application Fee;$40 |
-    | Deposit;$250        |
+    | Application Fee;$780 |
+    | Deposit;$680         |
 
-  Scenario: The displayed fees for 'Freshman' are correct
+  Scenario: The displayed fees for 'Transfer' are correct
     When I open "Fees" in Application Information
     Then The fees for "Transfer" should be:
-      | Application Fee;$40 |
-      | Deposit;$250        |
+      | Application Fee;$480 |
+      | Deposit;$580         |
 
-  Scenario: The displayed fees for 'Freshman' are correct
+  Scenario: The displayed fees for 'International' are correct
     When I open "Fees" in Application Information
     Then The fees for "International" should be:
       | Application Fee;$380 |
