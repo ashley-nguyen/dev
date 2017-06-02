@@ -4,7 +4,6 @@ import org.openqa.selenium.*;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import pageObjects.FamilyConnection.FCCollegeEventsPage;
 import pageObjects.FamilyConnection.FCCollegesPage;
@@ -110,9 +109,6 @@ public class FCHubsBottomStickyBar {
         if (tempVariable.equals("")) {
             tempVariable = "0";
         }
-
-        System.out.println("UI: " + tempVariable);
-        System.out.println("Data: " + listSize);
         assertTrue("The number of elements in the list is not the same than the number in the sticky bar button",
                 listSize == Integer.parseInt(tempVariable));
     }

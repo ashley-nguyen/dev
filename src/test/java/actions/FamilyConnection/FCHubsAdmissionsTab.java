@@ -1,6 +1,5 @@
 package actions.FamilyConnection;
 
-import com.gargoylesoftware.htmlunit.ElementNotFoundException;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -8,7 +7,6 @@ import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import pageObjects.FamilyConnection.FCHubsAdmissionsTabPage;
 import pageObjects.FamilyConnection.FCHubsPage;
-import pageObjects.FamilyConnection.FCHubsStudiesTabPage;
 import reusableComponents.WebdriverComponents;
 import stepDefs.Hooks;
 
@@ -227,7 +225,6 @@ public class FCHubsAdmissionsTab {
         List<WebElement> elementsList = driver.findElements(By.cssSelector(FCHubsAdmissionsTabPage.courseNamesLocator));
 
         for (WebElement element : elementsList) {
-            System.out.println("Control: " + element.getText());
             firstLettersList.add(element.getText().charAt(0));
         }
 
@@ -268,7 +265,6 @@ public class FCHubsAdmissionsTab {
         }
 
         for (int i = 0; i < (correctedElementList.size() - 1); i++) {
-            System.out.println("Num: " + correctedElementList.get(i));
             if (correctedElementList.get(i + 1) < correctedElementList.get(i)) {
                 result = false;
                 break;
@@ -295,7 +291,6 @@ public class FCHubsAdmissionsTab {
         Select dropDown = new Select(driver.findElement(By.cssSelector(dropDownLocator)));
         List<WebElement> optionsList = dropDown.getOptions();
         for (WebElement optionUI : optionsList) {
-            System.out.println("UI: " + optionUI.getText());
             if (dropDownOptions.contains(optionUI.getText())) {
                 result = true;
             } else {
@@ -537,7 +532,6 @@ public class FCHubsAdmissionsTab {
                 case "Students Enrolled" : currentUIElement = FCHubsAdmissionsTabPage.studentsEnrolledCurrentYear;
                     break;
             }
-            System.out.println("UI Current: "+ currentUIElement.getText());
             if (currentYearApplicationsValues.contains(currentUIElement.getText().split(" ")[0])) {
                 resultCurrentYear = true;
             } else {
@@ -555,7 +549,6 @@ public class FCHubsAdmissionsTab {
                 case "Students Enrolled" : pastUIElement = FCHubsAdmissionsTabPage.studentsEnrolledPastYear;
                     break;
             }
-            System.out.println("UI Past: "+ pastUIElement.getText());
             if (pastYearApplicationsValues.contains(pastUIElement.getText().split(" ")[0])) {
                 resultPastYear = true;
             } else {
@@ -573,7 +566,6 @@ public class FCHubsAdmissionsTab {
                 case "Students Enrolled" : beforePastUIElement = FCHubsAdmissionsTabPage.studentsEnrolledBeforePastYear;
                     break;
             }
-            System.out.println("UI BeforePast: "+ beforePastUIElement.getText());
             if (beforePastYearApplicationsValues.contains(beforePastUIElement.getText().split(" ")[0])) {
                 resultBeforePastYear = true;
             } else {
@@ -620,7 +612,6 @@ public class FCHubsAdmissionsTab {
         boolean result = false;
         List<WebElement> uiList = driver.findElements(By.cssSelector(FCHubsAdmissionsTabPage.admissionsContactInfoList));
         for (WebElement uiElement : uiList) {
-            System.out.println("UI: " + uiElement.getText());
             if (contactDataList.contains(uiElement.getText())) {
                 result = true;
             } else {

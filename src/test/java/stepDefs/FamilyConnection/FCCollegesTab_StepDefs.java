@@ -1,15 +1,8 @@
 package stepDefs.FamilyConnection;
 
 import actions.FamilyConnection.FCCollegesTab;
-import cucumber.api.PendingException;
-import cucumber.api.java.en.And;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
-import stepDefs.Hooks;
-
-import static junit.framework.TestCase.assertTrue;
 
 /**
  * Created by jorgemaguina on 5/25/2016.

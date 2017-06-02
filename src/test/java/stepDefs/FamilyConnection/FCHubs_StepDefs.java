@@ -1,17 +1,13 @@
 package stepDefs.FamilyConnection;
 
 import actions.FamilyConnection.*;
-import cucumber.api.PendingException;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import org.openqa.selenium.WebDriver;
-import reusableComponents.WebdriverComponents;
 
 import java.util.List;
-
-import static actions.FamilyConnection.FCHubs.*;
 
 /**
  * Created by jorgemaguina on 5/31/2016.

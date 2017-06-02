@@ -1,13 +1,10 @@
 package pageObjects.FamilyConnection;
 
-import net.serenitybdd.core.annotations.findby.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 import pageObjects.BaseClass;
-
-import java.util.List;
 
 /**
  * Created by jorgemaguina on 7/27/2016.

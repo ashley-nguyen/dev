@@ -1,12 +1,9 @@
 package stepDefs.FamilyConnection;
 
 import actions.FamilyConnection.FCCollegeEvents;
-import cucumber.api.PendingException;
-import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import org.openqa.selenium.WebDriver;
-import pageObjects.FamilyConnection.FCCollegeEventsPage;
 
 /**
  * Created by mbhangu on 12/13/2016.

@@ -3,10 +3,8 @@ package actions.FamilyConnection;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import pageObjects.FamilyConnection.FCHubsPage;
-import pageObjects.FamilyConnection.FCHubsStudentLifeTabPage;
 import pageObjects.FamilyConnection.FCHubsStudiesTabPage;
 import stepDefs.Hooks;
 
@@ -86,8 +84,6 @@ public class FCHubsStudiesTab {
         boolean result = false;
         driver = Hooks.driver;
         for(int i = 0; i < programs.size(); i++) {
-            System.out.println(driver.findElement(By.xpath("//div[@class='studies-programs__content']/div/ul/li/a" +
-                    "[contains(text(), '" + programs.get(i) + "')]")).getText());
             if(driver.findElement(By.xpath("//div[@class='studies-programs__content']/div/ul/li/a" +
                     "[contains(text(), '" + programs.get(i) + "')]")).isDisplayed()) {
                 result = true;
@@ -252,7 +248,6 @@ public class FCHubsStudiesTab {
             case "Majors Offered" : uiElement = FCHubsStudiesTabPage.dateLabelMajorsOffered;
                 break;
         }
-        System.out.println("UI: " + uiElement.getText());
         assertTrue("The label is not correct", uiElement.getText().equals(label));
     }
 

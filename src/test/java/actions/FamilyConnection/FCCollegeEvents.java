@@ -1,6 +1,5 @@
 package actions.FamilyConnection;
 
-//import org.openqa.jetty.html.List;
 import com.gargoylesoftware.htmlunit.ElementNotFoundException;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -10,14 +9,10 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import pageObjects.FamilyConnection.FCCollegeEventsPage;
-import pageObjects.FamilyConnection.FCCollegesPage;
-import pageObjects.FamilyConnection.FCHubsCostsTabPage;
-import pageObjects.FamilyConnection.FCHubsPage;
 import stepDefs.Hooks;
 import java.util.List;
 
 import static org.junit.Assert.assertTrue;
-import static pageObjects.FamilyConnection.FCCollegeEventsPage.eventsList;
 
 /**
  * Created by mbhangu on 12/13/2016.
@@ -126,7 +121,6 @@ public class FCCollegeEvents {
         arrayOfEvents = driver.findElements(By.cssSelector(FCCollegeEventsPage.eventsList));
         for(int i = 0; i < arrayOfEvents.size(); i++)
         {
-            System.out.println("Values in the list are :" + arrayOfEvents.get(i).getText());
             if (arrayOfEvents.get(i).getText().equals(eventName)){
                 result = true;
             }

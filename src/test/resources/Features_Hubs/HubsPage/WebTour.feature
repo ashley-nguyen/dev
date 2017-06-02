@@ -11,7 +11,10 @@ Feature:  As a student exploring a college I want to see paid webtour to underst
   Scenario: User is able to scroll content using arrows
     When I go to the right "7" times
     Then I should see the Web Tour element at position "7"
-    # we do not have Video for Adelphi , commenting it for now
+
+    #The following three scenarios need specific data in one of the test colleges. Currently, we don't have that data,
+    #but it will be added in the near future.
+
     #Scenario: Play button is present on thumbnail
     # Then I should see a Play button in the YouTube video thumbnail
     # Need to add Kaltura images for Adelphi

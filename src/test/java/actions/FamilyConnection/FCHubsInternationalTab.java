@@ -4,7 +4,6 @@ import org.openqa.selenium.*;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import pageObjects.FamilyConnection.FCHubsBottomStickyBarPage;
 import pageObjects.FamilyConnection.FCHubsInternationalTabPage;
 import stepDefs.Hooks;
 
@@ -132,8 +131,6 @@ public class FCHubsInternationalTab {
             List<WebElement> uiRowElements = rowList.get(j).findElements(By.cssSelector("div"));
             String[] dataRowElements = testScoresList.get(j).split(";");
             for (int i = 0; i < uiRowElements.size(); i++) {
-                System.out.println("Data: " + dataRowElements[i]);
-                System.out.println("UI: " + uiRowElements.get(i).getText());
                 if (uiRowElements.get(i).getText().equals(dataRowElements[i])) {
                     result = true;
                 } else {

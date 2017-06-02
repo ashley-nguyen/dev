@@ -195,8 +195,6 @@ public class FCHubsStudentLifeTab {
         locator = FCHubsStudentLifeTabPage.orgAvailableListLocator;
         List<WebElement> elementList = driver.findElements(By.cssSelector(locator));
         for(int i = 0; i < studentOrgs.size(); i++) {
-            System.out.println("UI :" + elementList.get(i).getText());
-            System.out.println("Data: " + studentOrgs.get(i));
             if(elementList.get(i).getText().equals(studentOrgs.get(i))) {
                 result = true;
             } else {
@@ -298,7 +296,6 @@ public class FCHubsStudentLifeTab {
         List<WebElement> uiFratAndSorList = new ArrayList<>();
         uiFratAndSorList = driver.findElements(By.cssSelector(FCHubsStudentLifeTabPage.fraternitiesAndSororitiesLocator));
         for (int i = 0; i < uiFratAndSorList.size(); i++) {
-            System.out.println("UI values: " + uiFratAndSorList.get(i));
             if (uiFratAndSorList.get(i).getText().equals(fratAndSorList.get(i).split(";")[1])) {
                 result = true;
             } else {
@@ -330,10 +327,8 @@ public class FCHubsStudentLifeTab {
                 .basicServicesAvailableLocator));
         ROTCServicesUiList = driver.findElements(By.cssSelector(FCHubsStudentLifeTabPage
                 .ROTCServicesAvailableLocator));
-        System.out.println("ROTC list size: " + ROTCServicesUiList.size());
 
         for (WebElement uiBasicServiceElement : basicServicesUiList) {
-            System.out.println("Basic Services UI: " + uiBasicServiceElement.getText());
             if (basicServicesList.contains(uiBasicServiceElement.getText().trim())) {
                 resultBasicServices = true;
             } else {
@@ -344,7 +339,6 @@ public class FCHubsStudentLifeTab {
 
         if (ROTCServicesUiList.size()  != 0) {
             for (WebElement uiROTCServiceElement : ROTCServicesUiList) {
-                System.out.println("ROTC Services UI: " + uiROTCServiceElement.getText());
                 if (ROTCServicesList.contains(uiROTCServiceElement.getText().trim())) {
                     resultROTCServices = true;
                 } else {

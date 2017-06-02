@@ -1,8 +1,6 @@
 package actions.FamilyConnection;
 
-import com.gargoylesoftware.htmlunit.ElementNotFoundException;
 import junit.framework.TestCase;
-import org.apache.bcel.generic.FieldGenOrMethodGen;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -20,10 +18,7 @@ import stepDefs.Hooks;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
-
 import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.assertFalse;
 
 /**
  * Created by jorgemaguina on 5/25/2016.
@@ -241,7 +236,6 @@ public class FCHubs {
     public static void VerifyZipAddressAppMailingAdd(String zipAddress) {
         driver = Hooks.driver;
         PageFactory.initElements(driver, FCHubsPage.class);
-        System.out.println(FCHubsPage.appMailingAddress.getText());
         assertTrue("Address data is not correct", FCHubsPage.appMailingAddress.getText().contains(zipAddress));
     }
 
@@ -262,7 +256,6 @@ public class FCHubs {
         driver = Hooks.driver;
         PageFactory.initElements(driver, FCHubsPage.class);
         new WebDriverWait(driver, 20).until(ExpectedConditions.elementToBeClickable(FCHubsPage.contactInfoAdmissions));
-        System.out.println(FCHubsPage.contactInfoAdmissions.getText());
         assertTrue("Financial Aid number data is not correct", FCHubsPage.contactInfoAdmissions.getText().contains(phoneNumber));
     }
 
@@ -316,9 +309,6 @@ public class FCHubs {
                         break;
                 }
             }
-
-
-            System.out.println("UI values: " + valueElement.getText());
             new WebDriverWait(driver, 20).until(ExpectedConditions.elementToBeClickable(valueElement));
             if (scoreValueElement.split(";")[1].equals(valueElement.getText().trim())) {
                 result = true;
@@ -345,8 +335,6 @@ public class FCHubs {
                 case "ACT" : valueElement = FCHubsPage.labelAvgACTValue;
                     break;
             }
-            System.out.println("UI: " + valueElement.getText());
-            System.out.println("Data: " + scoreValueElement.split(";")[1]);
             new WebDriverWait(driver, 20).until(ExpectedConditions.elementToBeClickable(valueElement));
             if (scoreValueElement.split(";")[1].equals("empty")) {
                 comparisonString = "";
@@ -1157,7 +1145,6 @@ public class FCHubs {
             } else {
                 result = false;
             }
-            System.out.println("Attribute: " + FCHubsPage.tooltipContainerAvgNetPrice.getAttribute("class"));
         } else if (System.getProperty("ENV").equals("prodConnection")) {
             switch (section) {
                 case "Average Net Price" : tooltipContainerElement = FCHubsPage.tooltipContainerAvgNetPrice;
@@ -1183,8 +1170,6 @@ public class FCHubs {
                 result = false;
             }
         }
-
-        System.out.println("Result: " + result);
         assertTrue("The tooltip in the section: " + section + " was not closed", result);
     }
 
@@ -1219,8 +1204,6 @@ public class FCHubs {
         }
 
         for (int i = 0; i < quickFactsList.size(); i++) {
-            System.out.println("UI: " + quickFactsUIList.get(i).getText());
-            System.out.println("Data: " + quickFactsList.get(i).split(";")[1]);
             if (quickFactsUIList.get(i).getText().equals(quickFactsList.get(i).split(";")[1])) {
                 result = true;
             } else {

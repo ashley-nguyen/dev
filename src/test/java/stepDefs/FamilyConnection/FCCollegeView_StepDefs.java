@@ -1,13 +1,9 @@
 package stepDefs.FamilyConnection;
 
 import actions.FamilyConnection.FCCollegeView;
-import cucumber.api.java.en.And;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
-import org.junit.Assert;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import stepDefs.Hooks;
 
 /**
  * Created by jorgemaguina on 5/31/2016.

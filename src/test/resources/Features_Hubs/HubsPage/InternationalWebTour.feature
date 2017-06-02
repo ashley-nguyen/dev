@@ -18,6 +18,9 @@ Feature:  As a student exploring a college I want to see paid webtour to underst
     When I open the Web Tour element at position "1"
     Then I should see an image in a modal dialog
 
+    #The following two scenarios need specific data in one of the test colleges. Currently, we don't have that data,
+    #but it will be added in the near future.
+
     #Scenario: Kaltura image opens in modal and content displays below
     # When I click the Web Tour element at position "3"
     #Then I should see content below the image
